@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/default.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="contenido">
+        <h:outputStylesheet>
+            .label > label {
+                width: 130px !important;
+                color: black;
+            }
+        </h:outputStylesheet>
+
+        <p:panel>
+            <f:facet name="header">
+                <h:outputText rendered="#{mantenedorVenta.esIngreso()}" value="Agregar Venta"/>
+                <h:outputText rendered="#{mantenedorVenta.esEdicion()}" value="#{msg['comunes.editar']} Venta"/>
+            </f:facet>
+            <p:messages autoUpdate="true" closable="true" showDetail="true"/>
+            <h:form>
+                <h:panelGrid columns="3" cellpadding="5" columnClasses="label">
+
+                    <h:outputLabel for="catVenta" value="Categoria de venta"/>:
+                    <p:selectOneMenu id="catVenta" converter="entityConverter"
+                                     value="#{mantenedorVenta.ventaSeleccionada.idCategoriaventa}" required="true">
+                        <f:selectItems value="#{mantenedorVenta.categoriasVenta}" var="venta"
+                                       itemLabel="#{venta.nombreCategoriaventa}"/>
+                    </p:selectOneMenu>
+
+                    <h:outputLabel for="estadoV" value="Estado de venta"/>:
+                    <p:selectOneMenu id="estadoV" converter="entityConverter"
+                                     value="#{mantenedorVenta.ventaSeleccionada.idEstadoventa}" required="true">
+                        <f:selectItems value="#{mantenedorVenta.estadosVenta}" var="estado"
+                                       itemLabel="#{estado.nombreEstadoventa}"/>
+                    </p:selectOneMenu>
+
+                    <h:outputLabel for="cliente" value="Cliente"/>:
+                    <p:inputText value="#{mantenedorVenta.rutCliente}">
+                        <p:ajax event="blur" listener="#{mantenedorVenta.procesarRutCliente()}" update="@form"/>
+                    </p:inputText>
+
+
+
+                </h:panelGrid>
+
+            </h:form>
+            <h:form>
+                <!--  no considerare idioma para iniiciar, los atributos no me los autocompleta xD o es normal en nb, si los autocomplta -->
+                <h:panelGrid columns="3" cellpadding="5" columnClasses="label">
+                    
+                    <h:outputLabel for="producto" value="Producto"/>:
+                    
+                    <p:selectOneMenu converter="entityConverter" 
+                                     value="#{mantenedorVenta.producto}" filter="true" filterMatchMode="contains" >
+                        <f:selectItem itemLabel="#{msg['comunes.seleccione']}" noSelectionOption="true"/>
+                        <f:selectItems value="#{mantenedorVenta.productos}" var="p" itemLabel="#{p.nombreProducto}"/>
+                        
+                        <p:column>#{p.idProducto}</p:column><!-- nunca tuvo codigo xD, por ahora para seguir la idea -->
+                        <p:column>#{p.nombreProducto}</p:column>
+                    </p:selectOneMenu> 
+                   
+                    <p:commandButton value="Agregar Producto" action="#{mantenedorVenta.agregarProducto()}" update="pProductos"/>
+                
+                </h:panelGrid>
+                <!--Productos aqui, se agregaran por ajax para poder ir modificando el total de venta y la lista -->
+                <p:outputPanel id="pProductos">
+                    <p:dataTable value="#{mantenedorVenta.ventaSeleccionada.detalleVentaList}" var="dt">
+                        <p:column headerText="SKU">#{dt.idProducto.sku}</p:column>
+                        <p:column headerText="producto">#{dt.idProducto.nombreProducto}</p:column>
+                        <p:column headerText="cantidad">#{dt.cantidadDetalleVenta}</p:column>
+                    </p:dataTable>
+                    <h:outputLabel for="total" value="Total venta"/>:
+                    <h:outputLabel for="valor_venta" value="#{mantenedorVenta.ventaSeleccionada.valorVentaMonedaLocal}"/>
+                </p:outputPanel>
+                <p:commandButton id="guardar" value="#{msg['comunes.guardar']}" styleClass="btn-apptec"
+                                 action="#{mantenedorVenta.guardarVenta()}" update="@form" ajax="false"/>
+                <p:commandButton id="volver" value="#{msg['comunes.volver']}" styleClass="btn-apptec" ajax="false" immediate="true"
+                                 action="#{mantenedorVenta.irListar()}"/>
+            </h:form>
+        </p:panel>
+
+    </ui:define>
+</ui:composition>

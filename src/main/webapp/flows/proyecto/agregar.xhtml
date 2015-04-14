@@ -1,0 +1,56 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/default.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="contenido">
+
+        <p:panel>
+            <f:facet name="header">
+                <h:outputText rendered="#{mantenedorProyecto.esIngreso()}" value="Agregar Proyecto"/>
+                <h:outputText rendered="#{mantenedorProyecto.esEdicion()}" value="#{msg['comunes.editar']} Proyecto"/>
+            </f:facet>
+            <p:messages autoUpdate="true" closable="true" showDetail="true"/>
+            <h:form>
+                <h:panelGrid columns="3" cellpadding="5">
+
+                    <h:outputLabel for="name" value="Nombre Proyecto"/>:
+                    <h:inputText id="name" required="true" value="#{mantenedorProyecto.proyectoSeleccionado.nombreProyecto}"/>
+                    
+                    <h:outputLabel for="cliente" value="Cliente"/>:
+                    <p:selectOneMenu id="cliente" converter="entityConverter"
+                                     value="#{mantenedorProyecto.proyectoSeleccionado.idClienteApptec}">
+                        <f:selectItems value="#{mantenedorProyecto.clientesApptec}" var="ca"
+                                       itemLabel="#{ca.razonSocialClienteApptec}"/>
+                    </p:selectOneMenu>
+                    
+                    <h:outputLabel for="pais" value="Pais"/>:
+                    <p:selectOneMenu id="pais" converter="entityConverter"
+                                     value="#{mantenedorProyecto.proyectoSeleccionado.idPais}">
+                        <f:selectItems value="#{mantenedorProyecto.paises}" var="pa"
+                                       itemLabel="#{pa.nombrePais}"/>
+                    </p:selectOneMenu>
+                    
+                    <h:outputLabel for="moneda" value="Moneda"/>:
+                    <p:selectOneMenu id="moneda" converter="entityConverter"
+                                     value="#{mantenedorProyecto.proyectoSeleccionado.idMoneda}">
+                        <f:selectItems value="#{mantenedorProyecto.monedas}" var="mon"
+                                       itemLabel="#{mon.nombreMoneda}"/>
+                    </p:selectOneMenu>
+                    
+                    <h:outputLabel for="activo" value="Activo"/>:
+                    <p:selectBooleanCheckbox id="activo" required="true"  value="#{mantenedorProyecto.proyectoSeleccionado.activoProyecto}">
+                    </p:selectBooleanCheckbox>
+                    
+                </h:panelGrid>
+
+                <p:commandButton id="guardar" value="#{msg['comunes.guardar']}" styleClass="btn-apptec" action="#{mantenedorProyecto.guardarProyecto()}"/>
+                <p:commandButton id="volver" value="#{msg['comunes.volver']}" styleClass="btn-apptec" ajax="false" immediate="true"
+                                 action="#{mantenedorProyecto.irListar()}"/>
+            </h:form>
+        </p:panel>
+
+    </ui:define>
+</ui:composition>

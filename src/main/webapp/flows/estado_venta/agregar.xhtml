@@ -1,0 +1,38 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/default.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="contenido">
+
+        <p:panel>
+            <f:facet name="header">
+                <h:outputText rendered="#{mantenedorEstadoVenta.esIngreso()}" value="Agregar Estado Venta"/>
+                <h:outputText rendered="#{mantenedorEstadoVenta.esEdicion()}" value="#{msg['comunes.editar']} Estado Venta"/>
+            </f:facet>
+            <p:messages autoUpdate="true" closable="true" showDetail="true"/>
+            <h:form>
+                <h:panelGrid columns="3" cellpadding="5">
+
+                    <h:outputLabel for="name" value="Nombre"/>:
+                    <h:inputText id="name" required="true" 
+                                 value="#{mantenedorEstadoVenta.estadoVentaSeleccionado.nombreEstadoventa}"
+                                 requiredMessage="Debes ingresar el nombre del estado de venta"/>
+                    
+                    <h:outputLabel for="descripcion" value="Descripción"/>:
+                    <h:inputText id="descripcion" required="true"
+                                 value="#{mantenedorEstadoVenta.estadoVentaSeleccionado.descripcionEstadoventa}"/>
+
+                </h:panelGrid>
+
+                <p:commandButton id="guardar" value="#{msg['comunes.guardar']}" styleClass="btn-apptec"
+                                 action="#{mantenedorEstadoVenta.guardarEV()}" update="@form"/>
+                <p:commandButton id="volver" value="#{msg['comunes.volver']}" styleClass="btn-apptec" ajax="false" immediate="true"
+                                 action="#{mantenedorEstadoVenta.irListar()}"/>
+            </h:form>
+        </p:panel>
+
+    </ui:define>
+</ui:composition>
