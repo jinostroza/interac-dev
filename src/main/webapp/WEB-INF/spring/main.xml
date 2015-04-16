@@ -12,5 +12,5 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
                 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
     
-    <context:component-scan base-package="cl.apptec"  />
+    <context:component-scan base-package="cl.interac"  />
 </beans>

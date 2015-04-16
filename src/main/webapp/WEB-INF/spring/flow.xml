@@ -42,10 +42,10 @@
                     <bean class="org.springframework.webflow.scope.ConversationScope"/>
                 </entry>
                 <entry key="view">
-                    <bean class="cl.apptec.util.scopes.ViewScope"/>
+                    <bean class="cl.interac.util.scopes.ViewScope"/>
                 </entry>
                 <entry key="application">
-                    <bean class="cl.apptec.util.scopes.ApplicationScope"/>
+                    <bean class="cl.interac.util.scopes.ApplicationScope"/>
                 </entry>
             </map>
         </property>

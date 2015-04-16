@@ -21,7 +21,7 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
         <security:session-management invalid-session-url="/logIn.jsf">
             <security:concurrency-control max-sessions="1"/>
         </security:session-management>
-        
+
         <security:intercept-url pattern="/inicio.jsf" access="hasRole('USUARIO_WEB')"/>
         <security:intercept-url pattern="/m/**" access="hasRole('USUARIO_WEB')"/>
     </security:http>
@@ -35,5 +35,5 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
         <constructor-arg name="loginFormUrl" value="/logIn.jsf"/>
     </bean>
 
-    <bean id="autenticadorPersonalizado" class="cl.apptec.security.LogInManager"/>
+    <bean id="autenticadorPersonalizado" class="cl.interac.security.LogInManager"/>
 </beans>

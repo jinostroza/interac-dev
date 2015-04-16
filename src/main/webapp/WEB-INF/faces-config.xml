@@ -7,12 +7,12 @@
     <!-- converters -->
     <converter>
         <converter-for-class>java.lang.String</converter-for-class>
-        <converter-class>cl.apptec.util.converters.EmptyStringToNull</converter-class>
+        <converter-class>cl.interac.util.converters.EmptyStringToNull</converter-class>
     </converter>
     
     <converter>
         <converter-id>entityConverter</converter-id>
-        <converter-class>cl.apptec.util.converters.EntityConverter</converter-class>
+        <converter-class>cl.interac.util.converters.EntityConverter</converter-class>
     </converter>
 
     <application>
