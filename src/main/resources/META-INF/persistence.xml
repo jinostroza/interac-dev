@@ -4,10 +4,10 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
     <properties>
-      <property name="hibernate.connection.url" value="jdbc:postgresql://190.114.254.172:5432/punto_venta"/>
+      <property name="hibernate.connection.url" value="jdbc:postgresql://54.172.118.246:5432/interac"/>
       <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
-      <property name="hibernate.connection.username" value="punto_venta"/>
-      <property name="hibernate.connection.password" value="punt0v3nt4"/>
+      <property name="hibernate.connection.username" value="postgres"/>
+      <property name="hibernate.connection.password" value="vince2315"/>
       <!--<property name="hibernate.show_sql" value="true"/>-->
       <!-- c3p0 extension -->
       <property name="hibernate.c3p0.timeout" value="0"/>
