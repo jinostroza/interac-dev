@@ -8,5 +8,106 @@
     <ui:define name="contenido">
 
         <h3>INICIO</h3>
+        <h:form>
+            <p:growl id="messages"/>
+
+            <p:menubar>
+                <p:submenu label="File" icon="ui-icon-document">
+                    <p:submenu label="New" icon="ui-icon-contact">
+                        <p:menuitem value="Project" url="#" />
+                        <p:menuitem value="Other" url="#" />
+                    </p:submenu>
+                    <p:menuitem value="Open" url="#" />
+                    <p:separator />
+                    <p:menuitem value="Quit" url="#" />
+                </p:submenu>
+
+                <p:submenu label="Edit" icon="ui-icon-pencil">
+                    <p:menuitem value="Undo" url="#" icon="ui-icon-arrowreturnthick-1-w" />
+                    <p:menuitem value="Redo" url="#" icon="ui-icon-arrowreturnthick-1-e" />
+                </p:submenu>
+
+                <p:submenu label="Help" icon="ui-icon-help">
+                    <p:menuitem value="Contents" url="#" />
+                    <p:submenu label="Search" icon="ui-icon-search">
+                        <p:submenu label="Text">
+                            <p:menuitem value="Workspace" url="#" />
+                        </p:submenu>
+                        <p:menuitem value="File" url="#" />
+                    </p:submenu>
+                </p:submenu>
+
+                <p:submenu label="Actions" icon="ui-icon-gear">
+                    <p:submenu label="Ajax" icon="ui-icon-refresh">
+                        <p:menuitem value="Save" actionListener="#{menuView.save}" icon="ui-icon-disk" update="messages"/>
+                        <p:menuitem value="Update" actionListener="#{menuView.update}" icon="ui-icon-arrowrefresh-1-w" update="messages"/>
+                    </p:submenu>
+                    <p:submenu label="Non-Ajax" icon="ui-icon-newwin">
+                        <p:menuitem value="Delete" actionListener="#{menuView.delete}" icon="ui-icon-close" update="messages" ajax="false"/>
+                    </p:submenu>
+                </p:submenu>
+
+                <p:menuitem value="Quit" url="http://www.primefaces.org" icon="ui-icon-close" />
+
+                <f:facet name="options">
+                    <p:inputText style="margin-right:10px" placeholder="Search"/>
+                    <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+                </f:facet>
+            </p:menubar>
+        </h:form>
+        <h:form>
+            <p:panel header="Validate">
+                <p:messages />
+
+                <h:panelGrid columns="4" cellpadding="5">
+                    <h:outputLabel for="name" value="Name: (@Size(min=2,max=5))" />
+                    <p:inputText id="name" value="#{beanValidationView.name}" label="Name"/>
+                    <p:message for="name" />
+                    <h:outputText value="#{beanValidationView.name}" />
+
+                    <h:outputLabel for="age" value="Age: (@Min(10) @Max(20))" />
+                    <p:inputText id="age" value="#{beanValidationView.age}" label="Age"/>
+                    <p:message for="age" />
+                    <h:outputText value="#{beanValidationView.age}" />
+
+                    <h:outputLabel for="amount" value="Amount: (@DecimalMax('99.9'))" />
+                    <p:inputText id="amount" value="#{beanValidationView.amount}" label="Amount"/>
+                    <p:message for="amount" />
+                    <h:outputText value="#{beanValidationView.amount}" />
+
+                    <h:outputLabel for="amount2" value="Amount: (@Digits(integer=3,fraction=2))" />
+                    <p:inputText id="amount2" value="#{beanValidationView.amount2}" label="Amount 2"/>
+                    <p:message for="amount2" />
+                    <h:outputText value="#{beanValidationView.amount2}" />
+
+                    <h:outputLabel for="pattern" value="Pattern: (@Pattern(regexp='^[-+]?\\d+$'))" />
+                    <p:inputText id="pattern" value="#{beanValidationView.pattern}" label="pattern"/>
+                    <p:message for="pattern" />
+                    <h:outputText value="#{beanValidationView.pattern}" />
+
+                    <h:outputLabel for="checked" value="Assert: (@AssertTrue)" />
+                    <p:selectBooleanCheckbox id="checked" value="#{beanValidationView.checked}" />
+                    <p:message for="checked" />
+                    <h:outputText/>
+
+                    <h:outputLabel for="psstDate" value="Date (@Past)"/>
+                    <p:inputText id="psstDate" value="#{beanValidationView.pastDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </p:inputText>
+                    <p:message for="psstDate" />
+                    <h:outputText/>
+
+                    <h:outputLabel for="futureDate" value="Date (@Future)"/>
+                    <p:inputText id="futureDate" value="#{beanValidationView.futureDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </p:inputText>
+                    <p:message for="futureDate" />
+                    <h:outputText/>
+
+                </h:panelGrid>
+
+                <p:commandButton value="Save" ajax="false" icon="ui-icon-check" validateClient="true"/>
+            </p:panel>
+        </h:form>
     </ui:define>
 </ui:composition>
