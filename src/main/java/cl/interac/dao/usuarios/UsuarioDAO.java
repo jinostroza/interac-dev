@@ -12,4 +12,10 @@ import javax.persistence.PersistenceContext;
 public class UsuarioDAO {
     @PersistenceContext
     private EntityManager em;
+
+    private String nombreUsuario;
+    private String apellidoPaternoUsuario;
+    private String apellidoMaternoUsuario;
+    private String fonoUsuario;
+    private String correoElectronico;
 }
