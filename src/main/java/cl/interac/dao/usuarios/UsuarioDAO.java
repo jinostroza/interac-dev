@@ -13,6 +13,7 @@ public class UsuarioDAO {
     @PersistenceContext
     private EntityManager em;
 
+    private String rut;
     private String nombreUsuario;
     private String apellidoPaternoUsuario;
     private String apellidoMaternoUsuario;
