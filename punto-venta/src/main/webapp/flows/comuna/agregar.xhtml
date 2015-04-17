@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/default.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="contenido">
+
+        <p:panel>
+            <f:facet name="header">
+                <h:outputText rendered="#{mantenedorComuna.esIngreso()}" value="#{msg['comunes.agregar']} Comuna"/>
+                <h:outputText rendered="#{mantenedorComuna.esEdicion()}" value="#{msg['comunes.editar']} Comuna"/>
+            </f:facet>
+            <p:messages autoUpdate="true" closable="true" showDetail="true"/>
+            <h:form>
+                <h:panelGrid columns="3" cellpadding="5">
+
+                    <h:outputLabel for="name" value="#{msg['comunes.nombre']}"/>:
+                    <h:inputText id="name" required="true" 
+                                 value="#{mantenedorComuna.comunaSeleccionada.nombreComuna}"
+                                 requiredMessage="Debes ingresar el nombre de la comuna"/>
+
+                    <h:outputLabel for="ciudad" value="Ciudad"/>:
+                    <p:selectOneMenu id="ciudad" converter="entityConverter"
+                                     value="#{mantenedorComuna.comunaSeleccionada.idCiudad}">
+                        <f:selectItems value="#{mantenedorComuna.ciudades}" var="ciudad"
+                                       itemLabel="#{ciudad.nombreCiudad}"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+
+                <p:commandButton id="guardar" value="#{msg['comunes.guardar']}" styleClass="btn-apptec"
+                                 action="#{mantenedorComuna.guardarComuna()}" update="@form"/>
+                <p:commandButton id="volver" value="#{msg['comunes.volver']}" styleClass="btn-apptec" ajax="false" immediate="true"
+                                 action="#{mantenedorComuna.irListar()}"/>
+            </h:form>
+        </p:panel>
+
+    </ui:define>
+</ui:composition>

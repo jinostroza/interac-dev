@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<f:view contentType="text/html">
+
+    <h:head>
+        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+        <title>Punto de Venta</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <meta content="Sistema de Ventas" name="description"/>
+        <meta content="Apptec" name="author"/>
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/resources/metronic/assets/admin/layout/css/layout.css"/>
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/resources/metronic/assets/global/css/components.css"/>
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/resources/plugins/bootstrap/css/bootstrap.min.css"/>
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/resources/plugins/font-awesome/css/font-awesome.min.css"/>
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/resources/css/estilos.css"/>
+    </h:head>
+    <h:body>
+        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head"/>
+        <h:outputScript library="primefaces" name="jquery/jquery-plugins.js" target="head"/>
+        <h:outputScript library="js" name="punto_venta.js" target="head"/>
+        <h:outputScript library="js" target="body">PuntoVenta.Menu.inicio();</h:outputScript>
+
+        <ui:include src="/templates/includes/cabeceraPagina.xhtml"/>
+        <ui:include src="/templates/includes/menuIzquierdo.xhtml"/>
+        <p:outputPanel styleClass="page-content-wrapper">
+            <p:outputPanel styleClass="page-content">
+                <ui:insert name="contenido"></ui:insert>
+            </p:outputPanel>
+        </p:outputPanel>
+        <ui:include src="/templates/includes/piePagina.xhtml"/>
+        <p:ajaxExceptionHandler update="body"/>
+    </h:body>
+</f:view>
+</html>

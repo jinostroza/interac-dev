@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/default.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="contenido">
+
+        <p:panel>
+            <f:facet name="header">
+                <h:outputText rendered="#{mantenedorCiudad.esIngreso()}" value="#{msg['comunes.agregar']} Ciudad"/>
+                <h:outputText rendered="#{mantenedorCiudad.esEdicion()}" value="#{msg['comunes.editar']} Ciudad"/>
+            </f:facet>
+            <p:messages autoUpdate="true" closable="true" showDetail="true"/>
+            <h:form>
+                <h:panelGrid columns="3" cellpadding="5">
+
+                    <h:outputLabel for="name" value="#{msg['comunes.nombre']}"/>:
+                    <h:inputText id="name" required="true" 
+                                 value="#{mantenedorCiudad.ciudadSeleccionada.nombreCiudad}"
+                                 requiredMessage="Debes ingresar el nombre de la ciudad"/>
+
+                    <h:outputLabel for="pais" value="#{msg['pais.dataTable.columnaNombre']}"/>:
+                    <p:selectOneMenu id="pais" converter="entityConverter"
+                                     value="#{mantenedorCiudad.ciudadSeleccionada.idPais}">
+                        <f:selectItems value="#{mantenedorCiudad.paises}" var="pais"
+                                       itemLabel="#{pais.nombrePais}"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+
+                <p:commandButton id="guardar" value="#{msg['comunes.guardar']}" styleClass="btn-apptec"
+                                 action="#{mantenedorCiudad.guardarCiudad()}" update="@form"/>
+                <p:commandButton id="volver" value="#{msg['comunes.volver']}" styleClass="btn-apptec" ajax="false" immediate="true"
+                                 action="#{mantenedorCiudad.irListar()}"/>
+            </h:form>
+        </p:panel>
+
+    </ui:define>
+</ui:composition>
+

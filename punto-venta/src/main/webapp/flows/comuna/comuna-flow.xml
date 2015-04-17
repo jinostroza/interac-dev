@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+      start-state="index">
+
+    <!-- en cada subdir debe existir un fichero que se llame carpeta-flow.xml -->
+    <on-start>
+        <evaluate expression="mantenedorComuna.inicio()"/>
+    </on-start>
+    
+    <!-- este nombre calza con el nombre del fichero en la carpeta flow -->
+    <view-state id="index">
+        <transition on="flowEditar" to="modificar"/>
+        <transition on="flowAgregar" to="agregar"/>
+    </view-state>
+    
+    <view-state id="agregar">
+        <transition on="flowListar" to="index"/>
+    </view-state>
+
+    <view-state id="modificar"></view-state>
+</flow>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_2.xsd"
+              version="2.1">
+    
+    <!-- converters -->
+    <converter>
+        <converter-for-class>java.lang.String</converter-for-class>
+        <converter-class>cl.apptec.util.converters.EmptyStringToNull</converter-class>
+    </converter>
+    
+    <converter>
+        <converter-id>entityConverter</converter-id>
+        <converter-class>cl.apptec.util.converters.EntityConverter</converter-class>
+    </converter>
+
+    <application>
+        <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+        <el-resolver>org.primefaces.application.exceptionhandler.PrimeExceptionHandlerELResolver</el-resolver>
+
+        <locale-config>
+            <default-locale>es</default-locale>
+            <supported-locale>es</supported-locale>
+            <supported-locale>en</supported-locale>
+        </locale-config>
+
+        <resource-bundle>
+            <base-name>idiomas/messages</base-name>
+            <var>msg</var>
+        </resource-bundle>
+    </application>
+
+    <factory>
+        <exception-handler-factory>org.primefaces.application.exceptionhandler.PrimeExceptionHandlerFactory</exception-handler-factory>
+    </factory>
+</faces-config>
+ 

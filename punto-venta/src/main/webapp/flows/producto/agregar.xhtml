@@ -1,0 +1,111 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/default.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="contenido">
+        <h:form>
+            <p:breadCrumb>
+                <p:menuitem/>
+                <p:menuitem value="#{msg['breadCrumb.producto']}" url="/m/producto" ajax="false"/>
+            </p:breadCrumb>
+            <br/>
+            <p:panel>
+                <f:facet name="header">
+                    <h:outputText rendered="#{mantenedorProducto.esIngreso()}"
+                                  value="#{msg['producto.agregar.header']}"/>
+                    <h:outputText rendered="#{mantenedorProducto.esEdicion()}"
+                                  value="#{msg['producto.editar.header']}"/>
+                </f:facet>
+
+                <p:messages autoUpdate="true" closable="true" showDetail="true"/>
+
+                <h:panelGrid columns="3" cellpadding="5">
+
+                    <h:outputLabel for="name" value="#{msg['producto.agregar.campoNombre']}"/>:
+                    <p:inputText id="name" required="true"
+                                 value="#{mantenedorProducto.productoSeleccionado.nombreProducto}"/>
+
+                    <h:outputLabel for="precio" value="#{msg['producto.agregar.campoPrecioVenta']}"/>:
+                    <p:inputText id="precio" required="true"
+                                 value="#{mantenedorProducto.productoSeleccionado.precioProducto}"/>
+
+                    <h:outputLabel for="sku" value="#{msg['producto.agregar.campoSku']}"/>:
+                    <p:inputText id="sku" required="true"
+                                 value="#{mantenedorProducto.productoSeleccionado.sku}"/>
+
+                    <h:outputLabel for="codBarra" value="#{msg['producto.agregar.campoCodBarra']}"/>:
+                    <p:inputText id="codBarra" required="true"
+                                 value="#{mantenedorProducto.productoSeleccionado.codigoBarra}"/>
+
+                    <h:outputLabel for="categoria" value="#{msg['producto.agregar.campoCategoria']}"/>:
+                    <p:selectOneMenu id="categoria" converter="entityConverter" value="#{mantenedorProducto.categoria}">
+                        <f:selectItem itemLabel="#{msg['comunes.seleccione']}" noSelectionOption="true"/>
+                        <f:selectItems value="#{mantenedorProducto.categorias}" var="c"
+                                       itemLabel="#{c.nombreCategoriaProducto}"/>
+                        <p:ajax event="change" listener="#{mantenedorProducto.obtenerCategoriasSegundoNivel()}"
+                                update="subcategoria"/>
+                    </p:selectOneMenu>
+
+                    <h:outputLabel for="subcategoria" value="#{msg['producto.agregar.campoSubCategoria']}"/>:
+                    <p:selectOneMenu id="subcategoria" converter="entityConverter"
+                                     value="#{mantenedorProducto.productoSeleccionado.categoriaProducto}">
+                        <f:selectItem itemLabel="#{msg['comunes.seleccione']}" noSelectionOption="true"/>
+                        <f:selectItems value="#{mantenedorProducto.subcategorias}" var="c"
+                                       itemLabel="#{c.nombreCategoriaProducto}"/>
+                    </p:selectOneMenu>
+                    
+                    <h:outputLabel for="sucursal" value="#{msg['producto.agregar.campoSucursal']}"/>:
+                    <p:selectOneMenu id="sucursal" converter="entityConverter"
+                                     value="#{mantenedorProducto.productoSeleccionado.stockList}">
+                        <f:selectItem itemLabel="#{msg['comunes.seleccione']}" noSelectionOption="true"/>
+                        <f:selectItems value="#{mantenedorProducto.productoSeleccionado.stockList}" var="s"
+                                       itemLabel="#{s.nombreSucursal}"/>
+                    </p:selectOneMenu>
+
+                    <h:outputLabel for="estado" value="#{msg['producto.agregar.campoEstadoProducto']}"/>:
+                    <p:selectOneMenu id="estado" converter="entityConverter"
+                                     value="#{mantenedorProducto.productoSeleccionado.idEstadoProducto}">
+                        <f:selectItem itemLabel="#{msg['comunes.seleccione']}" noSelectionOption="true"/>
+                        <f:selectItems value="#{mantenedorProducto.estados}" var="estado"
+                                       itemLabel="#{estado.nombreEstadoProducto}"/>
+                    </p:selectOneMenu>
+
+                    <h:outputLabel for="unidad" value="#{msg['producto.agregar.campoUnidad']}"/>:
+                    <p:selectOneMenu id="unidad" converter="entityConverter" value="#{mantenedorProducto.productoSeleccionado.idUnidad}">
+                        <f:selectItem itemLabel="#{msg['comunes.seleccione']}" noSelectionOption="true"/>
+                        <f:selectItems value="#{mantenedorProducto.unidades}" var="unidad"
+                                       itemLabel="#{unidad.nombreUnidad}"/>
+                    </p:selectOneMenu>
+
+                    <h:outputLabel for="activo" value="#{msg['producto.agregar.campoActivo']}"/>:
+                    <p:selectBooleanCheckbox id="activo"
+                                             value="#{mantenedorProducto.productoSeleccionado.activoProducto}"/>
+                </h:panelGrid>
+            </p:panel>
+            <br/>
+            <p:outputPanel id="seccionImagenes">
+
+                <p:panel header="#{msg['producto.agregar.headerImagenes']}">
+                    <p:galleria rendered="#{mantenedorProducto.tieneImagenes()}"
+                                value="#{mantenedorProducto.productoSeleccionado.imagenes}" var="imagen">
+                    </p:galleria>
+                    <p:fileUpload rendered="true" immediate="true" auto="false" multiple="true" mode="advanced"
+                                  fileUploadListener="#{mantenedorProducto.subirImagen}"
+                                  uploadLabel="#{msg['comunes.subir']}" cancelLabel="#{msg['comunes.cancelar']}"
+                                  allowTypes="/(\.|\/)(jpg|png)$/i"
+                                  label="#{msg['comunes.agregar']}"/>
+                </p:panel>
+            </p:outputPanel>
+
+            <p:commandButton id="guardar" value="#{msg['comunes.guardar']}" styleClass="btn-apptec"
+                             action="#{mantenedorProducto.guardarProducto()}" update="seccionImagenes"/>
+            <p:commandButton id="volver" value="#{msg['comunes.volver']}" styleClass="btn-apptec" ajax="false"
+                             immediate="true"
+                             action="#{mantenedorProducto.irListar()}"/>
+        </h:form>
+
+    </ui:define>
+</ui:composition>
