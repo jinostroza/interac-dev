@@ -1,6 +1,6 @@
 package cl.interac.security;
 
-import cl.interac.logica.usuarios.LogicaUsuario;
+import cl.interac.negocio.LogicaUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
