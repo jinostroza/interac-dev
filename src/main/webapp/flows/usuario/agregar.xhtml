@@ -6,66 +6,63 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="contenido">
-        <h:form enctype="multipart/form-data">
+        <h:form>
+            <p:panel header="Validate">
+                <p:messages />
 
-            <p:panel>
-                <f:facet name="header">
-                    <h:outputText rendered="#{mantenedorUsuario.esIngreso()}" value="#{msg['usuario.agregar.header']}"/>
-                    <h:outputText rendered="#{mantenedorUsuario.esEdicion()}" value="#{msg['usuario.editar.header']}"/>
-                </f:facet>
-                <p:messages autoUpdate="true" closable="true" showDetail="true"/>
-                <h:panelGrid columns="3" cellpadding="5">
-                    <h:outputLabel for="name" value="#{msg['usuario.agregar.campoNombres']}"/>:
-                    <p:inputText id="name" required="true"
-                                 value="#{mantenedorUsuario.usuarioSeleccionado.nombresPersonaUsuario}"/>
+                <h:panelGrid columns="4" cellpadding="5">
+                    <h:outputLabel for="name" value="Name: (@Size(min=2,max=5))" />
+                    <p:inputText id="name" value="#{beanValidationView.name}" label="Name"/>
+                    <p:message for="name" />
+                    <h:outputText value="#{beanValidationView.name}" />
 
-                    <h:outputLabel for="surname" value="#{msg['usuario.agregar.campoApelidos']}"/>:
-                    <p:inputText id="surname" required="true"
-                                 value="#{mantenedorUsuario.usuarioSeleccionado.apellidosPersonaUsuario}"/>
+                    <h:outputLabel for="age" value="Age: (@Min(10) @Max(20))" />
+                    <p:inputText id="age" value="#{beanValidationView.age}" label="Age"/>
+                    <p:message for="age" />
+                    <h:outputText value="#{beanValidationView.age}" />
 
-                    <h:outputLabel for="identificator" value="#{msg['usuario.agregar.campoIdentificador']}"/>:
-                    <p:inputText id="identificator" required="true"
-                                 value="#{mantenedorUsuario.usuarioSeleccionado.identificacionPersonaUsuario}"/>
+                    <h:outputLabel for="amount" value="Amount: (@DecimalMax('99.9'))" />
+                    <p:inputText id="amount" value="#{beanValidationView.amount}" label="Amount"/>
+                    <p:message for="amount" />
+                    <h:outputText value="#{beanValidationView.amount}" />
 
-                    <h:outputLabel for="email" value="#{msg['usuario.agregar.campoEmail']}"/>:
-                    <p:inputText id="email" required="true"
-                                 value="#{mantenedorUsuario.usuarioSeleccionado.mailUsuario}"/>
+                    <h:outputLabel for="amount2" value="Amount: (@Digits(integer=3,fraction=2))" />
+                    <p:inputText id="amount2" value="#{beanValidationView.amount2}" label="Amount 2"/>
+                    <p:message for="amount2" />
+                    <h:outputText value="#{beanValidationView.amount2}" />
 
-                    <h:outputLabel for="photo" value="#{msg['usuario.agregar.campoFoto']}"/>:
-                    <p:fileUpload id="photo" mode="simple" value="#{mantenedorUsuario.foto}"/>
+                    <h:outputLabel for="pattern" value="Pattern: (@Pattern(regexp='^[-+]?\\d+$'))" />
+                    <p:inputText id="pattern" value="#{beanValidationView.pattern}" label="pattern"/>
+                    <p:message for="pattern" />
+                    <h:outputText value="#{beanValidationView.pattern}" />
 
-                    <h:outputLabel for="username" value="#{msg['usuario.agregar.campoUsuario']}"/>:
-                    <p:inputText id="username" required="true"
-                                 value="#{mantenedorUsuario.usuarioSeleccionado.usernameUsuario}"/>
+                    <h:outputLabel for="checked" value="Assert: (@AssertTrue)" />
+                    <p:selectBooleanCheckbox id="checked" value="#{beanValidationView.checked}" />
+                    <p:message for="checked" />
+                    <h:outputText/>
 
-                    <h:outputLabel for="password" value="#{msg['usuario.agregar.campoClave']}"/>:
-                    <p:password id="password" required="true"
-                                value="#{mantenedorUsuario.usuarioSeleccionado.passwordUsuario}"/>
+                    <h:outputLabel for="psstDate" value="Date (@Past)"/>
+                    <p:inputText id="psstDate" value="#{beanValidationView.pastDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </p:inputText>
+                    <p:message for="psstDate" />
+                    <h:outputText/>
 
-                    <h:outputLabel for="rol" value="#{msg['usuario.agregar.campoRol']}"/>:
-                    <p:selectOneMenu id="rol" converter="entityConverter"
-                                     value="#{mantenedorUsuario.usuarioSeleccionado.idRolUsuario}">
-                        <f:selectItems value="#{mantenedorUsuario.roles}" var="rol"
-                                       itemLabel="#{rol.nombreRolUsuario}"/>
-                    </p:selectOneMenu>
+                    <h:outputLabel for="futureDate" value="Date (@Future)"/>
+                    <p:inputText id="futureDate" value="#{beanValidationView.futureDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </p:inputText>
+                    <p:message for="futureDate" />
+                    <h:outputText/>
 
-                    <h:outputLabel for="sucursal" value="#{msg['usuario.agregar.campoSucursal']}"/>:
-                    <p:selectOneMenu id="sucursal" converter="entityConverter"
-                                     value="#{mantenedorUsuario.usuarioSeleccionado.idSucursal}">
-                        <f:selectItems value="#{mantenedorUsuario.sucursales}" var="suc"
-                                       itemLabel="#{suc.nombreSucursal}"/>
-                    </p:selectOneMenu>
                 </h:panelGrid>
 
-                <p:commandButton id="guardar" value="#{msg['comunes.guardar']}" styleClass="btn-apptec"
-                                 action="#{mantenedorUsuario.guardarUsuario()}" update="@form"/>
-                <p:commandButton id="volver" value="#{msg['comunes.volver']}" styleClass="btn-apptec"
-                                 immediate="true" action="#{mantenedorUsuario.irListar()}"/>
-
+                <p:commandButton value="Save" ajax="false" icon="ui-icon-check" validateClient="true"/>
             </p:panel>
         </h:form>
 
     </ui:define>
 </ui:composition>
+
 
 
