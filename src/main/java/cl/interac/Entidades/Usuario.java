@@ -23,20 +23,20 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
         @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u "),
-        @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :usu_nidusuario"),
-        @NamedQuery(name = "Usuario.findByUsernameUsuario", query = "SELECT u FROM Usuario u WHERE u.usernameUsuario = :usernameUsuario"),
-        @NamedQuery(name = "Usuario.findByPasswordUsuario", query = "SELECT u FROM Usuario u WHERE u.passwordUsuario = :passwordUsuario"),
-        @NamedQuery(name = "Usuario.findByMailUsuario", query = "SELECT u FROM Usuario u WHERE u.mailUsuario = :mailUsuario"),
+        @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idusuario"),
+        @NamedQuery(name = "Usuario.findByUsernameUsuario", query = "SELECT u FROM Usuario u WHERE u.usernameUsuario = :USER"),
+        @NamedQuery(name = "Usuario.findByPasswordUsuario", query = "SELECT u FROM Usuario u WHERE u.passwordUsuario = :password"),
+        @NamedQuery(name = "Usuario.findByMailUsuario", query = "SELECT u FROM Usuario u WHERE u.mailUsuario = :correo"),
        // @NamedQuery(name = "Usuario.findByFotoUsuario", query = "SELECT u FROM Usuario u WHERE u.fotoUsuario = :fotoUsuario"),
        // @NamedQuery(name = "Usuario.findByIdentificacionPersonaUsuario", query = "SELECT u FROM Usuario u WHERE u.identificacionPersonaUsuario = :identificacionPersonaUsuario"),
-        @NamedQuery(name = "Usuario.findByNombresPersonaUsuario", query = "SELECT u FROM Usuario u WHERE u.nombresPersonaUsuario = :nombresPersonaUsuario"),
-        @NamedQuery(name = "Usuario.findByApellidosPersonaUsuario", query = "SELECT u FROM Usuario u WHERE u.apellidosPersonaUsuario = :apellidosPersonaUsuario"),
+        @NamedQuery(name = "Usuario.findByNombresPersonaUsuario", query = "SELECT u FROM Usuario u WHERE u.rolEmpresa = :rol"),
+        @NamedQuery(name = "Usuario.findByApellidosPersonaUsuario", query = "SELECT u FROM Usuario u WHERE u.nombresEmpresa = :empresa"),
         @NamedQuery(
                 name = "Usuario.findByUsernameAndPassword",
                 query = "SELECT u FROM Usuario u " +
                         //"INNER JOIN FETCH u.idSucursal " +
                        // "INNER JOIN FETCH u.idRolUsuario " +
-                        "WHERE u.usernameUsuario = :username and u.passwordUsuario = :password")
+                        "WHERE u.usernameUsuario = :USER and u.passwordUsuario = :password")
 })
 public class Usuario implements Serializable {
    // @ManyToMany(mappedBy = "usuario")
@@ -44,29 +44,27 @@ public class Usuario implements Serializable {
     public  long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "usu_nidusuario")
+    @Column(name = "idUsuario")
     private Integer idUsuario;
     @Size(max = 50)
-    @Column(name = "usu_snomusuario")
+    @Column(name = "USER")
     private String usernameUsuario;
     @Size(min = 128, max = 128)
-    @Column(name = "usu_scontrasena")
+    @Column(name = "password")
     private String passwordUsuario;
     @Size(max = 50)
-    @Column(name = "usu_semail")
+    @Column(name = "correo")
     private String mailUsuario;
     @Size(max = 200)
    // @Column(name = "foto_usuario")
    // private String fotoUsuario;
     //@Size(max = 50)
-    @Column(name = "usu_srut")
-    private String identificacionPersonaUsuario;
+    @Column(name = "rol")
+    private String rolEmpresa;
     @Size(max = 50)
-    @Column(name = "usu_snombres")
-    private String nombresPersonaUsuario;
-    @Size(max = 50)
-    @Column(name = "usu_sapepaterno")
-    private String apellidosPersonaUsuario;
+    @Column(name = "empresa")
+    private String nombresEmpresa;
+
    // @JoinColumn(name = "id_sucursal", referencedColumnName = "id_sucursal", nullable = true)
     //@ManyToOne(optional = false)
 //    @NotFound(action = NotFoundAction.IGNORE)
@@ -124,29 +122,23 @@ public class Usuario implements Serializable {
         this.fotoUsuario = fotoUsuario;
     }*/
 
-    public String getIdentificacionPersonaUsuario() {
-        return identificacionPersonaUsuario;
+    public String getRolEmpresa() {
+        return rolEmpresa;
     }
 
-    public void setIdentificacionPersonaUsuario(String identificacionPersonaUsuario) {
-        this.identificacionPersonaUsuario = identificacionPersonaUsuario;
+    public void setRolEmpresa(String rolEmpresa) {
+        this.rolEmpresa = rolEmpresa;
     }
 
-    public String getNombresPersonaUsuario() {
-        return nombresPersonaUsuario;
+    public String getNombresEmpresa() {
+        return nombresEmpresa;
     }
 
-    public void setNombresPersonaUsuario(String nombresPersonaUsuario) {
-        this.nombresPersonaUsuario = nombresPersonaUsuario;
+    public void setNombresEmpresa(String nombresEmpresa) {
+        this.nombresEmpresa = nombresEmpresa;
     }
 
-    public String getApellidosPersonaUsuario() {
-        return apellidosPersonaUsuario;
-    }
 
-    public void setApellidosPersonaUsuario(String apellidosPersonaUsuario) {
-        this.apellidosPersonaUsuario = apellidosPersonaUsuario;
-    }
 
   /*  public Sucursal getIdSucursal() {
         return idSucursal;
