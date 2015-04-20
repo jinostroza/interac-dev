@@ -86,8 +86,8 @@ public class MantenedorUsuario implements Serializable {
 
     public void guardarUsuario() {
         if (foto != null) {
-            String path = fileUploader.subir(foto, "/usuarios/"+usuarioSeleccionado.getIdUsuario());
-            usuarioSeleccionado.setFotoUsuario(path);
+           // String path = fileUploader.subir(foto, "/usuarios/"+usuarioSeleccionado.getIdUsuario());
+           // usuarioSeleccionado.setFotoUsuario(path);
         }
         usuarioSeleccionado.setPasswordUsuario(SHA512.encode(usuarioSeleccionado.getPasswordUsuario()));
         logicaUsuario.guardarUsuario(usuarioSeleccionado);
@@ -140,11 +140,11 @@ public class MantenedorUsuario implements Serializable {
         this.sucursales = sucursales;
     }
     */
-    public UploadedFile getFoto() {
-        return foto;
-    }
+  //  public UploadedFile getFoto() {
+  //      return foto;
+//    }
 
-    public void setFoto(UploadedFile foto) {
-        this.foto = foto;
-    }
+    //public void setFoto(UploadedFile foto) {
+      //  this.foto = foto;
+   // }
 }

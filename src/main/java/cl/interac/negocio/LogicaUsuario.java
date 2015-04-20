@@ -22,12 +22,12 @@ public class LogicaUsuario {
 
     @Transactional(readOnly = true)
     public List<Usuario> obtenerTodos() {
-        return UsuarioDAO.obtenerTodos();
+        return usuarioDAO.obtenerTodos();
     }
 
     @Transactional(readOnly = false)
     public void guardarUsuario(Usuario u) {
-        UsuarioDAO.guardar(u);
+        usuarioDAO.guardar(u);
     }
 
     @Transactional(readOnly = false)
@@ -37,11 +37,11 @@ public class LogicaUsuario {
 
     @Transactional(readOnly = true)
     public Usuario obtenerUsuario(String username) {
-        return UsuarioDAO.obtenerUsuario(username);
+        return usuarioDAO.obtenerUsuario(username);
     }
 
     @Transactional(readOnly = true)
     public Usuario obtenerUsuario(String username, String password) {
-        return UsuarioDAO.obtenerUsuario(username, password);
+        return usuarioDAO.obtenerUsuario(username, password);
     }
 }
