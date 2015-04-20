@@ -48,18 +48,18 @@ public class MantenedorUsuario implements Serializable {
     @Autowired
     private LogicaUsuario logicaUsuario;
 
-  /*  @Autowired
-   private LogicaRolUsuario logicaRolUsuario;
+   //@Autowired
+   //private LogicaRolUsuario logicaRolUsuario;
 
-    @Autowired
-  private LogicaSucursal logicaSucursal;*/
+  //  @Autowired
+  //private LogicaSucursal logicaSucursal;
 
-    @Autowired
-    private FileUploader fileUploader;
+    //@Autowired
+   // private FileUploader fileUploader;
 
     public void inicio() {
         usuarios = logicaUsuario.obtenerTodos();
-       // roles = logicaRolUsuario.obtenerTodos();
+      // roles = logicaRolUsuario.obtenerTodos();
        // sucursales = logicaSucursal.obtenerTodos();
     }
 
