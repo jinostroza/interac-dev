@@ -36,13 +36,14 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Anuncio.findByMedia", query = "SELECT a FROM Anuncio a WHERE a.Media = :media"),
     @NamedQuery(name = "Anuncio.findByRubro", query = "SELECT a FROM Anuncio a WHERE a.Rubro = :rubro")})
 public class Anuncio implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_anuncio")
+    @Column(name = "idanuncio")
     private Integer idAnuncio;
     @Size(max = 45)
-    @Column(name = "desc_anuncio")
+    @Column(name = "descanuncio")
     private String descAnuncio;
     @Size(max = 100)
     @Column(name = "media")
