@@ -32,7 +32,7 @@ public class UsuarioDAO {
     public Usuario obtenerUsuario(String username) {
         try {
             return (Usuario) em.createNamedQuery("Usuario.findByUsernameUsuario")
-                    .setParameter("usernameUsuario", username)
+                    .setParameter("USER", username)
                     .getSingleResult();
         } catch (Exception e) {
             return null;
@@ -42,7 +42,7 @@ public class UsuarioDAO {
     public Usuario obtenerUsuario(String username, String password) {
         try {
             return (Usuario) em.createNamedQuery("Usuario.findByUsernameAndPassword")
-                    .setParameter("username", username)
+                    .setParameter("USER", username)
                     .setParameter("password", password)
                     .getSingleResult();
         } catch (Exception e) {

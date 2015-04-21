@@ -39,11 +39,11 @@ import javax.xml.bind.annotation.XmlTransient;
                         "WHERE u.usernameUsuario = :USER and u.passwordUsuario = :password")
 })
 public class Usuario implements Serializable {
-   // @ManyToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario")
     //private List<Compra> compras;
     public  long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idUsuario")
     private Integer idUsuario;
     @Size(max = 50)
