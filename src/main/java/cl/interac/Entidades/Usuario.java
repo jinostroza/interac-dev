@@ -21,27 +21,27 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "usuario")
 @XmlRootElement
-@NamedQueries({
+@NamedQueries(value = {
         @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u "),
         @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idusuario"),
         @NamedQuery(name = "Usuario.findByUsernameUsuario", query = "SELECT u FROM Usuario u WHERE u.usernameUsuario = :USER"),
         @NamedQuery(name = "Usuario.findByPasswordUsuario", query = "SELECT u FROM Usuario u WHERE u.passwordUsuario = :password"),
         @NamedQuery(name = "Usuario.findByMailUsuario", query = "SELECT u FROM Usuario u WHERE u.mailUsuario = :correo"),
-       // @NamedQuery(name = "Usuario.findByFotoUsuario", query = "SELECT u FROM Usuario u WHERE u.fotoUsuario = :fotoUsuario"),
-       // @NamedQuery(name = "Usuario.findByIdentificacionPersonaUsuario", query = "SELECT u FROM Usuario u WHERE u.identificacionPersonaUsuario = :identificacionPersonaUsuario"),
+        // @NamedQuery(name = "Usuario.findByFotoUsuario", query = "SELECT u FROM Usuario u WHERE u.fotoUsuario = :fotoUsuario"),
+        // @NamedQuery(name = "Usuario.findByIdentificacionPersonaUsuario", query = "SELECT u FROM Usuario u WHERE u.identificacionPersonaUsuario = :identificacionPersonaUsuario"),
         @NamedQuery(name = "Usuario.findByNombresPersonaUsuario", query = "SELECT u FROM Usuario u WHERE u.rolEmpresa = :rol"),
         @NamedQuery(name = "Usuario.findByApellidosPersonaUsuario", query = "SELECT u FROM Usuario u WHERE u.nombresEmpresa = :empresa"),
         @NamedQuery(
                 name = "Usuario.findByUsernameAndPassword",
                 query = "SELECT u FROM Usuario u " +
                         //"INNER JOIN FETCH u.idSucursal " +
-                       // "INNER JOIN FETCH u.idRolUsuario " +
+                        // "INNER JOIN FETCH u.idRolUsuario " +
                         "WHERE u.usernameUsuario = :USER and u.passwordUsuario = :password")
 })
 public class Usuario implements Serializable {
-    @OneToMany(mappedBy = "usuario")
+    //@OneToMany(mappedBy = "usuario")
     //private List<Compra> compras;
-    public  long serialVersionUID = 1L;
+  //  public Long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idUsuario")
