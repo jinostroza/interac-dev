@@ -8,46 +8,42 @@
     <ui:define name="contenido">
         <h:form enctype="multipart/form-data">
 
-            <p:panel header="Registrar" >
+            <p:panel  >
                <f:facet name="header">
-                    <h:outputText rendered="#{MantenedorUsuario.esIngreso()}" value="#{msg['usuario.agregar.header']}"/>
-                    <h:outputText rendered="#{MantenedorUsuario.esEdicion()}" value="#{msg['usuario.editar.header']}"/>
+                    <h:outputText rendered="#{mantenedorUsuario.esIngreso()}" value="#{msg['Usuario.agregar.header']}"/>
+                    <h:outputText rendered="#{mantenedorUsuario.esEdicion()}" value="#{msg['Usuario.editar.header']}"/>
                 </f:facet>
                 <p:messages autoUpdate="true" closable="true" showDetail="true"/>
                 <h:panelGrid columns="3" cellpadding="5">
-                    <h:outputLabel for="name" value="#{msg['usuario.agregar.campoNombres']}"/>:
+                    <h:outputLabel for="name" value="#{msg['Usuario.agregar.campoNombres']}"/>:
                     <p:inputText id="name" required="true"
-                                 value="#{MantenedorUsuario.usuarioSeleccionado.nombresPersonaUsuario}"/>
+                                 value="#{mantenedorUsuario.usuarioSeleccionado.nombresEmpresa}"/>
 
                     <h:outputLabel for="surname" value="#{msg['usuario.agregar.campoApelidos']}"/>:
                     <p:inputText id="surname" required="true"
-                                 value="#{MantenedorUsuario.usuarioSeleccionado.apellidosPersonaUsuario}"/>
-
-                    <h:outputLabel for="identificator" value="#{msg['usuario.agregar.campoIdentificador']}"/>:
-                    <p:inputText id="identificator" required="true"
-                                 value="#{MantenedorUsuario.usuarioSeleccionado.identificacionPersonaUsuario}"/>
+                                 value="#{mantenedorUsuario.usuarioSeleccionado.rolEmpresa}"/>
 
                     <h:outputLabel for="email" value="#{msg['usuario.agregar.campoEmail']}"/>:
                     <p:inputText id="email" required="true"
-                                 value="#{MantenedorUsuario.usuarioSeleccionado.mailUsuario}"/>
+                                 value="#{mantenedorUsuario.usuarioSeleccionado.mailUsuario}"/>
 
                     <h:outputLabel for="photo" value="#{msg['usuario.agregar.campoFoto']}"/>:
-                    <p:fileUpload id="photo" mode="simple" value="#{MantenedorUsuario.foto}"/>
+                    <p:fileUpload id="photo" mode="simple" value="#{mantenedorUsuario.foto}"/>
 
                     <h:outputLabel for="username" value="#{msg['usuario.agregar.campoUsuario']}"/>:
                     <p:inputText id="username" required="true"
-                                 value="#{MantenedorUsuario.usuarioSeleccionado.usernameUsuario}"/>
+                                 value="#{mantenedorUsuario.usuarioSeleccionado.usernameUsuario}"/>
 
                     <h:outputLabel for="password" value="#{msg['usuario.agregar.campoClave']}"/>:
                     <p:password id="password" required="true"
-                                value="#{MantenedorUsuario.usuarioSeleccionado.passwordUsuario}"/>
+                                value="#{mantenedorUsuario.usuarioSeleccionado.passwordUsuario}"/>
 
                     </h:panelGrid>
 
                 <p:commandButton id="guardar" value="#{msg['comunes.guardar']}" styleClass="btn-apptec"
-                                 action="#{MantenedorUsuario.guardarUsuario()}" update="@form"/>
+                                 action="#{mantenedorUsuario.guardarUsuario()}" update="@form"/>
                 <p:commandButton id="volver" value="#{msg['comunes.volver']}" styleClass="btn-apptec"
-                                 immediate="true" action="#{MantenedorUsuario.irListar()}"/>
+                                 immediate="true" action="#{mantenedorUsuario.irListar()}"/>
 
             </p:panel>
         </h:form>
