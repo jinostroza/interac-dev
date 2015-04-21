@@ -10,31 +10,31 @@
 
             <p:panel  >
                <f:facet name="header">
-                    <h:outputText rendered="#{mantenedorUsuario.esIngreso()}" value="#{msg['Usuario.agregar.header']}"/>
-                    <h:outputText rendered="#{mantenedorUsuario.esEdicion()}" value="#{msg['Usuario.editar.header']}"/>
+                   <!-- <h:outputText rendered="#{mantenedorUsuario.esIngreso()}" value="#{msg['Usuario.agregar.header']}"/>
+                    <h:outputText rendered="#{mantenedorUsuario.esEdicion()}" value="#{msg['Usuario.editar.header']}"/>-->
                 </f:facet>
                 <p:messages autoUpdate="true" closable="true" showDetail="true"/>
                 <h:panelGrid columns="3" cellpadding="5">
-                    <h:outputLabel for="name" value="#{msg['Usuario.agregar.campoNombres']}"/>:
+                    <h:outputLabel for="name" value="#{msg['Usuario.agregar.empresa']}"/>:
                     <p:inputText id="name" required="true"
                                  value="#{mantenedorUsuario.usuarioSeleccionado.nombresEmpresa}"/>
 
-                    <h:outputLabel for="surname" value="#{msg['usuario.agregar.campoApelidos']}"/>:
+                    <h:outputLabel for="surname" value="#{msg['usuario.agregar.rol']}"/>:
                     <p:inputText id="surname" required="true"
                                  value="#{mantenedorUsuario.usuarioSeleccionado.rolEmpresa}"/>
 
-                    <h:outputLabel for="email" value="#{msg['usuario.agregar.campoEmail']}"/>:
+                    <h:outputLabel for="email" value="#{msg['usuario.agregar.correo']}"/>:
                     <p:inputText id="email" required="true"
                                  value="#{mantenedorUsuario.usuarioSeleccionado.mailUsuario}"/>
 
-                    <h:outputLabel for="photo" value="#{msg['usuario.agregar.campoFoto']}"/>:
-                    <p:fileUpload id="photo" mode="simple" value="#{mantenedorUsuario.foto}"/>
+                  <!--  <h:outputLabel for="photo" value="#{msg['usuario.agregar.campoFoto']}"/>:
+                    <p:fileUpload id="photo" mode="simple" value="#{mantenedorUsuario.foto}"/>-->
 
-                    <h:outputLabel for="username" value="#{msg['usuario.agregar.campoUsuario']}"/>:
+                    <h:outputLabel for="username" value="#{msg['usuario.agregar.USER']}"/>:
                     <p:inputText id="username" required="true"
-                                 value="#{mantenedorUsuario.usuarioSeleccionado.usernameUsuario}"/>
+                                 value="#{mantenedorUsuario.usuarioSeleccionado.usernameUsuario}"></p:inputText>
 
-                    <h:outputLabel for="password" value="#{msg['usuario.agregar.campoClave']}"/>:
+                    <h:outputLabel for="password" value="#{msg['usuario.agregar.password']}"/>:
                     <p:password id="password" required="true"
                                 value="#{mantenedorUsuario.usuarioSeleccionado.passwordUsuario}"/>
 
