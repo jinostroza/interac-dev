@@ -16,7 +16,7 @@ import cl.interac.util.components.FacesUtil;
 import java.io.Serializable;
 import java.util.List;
 
-import cl.interac.util.services.FileUploader;
+//import cl.interac.util.services.FileUploader;
 import cl.interac.security.SHA512;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
