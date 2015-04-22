@@ -2,7 +2,7 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="primary" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <class>cl.interac.Entidades.Usuario</class>
+    <class>cl.interac.entidades.Usuario</class>
     <properties>
       <property name="hibernate.connection.url" value="jdbc:postgresql://54.172.118.246:5432/Plataforma"/>
       <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>

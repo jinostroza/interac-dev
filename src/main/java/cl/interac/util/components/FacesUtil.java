@@ -1,6 +1,9 @@
 package cl.interac.util.components;
 
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import java.io.IOException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
@@ -15,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author colivares
  */
+@Component
+@Scope("application")
 public class FacesUtil {
     public static HttpServletRequest obtenerHttpServletRequest() {
         return (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -48,5 +53,13 @@ public class FacesUtil {
             e.printStackTrace();
         }
         facesContext.responseComplete();
+    }
+
+    public static void redirigir(String url) {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect(obtenerHttpServletRequest().getContextPath()+url);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

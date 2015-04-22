@@ -1,6 +1,6 @@
 package cl.interac.dao;
 
-import cl.interac.Entidades.Usuario;
+import cl.interac.entidades.Usuario;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
