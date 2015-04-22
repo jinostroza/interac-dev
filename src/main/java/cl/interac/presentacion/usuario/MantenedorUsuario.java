@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cl.interac.presentacion;
+package cl.interac.presentacion.usuario;
 
 //import cl.interac.entidades.RolUsuario;
 //import cl.interac.entidades.Sucursal;
-import cl.interac.Entidades.Usuario;
+import cl.interac.entidades.Usuario;
 //import cl.interac.negocio.LogicaRolUsuario;
 //import cl.interac.negocio.LogicaSucursal;
 import cl.interac.negocio.LogicaUsuario;

@@ -5,12 +5,11 @@
  */
 package cl.interac.dao;
 
-import cl.interac.Entidades.Anuncio;
+import cl.interac.entidades.Anuncio;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import cl.interac.Entidades.Usuario;
 import org.springframework.stereotype.Repository;
 
 /**

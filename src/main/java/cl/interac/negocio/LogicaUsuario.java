@@ -1,6 +1,6 @@
 package cl.interac.negocio;
 
-import cl.interac.Entidades.Usuario;
+import cl.interac.entidades.Usuario;
 import cl.interac.dao.UsuarioDAO;
 import java.util.List;
 

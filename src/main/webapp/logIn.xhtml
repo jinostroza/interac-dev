@@ -3,7 +3,7 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
-                template="/templates/empty.xhtml">
+                template="/templates/logInTemplate.xhtml">
 
     <ui:define name="contenido">
 
@@ -18,11 +18,10 @@
 
             </h:panelGrid>
             <p:commandButton ajax="false" value="Ingresar" action="#{autentificacionBean.logIn}"/>
-            <br></br>
-             <a href="/flows/usuario/agregar.jsf">
-                Registrar
-            </a>>
-
+            <br/><br/>
+            <p:commandLink ajax="false" action="#{facesUtil.redirigir('/m/usuario/registro')}">
+                <h:outputText value="Registrarse >>"/>
+            </p:commandLink>
         </h:form>
     </ui:define>
 </ui:composition>

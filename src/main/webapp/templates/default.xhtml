@@ -25,13 +25,13 @@
 
         <ui:include src="/templates/includes/cabeceraPagina.xhtml"/>
         <ui:include src="/templates/includes/menuIzquierdo.xhtml"/>
+
         <p:outputPanel styleClass="page-content-wrapper">
             <p:outputPanel styleClass="page-content">
                 <ui:insert name="contenido"></ui:insert>
             </p:outputPanel>
         </p:outputPanel>
         <ui:include src="/templates/includes/piePagina.xhtml"/>
-        <p:ajaxExceptionHandler update="body"/>
     </h:body>
 </f:view>
 </html>

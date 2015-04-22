@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/default.xhtml">
+
+    <ui:define name="contenido">
+
+        <h3>Registrarse</h3>
+
+            Ya cabros les comento:<br/>
+
+            - tratar de no usar tags html simple, a menos que sea para maketear para eso si ayuda aunque todo o la
+            mayoría debiera poderse mediante jsf y/o primefaces.<br/>
+
+            - tratar de internalizar el concepto flujo, la operación de registrarse es un flujo y además es un flujo
+            dentro del contexto usuario (o mejor dicho flujo usuario). Es por esto que al mirar la carpeta flows
+            ahora tenemos usuario y usuario/registro/<br/>
+
+            - bueno dado la anterior se puede confirmar que el concepto de flow soporta subflows, bueno tb parentflow
+            y estos pueden compartir variables ya que estos se pueden comunicar mediante el envío de parámetros.<br/>
+
+            - la redirección simple acá no debiera existir, todo debiera pasar por nuestra "gran capa de seguridad" que
+            provee spring security por ende gran parte o todas las redirecciones debieran ser del lado java. para esto
+            les cree el método redirigir en el FacesUtil como podrán confirmar en el link a registrarse. La verdad
+            si quieren ver cuanto encapsula la capa de seguridad es cosa que den inspeccionar elemento en el sitio
+            y no podrán hacer mucho<br/>
+
+            - ahora como todo pasa por nuestra capa de seguridad cada vez que agregamos un flujo debemos preocuparnos
+            de configurar sus niveles de seguridad (security.xml) en este caso el acceso al flujo de registro debe ser
+            libre<br/>
+
+            - cuando estoy dentro del flow, es decir dentro del path /m/** la manera de navegar es mediante el retorno
+            de estados o transiciones (los métodos java deben retornar un string) y estos son capturados por el flow,
+            les dejé un ejemplo al presionar siguiente paso este llama al mantenedorRegistroUsuario y su método
+            retornará un estado el cual está escrito textualmente en el archivo flow del flujo en el que nos encontramos
+            (usuario/registro/registro-flow.xml) y este nos derivará al siguiente paso del flujo.<br/>
+
+        <h:form>
+
+            <p:commandButton action="#{mantenedorRegistroUsuario.irPaso2()}" value="Siguiente"/>
+        </h:form>
+    </ui:define>
+</ui:composition>

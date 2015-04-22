@@ -7,7 +7,7 @@ package cl.interac.negocio;
 
 
 import cl.interac.dao.AnuncioDAO;
-import cl.interac.Entidades.Anuncio;
+import cl.interac.entidades.Anuncio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;

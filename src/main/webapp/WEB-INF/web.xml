@@ -5,12 +5,6 @@
          version="3.0">
     <display-name>Interac</display-name>
     
-    <!-- eliminamos el theme por defecto -->
-<!--    <context-param>
-        <param-name>primefaces.THEME</param-name>
-        <param-value>none</param-value>
-    </context-param>-->
-    
     <!--Cargamos JSF-->
     <servlet>
         <servlet-name>faces</servlet-name>
@@ -75,7 +69,8 @@
         <url-pattern>/m/*</url-pattern>
     </servlet-mapping>
 
-    <error-page>
-        <location>/error.jsf</location>
-    </error-page>
+    <!-- Mientras lo comento para poder ver los errores -->
+    <!--<error-page>-->
+        <!--<location>/error.jsf</location>-->
+    <!--</error-page>-->
 </web-app>
