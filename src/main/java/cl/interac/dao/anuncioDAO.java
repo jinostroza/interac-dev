@@ -29,14 +29,5 @@ public class anuncioDAO {
         em.remove(nun);
     }
 
-    /*public Anuncio obtenerAnuncio(String anuncio ) {
-        try {
-            return (Anuncio) em.createNamedQuery("Anuncio.findByDescAnuncio")
-                     .setParameter("DescAnuncio", anuncio)
-                    .getSingleResult();
-        } catch (Exception e) {
-            return null;
-        }
-    }*/
 
 }
