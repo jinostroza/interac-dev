@@ -6,4 +6,8 @@
     <on-start>
         <evaluate expression="mantenedorUsuario.inicio()"/>
     </on-start>
+
+    <view-state id="registrar">
+        <transition on="flowirAgregar" to="registrar_paso2"/>
+    </view-state>
 </flow>
