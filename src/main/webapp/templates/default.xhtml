@@ -23,15 +23,15 @@
         <h:outputScript library="primefaces" name="jquery/jquery-plugins.js" target="head"/>
         <h:outputScript library="js" name="interac.js" target="head"/>
 
-        <ui:include src="/templates/includes/cabeceraPagina.xhtml"/>
-        <ui:include src="/templates/includes/menuIzquierdo.xhtml"/>
+        <ui:include src="/templates/includes/Header.xhtml"/>
 
         <p:outputPanel styleClass="page-content-wrapper">
             <p:outputPanel styleClass="page-content">
+                <ui:include src="/templates/includes/NavBar.xhtml"/>
                 <ui:insert name="contenido"></ui:insert>
             </p:outputPanel>
         </p:outputPanel>
-        <ui:include src="/templates/includes/piePagina.xhtml"/>
+        <ui:include src="/templates/includes/Footer.xhtml"/>
     </h:body>
 </f:view>
 </html>
