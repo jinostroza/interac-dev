@@ -1,7 +1,6 @@
 package cl.interac.dao;
 
-import cl.interac.Entidades.Anuncio;
-import cl.interac.Entidades.Usuario;
+import cl.interac.entidades.Anuncio;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -11,7 +10,7 @@ import java.util.List;
  */
 @Repository
 
-public class anuncioDAO {
+public class AnuncioDAO {
 
 
     private EntityManager em;
