@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * @author interac
- */
+*/
 @Component
 @Scope("flow")
 public class MantenedorUsuarios implements Serializable {
