@@ -23,7 +23,7 @@ public class MantenedorUsuarios implements Serializable {
     private enum TipoOperacion {
         INGRESAR,
         EDITAR
-    };
+    }
     
     private TipoOperacion operacion;
 

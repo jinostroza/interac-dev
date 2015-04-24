@@ -2,13 +2,12 @@
 <flow xmlns="http://www.springframework.org/schema/webflow"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
-      start-state="dashboard">
+      start-state="listarCampanas">
 
     <on-start>
-        <evaluate expression="mantenedorRegistroUsuario.inicio()"/>
+        <evaluate expression="MantenedorCampanas.inicio()"/>
     </on-start>
 
-    <view-state id="dashboard">
-        <transition on="flowPaso2" to="registrar_paso2"/>
+    <view-state id="listarCampanas">
     </view-state>
 </flow>
