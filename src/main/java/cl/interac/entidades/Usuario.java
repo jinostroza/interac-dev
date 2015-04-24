@@ -1,6 +1,7 @@
 package cl.interac.entidades;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by claudio on 24-04-15.
@@ -12,7 +13,7 @@ import javax.persistence.*;
                 @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u "),
         }
 )
-public class Usuario {
+public class Usuario implements Serializable {
     private Integer idUsuario;
     private String user;
     private String password;

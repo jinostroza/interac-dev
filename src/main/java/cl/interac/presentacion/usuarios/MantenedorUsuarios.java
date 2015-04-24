@@ -1,6 +1,8 @@
-package cl.interac.presentacion.usuario;
+package cl.interac.presentacion.usuarios;
 
 import cl.interac.entidades.Usuario;
+import cl.interac.negocio.LogicaUsuario;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -12,10 +14,11 @@ import java.util.List;
  */
 @Component
 @Scope("flow")
-public class MantenedorUsuario implements Serializable {
+public class MantenedorUsuarios implements Serializable {
+    @Autowired
+    private LogicaUsuario logicaUsuario;
 
     private List<Usuario> usuarios;
-    private Usuario usuario;
 
     private enum TipoOperacion {
         INGRESAR,
@@ -25,6 +28,7 @@ public class MantenedorUsuario implements Serializable {
     private TipoOperacion operacion;
 
     public void inicio() {
+        usuarios = logicaUsuario.obtenerTodos();
     }
 
     public void guardarUsuario() {
@@ -40,5 +44,13 @@ public class MantenedorUsuario implements Serializable {
 
     public boolean esEdicion() {
         return operacion == TipoOperacion.EDITAR;
+    }
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 }

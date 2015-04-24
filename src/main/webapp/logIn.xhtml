@@ -18,8 +18,27 @@
 
             </h:panelGrid>
             <p:commandButton ajax="false" value="Ingresar" action="#{autenticarBean.logIn}"/>
-            <br/><br/>
+            <br/><br/><br/><br/>
             <p:link value="Registrar >>" href="/registrar.jsf"/>
         </h:form>
+        <p>
+            Cabros al final estoy a puras excusas. Llegue re tarde a la casa y bueno la verdad que no alcance a hacer todo<br/>
+            además de reestructurar un poco la cosa según yo para facilitar el entendimiento solo alcance a hacer el<br/>
+            registrar (me cree mi cuenta yo de hecho por la pag) y el listar.<br/><br/>
+
+            Igual mis disculpas por no alcanzar a hacer todo lo que les dije pero veamos les explico un poco el refactor...<br/>
+            para no causar tanto conflicto logIn, registrar, inicio los dejé fuera del flujo como paginas sueltas simplemente<br/>
+            asociadas a un Componente del tipo vista que iba a estar a la escucha de sus eventos (AutenticarBean, RegistrarBean y Seguramente faltaria un InicioBean).<br/><br/>
+
+            Cuando digo componente del tipo vista quiere decir que ese componente o bean existirá solo mientras la vista (el jsf) esté siendo visualizado.<br/>
+            Cuando digo página sueltas es igual a cuando uno trabaja con jsp pelado sin frameworks donde con un mero href con un path me permite llegar<br/>
+            Cuando hablo de flujo, es manejado por spring y solo tenemos una url inicial que irá mutando en estados (ej: localhost:8080/plataforma/usuarios)<br/>
+            aunque hagamos un editar, eliminar esa será la url del módulo completo<br/><br/>
+
+            Si bien en el flujo perdemos un poco a nivel de usuario el donde estamos parados (esto si solo estuviera mirando solamente la URL, ya que el contenido del<br/>
+            sitio siempre debiera recordarle en que anda uno webiando) ganamos mucho en cuanto a la comunicación de las variables y por cuanto tiempo<br/>
+            son validas estas, el cuanto vive, cuando mueren, no sobrecargar la sesión, envío de parámetros, etc etc.
+
+        </p>
     </ui:define>
 </ui:composition>

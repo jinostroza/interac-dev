@@ -15,8 +15,8 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
                    use-expressions="true"
                    access-denied-page="/logIn.jsf">
 
-        <security:form-login login-page="/logIn.jsf"/>
-        <security:logout delete-cookies="true" invalidate-session="true" logout-url="/logOut"/>
+        <security:form-login login-page="/logIn.jsf" always-use-default-target="true" default-target-url="/inicio.jsf"/>
+        <security:logout delete-cookies="true" invalidate-session="true" logout-url="/logOut.jsf"/>
 
         <security:session-management invalid-session-url="/logIn.jsf">
             <security:concurrency-control max-sessions="1"/>

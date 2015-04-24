@@ -22,7 +22,7 @@
 
             <p:panel header="Lista de Usuarios" styleClass="box-apptec">
 
-                <p:commandButton icon="fa fa-plus-circle" action="#{mantenedorUsuario.irAgregar()}" id="agregar"
+                <p:commandButton icon="fa fa-plus-circle" action="#{mantenedorUsuarios.irAgregar()}" id="agregar"
                                  ajax="false" styleClass="btn red-thunderbird pull-right" immediate="true"
                                  value="#{msg['comunes.agregar']}"/>
 
@@ -30,7 +30,7 @@
                              filterEvent="enter" widgetVar="tblUsuarios" lazy="false"
                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                              paginator="true" rows="20" style="margin-bottom:20px"
-                             value="#{mantenedorUsuario.usuarios}" var="u">
+                             value="#{mantenedorUsuarios.usuarios}" var="u">
                     <f:facet name="header">
                         <p:outputPanel>
                             <h:outputText value="#{msg['comunes.filtroGlobal']}"/>:
@@ -71,14 +71,14 @@
 
                     <p:column headerText="#{msg['comunes.editar']}" style="text-align: center">
                         <p:commandLink id="modificar" styleClass="btn-apptec2 fa fa-edit" ajax="false"
-                                       action="#{mantenedorUsuario.irEditar(u)}" title="Editar"/>
+                                       action="#{mantenedorUsuarios.irEditar(u)}" title="Editar"/>
                     </p:column>
                     <p:column headerText="#{msg['comunes.eliminar']}" style="text-align: center">
                         <p:commandLink id="eliminar" styleClass="btn-apptec2 fa fa-times"
                                        title="#{msg['comunes.eliminar']}"
                                        oncomplete="PF('confirmar').show()" update="@form">
                             <f:setPropertyActionListener value="#{u}"
-                                                         target="#{mantenedorUsuario.usuario}"/>
+                                                         target="#{mantenedorUsuarios.usuario}"/>
                         </p:commandLink>
                     </p:column>
 
@@ -89,11 +89,11 @@
                 <p:outputPanel>
                     <h:outputFormat value="#{msg['comunes.confirmarAccionEliminar.mensaje']}">
                         <f:param value="#{msg['usuario.eliminar.objeto']}"/>
-                        <f:param value="#{mantenedorUsuario.usuario.usernameUsuario}"/>
+                        <f:param value="#{mantenedorUsuarios.usuario.usernameUsuario}"/>
                     </h:outputFormat>
                 </p:outputPanel>
                 <p:outputPanel>
-                    <p:commandButton value="#{msg['comunes.si']}" action="#{mantenedorUsuario.eliminarUsuario()}"
+                    <p:commandButton value="#{msg['comunes.si']}" action="#{mantenedorUsuarios.eliminarUsuario()}"
                                      update="@form"/>
                     <p:commandButton value="#{msg['comunes.no']}" onclick="PF('confirmar').hide()"/>
                 </p:outputPanel>

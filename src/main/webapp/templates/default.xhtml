@@ -23,16 +23,14 @@
     </h:head>
     <h:body>
 
-        <ui:include src="/templates/includes/cabeceraPagina.xhtml"/>
-        <ui:include src="/templates/includes/menuIzquierdo.xhtml"/>
+        <ui:include src="/templates/includes/Header.xhtml"/>
+        <ui:include src="/templates/includes/NavBar.xhtml"/>
 
         <p:outputPanel>
-            <p:outputPanel>
-                <p:messages showDetail="true" autoUpdate="true"/>
-                <ui:insert name="contenido"></ui:insert>
-            </p:outputPanel>
+            <p:messages showDetail="true" autoUpdate="true"/>
+            <ui:insert name="contenido"></ui:insert>
         </p:outputPanel>
-        <ui:include src="/templates/includes/piePagina.xhtml"/>
+        <ui:include src="/templates/includes/Footer.xhtml"/>
     </h:body>
 </f:view>
 </html>

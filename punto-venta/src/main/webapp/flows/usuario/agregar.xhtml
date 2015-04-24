@@ -10,57 +10,57 @@
 
             <p:panel>
                 <f:facet name="header">
-                    <h:outputText rendered="#{mantenedorUsuario.esIngreso()}" value="#{msg['usuario.agregar.header']}"/>
-                    <h:outputText rendered="#{mantenedorUsuario.esEdicion()}" value="#{msg['usuario.editar.header']}"/>
+                    <h:outputText rendered="#{mantenedorUsuarios.esIngreso()}" value="#{msg['usuario.agregar.header']}"/>
+                    <h:outputText rendered="#{mantenedorUsuarios.esEdicion()}" value="#{msg['usuario.editar.header']}"/>
                 </f:facet>
                 <p:messages autoUpdate="true" closable="true" showDetail="true"/>
                 <h:panelGrid columns="3" cellpadding="5">
                     <h:outputLabel for="name" value="#{msg['usuario.agregar.campoNombres']}"/>:
                     <p:inputText id="name" required="true"
-                                 value="#{mantenedorUsuario.usuario.nombresPersonaUsuario}"/>
+                                 value="#{mantenedorUsuarios.usuario.nombresPersonaUsuario}"/>
 
                     <h:outputLabel for="surname" value="#{msg['usuario.agregar.campoApelidos']}"/>:
                     <p:inputText id="surname" required="true"
-                                 value="#{mantenedorUsuario.usuario.apellidosPersonaUsuario}"/>
+                                 value="#{mantenedorUsuarios.usuario.apellidosPersonaUsuario}"/>
 
                     <h:outputLabel for="identificator" value="#{msg['usuario.agregar.campoIdentificador']}"/>:
                     <p:inputText id="identificator" required="true"
-                                 value="#{mantenedorUsuario.usuario.identificacionPersonaUsuario}"/>
+                                 value="#{mantenedorUsuarios.usuario.identificacionPersonaUsuario}"/>
 
                     <h:outputLabel for="email" value="#{msg['usuario.agregar.campoEmail']}"/>:
                     <p:inputText id="email" required="true"
-                                 value="#{mantenedorUsuario.usuario.mailUsuario}"/>
+                                 value="#{mantenedorUsuarios.usuario.mailUsuario}"/>
 
                     <h:outputLabel for="photo" value="#{msg['usuario.agregar.campoFoto']}"/>:
-                    <p:fileUpload id="photo" mode="simple" value="#{mantenedorUsuario.foto}"/>
+                    <p:fileUpload id="photo" mode="simple" value="#{mantenedorUsuarios.foto}"/>
 
                     <h:outputLabel for="username" value="#{msg['usuario.agregar.campoUsuario']}"/>:
                     <p:inputText id="username" required="true"
-                                 value="#{mantenedorUsuario.usuario.usernameUsuario}"/>
+                                 value="#{mantenedorUsuarios.usuario.usernameUsuario}"/>
 
                     <h:outputLabel for="password" value="#{msg['usuario.agregar.campoClave']}"/>:
                     <p:password id="password" required="true"
-                                value="#{mantenedorUsuario.usuario.passwordUsuario}"/>
+                                value="#{mantenedorUsuarios.usuario.passwordUsuario}"/>
 
                     <h:outputLabel for="rol" value="#{msg['usuario.agregar.campoRol']}"/>:
                     <p:selectOneMenu id="rol" converter="entityConverter"
-                                     value="#{mantenedorUsuario.usuario.idRolUsuario}">
-                        <f:selectItems value="#{mantenedorUsuario.roles}" var="rol"
+                                     value="#{mantenedorUsuarios.usuario.idRolUsuario}">
+                        <f:selectItems value="#{mantenedorUsuarios.roles}" var="rol"
                                        itemLabel="#{rol.nombreRolUsuario}"/>
                     </p:selectOneMenu>
 
                     <h:outputLabel for="sucursal" value="#{msg['usuario.agregar.campoSucursal']}"/>:
                     <p:selectOneMenu id="sucursal" converter="entityConverter"
-                                     value="#{mantenedorUsuario.usuario.idSucursal}">
-                        <f:selectItems value="#{mantenedorUsuario.sucursales}" var="suc"
+                                     value="#{mantenedorUsuarios.usuario.idSucursal}">
+                        <f:selectItems value="#{mantenedorUsuarios.sucursales}" var="suc"
                                        itemLabel="#{suc.nombreSucursal}"/>
                     </p:selectOneMenu>
                 </h:panelGrid>
 
                 <p:commandButton id="guardar" value="#{msg['comunes.guardar']}" styleClass="btn-apptec"
-                                 action="#{mantenedorUsuario.guardarUsuario()}" update="@form"/>
+                                 action="#{mantenedorUsuarios.guardarUsuario()}" update="@form"/>
                 <p:commandButton id="volver" value="#{msg['comunes.volver']}" styleClass="btn-apptec"
-                                 immediate="true" action="#{mantenedorUsuario.irListar()}"/>
+                                 immediate="true" action="#{mantenedorUsuarios.irListar()}"/>
 
             </p:panel>
         </h:form>
