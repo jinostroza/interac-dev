@@ -1,16 +1,14 @@
 package cl.interac.presentacion.anuncio;
-import java.io.Serializable;
-import java.util.List;
-
 import cl.interac.entidades.Anuncio;
-
-import cl.interac.entidades.Usuario;
+import cl.interac.negocio.LogicaAnuncio;
 import cl.interac.util.components.FacesUtil;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import cl.interac.negocio.LogicaAnuncio;
+
+import java.io.Serializable;
+import java.util.List;
 
 
 /**
