@@ -22,19 +22,18 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class LogicaAnuncio {
-//    @Autowired
-//     private AnuncioDAO anuncioDAO;
-//
-//     @Transactional(readOnly = true)
-//     public List<Anuncio> obtenerTodos() {
-//        return anuncioDAO.obtenerTodos();
-//    }
-//    @Transactional(readOnly = false)
-//    public void guardarAnuncio(Anuncio a){
-//        anuncioDAO.guardar(a);
-//    }
-//    @Transactional(readOnly = false)
-//    public void eliminarAnuncio(Anuncio a){
-//        anuncioDAO.eliminarAnuncio(a);
-//    }
+   @Autowired
+   private AnuncioDAO anuncioDAO;
+     @Transactional(readOnly = true)
+    public List<Anuncio> obtenerTodos() {
+       return anuncioDAO.obtenerTodos();
+   }
+    @Transactional(readOnly = false)
+   public void guardar(Anuncio a){
+       anuncioDAO.guardar(a);
+   }
+    @Transactional(readOnly = false)
+    public void eliminarAnuncio(Anuncio a){
+       anuncioDAO.eliminarAnuncio(a);
+   }
 }
