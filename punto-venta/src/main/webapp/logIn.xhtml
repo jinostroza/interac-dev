@@ -11,15 +11,15 @@
                 <h:panelGrid columns="1" styleClass="form-group" style="width: 100%">
                     <p:outputPanel styleClass="input-icon">
                         <i class="fa fa-user"/>
-                        <p:inputText id="j_username" placeholder="Usuario" value="#{autentificacionBean.user}"
+                        <p:inputText id="j_username" placeholder="Usuario" value="#{autenticarBean.user}"
                                      styleClass="form-control"/>
                     </p:outputPanel>
-                    <p:password id="j_password" placeholder="Password" value="#{autentificacionBean.pass}"
+                    <p:password id="j_password" placeholder="Password" value="#{autenticarBean.pass}"
                                 styleClass="form-control"/>
                 </h:panelGrid>
                 <f:facet name="footer">
                     <p:commandButton value="Ingresar" styleClass="btn-block btn-apptec"
-                                     action="#{autentificacionBean.logIn()}"
+                                     action="#{autenticarBean.logIn()}"
                                      id="btnLogin"
                                      ajax="false"/>
                     <p:commandLink value="¿Olvidó su contraseña?"/>

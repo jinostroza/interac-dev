@@ -78,7 +78,7 @@
                                        title="#{msg['comunes.eliminar']}"
                                        oncomplete="PF('confirmar').show()" update="@form">
                             <f:setPropertyActionListener value="#{u}"
-                                                         target="#{mantenedorUsuario.usuarioSeleccionado}"/>
+                                                         target="#{mantenedorUsuario.usuario}"/>
                         </p:commandLink>
                     </p:column>
 
@@ -89,7 +89,7 @@
                 <p:outputPanel>
                     <h:outputFormat value="#{msg['comunes.confirmarAccionEliminar.mensaje']}">
                         <f:param value="#{msg['usuario.eliminar.objeto']}"/>
-                        <f:param value="#{mantenedorUsuario.usuarioSeleccionado.usernameUsuario}"/>
+                        <f:param value="#{mantenedorUsuario.usuario.usernameUsuario}"/>
                     </h:outputFormat>
                 </p:outputPanel>
                 <p:outputPanel>

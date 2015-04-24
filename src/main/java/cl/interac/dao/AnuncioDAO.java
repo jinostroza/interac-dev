@@ -18,19 +18,19 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class AnuncioDAO {
-    @PersistenceContext
-    private EntityManager em;
-    
-    public List<Anuncio> obtenerTodos() {
-        return em.createNamedQuery("Anuncio.findAll").getResultList();
-    }
-    public void guardar(Anuncio a){
-        if (a.getIdAnuncio()== null) em.persist(a);
-        else em.merge(a);
-    }
-    public void eliminarAnuncio(Anuncio a) {
-        Anuncio Anuncio = em.find(Anuncio.class, a.getIdAnuncio());
-        em.remove(Anuncio);
-    }
+//    @PersistenceContext
+//    private EntityManager em;
+//
+//    public List<Anuncio> obtenerTodos() {
+//        return em.createNamedQuery("Anuncio.findAll").getResultList();
+//    }
+//    public void guardar(Anuncio a){
+//        if (a.getIdAnuncio()== null) em.persist(a);
+//        else em.merge(a);
+//    }
+//    public void eliminarAnuncio(Anuncio a) {
+//        Anuncio Anuncio = em.find(Anuncio.class, a.getIdAnuncio());
+//        em.remove(Anuncio);
+//    }
     
 }

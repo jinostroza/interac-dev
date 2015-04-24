@@ -66,7 +66,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
-        <url-pattern>/m/*</url-pattern>
+        <url-pattern>/plataforma/*</url-pattern>
     </servlet-mapping>
 
     <!-- Mientras lo comento para poder ver los errores -->

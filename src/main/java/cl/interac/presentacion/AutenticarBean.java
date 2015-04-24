@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Scope("view")
-public class AutentificacionBean implements Serializable {
+public class AutenticarBean implements Serializable {
 
     private String user;
     private String pass;

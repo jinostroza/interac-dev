@@ -17,11 +17,9 @@
                 <p:password id="j_password"/>
 
             </h:panelGrid>
-            <p:commandButton ajax="false" value="Ingresar" action="#{autentificacionBean.logIn}"/>
+            <p:commandButton ajax="false" value="Ingresar" action="#{autenticarBean.logIn}"/>
             <br/><br/>
-            <p:commandLink ajax="false" action="#{facesUtil.redirigir('/m/usuario/registro')}">
-                <h:outputText value="Registrarse >>"/>
-            </p:commandLink>
+            <p:link value="Registrar >>" href="/registrar.jsf"/>
         </h:form>
     </ui:define>
 </ui:composition>

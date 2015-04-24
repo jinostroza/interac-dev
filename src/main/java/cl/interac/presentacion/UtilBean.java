@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @Component
 @Scope("view")
-public class Generico implements Serializable {
+public class UtilBean implements Serializable {
     public Integer getAnioActual() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
         return Integer.valueOf(sdf.format(new Date()));

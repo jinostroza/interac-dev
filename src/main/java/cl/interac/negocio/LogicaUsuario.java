@@ -19,28 +19,13 @@ public class LogicaUsuario {
     @Autowired
     private UsuarioDAO usuarioDAO;
 
+    @Transactional(readOnly = false)
+    public void guardar(Usuario usuario) {
+        usuarioDAO.guardar(usuario);
+    }
+
     @Transactional(readOnly = true)
     public List<Usuario> obtenerTodos() {
         return usuarioDAO.obtenerTodos();
-    }
-
-    @Transactional(readOnly = false)
-    public void guardarUsuario(Usuario u) {
-        usuarioDAO.guardar(u);
-    }
-
-    @Transactional(readOnly = false)
-    public void eliminarUsuario(Usuario u) {
-        usuarioDAO.eliminarUsuario(u);
-    }
-
-    @Transactional(readOnly = true)
-    public Usuario obtenerUsuario(String username) {
-        return usuarioDAO.obtenerUsuario(username);
-    }
-
-    @Transactional(readOnly = true)
-    public Usuario obtenerUsuario(String username, String password) {
-        return usuarioDAO.obtenerUsuario(username, password);
     }
 }
