@@ -6,6 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
         xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
 <f:view>
     <h:outputText value="Seleccionar pantallas"/>
     <h:outputText value="Escoge una categoria para tu campaña"/>
@@ -24,6 +25,17 @@
             <p:menuitem value="Internal" outcome="/mobile/index" icon="ui-icon-star"/>
         </p:submenu>
     </p:menu>
+    <p:button outcome="" value="Todas las pantallas" icon="ui-icon-star">
+        <f:param name="productId" value="10" />
+    </p:button>
+    <p:button outcome="productDetail" value="Seleccionar pantallas" icon="ui-icon-star">
+        <f:param name="productId" value="10" />
+    </p:button>
+    <p:button outcome="productDetail" value="mostrar seleccion" icon="ui-icon-star">
+        <f:param name="productId" value="10" />
+    </p:button>  <p:button outcome="productDetail" value="volver" icon="ui-icon-star">
+        <f:param name="productId" value="10" />
+    </p:button>
     <h3>Toggleable</h3>
     <p:menu toggleable="true">
         <p:submenu label="Ajax">
@@ -38,7 +50,17 @@
             <p:menuitem value="Internal" outcome="/mobile/index" icon="ui-icon-star"/>
         </p:submenu>
     </p:menu>
-    <p:gmap center="41.381542, 2.122893" zoom="15" type="HYBRID" style="width:100%;height:400px" />
 
+    <p:commandButton type="button" image="ui-icon ui-icon-pin-s"
+                     value="Show Map" onclick="dlg.show()" />
+
+    <p:dialog widgetVar="dlg" width="625" height="450" modal="true"
+              onShow="mymap.checkResize()">
+        <p:gmap center="41.381542, 2.122893" zoom="15" type="HYBRID"
+                style="width:600px;height:400px" widgetVar="mymap"/>
+    </p:dialog>
+
+    <p:gmap center="41.381542, 2.122893" zoom="15" type="HYBRID" style="width:100%;height:400px" />
+    <p:inputText />
 </f:view>
 </html>

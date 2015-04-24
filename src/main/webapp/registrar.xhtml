@@ -19,6 +19,8 @@
                 <p:inputText value="#{registrarBean.usuario.user}"/>
                 <p:outputLabel value="Contraseña"/>:
                 <p:password value="#{registrarBean.usuario.password}"/>
+
+
             </h:panelGrid>
             <p:commandButton ajax="false" value="Registrar" action="#{registrarBean.signUp}"/>
         </h:form>

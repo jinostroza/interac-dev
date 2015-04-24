@@ -25,7 +25,21 @@
                 <p:column headerText="Usuario">
                     #{usuario.user}
                 </p:column>
+
             </p:dataTable>
+
+            <!--temporal-->
+            <p:button outcome="productDetail" value="registrarAnuncio" action="#{faceUntil.redirigir('/plataforma/RegistrarAnuncio')">
+                <f:param name="productId" value="10" />
+            </p:button>
+
+            <p:button outcome="productDetail" value="seleccionarPantalla" action="#{faceUntil.redirigir('/plataforma/selecionarPantalla')">
+                <f:param name="productId" value="10" />
+            </p:button>
+            <p:button outcome="productDetail" value="inicio" action="#{faceUntil.redirigir('/plataforma/inicio')">
+                <f:param name="productId" value="10" />
+            </p:button>
+            <!--temporal-->
         </h:form>
 
     </ui:define>
