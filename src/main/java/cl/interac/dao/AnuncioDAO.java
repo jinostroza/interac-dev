@@ -11,7 +11,6 @@ import java.util.List;
  * Created by luis on 21-04-2015.
  */
 @Repository
-
 public class AnuncioDAO {
     @PersistenceContext
     private EntityManager em;
