@@ -10,18 +10,18 @@ import javax.persistence.Id;
  */
 @Entity
 public class Totem {
-    private int idtotem;
+    private Integer idtotem;
     private String nombre;
     private Integer idubicacion;
     private String tipo;
 
     @Id
     @Column(name = "idtotem")
-    public int getIdtotem() {
+    public Integer getIdtotem() {
         return idtotem;
     }
 
-    public void setIdtotem(int idtotem) {
+    public void setIdtotem(Integer idtotem) {
         this.idtotem = idtotem;
     }
 
@@ -62,7 +62,7 @@ public class Totem {
 
         Totem totem = (Totem) o;
 
-        if (idtotem != totem.idtotem) return false;
+        if (idtotem != null ? !idtotem.equals(totem.idtotem) : totem.idtotem != null) return false;
         if (nombre != null ? !nombre.equals(totem.nombre) : totem.nombre != null) return false;
         if (idubicacion != null ? !idubicacion.equals(totem.idubicacion) : totem.idubicacion != null) return false;
         if (tipo != null ? !tipo.equals(totem.tipo) : totem.tipo != null) return false;
@@ -72,7 +72,7 @@ public class Totem {
 
     @Override
     public int hashCode() {
-        int result = idtotem;
+        int result = idtotem != null ? idtotem.hashCode() : 0;
         result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
         result = 31 * result + (idubicacion != null ? idubicacion.hashCode() : 0);
         result = 31 * result + (tipo != null ? tipo.hashCode() : 0);

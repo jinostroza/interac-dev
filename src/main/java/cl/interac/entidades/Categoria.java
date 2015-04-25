@@ -10,16 +10,16 @@ import javax.persistence.Id;
  */
 @Entity
 public class Categoria {
-    private int idcategoria;
+    private Integer idcategoria;
     private String desccategoria;
 
     @Id
     @Column(name = "idcategoria")
-    public int getIdcategoria() {
+    public Integer getIdcategoria() {
         return idcategoria;
     }
 
-    public void setIdcategoria(int idcategoria) {
+    public void setIdcategoria(Integer idcategoria) {
         this.idcategoria = idcategoria;
     }
 
@@ -40,7 +40,8 @@ public class Categoria {
 
         Categoria categoria = (Categoria) o;
 
-        if (idcategoria != categoria.idcategoria) return false;
+        if (idcategoria != null ? !idcategoria.equals(categoria.idcategoria) : categoria.idcategoria != null)
+            return false;
         if (desccategoria != null ? !desccategoria.equals(categoria.desccategoria) : categoria.desccategoria != null)
             return false;
 
@@ -49,7 +50,7 @@ public class Categoria {
 
     @Override
     public int hashCode() {
-        int result = idcategoria;
+        int result = idcategoria != null ? idcategoria.hashCode() : 0;
         result = 31 * result + (desccategoria != null ? desccategoria.hashCode() : 0);
         return result;
     }
