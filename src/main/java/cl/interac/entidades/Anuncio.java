@@ -1,14 +1,16 @@
 package cl.interac.entidades;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Jorge on 25-04-15.
  */
 @Entity
+@NamedQueries(
+        {
+                @NamedQuery(name = "Anuncio.findAll", query = "SELECT a FROM Anuncio a "),
+        }
+)
 public class Anuncio {
     private Integer idAnuncio;
     private String descanuncio;

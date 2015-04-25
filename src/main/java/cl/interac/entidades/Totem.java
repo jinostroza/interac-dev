@@ -4,12 +4,13 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * Created by Jorge on 25-04-15.
  */
 @Entity
-public class Totem {
+public class Totem implements Serializable {
     private Integer idtotem;
     private String nombre;
     private Integer idubicacion;

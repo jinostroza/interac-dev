@@ -26,12 +26,12 @@ public class CampanaDAO {
     }
 
     public void guardar(Campana c){
-       if (c.getIdCampana()== null) em.persist(c);
+       if (c.getIdcampana()== null) em.persist(c);
        else em.merge(c);
     }
 
     public void eliminarCampana(Campana c){
-        Campana campana = em.find(Campana.class, c.getIdCampana());
+        Campana campana = em.find(Campana.class, c.getIdcampana());
         em.remove(campana);
     }
 }

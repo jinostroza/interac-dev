@@ -1,15 +1,18 @@
 package cl.interac.entidades;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Jorge on 25-04-15.
  */
 @Entity
-public class Campana {
+@NamedQueries(
+        {
+                @NamedQuery(name = "Campana.findAll", query = "SELECT c FROM Campana c "),
+        }
+)
+public class Campana implements Serializable {
     private Integer idcampana;
     private Integer idcliente;
     private String desccampana;

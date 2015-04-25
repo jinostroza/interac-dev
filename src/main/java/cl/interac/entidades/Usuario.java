@@ -7,7 +7,6 @@ import java.io.Serializable;
  * Created by claudio on 24-04-15.
  */
 @Entity
-@Table(name = "usuario")
 @NamedQueries(
         {
                 @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u "),
