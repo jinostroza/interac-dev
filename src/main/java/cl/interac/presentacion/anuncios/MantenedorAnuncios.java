@@ -24,7 +24,7 @@ public class MantenedorAnuncios implements Serializable {
 
     private Anuncio anuncioSeleccionado;
 
-    public enum TipoOperacion{
+    public enum TipoOperacion {
         INGRESAR,
         EDITAR;
     }
@@ -39,6 +39,7 @@ public class MantenedorAnuncios implements Serializable {
 
     @Autowired
     private LogicaAnuncio logicaAnuncio;
+
     // flows
     public void guardarAnuncio() {
 
@@ -68,3 +69,4 @@ public class MantenedorAnuncios implements Serializable {
     public void setAnuncios(List<Anuncio> anuncios) {
         this.anuncios = anuncios;
     }
+}
