@@ -1,148 +1,40 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cl.interac.entidades;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 /**
- * @author edggar
+ * Created by Jorge on 25-04-15.
  */
 @Entity
-@Table(name = "campana")
-@XmlRootElement
-@NamedQueries({
-        @NamedQuery(name = "Campana.findAll", query = "SELECT c FROM Campana c"),
-        @NamedQuery(name = "Campana.findByIdCampana", query = "SELECT c FROM Campana c WHERE c.idCampana = :idcampana"),
-        @NamedQuery(name = "Campana.findByDescCampana", query = "SELECT c FROM Campana c WHERE c.descCampana = :desccampana"),
-
-})
+@NamedQueries(
+        {
+                @NamedQuery(name = "Campana.findAll", query = "SELECT c FROM Campana c "),
+        }
+)
 public class Campana implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-
-    private int idcampana;
-    private int idcliente;
+    private Integer idcampana;
+    private Integer idcliente;
     private String desccampana;
-    private int idtotem;
-
-    public Campana() {
-    }
-
-    public Campana(Integer idCampana) {
-        this.idcampana = idCampana;
-    }
-
-
-
-    //@XmlTransient
-    //public List<Sucursal> getSucursalList() {
-      //  return sucursalList;
-    //}
-
-   // public void setSucursalList(List<Sucursal> sucursalList) {
-     //   this.sucursalList = sucursalList;
-    //}
-
-   // public Ciudad getIdCiudad() {
-      //  return idCiudad;
-   // }
-
-    //public void setIdCiudad(Ciudad idCiudad) {
-      //  this.idCiudad = idCiudad;
-    //}
-
-    //@XmlTransient
-    //public List<ClienteApptec> getClienteApptecList() {
-     //   return clienteApptecList;
-   // }
-
-   // public void setClienteApptecList(List<ClienteApptec> clienteApptecList) {
-     //   this.clienteApptecList = clienteApptecList;
-   // }
-
-    //@XmlTransient
-    //public List<Proveedor> getProveedorList() {
-      //  return proveedorList;
-   // }
-
-    //public void setProveedorList(List<Proveedor> proveedorList) {
-      //  this.proveedorList = proveedorList;
-    //}
-
-
-
-    //@XmlTransient
-    //public Collection<CliEmpresa> getCliEmpresaCollection() {
-      //  return cliEmpresaCollection;
-    //}
-
-    //public void setCliEmpresaCollection(Collection<CliEmpresa> cliEmpresaCollection) {
-      //  this.cliEmpresaCollection = cliEmpresaCollection;
-    //}
-
-    //@XmlTransient
-   // public Collection<CliPersona> getCliPersonaCollection() {
-     //   return cliPersonaCollection;
-    //}
-
-   // public void setCliPersonaCollection(Collection<CliPersona> cliPersonaCollection) {
-     //   this.cliPersonaCollection = cliPersonaCollection;
-    //}
-
-    public void setDescCampana(String descCampana) {
-        this.descCampana = descCampana;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idcampana != null ? idcampana.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Campana)) {
-            return false;
-        }
-        Campana other = (Campana) object;
-        if ((this.idCampana == null && other.idCampana != null) || (this.idCampana != null && !this.idCampana.equals(other.idCampana))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "cl.interac.entidades.Campana[ idCampana=" + idCampana + " ]";
-    }
+    private Integer idtotem;
 
     @Id
     @Column(name = "idcampana")
-    public int getIdcampana() {
+    public Integer getIdcampana() {
         return idcampana;
     }
 
-    public void setIdcampana(int idcampana) {
+    public void setIdcampana(Integer idcampana) {
         this.idcampana = idcampana;
     }
 
     @Basic
     @Column(name = "idcliente")
-    public int getIdcliente() {
+    public Integer getIdcliente() {
         return idcliente;
     }
 
-    public void setIdcliente(int idcliente) {
+    public void setIdcliente(Integer idcliente) {
         this.idcliente = idcliente;
     }
 
@@ -158,11 +50,35 @@ public class Campana implements Serializable {
 
     @Basic
     @Column(name = "idtotem")
-    public int getIdtotem() {
+    public Integer getIdtotem() {
         return idtotem;
     }
 
-    public void setIdtotem(int idtotem) {
+    public void setIdtotem(Integer idtotem) {
         this.idtotem = idtotem;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Campana campana = (Campana) o;
+
+        if (idcampana != null ? !idcampana.equals(campana.idcampana) : campana.idcampana != null) return false;
+        if (idcliente != null ? !idcliente.equals(campana.idcliente) : campana.idcliente != null) return false;
+        if (desccampana != null ? !desccampana.equals(campana.desccampana) : campana.desccampana != null) return false;
+        if (idtotem != null ? !idtotem.equals(campana.idtotem) : campana.idtotem != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idcampana != null ? idcampana.hashCode() : 0;
+        result = 31 * result + (idcliente != null ? idcliente.hashCode() : 0);
+        result = 31 * result + (desccampana != null ? desccampana.hashCode() : 0);
+        result = 31 * result + (idtotem != null ? idtotem.hashCode() : 0);
+        return result;
     }
 }

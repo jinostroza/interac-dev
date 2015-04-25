@@ -4,33 +4,34 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * Created by Jorge on 25-04-15.
  */
 @Entity
-public class Ubicacion {
-    private int idubicacion;
-    private int idtotem;
+public class Ubicacion implements Serializable {
+    private Integer idubicacion;
+    private Integer idtotem;
     private String descubicacion;
 
     @Id
     @Column(name = "idubicacion")
-    public int getIdubicacion() {
+    public Integer getIdubicacion() {
         return idubicacion;
     }
 
-    public void setIdubicacion(int idubicacion) {
+    public void setIdubicacion(Integer idubicacion) {
         this.idubicacion = idubicacion;
     }
 
     @Basic
     @Column(name = "idtotem")
-    public int getIdtotem() {
+    public Integer getIdtotem() {
         return idtotem;
     }
 
-    public void setIdtotem(int idtotem) {
+    public void setIdtotem(Integer idtotem) {
         this.idtotem = idtotem;
     }
 
@@ -51,8 +52,9 @@ public class Ubicacion {
 
         Ubicacion ubicacion = (Ubicacion) o;
 
-        if (idubicacion != ubicacion.idubicacion) return false;
-        if (idtotem != ubicacion.idtotem) return false;
+        if (idubicacion != null ? !idubicacion.equals(ubicacion.idubicacion) : ubicacion.idubicacion != null)
+            return false;
+        if (idtotem != null ? !idtotem.equals(ubicacion.idtotem) : ubicacion.idtotem != null) return false;
         if (descubicacion != null ? !descubicacion.equals(ubicacion.descubicacion) : ubicacion.descubicacion != null)
             return false;
 
@@ -61,8 +63,8 @@ public class Ubicacion {
 
     @Override
     public int hashCode() {
-        int result = idubicacion;
-        result = 31 * result + idtotem;
+        int result = idubicacion != null ? idubicacion.hashCode() : 0;
+        result = 31 * result + (idtotem != null ? idtotem.hashCode() : 0);
         result = 31 * result + (descubicacion != null ? descubicacion.hashCode() : 0);
         return result;
     }
