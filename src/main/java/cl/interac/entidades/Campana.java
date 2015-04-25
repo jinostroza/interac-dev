@@ -20,7 +20,6 @@ import java.io.Serializable;
         @NamedQuery(name = "Campana.findAll", query = "SELECT c FROM Campana c"),
         @NamedQuery(name = "Campana.findByIdCampana", query = "SELECT c FROM Campana c WHERE c.idCampana = :idcampana"),
         @NamedQuery(name = "Campana.findByDescCampana", query = "SELECT c FROM Campana c WHERE c.descCampana = :desccampana"),
-
 })
 public class Campana implements Serializable {
     private static final long serialVersionUID = 1L;
