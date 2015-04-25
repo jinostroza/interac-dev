@@ -4,6 +4,7 @@ import java.util.List;
 
 import cl.interac.entidades.Anuncio;
 
+import cl.interac.entidades.Usuario;
 import cl.interac.util.components.FacesUtil;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,61 +22,39 @@ public class mantenedorAnuncio implements Serializable {
 
 private List<Anuncio> anuncios;
 
+private Anuncio anuncio;
 
-
-  // private List<RolUsuario> roles;
-  // private List<Sucursal> sucursales;
-  //private MantenedorSucursal sucursal;
   private Anuncio anuncioSeleccionado;
 
 
-  public enum tipoOperacion{
+  public enum TipoOperacion{
     INGRESAR,
     EDITAR;
 
   }
 
-
-/*  private TipoOperacion operacion;
-
   private transient UploadedFile foto;
+  private TipoOperacion operacion;
+
+  public void inicio() {
+    anuncios = logicaAnuncio.obtenerTodos();
+  }
+
 
   @Autowired
   private LogicaAnuncio logicaAnuncio;
   // flows
-  public String irAgregar() {
-    atribucionSeleccionada  = new ();
-    operacion = TipoOperacion.INGRESAR;
-    return "flowAgregar";
-  }
+  public void guardarAnuncio() {
 
-  public String irEditar(Atribucion a) {
-    atribucionSeleccionada = a;
-    operacion = TipoOperacion.EDITAR;
-    return "flowAgregar";
-  }
-
-  public String irListar() {
-    return "flowListar";
-  }
-
-  // logica vista
-  public void eliminarAtribuciones() {
-    atribuciones.remove(atribucionSeleccionada);
-    logicaAtribucion.eliminarAtribucion(atribucionSeleccionada);
-  }
-
-  public void guardarAtribucion() {
-    logicaAtribucion.guardarAtribucion(atribucionSeleccionada);
     if (operacion == TipoOperacion.INGRESAR) {
-      FacesUtil.mostrarMensajeInformativo("Operación exitosa", "Se ha creado el nueva atribucion [ID: " + atribucionSeleccionada.getIdAtribucion() + "]");
-      atribuciones.add(atribucionSeleccionada);
-      atribucionSeleccionada = new Atribucion();
     } else {
-      FacesUtil.mostrarMensajeInformativo("Operación exitosa", "Se ha editado atribucion [ID: " + atribucionSeleccionada.getIdAtribucion() + "]");
     }
   }
-
+  public void signUp() {
+    System.err.println("LLEGO A REGISTRAR");
+    logicaAnuncio.guardar(anuncio);
+    FacesUtil.mostrarMensajeInformativo("Resultado de la operación", "Anuncio guardado exitosamente");
+  }
   public boolean esIngreso() {
     return operacion == TipoOperacion.INGRESAR;
   }
@@ -84,22 +63,12 @@ private List<Anuncio> anuncios;
     return operacion == TipoOperacion.EDITAR;
   }
 
-  public List<Atribucion> getAtribuciones() {
-    return atribuciones;
+
+  public List<Anuncio> getAnuncios() {
+    return anuncios;
   }
 
-  public void setAtribuciones(List<Atribucion> atribuciones) {
-    this.atribuciones = atribuciones;
+  public void setAnuncios(List<Anuncio> anuncios) {
+    this.anuncios = anuncios;
   }
-
-  public Atribucion getAtribucionSeleccionada() {
-    return atribucionSeleccionada;
-  }
-
-  public void setAtribucionSeleccionada(Atribucion atribucionSeleccionada) {
-    this.atribucionSeleccionada = atribucionSeleccionada;
-  }
-
-*/
-
 }

@@ -33,7 +33,7 @@ public class CampanaDAO {
         em.remove(campana);
     }
 
-  //  public List<Campana> obtenerPorCampana(Campana campana) {
-    //    return em.createNamedQuery("Campana.findByIdCampana").setParameter("Campana", campana).getResultList();
+ //   public List<Campana> obtenerPorCampana(Campana campana) {
+   //    return em.createNamedQuery("Campana.findByIdCampana").setParameter("Campana", campana).getResultList();
    // }
 }

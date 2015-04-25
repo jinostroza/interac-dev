@@ -33,7 +33,7 @@ public class Usuario implements Serializable {
     }
 
     @Basic
-    @Column(name = "username", nullable = true, insertable = true, updatable = true, length = 45)
+    @Column(name = "USER", nullable = true, insertable = true, updatable = true, length = 45)
     public String getUser() {
         return user;
     }
