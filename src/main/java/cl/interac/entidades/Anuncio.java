@@ -6,14 +6,7 @@
 package cl.interac.entidades;
 
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -49,6 +42,12 @@ public class Anuncio implements Serializable {
 
     //@OneToMany(cascade = CascadeType.ALL, mappedBy = "idPlan")
     //private List<ClienteApptec> clienteApptecList;
+    private int idanuncio;
+    private String descanuncio;
+    private int idcampana;
+    private int idcategoria;
+    private String media;
+    private String rubro;
 
     public Anuncio() {
     }
@@ -59,26 +58,6 @@ public class Anuncio implements Serializable {
 
     public Integer getIdAnuncio() {return idAnuncio;}
 
-    public void setDescAnuncio(String descAnuncio) {
-        this.descAnuncio = descAnuncio;
-    }
-
-    public String getDescAnuncio() {
-        return descAnuncio;
-    }
-
-    public void setMedia(String Media) {
-        this.Media = Media;
-    }
-
-    public String getMedia() {
-        return Media;
-    }
-
-    public void setRubro(String Rubro) {this.Rubro =Rubro;}
-
-    public String getRubro() {return Rubro;}
-
    // @XmlTransient
     //public List<ClienteApptec> getClienteApptecList() {
       //  return clienteApptecList;
@@ -87,6 +66,30 @@ public class Anuncio implements Serializable {
     //public void setClienteApptecList(List<ClienteApptec> clienteApptecList) {
       //  this.clienteApptecList = clienteApptecList;
     //}
+
+    public String getDescAnuncio() {
+        return descAnuncio;
+    }
+
+    public void setDescAnuncio(String descAnuncio) {
+        this.descAnuncio = descAnuncio;
+    }
+
+    @Basic
+    @Column(name = "media")
+    public String getMedia() {
+        return Media;
+    }
+
+    public void setMedia(String Media) {
+        this.Media = Media;
+    }
+
+    @Basic
+    @Column(name = "rubro")
+    public String getRubro() {return Rubro;}
+
+    public void setRubro(String Rubro) {this.Rubro =Rubro;}
 
     @Override
     public int hashCode() {
@@ -112,5 +115,44 @@ public class Anuncio implements Serializable {
     public String toString() {
         return "cl.interac.entidades.Anuncio[ idAnuncio=" + idAnuncio + " ]";
     }
-    
+
+    @Id
+    @Column(name = "idanuncio")
+    public int getIdanuncio() {
+        return idanuncio;
+    }
+
+    public void setIdanuncio(int idanuncio) {
+        this.idanuncio = idanuncio;
+    }
+
+    @Basic
+    @Column(name = "descanuncio")
+    public String getDescanuncio() {
+        return descanuncio;
+    }
+
+    public void setDescanuncio(String descanuncio) {
+        this.descanuncio = descanuncio;
+    }
+
+    @Basic
+    @Column(name = "idcampana")
+    public int getIdcampana() {
+        return idcampana;
+    }
+
+    public void setIdcampana(int idcampana) {
+        this.idcampana = idcampana;
+    }
+
+    @Basic
+    @Column(name = "idcategoria")
+    public int getIdcategoria() {
+        return idcategoria;
+    }
+
+    public void setIdcategoria(int idcategoria) {
+        this.idcategoria = idcategoria;
+    }
 }

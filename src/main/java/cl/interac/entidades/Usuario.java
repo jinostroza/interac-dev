@@ -20,6 +20,8 @@ public class Usuario implements Serializable {
     private String correo;
     private String empresa;
     private String rol;
+    private int idusuario;
+    private String username;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -103,5 +105,25 @@ public class Usuario implements Serializable {
         return "Usuario{" +
                 "idUsuario=" + idUsuario +
                 '}';
+    }
+
+    @Id
+    @Column(name = "idusuario")
+    public int getIdusuario() {
+        return idusuario;
+    }
+
+    public void setIdusuario(int idusuario) {
+        this.idusuario = idusuario;
+    }
+
+    @Basic
+    @Column(name = "username")
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

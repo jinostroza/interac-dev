@@ -32,28 +32,16 @@ public class Campana implements Serializable {
     @Size(max = 45)
     @Column(name = "desccampana")
     private String descCampana;
+    private int idcampana;
+    private int idcliente;
+    private String desccampana;
+    private int idtotem;
 
     public Campana() {
     }
 
     public Campana(Integer idCampana) {
         this.idCampana = idCampana;
-    }
-
-    public Integer getIdCampana() {
-        return idCampana;
-    }
-
-    public void setIdCampana(Integer idCampana) {
-        this.idCampana = idCampana;
-    }
-
-    public String getDescCampana() {
-        return descCampana;
-    }
-
-    public void setDescCampana(String descCampana) {
-        this.descCampana = descCampana;
     }
 
 
@@ -93,6 +81,40 @@ public class Campana implements Serializable {
       //  this.proveedorList = proveedorList;
     //}
 
+    public Integer getIdCampana() {
+        return idCampana;
+    }
+
+    public void setIdCampana(Integer idCampana) {
+        this.idCampana = idCampana;
+    }
+
+    public String getDescCampana() {
+        return descCampana;
+    }
+
+    //@XmlTransient
+    //public Collection<CliEmpresa> getCliEmpresaCollection() {
+      //  return cliEmpresaCollection;
+    //}
+
+    //public void setCliEmpresaCollection(Collection<CliEmpresa> cliEmpresaCollection) {
+      //  this.cliEmpresaCollection = cliEmpresaCollection;
+    //}
+
+    //@XmlTransient
+   // public Collection<CliPersona> getCliPersonaCollection() {
+     //   return cliPersonaCollection;
+    //}
+
+   // public void setCliPersonaCollection(Collection<CliPersona> cliPersonaCollection) {
+     //   this.cliPersonaCollection = cliPersonaCollection;
+    //}
+
+    public void setDescCampana(String descCampana) {
+        this.descCampana = descCampana;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -118,22 +140,43 @@ public class Campana implements Serializable {
         return "cl.interac.entidades.Campana[ idCampana=" + idCampana + " ]";
     }
 
-    //@XmlTransient
-    //public Collection<CliEmpresa> getCliEmpresaCollection() {
-      //  return cliEmpresaCollection;
-    //}
+    @Id
+    @Column(name = "idcampana")
+    public int getIdcampana() {
+        return idcampana;
+    }
 
-    //public void setCliEmpresaCollection(Collection<CliEmpresa> cliEmpresaCollection) {
-      //  this.cliEmpresaCollection = cliEmpresaCollection;
-    //}
+    public void setIdcampana(int idcampana) {
+        this.idcampana = idcampana;
+    }
 
-    //@XmlTransient
-   // public Collection<CliPersona> getCliPersonaCollection() {
-     //   return cliPersonaCollection;
-    //}
+    @Basic
+    @Column(name = "idcliente")
+    public int getIdcliente() {
+        return idcliente;
+    }
 
-   // public void setCliPersonaCollection(Collection<CliPersona> cliPersonaCollection) {
-     //   this.cliPersonaCollection = cliPersonaCollection;
-    //}
+    public void setIdcliente(int idcliente) {
+        this.idcliente = idcliente;
+    }
 
+    @Basic
+    @Column(name = "desccampana")
+    public String getDesccampana() {
+        return desccampana;
+    }
+
+    public void setDesccampana(String desccampana) {
+        this.desccampana = desccampana;
+    }
+
+    @Basic
+    @Column(name = "idtotem")
+    public int getIdtotem() {
+        return idtotem;
+    }
+
+    public void setIdtotem(int idtotem) {
+        this.idtotem = idtotem;
+    }
 }
