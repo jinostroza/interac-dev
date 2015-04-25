@@ -27,11 +27,7 @@ public class Campana implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Column(name = "idcampana")
-    private Integer idCampana;
-    @Size(max = 45)
-    @Column(name = "desccampana")
-    private String descCampana;
+
     private int idcampana;
     private int idcliente;
     private String desccampana;
@@ -41,7 +37,7 @@ public class Campana implements Serializable {
     }
 
     public Campana(Integer idCampana) {
-        this.idCampana = idCampana;
+        this.idcampana = idCampana;
     }
 
 
@@ -81,17 +77,7 @@ public class Campana implements Serializable {
       //  this.proveedorList = proveedorList;
     //}
 
-    public Integer getIdCampana() {
-        return idCampana;
-    }
 
-    public void setIdCampana(Integer idCampana) {
-        this.idCampana = idCampana;
-    }
-
-    public String getDescCampana() {
-        return descCampana;
-    }
 
     //@XmlTransient
     //public Collection<CliEmpresa> getCliEmpresaCollection() {
@@ -118,7 +104,7 @@ public class Campana implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idCampana != null ? idCampana.hashCode() : 0);
+        hash += (idcampana != null ? idcampana.hashCode() : 0);
         return hash;
     }
 
