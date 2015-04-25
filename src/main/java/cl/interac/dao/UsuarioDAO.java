@@ -21,8 +21,6 @@ public class UsuarioDAO {
     }
 
     public List<Usuario> obtenerTodos() {
-
-        System.out.println("usuarios:"+ em.createNamedQuery("Usuario.findAll").getResultList());
         return em.createNamedQuery("Usuario.findAll").getResultList();
     }
 }
