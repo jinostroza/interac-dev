@@ -9,6 +9,10 @@
     </on-start>
 
     <view-state id="listarUsuarios">
+        <transition on="volver" to="finFlow"/>
     </view-state>
 
+    <end-state id="finFlow" view="/inicio.xhtml">
+
+    </end-state>
 </flow>
