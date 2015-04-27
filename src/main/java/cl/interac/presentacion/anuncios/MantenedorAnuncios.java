@@ -18,11 +18,10 @@ import java.util.List;
 @Component
 @Scope("flow")
 public class MantenedorAnuncios implements Serializable {
-
+    @Autowired
+    private LogicaAnuncio logicaAnuncio;
     private List<Anuncio> anuncios;
-
     private Anuncio anuncio;
-
     private Anuncio anuncioSeleccionado;
     public MantenedorAnuncios () {
         anuncio = new Anuncio();
@@ -41,11 +40,10 @@ public class MantenedorAnuncios implements Serializable {
     }
 
 
-    @Autowired
-    private LogicaAnuncio logicaAnuncio;
+
 
     // flows
-    public void guardarAnuncio() {
+    public void guardar() {
 
         if (operacion == TipoOperacion.INGRESAR) {
         } else {
@@ -61,11 +59,11 @@ public class MantenedorAnuncios implements Serializable {
         return operacion == TipoOperacion.EDITAR;
     }
 
-    public List<Anuncio> getAnuncios() {
+    public List<Anuncio> getAnuncio() {
         return anuncios;
     }
 
-    public void setAnuncios(List<Anuncio> anuncios) {
+    public void setAnuncio(List<Anuncio> anuncios) {
         this.anuncios = anuncios;
     }
 }

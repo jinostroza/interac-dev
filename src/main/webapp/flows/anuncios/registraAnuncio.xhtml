@@ -12,11 +12,11 @@
         <h:form>
             <h:panelGrid columns="4">
                 <p:outputLabel value="Nombre Anuncio"/>:
-                <p:inputText value="#{mantenedorAnuncios.anuncio.descanuncio}"/>
+                <p:inputText value="#{creaAnuncio.anuncio.descanuncio}"/>
                 <p:outputLabel value="Categoria"/>:
-                <p:inputText value="#{mantenedorAnuncios.anuncio.rubro}"/>
+                <p:inputText value="#{creaAnuncio.anuncio.rubro}"/>
                 <p:outputLabel value="Seleccionar"/>:
-                <p:fileUpload value="#{mantenedorAnuncios.anuncio.media}"/>
+                <p:fileUpload value="#{creaAnuncio.anuncio.media}"/>
 
             </h:panelGrid>
             <p:commandButton ajax="false" value="Registrar" action="#{mantenedorAnuncios.guardarAnuncio()}"/>
