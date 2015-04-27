@@ -18,7 +18,7 @@ public class Anuncio {
     private String rubro;
 
     @Id
-    @Column(name = "id_anuncio")
+    @Column(name = "idanuncio", nullable = false, insertable = true, updatable = true)
     public Integer getIdAnuncio() {
         return idAnuncio;
     }
@@ -28,7 +28,7 @@ public class Anuncio {
     }
 
     @Basic
-    @Column(name = "descanuncio")
+    @Column(name = "descanuncio", nullable = true, insertable = true, updatable = true, length = 45)
     public String getDescanuncio() {
         return descanuncio;
     }
@@ -38,7 +38,7 @@ public class Anuncio {
     }
 
     @Basic
-    @Column(name = "media")
+    @Column(name = "media", nullable = true, insertable = true, updatable = true, length = 45)
     public String getMedia() {
         return media;
     }
@@ -48,7 +48,7 @@ public class Anuncio {
     }
 
     @Basic
-    @Column(name = "rubro")
+    @Column(name = "rubro", nullable = true, insertable = true, updatable = true, length = 45)
     public String getRubro() {
         return rubro;
     }

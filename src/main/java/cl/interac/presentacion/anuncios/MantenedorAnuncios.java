@@ -48,11 +48,6 @@ public class MantenedorAnuncios implements Serializable {
         }
     }
 
-    public void signUp() {
-        System.err.println("LLEGO A REGISTRAR");
-        logicaAnuncio.guardar(anuncio);
-        FacesUtil.mostrarMensajeInformativo("Resultado de la operación", "Anuncio guardado exitosamente");
-    }
 
     public boolean esIngreso() {
         return operacion == TipoOperacion.INGRESAR;
