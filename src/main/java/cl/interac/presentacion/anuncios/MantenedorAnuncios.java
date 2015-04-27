@@ -1,5 +1,6 @@
 package cl.interac.presentacion.anuncios;
 
+import cl.interac.entidades.Usuario;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import cl.interac.entidades.Anuncio;
@@ -23,6 +24,9 @@ public class MantenedorAnuncios implements Serializable {
     private Anuncio anuncio;
 
     private Anuncio anuncioSeleccionado;
+    public MantenedorAnuncios () {
+        anuncio = new Anuncio();
+    }
 
     public enum TipoOperacion {
         INGRESAR,

@@ -18,7 +18,7 @@ public class Anuncio {
     private String rubro;
 
     @Id
-    @Column(name = "idanuncio", nullable = false, insertable = true, updatable = true)
+    @Column(name = "id_anuncio", nullable = false, insertable = true, updatable = true)
     public Integer getIdAnuncio() {
         return idAnuncio;
     }

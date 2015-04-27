@@ -9,7 +9,11 @@
       </on-start>
 
       <view-state id="registraAnuncio">
-            <transition on="irLogin" to="inicio.jsf"/>
+            <transition on="volver" to="finFlow"/>
       </view-state>
+
+      <end-state id="finFlow" view="/inicio.xhtml">
+
+      </end-state>
 
 </flow>
