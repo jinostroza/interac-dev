@@ -37,6 +37,7 @@ public class MantenedorAnuncios implements Serializable {
 
     public void inicio() {
         anuncios = logicaAnuncio.obtenerTodos();
+        operacion = TipoOperacion.INGRESAR;
     }
 
     // flows
