@@ -65,20 +65,12 @@ public class Anuncio implements Serializable {
 
         Anuncio anuncio = (Anuncio) o;
 
-        if (idAnuncio != null ? !idAnuncio.equals(anuncio.idAnuncio) : anuncio.idAnuncio != null) return false;
-        if (descanuncio != null ? !descanuncio.equals(anuncio.descanuncio) : anuncio.descanuncio != null) return false;
-        if (media != null ? !media.equals(anuncio.media) : anuncio.media != null) return false;
-        if (rubro != null ? !rubro.equals(anuncio.rubro) : anuncio.rubro != null) return false;
-
-        return true;
+        if (this.getIdAnuncio() == null || anuncio.getIdAnuncio() == null) return false;
+        return this.getIdAnuncio().intValue() == anuncio.getIdAnuncio().intValue();
     }
 
     @Override
     public int hashCode() {
-        int result = idAnuncio != null ? idAnuncio.hashCode() : 0;
-        result = 31 * result + (descanuncio != null ? descanuncio.hashCode() : 0);
-        result = 31 * result + (media != null ? media.hashCode() : 0);
-        result = 31 * result + (rubro != null ? rubro.hashCode() : 0);
-        return result;
+        return idAnuncio != null ? 31 * idAnuncio.hashCode() : 0;
     }
 }
