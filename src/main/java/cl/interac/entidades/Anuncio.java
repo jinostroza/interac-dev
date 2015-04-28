@@ -1,6 +1,7 @@
 package cl.interac.entidades;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Jorge on 25-04-15.
@@ -11,7 +12,7 @@ import javax.persistence.*;
                 @NamedQuery(name = "Anuncio.findAll", query = "SELECT a FROM Anuncio a "),
         }
 )
-public class Anuncio {
+public class Anuncio implements Serializable {
     private Integer idAnuncio;
     private String descanuncio;
     private String media;

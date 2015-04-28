@@ -22,7 +22,7 @@ public class MantenedorAnuncios implements Serializable {
     private LogicaAnuncio logicaAnuncio;
     private List<Anuncio> anuncios;
     private Anuncio anuncio;
-    private Anuncio anuncioSeleccionado;
+
     public MantenedorAnuncios () {
         anuncio = new Anuncio();
     }
@@ -39,14 +39,13 @@ public class MantenedorAnuncios implements Serializable {
         anuncios = logicaAnuncio.obtenerTodos();
     }
 
-
-
-
     // flows
     public void guardar() {
-
+        logicaAnuncio.guardar(anuncio);
         if (operacion == TipoOperacion.INGRESAR) {
+            FacesUtil.mostrarMensajeInformativo("Operación exitosa", "Se ha creado correctamente el anuncio");
         } else {
+            FacesUtil.mostrarMensajeInformativo("Operación exitosa", "Se ha editado correctamente el anuncio");
         }
     }
 
