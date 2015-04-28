@@ -1,6 +1,7 @@
 package cl.interac.presentacion.anuncios;
 
 import cl.interac.entidades.Usuario;
+import org.primefaces.event.FileUploadEvent;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import cl.interac.entidades.Anuncio;
@@ -31,7 +32,10 @@ public class MantenedorAnuncios implements Serializable {
         EDITAR;
     }
 
-    private transient UploadedFile foto;
+    public void UploadFile(FileUploadEvent event){
+
+        anuncio.setMedia(event.getFile().getFileName());
+    }
     private TipoOperacion operacion;
 
     public void inicio() {
