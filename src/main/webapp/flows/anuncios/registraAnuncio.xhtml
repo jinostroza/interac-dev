@@ -7,20 +7,24 @@
 
     <ui:define name="contenido">
 
-        <h3>Registro</h3>
+        <h3>
+            <h:outputText value="Crear Anuncio" rendered="#{mantenedorAnuncios.esIngreso()}"/>
+            <h:outputText value="Editar Anuncio" rendered="#{mantenedorAnuncios.esEdicion()}"/>
+        </h3>
 
         <h:form>
             <h:panelGrid columns="3">
-                <p:outputLabel value="Nombre Empresa"/>:
-                <p:inputText value="#{registrarBean.usuario.empresa}"/>
-                <p:outputLabel value="Correo Electrónico"/>:
-                <p:inputText value="#{registrarBean.usuario.correo}"/>
-                <p:outputLabel value="Usuario"/>:
-                <p:inputText value="#{registrarBean.usuario.username}"/>
-                <p:outputLabel value="Contraseña"/>:
-                <p:password value="#{registrarBean.usuario.password}"/>
+                <p:outputLabel value="Nombre Anuncio"/>:
+                <p:inputText value="#{mantenedorAnuncios.anuncio.descanuncio}"/>
+                <p:outputLabel value="Categoria"/>:
+                <p:inputText value="#{mantenedorAnuncios.anuncio.rubro}"/>
+                <p:outputLabel value="Seleccionar"/>:
+                <p:fileUpload value="#{mantenedorAnuncios.anuncio.media}"/>
+
             </h:panelGrid>
-            <p:commandButton ajax="false" value="Registrar" action="#{registrarBean.signUp}"/>
+            <p:commandButton ajax="false" value="Registrar" action="#{mantenedorAnuncios.guardar()}"/>
+            <p:commandButton icon="fa fa-undo" value="volver" action="#{facesUtil.redirigir('/inicio.jsf')}"/>
+
         </h:form>
     </ui:define>
 </ui:composition>

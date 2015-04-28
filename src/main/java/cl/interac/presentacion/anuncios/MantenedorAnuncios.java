@@ -1,5 +1,6 @@
 package cl.interac.presentacion.anuncios;
 
+import cl.interac.entidades.Usuario;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import cl.interac.entidades.Anuncio;
@@ -17,12 +18,14 @@ import java.util.List;
 @Component
 @Scope("flow")
 public class MantenedorAnuncios implements Serializable {
-
+    @Autowired
+    private LogicaAnuncio logicaAnuncio;
     private List<Anuncio> anuncios;
-
     private Anuncio anuncio;
 
-    private Anuncio anuncioSeleccionado;
+    public MantenedorAnuncios () {
+        anuncio = new Anuncio();
+    }
 
     public enum TipoOperacion {
         INGRESAR,
@@ -36,23 +39,16 @@ public class MantenedorAnuncios implements Serializable {
         anuncios = logicaAnuncio.obtenerTodos();
     }
 
-
-    @Autowired
-    private LogicaAnuncio logicaAnuncio;
-
     // flows
-    public void guardarAnuncio() {
-
+    public void guardar() {
+        logicaAnuncio.guardar(anuncio);
         if (operacion == TipoOperacion.INGRESAR) {
+            FacesUtil.mostrarMensajeInformativo("Operación exitosa", "Se ha creado correctamente el anuncio");
         } else {
+            FacesUtil.mostrarMensajeInformativo("Operación exitosa", "Se ha editado correctamente el anuncio");
         }
     }
 
-    public void signUp() {
-        System.err.println("LLEGO A REGISTRAR");
-        logicaAnuncio.guardar(anuncio);
-        FacesUtil.mostrarMensajeInformativo("Resultado de la operación", "Anuncio guardado exitosamente");
-    }
 
     public boolean esIngreso() {
         return operacion == TipoOperacion.INGRESAR;
@@ -62,11 +58,11 @@ public class MantenedorAnuncios implements Serializable {
         return operacion == TipoOperacion.EDITAR;
     }
 
-    public List<Anuncio> getAnuncios() {
+    public List<Anuncio> getAnuncio() {
         return anuncios;
     }
 
-    public void setAnuncios(List<Anuncio> anuncios) {
+    public void setAnuncio(List<Anuncio> anuncios) {
         this.anuncios = anuncios;
     }
 }
