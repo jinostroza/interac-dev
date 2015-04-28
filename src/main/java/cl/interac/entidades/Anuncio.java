@@ -73,4 +73,11 @@ public class Anuncio implements Serializable {
     public int hashCode() {
         return idAnuncio != null ? 31 * idAnuncio.hashCode() : 0;
     }
+
+    @Override
+    public String toString() {
+        return "Anuncio{" +
+                "idAnuncio=" + idAnuncio +
+                '}';
+    }
 }

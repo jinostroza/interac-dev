@@ -20,7 +20,6 @@ import java.util.List;
 public class MantenedorAnuncios implements Serializable {
     @Autowired
     private LogicaAnuncio logicaAnuncio;
-    private List<Anuncio> anuncios;
     private Anuncio anuncio;
 
     public MantenedorAnuncios () {
@@ -36,7 +35,6 @@ public class MantenedorAnuncios implements Serializable {
     private TipoOperacion operacion;
 
     public void inicio() {
-        anuncios = logicaAnuncio.obtenerTodos();
         operacion = TipoOperacion.INGRESAR;
     }
 
@@ -59,11 +57,11 @@ public class MantenedorAnuncios implements Serializable {
         return operacion == TipoOperacion.EDITAR;
     }
 
-    public List<Anuncio> getAnuncio() {
-        return anuncios;
+    public Anuncio getAnuncio() {
+        return anuncio;
     }
 
-    public void setAnuncio(List<Anuncio> anuncios) {
-        this.anuncios = anuncios;
+    public void setAnuncio(Anuncio anuncio) {
+        this.anuncio = anuncio;
     }
 }
