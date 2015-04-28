@@ -1,15 +1,17 @@
 package cl.interac.entidades;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * Created by Jorge on 25-04-15.
  */
 @Entity
+@NamedQueries(
+        {
+                @NamedQuery(name = "Categoria.findAll", query = "SELECT g FROM Categoria g "),
+        }
+)
 public class Categoria implements Serializable {
     private Integer idcategoria;
     private String desccategoria;
