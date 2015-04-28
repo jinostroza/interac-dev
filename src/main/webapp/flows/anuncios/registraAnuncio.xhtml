@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/default.xhtml">
+
+    <ui:define name="contenido">
+
+        <h3>
+            <h:outputText value="Crear Anuncio" rendered="#{mantenedorAnuncios.esIngreso()}"/>
+            <h:outputText value="Editar Anuncio" rendered="#{mantenedorAnuncios.esEdicion()}"/>
+        </h3>
+
+        <h:form>
+            <h:panelGrid columns="3">
+                <p:outputLabel value="Nombre Anuncio"/>:
+                <p:inputText value="#{mantenedorAnuncios.anuncio.descanuncio}"/>
+                <p:outputLabel value="Categoria"/>:
+                <p:inputText value="#{mantenedorAnuncios.anuncio.rubro}"/>
+                <p:outputLabel value="Seleccionar"/>:
+                <p:fileUpload value="#{mantenedorAnuncios.anuncio.media}"/>
+
+            </h:panelGrid>
+            <p:commandButton ajax="false" value="Registrar" action="#{mantenedorAnuncios.guardar()}"/>
+            <p:commandButton icon="fa fa-undo" value="volver" action="#{facesUtil.redirigir('/inicio.jsf')}"/>
+
+        </h:form>
+    </ui:define>
+</ui:composition>

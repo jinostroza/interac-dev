@@ -1,6 +1,7 @@
 package cl.interac.entidades;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Jorge on 25-04-15.
@@ -11,14 +12,14 @@ import javax.persistence.*;
                 @NamedQuery(name = "Anuncio.findAll", query = "SELECT a FROM Anuncio a "),
         }
 )
-public class Anuncio {
+public class Anuncio implements Serializable {
     private Integer idAnuncio;
     private String descanuncio;
     private String media;
     private String rubro;
 
     @Id
-    @Column(name = "id_anuncio")
+    @Column(name = "id_anuncio", nullable = false, insertable = true, updatable = true)
     public Integer getIdAnuncio() {
         return idAnuncio;
     }
@@ -28,7 +29,7 @@ public class Anuncio {
     }
 
     @Basic
-    @Column(name = "descanuncio")
+    @Column(name = "descanuncio", nullable = true, insertable = true, updatable = true, length = 45)
     public String getDescanuncio() {
         return descanuncio;
     }
@@ -38,7 +39,7 @@ public class Anuncio {
     }
 
     @Basic
-    @Column(name = "media")
+    @Column(name = "media", nullable = true, insertable = true, updatable = true, length = 45)
     public String getMedia() {
         return media;
     }
@@ -48,7 +49,7 @@ public class Anuncio {
     }
 
     @Basic
-    @Column(name = "rubro")
+    @Column(name = "rubro", nullable = true, insertable = true, updatable = true, length = 45)
     public String getRubro() {
         return rubro;
     }

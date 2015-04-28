@@ -5,7 +5,7 @@
       start-state="listarCampanas">
 
     <on-start>
-        <evaluate expression="MantenedorCampanas.inicio()"/>
+        <evaluate expression="mantenedorCampanas.inicio()"/>
     </on-start>
 
     <view-state id="listarCampanas">
