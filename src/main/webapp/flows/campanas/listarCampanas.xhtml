@@ -7,26 +7,27 @@
 
     <ui:define name="contenido">
 
-        <h3>Usuarios</h3>
+        <h3>Campañas</h3>
         <h:form>
-            <p:dataTable value="#{mantenedorUsuarios.usuarios}" var="usuario">
-                <p:column headerText="ID">
-                    #{usuario.idUsuario}
+            <p:dataTable value="#{mantenedorCampanas.campanas}" var="campana">
+                <p:column headerText="ID Campaña">
+                    #{campana.idcampana}
                 </p:column>
 
-                <p:column headerText="Empresa">
-                    #{usuario.empresa}
+                <p:column headerText="Descripcion">
+                    #{campana.desccampana}
                 </p:column>
 
-                <p:column headerText="Correo Electrónico">
-                    #{usuario.correo}
+                <p:column headerText="ID Cliente">
+                    #{campana.idcliente}
                 </p:column>
 
-                <p:column headerText="Usuario">
-                    #{usuario.username}
+                <p:column headerText="ID Totem">
+                    #{campana.idtotem}
                 </p:column>
+
             </p:dataTable>
         </h:form>
-
+        <p:commandButton value="agregar" action="#{facesUtil.redirigir('/plataforma/campanas/agregarCampana.jsf')}"/>
     </ui:define>
 </ui:composition>

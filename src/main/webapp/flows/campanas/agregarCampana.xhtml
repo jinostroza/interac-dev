@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/default.xhtml">
+
+    <ui:define name="contenido">
+
+        <h3>Agregar Campana</h3>
+
+        <h:form>
+            <h:panelGrid columns="3">
+                <p:outputLabel value="ID CAmpana"/>:
+                <p:inputText value="#{MantenedorCampanas.tmpCampana.idcampana}"/>
+                <p:outputLabel value="ID Cliente"/>:
+                <p:inputText value="#{MantenedorCampanas.tmpCampana.idcliente}"/>
+                <p:outputLabel value="ID Totem"/>:
+                <p:inputText value="#{MantenedorCampanas.tmpCampana.idtotem}"/>
+                <p:outputLabel value="Descripcion"/>:
+                <p:password value="#{MantenedorCampanas.tmpCampana.desccampana}"/>
+            </h:panelGrid>
+            <p:commandButton ajax="false" value="Registrar" action="#{MantenedorCampana.CrearCampana()}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
