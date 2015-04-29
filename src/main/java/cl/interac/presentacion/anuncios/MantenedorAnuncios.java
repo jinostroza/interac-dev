@@ -10,6 +10,8 @@ import cl.interac.util.components.FacesUtil;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.List;
 
@@ -32,9 +34,11 @@ public class MantenedorAnuncios implements Serializable {
         EDITAR;
     }
 
-    public void UploadFile(FileUploadEvent event){
-
-        anuncio.setMedia(event.getFile().getFileName());
+    public void upload() {
+        if(anuncio != null) {
+            FacesMessage message = new FacesMessage("Succesful", anuncio.getMedia() + " is uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
     }
     private TipoOperacion operacion;
 

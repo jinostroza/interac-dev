@@ -9,5 +9,8 @@
     </on-start>
 
     <view-state id="listarCampanas">
+
+            <transition on="agregar" to="inicio.jsf"></transition>
+
     </view-state>
 </flow>

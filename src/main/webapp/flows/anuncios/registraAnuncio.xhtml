@@ -19,12 +19,11 @@
                 <p:outputLabel value="Categoría"/>:
                 <p:inputText value="#{mantenedorAnuncios.anuncio.rubro}"/>
             </h:panelGrid>
-            <p:fileUpload label="Seleccionar" uploadLabel="Subir" fileUpLoadListener="#{mantenedorAnuncios.uploadFile()}" cancelLabel="Cancelar"/>
+            <p:fileUpload label="Seleccionar" uploadLabel="Subir" action="#{mantenedorAnuncios.upload}" cancelLabel="Cancelar"/>
             <p:graphicImage id="graph" value="#{mantenedorAnuncios.anuncio.media}" widht="200" height="300" />
 
             <p:commandButton ajax="false" value="Registrar" action="#{mantenedorAnuncios.guardar()}"/>
             <p:commandButton icon="fa fa-undo" value="volver" action="#{facesUtil.redirigir('/inicio.jsf')}"/>
-
         </h:form>
     </ui:define>
 </ui:composition>
