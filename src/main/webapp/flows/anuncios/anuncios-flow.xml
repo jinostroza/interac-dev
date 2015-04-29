@@ -8,8 +8,12 @@
             <evaluate expression="mantenedorAnuncios.inicio()"/>
       </on-start>
 
-      <view-state id="registraAnuncio">
-            <transition on="Registrar" to="inicio"></transition>
+      <view-state id="registraAnuncio" popup="true">
+            <transition on="Registrar" to="listarAnuncios"></transition>
       </view-state>
+      <view-state id="listarAnuncios" view="listarAnuncios.xhtml">
+
+      </view-state>
+
 
 </flow>

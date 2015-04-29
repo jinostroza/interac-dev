@@ -1,6 +1,7 @@
 package cl.interac.presentacion.campanas;
 
 import cl.interac.entidades.Campana;
+import cl.interac.util.components.FacesUtil;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,9 @@ import java.io.Serializable;
 import java.util.List;
 
 import cl.interac.negocio.LogicaCampana;
+
+import javax.faces.context.FacesContext;
+
 /**
  * Created by Joaco on 24-04-2015.
  */
@@ -16,30 +20,49 @@ import cl.interac.negocio.LogicaCampana;
 @Scope("flow")
 public class MantenedorCampanas implements Serializable
 {
-    public Campana tmpCampana;
-    @Autowired
     private LogicaCampana logicaCampana;
+    private Campana campana;
 
-    private List<Campana> campanas;
+    public MantenedorCampanas () {
+        campana = new Campana();
+    }
+
+    public enum TipoOperacion {
+        INGRESAR,
+        EDITAR;
+    }
+
+
+    private TipoOperacion operacion;
 
     public void inicio() {
-        tmpCampana = new Campana();
+        operacion = TipoOperacion.INGRESAR;
     }
 
-    public List<Campana> getCampanas() {
-        return campanas;
-    }
-
-    public void setCampanas(List<Campana> campanas) {
-        this.campanas = campanas;
-    }
-
-    public void CrearCampana()
-    {
-        if (tmpCampana!=null)
-        {
-            logicaCampana.guardarCampana(tmpCampana);
+    // flows
+    public void guardar() {
+        logicaCampana.guardarCampana(campana);
+        if (operacion == TipoOperacion.INGRESAR) {
+            FacesUtil.mostrarMensajeInformativo("Operación exitosa", "Se ha creado correctamente el anuncio");
+        } else {
+            FacesUtil.mostrarMensajeInformativo("Operación exitosa", "Se ha editado correctamente el anuncio");
         }
-        tmpCampana = new Campana();
+    }
+
+
+    public boolean esIngreso() {
+        return operacion == TipoOperacion.INGRESAR;
+    }
+
+    public boolean esEdicion() {
+        return operacion == TipoOperacion.EDITAR;
+    }
+
+    public Campana    getCampana() {
+        return campana;
+    }
+
+    public void setCampana(Campana campana) {
+        this.campana = campana;
     }
 }
