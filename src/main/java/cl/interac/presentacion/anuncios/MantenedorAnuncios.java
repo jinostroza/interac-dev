@@ -36,6 +36,8 @@ public class MantenedorAnuncios implements Serializable {
 
     public void upload() {
         if(anuncio != null) {
+            System.err.println("LLEGO A REGISTRAR");
+            logicaAnuncio.guardar(anuncio);
             FacesMessage message = new FacesMessage("Succesful", anuncio.getMedia() + " is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
