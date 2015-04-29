@@ -1,26 +1,26 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:p="http://primefaces.org/ui"
-                template="/templates/default.xhtml">
+                                 xmlns:ui="http://java.sun.com/jsf/facelets"
+                                 xmlns:h="http://java.sun.com/jsf/html"
+                                 xmlns:f="http://java.sun.com/jsf/core"
+                                 xmlns:p="http://primefaces.org/ui"
+                                 template="/templates/default.xhtml">
 
-    <ui:define name="contenido">
+<ui:define name="contenido">
 
-        <h3>Registro</h3>
+    <h3>Registro</h3>
 
-        <h:form>
-            <h:panelGrid columns="3">
-                <p:outputLabel value="Nombre Empresa"/>:
-                <p:inputText value="#{registrarBean.usuario.empresa}"/>
-                <p:outputLabel value="Correo Electrónico"/>:
-                <p:inputText value="#{registrarBean.usuario.correo}"/>
-                <p:outputLabel value="Usuario"/>:
-                <p:inputText value="#{registrarBean.usuario.username}"/>
-                <p:outputLabel value="Contraseña"/>:
-                <p:password value="#{registrarBean.usuario.password}"/>
-            </h:panelGrid>
-            <p:commandButton ajax="false" value="Registrar" action="#{registrarBean.signUp}"/>
-        </h:form>
-    </ui:define>
+    <h:form>
+        <h:panelGrid columns="3">
+            <p:outputLabel value="Nombre Empresa"/>:
+            <p:inputText value="#{registrarBean.usuario.empresa}"/>
+            <p:outputLabel value="Correo Electrónico"/>:
+            <p:inputText value="#{registrarBean.usuario.correo}"/>
+            <p:outputLabel value="Usuario"/>:
+            <p:inputText value="#{registrarBean.usuario.username}"/>
+            <p:outputLabel value="Contraseña"/>:
+            <p:password value="#{registrarBean.usuario.password}"/>
+        </h:panelGrid>
+        <p:commandButton ajax="false" value="Registrar" action="#{registrarBean.signUp}"/>
+    </h:form>
+</ui:define>
 </ui:composition>
