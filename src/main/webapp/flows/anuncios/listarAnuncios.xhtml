@@ -7,9 +7,9 @@
 
     <ui:define name="contenido">
 
-        <h3>Campañas</h3>
+        <h3>Anuncios</h3>
         <h:form>
-            <p:dataTable value="#{mantenedorCampanas.campana}" var="campana">
+            <p:dataTable value="#{mantenedorAnuncios.anuncio}" var="anuncio">
                 <p:column headerText="ID Anuncio">
                     #{anuncio.idAnuncio}
                 </p:column>
@@ -18,8 +18,8 @@
                     #{anuncio.descanuncio}
                 </p:column>
 
-                <p:column headerText="ID campana">
-                    #{anuncio.idcampana}
+                <p:column headerText="Rubro">
+                    #{anuncio.rubro}
                 </p:column>
 
                 <p:column headerText="Media">
