@@ -10,7 +10,7 @@
 
     <view-state id="listarCampanas">
 
-    <transition on="agregar" to="agregarCampana.jsf"></transition>
+    <transition on="agregar" to="agregarCampana"></transition>
 
 </view-state>
     <view-state id="agregarCampana">

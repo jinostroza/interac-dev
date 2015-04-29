@@ -10,25 +10,25 @@
         <h3>Campañas</h3>
         <h:form>
             <p:dataTable value="#{mantenedorCampanas.campana}" var="campana">
-                <p:column headerText="ID Campaña">
-                    #{campana.idcampana}
+                <p:column headerText="ID Anuncio">
+                    #{anuncio.idAnuncio}
                 </p:column>
 
                 <p:column headerText="Descripcion">
-                    #{campana.desccampana}
+                    #{anuncio.descanuncio}
                 </p:column>
 
-                <p:column headerText="ID Cliente">
-                    #{campana.idcliente}
+                <p:column headerText="ID campana">
+                    #{anuncio.idcampana}
                 </p:column>
 
-                <p:column headerText="ID Totem">
-                    #{campana.idtotem}
+                <p:column headerText="Media">
+                    #{anuncio.media}
                 </p:column>
 
             </p:dataTable>
         </h:form>
-        <p:commandButton value="agregar"  action="#{mantenedorCampanas.guardar}"/>
+
         <p:commandButton icon="fa fa-undo" value="volver" action="#{facesUtil.redirigir('/inicio.jsf')}"/>
      </ui:define>
 </ui:composition>
