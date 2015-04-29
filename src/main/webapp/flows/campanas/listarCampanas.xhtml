@@ -9,7 +9,7 @@
 
         <h3>Campañas</h3>
         <h:form>
-            <p:dataTable value="#{mantenedorCampanas.campanas}" var="campana">
+            <p:dataTable value="#{mantenedorCampanas.campana}" var="campana">
                 <p:column headerText="ID Campaña">
                     #{campana.idcampana}
                 </p:column>
@@ -28,6 +28,6 @@
 
             </p:dataTable>
         </h:form>
-        <p:commandButton value="agregar" />
+        <p:commandButton value="agregar"  action="#{mantenedorCampanas.guardar}"/>
     </ui:define>
 </ui:composition>
