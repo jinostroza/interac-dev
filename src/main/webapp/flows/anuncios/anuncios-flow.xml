@@ -9,7 +9,6 @@
       </on-start>
 
       <view-state id="registraAnuncio">
-            <transition on="irLogin" to="inicio.jsf"/>
       </view-state>
 
 </flow>

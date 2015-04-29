@@ -6,38 +6,35 @@
 package cl.interac.negocio;
 
 
-import cl.interac.dao.AnuncioDAO;
-import cl.interac.entidades.Anuncio;
-
-import java.util.List;
-
+import cl.interac.dao.CategoriaDAO;
+import cl.interac.entidades.Categoria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
+ *
  * @author edggar
  */
 @Component
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class LogicaAnuncio {
-    @Autowired
-    private AnuncioDAO anuncioDAO;
-
-    @Transactional(readOnly = true)
-    public List<Anuncio> obtenerTodos() {
-        return anuncioDAO.obtenerTodos();
-    }
-
+public class LogicaCategoria {
+   @Autowired
+   private CategoriaDAO categoriaDAO;
+     @Transactional(readOnly = true)
+    public List<Categoria> obtenerTodos() {
+       return categoriaDAO.obtenerTodos();
+   }
     @Transactional(readOnly = false)
-    public void guardar(Anuncio a) {
-        anuncioDAO.guardar(a);
-    }
-
+   public void guardar(Categoria g){
+       categoriaDAO.guardar(g);
+   }
     @Transactional(readOnly = false)
-    public void eliminarAnuncio(Anuncio a) {
-        anuncioDAO.eliminarAnuncio(a);
-    }
+    public void eliminarTotem(Categoria g){
+       categoriaDAO.eliminarCategoria(g);
+   }
 }

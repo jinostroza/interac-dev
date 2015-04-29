@@ -1,5 +1,7 @@
 package cl.interac.presentacion.anuncios;
 
+import cl.interac.entidades.Usuario;
+import org.primefaces.event.FileUploadEvent;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import cl.interac.entidades.Anuncio;
@@ -17,34 +19,36 @@ import java.util.List;
 @Component
 @Scope("flow")
 public class MantenedorAnuncios implements Serializable {
-
-    private List<Anuncio> anuncios;
-
+    @Autowired
+    private LogicaAnuncio logicaAnuncio;
     private Anuncio anuncio;
 
-    private Anuncio anuncioSeleccionado;
+    public MantenedorAnuncios () {
+        anuncio = new Anuncio();
+    }
 
     public enum TipoOperacion {
         INGRESAR,
         EDITAR;
     }
 
-    private transient UploadedFile foto;
+    public void UploadFile(FileUploadEvent event){
+
+        anuncio.setMedia(event.getFile().getFileName());
+    }
     private TipoOperacion operacion;
 
     public void inicio() {
-        anuncios = logicaAnuncio.obtenerTodos();
+        operacion = TipoOperacion.INGRESAR;
     }
 
-
-    @Autowired
-    private LogicaAnuncio logicaAnuncio;
-
     // flows
-    public void guardarAnuncio() {
-
+    public void guardar() {
+        logicaAnuncio.guardar(anuncio);
         if (operacion == TipoOperacion.INGRESAR) {
+            FacesUtil.mostrarMensajeInformativo("Operación exitosa", "Se ha creado correctamente el anuncio");
         } else {
+            FacesUtil.mostrarMensajeInformativo("Operación exitosa", "Se ha editado correctamente el anuncio");
         }
     }
 
@@ -57,11 +61,11 @@ public class MantenedorAnuncios implements Serializable {
         return operacion == TipoOperacion.EDITAR;
     }
 
-    public List<Anuncio> getAnuncios() {
-        return anuncios;
+    public Anuncio getAnuncio() {
+        return anuncio;
     }
 
-    public void setAnuncios(List<Anuncio> anuncios) {
-        this.anuncios = anuncios;
+    public void setAnuncio(Anuncio anuncio) {
+        this.anuncio = anuncio;
     }
 }

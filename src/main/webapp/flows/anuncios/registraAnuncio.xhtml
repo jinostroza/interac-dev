@@ -7,19 +7,22 @@
 
     <ui:define name="contenido">
 
-        <h3>CREAR ANUNCIO</h3>
+        <h3>
+            <h:outputText value="Crear Anuncio" rendered="#{mantenedorAnuncios.esIngreso()}"/>
+            <h:outputText value="Editar Anuncio" rendered="#{mantenedorAnuncios.esEdicion()}"/>
+        </h3>
 
         <h:form>
             <h:panelGrid columns="3">
                 <p:outputLabel value="Nombre Anuncio"/>:
-                <p:inputText value="#{mantenedorAnuncios.anuncios.descanuncio}"/>
-                <p:outputLabel value="Categoria"/>:
-                <p:inputText value="#{mantenedorAnuncios.anuncios.rubro}"/>
-                <p:outputLabel value="Seleccionar"/>:
-                <p:fileUpload value="#{mantenedorAnuncios.anuncio.media}"/>
-
+                <p:inputText value="#{mantenedorAnuncios.anuncio.descanuncio}"/>
+                <p:outputLabel value="Categoría"/>:
+                <p:inputText value="#{mantenedorAnuncios.anuncio.rubro}"/>
             </h:panelGrid>
-            <p:commandButton ajax="false" value="Registrar" action="#{mantenedorAnuncios.guardarAnuncio()}"/>
+            <p:fileUpload label="Seleccionar" uploadLabel="Subir" fileUpLoadListener="#{mantenedorAnuncios.uploadFile()}" cancelLabel="Cancelar"/>
+            <p:graphicImage id="graph" value="#{mantenedorAnuncios.anuncio.media}" widht="200" height="300" />
+
+            <p:commandButton ajax="false" value="Registrar" action="#{mantenedorAnuncios.guardar()}"/>
             <p:commandButton icon="fa fa-undo" value="volver" action="#{facesUtil.redirigir('/inicio.jsf')}"/>
 
         </h:form>

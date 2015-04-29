@@ -1,15 +1,17 @@
 package cl.interac.entidades;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * Created by Jorge on 25-04-15.
  */
 @Entity
+@NamedQueries(
+        {
+                @NamedQuery(name = "Totem.findAll", query = "SELECT t FROM Totem t "),
+        }
+)
 public class Totem implements Serializable {
     private Integer idtotem;
     private String nombre;
