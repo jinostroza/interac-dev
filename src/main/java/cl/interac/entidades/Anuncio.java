@@ -1,117 +1,83 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cl.interac.entidades;
 
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.*;
 
 /**
- *
- * @author apptec
+ * Created by Jorge on 25-04-15.
  */
 @Entity
-@Table(name = "anuncio")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Anuncio.findAll", query = "SELECT a FROM Anuncio a"),
-    @NamedQuery(name = "Anuncio.findByIdAnuncio", query = "SELECT a FROM Anuncio a WHERE a.idAnuncio = :idanuncio"),
-    @NamedQuery(name = "Anuncio.findByDescAnuncio", query = "SELECT a FROM Anuncio a WHERE a.descAnuncio = :descanuncio"),
-    @NamedQuery(name = "Anuncio.findByMedia", query = "SELECT a FROM Anuncio a WHERE a.Media = :media"),
-    @NamedQuery(name = "Anuncio.findByRubro", query = "SELECT a FROM Anuncio a WHERE a.Rubro = :rubro")
-   })
-public class Anuncio implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idanuncio")
+@NamedQueries(
+        {
+                @NamedQuery(name = "Anuncio.findAll", query = "SELECT a FROM Anuncio a "),
+        }
+)
+public class Anuncio {
     private Integer idAnuncio;
-    @Size(max = 45)
-    @Column(name = "descanuncio")
-    private String descAnuncio;
-    @Size(max = 100)
-    @Column(name = "media")
-    private String Media;
-    @Size(max = 40)
-    @Column(name = "rubro")
-    private String Rubro;
+    private String descanuncio;
+    private String media;
+    private String rubro;
 
-    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "idPlan")
-    //private List<ClienteApptec> clienteApptecList;
-
-    public Anuncio() {
+    @Id
+    @Column(name = "id_anuncio")
+    public Integer getIdAnuncio() {
+        return idAnuncio;
     }
 
-    public Anuncio(Integer idAnuncio) {
+    public void setIdAnuncio(Integer idAnuncio) {
         this.idAnuncio = idAnuncio;
     }
 
-    public Integer getIdAnuncio() {return idAnuncio;}
-
-    public void setDescAnuncio(String descAnuncio) {
-        this.descAnuncio = descAnuncio;
+    @Basic
+    @Column(name = "descanuncio")
+    public String getDescanuncio() {
+        return descanuncio;
     }
 
-    public String getDescAnuncio() {
-        return descAnuncio;
+    public void setDescanuncio(String descanuncio) {
+        this.descanuncio = descanuncio;
     }
 
-    public void setMedia(String Media) {
-        this.Media = Media;
-    }
-
+    @Basic
+    @Column(name = "media")
     public String getMedia() {
-        return Media;
+        return media;
     }
 
-    public void setRubro(String Rubro) {this.Rubro =Rubro;}
+    public void setMedia(String media) {
+        this.media = media;
+    }
 
-    public String getRubro() {return Rubro;}
+    @Basic
+    @Column(name = "rubro")
+    public String getRubro() {
+        return rubro;
+    }
 
-   // @XmlTransient
-    //public List<ClienteApptec> getClienteApptecList() {
-      //  return clienteApptecList;
-   // }
-
-    //public void setClienteApptecList(List<ClienteApptec> clienteApptecList) {
-      //  this.clienteApptecList = clienteApptecList;
-    //}
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idAnuncio != null ? idAnuncio.hashCode() : 0);
-        return hash;
+    public void setRubro(String rubro) {
+        this.rubro = rubro;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Anuncio)) {
-            return false;
-        }
-        Anuncio other = (Anuncio) object;
-        if ((this.idAnuncio == null && other.idAnuncio != null) || (this.idAnuncio != null && !this.idAnuncio.equals(other.idAnuncio))) {
-            return false;
-        }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Anuncio anuncio = (Anuncio) o;
+
+        if (idAnuncio != null ? !idAnuncio.equals(anuncio.idAnuncio) : anuncio.idAnuncio != null) return false;
+        if (descanuncio != null ? !descanuncio.equals(anuncio.descanuncio) : anuncio.descanuncio != null) return false;
+        if (media != null ? !media.equals(anuncio.media) : anuncio.media != null) return false;
+        if (rubro != null ? !rubro.equals(anuncio.rubro) : anuncio.rubro != null) return false;
+
         return true;
     }
 
     @Override
-    public String toString() {
-        return "cl.interac.entidades.Anuncio[ idAnuncio=" + idAnuncio + " ]";
+    public int hashCode() {
+        int result = idAnuncio != null ? idAnuncio.hashCode() : 0;
+        result = 31 * result + (descanuncio != null ? descanuncio.hashCode() : 0);
+        result = 31 * result + (media != null ? media.hashCode() : 0);
+        result = 31 * result + (rubro != null ? rubro.hashCode() : 0);
+        return result;
     }
-    
 }

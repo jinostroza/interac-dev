@@ -4,6 +4,7 @@ import cl.interac.entidades.Anuncio;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
 @Repository
 
 public class AnuncioDAO {
-
+    @PersistenceContext
     private EntityManager em;
 
     public List<Anuncio> obtenerTodos() {

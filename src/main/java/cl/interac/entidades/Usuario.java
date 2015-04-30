@@ -7,7 +7,6 @@ import java.io.Serializable;
  * Created by claudio on 24-04-15.
  */
 @Entity
-@Table(name = "usuario")
 @NamedQueries(
         {
                 @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u "),
@@ -15,11 +14,12 @@ import java.io.Serializable;
 )
 public class Usuario implements Serializable {
     private Integer idUsuario;
-    private String user;
+    private String username;
     private String password;
     private String correo;
     private String empresa;
     private String rol;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,13 +33,13 @@ public class Usuario implements Serializable {
     }
 
     @Basic
-    @Column(name = "USER", nullable = true, insertable = true, updatable = true, length = 45)
-    public String getUser() {
-        return user;
+    @Column(name = "username", nullable = true, insertable = true, updatable = true, length = 45)
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsername(String user) {
+        this.username = user;
     }
 
     @Basic
@@ -104,4 +104,5 @@ public class Usuario implements Serializable {
                 "idUsuario=" + idUsuario +
                 '}';
     }
+
 }

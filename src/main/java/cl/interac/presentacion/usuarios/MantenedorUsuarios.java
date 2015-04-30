@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * @author interac
- */
+*/
 @Component
 @Scope("flow")
 public class MantenedorUsuarios implements Serializable {
@@ -23,7 +23,7 @@ public class MantenedorUsuarios implements Serializable {
     private enum TipoOperacion {
         INGRESAR,
         EDITAR
-    };
+    }
     
     private TipoOperacion operacion;
 
