@@ -25,17 +25,8 @@
                 <p:column headerText="Usuario">
                     #{usuario.username}
                 </p:column>
-
             </p:dataTable>
-
-            <!--temporal-->
-            <p:commandButton value="REGISTRE SU ANUNCIO DE PRUEBA" action="#{facesUtil.redirigir('/plataforma/anuncio/ingresaAnuncio')}"/>
-
-
-            <p:commandButton value="sp" action="#{facesUtil.redirigir('/plataforma/campana/selecionarPantalla')}"/>
-          <!--temporal-->
-
-
+            <p:commandButton icon="fa fa-undo" value="volver" action="#{facesUtil.redirigir('/inicio.jsf')}"/>
         </h:form>
 
     </ui:define>

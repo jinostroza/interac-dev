@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <flow xmlns="http://www.springframework.org/schema/webflow"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
-      start-state="listarCampanas">
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+             start-state="listarCampanas">
 
-    <on-start>
-        <evaluate expression="MantenedorCampanas.inicio()"/>
-    </on-start>
+<on-start>
+    <evaluate expression="mantenedorCampanas.inicio()"/>
+</on-start>
 
-    <view-state id="listarCampanas">
-    </view-state>
+<view-state id="listarCampanas" redirect="true">
+    <transition on="agregar" to="agregarCampana"></transition>
+</view-state>
+<view-state id="agregarCampana"></view-state>
 </flow>

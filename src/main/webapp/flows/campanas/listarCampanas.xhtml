@@ -1,23 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/default.xhtml">
 
-    <f:view>
-        <p:link outcome="productDetail" value="Elegir Contenido">
-            <f:param name="productId" value="10" />
-        </p:link>
-        <p:link outcome="productDetail" value="Seleccionar Pantallas">
-            <f:param name="productId" value="10" />
-        </p:link>
-        <p:link outcome="productDetail" value="Planificar Campaña">
-            <f:param name="productId" value="10" />
-        </p:link>
-        <p:link outcome="productDetail" value="Confirmar Campaña">
-            <f:param name="productId" value="10" />
-        </p:link>
-    </f:view>
-</html>
+    <ui:define name="contenido">
+
+        <h3>Campañas</h3>
+        <h:form>
+            <p:dataTable value="#{mantenedorCampanas.campanas}" var="campana">
+                <p:column headerText="ID Campaña">
+                    #{campana.idcampana}
+                </p:column>
+
+                <p:column headerText="Descripcion">
+                    #{campana.desccampana}
+                </p:column>
+
+                <p:column headerText="ID Cliente">
+                    #{campana.idcliente}
+                </p:column>
+
+                <p:column headerText="ID Totem">
+                    #{campana.idtotem}
+                </p:column>
+
+            </p:dataTable>
+        </h:form>
+        <p:commandButton id="agregar" value="agregar"/>
+        <p:commandButton value="agregar " action="#{facesUtil.redirigir('/plataforma/campanas/agregarCampana.xhtml')}"/>
+        <p:commandButton value="AGREGAR2 " action="#{facesUtil.redirigir('/plataforma/campanas/agregarCampana.xhtml')}"/>
+
+    </ui:define>
+</ui:composition>

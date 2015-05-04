@@ -14,8 +14,8 @@ import org.springframework.stereotype.Component;
 @Scope("view")
 public class RegistrarBean {
     @Autowired
-    private LogicaUsuario logicaUsuario;
 
+    private LogicaUsuario logicaUsuario;
     private Usuario usuario;
 
     // Spring nos instanciará el bean cuando cree el componente, pero antes debemos setear el usuario para poder usar

@@ -1,5 +1,7 @@
 package cl.interac.presentacion.anuncios;
 
+import cl.interac.entidades.Usuario;
+import org.primefaces.event.FileUploadEvent;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import cl.interac.entidades.Anuncio;
@@ -8,6 +10,8 @@ import cl.interac.util.components.FacesUtil;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.List;
 
@@ -17,42 +21,43 @@ import java.util.List;
 @Component
 @Scope("flow")
 public class MantenedorAnuncios implements Serializable {
-
-    private List<Anuncio> anuncios;
-
+    @Autowired
+    private LogicaAnuncio logicaAnuncio;
     private Anuncio anuncio;
 
-    private Anuncio anuncioSeleccionado;
+    public MantenedorAnuncios () {
+        anuncio = new Anuncio();
+    }
 
     public enum TipoOperacion {
         INGRESAR,
         EDITAR;
     }
 
-    private transient UploadedFile foto;
+    public void upload() {
+        if(anuncio != null) {
+            System.err.println("LLEGO A REGISTRAR");
+            logicaAnuncio.guardar(anuncio);
+            FacesMessage message = new FacesMessage("Succesful", anuncio.getMedia() + " is uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+    }
     private TipoOperacion operacion;
 
     public void inicio() {
-        anuncios = logicaAnuncio.obtenerTodos();
+        operacion = TipoOperacion.INGRESAR;
     }
 
-
-    @Autowired
-    private LogicaAnuncio logicaAnuncio;
-
     // flows
-    public void guardarAnuncio() {
-
+    public void guardar() {
+        logicaAnuncio.guardar(anuncio);
         if (operacion == TipoOperacion.INGRESAR) {
+            FacesUtil.mostrarMensajeInformativo("Operación exitosa", "Se ha creado correctamente el anuncio");
         } else {
+            FacesUtil.mostrarMensajeInformativo("Operación exitosa", "Se ha editado correctamente el anuncio");
         }
     }
 
-    public void signUp() {
-        System.err.println("LLEGO A REGISTRAR");
-        logicaAnuncio.guardar(anuncio);
-        FacesUtil.mostrarMensajeInformativo("Resultado de la operación", "Anuncio guardado exitosamente");
-    }
 
     public boolean esIngreso() {
         return operacion == TipoOperacion.INGRESAR;
@@ -62,11 +67,11 @@ public class MantenedorAnuncios implements Serializable {
         return operacion == TipoOperacion.EDITAR;
     }
 
-    public List<Anuncio> getAnuncios() {
-        return anuncios;
+    public Anuncio getAnuncio() {
+        return anuncio;
     }
 
-    public void setAnuncios(List<Anuncio> anuncios) {
-        this.anuncios = anuncios;
+    public void setAnuncio(Anuncio anuncio) {
+        this.anuncio = anuncio;
     }
 }
