@@ -9,26 +9,29 @@
 
         <h3>Anuncios</h3>
         <h:form>
-            <p:dataTable value="#{mantenedorAnuncios.anuncio}" var="anuncio">
-                <p:column headerText="ID Anuncio">
-                    #{anuncio.idAnuncio}
-                </p:column>
 
-                <p:column headerText="Descripcion">
-                    #{anuncio.descanuncio}
-                </p:column>
+                <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail" value="#{mantenedorAnuncios.guardar}" var="anuncio" >
 
-                <p:column headerText="Rubro">
-                    #{anuncio.rubro}
-                </p:column>
 
-                <p:column headerText="Media">
-                    #{anuncio.media}
-                </p:column>
+                    <p:outputPanel>
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputText value="id del anuncio:" />
+                            <h:outputText value="#{anuncio.idAnuncio}" style="font-weight: bold"/>
 
-            </p:dataTable>
+                            <h:outputText value="descricion del anuncio:" />
+                            <h:outputText value="#{anuncio.descanuncio}" style="font-weight: bold"/>
+
+                            <h:outputText value="media:" />
+                            <h:outputText value="#{anuncio.media}" style="font-weight: bold"/>
+                            <h:outputText value="rubro:" />
+                            <h:outputText value="#{anuncio.rubro}" style="font-weight: bold"/>
+
+                        </h:panelGrid>
+                    </p:outputPanel>
+                </h:panelGrid>
+
         </h:form>
-
         <p:commandButton icon="fa fa-undo" value="volver" action="#{facesUtil.redirigir('/inicio.jsf')}"/>
+        <p:commandButton icon="fa fa-undo" value="Anuncios" action="huehue"/>
      </ui:define>
 </ui:composition>

@@ -32,12 +32,12 @@ public class LogicaAnuncio {
     }
 
     @Transactional(readOnly = false)
-    public void guardar(Anuncio a) {
-        anuncioDAO.guardar(a);
+    public void guardar(Anuncio anuncio) {
+        anuncioDAO.guardar(anuncio);
     }
 
     @Transactional(readOnly = false)
-    public void eliminarAnuncio(Anuncio a) {
-        anuncioDAO.eliminarAnuncio(a);
+    public void eliminarAnuncio(Anuncio anuncio) {
+        anuncioDAO.eliminarAnuncio(anuncio);
     }
 }

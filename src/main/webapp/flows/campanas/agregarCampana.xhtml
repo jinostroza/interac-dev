@@ -10,9 +10,9 @@
         <h3>Agregar Campana</h3>
 
         <h:form>
-            <h:panelGrid columns="3">
+            <h:panelGrid columns="3" value="#{mantenedorAnuncios.guardar}" var="anuncio">
                 <p:outputLabel value="ID CAmpana"/>:
-                <p:inputText value="#{MantenedorCampanas.tmpCampana.idcampana}"/>
+                <p:inputText value="#{anuncio.()}"/>
                 <p:outputLabel value="ID Cliente"/>:
                 <p:inputText value="#{MantenedorCampanas.tmpCampana.idcliente}"/>
                 <p:outputLabel value="ID Totem"/>:

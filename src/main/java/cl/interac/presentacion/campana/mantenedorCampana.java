@@ -7,6 +7,8 @@ import cl.interac.negocio.LogicaCampana;
 import cl.interac.util.components.FacesUtil;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 import java.io.Serializable;
@@ -15,58 +17,30 @@ import java.util.List;
 /**
  * Created by luis on 25-04-2015.
  */
+@Component
+@Scope("flow")
 public class mantenedorCampana implements Serializable {
 
-
-    private List<Campana> Campana;
+    @Autowired
+     private LogicaCampana logicaCampana;
+    private List<Campana> obtenerCampana;
 
     private Campana campana;
 
-    private Campana campanaSeleccionada;
 
-    public enum TipoOperador{
-        EDITAR,
-        INGRESAR,
+    public void inicio() { obtenerCampana  = logicaCampana.obtenerTodos();}
+
+    public mantenedorCampana() {campana = new Campana();}
+
+    public Campana getCampana() {
+        return campana;
     }
 
-    private transient UploadedFile foto;
-    private TipoOperador operacion;
-
-    public void inicio() {
-        Campana = logicaCampana.obtenerTodos();
+    public void setCampana(List<Campana> obtenerCampana) {
+        this.obtenerCampana = obtenerCampana;
     }
+    public List<Campana> getObtenerCampana(){return obtenerCampana;}
 
-
-    @Autowired
-    private LogicaCampana logicaCampana;
-    // flows
-    public void guardarCampana() {
-
-        if (operacion == TipoOperador.INGRESAR) {
-        } else {
-        }
-    }
-    public void signUp() {
-        System.err.println("elegir campana");
-
-        FacesUtil.mostrarMensajeInformativo("Resultado de la operación", "Anuncio guardado exitosamente");
-    }
-    public boolean esIngreso() {
-        return operacion == TipoOperador.INGRESAR;
-    }
-
-    public boolean esEdicion() {
-        return operacion == TipoOperador.EDITAR;
-    }
-
-
-    public List<Campana> getCampana() {
-        return Campana;
-    }
-
-    public void setCampana(List<Campana> campana) {
-        this.Campana = campana;
-    }
 }
 
 

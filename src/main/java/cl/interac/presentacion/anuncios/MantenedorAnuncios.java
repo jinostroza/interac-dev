@@ -24,15 +24,13 @@ public class MantenedorAnuncios implements Serializable {
     @Autowired
     private LogicaAnuncio logicaAnuncio;
     private Anuncio anuncio;
+    private List<Anuncio> obtenerAnuncio;
 
     public MantenedorAnuncios () {
         anuncio = new Anuncio();
     }
 
-    public enum TipoOperacion {
-        INGRESAR,
-        EDITAR;
-    }
+
 
     public void upload() {
         if(anuncio != null) {
@@ -42,30 +40,19 @@ public class MantenedorAnuncios implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
     }
-    private TipoOperacion operacion;
 
-    public void inicio() {
-        operacion = TipoOperacion.INGRESAR;
-    }
+
+
+
 
     // flows
     public void guardar() {
+
+        System.err.println("su anuncio a sido subido saticfactoriamente");
         logicaAnuncio.guardar(anuncio);
-        if (operacion == TipoOperacion.INGRESAR) {
-            FacesUtil.mostrarMensajeInformativo("Operación exitosa", "Se ha creado correctamente el anuncio");
-        } else {
-            FacesUtil.mostrarMensajeInformativo("Operación exitosa", "Se ha editado correctamente el anuncio");
-        }
+
     }
 
-
-    public boolean esIngreso() {
-        return operacion == TipoOperacion.INGRESAR;
-    }
-
-    public boolean esEdicion() {
-        return operacion == TipoOperacion.EDITAR;
-    }
 
     public Anuncio getAnuncio() {
         return anuncio;

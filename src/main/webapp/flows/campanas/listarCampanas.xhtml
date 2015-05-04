@@ -9,28 +9,36 @@
 
         <h3>Campañas</h3>
         <h:form>
-            <p:dataTable value="#{mantenedorCampanas.campanas}" var="campana">
-                <p:column headerText="ID Campaña">
-                    #{campana.idcampana}
-                </p:column>
+            <p:dataScroller value="#{mantenedorCampana.campana}" var="campana" chunkSize="10">
+                <f:facet name="header">
+                    Scroll Down to Load More Cars
+                </f:facet>
 
-                <p:column headerText="Descripcion">
-                    #{campana.desccampana}
-                </p:column>
+                <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
 
-                <p:column headerText="ID Cliente">
-                    #{campana.idcliente}
-                </p:column>
+                    <p:outputPanel>
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputText value="id campana:" />
+                            <h:outputText value="#{campana.idcampana}" style="font-weight: bold"/>
 
-                <p:column headerText="ID Totem">
-                    #{campana.idtotem}
-                </p:column>
+                            <h:outputText value="descampana:" />
+                            <h:outputText value="#{campana.desccampana}" style="font-weight: bold"/>
 
-            </p:dataTable>
+                            <h:outputText value="idTotem:" />
+                            <h:outputText value="#{campana.idtotem}" style="font-weight: bold"/>
+
+                            <h:outputText value="idCliente:" />
+                            <h:outputText value="#{campana.idcliente}" style="font-weight: bold"/>
+
+                        </h:panelGrid>
+
+                    </p:outputPanel>
+                </h:panelGrid>
+            </p:dataScroller>
         </h:form>
         <p:commandButton id="agregar" value="agregar"/>
-        <p:commandButton value="agregar " action="#{facesUtil.redirigir('/plataforma/campanas/agregarCampana.xhtml')}"/>
-        <p:commandButton value="AGREGAR2 " action="#{facesUtil.redirigir('/plataforma/campanas/agregarCampana.xhtml')}"/>
+        <p:commandButton value="agregar "/>
 
+        <p:commandButton value="dashboard " action="huehue"/>
     </ui:define>
 </ui:composition>

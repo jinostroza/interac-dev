@@ -5,7 +5,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/templates/default.xhtml">
     <ui:define name="contenido">
-    <f:view>
+
         <h:form>
         <p:dataScroller value="#{mantenedorAnuncios.anuncio}" var="anuncio" chunkSize="10">
             <f:facet name="header">
@@ -33,6 +33,6 @@
             </h:panelGrid>
         </p:dataScroller>
      </h:form>
-    </f:view>
+
 </ui:define>
    </ui:composition>

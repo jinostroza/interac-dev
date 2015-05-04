@@ -5,15 +5,15 @@
       start-state="registraAnuncio">
 
       <on-start>
-            <evaluate expression="mantenedorAnuncios.inicio()"/>
+            <evaluate expression="mantenedorAnuncios.traer()"/>
       </on-start>
 
       <view-state id="registraAnuncio" view="registraAnuncio.xhtml">
-            <transition on="Registrar" to="listarAnuncios"></transition>
+            <transition on="huehue" to="listarAnuncios"></transition>
       </view-state>
       <view-state id="listarAnuncios" view="listarAnuncios.xhtml">
-
-      </view-state>
+            <transition on="kkk" to="registraAnuncio"></transition>
+       </view-state>
 
 
 </flow>

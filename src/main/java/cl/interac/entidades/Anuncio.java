@@ -19,7 +19,7 @@ public class Anuncio implements Serializable {
     private String rubro;
 
     @Id
-    @Column(name = "id_anuncio", nullable = false, insertable = true, updatable = true)
+    @Column(name = "idanuncio", nullable = false, insertable = true, updatable = true)
     public Integer getIdAnuncio() {
         return idAnuncio;
     }
@@ -74,10 +74,6 @@ public class Anuncio implements Serializable {
         return idAnuncio != null ? 31 * idAnuncio.hashCode() : 0;
     }
 
-    @Override
-    public String toString() {
-        return "Anuncio{" +
-                "idAnuncio=" + idAnuncio +
-                '}';
-    }
+
+
 }

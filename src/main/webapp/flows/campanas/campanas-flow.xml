@@ -2,14 +2,17 @@
 <flow xmlns="http://www.springframework.org/schema/webflow"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
-             start-state="listarCampanas">
+             start-state="agregarCampana">
 
 <on-start>
-    <evaluate expression="mantenedorCampanas.inicio()"/>
+    <evaluate expression="mantenedorCampana.inicio()"/>
 </on-start>
 
 <view-state id="listarCampanas" redirect="true">
-    <transition on="agregar" to="agregarCampana"></transition>
+    <transition on="huehue" to="agregarCampana"></transition>
 </view-state>
-<view-state id="agregarCampana"></view-state>
+<view-state id="agregarCampana">
+
+
+</view-state>
 </flow>

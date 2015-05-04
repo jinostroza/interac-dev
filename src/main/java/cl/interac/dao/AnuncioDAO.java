@@ -20,13 +20,13 @@ public class AnuncioDAO {
     }
 
 
-    public void guardar(Anuncio n) {
-        if (n.getIdAnuncio() == null) em.persist(n);
-        else em.merge(n);
+    public void guardar(Anuncio anuncio) {
+        if (anuncio.getIdAnuncio() == null) em.persist(anuncio);
+        else em.merge(anuncio);
     }
 
-    public void eliminarAnuncio(Anuncio n) {
-        Anuncio nun = em.find(Anuncio.class, n.getIdAnuncio());
+    public void eliminarAnuncio(Anuncio anuncio) {
+        Anuncio nun = em.find(Anuncio.class, anuncio.getIdAnuncio());
         em.remove(nun);
     }
 }

@@ -5,7 +5,22 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/templates/default.xhtml">
 
-    <f:view>
+    <ui:define name="contenido">
 
-    </f:view>
+        <h3>Agregar Campana</h3>
+
+        <h:form>
+            <h:panelGrid columns="3" value="${mantenedorAnuncios.anuncio}" var="anuncio">
+                <p:outputLabel value="ID CAmpana"/>:
+                <p:inputText value="#{anuncio.idAnuncio}"/>
+                <p:outputLabel value="ID Cliente"/>:
+                <p:inputText value="#{anuncio.descanuncio}"/>
+                <p:outputLabel value="ID Totem"/>:
+                <p:inputText value="#{anuncio.media}"/>
+                <p:outputLabel value="Descripcion"/>:
+                <p:password value="#{anuncio.rubro}"/>
+            </h:panelGrid>
+            <p:commandButton value="Registrar" action="#{mantenedorCampana.inicio()}"/>
+        </h:form>
+    </ui:define>
 </ui:composition>

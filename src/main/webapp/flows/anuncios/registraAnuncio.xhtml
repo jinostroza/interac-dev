@@ -8,22 +8,33 @@
     <ui:define name="contenido">
 
         <h3>
-            <h:outputText value="Crear Anuncio" rendered="#{mantenedorAnuncios.esIngreso()}"/>
-            <h:outputText value="Editar Anuncio" rendered="#{mantenedorAnuncios.esEdicion()}"/>
+
         </h3>
 
         <h:form>
-            <h:panelGrid columns="3">
+            <h:panelGrid columns="3"  >
                 <p:outputLabel value="Nombre Anuncio"/>:
                 <p:inputText value="#{mantenedorAnuncios.anuncio.descanuncio}"/>
                 <p:outputLabel value="Categoría"/>:
                 <p:inputText value="#{mantenedorAnuncios.anuncio.rubro}"/>
+                <p:outputLabel value="media"/>:
+                <p:panelMenu>
+                   <p:submenu label="campana">
+                       <p:menuitem value="${mantenedorCampana.campana.idcampana}"/>
+                        
+                   </p:submenu>
+
+                </p:panelMenu>
             </h:panelGrid>
             <p:fileUpload label="Seleccionar" uploadLabel="Subir" action="#{mantenedorAnuncios.upload}" cancelLabel="Cancelar"/>
             <p:graphicImage id="graph" value="#{mantenedorAnuncios.anuncio.media}" widht="200" height="300" />
 
-            <p:commandButton ajax="false" value="Registrar" />
+            <p:commandButton ajax="false" value="Registrar"  />
+
             <p:commandButton icon="fa fa-undo" value="volver" action="#{facesUtil.redirigir('/inicio.jsf')}"/>
+
+            <p:commandButton icon="fa fa-undo" value="listar" action="huehuehue"/>
+
         </h:form>
     </ui:define>
 </ui:composition>
