@@ -27,7 +27,7 @@ public class mantenedorCampana implements Serializable {
 
     private Campana campana;
 
-
+    public void guardar(){logicaCampana.guardarCampana(campana);}
     public void inicio() { obtenerCampana  = logicaCampana.obtenerTodos();}
 
     public mantenedorCampana() {campana = new Campana();}
@@ -40,6 +40,9 @@ public class mantenedorCampana implements Serializable {
         this.obtenerCampana = obtenerCampana;
     }
     public List<Campana> getObtenerCampana(){return obtenerCampana;}
+
+
+
 
 }
 

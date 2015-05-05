@@ -10,17 +10,22 @@
         <h3>Agregar Campana</h3>
 
         <h:form>
-            <h:panelGrid columns="3" value="#{mantenedorAnuncios.guardar}" var="anuncio">
-                <p:outputLabel value="ID CAmpana"/>:
-                <p:inputText value="#{anuncio.()}"/>
-                <p:outputLabel value="ID Cliente"/>:
-                <p:inputText value="#{MantenedorCampanas.tmpCampana.idcliente}"/>
-                <p:outputLabel value="ID Totem"/>:
-                <p:inputText value="#{MantenedorCampanas.tmpCampana.idtotem}"/>
-                <p:outputLabel value="Descripcion"/>:
-                <p:password value="#{MantenedorCampanas.tmpCampana.desccampana}"/>
+
+
+
+            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5" value="#{mantenedorCampana.obtenerCampana}" var="obtenerCampana">
+            <p:outputLabel for="console" value="Basic:" />
+                <p:selectOneMenu id="console" value="jndaskndska"  style="width:125px">
+                    <f:selectItem itemLabel="#{obtenerCampana.desccampana}" itemValue="#{mantenedorCampana.obtenerCampana}"  />
+
+
+                </p:selectOneMenu>
+            <p:outputLabel value="campana"/>:
+            <p:outputLabel value="#{obtenerCampana.desccampana}"/>
+            <p:inputText value="#{mantenedorCampana.campana.desccampana}"/>
+            <p:commandButton ajax="false" value="Registrar" action="#{mantenedorCampana.guardar}"/>
+                <p:commandButton value="listar" action="listar"/>
             </h:panelGrid>
-            <p:commandButton ajax="false" value="Registrar" action="#{MantenedorCampana.CrearCampana()}"/>
         </h:form>
     </ui:define>
 </ui:composition>

@@ -5,7 +5,7 @@
       start-state="registraAnuncio">
 
       <on-start>
-            <evaluate expression="mantenedorAnuncios.traer()"/>
+            <evaluate expression="mantenedorAnuncios.inicio()"/>
       </on-start>
 
       <view-state id="registraAnuncio" view="registraAnuncio.xhtml">

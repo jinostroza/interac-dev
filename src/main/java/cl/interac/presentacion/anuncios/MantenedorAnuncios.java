@@ -26,10 +26,12 @@ public class MantenedorAnuncios implements Serializable {
     private Anuncio anuncio;
     private List<Anuncio> obtenerAnuncio;
 
+
     public MantenedorAnuncios () {
         anuncio = new Anuncio();
     }
 
+    public void inicio(){obtenerAnuncio= logicaAnuncio.obtenerTodos();}
 
 
     public void upload() {
@@ -47,17 +49,14 @@ public class MantenedorAnuncios implements Serializable {
 
     // flows
     public void guardar() {
-
         System.err.println("su anuncio a sido subido saticfactoriamente");
         logicaAnuncio.guardar(anuncio);
-
     }
 
-
+    public List<Anuncio> getObtenerAnuncio(){return obtenerAnuncio;}
     public Anuncio getAnuncio() {
         return anuncio;
     }
-
     public void setAnuncio(Anuncio anuncio) {
         this.anuncio = anuncio;
     }

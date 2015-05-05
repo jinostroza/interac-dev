@@ -8,11 +8,22 @@
     <evaluate expression="mantenedorCampana.inicio()"/>
 </on-start>
 
-<view-state id="listarCampanas" redirect="true">
-    <transition on="huehue" to="agregarCampana"></transition>
-</view-state>
-<view-state id="agregarCampana">
 
 
+<view-state id="agregarCampana" view="agregarCampana.xhtml">
+    <transition on="listar" to="listarCampanas"></transition>
 </view-state>
+
+    <view-state id="listarCampanas" view="listarCampanas.xhtml">
+       <transition on="selPant" to="seleccionarPantalla"></transition>
+    </view-state>
+
+    <view-state id="seleccionarPantalla" view="seleccionarPantalla.xhtml">
+        <transition on="pay" to="pagar" ></transition>
+
+    </view-state>
+
+    <end-state id="pagar"></end-state>
+
+
 </flow>

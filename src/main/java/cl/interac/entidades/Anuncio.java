@@ -71,9 +71,10 @@ public class Anuncio implements Serializable {
 
     @Override
     public int hashCode() {
-        return idAnuncio != null ? 31 * idAnuncio.hashCode() : 0;
+        int result = idAnuncio != null ? idAnuncio.hashCode() : 0;
+        result = 31 * result + (idAnuncio != null ? idAnuncio.hashCode() : 0);
+        result = 31 * result + (descanuncio != null ? descanuncio.hashCode() : 0);
+        result = 31 * result + (media != null ? media.hashCode() : 0);
+        return result;
     }
-
-
-
 }
