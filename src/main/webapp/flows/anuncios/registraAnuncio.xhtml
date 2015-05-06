@@ -17,23 +17,11 @@
                 <p:inputText value="#{mantenedorAnuncios.anuncio.descanuncio}"/>
                 <p:outputLabel value="rubro"/>:
                 <p:inputText value="#{mantenedorAnuncios.anuncio.rubro}"/>
+                <p:outputLabel value="media"/>
 
-                <p:panelMenu>
-                   <p:submenu label="campana">
-                       <p:menuitem labelItem="${mantenedorCampana.campana.totem}" value="${mantenedorCampana.campana.totem}"/>
-
-                   </p:submenu>
-
-                </p:panelMenu>
+                <p:inputText value="#{mantenedorAnuncios.anuncio.media}"/>
             </h:panelGrid>
-            <p:outputLabel value="media"/>:
-            <p:fileUpload label="Seleccionar" uploadLabel="Subir" action="#{mantenedorAnuncios.upload}" cancelLabel="Cancelar"/>
-            <p:graphicImage id="graph" value="#{mantenedorAnuncios.anuncio.media}" widht="200" height="300" />
-
-            <p:commandButton ajax="false" value="Registrar" action="${mantenedorCampana.guardar()}"  />
-
-            <p:commandButton icon="fa fa-undo" value="volver" action="#{facesUtil.redirigir('/inicio.jsf')}"/>
-
+            <p:commandButton ajax="false" value="registrar" action="${mantenedorAnuncios.guardar}"/>
             <p:commandButton  value="listar" action="lis"/>
 
         </h:form>

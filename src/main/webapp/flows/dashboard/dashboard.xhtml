@@ -7,7 +7,7 @@
     <ui:define name="contenido">
 
         <h:form>
-        <p:dataScroller value="#{mantenedorAnuncios.obtenerAnuncio}" var="obtenerAnuncio" chunkSize="10">
+        <p:dataScroller value="#{mantenedorAnuncios.obtenerAnuncio}" var="obtenerAnuncio" chunkSize="20">
             <f:facet name="header">
                darshboard
             </f:facet>
@@ -16,17 +16,16 @@
 
 
                 <p:outputPanel>
-                    <h:panelGrid columns="2" cellpadding="5">
-                        <h:outputText value="id del anuncio:" />
-                        <h:outputText value="" style="font-weight: bold"/>
+                    <h:panelGrid columns="2" cellpadding="7">
+
 
                         <h:outputText value="descricion del anuncio:" />
                         <h:outputText value="#{obtenerAnuncio.descanuncio}" style="font-weight: bold"/>
 
                         <h:outputText value="media:" />
-                        <h:outputText value="#{obtenerAnuncio.media}" style="font-weight: bold"/>
+                        <h:outputText value="#{obtenerAnuncio.descanuncio}" style="font-weight: bold"/>
                         <h:outputText value="rubro:" />
-                        <h:outputText value="#{obtenerAnuncio.rubro}" style="font-weight: bold"/>
+                        <h:outputLabel value="#{obtenerAnuncio.rubro}" style="font-weight: bold"/>
 
                     </h:panelGrid>
                 </p:outputPanel>

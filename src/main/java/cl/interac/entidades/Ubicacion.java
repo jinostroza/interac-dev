@@ -48,6 +48,8 @@ public class Ubicacion implements Serializable {
         this.descubicacion = descubicacion;
     }
 
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
