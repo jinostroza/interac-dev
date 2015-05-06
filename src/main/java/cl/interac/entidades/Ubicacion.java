@@ -1,15 +1,18 @@
 package cl.interac.entidades;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * Created by Jorge on 25-04-15.
  */
 @Entity
+@NamedQueries({
+        @NamedQuery(
+                name = "Ubicacion.findAll",
+                query = "select u from Ubicacion u"
+        )
+})
 public class Ubicacion implements Serializable {
     private Integer idubicacion;
     private Integer idtotem;
@@ -52,20 +55,12 @@ public class Ubicacion implements Serializable {
 
         Ubicacion ubicacion = (Ubicacion) o;
 
-        if (idubicacion != null ? !idubicacion.equals(ubicacion.idubicacion) : ubicacion.idubicacion != null)
-            return false;
-        if (idtotem != null ? !idtotem.equals(ubicacion.idtotem) : ubicacion.idtotem != null) return false;
-        if (descubicacion != null ? !descubicacion.equals(ubicacion.descubicacion) : ubicacion.descubicacion != null)
-            return false;
-
-        return true;
+        if (this.getIdubicacion() == null || ubicacion.getIdubicacion() == null) return false;
+        else return this.getIdubicacion().intValue() == ubicacion.getIdubicacion().intValue();
     }
 
     @Override
     public int hashCode() {
-        int result = idubicacion != null ? idubicacion.hashCode() : 0;
-        result = 31 * result + (idtotem != null ? idtotem.hashCode() : 0);
-        result = 31 * result + (descubicacion != null ? descubicacion.hashCode() : 0);
-        return result;
+        return idubicacion != null ? 31 * idubicacion.hashCode() : 0;
     }
 }
