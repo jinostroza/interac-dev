@@ -1,6 +1,7 @@
 package cl.interac.security;
 
 import cl.interac.negocio.LogicaUsuario;
+import cl.interac.util.components.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -29,8 +30,12 @@ public class LogInManager implements AuthenticationProvider, Serializable {
         try {
             password = a.getCredentials().toString();
         } catch (NullPointerException e) {}
+
+        // acá en vez de un integer se debiera tratar de obtener el usuario desde la BD en base
+        // a los datos de la autentificacion
+        // ams algo importante aparten del login manager cree un componente del tipo sesion
+        // para poder guardar el usuario traido desde la BD en la sesion
         Integer u = new Integer("0");
-        System.err.println("u: "+u!=null);
         if (u == null)
             throw new BadCredentialsException("Usuario y/o Contraseña Inválidos");
         else
@@ -39,6 +44,10 @@ public class LogInManager implements AuthenticationProvider, Serializable {
 
     private List<GrantedAuthority> getAcceso(String u) {
         List<GrantedAuthority> listaRoles = new ArrayList<GrantedAuthority>();
+
+        // acá en base a la BD tambien se debieran agregar los roles asociados al usuario
+        // y agregarlos a la lista de permisos, si eres observador notarás que los permisos
+        // que acá se definan son los que se validan en el security.xml
         listaRoles.add(new SimpleGrantedAuthority("USUARIO_WEB"));
         return listaRoles;
     }

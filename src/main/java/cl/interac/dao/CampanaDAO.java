@@ -34,4 +34,6 @@ public class CampanaDAO {
         Campana campana = em.find(Campana.class, c.getIdcampana());
         em.remove(campana);
     }
+
+
 }

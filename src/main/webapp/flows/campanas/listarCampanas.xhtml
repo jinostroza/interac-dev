@@ -9,31 +9,30 @@
 
         <h3>Campañas</h3>
         <h:form>
-            <p:dataScroller value="#{mantenedorCampana.obtenerCampana}" var="campana" chunkSize="10">
+            <p:dataScroller value="#{mantenedorCampana.obtenerCampana}" var="campana"  chunkSize="10">
                 <f:facet name="header">
                     Scroll Down to Load More Cars
                 </f:facet>
 
-                <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+                <h:panelGrid columns="20" style="width:100%" columnClasses="logo,detail">
 
                     <p:outputPanel>
                         <h:panelGrid columns="2" cellpadding="5">
-                            <h:outputText value="id campana:" />
-                            <h:outputText value="#{campana.idcampana}" style="font-weight: bold"/>
-
-                            <h:outputText value="descampana:" />
+                            <h:outputText value="id campana:"/>
                             <h:outputText value="#{campana.desccampana}" style="font-weight: bold"/>
 
-                            <h:outputText value="idTotem:" />
-                            <h:outputText value="#{campana.idtotem}" style="font-weight: bold"/>
+                            <h:outputText value="descampana:"/>
+                            <h:outputText value="#{campana.desccampana}" style="font-weight: bold"/>
 
-                            <h:outputText value="idCliente:" />
-                            <h:outputText value="#{campana.idcliente}" style="font-weight: bold"/>
+                            <h:outputText value="totem:"/>
+                            <h:outputText value="#{campana.totem.idtotem}" style="font-weight: bold"/>
+
+                            <h:outputText value="username:"/>
+                            <h:outputText value="#{campana.cliente.campanas}" style="font-weight: bold"/>
 
                         </h:panelGrid>
-                <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-
-
+                        <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+                        </h:panelGrid>
                     </p:outputPanel>
                 </h:panelGrid>
             </p:dataScroller>

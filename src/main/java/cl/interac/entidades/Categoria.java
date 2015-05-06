@@ -2,6 +2,7 @@ package cl.interac.entidades;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Jorge on 25-04-15.
@@ -15,6 +16,9 @@ import java.io.Serializable;
 public class Categoria implements Serializable {
     private Integer idcategoria;
     private String desccategoria;
+
+    // relaciones
+    private List<Anuncio> anuncios;
 
     @Id
     @Column(name = "idcategoria")
@@ -36,6 +40,15 @@ public class Categoria implements Serializable {
         this.desccategoria = desccategoria;
     }
 
+    @OneToMany(mappedBy = "categoria")
+    public List<Anuncio> getAnuncios() {
+        return anuncios;
+    }
+
+    public void setAnuncios(List<Anuncio> anuncios) {
+        this.anuncios = anuncios;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -43,18 +56,12 @@ public class Categoria implements Serializable {
 
         Categoria categoria = (Categoria) o;
 
-        if (idcategoria != null ? !idcategoria.equals(categoria.idcategoria) : categoria.idcategoria != null)
-            return false;
-        if (desccategoria != null ? !desccategoria.equals(categoria.desccategoria) : categoria.desccategoria != null)
-            return false;
-
-        return true;
+        if (this.getIdcategoria() == null || categoria.getIdcategoria() == null) return false;
+        else return this.getIdcategoria().intValue() == categoria.getIdcategoria().intValue();
     }
 
     @Override
     public int hashCode() {
-        int result = idcategoria != null ? idcategoria.hashCode() : 0;
-        result = 31 * result + (desccategoria != null ? desccategoria.hashCode() : 0);
-        return result;
+        return idcategoria != null ? 31 * idcategoria.hashCode() : 0;
     }
 }

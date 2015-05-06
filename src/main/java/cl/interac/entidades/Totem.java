@@ -2,6 +2,7 @@ package cl.interac.entidades;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Jorge on 25-04-15.
@@ -17,6 +18,9 @@ public class Totem implements Serializable {
     private String nombre;
     private Integer idubicacion;
     private String tipo;
+
+    // relaciones
+    private List<Campana> campanas;
 
     @Id
     @Column(name = "idtotem")
@@ -58,6 +62,15 @@ public class Totem implements Serializable {
         this.tipo = tipo;
     }
 
+    @OneToMany(mappedBy = "totem")
+    public List<Campana> getCampanas() {
+        return campanas;
+    }
+
+    public void setCampanas(List<Campana> campanas) {
+        this.campanas = campanas;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -65,20 +78,12 @@ public class Totem implements Serializable {
 
         Totem totem = (Totem) o;
 
-        if (idtotem != null ? !idtotem.equals(totem.idtotem) : totem.idtotem != null) return false;
-        if (nombre != null ? !nombre.equals(totem.nombre) : totem.nombre != null) return false;
-        if (idubicacion != null ? !idubicacion.equals(totem.idubicacion) : totem.idubicacion != null) return false;
-        if (tipo != null ? !tipo.equals(totem.tipo) : totem.tipo != null) return false;
-
-        return true;
+        if (this.getIdtotem() == null || totem.getIdtotem() == null) return false;
+        else return this.getIdtotem().intValue() == totem.getIdtotem().intValue();
     }
 
     @Override
     public int hashCode() {
-        int result = idtotem != null ? idtotem.hashCode() : 0;
-        result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
-        result = 31 * result + (idubicacion != null ? idubicacion.hashCode() : 0);
-        result = 31 * result + (tipo != null ? tipo.hashCode() : 0);
-        return result;
+        return idtotem != null ? 31 * idtotem.hashCode() : 0;
     }
 }

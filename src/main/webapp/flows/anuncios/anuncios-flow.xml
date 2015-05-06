@@ -9,10 +9,10 @@
       </on-start>
 
       <view-state id="registraAnuncio" view="registraAnuncio.xhtml">
-            <transition on="huehue" to="listarAnuncios"></transition>
+            <transition on="lis" to="listarAnuncios"></transition>
       </view-state>
       <view-state id="listarAnuncios" view="listarAnuncios.xhtml">
-            <transition on="kkk" to="registraAnuncio"></transition>
+
        </view-state>
 
 

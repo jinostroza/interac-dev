@@ -2,6 +2,7 @@ package cl.interac.entidades;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Jorge on 25-04-15.
@@ -15,9 +16,12 @@ import java.io.Serializable;
 )
 public class Campana implements Serializable {
     private Integer idcampana;
-    private Integer idcliente;
     private String desccampana;
-    private Integer idtotem;
+
+    // relaciones
+    private List<Anuncio> anuncios;
+    private Totem totem;
+    private Usuario cliente;
 
     @Id
     @Column(name = "idcampana")
@@ -30,16 +34,6 @@ public class Campana implements Serializable {
     }
 
     @Basic
-    @Column(name = "idcliente")
-    public Integer getIdcliente() {
-        return idcliente;
-    }
-
-    public void setIdcliente(Integer idcliente) {
-        this.idcliente = idcliente;
-    }
-
-    @Basic
     @Column(name = "desccampana")
     public String getDesccampana() {
         return desccampana;
@@ -49,14 +43,33 @@ public class Campana implements Serializable {
         this.desccampana = desccampana;
     }
 
-    @Basic
-    @Column(name = "idtotem")
-    public Integer getIdtotem() {
-        return idtotem;
+    @OneToMany(mappedBy = "campana")
+    public List<Anuncio> getAnuncios() {
+        return anuncios;
     }
 
-    public void setIdtotem(Integer idtotem) {
-        this.idtotem = idtotem;
+    public void setAnuncios(List<Anuncio> anuncios) {
+        this.anuncios = anuncios;
+    }
+
+    @JoinColumn(name = "idtotem", referencedColumnName = "idtotem")
+    @ManyToOne(fetch = FetchType.LAZY)
+    public Totem getTotem() {
+        return totem;
+    }
+
+    public void setTotem(Totem totem) {
+        this.totem = totem;
+    }
+
+    @JoinColumn(name = "idcliente", referencedColumnName = "idusuario")
+    @ManyToOne(fetch = FetchType.LAZY)
+    public Usuario getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Usuario usuario) {
+        this.cliente = usuario;
     }
 
     @Override
@@ -66,20 +79,12 @@ public class Campana implements Serializable {
 
         Campana campana = (Campana) o;
 
-        if (idcampana != null ? !idcampana.equals(campana.idcampana) : campana.idcampana != null) return false;
-        if (idcliente != null ? !idcliente.equals(campana.idcliente) : campana.idcliente != null) return false;
-        if (desccampana != null ? !desccampana.equals(campana.desccampana) : campana.desccampana != null) return false;
-        if (idtotem != null ? !idtotem.equals(campana.idtotem) : campana.idtotem != null) return false;
-
-        return true;
+        if (this.getIdcampana() == null || campana.getIdcampana() == null) return false;
+        else return this.getIdcampana().intValue() == campana.getIdcampana().intValue();
     }
 
     @Override
     public int hashCode() {
-        int result = idcampana != null ? idcampana.hashCode() : 0;
-        result = 31 * result + (idcliente != null ? idcliente.hashCode() : 0);
-        result = 31 * result + (desccampana != null ? desccampana.hashCode() : 0);
-        result = 31 * result + (idtotem != null ? idtotem.hashCode() : 0);
-        return result;
+        return idcampana != null ? 31 * idcampana.hashCode() : 0;
     }
 }

@@ -2,6 +2,7 @@ package cl.interac.entidades;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by claudio on 24-04-15.
@@ -19,6 +20,9 @@ public class Usuario implements Serializable {
     private String correo;
     private String empresa;
     private String rol;
+
+    // relaciones
+    private List<Campana> campanas;
 
 
     @Id
@@ -80,6 +84,15 @@ public class Usuario implements Serializable {
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    @OneToMany(mappedBy = "cliente")
+    public List<Campana> getCampanas() {
+        return campanas;
+    }
+
+    public void setCampanas(List<Campana> campanas) {
+        this.campanas = campanas;
     }
 
     @Override

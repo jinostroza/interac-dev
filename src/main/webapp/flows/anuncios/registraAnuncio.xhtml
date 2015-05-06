@@ -15,25 +15,26 @@
             <h:panelGrid columns="3"  >
                 <p:outputLabel value="Nombre Anuncio"/>:
                 <p:inputText value="#{mantenedorAnuncios.anuncio.descanuncio}"/>
-                <p:outputLabel value="Categoría"/>:
+                <p:outputLabel value="rubro"/>:
                 <p:inputText value="#{mantenedorAnuncios.anuncio.rubro}"/>
-                <p:outputLabel value="media"/>:
+
                 <p:panelMenu>
                    <p:submenu label="campana">
-                       <p:menuitem value="${mantenedorCampana.campana.idcampana}"/>
+                       <p:menuitem labelItem="${mantenedorCampana.campana.totem}" value="${mantenedorCampana.campana.totem}"/>
 
                    </p:submenu>
 
                 </p:panelMenu>
             </h:panelGrid>
+            <p:outputLabel value="media"/>:
             <p:fileUpload label="Seleccionar" uploadLabel="Subir" action="#{mantenedorAnuncios.upload}" cancelLabel="Cancelar"/>
             <p:graphicImage id="graph" value="#{mantenedorAnuncios.anuncio.media}" widht="200" height="300" />
 
-            <p:commandButton ajax="false" value="Registrar"  />
+            <p:commandButton ajax="false" value="Registrar" action="${mantenedorCampana.guardar()}"  />
 
             <p:commandButton icon="fa fa-undo" value="volver" action="#{facesUtil.redirigir('/inicio.jsf')}"/>
 
-            <p:commandButton icon="fa fa-undo" value="listar" action="huehuehue"/>
+            <p:commandButton  value="listar" action="lis"/>
 
         </h:form>
     </ui:define>

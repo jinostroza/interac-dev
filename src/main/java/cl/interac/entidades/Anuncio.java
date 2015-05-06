@@ -18,8 +18,12 @@ public class Anuncio implements Serializable {
     private String media;
     private String rubro;
 
+    // relaciones
+    private Categoria categoria;
+    private Campana campana;
+
     @Id
-    @Column(name = "idanuncio", nullable = false, insertable = true, updatable = true)
+    @Column(name = "id_anuncio", nullable = false, insertable = true, updatable = true)
     public Integer getIdAnuncio() {
         return idAnuncio;
     }
@@ -58,6 +62,26 @@ public class Anuncio implements Serializable {
         this.rubro = rubro;
     }
 
+    @JoinColumn(name = "idcategoria", referencedColumnName = "idcategoria")
+    @ManyToOne(fetch = FetchType.LAZY)
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    @JoinColumn(name = "idcampana", referencedColumnName = "idcampana")
+    @ManyToOne(fetch = FetchType.LAZY)
+    public Campana getCampana() {
+        return campana;
+    }
+
+    public void setCampana(Campana campana) {
+        this.campana = campana;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -71,10 +95,6 @@ public class Anuncio implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = idAnuncio != null ? idAnuncio.hashCode() : 0;
-        result = 31 * result + (idAnuncio != null ? idAnuncio.hashCode() : 0);
-        result = 31 * result + (descanuncio != null ? descanuncio.hashCode() : 0);
-        result = 31 * result + (media != null ? media.hashCode() : 0);
-        return result;
+        return idAnuncio != null ? 31 * idAnuncio.hashCode() : 0;
     }
 }

@@ -17,7 +17,7 @@ import java.util.List;
 @Scope("flow")
 public class mantenedorUbicacion implements Serializable {
 
-    public Ubicacion ubicacion;
+  private Ubicacion ubicacion;
 
     @Autowired
 
@@ -27,10 +27,12 @@ public class mantenedorUbicacion implements Serializable {
 
     public void inicio(){ubicacion = new Ubicacion();}
 
+    public void guardarUb(){logicaUbicacion.guardar(ubicacion);}
 
     public List<Ubicacion> getObtenerUbicacion(){return obtenerUbicacion ;}
 
     public void setObtenerUbicacion(List<Ubicacion> obtenerUbicacion){this.obtenerUbicacion = obtenerUbicacion;}
 
+     public Ubicacion getUbicacion(){return ubicacion;}
 
 }

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import java.io.FileInputStream;
 import java.io.Serializable;
 import java.util.List;
 
@@ -36,10 +37,7 @@ public class MantenedorAnuncios implements Serializable {
 
     public void upload() {
         if(anuncio != null) {
-            System.err.println("LLEGO A REGISTRAR");
-            logicaAnuncio.guardar(anuncio);
-            FacesMessage message = new FacesMessage("Succesful", anuncio.getMedia() + " is uploaded.");
-            FacesContext.getCurrentInstance().addMessage(null, message);
+
         }
     }
 

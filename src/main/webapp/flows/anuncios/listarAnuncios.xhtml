@@ -10,15 +10,18 @@
         <h3>Anuncios</h3>
         <h:form>
 
-                <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail" value="#{mantenedorAnuncios.guardar}" var="anuncio" >
+                <h:panelGrid columns="10" style="width:100%" columnClasses="logo,detail" value="#{mantenedorAnuncios.obtenerAnuncio}" var="anuncio" >
 
 
                     <p:outputPanel>
-                        <h:panelGrid columns="2" cellpadding="5">
+                        <h:panelGrid columns="3" cellpadding="10">
                             <h:outputText value="id del anuncio:" />
-                            <h:outputText value="#{anuncio.idAnuncio}" style="font-weight: bold"/>
+                            <h:inputText value="#{anuncio.campana.desccampana}" style="font-weight: bold"/>
+                            <h:inputText value="#{anuncio.campana.cliente}" style="font-weight: bold"/>
+                            <h:inputText value="#{anuncio.campana.totem}" style="font-weight: bold"/>
 
-                            <h:outputText value="descricion del anuncio:" />
+                            <h:outputText value="descricion del anuncio: "  />
+                            <h:outputText value="${anuncio.idAnuncio} "  />
                             <h:outputText value="#{anuncio.descanuncio}" style="font-weight: bold"/>
 
                             <h:outputText value="media:" />
