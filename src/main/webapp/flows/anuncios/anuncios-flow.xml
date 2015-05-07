@@ -9,14 +9,10 @@
       </on-start>
 
       <view-state id="registraAnuncio" >
-            <transition on="lis" to="listarAnuncios">
-
-                  <evaluate expression="mantenedorAnuncios.guardar()"/>
-            </transition>
+            <transition on="lis" to="listarAnuncios"/>
       </view-state>
-      <view-state id="listarAnuncios" view="listarAnuncios.xhtml">
-
-       </view-state>
+      <view-state id="listarAnuncios">
+      </view-state>
 
 
 </flow>

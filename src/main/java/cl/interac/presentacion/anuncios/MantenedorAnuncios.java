@@ -9,7 +9,7 @@ import cl.interac.negocio.LogicaAnuncio;
 import cl.interac.util.components.FacesUtil;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import java.lang.* ;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import java.io.FileInputStream;
@@ -26,36 +26,39 @@ public class MantenedorAnuncios implements Serializable {
     private LogicaAnuncio logicaAnuncio;
     private Anuncio anuncio;
     private List<Anuncio> obtenerAnuncio;
-
-
-    public MantenedorAnuncios () {
-        anuncio = new Anuncio();
+    private enum TipoOperacion {
+        INSERTAR,
+        EDITAR
     }
+    private TipoOperacion operacion;
+//flows
+public String irAgregar() {
+    anuncio = new Anuncio();
+    operacion = TipoOperacion.INSERTAR;
+    return "flowAgregar";
+}
 
-    public void inicio(){obtenerAnuncio= logicaAnuncio.obtenerTodos();}
+public String irEditar(Anuncio a){
+   anuncio = a;
+    operacion= TipoOperacion.EDITAR;
+    return "flowEditar";
+}
+
+public String irlistar(){
+    return "flowListar" ;
+}
+
+//logica Vista
+
+    //public void guardar(){
+     //if(operacion == TipoOperacion.INSERTAR ){
+       //  if(logicaAnuncio.)
+
+     //}
+
+    //}
 
 
-    public void upload() {
-        if(anuncio != null) {
-
-        }
-    }
 
 
-
-
-
-    // flows
-    public void guardar() {
-        System.err.println("su anuncio a sido subido saticfactoriamente");
-        logicaAnuncio.guardar(anuncio);
-    }
-
-    public List<Anuncio> getObtenerAnuncio(){return obtenerAnuncio;}
-    public Anuncio getAnuncio() {
-        return anuncio;
-    }
-    public void setAnuncio(Anuncio anuncio) {
-        this.anuncio = anuncio;
-    }
 }

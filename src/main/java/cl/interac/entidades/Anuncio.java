@@ -10,6 +10,9 @@ import java.io.Serializable;
 @NamedQueries(
         {
                 @NamedQuery(name = "Anuncio.findAll", query = "SELECT a FROM Anuncio a "),
+
+
+
         }
 )
 public class Anuncio implements Serializable {

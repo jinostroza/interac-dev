@@ -12,17 +12,21 @@
     <!--si el id del estado se llama igual que el xhtml no es necesario especificar el view-->
     <!--pero eso es dato rosa, está bien definido-->
     <view-state id="agregarCampana">
-        <transition on="listar" to="listarCampanas"></transition>
+        <transition on="listar" to="listarCampanas">
+            <evaluate expression="mantenedorCampana.obtenerCampana">
+            </evaluate>
+
+        </transition>
     </view-state>
 
     <!--aca tienes definida una transicion que no la invoca tu vista, eso no implica qeu este malo-->
     <!--pero por lo visto es una transicion demas a menos que tengas pensado utilizarla despues -->
-    <view-state id="listarCampanas" view="listarCampanas.xhtml">
+    <view-state id="listarCampanas" >
         <transition on="selPant" to="seleccionarPantalla"></transition>
     </view-state>
 
     <!--mismo caso-->
-    <view-state id="seleccionarPantalla" view="seleccionarPantalla.xhtml">
+    <view-state id="seleccionarPantalla" >
         <transition on="pay" to="pagar"></transition>
     </view-state>
 

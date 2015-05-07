@@ -1,6 +1,7 @@
 package cl.interac.dao;
 
 import cl.interac.entidades.Anuncio;
+import cl.interac.entidades.Campana;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -19,6 +20,13 @@ public class AnuncioDAO {
         return em.createNamedQuery("Anuncio.findAll").getResultList();
     }
 
+  /*  public List<Anuncio>obtenerCampAnu(Campana campana){
+        StringBuilder nativeSql = new  StringBuilder();
+        nativeSql.append("select*from Campana c");
+        nativeSql.append("inner join campana c on (c.idcampana,a.)")
+
+
+    }*/
 
     public void guardar(Anuncio anuncio) {
         if (anuncio.getIdAnuncio() == null) em.persist(anuncio);
@@ -29,4 +37,15 @@ public class AnuncioDAO {
         Anuncio nun = em.find(Anuncio.class, anuncio.getIdAnuncio());
         em.remove(nun);
     }
-}
+
+    public Anuncio obtenerPorId(Integer id){
+        return em.find(Anuncio.class, id);
+
+    }
+
+
+
+   }
+
+
+
