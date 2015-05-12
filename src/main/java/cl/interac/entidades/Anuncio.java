@@ -7,6 +7,7 @@ import java.io.Serializable;
  * Created by Jorge on 25-04-15.
  */
 @Entity
+
 @NamedQueries(
         {
                 @NamedQuery(name = "Anuncio.findAll", query = "SELECT a FROM Anuncio a "),

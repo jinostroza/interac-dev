@@ -11,6 +11,9 @@ import cl.interac.entidades.Anuncio;
 
 import java.util.List;
 
+
+import cl.interac.entidades.Campana;
+import cl.interac.entidades.Categoria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -32,12 +35,26 @@ public class LogicaAnuncio {
     }
 
     @Transactional(readOnly = false)
-    public void guardar(Anuncio anuncio) {
+    public void guardar(Anuncio anuncio,Categoria categoria,Campana campana ) {
         anuncioDAO.guardar(anuncio);
+        boolean existeProveedor = false;
+        if(anuncio.getCampana() != null){
+    //        for ()
+        }
+
     }
 
     @Transactional(readOnly = false)
     public void eliminarAnuncio(Anuncio anuncio) {
         anuncioDAO.eliminarAnuncio(anuncio);
     }
+
+    @Transactional(readOnly = true)
+    public Anuncio obtenerPorId(Integer id){
+        return anuncioDAO.obtenerPorId(id);
+    }
+    //@Transactional(readOnly = true)
+
+
+
 }

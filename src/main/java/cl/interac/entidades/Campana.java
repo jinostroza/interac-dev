@@ -12,6 +12,7 @@ import java.util.List;
         {
                 @NamedQuery(name = "Campana.findAll", query = "SELECT c FROM Campana c "),
 
+
         }
 )
 public class Campana implements Serializable {

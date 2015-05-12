@@ -32,5 +32,5 @@
 
     <!-- acá tienes que verificar si efectivamente necesitas matar el flow, es sano matarlo pero -->
     <!-- si no lo haces spring igual lo hará por ti al cambiar de flow o contexto -->
-    <end-state id="pagar"></end-state>
+
 </flow>

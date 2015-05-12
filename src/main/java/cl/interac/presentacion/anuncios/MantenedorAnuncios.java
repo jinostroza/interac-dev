@@ -1,5 +1,6 @@
 package cl.interac.presentacion.anuncios;
 
+import cl.interac.entidades.Campana;
 import cl.interac.entidades.Usuario;
 import org.primefaces.event.FileUploadEvent;
 import org.springframework.context.annotation.Scope;
@@ -25,6 +26,7 @@ public class MantenedorAnuncios implements Serializable {
     @Autowired
     private LogicaAnuncio logicaAnuncio;
     private Anuncio anuncio;
+    private Campana campana;
     private List<Anuncio> obtenerAnuncio;
     private enum TipoOperacion {
         INSERTAR,
@@ -39,7 +41,7 @@ public String irAgregar() {
 }
 
 public String irEditar(Anuncio a){
-   anuncio = a;
+   anuncio = new Anuncio();
     operacion= TipoOperacion.EDITAR;
     return "flowEditar";
 }
@@ -50,15 +52,12 @@ public String irlistar(){
 
 //logica Vista
 
-    //public void guardar(){
-     //if(operacion == TipoOperacion.INSERTAR ){
-       //  if(logicaAnuncio.)
-
-     //}
-
-    //}
 
 
 
 
+    public void inicio(){obtenerAnuncio=logicaAnuncio.obtenerTodos();}
+
+    public List<Anuncio> obtenerAnuncio(){ return obtenerAnuncio(); }
+    public void setAnuncio(List<Anuncio> obtenerAnuncio){this.obtenerAnuncio = obtenerAnuncio;}
 }

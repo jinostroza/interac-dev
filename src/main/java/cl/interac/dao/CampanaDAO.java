@@ -5,7 +5,8 @@
  */
 package cl.interac.dao;
 
-import cl.interac.entidades.Campana;
+import cl.interac.entidades.*;
+import cl.interac.negocio.LogicaCampana;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -34,6 +35,21 @@ public class CampanaDAO {
         Campana campana = em.find(Campana.class, c.getIdcampana());
         em.remove(campana);
     }
+
+    public Campana obtenerPorId(Integer id){
+        return em.find(Campana.class , id);
+
+    }
+
+    public List<Campana> obtenetcampanaUsuario (Usuario u){
+        StringBuilder nativeSQL = new StringBuilder();
+        nativeSQL.append("select c.* from campana c");
+        nativeSQL.append("inner join usuario u on (u.idusuario = c.idusuario)");
+        return em.createNamedQuery(nativeSQL.toString(),Campana.class)
+                .setParameter("usuario",u.getIdUsuario()).getResultList();
+
+    }
+
 
 
 }

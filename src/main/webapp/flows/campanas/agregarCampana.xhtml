@@ -10,17 +10,19 @@
         <h3>Agregar Campana</h3>
 
         <h:form>
-            <h:panelGrid columns="2" value="${mantenedorCampana.campana.totem.nombre}" var="tom">
+            <h:panelGrid columns="2" value="${mantenedorCampana.campana}" var="tom">
             <p:outputLabel value="nombreCampaña"/>
             <p:inputText value="${mantenedorCampana.campana.desccampana}"/>
+              <p:outputLabel value="rol"/>
+                <p:inputText value="${mantenedorCampana.campana.desccampana}"/>
+              <p:outputLabel value="nose"/>
+                 <p:inputText value="${mantenedorTotems.totems}"/>
+                <p:outputLabel value="totem"/>
 
-                <p:panelMenu >
-                    <p:submenu label="totem">
-                        <p:menuitem value="${mantenedorCampana.}" />
-                    </p:submenu>
 
-                </p:panelMenu>
 
+
+                <p:commandButton ajax='false' value="registrar" action="${mantenedorCampana.guardar()}"/>
          </h:panelGrid>
         </h:form>
     </ui:define>

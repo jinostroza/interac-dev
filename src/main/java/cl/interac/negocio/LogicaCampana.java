@@ -7,7 +7,9 @@ package cl.interac.negocio;
 
 
 import cl.interac.dao.CampanaDAO;
+import cl.interac.entidades.Anuncio;
 import cl.interac.entidades.Campana;
+import cl.interac.util.components.Constantes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -23,16 +25,19 @@ public class LogicaCampana {
     @Autowired
     private CampanaDAO campanaDAO;
 
+
     @Transactional(readOnly = true)
     public List<Campana> obtenerTodos() {return campanaDAO.obtenerTodos();
     }
 
     @Transactional(readOnly = false)
-    public void guardarCampana(Campana c) {
-        campanaDAO.guardar(c);
+    public void guardarCampana(Campana campana) {
+        campanaDAO.guardar(campana);
     }
 
-    @Transactional(readOnly = false)
-    public void eliminarCampana(Campana c) {campanaDAO.eliminarCampana(c);}
+   @Transactional(readOnly = false)
+    public void eliminarCampana(Campana campana){
+       campanaDAO.eliminarCampana(campana);
+   }
 
 }
