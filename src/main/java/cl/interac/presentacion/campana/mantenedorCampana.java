@@ -47,7 +47,7 @@ public class mantenedorCampana implements Serializable {
 
     public void guardar() {
         logicaCampana.guardarCampana(campana);
-        System.err.print("huehue");
+        System.out.print("hueheuheuheuhue");
     }
 
     public void inicio() {
