@@ -9,6 +9,9 @@
 
         <h3>
 
+                <h:outputText value="Agregar Campaña" rendered="#{mantenedorAnuncios.esEditar()}"/>
+                <h:outputText value="Editar Campaña" rendered="#{mantenedorAnuncios.esAgregar()}"/>
+
         </h3>
 
         <h:form>
@@ -18,11 +21,22 @@
                 <p:outputLabel value="rubro"/>:
                 <p:inputText value="#{mantenedorAnuncios.anuncio.rubro}"/>
                 <p:outputLabel value="media"/>:
-
                 <p:inputText value="#{mantenedorAnuncios.anuncio.media}"/>
+                <p:outputLabel value="campaña"/>:
+                <p:selectOneMenu value="#{mantenedorAnuncios.anuncio.campana}" converter="entityConverter" >
+                    <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione --"/>
+                    <f:selectItems value="#{mantenedorAnuncios.obtenerCampanas}" var="obtenerCampanas"
+                                   itemLabel="#{obtenerCampanas.desccampana}" itemValue="#{obtenerCampanas}"/>
+                </p:selectOneMenu>
+                <p:outputLabel value="categoria"/>:
+                <p:selectOneMenu value="#{mantenedorAnuncios.anuncio.categoria}" converter="entityConverter" >
+                    <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione --"/>
+                    <f:selectItems value="#{mantenedorAnuncios.obtenerCategoria}" var="categoria"
+                                   itemLabel="#{categoria.desccategoria}" itemValue="#{categoria}"/>
+                </p:selectOneMenu>
             </h:panelGrid>
-            <p:commandButton ajax="false" value="registrar" action="${mantenedorAnuncios.guardar}"/>
-            <p:commandButton  value="listar" action="lis"/>
+            <p:commandButton  value="registrar" action="${mantenedorAnuncios.guardar}"/>
+
 
         </h:form>
     </ui:define>

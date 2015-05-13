@@ -23,6 +23,7 @@ public class Totem implements Serializable {
     private Ubicacion ubicacion;
 
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "idtotem")
     public Integer getIdtotem() {
         return idtotem;

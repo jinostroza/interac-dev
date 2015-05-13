@@ -34,7 +34,7 @@ public class LogicaCategoria {
        categoriaDAO.guardar(g);
    }
     @Transactional(readOnly = false)
-    public void eliminarTotem(Categoria g){
-       categoriaDAO.eliminarCategoria(g);
+    public void eliminar(Categoria g){
+       categoriaDAO.eliminar(g);
    }
 }

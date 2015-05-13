@@ -35,14 +35,11 @@ public class LogicaAnuncio {
     }
 
     @Transactional(readOnly = false)
-    public void guardar(Anuncio anuncio,Categoria categoria,Campana campana ) {
+    public void guardar(Anuncio anuncio) {
         anuncioDAO.guardar(anuncio);
-        boolean existeProveedor = false;
-        if(anuncio.getCampana() != null){
-    //        for ()
-        }
-
     }
+
+
 
     @Transactional(readOnly = false)
     public void eliminarAnuncio(Anuncio anuncio) {
@@ -53,7 +50,11 @@ public class LogicaAnuncio {
     public Anuncio obtenerPorId(Integer id){
         return anuncioDAO.obtenerPorId(id);
     }
-    //@Transactional(readOnly = true)
+    @Transactional(readOnly = true)
+    public List<Anuncio> obtenerConRelaciones() {
+        return anuncioDAO.obtenerConRelaciones();
+    }
+
 
 
 

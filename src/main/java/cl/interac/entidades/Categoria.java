@@ -21,6 +21,7 @@ public class Categoria implements Serializable {
     private List<Anuncio> anuncios;
 
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "idcategoria")
     public Integer getIdcategoria() {
         return idcategoria;

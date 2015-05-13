@@ -11,10 +11,13 @@ import java.io.Serializable;
 @NamedQueries(
         {
                 @NamedQuery(name = "Anuncio.findAll", query = "SELECT a FROM Anuncio a "),
+                @NamedQuery(name="Anuncio.findAllWithRelationships",
+                query="SELECT a from Anuncio a " +
+                        "inner join fetch a.campana c " +
+                        "inner join fetch a.categoria ca")
 
 
-
-        }
+    }
 )
 public class Anuncio implements Serializable {
     private Integer idAnuncio;
@@ -27,6 +30,7 @@ public class Anuncio implements Serializable {
     private Campana campana;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_anuncio", nullable = false, insertable = true, updatable = true)
     public Integer getIdAnuncio() {
         return idAnuncio;

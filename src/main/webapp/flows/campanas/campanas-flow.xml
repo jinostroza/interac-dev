@@ -2,7 +2,7 @@
 <flow xmlns="http://www.springframework.org/schema/webflow"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
-      start-state="agregarCampana">
+      start-state="programarCapana">
 
     <on-start>
         <evaluate expression="mantenedorCampana.inicio()"/>
@@ -11,10 +11,10 @@
 
     <!--si el id del estado se llama igual que el xhtml no es necesario especificar el view-->
     <!--pero eso es dato rosa, está bien definido-->
-    <view-state id="agregarCampana">
+    <view-state id="programarCampana">
         <transition on="listar" to="listarCampanas">
-            <evaluate expression="mantenedorCampana.campanas">
-            </evaluate>
+
+
 
         </transition>
     </view-state>
@@ -27,7 +27,7 @@
 
     <!--mismo caso-->
     <view-state id="seleccionarPantalla" >
-        <transition on="pay" to="pagar"></transition>
+
     </view-state>
 
     <!-- acá tienes que verificar si efectivamente necesitas matar el flow, es sano matarlo pero -->
