@@ -40,4 +40,8 @@ public class LogicaCampana {
        campanaDAO.eliminarCampana(campana);
    }
 
+    @Transactional(readOnly = true)
+    public List<Campana> obtenerTodosConRelaciones() {
+        return campanaDAO.obtenerTodosConRelaciones();
+    }
 }

@@ -18,6 +18,9 @@ public class Ubicacion implements Serializable {
     private Integer idtotem;
     private String descubicacion;
 
+    // relaciones
+    private Totem totem;
+
     @Id
     @Column(name = "idubicacion")
     public Integer getIdubicacion() {
@@ -48,7 +51,14 @@ public class Ubicacion implements Serializable {
         this.descubicacion = descubicacion;
     }
 
+    @OneToOne(mappedBy = "ubicacion", fetch = FetchType.LAZY)
+    public Totem getTotem() {
+        return totem;
+    }
 
+    public void setTotem(Totem totem) {
+        this.totem = totem;
+    }
 
     @Override
     public boolean equals(Object o) {

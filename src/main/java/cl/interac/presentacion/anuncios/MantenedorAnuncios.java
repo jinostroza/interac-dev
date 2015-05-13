@@ -10,7 +10,8 @@ import cl.interac.negocio.LogicaAnuncio;
 import cl.interac.util.components.FacesUtil;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.lang.* ;
+
+import java.lang.*;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import java.io.FileInputStream;
@@ -28,36 +29,51 @@ public class MantenedorAnuncios implements Serializable {
     private Anuncio anuncio;
     private Campana campana;
     private List<Anuncio> obtenerAnuncio;
+
     private enum TipoOperacion {
         INSERTAR,
         EDITAR
     }
+
     private TipoOperacion operacion;
-//flows
-public String irAgregar() {
-    anuncio = new Anuncio();
-    operacion = TipoOperacion.INSERTAR;
-    return "flowAgregar";
-}
 
-public String irEditar(Anuncio a){
-   anuncio = new Anuncio();
-    operacion= TipoOperacion.EDITAR;
-    return "flowEditar";
-}
+    //flows
+    public String irAgregar() {
+        anuncio = new Anuncio();
+        operacion = TipoOperacion.INSERTAR;
+        return "flowAgregar";
+    }
 
-public String irlistar(){
-    return "flowListar" ;
-}
+    public String irEditar(Anuncio a) {
+        anuncio = new Anuncio();
+        operacion = TipoOperacion.EDITAR;
+        return "flowEditar";
+    }
+
+    public String irlistar() {
+        return "flowListar";
+    }
 
 //logica Vista
 
 
+    public void inicio() {
+        obtenerAnuncio = logicaAnuncio.obtenerTodos();
+    }
 
+    public List<Anuncio> obtenerAnuncio() {
+        return obtenerAnuncio();
+    }
 
+    public void setAnuncio(List<Anuncio> obtenerAnuncio) {
+        this.obtenerAnuncio = obtenerAnuncio;
+    }
 
-    public void inicio(){obtenerAnuncio=logicaAnuncio.obtenerTodos();}
+    public Anuncio getAnuncio() {
+        return anuncio;
+    }
 
-    public List<Anuncio> obtenerAnuncio(){ return obtenerAnuncio(); }
-    public void setAnuncio(List<Anuncio> obtenerAnuncio){this.obtenerAnuncio = obtenerAnuncio;}
+    public void setAnuncio(Anuncio anuncio) {
+        this.anuncio = anuncio;
+    }
 }

@@ -13,7 +13,7 @@
     <!--pero eso es dato rosa, está bien definido-->
     <view-state id="agregarCampana">
         <transition on="listar" to="listarCampanas">
-            <evaluate expression="mantenedorCampana.obtenerCampana">
+            <evaluate expression="mantenedorCampana.campanas">
             </evaluate>
 
         </transition>

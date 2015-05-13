@@ -38,18 +38,10 @@ public class CampanaDAO {
 
     public Campana obtenerPorId(Integer id){
         return em.find(Campana.class , id);
-
-    }
-
-    public List<Campana> obtenetcampanaUsuario (Usuario u){
-        StringBuilder nativeSQL = new StringBuilder();
-        nativeSQL.append("select c.* from campana c");
-        nativeSQL.append("inner join usuario u on (u.idusuario = c.idusuario)");
-        return em.createNamedQuery(nativeSQL.toString(),Campana.class)
-                .setParameter("usuario",u.getIdUsuario()).getResultList();
-
     }
 
 
-
+    public List<Campana> obtenerTodosConRelaciones() {
+        return em.createNamedQuery("Campana.findAllWithRelationships").getResultList();
+    }
 }

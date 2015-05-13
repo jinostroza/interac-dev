@@ -42,7 +42,7 @@ drop table USUARIO;
 /* Table: ANUNCIO                                               */
 /*==============================================================*/
 create table ANUNCIO (
-   IDANUNCIO            SERIAL               not null,
+   ID_ANUNCIO            SERIAL               not null,
    DESCANUNCIO          VARCHAR(45)          null,
    IDCAMPANA            INT4                 not null,
    IDCATEGORIA          INT4                 not null,
@@ -167,7 +167,7 @@ IDTOTEM
 /*==============================================================*/
 create table USUARIO (
    IDUSUARIO            SERIAL               not null,
-   "USER"               VARCHAR(45)          null,
+   USERNAME               VARCHAR(45)          null,
    PASSWORD             VARCHAR(45)          null,
    CORREO               VARCHAR(45)          null,
    EMPRESA              VARCHAR(45)          null,
@@ -206,4 +206,3 @@ alter table UBICACION
    add constraint FK_UBICACIO_TOTEMUBIC_TOTEM foreign key (IDTOTEM)
       references TOTEM (IDTOTEM)
       on delete restrict on update restrict;
-
