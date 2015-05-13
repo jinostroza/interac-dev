@@ -11,8 +11,12 @@ import java.util.List;
 @NamedQueries(
         {
                 @NamedQuery(name = "Campana.findAll", query = "SELECT c FROM Campana c "),
-
-
+                @NamedQuery(
+                        name = "Campana.findAllWithRelationships",
+                        query = "SELECT c FROM Campana c " +
+                                "INNER JOIN FETCH c.totem t " +
+                                "INNER JOIN FETCH c.cliente cli"
+                )
         }
 )
 public class Campana implements Serializable {
@@ -25,6 +29,7 @@ public class Campana implements Serializable {
     private Usuario cliente;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idcampana")
     public Integer getIdcampana() {
         return idcampana;

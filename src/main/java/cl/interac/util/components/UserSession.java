@@ -35,9 +35,8 @@ public class UserSession implements Serializable {
             usuario = null;
         } else if (!a.getName().equals("anonymousUser")) {
             try {
-//                if (usuario == null || !usuario.getUsernameUsuario().equals(a.getName()))
-//                    usuario = logicaUsuario.obtenerUsuario(a.getName());
-                usuario = null;
+                if (usuario == null || !usuario.getUsername().equals(a.getName()))
+                    usuario = logicaUsuario.obtener(a.getName());
             } catch (Exception e) {
                 usuario = null;
             }

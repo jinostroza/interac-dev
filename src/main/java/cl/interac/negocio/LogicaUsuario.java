@@ -28,4 +28,14 @@ public class LogicaUsuario {
     public List<Usuario> obtenerTodos() {
         return usuarioDAO.obtenerTodos();
     }
+
+    @Transactional(readOnly = true)
+    public Usuario obtenerPorUsuarioContrasenna(String user, String password) {
+        return usuarioDAO.obtenerPorUsuarioContrasenna(user, password);
+    }
+
+    @Transactional(readOnly = true)
+    public Usuario obtener(String username) {
+        return usuarioDAO.obtenerPorUsuario(username);
+    }
 }

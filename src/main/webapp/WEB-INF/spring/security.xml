@@ -22,6 +22,9 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
             <security:concurrency-control max-sessions="1"/>
         </security:session-management>
 
+        <security:form-login username-parameter="j_username" password-parameter="j_password"
+                             always-use-default-target="false"/>
+
         <security:intercept-url pattern="/inicio.jsf" access="hasRole('USUARIO_WEB')"/>
         <security:intercept-url pattern="/plataforma/**" access="hasRole('USUARIO_WEB')"/>
     </security:http>

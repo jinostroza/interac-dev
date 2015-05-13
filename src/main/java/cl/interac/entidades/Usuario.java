@@ -11,6 +11,14 @@ import java.util.List;
 @NamedQueries(
         {
                 @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u "),
+                @NamedQuery(
+                        name = "Usuario.findByUserAndPassword",
+                        query = "SELECT u FROM Usuario u WHERE u.username = :username and u.password = :password"
+                ),
+                @NamedQuery(
+                        name = "Usuario.findByUser",
+                        query = "SELECT u FROM Usuario u WHERE u.username = :username"
+                ),
         }
 )
 public class Usuario implements Serializable {
@@ -108,7 +116,7 @@ public class Usuario implements Serializable {
 
     @Override
     public int hashCode() {
-        return idUsuario != null ? idUsuario.hashCode() : 0;
+        return idUsuario != null ? 31 * idUsuario.hashCode() : 0;
     }
 
     @Override

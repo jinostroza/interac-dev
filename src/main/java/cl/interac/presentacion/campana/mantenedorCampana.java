@@ -1,20 +1,16 @@
 package cl.interac.presentacion.campana;
 
-import cl.interac.dao.CampanaDAO;
-
 import cl.interac.entidades.*;
 import cl.interac.negocio.*;
 
 import cl.interac.util.components.FacesUtil;
-import org.primefaces.model.UploadedFile;
+import cl.interac.util.components.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 /**
  * Created by luis on 25-04-2015.
@@ -26,61 +22,79 @@ public class mantenedorCampana implements Serializable {
         INGRESAR,
         EDITAR
     }
-
     ;
+
+    // manejo manual
     private TipoOperacion operacion;
+
+    private List<Campana> campanas;
+    private List<Totem> totems;
+    private Campana campana;
+
     @Autowired
     private LogicaCampana logicaCampana;
-    private LogicaAnuncio logicaAnuncio;
-    private List<Campana> obtenerCampana;
-    private List<Anuncio> obtenerAnuncio;
-    private List<Usuario> obtenerUsuario;
-    private List<Totem> obtenerTotem;
-    private Totem totem;
-    private Anuncio anuncio;
-    private Campana campana;
-    private Usuario usuario;
+
+    @Autowired
+    private LogicaTotem logicaTotem;
+
+    @Autowired
+    private UserSession userSession;
 
     public mantenedorCampana() {
         campana = new Campana();
     }
 
-    public void guardar() {
-        logicaCampana.guardarCampana(campana);
-        System.out.print("hueheuheuheuhue");
-    }
-
     public void inicio() {
-        obtenerCampana = logicaCampana.obtenerTodos();
+        totems = logicaTotem.obtenerTodos();
+        // para los Lazy Exception (Excepcion de carga ligera) usar FetchType.EAGER (Con cautela) o hacer una query con las relaciones (Lo seguro aunque tardas más programando :P)
+        //campanas = logicaCampana.obtenerTodos(); // para eager
+        campanas = logicaCampana.obtenerTodosConRelaciones(); // para lazy
+        operacion = TipoOperacion.INGRESAR;
+    }
+    //flows shift+f6 es refactor
+
+    public void guardar() {
+        campana.setCliente(userSession.getUsuario());
+        logicaCampana.guardarCampana(campana);
+
+        if (esEdicion()) {
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña ["+campana.getDesccampana()+"]");
+        } else {
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado la campaña ["+campana.getDesccampana()+"]");
+        }
     }
 
+    public boolean esEdicion() {
+        return operacion == TipoOperacion.EDITAR;
+    }
 
     public Campana getCampana() {
         return campana;
     }
 
     public void setCampana(List<Campana> obtenerCampana) {
-        this.obtenerCampana = obtenerCampana;
+        this.campanas = obtenerCampana;
     }
 
-    public List<Campana> getObtenerCampana() {
-        return obtenerCampana;
+    public List<Campana> getCampanas() {
+        return campanas;
     }
 
-
-    //flows
-    public String idAgregar() {
-        campana = new Campana();
-        operacion = TipoOperacion.INGRESAR;
-        guardar();
-        return"flowAgregar";
-
+    public void setCampanas(List<Campana> campanas) {
+        this.campanas = campanas;
     }
 
-    //public String irEditar(Campana campana){
-      //  obtenerCampana = logicaCampana.
-    //}
+    public List<Totem> getTotems() {
+        return totems;
+    }
 
+    public void setTotems(List<Totem> totems) {
+        this.totems = totems;
+    }
+
+    public void setCampana(Campana campana) {
+        this.campana = campana;
+    }
 }
 
 

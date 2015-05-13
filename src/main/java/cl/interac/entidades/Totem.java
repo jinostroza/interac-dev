@@ -16,11 +16,11 @@ import java.util.List;
 public class Totem implements Serializable {
     private Integer idtotem;
     private String nombre;
-    private Integer idubicacion;
     private String tipo;
 
     // relaciones
     private List<Campana> campanas;
+    private Ubicacion ubicacion;
 
     @Id
     @Column(name = "idtotem")
@@ -43,16 +43,6 @@ public class Totem implements Serializable {
     }
 
     @Basic
-    @Column(name = "idubicacion")
-    public Integer getIdubicacion() {
-        return idubicacion;
-    }
-
-    public void setIdubicacion(Integer idubicacion) {
-        this.idubicacion = idubicacion;
-    }
-
-    @Basic
     @Column(name = "tipo")
     public String getTipo() {
         return tipo;
@@ -70,6 +60,17 @@ public class Totem implements Serializable {
     public void setCampanas(List<Campana> campanas) {
         this.campanas = campanas;
     }
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idubicacion", referencedColumnName = "idubicacion")
+    public Ubicacion getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
 
     @Override
     public boolean equals(Object o) {

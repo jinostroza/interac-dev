@@ -13,7 +13,7 @@
     <!--pero eso es dato rosa, está bien definido-->
     <view-state id="agregarCampana">
         <transition on="listar" to="listarCampanas">
-            <evaluate expression="mantenedorCampana.guardar()">
+            <evaluate expression="mantenedorCampana.campanas">
             </evaluate>
 
         </transition>
@@ -27,7 +27,7 @@
 
     <!--mismo caso-->
     <view-state id="seleccionarPantalla" >
-
+        <transition on="pay" to="pagar"></transition>
     </view-state>
 
     <!-- acá tienes que verificar si efectivamente necesitas matar el flow, es sano matarlo pero -->
