@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/interac-bootstrap-theme.css">
+	</head>
+	<body>
+		<!-- Cabecera -->
+		<div class="header">
+			<div class="header-top">
+				<div class="logo"></div>
+			</div>
+			<div class="user-menu pull-right">
+				<ul>
+					<li><a href="#">Usuario</a></li>
+					<li><a href="#">Mis Campañas</a></li>
+					<li><a href="#">Mis Anuncios</a></li>
+					<li><a href="#">Salir</a></li>
+				</ul>
+			</div>
+			<span></span>
+		</div>
+		<!-- Contenido -->
+		<div class="container contenedor" id="myInterac">
+			<header>
+				<div class="row">
+					<div class="col-lg-6">
+						<h2>Programar campaña</h2>
+					</div>
+					<div class="col-lg-6" id="lista-pasos-campania">
+						<ul>
+							<li>Posición campaña</li>
+						</ul>
+					</div>
+				</div>
+				<hr>
+			</header>
+			<h3>Confirmar Campaña</h3>
+			<div class="row">
+				<div class="col-lg-6">
+					<p>Ingresa los datos de tu campaña</p>
+					<form>
+						<div class="form-group">
+							Nombre
+							<input type="text" class="form-control">
+							<br>
+							Descripción
+							<textarea class="form-control" rows="3"></textarea>
+							<br>
+							<div class="row">
+								<div class="col-lg-6">
+									Fecha Inicio
+									<input type="date" class="form-control">	
+								</div>
+								<div class="col-lg-6">
+									Fecha Termino
+									<input type="date" class="form-control">
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="col-lg-6"></div>
+			</div>
+			<h4>Detalles de planificación</h4>
+			<br>
+			<div class="row datos-campania">
+				<div class="col-lg-4">
+					<span class="datos-campania-titulo">Dias de duración</span>
+					<span class="datos-campania-texto">1 Día</span>
+				</div>
+				<div class="col-lg-4">
+					<span class="datos-campania-titulo">Total de pasadas</span>
+					<span class="datos-campania-texto"> 50 pasadas</span>
+				</div>
+				<div class="col-lg-4">
+					<span class="datos-campania-titulo">Costo de pasadas</span>
+					<span class="datos-campania-texto">100000 pesos</span>
+				</div>
+			</div>
+			<br>
+			<h4>Pagar Campaña</h4>
+			<br>
+			<div class="row pagar-campania">
+				<div class="col-lg-4">
+					<span id="pagar-campania-titulo">Total a pagar</span>
+					<span id="pagar-campania-texto">100000 CLP</span>
+				</div>
+				<div class="col-lg-8" id="pagar-campania-deposito">
+					<p>Para el correcto pago de la campaña, debes hacer una transferencia bancaria a la cuenta</p>
+					<h3>12.345.678-9 Banco del Estado</h3>
+					<button class="btn btn-default" type="button">Adjuntar comprobante de deposito</button>
+				</div>
+			</div>
+			<div class="row botones-pagar-campania">
+				<div class="col-lg-6"></div>
+				<div class="col-lg-2">
+					<button class="btn btn-default btn-block" type="button">Guardar</button>
+				</div>
+				<div class="col-lg-4">
+					<button class="btn btn-default btn-block" type="button">Confirmar campaña</button>
+				</div>
+			</div>
+		</div>
+		<!-- Pie de pagina -->
+		<footer class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4 footer-col">
+						<div class="footer-image"></div>
+						<div class="footer-text">
+							<strong>Manuales</strong>
+							<br>y videos de uso
+						</div>
+					</div>
+					<div class="col-lg-4 footer-col">
+						<div class="footer-image"></div>
+						<div class="footer-text">
+							<strong>Telefono</strong>
+							<br>(56-32)227 41 51
+						</div>
+					</div>
+					<div class="col-lg-4 footer-col">
+						<div class="footer-image"></div>
+						<div class="footer-text">
+							<strong>E-mail</strong>
+							<br>contacto@interac.cl
+						</div>
+					</div>
+				</div>
+			</div>
+			<p class="text-center">Interac Ltda. Todos los derechos reservados</p>
+		</footer>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="js/bootstrap.js"></script>
+	</body>
+</hmtl>
