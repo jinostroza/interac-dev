@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/default.xhtml">
+
+    <ui:define name="contenido">
+
+        <h3>Campañas</h3>
+
+        <h:panelGrid columns="3"  >
+            <p:outputLabel value="Nombre Anuncio"/>:
+            <h:inputText value="#{mantenedorAnuncios.anuncio.descanuncio}"/>
+            <p:outputLabel value="rubro"/>:
+            <h:inputText value="#{mantenedorAnuncios.anuncio.rubro}"/>
+            <p:outputLabel value="media"/>:
+            <h:inputText value="#{mantenedorAnuncios.anuncio.media}"/>
+            <p:outputLabel value="campaña"/>:
+            <p:selectOneMenu value="#{mantenedorAnuncios.anuncio.campana}" converter="entityConverter" >
+                <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione --"/>
+                <f:selectItems value="#{mantenedorAnuncios.campanas}" var="obtenerCampanas"
+                               itemLabel="#{obtenerCampanas.desccampana}" itemValue="#{obtenerCampanas}"/>
+            </p:selectOneMenu>
+            <p:outputLabel value="categoria"/>:
+            <p:selectOneMenu value="#{mantenedorAnuncios.anuncio.categoria}" converter="entityConverter" >
+                <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione --"/>
+                <f:selectItems value="#{mantenedorAnuncios.categorias}" var="categoria"
+                               itemLabel="#{categoria.desccategoria}" itemValue="#{categoria}"/>
+            </p:selectOneMenu>
+
+
+        </h:panelGrid>
+    </ui:define>
+</ui:composition>
