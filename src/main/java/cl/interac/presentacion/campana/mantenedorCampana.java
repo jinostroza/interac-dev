@@ -21,22 +21,18 @@ public class mantenedorCampana implements Serializable {
     public enum TipoOperacion {
         INGRESAR,
         EDITAR
-    }
-    ;
+    };
 
     // manejo manual
     private TipoOperacion operacion;
-
     private List<Campana> campanas;
     private List<Totem> totems;
     private Campana campana;
 
     @Autowired
     private LogicaCampana logicaCampana;
-
     @Autowired
     private LogicaTotem logicaTotem;
-
     @Autowired
     private UserSession userSession;
 

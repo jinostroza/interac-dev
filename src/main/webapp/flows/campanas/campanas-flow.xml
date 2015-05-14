@@ -2,7 +2,7 @@
 <flow xmlns="http://www.springframework.org/schema/webflow"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
-      start-state="programarCapana">
+      start-state="programarCampana">
 
     <on-start>
         <evaluate expression="mantenedorCampana.inicio()"/>
@@ -12,16 +12,14 @@
     <!--si el id del estado se llama igual que el xhtml no es necesario especificar el view-->
     <!--pero eso es dato rosa, está bien definido-->
     <view-state id="programarCampana">
-        <transition on="listar" to="listarCampanas">
-
-
-
+        <transition on="listar" to="agregarCampana">
+            <evaluate expression="mantenedorCampana.inicio()"></evaluate>
         </transition>
     </view-state>
 
     <!--aca tienes definida una transicion que no la invoca tu vista, eso no implica qeu este malo-->
     <!--pero por lo visto es una transicion demas a menos que tengas pensado utilizarla despues -->
-    <view-state id="listarCampanas" >
+    <view-state id="agregarCampana" >
         <transition on="selPant" to="seleccionarPantalla"></transition>
     </view-state>
 

@@ -19,34 +19,20 @@ public class AnuncioDAO {
     public List<Anuncio> obtenerTodos() {
         return em.createNamedQuery("Anuncio.findAll").getResultList();
     }
-
-
-
     public void guardar(Anuncio anuncio) {
         if (anuncio.getIdAnuncio() == null) em.persist(anuncio);
         else em.merge(anuncio);
     }
-
     public void eliminarAnuncio(Anuncio anuncio) {
         Anuncio anuncio1 = em.find(Anuncio.class, anuncio.getIdAnuncio());
         em.remove(anuncio1);
     }
-
-
-
     public Anuncio obtenerPorId(Integer id){
         return em.find(Anuncio.class, id);
-
-    }
-
-    public Anuncio obtenerDesc(String Desc) {
-        return em.find(Anuncio.class, Desc);
-
     }
 
     public List<Anuncio> obtenerConRelaciones() {
         return em.createNamedQuery("Anuncio.findAllWithRelationships").getResultList();
-
     }
 
 

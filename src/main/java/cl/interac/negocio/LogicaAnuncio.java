@@ -51,11 +51,5 @@ public class LogicaAnuncio {
         return anuncioDAO.obtenerPorId(id);
     }
     @Transactional(readOnly = true)
-    public List<Anuncio> obtenerConRelaciones() {
-        return anuncioDAO.obtenerConRelaciones();
-    }
-
-
-
-
+    public List<Anuncio> obtenerConRelaciones() {return anuncioDAO.obtenerConRelaciones();}
 }

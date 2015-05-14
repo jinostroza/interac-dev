@@ -5,7 +5,7 @@
  start-state="dashboard">
       <on-start >
 
-            <evaluate expression="mantenedorAnuncios.inicio()"/>
+            <evaluate expression="mantenedorAnuncios.dashboard()"/>
       </on-start>
 
 

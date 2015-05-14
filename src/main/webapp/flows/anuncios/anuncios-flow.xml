@@ -9,8 +9,8 @@
       </on-start>
 
       <view-state id="registraAnuncio" >
-            <transition on="lis" to="listarAnuncios"/>
       </view-state>
+
       <view-state id="listarAnuncios">
       </view-state>
 

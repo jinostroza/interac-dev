@@ -33,14 +33,12 @@ public class MantenedorAnuncios implements Serializable {
         EDITAR
     }
     private TipoOperacion operacion;
-
-    private UserSession userSession;
-    private List<Categoria> obtenerCategoria;
-    private List<Anuncio> obtenerAnuncio;
-    private List<Campana> obtenerCampanas;
+    private List<Categoria> categorias;
+    private List<Campana> campanas;
+    private List<Anuncio> anuncios;
     private Anuncio anuncio;
-    private Campana campana;
-    private Categoria categoria;
+
+
     @Autowired
     private LogicaAnuncio logicaAnuncio;
     @Autowired
@@ -48,25 +46,24 @@ public class MantenedorAnuncios implements Serializable {
     @Autowired
     private LogicaCategoria logicaCategoria;
 
-
+    public MantenedorAnuncios() {
+        anuncio = new Anuncio();
+    }
     //flows
   public boolean esEditar(){
-
       return operacion== TipoOperacion.EDITAR;
   }
     public boolean esAgregar(){
         return  operacion == TipoOperacion.INSERTAR;
     }
 
-    public String irlistar() {
-        return "flowListar";
-    }
 
-  //logica Vista
+
+    //logica Vista
     public void guardar() {
+
        logicaAnuncio.guardar(anuncio);
-        logicaCampana.guardarCampana(campana);
-        logicaCategoria.guardar(categoria);
+
         if (esEditar()) {
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña ["+anuncio.getDescanuncio()+"]");
         } else {
@@ -74,42 +71,40 @@ public class MantenedorAnuncios implements Serializable {
         }
     }
 
+    public void eliminar(){
+        logicaAnuncio.eliminarAnuncio(anuncio);
+
+
+    }
+
+
     public void inicio() {
-        obtenerCampanas = logicaCampana.obtenerTodos();
-        obtenerCategoria = logicaCategoria.obtenerTodos();
-        obtenerAnuncio = logicaAnuncio.obtenerConRelaciones();
-          operacion = TipoOperacion.INSERTAR;
+        categorias = logicaCategoria.obtenerTodos();
+        campanas = logicaCampana.obtenerTodos();
+        anuncios = logicaAnuncio.obtenerConRelaciones();
+        operacion = TipoOperacion.INSERTAR;
+    }
+
+
+    public void dashboard(){
+        anuncios = logicaAnuncio.obtenerTodos();
     }
 
     //get and set
-    public List<Anuncio> obtenerAnuncio() {
-        return obtenerAnuncio();
-    }
+    public List<Categoria> getCategorias() {return categorias;}
 
-    public void setAnuncio(List<Anuncio> obtenerAnuncio) {
-        this.obtenerAnuncio = obtenerAnuncio;
-    }
+    public Anuncio getAnuncio() {return anuncio;}
 
-    public Anuncio getAnuncio() {
-        return anuncio;
-    }
+    public List<Anuncio> getAnuncios() {return anuncios;}
 
-    public void setAnuncio(Anuncio anuncio) {
-        this.anuncio = anuncio;
-    }
+    public List<Campana> getCampanas() {return campanas;}
 
-    public List<Campana> getObtenerCampanas() {
-        return obtenerCampanas;
-    }
+    public void setCategorias(List<Categoria> categorias) {this.categorias = categorias; }
 
-    public void setObtenerCampanas(List<Campana> obtenerCampanas) {
-        this.obtenerCampanas = obtenerCampanas;
-    }
-    public List<Categoria> getObtenerCategoria() {
-        return obtenerCategoria;
-    }
+    public void setCampanas(List<Campana> campanas) {this.campanas = campanas;}
 
-    public void setObtenerCategoria(List<Categoria> obtenerCategoria) {
-        this.obtenerCategoria = obtenerCategoria;
-    }
+    public void setAnuncios(List<Anuncio> anuncios) {this.anuncios = anuncios;}
+
+    public void setAnuncio(Anuncio anuncio) {this.anuncio = anuncio;}
+
 }
