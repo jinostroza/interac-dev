@@ -1,5 +1,6 @@
 package cl.interac.security;
 
+import cl.interac.entidades.Rol;
 import cl.interac.entidades.Usuario;
 import cl.interac.negocio.LogicaUsuario;
 import cl.interac.util.components.UserSession;
@@ -23,8 +24,8 @@ import java.util.List;
 public class LogInManager implements AuthenticationProvider, Serializable {
     @Autowired
     private LogicaUsuario logicaUsuario;
-
-    private Usuario usuario;
+     private Usuario usuario;
+    private Rol rol;
 
     public Authentication authenticate(Authentication a) {
         String user = a.getName();
@@ -44,10 +45,10 @@ public class LogInManager implements AuthenticationProvider, Serializable {
     private List<GrantedAuthority> getAcceso(String u) {
         List<GrantedAuthority> listaRoles = new ArrayList<GrantedAuthority>();
 
-        /*if (usuario.getRol() != null && usuario.getRol().equalsIgnoreCase("admin")) {
+        if (listaRoles.getIdRol() != null && Rol.getIdrol().equalsIgnoreCase("1")) {
             listaRoles.add(new SimpleGrantedAuthority("ADMIN"));
             listaRoles.add(new SimpleGrantedAuthority("ADMIN_MANTENEDORES"));
-        }*/
+       }
 
         listaRoles.add(new SimpleGrantedAuthority("USUARIO_WEB"));
         return listaRoles;

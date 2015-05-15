@@ -27,6 +27,7 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
 
         <security:intercept-url pattern="/inicio.jsf" access="hasRole('USUARIO_WEB')"/>
         <security:intercept-url pattern="/plataforma/**" access="hasRole('USUARIO_WEB')"/>
+
     </security:http>
 
     <security:authentication-manager alias="authenticationManager">

@@ -27,10 +27,12 @@ public class Usuario implements Serializable {
     private String password;
     private String correo;
     private String empresa;
-    private String rol;
+
 
     // relaciones
     private List<Campana> campanas;
+    private Rol rol;
+
 
 
     @Id
@@ -84,15 +86,6 @@ public class Usuario implements Serializable {
         this.empresa = empresa;
     }
 
-    @Basic
-    @Column(name = "rol", nullable = true, insertable = true, updatable = true, length = 45)
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
-        this.rol = rol;
-    }
 
     @OneToMany(mappedBy = "cliente")
     public List<Campana> getCampanas() {
@@ -102,6 +95,17 @@ public class Usuario implements Serializable {
     public void setCampanas(List<Campana> campanas) {
         this.campanas = campanas;
     }
+
+
+    @JoinColumn(referencedColumnName = "id_rol",columnDefinition ="idrol" )
+    @ManyToOne(fetch =FetchType.LAZY)
+    public Rol  getRol() { return rol;}
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+
+
 
     @Override
     public boolean equals(Object o) {
