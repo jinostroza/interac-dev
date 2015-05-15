@@ -10,8 +10,10 @@ import java.io.Serializable;
 @NamedQueries({
         @NamedQuery(
                 name = "Ubicacion.findAll",
-                query = "select u from Ubicacion u"
-        )
+                query = "select u from Ubicacion u" ),
+        @NamedQuery(name="Ubicacion.findAllWithRelationships",
+                query = "SELECT u from Ubicacion u " +
+                        "inner join fetch u.idtotem ")
 })
 public class Ubicacion implements Serializable {
     private Integer idubicacion;

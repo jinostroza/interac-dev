@@ -9,17 +9,22 @@
         <h3>Seleccionar pantalla</h3>
 
         <h:form>
-            <h:panelGrid columns="3" value="${mantenedorAnuncios.anuncio}" var="anuncio">
-                <p:outputLabel value="ID CAmpana"/>:
-                <p:inputText value="#{mantenedorAnuncios.anuncio.idAnuncio}"/>
-                <p:outputLabel value="ID Cliente"/>:
-                <p:inputText value="#{mantenedorAnuncios.anuncio.descanuncio}"/>
-                <p:outputLabel value="ID Totem"/>:
-                <p:inputText value="#{mantenedorAnuncios.anuncio.media}"/>
-                <p:outputLabel value="Descripcion"/>:
-                <p:inputText value="#{mantenedorAnuncios.anuncio.rubro}"/>
-            </h:panelGrid>
-            <p:commandButton value="Registrar" action="#{mantenedorCampana.inicio()}"/>
+           <p:panelMenu>
+                <p:selectOneMenu value="#{mantenedorCampana.campana.totem}" converter="entityConverter">
+                       <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione --"/>
+                       <f:selectItems value="#{mantenedorCampana.totems}" var="totem"
+                                      itemLabel="#{totem.nombre}" itemValue="#{totem}"/>
+                   </p:selectOneMenu>
+           </p:panelMenu>
+
+            <p:panelMenu>
+                <p:selectOneMenu value="#{mantenedorUbicacion.}">
+                <f:selectItem  noSelectionOption="true" itemLabel="---Seleccione--"/>
+                <f:selectItems value="#{mantenedorUbicacion.}" var="ub"
+                               itemLabel="#{}"
+               </p:selectOneMenu>
+            </p:panelMenu>
+
         </h:form>
     </ui:define>
 </ui:composition>

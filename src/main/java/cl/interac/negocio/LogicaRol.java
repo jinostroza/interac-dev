@@ -24,4 +24,6 @@ public class LogicaRol {
 
    @Transactional(readOnly = true)
     private List<Rol> obtenerTodos(){return rolDAO.obtenerTodos(); }
+    @Transactional(readOnly = true)
+    private List<Rol> obtenerPorId(){return rolDAO.obtenerPorId();}
 }

@@ -28,9 +28,18 @@
 
     <!--mismo caso-->
     <view-state id="seleccionarContenido" >
+                <transition on="regAnun" to="registraAnuncio" ></transition>
+    </view-state>
+
+
+    <view-state id="registraAnuncio">
+
 
     </view-state>
 
+    <view-state id="finalizar">
+
+    </view-state>
     <!-- acá tienes que verificar si efectivamente necesitas matar el flow, es sano matarlo pero -->
     <!-- si no lo haces spring igual lo hará por ti al cambiar de flow o contexto -->
 

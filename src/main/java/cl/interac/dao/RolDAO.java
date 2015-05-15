@@ -15,4 +15,6 @@ public class RolDAO {
 
     public List<Rol> obtenerTodos(){return em.createNamedQuery("rol.FindAll").getResultList();}
 
+    public List<Rol> obtenerPorId(){return em.createNamedQuery("rol.FindIdRol").getResultList();}
+
 }
