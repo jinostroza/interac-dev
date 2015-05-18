@@ -19,6 +19,7 @@ import java.util.List;
                         name = "Usuario.findByUser",
                         query = "SELECT u FROM Usuario u WHERE u.username = :username"
                 ),
+
         }
 )
 public class Usuario implements Serializable {
@@ -32,8 +33,6 @@ public class Usuario implements Serializable {
     // relaciones
     private List<Campana> campanas;
     private Rol rol;
-
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -97,14 +96,15 @@ public class Usuario implements Serializable {
     }
 
 
-    @JoinColumn(referencedColumnName = "id_rol",columnDefinition ="idrol" )
-    @ManyToOne(fetch =FetchType.LAZY)
-    public Rol  getRol() { return rol;}
+    @JoinColumn(referencedColumnName = "id_rol", name = "idrol")
+    @ManyToOne(fetch = FetchType.LAZY)
+    public Rol getRol() {
+        return rol;
+    }
 
     public void setRol(Rol rol) {
         this.rol = rol;
     }
-
 
 
     @Override

@@ -6,14 +6,33 @@
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
-
-        <h3>INICIO</h3>
-        <h:form>
-            <p:commandButton value="IR A USUARIOS" action="#{facesUtil.redirigir('/plataforma/usuarios')}"/>
-            <p:commandButton value="Agregar Campaña" action="#{facesUtil.redirigir('/plataforma/campanas')}"/>
-            <p:commandButton value="dashboard" action="#{facesUtil.redirigir('/plataforma/dashboard')}"/>
-
-        </h:form>
-
+        <div class="container" id="myInterac">
+        <header>
+            <h2>Crea tu campaña</h2>
+        </header>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="dashbox">
+                    <p class="dashbox-header">Crear anuncio</p>
+                    <div class="button_ crear-anuncio"></div>
+                    <p> Escoge aqui uno de los anuncios ya creados </p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="dashbox">
+                    <p class="dashbox-header">Crear campaña</p>
+                    <div class="button_ crear-campana"></div>
+                    <p> Escoge aqui uno de los anuncios ya creados </p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="dashbox">
+                    <p class="dashbox-header">Pagar</p>
+                    <div class="button_ pagar"></div>
+                    <p> Escoge aqui uno de los anuncios ya creados </p>
+                </div>
+            </div>
+        </div>
+        </div>
     </ui:define>
 </ui:composition>

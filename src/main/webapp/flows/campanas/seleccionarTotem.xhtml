@@ -10,9 +10,9 @@
 
         <h:form>
            <p:panelMenu>
-                <p:selectOneMenu value="#{mantenedorCampana.campana.totem}" converter="entityConverter">
+                <p:selectOneMenu value="#{MantenedorCampana.campana.totem}" converter="entityConverter">
                        <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione --"/>
-                       <f:selectItems value="#{mantenedorCampana.totems}" var="totem"
+                       <f:selectItems value="#{MantenedorCampana.totems}" var="totem"
                                       itemLabel="#{totem.nombre}" itemValue="#{totem}"/>
                    </p:selectOneMenu>
            </p:panelMenu>

@@ -31,7 +31,8 @@ public class MantenedorAnuncios implements Serializable {
     private enum TipoOperacion {
         INSERTAR,
         EDITAR
-    }
+    };
+
     private TipoOperacion operacion;
     private List<Categoria> categorias;
     private List<Campana> campanas;
@@ -49,14 +50,15 @@ public class MantenedorAnuncios implements Serializable {
     public MantenedorAnuncios() {
         anuncio = new Anuncio();
     }
+
     //flows
-  public boolean esEditar(){
-      return operacion== TipoOperacion.EDITAR;
-  }
-    public boolean esAgregar(){
-        return  operacion == TipoOperacion.INSERTAR;
+    public boolean esEditar() {
+        return operacion == TipoOperacion.EDITAR;
     }
 
+    public boolean esAgregar() {
+        return operacion == TipoOperacion.INSERTAR;
+    }
 
 
     //logica Vista
@@ -65,16 +67,14 @@ public class MantenedorAnuncios implements Serializable {
        logicaAnuncio.guardar(anuncio);
 
         if (esEditar()) {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña ["+anuncio.getDescanuncio()+"]");
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña [" + anuncio.getDescanuncio() + "]");
         } else {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado la campaña ["+anuncio.getDescanuncio()+"]");
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado la campaña [" + anuncio.getDescanuncio() + "]");
         }
     }
 
-    public void eliminar(){
+    public void eliminar() {
         logicaAnuncio.eliminarAnuncio(anuncio);
-
-
     }
 
 
@@ -86,25 +86,41 @@ public class MantenedorAnuncios implements Serializable {
     }
 
 
-    public void dashboard(){
+    public void dashboard() {
         anuncios = logicaAnuncio.obtenerTodos();
     }
 
     //get and set
-    public List<Categoria> getCategorias() {return categorias;}
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
 
-    public Anuncio getAnuncio() {return anuncio;}
+    public Anuncio getAnuncio() {
+        return anuncio;
+    }
 
-    public List<Anuncio> getAnuncios() {return anuncios;}
+    public List<Anuncio> getAnuncios() {
+        return anuncios;
+    }
 
-    public List<Campana> getCampanas() {return campanas;}
+    public List<Campana> getCampanas() {
+        return campanas;
+    }
 
-    public void setCategorias(List<Categoria> categorias) {this.categorias = categorias; }
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
+    }
 
-    public void setCampanas(List<Campana> campanas) {this.campanas = campanas;}
+    public void setCampanas(List<Campana> campanas) {
+        this.campanas = campanas;
+    }
 
-    public void setAnuncios(List<Anuncio> anuncios) {this.anuncios = anuncios;}
+    public void setAnuncios(List<Anuncio> anuncios) {
+        this.anuncios = anuncios;
+    }
 
-    public void setAnuncio(Anuncio anuncio) {this.anuncio = anuncio;}
+    public void setAnuncio(Anuncio anuncio) {
+        this.anuncio = anuncio;
+    }
 
 }

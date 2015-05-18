@@ -25,11 +25,9 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
         <security:form-login username-parameter="j_username" password-parameter="j_password"
                              always-use-default-target="false"/>
 
-        <security:intercept-url pattern="/inicio.jsf" access="hasRole('USUARIO_WEB')"/>
         <security:intercept-url pattern="/plataforma/**" access="hasRole('USUARIO_WEB')"/>
 
     </security:http>
-
     <security:authentication-manager alias="authenticationManager">
         <security:authentication-provider ref="autenticadorPersonalizado"/>
     </security:authentication-manager>

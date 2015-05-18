@@ -38,9 +38,6 @@ public class LogicaAnuncio {
     public void guardar(Anuncio anuncio) {
         anuncioDAO.guardar(anuncio);
     }
-
-
-
     @Transactional(readOnly = false)
     public void eliminarAnuncio(Anuncio anuncio) {
         anuncioDAO.eliminarAnuncio(anuncio);

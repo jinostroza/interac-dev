@@ -5,30 +5,12 @@
 
     <!--DATA SOURCE SERVER PRODUCCION-->
     <persistence-unit name="primary" transaction-type="RESOURCE_LOCAL">
-    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <properties>
-    <property name="hibernate.connection.url" value="jdbc:postgresql://54.172.118.246:5432/Plataforma"/>
-    <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
-   <property name="hibernate.connection.username" value="postgres"/>
-    <property name="hibernate.connection.password" value="vince2315"/>
-    <property name="hibernate.show_sql" value="true"/>
-    <property name="hibernate.c3p0.timeout" value="0"/>
-    <property name="hibernate.c3p0.maxConnectionAge" value="0"/>
-    <property name="hibernate.c3p0.acquireRetryAttemps" value="3"/>
-    <property name="hibernate.c3p0.preferredTestQuery" value="select 1"/>
-   <property name="hibernate.c3p0.idleConnectionTestPeriod" value="50"/>
-   </properties>
-   </persistence-unit>
-
-  </persistence>
-    <!--
-    <persistence-unit name="primary" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <properties>
-            <property name="hibernate.connection.url" value="jdbc:postgresql://192.168.50.15:5433/interac"/>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://54.172.118.246:5432/Plataforma"/>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
-            <property name="hibernate.connection.username" value="interac"/>
-            <property name="hibernate.connection.password" value="interac"/>
+            <property name="hibernate.connection.username" value="postgres"/>
+            <property name="hibernate.connection.password" value="vince2315"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.c3p0.timeout" value="0"/>
             <property name="hibernate.c3p0.maxConnectionAge" value="0"/>
@@ -36,5 +18,22 @@
             <property name="hibernate.c3p0.preferredTestQuery" value="select 1"/>
             <property name="hibernate.c3p0.idleConnectionTestPeriod" value="50"/>
         </properties>
+    </persistence-unit>
+        <!--
+        <persistence-unit name="primary" transaction-type="RESOURCE_LOCAL">
+            <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+            <properties>
+                <property name="hibernate.connection.url" value="jdbc:postgresql://192.168.50.15:5433/interac"/>
+                <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+                <property name="hibernate.connection.username" value="interac"/>
+                <property name="hibernate.connection.password" value="interac"/>
+                <property name="hibernate.show_sql" value="true"/>
+                <property name="hibernate.c3p0.timeout" value="0"/>
+                <property name="hibernate.c3p0.maxConnectionAge" value="0"/>
+                <property name="hibernate.c3p0.acquireRetryAttemps" value="3"/>
+                <property name="hibernate.c3p0.preferredTestQuery" value="select 1"/>
+                <property name="hibernate.c3p0.idleConnectionTestPeriod" value="50"/>
+            </properties>
 
-    </persistence-unit-->
+        </persistence-unit-->
+</persistence>

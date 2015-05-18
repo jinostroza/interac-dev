@@ -5,7 +5,7 @@
       start-state="programarCampana">
 
     <on-start>
-        <evaluate expression="mantenedorCampana.inicio()"/>
+        <evaluate expression="MantenedorCampana.inicio()"/>
     </on-start>
 
 
@@ -13,7 +13,7 @@
     <!--pero eso es dato rosa, está bien definido-->
     <view-state id="programarCampana">
         <transition on="porg" to="agregarCampana">
-            <evaluate expression="mantenedorCampana.inicio()"></evaluate>
+            <evaluate expression="MantenedorCampana.inicio()"></evaluate>
         </transition>
     </view-state>
 

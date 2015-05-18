@@ -11,13 +11,13 @@ import java.io.Serializable;
 @NamedQueries(
         {
                 @NamedQuery(name = "Anuncio.findAll", query = "SELECT a FROM Anuncio a "),
-                @NamedQuery(name="Anuncio.findAllWithRelationships",
-                query="SELECT a from Anuncio a " +
-                        "inner join fetch a.campana c " +
-                        "inner join fetch a.categoria ca")
+                @NamedQuery(name = "Anuncio.findAllWithRelationships",
+                        query = "SELECT a from Anuncio a " +
+                                "inner join fetch a.campana c " +
+                                "inner join fetch a.categoria ca")
 
 
-    }
+        }
 )
 public class Anuncio implements Serializable {
     private Integer idAnuncio;

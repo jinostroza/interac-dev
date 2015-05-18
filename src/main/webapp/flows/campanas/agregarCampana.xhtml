@@ -8,23 +8,23 @@
     <ui:define name="contenido">
 
         <h3>
-            <h:outputText value="Agregar Campaña" rendered="#{!mantenedorCampana.esEdicion()}"/>
-            <h:outputText value="Editar Campaña" rendered="#{mantenedorCampana.esEdicion()}"/>
+            <h:outputText value="Agregar Campaña" rendered="#{!MantenedorCampana.esEdicion()}"/>
+            <h:outputText value="Editar Campaña" rendered="#{MantenedorCampana.esEdicion()}"/>
         </h3>
 
         <h:form>
             <h:panelGrid columns="3">
                 <p:outputLabel value="Nombre Campaña"/>:
-                <p:inputText value="#{mantenedorCampana.campana.desccampana}"/>
+                <p:inputText value="#{MantenedorCampana.campana.desccampana}"/>
                 <p:outputLabel value="Dispositivos (TOTEM's)"/>:
-                <p:selectOneMenu value="#{mantenedorCampana.campana.totem}" converter="entityConverter">
+                <p:selectOneMenu value="#{MantenedorCampana.campana.totem}" converter="entityConverter">
                     <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione --"/>
-                    <f:selectItems value="#{mantenedorCampana.totems}" var="totem"
+                    <f:selectItems value="#{MantenedorCampana.totems}" var="totem"
                                    itemLabel="#{totem.nombre}" itemValue="#{totem}"/>
                 </p:selectOneMenu>
             </h:panelGrid>
 
-            <p:dataTable value="#{mantenedorCampana.campanas}" var="c">
+            <p:dataTable value="#{MantenedorCampana.campanas}" var="c">
                 <p:column headerText="ID">
                     #{c.idcampana}
                 </p:column>
@@ -39,7 +39,7 @@
                 </p:column>
             </p:dataTable>
 
-            <p:commandButton icon="fa fa-save" value="Registrar" action="#{mantenedorCampana.guardar()}"/>
+            <p:commandButton icon="fa fa-save" value="Registrar" action="#{MantenedorCampana.guardar()}"/>
             <p:commandButton icon="fa fa-undo" value="Volver" action="#{facesUtil.redirigir('/inicio.jsf')}"/>
         </h:form>
     </ui:define>

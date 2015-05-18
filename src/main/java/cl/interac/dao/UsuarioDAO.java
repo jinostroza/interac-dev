@@ -45,6 +45,11 @@ public class UsuarioDAO {
             return (Usuario) q.getSingleResult();
         } catch (Exception e) {
             return null;
+
         }
+
+
+
+
     }
 }

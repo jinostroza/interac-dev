@@ -24,7 +24,7 @@ import java.util.List;
 public class LogInManager implements AuthenticationProvider, Serializable {
     @Autowired
     private LogicaUsuario logicaUsuario;
-     private Usuario usuario;
+    private Usuario usuario;
     private Rol rol;
 
     public Authentication authenticate(Authentication a) {
@@ -32,7 +32,8 @@ public class LogInManager implements AuthenticationProvider, Serializable {
         String password = null;
         try {
             password = a.getCredentials().toString();
-        } catch (NullPointerException e) {}
+        } catch (NullPointerException e) {
+        }
 
         usuario = logicaUsuario.obtenerPorUsuarioContrasenna(user, password);
 
@@ -44,12 +45,6 @@ public class LogInManager implements AuthenticationProvider, Serializable {
 
     private List<GrantedAuthority> getAcceso(String u) {
         List<GrantedAuthority> listaRoles = new ArrayList<GrantedAuthority>();
-
-        if (listaRoles.getIdRol() != null && Rol.getIdrol().equalsIgnoreCase("1")) {
-            listaRoles.add(new SimpleGrantedAuthority("ADMIN"));
-            listaRoles.add(new SimpleGrantedAuthority("ADMIN_MANTENEDORES"));
-       }
-
         listaRoles.add(new SimpleGrantedAuthority("USUARIO_WEB"));
         return listaRoles;
     }

@@ -13,8 +13,6 @@ import java.util.List;
 public class RolDAO {
     private EntityManager em;
 
-    public List<Rol> obtenerTodos(){return em.createNamedQuery("rol.FindAll").getResultList();}
-
-    public List<Rol> obtenerPorId(){return em.createNamedQuery("rol.FindIdRol").getResultList();}
+    public List<Rol> obtenerTodos(){return em.createNamedQuery("Rol.findAll").getResultList();}
 
 }

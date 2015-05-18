@@ -2,15 +2,38 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
+    <!--sir peter , asi se instancia una hoja de estilo   -->
+    <h:outputStylesheet library="css" name="bootstrap-theme.css" />
+    <h:outputStylesheet library="css" name="bootstrap.css" />
 
     <h:form>
-        <p:outputPanel>
-            <h:outputText value="Manuales de Uso  "/>
-            <h:outputText value="  Telefono : (56-32) 227 41 51  "/>
-            <h:outputText value="  E-mail : contacto@interac.cl  "/>
-            <h:outputText value="#{generico.anioActual} © Powered by "/>
-            <h:outputLink value="http://www.interac.cl" target="_blank">Interac</h:outputLink>
-            <h:outputText value="interac 'Todos' los derechos reservados"/>
-        </p:outputPanel>
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 footer-col">
+                        <div class="footer-image"></div>
+                        <div class="footer-text">
+                            <strong>Manuales</strong>
+                            <br>y videos de uso
+                        </div>
+                    </div>
+                    <div class="col-lg-4 footer-col">
+                        <div class="footer-image"></div>
+                        <div class="footer-text">
+                            <strong>Telefono</strong>
+                            <br>(56-32)227 41 51
+                        </div>
+                    </div>
+                    <div class="col-lg-4 footer-col">
+                        <div class="footer-image"></div>
+                        <div class="footer-text">
+                            <strong>E-mail</strong>
+                            <br>contacto@interac.cl
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center">Interac Ltda. Todos los derechos reservados</p>
+        </footer>
     </h:form>
 </ui:composition>
