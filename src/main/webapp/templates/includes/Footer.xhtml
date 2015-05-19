@@ -2,37 +2,33 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
-    <!--sir peter , asi se instancia una hoja de estilo   -->
-    <h:outputStylesheet library="css" name="bootstrap-theme.css" />
-    <h:outputStylesheet library="css" name="bootstrap.css" />
-
     <h:form>
         <footer class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 footer-col">
-                        <div class="footer-image"></div>
-                        <div class="footer-text">
+            <p:outputPanel styleClass="container">
+                <p:outputPanel styleClass="row">
+                    <p:outputPanel styleClass="col-lg-4 footer-col">
+                        <p:outputPanel styleClass="footer-image"></p:outputPanel>
+                        <p:outputPanel styleClass="footer-text">
                             <strong>Manuales</strong>
-                            <br>y videos de uso
-                        </div>
-                    </div>
-                    <div class="col-lg-4 footer-col">
-                        <div class="footer-image"></div>
-                        <div class="footer-text">
+                            <br/>y videos de uso
+                        </p:outputPanel>
+                    </p:outputPanel>
+                    <p:outputPanel styleClass="col-lg-4 footer-col">
+                        <p:outputPanel styleClass="footer-image"></p:outputPanel>
+                        <p:outputPanel styleClass="footer-text">
                             <strong>Telefono</strong>
-                            <br>(56-32)227 41 51
-                        </div>
-                    </div>
-                    <div class="col-lg-4 footer-col">
-                        <div class="footer-image"></div>
-                        <div class="footer-text">
+                            <br/>(56-32)227 41 51
+                        </p:outputPanel>
+                    </p:outputPanel>
+                    <p:outputPanel styleClass="col-lg-4 footer-col">
+                        <p:outputPanel styleClass="footer-image"></p:outputPanel>
+                        <p:outputPanel styleClass="footer-text">
                             <strong>E-mail</strong>
-                            <br>contacto@interac.cl
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            <br/>contacto@interac.cl
+                        </p:outputPanel>
+                    </p:outputPanel>
+                </p:outputPanel>
+            </p:outputPanel>
             <p class="text-center">Interac Ltda. Todos los derechos reservados</p>
         </footer>
     </h:form>

@@ -9,17 +9,16 @@ package cl.interac.negocio;
 import cl.interac.dao.CampanaDAO;
 import cl.interac.entidades.Anuncio;
 import cl.interac.entidades.Campana;
-import cl.interac.util.components.Constantes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 
-@Component
+@Service
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class LogicaCampana {
     @Autowired

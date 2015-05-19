@@ -11,6 +11,7 @@ import java.util.List;
 
 @Repository
 public class RolDAO {
+    @PersistenceContext
     private EntityManager em;
 
     public List<Rol> obtenerTodos(){return em.createNamedQuery("Rol.findAll").getResultList();}

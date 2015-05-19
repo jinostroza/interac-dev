@@ -11,7 +11,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <primefaces-version>5.2</primefaces-version>
-        <!--<primefaces-themes-version>1.0.10</primefaces-themes-version>-->
         <hibernate-version>4.3.6.Final</hibernate-version>
         <hibernate-validator-version>5.0.3.Final</hibernate-validator-version>
         <spring-version>4.0.7.RELEASE</spring-version>

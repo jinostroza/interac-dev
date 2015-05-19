@@ -5,7 +5,7 @@ import cl.interac.entidades.Ubicacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.*;
 
 import javax.transaction.*;
@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by luis on 27-04-2015.
  */
-@Component
+@Service
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class LogicaUbicacion {
    @Autowired

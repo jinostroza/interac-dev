@@ -7,13 +7,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by Jorge on 15-04-15.
  */
-@Component
+@Service
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class LogicaUsuario {
     @Autowired

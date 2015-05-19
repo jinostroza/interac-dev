@@ -10,6 +10,7 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
 
     <security:http pattern="/templates/**" security="none"/>
     <security:http pattern="/resources/**" security="none"/>
+    <security:http pattern="/javax.faces.resource/**" security="none"/>
 
     <security:http auto-config="false" entry-point-ref="authenticationEntryPoint"
                    use-expressions="true"
