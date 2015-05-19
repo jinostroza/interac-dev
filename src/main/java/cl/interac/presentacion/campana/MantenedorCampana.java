@@ -1,8 +1,9 @@
 package cl.interac.presentacion.campana;
 
-import cl.interac.entidades.*;
-import cl.interac.negocio.*;
-
+import cl.interac.entidades.Campana;
+import cl.interac.entidades.Totem;
+import cl.interac.negocio.LogicaCampana;
+import cl.interac.negocio.LogicaTotem;
 import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import java.util.List;
  */
 @Component
 @Scope("flow")
-public class mantenedorCampana implements Serializable {
+public class MantenedorCampana implements Serializable {
     public enum TipoOperacion {
         INGRESAR,
         EDITAR
@@ -36,7 +37,7 @@ public class mantenedorCampana implements Serializable {
     @Autowired
     private UserSession userSession;
 
-    public mantenedorCampana() {
+    public MantenedorCampana() {
         campana = new Campana();
     }
 

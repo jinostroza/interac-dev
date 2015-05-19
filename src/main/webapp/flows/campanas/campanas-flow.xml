@@ -5,36 +5,29 @@
       start-state="programarCampana">
 
     <on-start>
-        <evaluate expression="MantenedorCampana.inicio()"/>
+        <evaluate expression="mantenedorCampana.inicio()"/>
     </on-start>
 
 
     <!--si el id del estado se llama igual que el xhtml no es necesario especificar el view-->
     <!--pero eso es dato rosa, está bien definido-->
     <view-state id="programarCampana">
-        <transition on="porg" to="agregarCampana">
-            <evaluate expression="MantenedorCampana.inicio()"></evaluate>
-        </transition>
+        <transition on="porg" to="agregarCampana"/>
     </view-state>
 
     <!--aca tienes definida una transicion que no la invoca tu vista, eso no implica qeu este malo-->
     <!--pero por lo visto es una transicion demas a menos que tengas pensado utilizarla despues -->
-    <view-state id="agregarCampana" >
-        <transition on="selPant" to="seleccionarContenido">
-            <evaluate expression="mantenedorAnuncios.inicio()"></evaluate>
-        </transition>
-
+    <view-state id="agregarCampana">
+        <transition on="selPant" to="seleccionarContenido"/>
     </view-state>
 
     <!--mismo caso-->
-    <view-state id="seleccionarContenido" >
-                <transition on="regAnun" to="registraAnuncio" ></transition>
+    <view-state id="seleccionarContenido">
+        <transition on="regAnun" to="registraAnuncio"/>
     </view-state>
 
 
     <view-state id="registraAnuncio">
-
-
     </view-state>
 
     <view-state id="finalizar">

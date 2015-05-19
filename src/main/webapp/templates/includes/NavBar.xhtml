@@ -2,15 +2,23 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
 <f:view>
 
 
-    <h:outputLabel value="  Jhon Doe  "/>
-    <h:outputLabel value="  Mis Campanas  "/>
-    <h:outputLabel value="  Mis Anuncios  "/>
-    <h:outputLabel value="  Logout  "/>
+    <p:outputPanel styleClass="user-menu pull-right" rendered="#{userSession.usuario != null}">
+        <ul>
+            <li>
+                <p:commandLink value="Usuario" action="#{facesUtil.redirigir('/plataforma/usuarios')}"/>
+            </li>
+            <li>
+                <p:commandLink value="Mis Campañas" action="#{facesUtil.redirigir('/plataforma/campanas')}"/>
+            </li>
+            <li>
+                <p:commandLink value="Mis Anuncios" action="#{facesUtil.redirigir('/plataforma/anuncios')}"/>
+            </li>
+            <li><a href="/logOut.jsf">Salir</a></li>
+        </ul>
+    </p:outputPanel>
 </f:view>
 </html>

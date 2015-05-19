@@ -1,21 +1,14 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://java.sun.com/jsf/html">
+        >
 
 
     <div class="header">
         <div class="header-top">
             <div class="logo"></div>
         </div>
-        <div class="user-menu pull-right">
-            <ul>
-                <li><a href="#">Usuario</a></li>
-                <li><a href="#">Mis Campañas</a></li>
-                <li><a href="#">Mis Anuncios</a></li>
-                <li><a href="#">Salir</a></li>
-            </ul>
-        </div>
+
+        <ui:include src="NavBar.xhtml"/>
         <span></span>
     </div>
 

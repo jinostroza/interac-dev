@@ -18,7 +18,7 @@ html, body{
 }
 .header .header-top .logo{
 	position: absolute;
-	background-image: url('../img/interacblanco.png');
+	background-image: url('/resources/img/interacblanco.png');
 	width: 200px;
 	height: 60px;
 	margin: 25px 0 15px 50px;
@@ -114,35 +114,35 @@ html, body{
 }
 .crear-anuncio, .elegir-contenido, .elegir-anuncio
 {
-	background-image: url("../img/buttons/edit-01.png");
+	background-image: url("/resources/img/buttons/edit-01.png");
 }
 .crear-anuncio:hover, .elegir-contenido:hover, .elegir-anuncio:hover
 {
-	background-image: url("../img/buttons/edit-01 claro.png");
+	background-image: url("/resources/img/buttons/edit-01 claro.png");
 }
 .crear-campana, .seleccionar-pantallas
 {
-	background-image: url("../img/buttons/pantalla-03.png");
+	background-image: url("/resources/img/buttons/pantalla-03.png");
 }
 .crear-campana:hover, .seleccionar-pantallas:hover
 {
-	background-image: url("../img/buttons/pantalla-03 claro.png");
+	background-image: url("/resources/img/buttons/pantalla-03 claro.png");
 }
 .planificar-campana
 {
-	background-image: url("../img/buttons/calendar-01.png");
+	background-image: url("/resources/img/buttons/calendar-01.png");
 }
 .planificar-campana:hover
 {
-	background-image: url("../img/buttons/calendar-01 claro.png");
+	background-image: url("/resources/img/buttons/calendar-01 claro.png");
 }
 .pagar
 {
-	background-image: url("../img/buttons/check-01.png");
+	background-image: url("/resources/img/buttons/check-01.png");
 }
 .pagar:hover
 {
-	background-image: url("../img/buttons/check-01 claro.png");
+	background-image: url("/resources/img/buttons/check-01 claro.png");
 }
 .dashbox
 {
@@ -172,7 +172,7 @@ html, body{
 	background-color: #454545;
 }
 .table-header td{
-	border-color: #454545 !important; 
+	border-color: #454545 !important;
 	padding-top: 3px !important;
 	padding-bottom: 3px !important;
 
@@ -196,7 +196,7 @@ html, body{
 .list-group
 {
 	max-height: 243px;
-	overflow-y:auto; 
+	overflow-y:auto;
 }
 .list-group-item
 {
@@ -249,10 +249,10 @@ html, body{
 }
 .pagar-campania #pagar-campania-deposito{
 	background-color: #DEDEDE;
-	text-align: center;	
+	text-align: center;
 }
 .pagar-campania #pagar-campania-deposito p, .pagar-campania #pagar-campania-deposito h3, .pagar-campania #pagar-campania-deposito button{
-	margin: 10px 0;	
+	margin: 10px 0;
 }
 
 .botones-pagar-campania{
@@ -277,7 +277,7 @@ html, body{
 }
 .footer .footer-image{
 	vertical-align: middle;
-	background-image: url('../img/buttons/book-open-blanco.png');
+	background-image: url('/resources/img/buttons/book-open-blanco.png');
 	background-size: contain;
 	background-repeat: no-repeat;
 	width: 52px;

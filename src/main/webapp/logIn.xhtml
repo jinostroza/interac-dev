@@ -1,25 +1,42 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
                 template="/templates/logInTemplate.xhtml">
 
     <ui:define name="contenido">
 
-        <h3>Log In</h3>
+        <ui:include src="templates/includes/Header.xhtml"/>
 
-        <h:form prependId="false">
-            <h:panelGrid columns="3">
-                <p:outputLabel value="Usuario"/>:
-                <p:inputText id="j_username"/>
-                <p:outputLabel value="Clave"/>:
-                <p:password id="j_password"/>
+        <h:form prependId="false" styleClass="form-horizontal">
+            <p:outputPanel styleClass="col-lg-12 col-xs-12 center-block">
 
-            </h:panelGrid>
-            <p:commandButton ajax="false" value="Ingresar" action="#{autenticarBean.logIn}"/>
-            <br/><br/><br/><br/>
-            <p:link value="Registrar >>" href="/registrar.jsf"/>
+                <p:outputPanel styleClass="form-group">
+                    <p:outputLabel styleClass="col-lg-3 col-xs-12 control-label" value="Usuario:"/>
+                    <p:outputPanel styleClass="col-lg-9 col-xs-12">
+                        <p:inputText id="j_username"/>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <p:outputPanel styleClass="form-group">
+                    <p:outputLabel styleClass="col-lg-3 col-xs-12 control-label" value="Clave:"/>
+                    <p:outputPanel styleClass="col-lg-9 col-xs-12">
+                        <p:password id="j_password"/>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <p:outputPanel styleClass="form-group">
+                    <p:outputPanel styleClass="col-lg-12">
+                        <p:commandButton styleClass="col-lg-offset-3" icon="fa fa-unlock" ajax="false" value="Ingresar" action="#{autenticarBean.logIn}"/>
+                    </p:outputPanel>
+                    <p:outputPanel styleClass="col-lg-12">
+                        <p:link styleClass="col-lg-offset-3" value="Registrar >>" href="/registrar.jsf"/>
+                    </p:outputPanel>
+                </p:outputPanel>
+            </p:outputPanel>
+
         </h:form>
+
+        <ui:include src="templates/includes/Footer.xhtml"/>
     </ui:define>
 </ui:composition>

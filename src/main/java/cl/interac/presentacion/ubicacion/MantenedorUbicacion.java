@@ -15,7 +15,7 @@ import java.util.List;
 
 @Component
 @Scope("flow")
-public class mantenedorUbicacion implements Serializable {
+public class MantenedorUbicacion implements Serializable {
 
   private Ubicacion ubicacion;
 
