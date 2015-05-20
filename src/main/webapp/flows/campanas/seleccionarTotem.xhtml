@@ -7,24 +7,79 @@
     <ui:define name="contenido">
 
         <h3>Seleccionar pantalla</h3>
+        <div class="container contenedor" id="myInterac">
+            <header>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2>Programar campaña</h2>
+                    </div>
+                    <div class="col-lg-6" id="lista-pasos-campania">
+                        <ul>
+                            <li>Posición campaña</li>
+                        </ul>
+                    </div>
+                </div>
+                <br></br>
+            </header>
+            <h3>Seleccionar Pantallas</h3>
+            <h4>Escoge una categoría para tu campaña</h4>
+            <br></br>
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6">
+                    <form>
+                        <div class="form-group">
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-3"></div>
+            </div>
+            <h4>Selecciones las pantallas Interac</h4>
+            <br>
+            <div class="row contenido-mapa">
+                <div  id="googleMap" class="col-lg-8 mapa"></div>
+                <div class="col-lg-4 listado-rubros">
+                    <form>
+                        <div class="form-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="input-group">
+      									<span class="input-group-btn">
+        									<button class="btn btn-default" type="button">
+                                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                            </button>
+      									</span>
+                                        <input type="text" class="form-control" placeholder="Search for...">
+                                    </div><!-- /input-group -->
+                                </div>
+                                <div class="panel-body">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">Burkina Faso</li>
+                                        <li class="list-group-item">El Pentagono</li>
+                                        <li class="list-group-item">Kuala-Lumpur</li>
+                                        <li class="list-group-item">Burkina Faso</li>
+                                        <li class="list-group-item">El Pentagono</li>
+                                        <li class="list-group-item">Kuala-Lumpur</li>
+                                        <li class="list-group-item">Burkina Faso</li>
+                                        <li class="list-group-item">El Pentagono</li>
+                                        <li class="list-group-item">Kuala-Lumpur</li>
+                                        <li class="list-group-item">Burkina Faso</li>
+                                        <li class="list-group-item">El Pentagono</li>
+                                        <li class="list-group-item">Kuala-Lumpur</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="push"></div>
+        </div>
 
-        <h:form>
-           <p:panelMenu>
-                <p:selectOneMenu value="#{MantenedorCampana.campana.totem}" converter="entityConverter">
-                       <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione --"/>
-                       <f:selectItems value="#{MantenedorCampana.totems}" var="totem"
-                                      itemLabel="#{totem.nombre}" itemValue="#{totem}"/>
-                   </p:selectOneMenu>
-           </p:panelMenu>
-
-            <p:panelMenu>
-                <p:selectOneMenu value="#{MantenedorUbicacion.}">
-                <f:selectItem  noSelectionOption="true" itemLabel="---Seleccione--"/>
-                <f:selectItems value="#{MantenedorUbicacion.}" var="ub"
-                               itemLabel="#{}"
-               </p:selectOneMenu>
-            </p:panelMenu>
-
-        </h:form>
     </ui:define>
 </ui:composition>

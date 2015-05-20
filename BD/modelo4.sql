@@ -175,11 +175,7 @@ create table USUARIO (
    constraint PK_USUARIO primary key (IDUSUARIO)
 );
 
-CREATE TABLE rol
-(
-    id_rol SERIAL PRIMARY KEY NOT NULL,
-    namerol VARCHAR(25) NOT NULL
-);
+
 
 
 /*==============================================================*/

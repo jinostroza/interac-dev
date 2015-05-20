@@ -7,13 +7,96 @@
 
     <ui:define name="contenido">
 
-        <h3>Campañas</h3>
+        <div class="container" id="myInterac">
+            <header>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2>Programar campaña</h2>
+                    </div>
+                    <div class="col-lg-6" id="lista-pasos-campania">
+                        <ul>
+                            <li>Posición campaña</li>
+                        </ul>
+                    </div>
+                </div>
 
-        <h:panelGrid columns="3"  >
+            </header>
+            <h3>Elegir Contenido</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tr class="table-header">
+                        <td>
+                            Elegir
+                        </td>
+                        <td>
+                            Nombre
+                        </td>
+                        <td>
+                            Descripcion
+                        </td>
+                        <td>
+                            Fecha de creacion
+                        </td>
+                        <td>
+                            Tipo
+                        </td>
+                        <td>
+                            Verificacion
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input type="checkbox"/>
+                        </td>
+                        <td>
+                            Afiche primer cabildo abierto
+                        </td>
+                        <td>
+                            Afiche digitalizado desde sustrato de papel de arroz
+                        </td>
+                        <td>
+                            18 / 09 / 1810
+                        </td>
+                        <td>
+                            Afiche
+                        </td>
+                        <td>
+                            Verificado
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input type="checkbox"/>
+                        </td>
+                        <td>
+                            Afiche jura de la independencia
+                        </td>
+                        <td>
+                            Afiche digitalizado desde sustrato de papel de arroz
+                        </td>
+                        <td>
+                            12 / 02 / 1818
+                        </td>
+                        <td>
+                            Afiche
+                        </td>
+                        <td>
+                            Verificado
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="pull-right">
+                <button type="button" class="btn btn-interac">Volver</button>
+                <button type="button" class="btn btn-default">Crear nuevo Anuncio</button>
+                <button type="button" class="btn btn-default">Elegir contenido</button>
+            </div>
+            <div class="push"></div>
+        </div>
 
 
-
-
-        </h:panelGrid>
     </ui:define>
 </ui:composition>

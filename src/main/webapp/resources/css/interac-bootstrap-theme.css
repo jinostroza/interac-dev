@@ -18,7 +18,7 @@ html, body{
 }
 .header .header-top .logo{
 	position: absolute;
-	background-image: url('/resources/img/interacblanco.png');
+	background-image: url('/resources/css/img/interacblanco.png');
 	width: 200px;
 	height: 60px;
 	margin: 25px 0 15px 50px;
@@ -114,35 +114,37 @@ html, body{
 }
 .crear-anuncio, .elegir-contenido, .elegir-anuncio
 {
-	background-image: url("/resources/img/buttons/edit-01.png");
+	background-image: url("/resources/css/img/buttons/edit-01.png");
+	display: block;
 }
 .crear-anuncio:hover, .elegir-contenido:hover, .elegir-anuncio:hover
 {
-	background-image: url("/resources/img/buttons/edit-01 claro.png");
+	background-image: url("/resources/css/img/buttons/edit-01%20claro.png");
 }
 .crear-campana, .seleccionar-pantallas
 {
-	background-image: url("/resources/img/buttons/pantalla-03.png");
+	background-image: url("/resources/css/img/buttons/pantalla-03.png");
+	display: block;
 }
 .crear-campana:hover, .seleccionar-pantallas:hover
 {
-	background-image: url("/resources/img/buttons/pantalla-03 claro.png");
+	background-image: url("/resources/css/img/buttons/pantalla-03%20claro.png");
 }
 .planificar-campana
 {
-	background-image: url("/resources/img/buttons/calendar-01.png");
+	background-image: url("/resources/css/img/buttons/calendar-01.png");
 }
 .planificar-campana:hover
 {
-	background-image: url("/resources/img/buttons/calendar-01 claro.png");
+	background-image: url("/resources/css/img/buttons/calendar-01 claro.png");
 }
 .pagar
 {
-	background-image: url("/resources/img/buttons/check-01.png");
+	background-image: url("/resources/css/img/buttons/check-01.png");
 }
 .pagar:hover
 {
-	background-image: url("/resources/img/buttons/check-01 claro.png");
+	background-image: url("/resources/css/img/buttons/check-01 claro.png");
 }
 .dashbox
 {
@@ -277,7 +279,7 @@ html, body{
 }
 .footer .footer-image{
 	vertical-align: middle;
-	background-image: url('/resources/img/buttons/book-open-blanco.png');
+	background-image: url('/resources/css/img/buttons/book-open-blanco.png');
 	background-size: contain;
 	background-repeat: no-repeat;
 	width: 52px;

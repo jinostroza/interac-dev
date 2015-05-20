@@ -20,7 +20,6 @@ import static org.springframework.util.FileCopyUtils.BUFFER_SIZE;
 public class FileUploader {
     @Autowired
     private Constantes constantes;
-
     public String subir(UploadedFile archivo, String relativePath) {
         try {
             String path = constantes.getPathArchivos() + relativePath;

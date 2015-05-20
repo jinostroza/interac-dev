@@ -6,6 +6,7 @@ import cl.interac.entidades.Usuario;
 import cl.interac.negocio.LogicaCampana;
 import cl.interac.negocio.LogicaCategoria;
 import cl.interac.util.components.UserSession;
+import cl.interac.util.services.FileUploader;
 import org.primefaces.event.FileUploadEvent;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -32,7 +33,7 @@ public class MantenedorAnuncios implements Serializable {
         INSERTAR,
         EDITAR
     };
-
+    private FileUploader fileUploader;
     private TipoOperacion operacion;
     private List<Categoria> categorias;
     private List<Campana> campanas;
@@ -76,6 +77,14 @@ public class MantenedorAnuncios implements Serializable {
     public void eliminar() {
         logicaAnuncio.eliminarAnuncio(anuncio);
     }
+
+
+
+    public void subir(FileUploadEvent fue) {
+        fileUploader.subir(fue, "/img/publicidad/");
+    }
+
+
 
 
     public void inicio() {

@@ -6,33 +6,36 @@
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
+
         <div class="container" id="myInterac">
-        <header>
-            <h2>Crea tu campaña</h2>
-        </header>
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="dashbox">
-                    <p class="dashbox-header">Crear anuncio</p>
-                    <div class="button_ crear-anuncio"></div>
-                    <p> Escoge aqui uno de los anuncios ya creados </p>
+            <header>
+                <h2>Crea tu campaña</h2>
+            </header>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="dashbox">
+                        <p class="dashbox-header">Crear anuncio</p>
+                        <p:commandLink styleClass="button_ crear-anuncio" action="#{facesUtil.redirigir('/plataforma/anuncios')}"/>
+                        <p> Escoge aqui uno de los anuncios ya creados </p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="dashbox">
+                        <p class="dashbox-header">Crear campaña</p>
+                        <p:commandLink styleClass="button_ crear-campana" action="#{facesUtil.redirigir('/plataforma/campanas')}"/>
+                        <p> Escoge aqui uno de los anuncios ya creados </p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="dashbox">
+                        <p class="dashbox-header">Pagar</p>
+                        <div class="button_ pagar"></div>
+                        <p> Escoge aqui uno de los anuncios ya creados </p>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="dashbox">
-                    <p class="dashbox-header">Crear campaña</p>
-                    <div class="button_ crear-campana"></div>
-                    <p> Escoge aqui uno de los anuncios ya creados </p>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="dashbox">
-                    <p class="dashbox-header">Pagar</p>
-                    <div class="button_ pagar"></div>
-                    <p> Escoge aqui uno de los anuncios ya creados </p>
-                </div>
-            </div>
+            <div class="push"></div>
         </div>
-        </div>
+
     </ui:define>
 </ui:composition>
