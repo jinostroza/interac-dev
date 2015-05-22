@@ -7,19 +7,47 @@ import java.util.List;
 /**
  * Created by Pedro Pablo on 20-05-2015.
  */
+
+
+@Entity
+@NamedQueries({
+               @NamedQuery(name="establecimiento.findAll",query="select e from Establecimiento e")
+})
+
 public class Establecimiento implements Serializable {
     private Integer idEstablecimiento;
     private String nombreEstablecimiento;
     private String direccion;
-    private String comuna;
-    private String region;
+
     private String fono;
 
     // Relaciones
     private Usuario usuario;
+    private List<Totem> totem;
 
-    // Metodos get y set
+    @JoinColumn
+    @ManyToOne
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    @JoinColumn()
+    @OneToMany
+    public List<Totem> getTotem() {
+        return totem;
+    }
+
+    public void setTotem(List<Totem> totem) {
+        this.totem = totem;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="idEstablecimiento",nullable = false ,insertable = true ,updatable = false)
     public Integer getIdEstablecimiento() {
         return idEstablecimiento;
     }
@@ -28,6 +56,10 @@ public class Establecimiento implements Serializable {
         this.idEstablecimiento = idEstablecimiento;
     }
 
+
+
+    @Basic
+    @Column
     public String getNombreEstablecimiento() {
         return nombreEstablecimiento;
     }
@@ -36,6 +68,9 @@ public class Establecimiento implements Serializable {
         this.nombreEstablecimiento = nombreEstablecimiento;
     }
 
+
+    @Basic
+    @Column
     public String getDireccion() {
         return direccion;
     }
@@ -44,22 +79,8 @@ public class Establecimiento implements Serializable {
         this.direccion = direccion;
     }
 
-    public String getComuna() {
-        return comuna;
-    }
-
-    public void setComuna(String comuna) {
-        this.comuna = comuna;
-    }
-
-    public String getRegion() {
-        return region;
-    }
-
-    public void setRegion(String region) {
-        this.region = region;
-    }
-
+    @Basic
+    @Column
     public String getFono() {
         return fono;
     }

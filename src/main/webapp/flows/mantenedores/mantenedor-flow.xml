@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+       start-state="inicioMantenedores" >
+
+     <on-start>
+           <evaluate expression="mantenedorTotems.inicio()"></evaluate>
+     </on-start>
+
+      <view-state id="inicioMantenedores">
+           <transition on="anuncios" to="mantenedorAnuncio"/>
+            <transition on="totem" to="mantenedorTotem"/>
+            <transition on="campana" to="mantenedorCampana"/>
+            <transition on="usuario" to="mantenedorUsuario"/>
+            <transition on="categoria" to="mantenedorCategoria"/>
+            <transition on="local" to="mantenedorEstablecimiento"/>
+      </view-state>
+
+
+      <view-state id="mantenedorTotem">
+
+      </view-state>
+
+      <view-state id="mantenedorAnuncio">
+
+      </view-state>
+
+      <view-state id="mantenedorCampana"></view-state>
+
+      <view-state id="mantenedorUsuario"></view-state>
+
+      <view-state id="mantenedorUbicacion"></view-state>
+
+      <view-state id="mantenedorEstablecimiento"></view-state>
+
+      <view-state id="mantenedorCategoria"></view-state>
+</flow>

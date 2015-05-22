@@ -37,4 +37,9 @@ public class LogicaTotem {
     public void eliminarTotem(Totem t){
        totemDAO.eliminarTotem(t);
    }
-}
+
+
+
+    }
+
+

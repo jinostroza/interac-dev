@@ -23,7 +23,7 @@
 
     <!--mismo caso-->
     <view-state id="seleccionarContenido">
-        <transition on="regAnun" to="registraAnuncio"/>
+
     </view-state>
 
 
