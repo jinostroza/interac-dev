@@ -2,6 +2,7 @@ package cl.interac.entidades;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Jorge on 25-04-15.
@@ -37,12 +38,6 @@ public class Ubicacion implements Serializable {
         this.idubicacion = idubicacion;
     }
 
-    @Basic
-    @Column(name = "idtotem")
-    public Integer getIdtotem() {
-        return idtotem;
-    }
-
     public void setIdtotem(Integer idtotem) {
         this.idtotem = idtotem;
     }
@@ -57,11 +52,10 @@ public class Ubicacion implements Serializable {
         this.descubicacion = descubicacion;
     }
 
-    @OneToOne(mappedBy = "ubicacion", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "ubicacion")
     public Totem getTotem() {
         return totem;
     }
-
     public void setTotem(Totem totem) {
         this.totem = totem;
     }

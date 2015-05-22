@@ -19,12 +19,12 @@
 
 
       <view-state id="mantenedorTotem">
-
+          <transition>
+          <evaluate expression="mantenedorTotems.inicio()"></evaluate>
+          </transition>
       </view-state>
 
-      <view-state id="mantenedorAnuncio">
-
-      </view-state>
+      <view-state id="mantenedorAnuncio"></view-state>
 
       <view-state id="mantenedorCampana"></view-state>
 
