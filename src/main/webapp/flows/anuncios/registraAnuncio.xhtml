@@ -49,7 +49,7 @@
                               fileLimit="4"
                               fileLimitMessage="Solo se puede subir 4 documento(s)"/>
 
-
+                <p:commandButton ajax="false"  value="registrar" action="${mantenedorAnuncios.guardar()}"/>
             </h:panelGrid>
         </h:form>
                     <div class="container" id="crearAnuncio">
@@ -62,12 +62,12 @@
                                     <div class="form-group">
                                         <div class="radio-inline">
                                             <label>
-                                                <input type="radio" name="optionsRadios" id="radioHorizontal" value="horizontal">Horizontal
+                                                <input type="radio" name="optionsRadios" id="radioHorizontal" value="horizontal"/>Horizontal
                                             </label>
                                         </div>
                                         <div class="radio-inline">
                                             <label>
-                                                <input type="radio" name="optionsRadios" id="radioVertical" value="vertical">Vertical
+                                                <input type="radio" name="optionsRadios" id="radioVertical" value="vertical"/>Vertical
                                             </label>
                                         </div>
                                         <br></br>
@@ -83,7 +83,7 @@
                                 <div class="col-md-6 formulario-texto">
                                 <div class="form-group">
                                     <label>Nombre</label>
-                                    <input type="text" class="form-control" placeholder="Escribe el nombre de tu anuncio"/>
+                                    <input type="text" class="form-control" placeholder="Escribe el nombre de tu anuncio"></input>>
                                     <br></br>
                                     <label>Descripción</label>
                                     <h:inputTextarea type="text" class="form-control" rows="3" placeholder="Escriba la descripción de su anuncio que te permitirá identificarlo despues"/>
@@ -99,6 +99,7 @@
                                     <label>ID: 74903742</label>
                                     <br></br>
                                     <button type="submit" class="btn btn-default btn-block">Crear Anuncio</button>
+                                </div>
                                 </div>
                             </form>
                         </div>
@@ -121,7 +122,8 @@
 
 
 
-            <p:commandButton ajax="false"  value="registrar" action="${mantenedorAnuncios.guardar()}"/>
+
+
 
 
 
