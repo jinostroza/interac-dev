@@ -20,7 +20,11 @@ public class EstablecimientoDAO {
 
     public void guardar(Establecimiento es){
         if (es.getIdEstablecimiento() == null) em.persist(es);
-
         else em.merge(es);
+    }
+
+    public void eliminar(Establecimiento es){
+        Establecimiento establecimiento = em.find(Establecimiento.class, es.getIdEstablecimiento());
+        em.remove(establecimiento);
     }
 }
