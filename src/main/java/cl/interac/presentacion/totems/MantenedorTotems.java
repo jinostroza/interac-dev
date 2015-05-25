@@ -36,7 +36,8 @@ public class MantenedorTotems implements Serializable
              totems.remove(totem);
              logicaTotem.eliminarTotem(totem);
          }
-
+     public void editarTotem(){
+     }
 
 
     //get and set
@@ -63,6 +64,17 @@ public class MantenedorTotems implements Serializable
     public void setLogicaTotem(LogicaTotem logicaTotem) {
         this.logicaTotem = logicaTotem;
     }
+
+    public LogicaCampana getLogicaCampana() {
+        return logicaCampana;
+    }
+
+    public void setLogicaCampana(LogicaCampana logicaCampana) {
+        this.logicaCampana = logicaCampana;
+    }
+
+
+
 }
 
 

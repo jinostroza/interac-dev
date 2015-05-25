@@ -12,5 +12,19 @@ import java.util.List;
 /**
  * Created by Pedro Pablo on 20-05-2015.
  */
+@Service
+@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class LogicaEstablecimiento {
+    @Autowired
+    private EstablecimientoDAO establecimientoDAO;
+
+    @Transactional(readOnly = true)
+    public List<Establecimiento> obtenerTodos(){return establecimientoDAO.ObtenerTodos();}
+
+    @Transactional(readOnly = false)
+    public void guardar(Establecimiento e){ establecimientoDAO.guardar(e);}
+
+    @Transactional(readOnly = false)
+    public void eliminar(Establecimiento e){establecimientoDAO.eliminar(e);}
+
 }

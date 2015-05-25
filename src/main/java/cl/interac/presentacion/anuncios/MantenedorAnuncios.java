@@ -48,8 +48,7 @@ public class MantenedorAnuncios implements Serializable {
     @Autowired
     private LogicaCategoria logicaCategoria;
 
-    public MantenedorAnuncios() {
-        anuncio = new Anuncio();
+    public MantenedorAnuncios() { anuncio = new Anuncio();
     }
 
     //flows
@@ -81,7 +80,7 @@ public class MantenedorAnuncios implements Serializable {
 
 
     public void subir(FileUploadEvent fue) {
-        fileUploader.subir(fue, "/img/publicidad/");
+        fileUploader.subir(fue, "ensayando");
     }
 
 

@@ -14,21 +14,21 @@ import java.util.List;
                 query = "select u from Ubicacion u"
         ),
         @NamedQuery(
-                name="Ubicacion.findAllWithRelationships",
+                name = "Ubicacion.findAllWithRelationships",
                 query = "SELECT u from Ubicacion u " +
-                        "inner join fetch u.totem "
+                        "inner join fetch u.establecimientoList "
         )
 })
 public class Ubicacion implements Serializable {
     private Integer idubicacion;
-    private Integer idtotem;
     private String descubicacion;
 
     // relaciones
-    private Totem totem;
+    private Establecimiento establecimientoList;
+
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idubicacion")
     public Integer getIdubicacion() {
         return idubicacion;
@@ -38,9 +38,6 @@ public class Ubicacion implements Serializable {
         this.idubicacion = idubicacion;
     }
 
-    public void setIdtotem(Integer idtotem) {
-        this.idtotem = idtotem;
-    }
 
     @Basic
     @Column(name = "descubicacion")
@@ -52,13 +49,16 @@ public class Ubicacion implements Serializable {
         this.descubicacion = descubicacion;
     }
 
+
     @OneToOne(mappedBy = "ubicacion")
-    public Totem getTotem() {
-        return totem;
+    public Establecimiento getEstablecimientoList() {
+        return establecimientoList;
     }
-    public void setTotem(Totem totem) {
-        this.totem = totem;
+
+    public void setEstablecimientoList(Establecimiento establecimientoList) {
+        this.establecimientoList = establecimientoList;
     }
+
 
     @Override
     public boolean equals(Object o) {

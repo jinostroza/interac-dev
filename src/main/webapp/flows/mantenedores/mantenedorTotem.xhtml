@@ -6,57 +6,34 @@
                 template="/templates/default.xhtml">
     <ui:define name="contenido">
 
-    <h:form>
-        <h3>Totem estado</h3>
-        <h:panelGrid columns="2">
-            <h:outputLabel value="totems:"/>
-            <p:selectOneMenu value="#{mantenedorTotems.totem}" converter="entityConverter">
-                <f:selectItem noSelectionOption="true" itemLabel="---seleccione totem----"/>
-                <f:selectItems value="#{mantenedorTotems.totems}" var="totem"
-                               itemLabel="#{totem.nombre}" itemValue="#{totem}"/>
+        <h:form>
+            <h3>administrador de TOTEMS</h3>
 
-            </p:selectOneMenu>
-            <h:outputLabel value="ubicacion:"/>
-            <p:selectOneMenu value="#{mantenedorUbicacion.ubicacion}" converter="entityConverter">
-                <f:selectItem noSelectionOption="true" itemLabel="---seleccione ubicacion----"/>
-                <f:selectItems value="#{mantenedorUbicacion.obtenerUbicacion}" var="ub"
-                               itemLabel="#{ub.idubicacion}:#{ub.descubicacion}" itemValue="#{ub}"/>
+            <p:dataScroller value="#{mantenedorTotems.totems}" var="totem" chunkSize="10">
+                <f:facet name="header">
+                   Totems
+                </f:facet>
 
-            </p:selectOneMenu>
+                <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
 
 
-            <p:outputLabel value="n° de serie:"/>
-            <p:inputText value="#{mantenedorTotems.totem.noserie}"/>
-            <p:outputLabel value="Dispositivos (TOTEM's):"/>
-            <p:inputText value="#{mantenedorTotems.totem.tipo}"/>
-            <h:commandLink styleClass="btn" value="#{mantenedorTotems.agregarTotem()}"/>
-        </h:panelGrid>
+                    <p:outputPanel>
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputText value="NO:" />
+                            <h:outputText value="#{totem.noserie}" style="font-weight: bold"/>
 
+                            <h:outputText value="ubicacion:" />
+                            <h:outputText value="#{totem.tipo}" style="font-weight: bold"/>
 
-        <p:dataScroller value="#{mantenedorTotems.totems}" var="totem" chunkSize="10">
-            <f:facet name="header">
-                totems en funcionamiento
-            </f:facet>
-
-            <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-
-
-                <p:outputPanel>
-                    <h:panelGrid columns="2" cellpadding="5">
-                        <h:outputText value="Id:" />
-                        <h:outputText value="#{totem.idtotem}" style="font-weight: bold"/>
-
-                        <h:outputText value="No. serie:" />
-                        <h:outputText value="#{totem.noserie}" style="font-weight: bold"/>
-
-                        <h:outputText value="Tipo:" />
-                        <h:outputText value="#{totem.tipo}" style="font-weight: bold"/>
-                    </h:panelGrid>
-                </p:outputPanel>
-            </h:panelGrid>
-        </p:dataScroller>
-
-    </h:form>
+                            <h:outputText value="establecimiento" />
+                            <h:outputText value="#{totem.establecimiento.nombreEstablecimiento}" style="font-weight: bold"/>
+                            <h:outputText value="direccion" />
+                            <h:outputText value="#{totem.establecimiento.direccion}" style="font-weight: bold"/>
+                        </h:panelGrid>
+                    </p:outputPanel>
+                </h:panelGrid>
+            </p:dataScroller>
+        </h:form>
     </ui:define>
 
 </ui:composition>

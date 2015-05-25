@@ -26,6 +26,22 @@ public class MantenedorCategoria implements Serializable
         categoria = new Categoria();
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public LogicaCategoria getLogicaCategoria() {
+        return logicaCategoria;
+    }
+
+    public void setLogicaCategoria(LogicaCategoria logicaCategoria) {
+        this.logicaCategoria = logicaCategoria;
+    }
+
     public List<Categoria> getCategorias() {
         return categorias;
     }

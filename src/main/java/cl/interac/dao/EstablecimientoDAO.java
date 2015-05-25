@@ -16,7 +16,7 @@ public class EstablecimientoDAO {
     @PersistenceContext
     private EntityManager em;
 
-    public List<Establecimiento> ObtenerTodos(){return em.createNamedQuery("Establecimiento.findAll").getResultList();}
+    public List<Establecimiento> ObtenerTodos(){return em.createNamedQuery("establecimiento.findAll").getResultList();}
 
     public void guardar(Establecimiento es){
         if (es.getIdEstablecimiento() == null) em.persist(es);
