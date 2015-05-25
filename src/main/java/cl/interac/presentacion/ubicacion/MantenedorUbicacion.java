@@ -20,7 +20,6 @@ public class MantenedorUbicacion implements Serializable {
   private Ubicacion ubicacion;
 
     @Autowired
-
     private LogicaUbicacion logicaUbicacion;
 
     private List<Ubicacion> obtenerUbicacion;

@@ -16,7 +16,7 @@ import java.util.List;
 public class Totem implements Serializable {
     private Integer idtotem;
     private String noserie;
-    private boolean tipo;
+    private String tipo;
 
     // relaciones
     private List<Campana> campanas;
@@ -45,12 +45,12 @@ public class Totem implements Serializable {
         this.noserie = noserie;
     }
     @Basic
-    @Column(name = "tipo")
-    public boolean isTipo() {
+    @Column(name = "tipo",insertable = true,nullable = true,length = 20)
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(boolean tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 

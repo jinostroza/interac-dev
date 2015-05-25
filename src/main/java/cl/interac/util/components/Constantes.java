@@ -26,7 +26,7 @@ public class Constantes implements Serializable {
                 return null;
             }
         });
-        pathArchivos = System.getProperty("catalina.home") + "/static/interac/src/main/webapp/resources/img/publicidad";
+        pathArchivos = System.getProperty("catalina.home") + "/static/interac/src/main/webapp/resources/img";
     }
 
     public String getPathArchivos() {

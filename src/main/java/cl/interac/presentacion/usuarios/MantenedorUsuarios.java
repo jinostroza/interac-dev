@@ -27,9 +27,11 @@ public class MantenedorUsuarios implements Serializable {
     
     private TipoOperacion operacion;
 
+
     public void inicio() {
         usuarios = logicaUsuario.obtenerTodos();
     }
+
 
     public void guardarUsuario() {
 

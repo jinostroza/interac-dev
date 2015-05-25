@@ -6,125 +6,67 @@
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
-
+        <h:form enctype="multipart/form-data">
         <h3>
 
-                <h:outputText value="Agregar Campaña" rendered="#{mantenedorAnuncios.esEditar()}"/>
-                <h:outputText value="Editar Campaña" rendered="#{mantenedorAnuncios.esAgregar()}"/>
+            <h:outputText value="Agregar Campaña" rendered="#{mantenedorAnuncios.esEditar()}"/>
+            <h:outputText value="Editar Campaña" rendered="#{mantenedorAnuncios.esAgregar()}"/>
 
         </h3>
 
 
-        <h:form enctype="multipart/form-data">
-            <h:panelGrid columns="3"  >
-                <p:outputLabel value="Nombre Anuncio"/>:
-                <h:inputText value="#{mantenedorAnuncios.anuncio.descanuncio}"/>
-                <p:outputLabel value="rubro"/>:
-                <h:inputText value="#{mantenedorAnuncios.anuncio.rubro}"/>
-                <p:outputLabel value="media"/>:
-                <h:inputText value="#{mantenedorAnuncios.anuncio.media}"/>
-                <p:outputLabel value="campaña"/>:
-                <p:selectOneMenu value="#{mantenedorAnuncios.anuncio.campana}" converter="entityConverter" >
-                    <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione --"/>
-                    <f:selectItems value="#{mantenedorAnuncios.campanas}" var="obtenerCampanas"
-                                   itemLabel="#{obtenerCampanas.desccampana}" itemValue="#{obtenerCampanas}"/>
+
+            <h:panelGrid styleClass="container" id="crearAnuncio">
+
+                <h:panelGrid styleClass="col-md-6 formulario-texto">
+                    <h:panelGrid>
+                        <p:outputLabel value="Nombre Anuncio"/>:
+                        <h:inputText styleClass="form-control" value="#{mantenedorAnuncios.anuncio.descanuncio}"/>
+                        <p:outputLabel value="rubro"/>:
+                        <h:inputText styleClass="form-control" value="#{mantenedorAnuncios.anuncio.rubro}"/>
+                        <p:outputLabel value="media"/>:
+                        <h:inputText styleClass="form-control" value="#{mantenedorAnuncios.anuncio.media}"/>
+
+                        <p:outputLabel value="campaña"/>:
+                        <p:selectOneMenu styleClass="form-control" value="#{mantenedorAnuncios.anuncio.campana}"
+                                         converter="entityConverter">
+                            <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione --"/>
+                            <f:selectItems value="#{mantenedorAnuncios.campanas}" var="obtenerCampanas"
+                                           itemLabel="#{obtenerCampanas.desccampana}" itemValue="#{obtenerCampanas}"/>
 
 
-                </p:selectOneMenu>
-                <p:outputLabel value="categoria"/>:
-                <p:selectOneMenu value="#{mantenedorAnuncios.anuncio.categoria}" converter="entityConverter" >
-                    <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione --"/>
-                    <f:selectItems value="#{mantenedorAnuncios.categorias}" var="categoria"
-                                   itemLabel="#{categoria.desccategoria}" itemValue="#{categoria}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="categoria"/>:
+                        <p:selectOneMenu styleClass="form-control" value="#{mantenedorAnuncios.anuncio.categoria}"
+                                         converter="entityConverter">
+                            <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione --"/>
+                            <f:selectItems value="#{mantenedorAnuncios.categorias}" var="categoria"
+                                           itemLabel="#{categoria.desccategoria}" itemValue="#{categoria}"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
 
-                </p:selectOneMenu>
-                <p:fileUpload value="#{fileUpload.file}" mode="simple" skinSimple="true"/>
-                <p:commandButton value="Submit" ajax="false" actionListener="#{fileUploader.subir()}" disabled="true" />
-
-
-                <p:fileUpload rendered="true" immediate="true" auto="false" multiple="true" mode="advanced"
-                              fileUploadListener="#{mantenedorAnuncios.subir}" uploadLabel="Subir" cancelLabel="Cancelar"
-                              allowTypes="/(\.|\/)(xlsx|docx|doc|xls|ppt|pptx|wmv|pdf|jpg|png|rar|zip|tar|gz)$/i"
-                              label="Cargar nuevo archivo"
-                              fileLimit="4"
-                              fileLimitMessage="Solo se puede subir 4 documento(s)"/>
-
-                <p:commandButton ajax="false"  value="registrar" action="${mantenedorAnuncios.guardar()}"/>
+                </h:panelGrid>
+                <h:panelGrid class="dz-default dz-message">
+                    <p:fileUpload rendered="true" immediate="true" auto="false" multiple="true" mode="advanced"
+                                  fileUploadListener="#{mantenedorAnuncios.subir}" uploadLabel="Subir"
+                                  cancelLabel="Cancelar"
+                                  allowTypes="/(\.|\/)(xlsx|docx|doc|xls|ppt|pptx|wmv|pdf|jpg|png|rar|zip|tar|gz)$/i"
+                                  label="Cargar nuevo archivo"
+                                  fileLimit="4"
+                                  fileLimitMessage="Solo se puede subir 4 documento(s)"/>
+                    <p:commandButton value="Submit" ajax="false" actionListener="#{fileUploader.subir()}"
+                                     disabled="true"/>
+                    <p:commandButton ajax="false" value="registrar" action="${mantenedorAnuncios.guardar()}"/>
+                    <label>Nota: La imagen tiene que tener una resolución de
+                        <mark>1920 x 1080</mark>
+                        pixeles y en formato
+                        <mark>.JPG</mark>
+                    </label>
+                </h:panelGrid>
             </h:panelGrid>
+
+
         </h:form>
-                    <div class="container" id="crearAnuncio">
-                        <header>
-                            <h2>Crea tu anuncio</h2>
-                        </header>
-                        <div class="row">
-                            <form action="upload-target" class="dropzone" id="interac-dropzone">
-                                <div class="col-lg-6 formulario-imagen">
-                                    <div class="form-group">
-                                        <div class="radio-inline">
-                                            <label>
-                                                <input type="radio" name="optionsRadios" id="radioHorizontal" value="horizontal"/>Horizontal
-                                            </label>
-                                        </div>
-                                        <div class="radio-inline">
-                                            <label>
-                                                <input type="radio" name="optionsRadios" id="radioVertical" value="vertical"/>Vertical
-                                            </label>
-                                        </div>
-                                        <br></br>
-                                        <div id="cuadro-imagen" class="dz-default dz-message">
-                                            <img class="img-responsive" src="img/cloud-upload.png" style="width:50%; height:50%;"/>
-                                            <span>Haga click acá para subir la imagen</span>
-                                            <input type="file" name="file" class="dz-hidden-inupt" style="visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;"/>
-                                        </div>
-                                        <br></br>
-                                        <label>Nota: La imagen tiene que tener una resolución de <mark>1920 x 1080</mark> pixeles y en formato <mark>.JPG</mark></label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 formulario-texto">
-                                <div class="form-group">
-                                    <label>Nombre</label>
-                                    <input type="text" class="form-control" placeholder="Escribe el nombre de tu anuncio"></input>>
-                                    <br></br>
-                                    <label>Descripción</label>
-                                    <h:inputTextarea type="text" class="form-control" rows="3" placeholder="Escriba la descripción de su anuncio que te permitirá identificarlo despues"/>
-                                    <br></br>
-                                    <label>Categoría</label>
-                                    <select class="form-control">
-                                        <option>Seleccione una categoría</option>
-                                    </select>
-                                    <br></br>
-                                    <label>Archivo</label>
-                                    <p>No has subido ningún archivo</p>
-                                    <br></br>
-                                    <label>ID: 74903742</label>
-                                    <br></br>
-                                    <button type="submit" class="btn btn-default btn-block">Crear Anuncio</button>
-                                </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     </ui:define>
