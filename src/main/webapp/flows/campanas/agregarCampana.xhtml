@@ -19,8 +19,8 @@
                 <p:outputLabel value="Dispositivos (TOTEM's)"/>:
                 <p:selectOneMenu value="#{MantenedorCampana.campana.totem}" converter="entityConverter">
                     <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione --"/>
-                    <f:selectItems value="#{MantenedorCampana.totems}" var="totem"
-                                   itemLabel="#{totem.nombre}" itemValue="#{totem}"/>
+                    <f:selectItems value="#{mantenedorCampana.campanas}" var="totem"
+                                   itemLabel="#{totem.totem.noserie}" itemValue="#{totem}"/>
                 </p:selectOneMenu>
             </h:panelGrid>
 

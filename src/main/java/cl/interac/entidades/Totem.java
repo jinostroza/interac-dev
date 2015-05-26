@@ -20,10 +20,10 @@ public class Totem implements Serializable {
 
     // relaciones
     private List<Campana> campanas;
-    private Ubicacion ubicacion;
+    private Establecimiento establecimiento;
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idtotem")
     public Integer getIdtotem() {
         return idtotem;
@@ -32,7 +32,6 @@ public class Totem implements Serializable {
     public void setIdtotem(Integer idtotem) {
         this.idtotem = idtotem;
     }
-
 
 
     @Basic
@@ -44,8 +43,9 @@ public class Totem implements Serializable {
     public void setNoserie(String noserie) {
         this.noserie = noserie;
     }
+
     @Basic
-    @Column(name = "tipo",insertable = true,nullable = true,length = 20)
+    @Column(name = "tipo", insertable = true, nullable = true, length = 20)
     public String getTipo() {
         return tipo;
     }
@@ -53,7 +53,6 @@ public class Totem implements Serializable {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
 
 
     @OneToMany(mappedBy = "totem")
@@ -65,14 +64,14 @@ public class Totem implements Serializable {
         this.campanas = campanas;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idubicacion", referencedColumnName = "idubicacion")
-    public Ubicacion getUbicacion() {
-        return ubicacion;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idestablecimiento", nullable = false, insertable = false, updatable = false)
+    public Establecimiento getEstablecimiento() {
+        return establecimiento;
     }
 
-    public void setUbicacion(Ubicacion ubicacion) {
-        this.ubicacion = ubicacion;
+    public void setEstablecimiento(Establecimiento establecimiento) {
+        this.establecimiento = establecimiento;
     }
 
 

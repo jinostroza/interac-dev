@@ -11,22 +11,27 @@ import java.util.List;
 
 @Entity
 @NamedQueries({
-               @NamedQuery(name="establecimiento.findAll",query="select e from Establecimiento e")
+        @NamedQuery(name = "establecimiento.findAll", query = "select e from Establecimiento e"),
+        @NamedQuery(name="estabecimiento.findAllByusuario",
+                query="select e from Establecimiento e " +
+                        "inner join fetch e.usuario " +
+                        "inner join fetch e.ubicacion")
 })
 
 public class Establecimiento implements Serializable {
     private Integer idEstablecimiento;
     private String nombreEstablecimiento;
     private String direccion;
-
     private String fono;
 
     // Relaciones
     private Usuario usuario;
     private List<Totem> totem;
+    private Ubicacion ubicacion;
 
-    @JoinColumn
-    @ManyToOne
+
+    @JoinColumn(name = "idusuario", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     public Usuario getUsuario() {
         return usuario;
     }
@@ -35,8 +40,8 @@ public class Establecimiento implements Serializable {
         this.usuario = usuario;
     }
 
-    @JoinColumn()
-    @OneToMany
+
+    @OneToMany(mappedBy = "establecimiento")
     public List<Totem> getTotem() {
         return totem;
     }
@@ -47,7 +52,7 @@ public class Establecimiento implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idEstablecimiento",nullable = false ,insertable = true ,updatable = false)
+    @Column(name = "idEstablecimiento", nullable = false, insertable = true, updatable = false)
     public Integer getIdEstablecimiento() {
         return idEstablecimiento;
     }
@@ -55,7 +60,6 @@ public class Establecimiento implements Serializable {
     public void setIdEstablecimiento(Integer idEstablecimiento) {
         this.idEstablecimiento = idEstablecimiento;
     }
-
 
 
     @Basic
@@ -89,6 +93,31 @@ public class Establecimiento implements Serializable {
         this.fono = fono;
     }
 
+
+    @JoinColumn(name = "idubicacion", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    public Ubicacion getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+
     @Override
-    public int hashCode() {return idEstablecimiento != null ? 31 * idEstablecimiento.hashCode() : 0;}
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Establecimiento establecimiento = (Establecimiento) o;
+
+        if (this.getIdEstablecimiento() == null || establecimiento.getIdEstablecimiento() == null) return false;
+        else return this.getIdEstablecimiento().intValue() == establecimiento.getIdEstablecimiento().intValue();
+    }
+
+    @Override
+    public int hashCode() {
+        return idEstablecimiento != null ? 31 * idEstablecimiento.hashCode() : 0;
+    }
 }
