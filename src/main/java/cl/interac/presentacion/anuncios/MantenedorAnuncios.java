@@ -33,12 +33,13 @@ public class MantenedorAnuncios implements Serializable {
         INSERTAR,
         EDITAR
     };
-    private FileUploader fileUploader;
     private TipoOperacion operacion;
     private List<Categoria> categorias;
     private List<Campana> campanas;
     private List<Anuncio> anuncios;
     private Anuncio anuncio;
+    private Campana campana;
+
 
 
     @Autowired
@@ -47,6 +48,10 @@ public class MantenedorAnuncios implements Serializable {
     private LogicaCampana logicaCampana;
     @Autowired
     private LogicaCategoria logicaCategoria;
+    @Autowired
+    private FileUploader fileUploader; // es un componente
+    @Autowired
+    private UserSession userSession;
 
     public MantenedorAnuncios() { anuncio = new Anuncio();
     }
@@ -68,7 +73,7 @@ public class MantenedorAnuncios implements Serializable {
 
         if (esEditar()) {
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña [" + anuncio.getDescanuncio() + "]");
-        } else {
+        } else{
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado la campaña [" + anuncio.getDescanuncio() + "]");
         }
     }
@@ -80,7 +85,14 @@ public class MantenedorAnuncios implements Serializable {
 
 
     public void subir(FileUploadEvent fue) {
-        fileUploader.subir(fue, "ensayando");
+        System.err.println("LLEGO A LA WA " + fue);
+        campana.setCliente(userSession.getUsuario());
+        logicaCampana.guardarCampana(campana);
+        logicaAnuncio.guardar(anuncio);
+        String path = fileUploader.subir(fue, "/ensayando/");
+        System.err.println("SE SUPONE QUE SUBI EN "+path);
+        operacion = TipoOperacion.INSERTAR;
+        //logicaDocumentos.guardar(path, "algo más") // no se pos aqui tu decides xD
     }
 
 
@@ -90,7 +102,6 @@ public class MantenedorAnuncios implements Serializable {
         categorias = logicaCategoria.obtenerTodos();
         campanas = logicaCampana.obtenerTodos();
         anuncios = logicaAnuncio.obtenerConRelaciones();
-        operacion = TipoOperacion.INSERTAR;
     }
 
 

@@ -15,28 +15,60 @@
                 <div class="col-lg-4">
                     <div class="dashbox">
                         <p class="dashbox-header">Crear anuncio</p>
-                        <p:commandLink styleClass="button_ crear-anuncio" action="#{facesUtil.redirigir('/plataforma/anuncios')}"/>
+                        <p:commandLink styleClass="button_ crear-anuncio"
+                                       action="#{facesUtil.redirigir('/plataforma/anuncios')}"/>
+
                         <p> Escoge aqui uno de los anuncios ya creados </p>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="dashbox">
                         <p class="dashbox-header">Crear campaña</p>
-                        <p:commandLink styleClass="button_ crear-campana" action="#{facesUtil.redirigir('/plataforma/campanas')}"/>
+                        <p:commandLink styleClass="button_ crear-campana"
+                                       action="#{facesUtil.redirigir('/plataforma/campanas')}"/>
+
                         <p> Escoge aqui uno de los anuncios ya creados </p>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="dashbox">
                         <p class="dashbox-header">Pagar</p>
+
                         <div class="button_ pagar"></div>
                         <p> Escoge aqui uno de los anuncios ya creados </p>
                     </div>
                 </div>
             </div>
             <div class="push"></div>
+
+
         </div>
 
+        <h:graphicImage value="/imagenes/buo-artico.jpg"/>
 
+        <p:dataScroller value="#{mantenedorAnuncios.anuncios}" var="anuncio" chunkSize="10">
+            <f:facet name="header">
+
+            </f:facet>
+
+            <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+
+                <p:outputPanel>
+
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputText value="NO:"/>
+                        <h:outputText value="#{anuncio.categoria.desccategoria}" style="font-weight: bold"/>
+
+                        <h:outputText value="ubicacion:"/>
+                        <h:outputText value="#{anuncio.campana.desccampana}" style="font-weight: bold"/>
+
+                        <h:outputText value="establecimiento"/>
+                        <h:outputText value="#{anuncio.media}" style="font-weight: bold"/>
+                        <h:outputText value="direccion"/>
+                        <h:outputText value="#{anuncio.rubro}" style="font-weight: bold"/>
+                    </h:panelGrid>
+                </p:outputPanel>
+            </h:panelGrid>
+        </p:dataScroller>
     </ui:define>
 </ui:composition>

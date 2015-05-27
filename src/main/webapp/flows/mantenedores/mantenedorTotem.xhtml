@@ -9,30 +9,7 @@
         <h:form>
             <h3>administrador de TOTEMS</h3>
 
-            <p:dataScroller value="#{mantenedorTotems.totems}" var="totem" chunkSize="10">
-                <f:facet name="header">
-                   Totems
-                </f:facet>
 
-                <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-
-
-                    <p:outputPanel>
-                        <h:panelGrid columns="2" cellpadding="5">
-                            <h:outputText value="NO:" />
-                            <h:outputText value="#{totem.noserie}" style="font-weight: bold"/>
-
-                            <h:outputText value="ubicacion:" />
-                            <h:outputText value="#{totem.tipo}" style="font-weight: bold"/>
-
-                            <h:outputText value="establecimiento" />
-                            <h:outputText value="#{totem.establecimiento.nombreEstablecimiento}" style="font-weight: bold"/>
-                            <h:outputText value="direccion" />
-                            <h:outputText value="#{totem.establecimiento.direccion}" style="font-weight: bold"/>
-                        </h:panelGrid>
-                    </p:outputPanel>
-                </h:panelGrid>
-            </p:dataScroller>
         </h:form>
     </ui:define>
 
