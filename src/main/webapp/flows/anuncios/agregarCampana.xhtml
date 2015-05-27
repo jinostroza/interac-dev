@@ -8,23 +8,23 @@
     <ui:define name="contenido">
 
         <h3>
-            <h:outputText value="Agregar Campaña" rendered="#{!MantenedorCampana.esEdicion()}"/>
-            <h:outputText value="Editar Campaña" rendered="#{MantenedorCampana.esEdicion()}"/>
+            <h:outputText value="Agregar Campaña" rendered="#{mantenedorAnuncio.esEdicion()}"/>
+            <h:outputText value="Editar Campaña" rendered="#{mantenedorAnuncio.esEdicion()}"/>
         </h3>
 
         <h:form>
             <h:panelGrid columns="3">
                 <p:outputLabel value="Nombre Campaña"/>:
-                <p:inputText value="#{MantenedorCampana.campana.desccampana}"/>
+                <p:inputText value="#{mantenedorCampana.campana.desccampana}"/>
                 <p:outputLabel value="Dispositivos (TOTEM's)"/>:
-                <p:selectOneMenu value="#{MantenedorCampana.campana.totem}" converter="entityConverter">
+                <p:selectOneMenu value="#{mantenedorCampana.campana.totem}" converter="entityConverter">
                     <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione --"/>
                     <f:selectItems value="#{mantenedorCampana.campanas}" var="totem"
                                    itemLabel="#{totem.totem.noserie}" itemValue="#{totem}"/>
                 </p:selectOneMenu>
             </h:panelGrid>
 
-            <p:dataTable value="#{MantenedorCampana.campanas}" var="c">
+            <p:dataTable value="#{mantenedorCampana.campanas}" var="c">
                 <p:column headerText="ID">
                     #{c.idcampana}
                 </p:column>

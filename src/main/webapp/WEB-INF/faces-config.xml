@@ -29,6 +29,12 @@
             <base-name>idiomas/messages</base-name>
             <var>msg</var>
         </resource-bundle>
+
+        <!-- No debiera ser necesario, pero lo tendremos considerado por si las moscas-->
+        <!--<resource-bundle>-->
+            <!--<base-name>configuraciones/main</base-name>-->
+            <!--<var>mainConfig</var>-->
+        <!--</resource-bundle>-->
     </application>
 
     <factory>

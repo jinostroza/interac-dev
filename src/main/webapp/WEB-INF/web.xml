@@ -4,24 +4,24 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
     <display-name>Interac</display-name>
-    
+
     <!--Cargamos JSF-->
     <servlet>
-        <servlet-name>faces</servlet-name>
+        <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>faces</servlet-name>
+        <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.jsf</url-pattern>
     </servlet-mapping>
-    
+
     <context-param>
         <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
         <param-value>.xhtml</param-value>
     </context-param>
-    
+
     <!--Cargamos Spring Security-->
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
@@ -35,7 +35,7 @@
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
-    
+
     <!--Donde estarán las configuraciones de Spring-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -53,7 +53,7 @@
     <listener>
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
     </listener>
-    
+
     <!--Controlador Spring MVC-->
     <servlet>
         <servlet-name>dispatcher</servlet-name>
@@ -71,7 +71,7 @@
 
     <!-- Mientras lo comento para poder ver los errores -->
     <!--<error-page>-->
-        <!--<location>/error.jsf</location>-->
+    <!--<location>/error.jsf</location>-->
     <!--</error-page>-->
 
     <!--Configuraciones opcionales primefaces-->
@@ -80,20 +80,41 @@
         <param-value>true</param-value>
     </context-param>
 
+    <context-param>
+        <param-name>primefaces.UPLOADER</param-name>
+        <param-value>commons</param-value>
+    </context-param>
+
     <filter>
         <filter-name>PrimeFaces Upload Filter</filter-name>
         <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
-            <init-param>
-                <param-name>thresholdSize</param-name>
-                <param-value>512000</param-value>
-            </init-param>
         <init-param>
-            <param-name>UploadDirectory</param-name>
-            <param-value>\Users\mary\Pictures\test</param-value>
+            <param-name>thresholdSize</param-name>
+            <param-value>512000</param-value>
         </init-param>
     </filter>
     <filter-mapping>
         <filter-name>PrimeFaces Upload Filter</filter-name>
-        <servlet-name>dispatcher</servlet-name>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <!--Servlets Personalizados-->
+
+    <!--
+    Aca le damos un nombre a nuestro servlet a nivel de app y además le decimos que clase lo representa
+    el servlet se puede llamar distinto de la clase
+    -->
+    <servlet>
+        <servlet-name>imageServlet</servlet-name>
+        <servlet-class>cl.interac.util.servlets.ImageServlet</servlet-class>
+    </servlet>
+
+    <!--
+     Acá le dijimos que el servlet que creamos arriba debe intersectar la url /imagenes
+    -->
+    <servlet-mapping>
+        <servlet-name>imageServlet</servlet-name>
+        <url-pattern>/imagenes/*</url-pattern>
+    </servlet-mapping>
 </web-app>

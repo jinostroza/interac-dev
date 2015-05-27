@@ -11,6 +11,11 @@
       <view-state id="registraAnuncio">
 
       </view-state>
+      <view-state id="misAnuncios">
+            <transition on="misAnuncios" to="misAnuncios">
+
+            </transition>
+      </view-state>
 
 
 </flow>

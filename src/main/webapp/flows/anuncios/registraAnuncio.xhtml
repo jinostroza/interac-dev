@@ -11,7 +11,7 @@
                 <h2>Crea tu anuncio</h2>
             </header>
             <div class="row">
-                <form action="upload-target" class="dropzone" id="interac-dropzone">
+                <h:form styleClass="dropzone" id="interac-dropzone" enctype="multipart/form-data">
                     <div class="col-lg-6 formulario-imagen">
                         <div class="form-group">
                             <div class="radio-inline">
@@ -30,15 +30,16 @@
 
                             <div id="cuadro-imagen" class="dz-default dz-message">
 
-                                <p:fileUpload rendered="true" immediate="true" auto="false" multiple="true"
+                                <p:fileUpload rendered="true" auto="false" multiple="true"
                                               mode="advanced"
                                               fileUploadListener="#{mantenedorAnuncios.subir}" uploadLabel="Subir"
                                               cancelLabel="Cancelar"
                                               allowTypes="/(\.|\/)(xlsx|docx|doc|xls|ppt|pptx|wmv|pdf|jpg|png|rar|zip|tar|gz)$/i"
                                               label="Cargar nuevo archivo"
                                               fileLimit="4"
+                                              update="debugueando"
                                               fileLimitMessage="Solo se puede subir 4 documento(s)"/>
-
+                                <p:growl id="debugueando" showDetail="true"></p:growl>
 
                             </div>
                             <br></br>
@@ -74,7 +75,7 @@
                             <h:commandButton ajax="false" styleClass="btn btn-default btn-block" value="Crear Anuncio"/>
                         </div>
                     </div>
-                </form>
+                </h:form>
             </div>
         </div>
 
