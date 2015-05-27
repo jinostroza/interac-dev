@@ -84,8 +84,7 @@ html, body{
 	list-style-type: none;
 }
 #myInterac h3{
-	margin:30px 0;
-	text-align:center;
+	/*margin:30px 0;*/
 }
 
 
@@ -258,6 +257,14 @@ html, body{
 	margin-bottom: 30px;
 }
 
+/* Panel de control */
+.panelDeControl .row{
+	background-color: gray;	
+}
+.panelDeControl .table-responsive .table-header{
+	background-color: #E52721;
+}
+
 /* Contenido Crear Anuncio -> Seleccionar plantilla */
 #crearAnuncioPlantillas{
 	background-color:white;
@@ -286,9 +293,10 @@ html, body{
 	overflow: hidden;
 	bottom: 0;
 	border-bottom: 6px solid #E52721;
-}
-.footer, .push{
 	height: 120px;
+}
+.push{
+	height: 154px;
 }
 .footer p{
 	margin-top: 20px
@@ -308,4 +316,12 @@ html, body{
 	display: inline-block;
 	margin: 0px auto;
 	margin: 0px 6px;
+}
+
+.boton-editar{
+	background-image: url('../img/buttons/edit-20-01.png');
+	width: 32px;
+	height: 32px;
+	background-size: contain;
+	display: block;
 }
