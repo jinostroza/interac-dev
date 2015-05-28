@@ -16,4 +16,15 @@ public class RolDAO {
 
     public List<Rol> obtenerTodos(){return em.createNamedQuery("Rol.findAll").getResultList();}
 
+    public void guardar(Rol r){
+        if(r.getIdrol()== null )  em.persist(r);
+        else em.merge(r);
+    }
+
+
+    public void eliminar(Rol r){
+        Rol rol = em.find(Rol.class,r.getIdrol());
+        em.remove(rol);
+    }
+
 }

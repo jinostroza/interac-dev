@@ -30,7 +30,7 @@ public class Establecimiento implements Serializable {
     private Ubicacion ubicacion;
 
 
-    @JoinColumn(name = "idusuario", nullable = false)
+    @JoinColumn(name = "idusuario", referencedColumnName = "idusuario")
     @ManyToOne(fetch = FetchType.LAZY)
     public Usuario getUsuario() {
         return usuario;

@@ -2,6 +2,7 @@ package cl.interac.entidades;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,8 +22,7 @@ import java.util.List;
 )
 public class Campana implements Serializable {
     private Integer idcampana;
-    private String desccampana;
-
+    private Date fechaspasadas;
     // relaciones
     private List<Anuncio> anuncios;
     private Totem totem;
@@ -40,13 +40,13 @@ public class Campana implements Serializable {
     }
 
     @Basic
-    @Column(name = "desccampana")
-    public String getDesccampana() {
-        return desccampana;
+    @Column(name = "fechaspasadas")
+    public Date getFechaspasadas() {
+        return fechaspasadas;
     }
 
-    public void setDesccampana(String desccampana) {
-        this.desccampana = desccampana;
+    public void setFechaspasadas(Date fechaspasadas) {
+        this.fechaspasadas = fechaspasadas;
     }
 
     @OneToMany(mappedBy = "campana")

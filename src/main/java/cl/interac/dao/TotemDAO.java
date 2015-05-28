@@ -34,9 +34,5 @@ public class TotemDAO {
         Totem totem = em.find(Totem.class, t.getIdtotem());
         em.remove(totem);
     }
-    public void editarTotem(Totem t){
-        Totem totem = em.find(Totem.class , t.getIdtotem());
 
-
-    }
 }

@@ -2,6 +2,7 @@ package cl.interac.entidades;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Jorge on 25-04-15.
@@ -22,12 +23,15 @@ import java.io.Serializable;
 public class Anuncio implements Serializable {
     private Integer idAnuncio;
     private String descanuncio;
-    private String media;
+
+
+
     private String rubro;
 
     // relaciones
     private Categoria categoria;
     private Campana campana;
+    private Afiche afiche;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,15 +54,6 @@ public class Anuncio implements Serializable {
         this.descanuncio = descanuncio;
     }
 
-    @Basic
-    @Column(name = "media", nullable = true, insertable = true, updatable = true, length = 45)
-    public String getMedia() {
-        return media;
-    }
-
-    public void setMedia(String media) {
-        this.media = media;
-    }
 
     @Basic
     @Column(name = "rubro", nullable = true, insertable = true, updatable = true, length = 45)
@@ -89,6 +84,19 @@ public class Anuncio implements Serializable {
     public void setCampana(Campana campana) {
         this.campana = campana;
     }
+
+
+    @JoinColumn(name = "idafiche",referencedColumnName = "idafiche")
+    @OneToOne(fetch = FetchType.LAZY)
+    public Afiche getAfiche() {
+        return afiche;
+    }
+
+    public void setAfiche(Afiche afiche) {
+        this.afiche = afiche;
+    }
+
+
 
     @Override
     public boolean equals(Object o) {
