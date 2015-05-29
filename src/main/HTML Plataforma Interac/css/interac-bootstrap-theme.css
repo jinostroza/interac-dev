@@ -339,3 +339,9 @@ html, body{
 	margin: 0px auto;
 	margin: 0px 6px;
 }
+.login-logo{
+}
+#cuadro-login{
+	background-color: #EEEEEE;
+	height: 355px;
+}
