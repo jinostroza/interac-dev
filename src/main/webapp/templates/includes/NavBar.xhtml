@@ -11,9 +11,7 @@
             <li>
                 <p:outputLabel value="#{userSession.usuario.username}"/>
             </li>
-            <li>
-                <p:commandLink value="Usuario" action="#{facesUtil.redirigir('/plataforma/usuarios')}"/>
-            </li>
+
             <li>
                 <p:commandLink value="Mis Campañas" action="#{facesUtil.redirigir('/plataforma/campanas')}"/>
             </li>
@@ -21,7 +19,7 @@
                 <p:commandLink value="Mis Anuncios" action="#{facesUtil.redirigir('/plataforma/anuncios')}"/>
             </li>
             <li>
-                <p:commandLink value="Mantenedor" action="#{facesUtil.redirigir('/plataforma/mantenedores')}"/>
+                <p:commandLink value="Mantenedor" action="#{facesUtil.redirigir('/plataforma/empresa')}"/>
             </li>
             <li><a href="/logOut.jsf">Salir</a></li>
         </ul>
