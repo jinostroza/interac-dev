@@ -13,7 +13,7 @@
     <!--pero eso es dato rosa, está bien definido-->
     <view-state id="inicioCampana">
         <transition on="programaCampana" to="programarCampana" >
-            <evaluate expression="mantenedorCampana.inicio()"
+            <evaluate expression="mantenedorCampana.inicio()"/>
         </transition>
 
         <transition on="seleccionarContenido" to="seleccionarContenido">

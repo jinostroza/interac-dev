@@ -13,7 +13,7 @@ import java.util.List;
  * Created by luis on 28-05-2015.
  */
 @Component
-@Scope
+@Scope("flow")
 public class MantenedorAfiches implements Serializable {
  public enum TipoOperacion{
         INSENTAR,
