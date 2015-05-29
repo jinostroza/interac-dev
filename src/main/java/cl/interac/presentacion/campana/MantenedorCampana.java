@@ -55,9 +55,9 @@ public class MantenedorCampana implements Serializable {
         logicaCampana.guardarCampana(campana);
 
         if (esEdicion()) {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña ["+campana.getDesccampana()+"]");
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña ");
         } else {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado la campaña ["+campana.getDesccampana()+"]");
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado la campaña ");
         }
     }
 

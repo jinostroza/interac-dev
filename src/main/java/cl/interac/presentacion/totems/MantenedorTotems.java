@@ -25,7 +25,7 @@ public class MantenedorTotems implements Serializable
     private List<Totem> totems;
 
     // logica vista
-    public void inicio() {
+    public void mantenedorTotems() {
         totem = new Totem();
     }
     public void agregarTotem(){
@@ -39,7 +39,7 @@ public class MantenedorTotems implements Serializable
      public void editarTotem(){
      }
 
-
+    public void inicio(){logicaTotem.obtenerTodos();}
     //get and set
     public List<Totem> getTotems() {
         return totems;

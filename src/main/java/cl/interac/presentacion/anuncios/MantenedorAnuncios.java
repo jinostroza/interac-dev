@@ -102,6 +102,7 @@ public class MantenedorAnuncios implements Serializable {
         categorias = logicaCategoria.obtenerTodos();
         campanas = logicaCampana.obtenerTodos();
         anuncios = logicaAnuncio.obtenerConRelaciones();
+        anuncios= logicaAnuncio.obtenerTodos();
     }
 
 
