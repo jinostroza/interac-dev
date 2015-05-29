@@ -2,7 +2,6 @@
 html{
 	font-family:"Fira Sans", "Verdana", sans-serif;
 	font-weight:300;
-	position: relative;
 }
 html, body{
 	height:100%;
@@ -259,10 +258,33 @@ html, body{
 
 /* Panel de control */
 .panelDeControl .row{
-	background-color: gray;	
+	background-color: #EEEEEE;
+	margin-bottom: 20px;
+	text-align: center;
 }
 .panelDeControl .table-responsive .table-header{
 	background-color: #E52721;
+}
+.panelDeControl .boton-editar{
+	background-image: url('../img/buttons/edit-20-01.png');
+	width: 32px;
+	height: 32px;
+	background-size: contain;
+	display: inline-block;
+	margin: 0 auto;
+}
+.panelDeControl .boton-eliminar{
+	background-image: url('../img/buttons/bin-20-01.png');
+	width: 32px;
+	height: 32px;
+	background-size: contain;
+	display: inline-block;
+	margin: 0 auto;
+}
+.panelDeControl .row .panelControl-header
+{
+	font-size: 32px;
+	margin: 0;
 }
 
 /* Contenido Crear Anuncio -> Seleccionar plantilla */
@@ -316,12 +338,4 @@ html, body{
 	display: inline-block;
 	margin: 0px auto;
 	margin: 0px 6px;
-}
-
-.boton-editar{
-	background-image: url('../img/buttons/edit-20-01.png');
-	width: 32px;
-	height: 32px;
-	background-size: contain;
-	display: block;
 }
