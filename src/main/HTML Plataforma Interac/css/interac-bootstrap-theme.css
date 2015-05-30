@@ -339,9 +339,24 @@ html, body{
 	margin: 0px auto;
 	margin: 0px 6px;
 }
-.login-logo{
-}
+
 #cuadro-login{
 	background-color: #EEEEEE;
 	height: 355px;
+	text-align: center;
+	position: relative;
+	border-radius: 12px;
+}
+div.login-logo{
+	background-image: url('../img/interacblanco.png');
+	width: 181px;
+	height: 69px;
+	background-size: contain;
+	margin: 40px auto;
+}
+#cuadro-login form
+{
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
 }
