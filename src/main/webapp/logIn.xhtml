@@ -5,37 +5,44 @@
                 template="/templates/logInTemplate.xhtml">
 
     <ui:define name="contenido">
+        <h:outputStylesheet>
+            body {
+                background-color: #E52620;
+            }
+        </h:outputStylesheet>
 
-        <ui:include src="templates/includes/Header.xhtml"/>
+        <div class="login-header">
+            <div class="login-logo"></div>
+        </div>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div id="cuadro-login" class="col-md-4">
+                    <h:form prependId="false">
+                        <div class="form-group">
+                            <h:inputText styleClass="form-control" id="loginEmail" placeholder="email" value="#{autenticarBean.user}"/>
+                        </div>
 
-        <h:form prependId="false" styleClass="form-horizontal">
-            <p:outputPanel styleClass="col-lg-12 col-xs-12 center-block">
+                        <div class="form-group">
+                            <h:inputSecret styleClass="form-control" id="loginPassword" placeholder="password" value="#{autenticarBean.pass}"/>
+                        </div>
 
-                <p:outputPanel styleClass="form-group">
-                    <p:outputLabel styleClass="col-lg-3 col-xs-12 control-label" value="Usuario:"/>
-                    <p:outputPanel styleClass="col-lg-9 col-xs-12">
-                        <p:inputText id="j_username"/>
-                    </p:outputPanel>
-                </p:outputPanel>
+                        <div class="form-group">
+                            <p:commandButton styleClass="btn btn-default btn-block" value="Ingresar" action="#{autenticarBean.logIn()}" ajax="false"/>
+                        </div>
 
-                <p:outputPanel styleClass="form-group">
-                    <p:outputLabel styleClass="col-lg-3 col-xs-12 control-label" value="Clave:"/>
-                    <p:outputPanel styleClass="col-lg-9 col-xs-12">
-                        <p:password id="j_password"/>
-                    </p:outputPanel>
-                </p:outputPanel>
+                        <br/>
+                        <a href="#">¿Olvidó su contraseña?</a>
+                        <p>¿No tienes cuenta en Interac? ¡Registrate!</p>
 
-                <p:outputPanel styleClass="form-group">
-                    <p:outputPanel styleClass="col-lg-12">
-                        <p:commandButton styleClass="col-lg-offset-3" icon="fa fa-unlock" ajax="false" value="Ingresar" action="#{autenticarBean.logIn}"/>
-                    </p:outputPanel>
-                    <p:outputPanel styleClass="col-lg-12">
-                        <p:link styleClass="col-lg-offset-3" value="Registrar >>" href="/registrar.jsf"/>
-                    </p:outputPanel>
-                </p:outputPanel>
-            </p:outputPanel>
-
-        </h:form>
+                        <p:link styleClass="btn btn-default" id="registrar" value="Registrar" href="/registrar.jsf"/>
+                    </h:form>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+            <div class="push"></div>
+        </div>
 
         <ui:include src="templates/includes/Footer.xhtml"/>
     </ui:define>

@@ -1,10 +1,12 @@
 package cl.interac.presentacion;
 
-import java.io.Serializable;
-
 import cl.interac.util.components.FacesUtil;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import java.io.Serializable;
 
 /**
  * @author colivares
@@ -17,7 +19,13 @@ public class AutenticarBean implements Serializable {
     private String pass;
 
     public void logIn() {
-        FacesUtil.despachar("j_spring_security_check");
+        try {
+            HttpServletRequest request = FacesUtil.obtenerHttpServletRequest();
+            request.login(user, pass);
+            FacesUtil.redirigir("/inicio.jsf");
+        } catch (ServletException ex) {
+            FacesUtil.mostrarMensajeError(ex.getMessage(), null);
+        }
     }
 
     public String getUser() {

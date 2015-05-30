@@ -3,7 +3,6 @@ package cl.interac.security;
 import cl.interac.entidades.Rol;
 import cl.interac.entidades.Usuario;
 import cl.interac.negocio.LogicaUsuario;
-import cl.interac.util.components.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -30,6 +29,7 @@ public class LogInManager implements AuthenticationProvider, Serializable {
     public Authentication authenticate(Authentication a) {
         String user = a.getName();
         String password = null;
+        System.err.println("LLEGO: "+user);
         try {
             password = a.getCredentials().toString();
         } catch (NullPointerException e) {
