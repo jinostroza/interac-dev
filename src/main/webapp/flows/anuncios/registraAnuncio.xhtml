@@ -6,26 +6,28 @@
                 xmlns:iu="http://java.sun.com/jsf/composite"
                 template="/templates/default.xhtml">
 
-<ui:component name ="contenedor">
-    <h:form class="container" id="crearAnuncio">
-        <header>
-            <h2>Crea tu anuncio</h2>
-        </header>
-        <div class="row">
-            <form action="upload-target" class="dropzone" id="interac-dropzone">
+    <ui:define name="contenido">
+        <h:form class="container" id="crearAnuncio">
+            <header>
+                <h2>Crea tu anuncio</h2>
+            </header>
+            <div class="row">
                 <div class="col-lg-6 formulario-imagen">
                     <div class="form-group">
                         <div class="radio-inline">
                             <label>
-                                <input type="radio" name="optionsRadios" id="radioHorizontal" value="horizontal">Horizontal</input>
+                                <input type="radio" name="optionsRadios" id="radioHorizontal"
+                                       value="horizontal">Horizontal</input>
                             </label>
                         </div>
                         <div class="radio-inline">
                             <label>
-                                <input type="radio" name="optionsRadios" id="radioVertical" value="vertical">Vertical</input>
+                                <input type="radio" name="optionsRadios" id="radioVertical"
+                                       value="vertical">Vertical</input>
                             </label>
                         </div>
                         <br></br>
+
                         <div id="cuadro-imagen" class="dz-default dz-message">
                             <p:fileUpload rendered="true" auto="false" multiple="true"
                                           mode="advanced"
@@ -34,11 +36,14 @@
                                           allowTypes="/(\.|\/)(xlsx|docx|doc|xls|ppt|pptx|wmv|pdf|jpg|png|rar|zip|tar|gz)$/i"
                                           label="Cargar nuevo archivo"
                                           fileLimit="4"
-                                          update="debugueando"
                                           fileLimitMessage="Solo se puede subir 4 documento(s)"/>
                         </div>
                         <br></br>
-                        <label>Nota: La imagen tiene que tener una resolución de <mark>1920 x 1080</mark> pixeles y en formato <mark>.JPG</mark></label>
+                        <label>Nota: La imagen tiene que tener una resolución de
+                            <mark>1920 x 1080</mark>
+                            pixeles y en formato
+                            <mark>.JPG</mark>
+                        </label>
                     </div>
                 </div>
                 <div class="col-md-6 formulario-texto">
@@ -52,7 +57,8 @@
                         <br></br>
                         <label>Categoría</label>
 
-                        <h:selectOneMenu class="form-control" value="#{mantenedorAnuncios.anuncio.categoria}" converter="entityConverter">
+                        <h:selectOneMenu class="form-control" value="#{mantenedorAnuncios.anuncio.categoria}"
+                                         converter="entityConverter">
                             <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione categoria --"/>
                             <f:selectItems value="#{mantenedorAnuncios.categorias}" var="categor"
                                            itemLabel="#{categor.desccategoria}" itemValue="#{categor}"/>
@@ -60,6 +66,7 @@
 
                         <br></br>
                         <label>Archivo</label>
+
                         <p>No has subido ningún archivo</p>
                         <br></br>
                         <label>ID: 74903742</label>
@@ -69,15 +76,9 @@
                                          value="Crear Anuncio"/>
                     </div>
                 </div>
-            </form>
-        </div>
-    </h:form>
+            </div>
+        </h:form>
 
 
-
-
-
-
-
-</ui:component>
+    </ui:define>
 </ui:composition>
