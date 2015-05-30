@@ -39,8 +39,6 @@ public class ImageServlet extends HttpServlet {
         // Get requested image by path info.
         String requestedImage = request.getPathInfo();
 
-        System.err.println("LLEGO CON "+requestedImage);
-
         // Check if file name is actually supplied to the request URI.
         if (requestedImage == null) {
             // Do your thing if the image is not supplied to the request URI.
@@ -49,11 +47,8 @@ public class ImageServlet extends HttpServlet {
             return;
         }
 
-        System.err.println("LA BUSCAMOS EN "+pathImagenes);
         // Decode the file name (might contain spaces and on) and prepare file object.
         File image = new File(pathImagenes, URLDecoder.decode(requestedImage, "UTF-8"));
-
-        System.err.println("DEBI HABER PUESTO ESTO ANTES: "+image.exists());
 
         // Check if file actually exists in filesystem.
         if (!image.exists()) {
