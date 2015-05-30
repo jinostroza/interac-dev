@@ -360,3 +360,8 @@ div.login-logo{
 	top: 50%;
 	transform: translateY(-50%);
 }
+
+#cuadro-registro{
+	height: 500px;
+	background-color: #EEEEEE;
+}
