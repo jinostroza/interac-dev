@@ -7,6 +7,18 @@ html, body{
 	height:100%;
 }
 
+/* Tablas */
+table tbody tr td, table tbody tr th, table thead tr th{
+	border-left: none !important;
+	border-right: none !important;
+	border-top: 1px;
+	border-bottom: 1px;
+}
+tr.table-header{
+	background-color: #E52721 !important;
+	color: #fff;
+}
+
 /* Cabecera */
 .header{
 	margin-bottom:0;
@@ -162,18 +174,6 @@ html, body{
 	text-align: center;
 	margin-bottom: 50px;
 }
-.table-header
-{
-	border-color: #454545;
-	color: #fff;
-	background-color: #454545;
-}
-.table-header td{
-	border-color: #454545 !important; 
-	padding-top: 3px !important;
-	padding-bottom: 3px !important;
-
-}
 .btn-interac {
 	background-color: #454545;
 	color: #fff !important;
@@ -267,16 +267,16 @@ html, body{
 }
 .panelDeControl .boton-editar{
 	background-image: url('../img/buttons/edit-20-01.png');
-	width: 32px;
-	height: 32px;
+	width: 16px;
+	height: 16px;
 	background-size: contain;
 	display: inline-block;
 	margin: 0 auto;
 }
 .panelDeControl .boton-eliminar{
 	background-image: url('../img/buttons/bin-20-01.png');
-	width: 32px;
-	height: 32px;
+	width: 16px;
+	height: 16px;
 	background-size: contain;
 	display: inline-block;
 	margin: 0 auto;
@@ -364,4 +364,13 @@ div.login-logo{
 #cuadro-registro{
 	height: 300px;
 	background-color: #EEEEEE;
+}
+
+div.registerUserType{
+	float: left;
+	display: block;
+	margin: 0 15px;
+	width: 120px;
+	height: 85px;
+	background-color: white;
 }
