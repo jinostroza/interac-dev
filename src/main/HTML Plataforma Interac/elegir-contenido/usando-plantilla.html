@@ -24,39 +24,61 @@
 			<span></span>
 		</div>
 		<!-- Contenido -->
-		<div class="container" id="crearAnuncioPlantillas">
+		<div class="container" id="modificandoPlantillas">
 			<header>
-				<h2>Crea tu anuncio</h2>
+				<h2>Crear anuncio desde plantilla</h2>
 			</header>
-			<hr>
-			<h3>Elige un diseño de plantilla sobre la cual quieres crearlo</h3>
-			<a class="btn btn-default" href="#" role="button">Horizontal</a>
-			<a class="btn btn-default" href="#" role="button">Vertical</a>
+			<h3>Modifica los elementos con tus textos e imágenes.</h3>
+			<!-- <a class="btn btn-default" href="#" role="button">Horizontal</a>
+			<a class="btn btn-default" href="#" role="button">Vertical</a> -->
 			<div class="row">
-				<div class="col-lg-4 anuncioPlantilla">
-					<div class="plantillaImagen" ></div>
-					<hr>
-					<p>Promoción del día</p>
-					<h5>Restaurant</h5>
-					<div class="icon-edit-plantilla"></div>
-				</div>
-				<div class="col-lg-4 anuncioPlantilla">
-					<div class="plantillaImagen"></div>
-					<hr>
-					Menú
-					<h5>Restaurant</h5>
-					<div class="icon-edit-plantilla"></div>
-				</div>
-				<div class="col-lg-4 anuncioPlantilla">
-					<div class="plantillaImagen"></div>
-					<hr>
-					Happy Hour
-					<h5>Restaurant</h5>
-					<div class="icon-edit-plantilla"></div>
+				<div class="editando-plantilla">
+					<div class="icon-edit-imagen"></div>
+					<div class="icon-edit-precio"></div>
+					<div class="icon-edit-info"></div>
 				</div>
 			</div>
-			<div class="push"></div>
+			</br>
+			</br>
+			<h3>Detalles del anuncio</h3>
+			<div class="form-group col-md-4 col-md-offset-1">
+				<p>Título *:</p>
+				<input type="text" class="form-control" id="registerName"/>
+			</div>
+			<div class="form-group col-md-4 col-md-offset-1">
+				<p>Seleccionar categoría *:</p>
+				<div class="form-group">
+					<select class="form-control">
+						<option>Comercio</option>
+						<option>Construcción</option>
+						<option>Salud</option>
+						<option>Hoteles y Restaurants</option>
+						<option>Comunicaciones</option>
+						<option>Educación</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-md-4 col-md-offset-1">
+				<p>Tags:</p>
+				<input type="email" class="form-control" id="registerEmail">
+			</div>
+			<div class="form-group col-md-4 col-md-offset-1">
+				<p>Duración *:</p>
+				<input type="text" class="form-control" id="registerEmail" placeholder="00:00:10"/>
+			</div>
+			<div class="form-group col-md-4 col-md-offset-1">
+				<p>Descripción:</p>
+				<textarea rows="4" cols="50"></textarea>
+			</div>
+			<div class="col-md-2 col-lg-offset-8">
+				<br/>
+				<button type="submit" class="btn btn-default btn-block">Guardar</button>
+			</div>
+			</br>
+			</br>		
 		</div>
+		</br>
+		</br>
 		<!-- Pie de pagina -->
 		<footer class="footer">
 			<div class="container">

@@ -60,7 +60,6 @@ tr.table-header{
 	width: 100%;
 	border-bottom: 2px solid #E52721;
 }
-
 .container header{
 	margin-top:5px;
 	padding:0;
@@ -75,9 +74,9 @@ tr.table-header{
 	background-color:white;
 }
 #myInterac div .dashbox{
-	color: #454545;
-	background-color:white;
-	border:4px solid #EFEFEF;
+	color: #ffffff;
+	background-color:#E4251F;
+	border:4px solid #E4251F;
 	border-radius:12px;
 }
 #myInterac div .dashbox h5{
@@ -91,16 +90,17 @@ tr.table-header{
 }
 
 /* Contenido Elegir contenido */
-#myInterac #lista-pasos-campania ul{
+#myInterac #lista-pasos-campania ul
+{
 	list-style-type: none;
 }
 #myInterac h3{
 	/*margin:30px 0;*/
 }
 
-
 /* Contenido Crear Campaña */
-.contenido .row .formulario-texto{
+.contenido .row .formulario-texto
+{
 	top:100px;
 }
 .contenido #home div{
@@ -114,56 +114,174 @@ tr.table-header{
 
 .button_
 {
-	height:110px;
-	width:110px;
+	height:130px;
+	width:130px;
 	background-repeat: no-repeat;
 	background-position: center;
 	margin: 10px auto;
 	padding: 0;
 }
-.crear-anuncio, .elegir-contenido, .elegir-anuncio
+.btn-register_
 {
-	background-image: url("../img/buttons/edit-01.png");
+	height:130px;
+	width:130px;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin: 20px auto;
+	padding: 0;
+	float:left;
+	margin-left: 130px;
 }
-.crear-anuncio:hover, .elegir-contenido:hover, .elegir-anuncio:hover
+.tipo-usuario_
 {
-	background-image: url("../img/buttons/edit-01 claro.png");
+	height:130px;
+	width:180px;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin: 20px auto;
+	padding: 0;
+	float:left;
+	margin-left: 130px;
 }
-.crear-campana, .seleccionar-pantallas
+.elegir-contenido, .elegir-anuncio
 {
-	background-image: url("../img/buttons/pantalla-03.png");
+	background-image: url("../img/buttons/elige un anuncio.png");
 }
-.crear-campana:hover, .seleccionar-pantallas:hover
+#myInterac .dashbox:hover > .elegir-contenido
 {
-	background-image: url("../img/buttons/pantalla-03 claro.png");
+	background-image: url("../img/buttons/elegir contenido hover.png"); 
+}  
+#myInterac .dashbox:hover  > .elegir-anuncio 
+{
+	background-image: url("../img/buttons/elegir contenido hover.png"); 
+}  
+.crear-campana , .seleccionar-pantallas
+{
+	background-image: url("../img/buttons/seleccionar pantalla.png");
+}
+ #myInterac .dashbox:hover > .crear-campana:hover
+{
+	background-image: url("../img/buttons/seleccionar pantalla hover.png");
+}
+#myInterac .dashbox:hover > .seleccionar-pantallas
+{
+	background-image: url("../img/buttons/seleccionar pantalla hover.png");
 }
 .planificar-campana
 {
-	background-image: url("../img/buttons/calendar-01.png");
+	background-image: url("../img/buttons/planificar pantalla.png");
 }
-.planificar-campana:hover
+#myInterac .dashbox:hover  > .planificar-campana
 {
-	background-image: url("../img/buttons/calendar-01 claro.png");
+	background-image: url("../img/buttons/planificar campaña hover.png");
 }
 .pagar
 {
-	background-image: url("../img/buttons/check-01.png");
+	background-image: url("../img/buttons/confirmar campaña.png");
 }
-.pagar:hover
+#myInterac .dashbox:hover > .pagar
 {
-	background-image: url("../img/buttons/check-01 claro.png");
+	background-image: url("../img/buttons/confirmar campaña hover.png");
+}
+.usar-plantilla
+{
+	background-image: url("../img/buttons/usa-una-plantilla.png");
+}
+#myInterac .dashbox:hover > .usar-plantilla
+{
+	background-image: url("../img/buttons/usa-una-plantilla-hover.png");
+}
+.subir-imagen
+{
+	background-image: url("../img/buttons/sube-una-imagen.png");
+}
+#myInterac .dashbox:hover > .subir-imagen
+{
+	background-image: url("../img/buttons/sube-una-imagen-hover.png");
+}
+.subir-video
+{
+	background-image: url("../img/buttons/sube-un video.png");
+}
+#myInterac .dashbox:hover > .subir-video
+{
+	background-image: url("../img/buttons/sube-un-video-hover.png");
+}
+.paso-uno
+{
+	background-image: url("../img/buttons/user-register-active.png");
+}
+.paso-uno-inactive
+{
+	background-image: url("../img/buttons/user-register-active.png");
+}
+.paso-dos
+{
+	background-image: url("../img/buttons/user-type-icon.png");
+}
+.paso-dos-active
+{
+	background-image: url("../img/buttons/user-type-active.png");
+}
+.paso-tres
+{
+	background-image: url("../img/buttons/confirm-account-icon.png");
+}
+.paso-tres-active
+{
+	background-image: url("../img/buttons/confirm-account-active.png");
+}
+.crear-anuncio
+{
+	background-image: url("../img/buttons/crea un anuncio nuevo.png");
+}
+#myInterac .dashbox:hover  > .crear-anuncio
+{
+	background-image: url("../img/buttons/crear nuevo anuncio hover.png");
+}
+.elegir-mas-tarde
+{
+	background-image: url("../img/buttons/elige mas tarde.png");
+}
+#myInterac .dashbox:hover > .elegir-mas-tarde
+{
+	background-image: url("../img/buttons/elige mas tarde hover.png");
+}
+.crear-nuevo-anuncio
+{
+	background-image: url("../img/buttons/elige mas tarde.png");
+}
+.btn-anunciante
+{
+	background-image: url("../img/buttons/btn-anunciante.png");
+}
+.btn-empresa
+{
+	background-image: url("../img/buttons/btn-empresa.png");
+}
+
+#myInterac .dashbox:hover
+{
+	background-color: #fff;
+    color: #000;
 }
 .dashbox
 {
 	padding-top: 25px;
 	padding-bottom: 25px;
 	margin: 10px;
-	text-align: center;
+	text-align: center;	
 }
 .dashbox-header
 {
 	font-weight: bold;
 	font-size: 18px;
+}
+.dashbox-header:hover
+{
+	font-weight: bold;
+	font-size: 18px;
+	color:#444444;
 }
 .container
 {
@@ -174,21 +292,36 @@ tr.table-header{
 	text-align: center;
 	margin-bottom: 50px;
 }
+.table-header
+{
+	border-color: #454545;
+	color: #fff;
+	background-color: #454545;
+}
+.table-header td{
+	border-color: #454545 !important; 
+	padding-top: 3px !important;
+	padding-bottom: 3px !important;
+
+}
 .btn-interac {
 	background-color: #454545;
 	color: #fff !important;
 }
 
-.contenido-mapa{
+.contenido-mapa
+{
 	width: 100%;
-	height: 400px;
+	height: 450px;
 	border: 15px solid #DEDEDE;
 	margin-bottom: 50px;
 }
-.contenido-mapa .mapa{
+.contenido-mapa .mapa
+{
 	height: 100%;
 }
-.contenido-mapa .listado-rubros{
+.contenido-mapa .listado-rubros
+{
 }
 .list-group
 {
@@ -200,10 +333,12 @@ tr.table-header{
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
-.datos-campania{
+.datos-campania
+{
 	margin-bottom: 35px;
 }
-.datos-campania div .datos-campania-titulo{
+.datos-campania div .datos-campania-titulo
+{
 	height: 38px;
 	font-weight: bold;
 	text-align: center;
@@ -213,7 +348,8 @@ tr.table-header{
 	line-height: 38px;
 	color:white;
 }
-.datos-campania div .datos-campania-texto{
+.datos-campania div .datos-campania-texto
+{
 	text-align: center;
 	background-color: #DEDEDE;
 	font-size: 30px;
@@ -222,10 +358,12 @@ tr.table-header{
 	padding: 30px 0;
 }
 
-.pagar-campania{
+.pagar-campania
+{
 	margin-bottom: 50px;
 }
-.pagar-campania div #pagar-campania-titulo{
+.pagar-campania div #pagar-campania-titulo
+{
 	height: 38px;
 	font-weight: bold;
 	text-align: center;
@@ -267,16 +405,16 @@ tr.table-header{
 }
 .panelDeControl .boton-editar{
 	background-image: url('../img/buttons/edit-20-01.png');
-	width: 16px;
-	height: 16px;
+	width: 20px;
+	height: 20px;
 	background-size: contain;
 	display: inline-block;
 	margin: 0 auto;
 }
 .panelDeControl .boton-eliminar{
 	background-image: url('../img/buttons/bin-20-01.png');
-	width: 16px;
-	height: 16px;
+	width: 20px;
+	height: 20px;
 	background-size: contain;
 	display: inline-block;
 	margin: 0 auto;
@@ -300,9 +438,56 @@ tr.table-header{
 	text-align: center;
 }
 #crearAnuncioPlantillas .row .anuncioPlantilla .plantillaImagen{
-	background-color: black;
+	background-image: url('../img/buttons/menu-prueba-plantilla-21.png');
 	height: 200px;
 	margin: 10px 0;
+}
+.icon-edit-plantilla{
+	width: 30px;
+	height:30px;
+	position:relative;
+	float:left;
+	background-image: url('../img/buttons/edit-plantilla.png');
+	background-repeat: no-repeat;
+	left:330px;
+}
+.icon-edit-imagen{
+	width: 20px;
+	height:20px;
+	position:relative;
+	float:left;
+	background-image: url('../img/buttons/edit-info-34.png');
+	background-repeat: no-repeat;
+	left: 580px;
+    top: 195px;
+}
+.icon-edit-precio{
+	width: 20px;
+	height:20px;
+	position:relative;
+	float:left;
+	background-image: url('../img/buttons/edit-info-34.png');
+	background-repeat: no-repeat;
+	left: 195px;
+	top: 320px;
+}
+.icon-edit-info{
+	width: 20px;
+	height:20px;
+	position:relative;
+	float:left;
+	background-image: url('../img/buttons/edit-info-34.png');
+	background-repeat: no-repeat;
+	left: 570px;
+	top: 230px;
+}
+#modificandoPlantillas .row{
+	border-radius:8px;
+	background-color: #EFEFEF;
+}
+
+.push{
+	height: 154px;
 }
 
 /* Pie de pagina */
@@ -317,9 +502,6 @@ tr.table-header{
 	border-bottom: 6px solid #E52721;
 	height: 120px;
 }
-.push{
-	height: 154px;
-}
 .footer p{
 	margin-top: 20px
 }
@@ -328,16 +510,38 @@ tr.table-header{
 	background-image: url('../img/buttons/book-open-blanco.png');
 	background-size: contain;
 	background-repeat: no-repeat;
-	width: 52px;
-	height: 52px;
-	margin: 0;
+	width: 40px;
+	height: 45px;
+	margin-top: 10px;
 	padding: 0;
+	float:left;
 }
-.footer .footer-text{}
+.footer .footer-image-cell{
+	vertical-align: middle;
+	background-image: url('../img/buttons/cellphone-blanco.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	width: 40px;
+	height: 45px;
+	margin-top: 10px;
+	padding: 0;
+	float:left;
+}
+.footer .footer-image-email{
+	vertical-align: middle;
+	background-image: url('../img/buttons/email-blanco.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	width: 40px;
+	height: 45px;
+	margin-top: 10px;
+	padding: 0;
+	float:left;
+}
 .footer-image, .footer-text{
 	display: inline-block;
-	margin: 0px auto;
-	margin: 0px 6px;
+	margin-top: 10px;
+	margin-left:10px;
 }
 
 #cuadro-login{
@@ -360,17 +564,94 @@ div.login-logo{
 	top: 50%;
 	transform: translateY(-50%);
 }
-
 #cuadro-registro{
-	height: 300px;
+	height: 530px;
 	background-color: #EEEEEE;
+	border-radius: 20px;
+}
+#loginEmail
+{
+	background-image: url('../img/buttons/login-user.png');
+    background-position: 325px center;
+    background-repeat: no-repeat;
+    padding:0 0 0 16px;
+}
+#loginPassword
+{
+	background-image: url('../img/buttons/login-password.png');
+    background-position: 330px center;
+    background-repeat: no-repeat;
+    padding:0 0 0 16px;
+}
+.margen-box
+{
+	left: 80px;
+	top:110px;
+	position: relative;
+	float: left;
+}
+.nav-submenu  ul {
+	list-style: none;
+	text-align: center;
+	padding: 0;
+	margin: 5px;
+	position: relative;
+}
+.nav-submenu li {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 14px;
+	line-height: 90px;
+	height: 40px;
+	font-weight: bold;
+	margin-left: 40px;
+}
+.nav-submenu a {
+	text-decoration: none;
+	color: #737373;
 }
 
-div.registerUserType{
-	float: left;
-	display: block;
-	margin: 0 15px;
-	width: 120px;
-	height: 85px;
-	background-color: white;
+.nav-submenu a:hover {
+  	color: #E52721;
+}
+ 
+.nav-submenu a.active {
+    background-color: #fff;
+    color: #E52721;
+    cursor: default;
+}
+.nav-submenu li {
+	display: inline-block;
+	margin-right: -4px;
+}
+.number-seccion{
+	border:3px solid white;
+	width: 35px;
+	height: 35px;
+	border-radius:35px;
+	margin-left: 97px;
+	margin-bottom: 10px;
+}
+.number-circulo{
+	top:5px;
+	position:relative;
+	font-weight: bold;
+}
+#myInterac .dashbox:hover > .number-seccion{
+ 	border:3px solid #E52721;
+	width: 35px;
+	height: 35px;
+	border-radius:35px;
+	margin-left: 97px;
+	margin-bottom: 10px;
+}
+.vista-campania{
+ 	width: 570px;
+ 	height: 400px;
+ 	background-image: url('../img/buttons/imagen-campania-21.png');
+}
+.editando-plantilla{
+	width: 760px;
+	height:427px;
+	background-image: url('../img/buttons/promo-del-dia1-22.png');
+	margin:auto;
 }
