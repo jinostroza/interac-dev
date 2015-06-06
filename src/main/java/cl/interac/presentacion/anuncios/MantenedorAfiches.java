@@ -30,7 +30,7 @@ public class MantenedorAfiches implements Serializable {
 
     //vista
     public void MantenedorAfiches(){ afiche= new  Afiche();}
-    public void agregarAfiche(Afiche a){logicaAfiche.guardarCampana(a);}
+    public void agregarAfiche(Afiche a){logicaAfiche.guardar(a);}
 
 
 

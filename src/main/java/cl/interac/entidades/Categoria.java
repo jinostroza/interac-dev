@@ -11,6 +11,7 @@ import java.util.List;
 @NamedQueries(
         {
                 @NamedQuery(name = "Categoria.findAll", query = "SELECT g FROM Categoria g "),
+
         }
 )
 public class Categoria implements Serializable {

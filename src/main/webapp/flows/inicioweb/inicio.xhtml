@@ -17,7 +17,7 @@
                     <div class="dashbox">
                         <p class="dashbox-header">Crear anuncio</p>
                         <p:commandLink styleClass="button_ crear-anuncio"
-                                       action="#{facesUtil.redirigir('/plataforma/anuncios')}"/>
+                                       action="#{facesUtil.redirigir('/plataforma/creacion')}"/>
 
                         <p> Escoge aqui uno de los anuncios ya creados </p>
                     </div>
@@ -25,8 +25,7 @@
                 <div class="col-lg-4">
                     <div class="dashbox">
                         <p class="dashbox-header">Crear campaña</p>
-                        <p:commandLink styleClass="button_ crear-campana"
-                                       action="#{facesUtil.redirigir('/plataforma/campanas')}"/>
+                        <p:commandLink styleClass="button_ crear-campana"/>
 
                         <p> Escoge aqui uno de los anuncios ya creados </p>
                     </div>
@@ -37,9 +36,39 @@
 
                         <div class="button_ pagar"></div>
                         <p> Escoge aqui uno de los anuncios ya creados </p>
+
                     </div>
                 </div>
+
             </div>
+            <!-- dashboard-->
+            <h:form>
+                <p:dataScroller  value="#{mantenedorAnuncios.anuncios}"  var="anun" chunkSize="10">
+                    <f:facet name="header">
+                        Publicidad
+                    </f:facet>
+
+                    <h:panelGrid columns="2" style="width:100%">
+                        <p:graphicImage name="/static/interac/anuncios/suenos.jpg"/>
+
+                        <p:outputPanel>
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputText value="descripcion:"/>
+                                <h:outputText value="#{anun.descanuncio}" style="font-weight: bold"/>
+
+                                <h:outputText value="rubro:"/>
+                                <h:outputText value="#{anun.rubro}" style="font-weight: bold"/>
+
+                                <h:outputText value="cliente:"/>
+                                <h:outputText value="#{anun.campana.cliente.username}"
+                                              style="font-weight: bold"/>
+                                <p:separator/>
+                            </h:panelGrid>
+                        </p:outputPanel>
+                    </h:panelGrid>
+                </p:dataScroller>
+            </h:form>
+
             <div class="push"></div>
 
 

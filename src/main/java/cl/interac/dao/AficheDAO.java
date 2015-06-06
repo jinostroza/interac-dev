@@ -17,6 +17,7 @@ public class AficheDAO {
     private EntityManager em;
 
     public List<Afiche> obtenerTodos(){ return em.createNamedQuery("afiche.findAll").getResultList();}
+    public List<Afiche> obtenerPorId(){return em.createNamedQuery("afiche.findById").getResultList();}
 
     public void  guardar(Afiche afiche){
         if(afiche.getIdAfiche() == null )  em.persist(afiche);

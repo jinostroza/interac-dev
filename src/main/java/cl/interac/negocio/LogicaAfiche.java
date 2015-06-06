@@ -25,8 +25,11 @@ public class LogicaAfiche  {
     @Transactional(readOnly = true)
     public List<Afiche> obtenerTodos(){ return aficheDAO.obtenerTodos();}
 
+    @Transactional(readOnly = true)
+    public List<Afiche> obtenerPorId(){return aficheDAO.obtenerPorId();}
+
     @Transactional(readOnly = false)
-    public void guardarCampana(Afiche a) {
+    public void guardar(Afiche a) {
         aficheDAO.guardar(a);
     }
 

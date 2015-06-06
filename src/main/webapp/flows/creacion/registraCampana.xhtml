@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/templates/default.xhtml">
+    <ui:define name="contenido">
+        <p:tabView>
+            <p:tab title="Godfather Part I">
+                <h:panelGrid columns="2" cellpadding="10">
+                    <p:outputLabel for="button" value="Button:" />
+                    <p:calendar id="button" value="#{mantenedorAnuncios.anuncio.campana.fechaspasadas}" showOn="button" />
+
+                    <h:commandButton value="hueheu" action="sel" />
+
+                </h:panelGrid>
+            </p:tab>
+            <p:tab title="Godfather Part II">
+                <h:panelGrid columns="2" cellpadding="10">
+                    <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
+                    <h:outputText value="Francis Ford Coppola's legendary..." />
+                </h:panelGrid>
+            </p:tab>
+            <p:tab title="Godfather Part III">
+                <h:panelGrid columns="2" cellpadding="10">
+                    <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                    <h:outputText value="After a break of more than 15 years..." />
+                </h:panelGrid>
+            </p:tab>
+        </p:tabView>
+
+
+    </ui:define>
+</ui:composition>

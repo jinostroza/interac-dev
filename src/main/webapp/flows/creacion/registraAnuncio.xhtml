@@ -15,25 +15,16 @@
                 <div class="col-lg-6 formulario-imagen">
                     <div class="form-group">
                         <div class="radio-inline">
-                            <label>
-                                <input type="radio" name="optionsRadios" id="radioHorizontal"
-                                       value="horizontal">Horizontal</input>
-                            </label>
-                        </div>
-                        <div class="radio-inline">
-                            <label>
-                                <input type="radio" name="optionsRadios" id="radioVertical"
-                                       value="vertical">Vertical</input>
-                            </label>
+
                         </div>
                         <br></br>
 
                         <div id="cuadro-imagen" class="dz-default dz-message">
-                            <p:fileUpload rendered="true" auto="false" multiple="true"
+                            <p:fileUpload rendered="true"  auto="false" multiple="true"
                                           mode="advanced"
                                           fileUploadListener="#{mantenedorAnuncios.subir}" uploadLabel="Subir"
                                           cancelLabel="Cancelar"
-                                          allowTypes="/(\.|\/)(xlsx|docx|doc|xls|ppt|pptx|wmv|pdf|jpg|png|rar|zip|tar|gz)$/i"
+                                          allowTypes="/(\.|\/)(jpg|png|gif)$/i"
                                           label="Cargar nuevo archivo"
                                           fileLimit="4"
                                           fileLimitMessage="Solo se puede subir 4 documento(s)"/>
@@ -49,11 +40,12 @@
                 <div class="col-md-6 formulario-texto">
                     <div class="form-group">
                         <label>Nombre</label>
-                        <input type="text" class="form-control" placeholder="Escribe el nombre de tu anuncio"/>
+                        <h:inputText styleClass="form-control" value="#{mantenedorAnuncios.anuncio.rubro}" />
+                        <br></br>
                         <br></br>
                         <label>Descripción</label>
-                        <h:inputTextarea class="form-control" value="#{mantenedorAnuncios.anuncio.descanuncio}"
-                                         placeholder="Escriba la descripción de su anuncio" rows="6" cols="33"/>
+                        <h:inputTextarea class="form-control" rows="6" cols="33" autoResize="false"  value="#{mantenedorAnuncios.anuncio.descanuncio}"
+                                         placeholder="Escriba la descripción de su anuncio"/>
                         <br></br>
                         <label>Categoría</label>
 
@@ -69,10 +61,10 @@
 
                         <p>No has subido ningún archivo</p>
                         <br></br>
-                        <label>ID: 74903742</label>
+
                         <br></br>
 
-                        <h:commandButton ajax="false" styleClass="btn btn-default btn-block" action="agregarCampana"
+                        <h:commandButton ajax="false" styleClass="btn btn-default btn-block" action="reg"
                                          value="Crear Anuncio"/>
                     </div>
                 </div>

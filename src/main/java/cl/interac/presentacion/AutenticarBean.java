@@ -22,7 +22,7 @@ public class AutenticarBean implements Serializable {
         try {
             HttpServletRequest request = FacesUtil.obtenerHttpServletRequest();
             request.login(user, pass);
-            FacesUtil.redirigir("/inicio.jsf");
+            FacesUtil.redirigir("/plataforma/inicioweb");
         } catch (ServletException ex) {
             FacesUtil.mostrarMensajeError(ex.getMessage(), null);
         }

@@ -9,7 +9,8 @@ import java.io.Serializable;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "afiche.findAll", query = "select a from Afiche a")
+        @NamedQuery(name = "afiche.findAll", query = "select a from Afiche a"),
+        @NamedQuery(name= "afiche.findById",query ="select a.idAfiche from Afiche a" )
 
 })
 public class Afiche implements Serializable {

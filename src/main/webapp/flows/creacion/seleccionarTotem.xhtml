@@ -6,9 +6,8 @@
                 template="/templates/default.xhtml">
     <ui:define name="contenido">
 
-        <h3>Seleccionar pantalla</h3>
-        <div class="container contenedor" id="myInterac">
-            <header>
+
+
                 <div class="row">
                     <div class="col-lg-6">
                         <h2>Programar campaña</h2>
@@ -20,7 +19,7 @@
                     </div>
                 </div>
                 <br></br>
-            </header>
+
             <h3>Seleccionar Pantallas</h3>
             <h4>Escoge una categoría para tu campaña</h4>
             <br></br>
@@ -42,7 +41,7 @@
             <h4>Selecciones las pantallas Interac</h4>
             <br></br>
             <div class="row contenido-mapa">
-                <div  id="googleMap" class="col-lg-8 mapa"></div>
+                <p:gmap center="41.381542, 2.122893" zoom="15" type="HYBRID" style="width:55%;height:400px" />
                 <div class="col-lg-4 listado-rubros">
                     <form>
                         <div class="form-group">
@@ -54,32 +53,32 @@
                                                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                                             </button>
       									</span>
-                                        <input type="text" class="form-control" placeholder="Search for..."/>
+
                                     </div><!-- /input-group -->
                                 </div>
-                                <div class="panel-body">
-                                    <ul class="list-group">
-                                        <li class="list-group-item">Burkina Faso</li>
-                                        <li class="list-group-item">El Pentagono</li>
-                                        <li class="list-group-item">Kuala-Lumpur</li>
-                                        <li class="list-group-item">Burkina Faso</li>
-                                        <li class="list-group-item">El Pentagono</li>
-                                        <li class="list-group-item">Kuala-Lumpur</li>
-                                        <li class="list-group-item">Burkina Faso</li>
-                                        <li class="list-group-item">El Pentagono</li>
-                                        <li class="list-group-item">Kuala-Lumpur</li>
-                                        <li class="list-group-item">Burkina Faso</li>
-                                        <li class="list-group-item">El Pentagono</li>
-                                        <li class="list-group-item">Kuala-Lumpur</li>
-                                    </ul>
-                                </div>
+                                <p:menu toggleable="true">
+                                    <p:submenu label="Ajax">
+                                        <p:menuitem value="Save" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" />
+                                        <p:menuitem value="Update" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
+                                    </p:submenu>
+                                    <p:submenu label="Non-Ajax">
+                                        <p:menuitem value="Delete" actionListener="#{menuView.delete}" update="messages" ajax="false" icon="ui-icon-close"/>
+                                    </p:submenu>
+                                    <p:submenu label="Navigations">
+                                        <p:menuitem value="External" url="http://www.primefaces.org" icon="ui-icon-home"/>
+                                        <p:menuitem value="Internal" outcome="/mobile/index" icon="ui-icon-star"/>
+                                    </p:submenu>
+                                </p:menu>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="push"></div>
-        </div>
+
+
+
+
 
     </ui:define>
 </ui:composition>

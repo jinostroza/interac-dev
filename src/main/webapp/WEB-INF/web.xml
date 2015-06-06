@@ -41,10 +41,6 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/spring/*.xml</param-value>
     </context-param>
-    <context-param>
-        <param-name/>
-        <param-value/>
-    </context-param>
 
     <!--Iniciamos Spring-->
     <listener>

@@ -23,7 +23,7 @@ import java.util.Date;
 public class Anuncio implements Serializable {
     private Integer idAnuncio;
     private String descanuncio;
-
+    private String nombreAnuncio;
 
 
     private String rubro;
@@ -53,7 +53,6 @@ public class Anuncio implements Serializable {
     public void setDescanuncio(String descanuncio) {
         this.descanuncio = descanuncio;
     }
-
 
     @Basic
     @Column(name = "rubro", nullable = true, insertable = true, updatable = true, length = 45)
@@ -86,7 +85,7 @@ public class Anuncio implements Serializable {
     }
 
 
-    @JoinColumn(name = "idafiche",referencedColumnName = "idafiche")
+    @JoinColumn(name = "idafiche", referencedColumnName = "idafiche")
     @OneToOne(fetch = FetchType.LAZY)
     public Afiche getAfiche() {
         return afiche;
@@ -95,7 +94,6 @@ public class Anuncio implements Serializable {
     public void setAfiche(Afiche afiche) {
         this.afiche = afiche;
     }
-
 
 
     @Override
