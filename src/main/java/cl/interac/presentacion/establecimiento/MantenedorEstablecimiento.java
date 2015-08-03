@@ -7,6 +7,8 @@ import cl.interac.negocio.LogicaUsuario;
 import cl.interac.presentacion.campana.MantenedorCampana;
 import cl.interac.util.components.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,6 +16,8 @@ import java.util.List;
 /**
  * Created by Pedro Pablo on 22-05-2015.
  */
+@Component
+@Scope("flow")
 public class MantenedorEstablecimiento implements Serializable {
     public enum TipoOperacion{
         INSERTAR,
