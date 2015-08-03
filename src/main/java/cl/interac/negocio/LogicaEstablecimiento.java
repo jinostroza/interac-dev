@@ -27,4 +27,5 @@ public class LogicaEstablecimiento {
     @Transactional(readOnly = false)
     public void eliminar(Establecimiento e){establecimientoDAO.eliminar(e);}
 
+
 }

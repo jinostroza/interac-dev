@@ -35,6 +35,7 @@ public class MantenedorEstablecimiento implements Serializable {
     @Autowired
     private UserSession userSession;
 
+
     public MantenedorEstablecimiento(){new Establecimiento();}
 
     public void inicio(){ logicaEstablecimiento.obtenerTodos();}
@@ -54,4 +55,5 @@ public class MantenedorEstablecimiento implements Serializable {
     public void setEstablecimientoList(List<Establecimiento> establecimientoList) {
         this.establecimientoList = establecimientoList;
     }
+
 }

@@ -27,4 +27,6 @@ public class EstablecimientoDAO {
         Establecimiento establecimiento = em.find(Establecimiento.class, es.getIdEstablecimiento());
         em.remove(establecimiento);
     }
+
+
 }
