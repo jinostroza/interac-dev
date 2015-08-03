@@ -24,6 +24,7 @@
                     <h:outputLabel value="Establecimiento"/>:
                     <h:dataTable>
 
+                        <h:outputLabel value="Ciudad"/>:
 
 
 
@@ -85,6 +86,31 @@
 
 
                 </h:panelGrid>
+            </p:tab>
+            <p:tab title="Usuarios">
+
+                    <p:dataTable value="#{mantenedorUsuarios.usuarios}" var="usuario">
+                        <p:column headerText="ID">
+                            #{usuario.idUsuario}
+                        </p:column>
+
+                        <p:column headerText="Empresa">
+                            #{usuario.empresa}
+                        </p:column>
+
+                        <p:column headerText="Correo Electrónico">
+                            #{usuario.correo}
+                        </p:column>
+
+                        <p:column headerText="Usuario">
+                            #{usuario.username}
+                        </p:column>
+                        <p:column headerText="rol">
+                            #{usuario.rol.namerol}
+                        </p:column>
+                    </p:dataTable>
+                    <p:commandButton icon="fa fa-undo" value="volver" action="#{facesUtil.redirigir('/inicio.jsf')}"/>
+
             </p:tab>
         </p:tabView>
         <h:commandButton styleClass="btn" value="heuheu BR"/>
