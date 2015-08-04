@@ -30,16 +30,19 @@
                 <p:commandButton id="nuevoBtn" value="Agrega" type="button" />
                 <p:overlayPanel id="agregapanel" for="nuevoBtn" hideEffect="fade" dynamic="true" style="width:600px">
                 <p:outputPanel >
-                    <h:outputLabel value="ID establecimiento" />
-                    <h:inputText styleClass="form-control" value="#{mantenedorEstablecimiento.establecimiento.fono}"/>
-                    <h:outputLabel  value="Nombre"/>
+                    <h:outputLabel value="Nombre" />
                     <h:inputText styleClass="form-control" value="#{mantenedorEstablecimiento.establecimiento.nombreEstablecimiento}"/>
                     <h:outputLabel  value="Direccion"/>
-                    <h:inputText styleClass="form-control" value="#{mantenedorEstablecimiento.establecimiento.direccion}"/>}
+                    <h:inputText styleClass="form-control" value="#{mantenedorEstablecimiento.establecimiento.direccion}"/>
+                    <h:outputLabel  value="Fono"/>
+                    <h:inputText styleClass="form-control" value="#{mantenedorEstablecimiento.establecimiento.fono}"/>}
                     <h:outputLabel  value="#{mantenedorEstablecimiento.establecimiento.usuario.idUsuario}"/>
-                    <p:selectOneMenu id="console" value="#{mantenedorUbicacion.obtenerUbicacion}" style="width:125px">
-                        <f:selectItems var="ubicacion" itemLabel="#{mantenedorUbicacion.ubicacion.descubicacion}" />
-                    </p:selectOneMenu>
+                    <h:selectOneMenu class="form-control" value="#{mantenedorUbicacion.ubicacion}"
+                                     converter="entityConverter">
+                        <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
+                        <f:selectItems value="#{mantenedorUbicacion.obtenerUbicacion}" var="ubica"
+                                       itemLabel="#{ubica.descubicacion}" itemValue="#{ubica.idubicacion}"/>
+                    </h:selectOneMenu>
                     <br/>
                     <h:outputLabel  value="#{mantenedorEstablecimiento.establecimiento.ubicacion.idubicacion}"/>
                     <p:commandButton id="addBtn" value="Agrega" type="submit" action="#{mantenedorEstablecimiento.agregarEstablecimiento}"/>
