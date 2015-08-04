@@ -16,17 +16,19 @@
                 <div class="col-lg-4">
                     <div class="dashbox">
                         <p class="dashbox-header">Crear anuncio</p>
-                        <p:commandLink styleClass="button_ crear-anuncio"
+                        <div Class="button_ crear-anuncio" >
+                        <p:commandLink
                                        action="#{facesUtil.redirigir('/plataforma/creacion')}"/>
-
+                        </div>
                         <p> Escoge aqui uno de los anuncios ya creados </p>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="dashbox">
                         <p class="dashbox-header">Crear campaña</p>
-                        <p:commandLink styleClass="button_ crear-campana"/>
-
+                        <div Class="button_ crear-campana">
+                        <p:commandLink styleClass="button_ crear-campana"></p:commandLink>
+                        </div>
                         <p> Escoge aqui uno de los anuncios ya creados </p>
                     </div>
                 </div>
@@ -49,7 +51,7 @@
                     </f:facet>
 
                     <h:panelGrid columns="2" style="width:100%">
-                        <p:graphicImage name="/static/interac/anuncios/suenos.jpg"/>
+                        <p:graphicImage name="/static/interac/anuncios/"/>
 
                         <p:outputPanel>
                             <h:panelGrid columns="2" cellpadding="5">

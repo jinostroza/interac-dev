@@ -11,6 +11,7 @@
       <view-state id="inicioMantenedores">
           <transition>
           <evaluate expression="mantenedorTotems.inicio()"></evaluate>
+           <evaluate expression="mantenedorEstablecimiento.inicio()"></evaluate>
           </transition>
       </view-state>
 
