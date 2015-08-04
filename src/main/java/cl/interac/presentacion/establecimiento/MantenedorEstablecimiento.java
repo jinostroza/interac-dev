@@ -19,6 +19,7 @@ import java.util.List;
 @Component
 @Scope("flow")
 public class MantenedorEstablecimiento implements Serializable {
+    public Establecimiento establecimiento;
     public enum TipoOperacion{
         INSERTAR,
         EDITAR,
@@ -37,7 +38,9 @@ public class MantenedorEstablecimiento implements Serializable {
 
 
     public MantenedorEstablecimiento(){new Establecimiento();}
-
+    public void agregarEstablecimiento(){
+        logicaEstablecimiento.guardar(establecimiento);
+    }
     public void inicio(){ logicaEstablecimiento.obtenerTodos();}
 
     public TipoOperacion getOperacion() {
@@ -48,6 +51,13 @@ public class MantenedorEstablecimiento implements Serializable {
         Operacion = operacion;
     }
 
+    public Establecimiento getEstablecimiento() {
+        return establecimiento;
+    }
+
+    public void setEstablecimiento(Establecimiento establecimiento) {
+        this.establecimiento = establecimiento;
+    }
     public List<Establecimiento> getEstablecimientoList() {
         return establecimientoList;
     }

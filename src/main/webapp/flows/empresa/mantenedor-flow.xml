@@ -13,6 +13,15 @@
           <evaluate expression="mantenedorTotems.inicio()"></evaluate>
            <evaluate expression="mantenedorEstablecimiento.inicio()"></evaluate>
           </transition>
+          <transition>
+              <evaluate expression="mantenedorEstablecimiento.inicio()"></evaluate>
+          </transition>
+          <transition>
+              <evaluate expression="mantenedorAnuncios.inicio()"></evaluate>
+          </transition>
+          <transition>
+              <evaluate expression="mantenedorUbicacion.inicio()"></evaluate>
+          </transition>
       </view-state>
 
 
