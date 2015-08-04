@@ -28,5 +28,13 @@ public class EstablecimientoDAO {
         em.remove(establecimiento);
     }
 
+    public List<Establecimiento> ObtenerConRelacion(){return em.createNamedQuery("estabecimiento.findAllByusuario").getResultList();}
+
+    public List<Establecimiento> ObtenerPorNombre(String text1){
+       return em.createNamedQuery("establecimiento.findNombreEstablecimiento").setParameter("buscaLocal",text1).getResultList();
+
+    }
+
+
 
 }

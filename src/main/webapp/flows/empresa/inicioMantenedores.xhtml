@@ -41,7 +41,7 @@
                                      converter="entityConverter">
                         <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
                         <f:selectItems value="#{mantenedorUbicacion.obtenerUbicacion}" var="ubica"
-                                       itemLabel="#{ubica.descubicacion}" itemValue="#{ubica.idubicacion}"/>
+                                       itemLabel="#{ubica.descubicacion}" itemValue="#{ubica}"/>
                     </h:selectOneMenu>
                     <br/>
                     <h:outputLabel  value="#{mantenedorEstablecimiento.establecimiento.ubicacion.idubicacion}"/>

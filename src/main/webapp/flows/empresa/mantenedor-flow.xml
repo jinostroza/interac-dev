@@ -5,7 +5,7 @@
        start-state="inicioMantenedores" >
 
      <on-start>
-         <evaluate expression="mantenedorUbicacion.inicio()"></evaluate>
+         <evaluate expression="mantenedorEstablecimiento.inicio()"></evaluate>
      </on-start>
 
       <view-state id="inicioMantenedores">

@@ -1,10 +1,12 @@
 package cl.interac.presentacion.establecimiento;
 
-import cl.interac.entidades.Afiche;
-import cl.interac.entidades.Establecimiento;
+import cl.interac.entidades.*;
 import cl.interac.negocio.LogicaEstablecimiento;
+import cl.interac.negocio.LogicaTotem;
+import cl.interac.negocio.LogicaUbicacion;
 import cl.interac.negocio.LogicaUsuario;
 import cl.interac.presentacion.campana.MantenedorCampana;
+import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -26,8 +28,13 @@ public class MantenedorEstablecimiento implements Serializable {
     }
 
     //manejo manual
-    private TipoOperacion Operacion;
+    private TipoOperacion operacion;
     private List<Establecimiento> establecimientoList;
+    private List<Totem> totems;
+    private List<Ubicacion> ubicacions;
+    private List<Usuario> usuario;
+    private String text1;
+
 
     @Autowired
     private LogicaEstablecimiento logicaEstablecimiento;
@@ -35,20 +42,44 @@ public class MantenedorEstablecimiento implements Serializable {
     private LogicaUsuario logicaUsuario;
     @Autowired
     private UserSession userSession;
+    @Autowired
+    private LogicaUbicacion logicaUbicacion;
+    @Autowired
+    private LogicaTotem logicaTotem;
+
+    public boolean esEditar() {
+        return operacion == TipoOperacion.EDITAR;
+    }
+
+    public boolean esAgregar() {
+        return operacion == TipoOperacion.INSERTAR;
+    }
+
+    public void buscar(String text1){
+        logicaEstablecimiento.buscar(text1);
+
+    }
 
 
     public MantenedorEstablecimiento(){new Establecimiento();}
     public void agregarEstablecimiento(){
         logicaEstablecimiento.guardar(establecimiento);
+        establecimiento.setUsuario(userSession.getUsuario());
+
     }
-    public void inicio(){ logicaEstablecimiento.obtenerTodos();}
+    public void inicio(){
+
+       establecimientoList = logicaEstablecimiento.obtenerTodos();
+       establecimientoList = logicaEstablecimiento.ObtenerConRelacion();
+
+    }
 
     public TipoOperacion getOperacion() {
-        return Operacion;
+        return operacion;
     }
 
-    public void setOperacion(TipoOperacion operacion) {
-        Operacion = operacion;
+    public void setOperacion(TipoOperacion Operacion) {
+        operacion = Operacion;
     }
 
     public Establecimiento getEstablecimiento() {
@@ -65,5 +96,14 @@ public class MantenedorEstablecimiento implements Serializable {
     public void setEstablecimientoList(List<Establecimiento> establecimientoList) {
         this.establecimientoList = establecimientoList;
     }
+
+    public String getText1() {
+        return text1;
+    }
+
+    public void setText1(String text1) {
+        this.text1 = text1;
+    }
+
 
 }

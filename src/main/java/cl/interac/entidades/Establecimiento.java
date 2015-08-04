@@ -55,7 +55,7 @@ public class Establecimiento implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idEstablecimiento", nullable = false, insertable = true, updatable = false)
+    @Column(name = "idestablecimiento", nullable = false, insertable = true, updatable = false)
     public Integer getIdEstablecimiento() {
         return idEstablecimiento;
     }

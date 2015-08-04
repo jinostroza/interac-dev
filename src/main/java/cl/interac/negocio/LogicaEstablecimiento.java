@@ -27,5 +27,14 @@ public class LogicaEstablecimiento {
     @Transactional(readOnly = false)
     public void eliminar(Establecimiento e){establecimientoDAO.eliminar(e);}
 
+    @Transactional(readOnly= true)
+    public List<Establecimiento> buscar(String text1) {
+       return establecimientoDAO.ObtenerPorNombre(text1);
+
+    }
+    @Transactional(readOnly =true)
+    public List<Establecimiento> ObtenerConRelacion(){
+        return establecimientoDAO.ObtenerConRelacion();
+    }
 
 }
