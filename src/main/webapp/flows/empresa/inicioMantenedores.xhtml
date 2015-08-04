@@ -20,14 +20,31 @@
                 </h:panelGrid>
             </p:tab>
             <p:tab title="establecimiento">
+
                 <h:panelGrid columns="2" cellpadding="10">
                     <h:outputLabel value="Establecimiento"/>:
                    <h:inputText var="buscaLocal"  />
                     <h:button ajax="true" value="buscar"  />
 
-
-
                 </h:panelGrid>
+                <p:commandButton id="nuevoBtn" value="Agrega" type="button" />
+                <p:overlayPanel id="agregapanel" for="nuevoBtn" hideEffect="fade" dynamic="true" style="width:600px">
+                <p:outputPanel >
+                    <h:outputLabel value="ID establecimiento" />
+                    <h:inputText styleClass="form-control" value="#{mantenedorEstablecimiento.establecimiento.fono}"/>
+                    <h:outputLabel  value="Nombre"/>
+                    <h:inputText styleClass="form-control" value="#{mantenedorEstablecimiento.establecimiento.nombreEstablecimiento}"/>
+                    <h:outputLabel  value="Direccion"/>
+                    <h:inputText styleClass="form-control" value="#{mantenedorEstablecimiento.establecimiento.direccion}"/>}
+                    <h:outputLabel  value="#{mantenedorEstablecimiento.establecimiento.usuario.idUsuario}"/>
+                    <p:selectOneMenu id="console" value="#{mantenedorUbicacion.obtenerUbicacion}" style="width:125px">
+                        <f:selectItems var="ubicacion" itemLabel="#{mantenedorUbicacion.ubicacion.descubicacion}" />
+                    </p:selectOneMenu>
+                    <br/>
+                    <h:outputLabel  value="#{mantenedorEstablecimiento.establecimiento.ubicacion.idubicacion}"/>
+                    <p:commandButton id="addBtn" value="Agrega" type="submit" action="#{mantenedorEstablecimiento.agregarEstablecimiento}"/>
+                </p:outputPanel>
+                </p:overlayPanel>
             </p:tab>
             <p:tab title="Totem's">
                 <h:panelGrid columns="2" cellpadding="10">
