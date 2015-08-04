@@ -20,22 +20,16 @@
                 </h:panelGrid>
             </p:tab>
             <p:tab title="establecimiento">
-                <h:panelGrid columns="2" cellpadding="10">
-                    <h:outputLabel value="Establecimiento"/>:
-                    <h:dataTable>
+                <p:commandButton id="nuevoBtn" value="Agrega" type="button" />
+                <p:overlayPanel id="agregapanel" for="nuevoBtn" hideEffect="fade" dynamic="true" style="width:600px">
+                    <p:outputPanel >
+                        <h:outputLabel value="ID establecimiento" />
+                        <h:inputText styleClass="form-control" value="#{mantenedorEstablecimiento.}"/>
+                        <h:outputLabel  value="Nombre"/>
+                        <h:inputText styleClass="form-control" value="#{mantenedorTotems.totem.tipo}"/>
+                    </p:outputPanel>
 
-                        <h:outputLabel value="Ciudad"/>:
-
-
-
-
-
-
-                    </h:dataTable>
-
-
-
-                </h:panelGrid>
+                </p:overlayPanel>
             </p:tab>
             <p:tab title="Totem's">
                 <h:panelGrid columns="2" cellpadding="10">
