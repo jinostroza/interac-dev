@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    <h3 style="margin-top:0">Mantenedor Establecimientos</h3>
+    <h:panelGrid columns="2" cellpadding="10">
+        <h:outputLabel value="Establecimiento"/>:
+        <h:inputText var="buscaLocal"/>
+        <h:button ajax="true" value="buscar"/>
+
+    </h:panelGrid>
+    <p:commandButton id="nuevoBtn" value="Agrega" type="button"/>
+    <p:overlayPanel id="agregapanel" for="nuevoBtn" hideEffect="fade" dynamic="true" style="width:600px">
+        <p:outputPanel>
+            <h:outputLabel value="Nombre"/>
+            <h:inputText styleClass="form-control"
+                         value="#{mantenedorEstablecimiento.establecimiento.nombreEstablecimiento}"/>
+            <h:outputLabel value="Direccion"/>
+            <h:inputText styleClass="form-control" value="#{mantenedorEstablecimiento.establecimiento.direccion}"/>
+            <h:outputLabel value="Fono"/>
+            <h:inputText styleClass="form-control" value="#{mantenedorEstablecimiento.establecimiento.fono}"/>
+
+            <h:selectOneMenu class="form-control" value="#{mantenedorUbicacion.ubicacion}"
+                             converter="entityConverter">
+                <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
+                <f:selectItems value="#{mantenedorEstablecimiento.ubicaciones}" var="ubica"
+                               itemLabel="#{ubica.descubicacion}" itemValue="#{ubica}"/>
+            </h:selectOneMenu>
+            <br/>
+            <h:outputLabel value="#{mantenedorEstablecimiento.establecimiento.ubicacion.idubicacion}"/>
+            <p:commandButton id="addBtn" value="Agrega" type="submit"
+                             action="#{mantenedorEstablecimiento.agregarEstablecimiento}"/>
+        </p:outputPanel>
+    </p:overlayPanel>
+
+</ui:composition>

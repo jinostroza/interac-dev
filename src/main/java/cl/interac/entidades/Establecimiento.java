@@ -12,13 +12,13 @@ import java.util.List;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "establecimiento.findAll", query = "select e from Establecimiento e"),
-        @NamedQuery(name="estabecimiento.findAllByusuario",
-                query="select e from Establecimiento e " +
+        @NamedQuery(name = "estabecimiento.findAllByusuario",
+                query = "select e from Establecimiento e " +
                         "inner join fetch e.usuario " +
                         "inner join fetch e.ubicacion"),
-        @NamedQuery(name ="establecimiento.findNombreEstablecimiento",
-                  query="select e from Establecimiento e " +
-                          "where e.nombreEstablecimiento =:buscaLocal ")
+        @NamedQuery(name = "establecimiento.findNombreEstablecimiento",
+                query = "select e from Establecimiento e " +
+                        "where e.nombreEstablecimiento =:buscaLocal ")
 })
 
 public class Establecimiento implements Serializable {
@@ -66,7 +66,7 @@ public class Establecimiento implements Serializable {
 
 
     @Basic
-    @Column
+    @Column(name = "desestablecimiento")
     public String getNombreEstablecimiento() {
         return nombreEstablecimiento;
     }
@@ -74,7 +74,6 @@ public class Establecimiento implements Serializable {
     public void setNombreEstablecimiento(String nombreEstablecimiento) {
         this.nombreEstablecimiento = nombreEstablecimiento;
     }
-
 
     @Basic
     @Column

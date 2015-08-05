@@ -38,15 +38,19 @@ public class LogicaAnuncio {
     public void guardar(Anuncio anuncio) {
         anuncioDAO.guardar(anuncio);
     }
+
     @Transactional(readOnly = false)
     public void eliminarAnuncio(Anuncio anuncio) {
         anuncioDAO.eliminarAnuncio(anuncio);
     }
 
     @Transactional(readOnly = true)
-    public Anuncio obtenerPorId(Integer id){
+    public Anuncio obtenerPorId(Integer id) {
         return anuncioDAO.obtenerPorId(id);
     }
+
     @Transactional(readOnly = true)
-    public List<Anuncio> obtenerConRelaciones() {return anuncioDAO.obtenerConRelaciones();}
+    public List<Anuncio> obtenerConRelaciones() {
+        return anuncioDAO.obtenerConRelaciones();
+    }
 }

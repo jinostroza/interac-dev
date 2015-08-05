@@ -16,25 +16,28 @@ public class EstablecimientoDAO {
     @PersistenceContext
     private EntityManager em;
 
-    public List<Establecimiento> ObtenerTodos(){return em.createNamedQuery("establecimiento.findAll").getResultList();}
+    public List<Establecimiento> obtenerTodos() {
+        return em.createNamedQuery("establecimiento.findAll").getResultList();
+    }
 
-    public void guardar(Establecimiento es){
+    public void guardar(Establecimiento es) {
         if (es.getIdEstablecimiento() == null) em.persist(es);
         else em.merge(es);
     }
 
-    public void eliminar(Establecimiento es){
+    public void eliminar(Establecimiento es) {
         Establecimiento establecimiento = em.find(Establecimiento.class, es.getIdEstablecimiento());
         em.remove(establecimiento);
     }
 
-    public List<Establecimiento> ObtenerConRelacion(){return em.createNamedQuery("estabecimiento.findAllByusuario").getResultList();}
-
-    public List<Establecimiento> ObtenerPorNombre(String text1){
-       return em.createNamedQuery("establecimiento.findNombreEstablecimiento").setParameter("buscaLocal",text1).getResultList();
-
+    public List<Establecimiento> ObtenerConRelacion() {
+        return em.createNamedQuery("estabecimiento.findAllByusuario").getResultList();
     }
 
+    public List<Establecimiento> ObtenerPorNombre(String text1) {
+        return em.createNamedQuery("establecimiento.findNombreEstablecimiento").setParameter("buscaLocal", text1).getResultList();
+
+    }
 
 
 }

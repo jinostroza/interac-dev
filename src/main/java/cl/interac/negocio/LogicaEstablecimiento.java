@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 /**
@@ -19,21 +20,28 @@ public class LogicaEstablecimiento {
     private EstablecimientoDAO establecimientoDAO;
 
     @Transactional(readOnly = true)
-    public List<Establecimiento> obtenerTodos(){return establecimientoDAO.ObtenerTodos();}
+    public List<Establecimiento> obtenerTodos() {
+        return establecimientoDAO.obtenerTodos();
+    }
 
     @Transactional(readOnly = false)
-    public void guardar(Establecimiento e){ establecimientoDAO.guardar(e);}
+    public void guardar(Establecimiento e) {
+        establecimientoDAO.guardar(e);
+    }
 
     @Transactional(readOnly = false)
-    public void eliminar(Establecimiento e){establecimientoDAO.eliminar(e);}
+    public void eliminar(Establecimiento e) {
+        establecimientoDAO.eliminar(e);
+    }
 
-    @Transactional(readOnly= true)
+    @Transactional(readOnly = true)
     public List<Establecimiento> buscar(String text1) {
-       return establecimientoDAO.ObtenerPorNombre(text1);
+        return establecimientoDAO.ObtenerPorNombre(text1);
 
     }
-    @Transactional(readOnly =true)
-    public List<Establecimiento> ObtenerConRelacion(){
+
+    @Transactional(readOnly = true)
+    public List<Establecimiento> ObtenerConRelacion() {
         return establecimientoDAO.ObtenerConRelacion();
     }
 

@@ -30,7 +30,9 @@ public class MantenedorAnuncios implements Serializable {
     private enum TipoOperacion {
         INSERTAR,
         EDITAR
-    };
+    }
+
+    ;
     private TipoOperacion operacion;
     private List<Categoria> categorias;
     private List<Campana> campanas;
@@ -54,7 +56,9 @@ public class MantenedorAnuncios implements Serializable {
     @Autowired
     private UserSession userSession;
 
-    public MantenedorAnuncios() { anuncio = new Anuncio();}
+    public MantenedorAnuncios() {
+        anuncio = new Anuncio();
+    }
 
     //flows
     public boolean esEditar() {
@@ -69,14 +73,14 @@ public class MantenedorAnuncios implements Serializable {
     //logica Vista
     public void guardar() {
 
-       logicaAnuncio.guardar(anuncio);
+        logicaAnuncio.guardar(anuncio);
         campana.setCliente(userSession.getUsuario());
         logicaCampana.guardarCampana(campana);
 
         logicaCategoria.guardar(categoria);
         if (esEditar()) {
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña [" + anuncio.getDescanuncio() + "]");
-        } else{
+        } else {
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado la campaña [" + anuncio.getDescanuncio() + "]");
         }
     }
@@ -86,34 +90,28 @@ public class MantenedorAnuncios implements Serializable {
     }
 
 
-
     public void subir(FileUploadEvent fue) {
         System.err.println("LLEGO A LA WA " + fue);
         String path = fileUploader.subir(fue, "/anuncios/");
-        System.err.println("SE SUPONE QUE SUBI EN "+path);
+        System.err.println("SE SUPONE QUE SUBI EN " + path);
         operacion = TipoOperacion.INSERTAR;
 
         if (esEditar()) {
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña [" + anuncio.getDescanuncio() + "]");
-        } else{
+        } else {
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado la campaña [" + anuncio.getDescanuncio() + "]");
         }
         //logicaDocumentos.guardar(path, "algo más") // no se pos aqui tu decides xD
     }
 
 
-
-
     public void inicio() {
         categorias = logicaCategoria.obtenerTodos();
         campanas = logicaCampana.obtenerTodos();
         anuncios = logicaAnuncio.obtenerConRelaciones();
-        anuncios = logicaAnuncio.obtenerTodos();
+//        anuncios = logicaAnuncio.obtenerTodos();
         userSession.getUsuario();
     }
-
-
-
 
 
     //get and set

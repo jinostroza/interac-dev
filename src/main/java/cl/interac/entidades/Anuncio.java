@@ -15,6 +15,7 @@ import java.util.Date;
                 @NamedQuery(name = "Anuncio.findAllWithRelationships",
                         query = "SELECT a from Anuncio a " +
                                 "inner join fetch a.campana c " +
+                                "inner join fetch c.cliente cli " +
                                 "inner join fetch a.categoria ca")
 
 

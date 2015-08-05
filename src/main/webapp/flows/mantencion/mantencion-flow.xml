@@ -4,15 +4,6 @@
       xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
        start-state="inicioMantenedores" >
 
-     <on-start>
-         <evaluate expression="mantenedorEstablecimiento.inicio()"></evaluate>
-     </on-start>
-
       <view-state id="inicioMantenedores">
-          <transition>
-              <evaluate expression="mantenedorEstablecimiento.inicio()"></evaluate>
-          </transition>
       </view-state>
-
-
 </flow>

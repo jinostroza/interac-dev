@@ -17,21 +17,35 @@ import java.util.List;
 @Scope("flow")
 public class MantenedorUbicacion implements Serializable {
 
-  private Ubicacion ubicacion;
+    private Ubicacion ubicacion;
 
     @Autowired
     private LogicaUbicacion logicaUbicacion;
 
     private List<Ubicacion> obtenerUbicacion;
 
-    public void inicio(){ubicacion = new Ubicacion();}
+    public void inicio() {
+        ubicacion = new Ubicacion();
+    }
 
-    public void guardarUb(){logicaUbicacion.guardar(ubicacion);}
+    public void guardarUb() {
+        logicaUbicacion.guardar(ubicacion);
+    }
 
-    public List<Ubicacion> getObtenerUbicacion(){return obtenerUbicacion ;}
+    public List<Ubicacion> getObtenerUbicacion() {
+        return obtenerUbicacion;
+    }
 
-    public void setObtenerUbicacion(List<Ubicacion> obtenerUbicacion){this.obtenerUbicacion = obtenerUbicacion;}
+    public void setObtenerUbicacion(List<Ubicacion> obtenerUbicacion) {
+        this.obtenerUbicacion = obtenerUbicacion;
+    }
 
-     public Ubicacion getUbicacion(){return ubicacion;}
+    // getters and setters
+    public Ubicacion getUbicacion() {
+        return ubicacion;
+    }
 
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
+    }
 }

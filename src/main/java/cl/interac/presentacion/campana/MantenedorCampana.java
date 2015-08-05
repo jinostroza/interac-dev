@@ -44,7 +44,7 @@ public class MantenedorCampana implements Serializable {
     public void inicio() {
         totems = logicaTotem.obtenerTodos();
         // para los Lazy Exception (Excepcion de carga ligera) usar FetchType.EAGER (Con cautela) o hacer una query con las relaciones (Lo seguro aunque tardas más programando :P)
-        //campanas = logicaCampana.obtenerTodos(); // para eager
+        //campanas = logicaCampana.obtenerTodas(); // para eager
         campanas = logicaCampana.obtenerTodosConRelaciones(); // para lazy
         operacion = TipoOperacion.INGRESAR;
     }

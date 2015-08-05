@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/default.xhtml">
+    <ui:define name="contenido">
+        <h3 style="margin-top:0">Configuraciones de la empresa</h3>
+        <h:form>
+            <p:tabView dynamic="true" cache="true">
+                <p:tab title="Campaña">
+                    Campaña campañosa
+                </p:tab>
+                <p:tab title="establecimiento">
+                    <ui:include src="establecimientos/mantenedorEstablecimiento.xhtml"/>
+                </p:tab>
+
+                <p:tab title="Totem's">
+                    Tillible totem
+                </p:tab>
+
+                <p:tab title="Anuncios">
+                    un verano naranja... pa pa pah!
+                </p:tab>
+            </p:tabView>
+            <h:commandButton styleClass="btn"/>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

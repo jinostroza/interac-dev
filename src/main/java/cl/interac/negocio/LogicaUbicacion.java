@@ -25,7 +25,7 @@ public class LogicaUbicacion {
     public void guardar(Ubicacion ubicacion){ubicacionDAO.guardar(ubicacion);}
 
     @org.springframework.transaction.annotation.Transactional(readOnly = true)
-    public List<Ubicacion> obtenerTodos(){return ubicacionDAO.ObtenerTodos();}
+    public List<Ubicacion> obtenerTodas(){return ubicacionDAO.ObtenerTodos();}
 
 
 
