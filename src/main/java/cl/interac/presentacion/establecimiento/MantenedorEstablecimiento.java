@@ -5,6 +5,8 @@ import cl.interac.negocio.LogicaEstablecimiento;
 import cl.interac.negocio.LogicaTotem;
 import cl.interac.negocio.LogicaUbicacion;
 import cl.interac.negocio.LogicaUsuario;
+import cl.interac.presentacion.campana.MantenedorCampana;
+import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -19,8 +21,8 @@ import java.util.List;
 @Component
 @Scope("flow")
 public class MantenedorEstablecimiento implements Serializable {
-
-    public enum TipoOperacion {
+    public Establecimiento establecimiento;
+    public enum TipoOperacion{
         INSERTAR,
         EDITAR,
     }
@@ -29,11 +31,10 @@ public class MantenedorEstablecimiento implements Serializable {
     private TipoOperacion operacion;
     private List<Establecimiento> establecimientoList;
     private List<Totem> totems;
-    private List<Ubicacion> ubicaciones;
+    private List<Ubicacion> ubicacions;
     private List<Usuario> usuario;
     private String text1;
-    private Establecimiento establecimiento;
-    private Ubicacion ubicacion;
+
 
     @Autowired
     private LogicaEstablecimiento logicaEstablecimiento;
@@ -54,60 +55,24 @@ public class MantenedorEstablecimiento implements Serializable {
         return operacion == TipoOperacion.INSERTAR;
     }
 
-    public void buscar(String text1) {
+    public void buscar(String text1){
         logicaEstablecimiento.buscar(text1);
-    }
 
-    public void inicio() {
-        establecimientoList = logicaEstablecimiento.obtenerTodos();
-        ubicaciones = logicaUbicacion.obtenerTodas();
-        System.err.println("NO TE COMPRO QUE ESTES PASANDO AHORA");
     }
 
 
-    public MantenedorEstablecimiento() {
-        new Establecimiento();
-    }
-
-    public void agregarEstablecimiento() {
+    public MantenedorEstablecimiento(){new Establecimiento();}
+    public void agregarEstablecimiento(){
         logicaEstablecimiento.guardar(establecimiento);
         establecimiento.setUsuario(userSession.getUsuario());
-        ubicacion.setIdubicacion(establecimiento.getIdEstablecimiento());
 
     }
+    public void inicio(){
 
-    public List<Totem> getTotems() {
-        return totems;
+       establecimientoList = logicaEstablecimiento.obtenerTodos();
+
+
     }
-
-    public void setTotems(List<Totem> totems) {
-        this.totems = totems;
-    }
-
-    public List<Ubicacion> getUbicaciones() {
-        return ubicaciones;
-    }
-
-    public void setUbicaciones(List<Ubicacion> ubicaciones) {
-        this.ubicaciones = ubicaciones;
-    }
-
-    public List<Usuario> getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(List<Usuario> usuario) {
-        this.usuario = usuario;
-    }
-
-    public Ubicacion getUbicacion() {
-        return ubicacion;
-    }
-
-    public void setUbicacion(Ubicacion ubicacion) {
-        this.ubicacion = ubicacion;
-    }
-
 
     public TipoOperacion getOperacion() {
         return operacion;
@@ -124,7 +89,6 @@ public class MantenedorEstablecimiento implements Serializable {
     public void setEstablecimiento(Establecimiento establecimiento) {
         this.establecimiento = establecimiento;
     }
-
     public List<Establecimiento> getEstablecimientoList() {
         return establecimientoList;
     }

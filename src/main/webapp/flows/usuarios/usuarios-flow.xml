@@ -5,7 +5,7 @@
       start-state="listarUsuarios">
 
     <on-start>
-        <evaluate expression="mantenedorUsuarios.inicio()"/>
+        <evaluate expression="MantenedorUsuarios.inicio()"/>
     </on-start>
 
     <view-state id="listarUsuarios">

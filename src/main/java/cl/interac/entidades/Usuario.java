@@ -8,6 +8,7 @@ import java.util.List;
  * Created by claudio on 24-04-15.
  */
 @Entity
+@Table(name="Usuario")
 @NamedQueries(
         {
                 @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u "),
