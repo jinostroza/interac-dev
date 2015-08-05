@@ -8,10 +8,13 @@
         <h3 style="margin-top:0">Configuraciones de la empresa</h3>
         <h:form>
             <p:tabView dynamic="true" cache="true">
+                <p:ajax event="tabChange" listener="#{mantenedorMantencion.cambioPestania}"></p:ajax>
+
                 <p:tab title="Campaña">
                     Campaña campañosa
                 </p:tab>
-                <p:tab title="establecimiento">
+                <p:tab title="Establecimiento">
+                    <!-- esto de que me guste el webeo xD -->
                     <ui:include src="establecimientos/mantenedorEstablecimiento.xhtml"/>
                 </p:tab>
 
