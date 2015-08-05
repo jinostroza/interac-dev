@@ -78,7 +78,7 @@
 
     <context-param>
         <param-name>primefaces.UPLOADER</param-name>
-        <param-value>commons</param-value>
+        <param-value>auto|native|commons</param-value>
     </context-param>
 
     <filter>
@@ -88,12 +88,18 @@
             <param-name>thresholdSize</param-name>
             <param-value>512000</param-value>
         </init-param>
+        <init-param>
+            <param-name>uploadDirectory</param-name>
+            <param-value>/var/bcom/temp</param-value>
+
+        </init-param>
     </filter>
     <filter-mapping>
         <filter-name>PrimeFaces Upload Filter</filter-name>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
 
     <!--Servlets Personalizados-->
 

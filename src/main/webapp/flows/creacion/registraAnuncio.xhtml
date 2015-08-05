@@ -20,11 +20,11 @@
                         <br></br>
 
                         <div id="cuadro-imagen" class="dz-default dz-message">
-                            <p:fileUpload rendered="true"  auto="false" multiple="true"
-                                          mode="advanced"
+                            <p:fileUpload mode="advanced"
+                                          allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/"
+                                          auto="true"
                                           fileUploadListener="#{mantenedorAnuncios.subir}" uploadLabel="Subir"
                                           cancelLabel="Cancelar"
-                                          allowTypes="/(\.|\/)(jpg|png|gif)$/i"
                                           label="Cargar nuevo archivo"
                                           fileLimit="4"
                                           fileLimitMessage="Solo se puede subir 4 documento(s)"/>

@@ -11,7 +11,7 @@
 
     </h:panelGrid>
     <p:commandButton id="nuevoBtn" value="Agrega" type="button"/>
-    <p:overlayPanel id="agregapanel" for="nuevoBtn" hideEffect="fade" dynamic="true" style="width:600px">
+    <p:overlayPanel id="agregapanel" for="nuevoBtn" showEvent="click" hideEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
         <p:outputPanel>
             <h:outputLabel value="Nombre"/>
             <h:inputText styleClass="form-control"
@@ -20,17 +20,17 @@
             <h:inputText styleClass="form-control" value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimiento.direccion}"/>
             <h:outputLabel value="Fono"/>
             <h:inputText styleClass="form-control" value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimiento.fono}"/>
-
+            <h:outputLabel value="Ubicacion"/>
             <h:selectOneMenu class="form-control" value="#{mantenedorMantencion.mantenedorEstablecimiento.ubicacion}"
                              converter="entityConverter">
                 <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
                 <f:selectItems value="#{mantenedorMantencion.mantenedorEstablecimiento.ubicaciones}" var="ubica"
-                               itemLabel="#{ubica.descubicacion}" itemValue="#{ubica}"/>
+                               itemLabel="#{ubica.descubicacion}"/>
             </h:selectOneMenu>
             <br/>
             <h:outputLabel value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimiento.ubicacion.idubicacion}"/>
-            <p:commandButton id="addBtn" value="Agrega" type="submit"
-                             action="#{mantenedorMantencion.mantenedorEstablecimiento.agregarEstablecimiento}"/>
+            <p:commandButton id="addBtn" for="agregapanel" value="Agrega"
+                             action="#{mantenedorMantencion.mantenedorEstablecimiento.agregarEstablecimiento()}"/>
         </p:outputPanel>
     </p:overlayPanel>
 

@@ -62,7 +62,7 @@ public class MantenedorEstablecimiento implements Serializable {
     public void inicio() {
         establecimientoList = logicaEstablecimiento.obtenerTodos();
         ubicaciones = logicaUbicacion.obtenerTodas();
-        System.err.println("NO TE COMPRO QUE ESTES PASANDO AHORA");
+        establecimiento = new Establecimiento();
     }
 
 
@@ -74,11 +74,11 @@ public class MantenedorEstablecimiento implements Serializable {
         operacion = TipoOperacion.INSERTAR;
         logicaEstablecimiento.guardar(establecimiento);
         establecimiento.setUsuario(userSession.getUsuario());
-       logicaUbicacion.guardar(ubicacion);
-        if (esEditar()) {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña [" + establecimiento.getNombreEstablecimiento() + "]");
+        logicaUbicacion.guardar(ubicacion);
+        if (esAgregar()) {
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el establecimiento [" + establecimiento.getNombreEstablecimiento() + "]");
         } else {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado la campaña [" + establecimiento.getNombreEstablecimiento() + "]");
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el establecimiento [" + establecimiento.getNombreEstablecimiento() + "]");
         }
 
     }
@@ -147,6 +147,4 @@ public class MantenedorEstablecimiento implements Serializable {
     public void setText1(String text1) {
         this.text1 = text1;
     }
-
-
 }
