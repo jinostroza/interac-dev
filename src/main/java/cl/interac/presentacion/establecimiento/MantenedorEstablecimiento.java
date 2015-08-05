@@ -5,6 +5,7 @@ import cl.interac.negocio.LogicaEstablecimiento;
 import cl.interac.negocio.LogicaTotem;
 import cl.interac.negocio.LogicaUbicacion;
 import cl.interac.negocio.LogicaUsuario;
+import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -17,7 +18,7 @@ import java.util.List;
  * Created by Pedro Pablo on 22-05-2015.
  */
 @Component
-@Scope("flow")
+@Scope("prototype")
 public class MantenedorEstablecimiento implements Serializable {
 
     public enum TipoOperacion {
@@ -70,9 +71,15 @@ public class MantenedorEstablecimiento implements Serializable {
     }
 
     public void agregarEstablecimiento() {
+        operacion = TipoOperacion.INSERTAR;
         logicaEstablecimiento.guardar(establecimiento);
         establecimiento.setUsuario(userSession.getUsuario());
-        ubicacion.setIdubicacion(establecimiento.getIdEstablecimiento());
+       logicaUbicacion.guardar(ubicacion);
+        if (esEditar()) {
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña [" + establecimiento.getNombreEstablecimiento() + "]");
+        } else {
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado la campaña [" + establecimiento.getNombreEstablecimiento() + "]");
+        }
 
     }
 

@@ -15,22 +15,22 @@
         <p:outputPanel>
             <h:outputLabel value="Nombre"/>
             <h:inputText styleClass="form-control"
-                         value="#{mantenedorEstablecimiento.establecimiento.nombreEstablecimiento}"/>
+                         value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimiento.nombreEstablecimiento}"/>
             <h:outputLabel value="Direccion"/>
-            <h:inputText styleClass="form-control" value="#{mantenedorEstablecimiento.establecimiento.direccion}"/>
+            <h:inputText styleClass="form-control" value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimiento.direccion}"/>
             <h:outputLabel value="Fono"/>
-            <h:inputText styleClass="form-control" value="#{mantenedorEstablecimiento.establecimiento.fono}"/>
+            <h:inputText styleClass="form-control" value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimiento.fono}"/>
 
-            <h:selectOneMenu class="form-control" value="#{mantenedorUbicacion.ubicacion}"
+            <h:selectOneMenu class="form-control" value="#{mantenedorMantencion.mantenedorEstablecimiento.ubicacion}"
                              converter="entityConverter">
                 <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
-                <f:selectItems value="#{mantenedorEstablecimiento.ubicaciones}" var="ubica"
+                <f:selectItems value="#{mantenedorMantencion.mantenedorEstablecimiento.ubicaciones}" var="ubica"
                                itemLabel="#{ubica.descubicacion}" itemValue="#{ubica}"/>
             </h:selectOneMenu>
             <br/>
-            <h:outputLabel value="#{mantenedorEstablecimiento.establecimiento.ubicacion.idubicacion}"/>
+            <h:outputLabel value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimiento.ubicacion.idubicacion}"/>
             <p:commandButton id="addBtn" value="Agrega" type="submit"
-                             action="#{mantenedorEstablecimiento.agregarEstablecimiento}"/>
+                             action="#{mantenedorMantencion.mantenedorEstablecimiento.agregarEstablecimiento}"/>
         </p:outputPanel>
     </p:overlayPanel>
 
