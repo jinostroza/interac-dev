@@ -35,6 +35,7 @@ public class EstablecimientoDAO {
     }
 
     public List<Establecimiento> ObtenerPorNombre(String text1) {
+
         return em.createNamedQuery("establecimiento.findNombreEstablecimiento").setParameter("buscaLocal", text1).getResultList();
 
     }

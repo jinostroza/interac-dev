@@ -29,6 +29,8 @@ public class MantenedorEstablecimiento implements Serializable {
     //manejo manual
     private TipoOperacion operacion;
     private List<Establecimiento> establecimientoList;
+
+    private List<Establecimiento> establecimientoConfiltro;
     private List<Totem> totems;
     private List<Ubicacion> ubicaciones;
     private List<Usuario> usuario;
@@ -56,18 +58,17 @@ public class MantenedorEstablecimiento implements Serializable {
     }
 
     public void buscar(String text1) {
-        logicaEstablecimiento.buscar(text1);
-    }
+        logicaEstablecimiento.buscar(text1);  }
 
     public void inicio() {
-        establecimientoList = logicaEstablecimiento.obtenerTodos();
+        establecimientoList = logicaEstablecimiento.ObtenerConRelacion();
         ubicaciones = logicaUbicacion.obtenerTodas();
         establecimiento = new Establecimiento();
     }
 
-   public void eliminar(Establecimiento establecimiento){
-       logicaEstablecimiento.eliminar(establecimiento);
-   }
+    public void eliminar(Establecimiento establecimiento){
+        logicaEstablecimiento.eliminar(establecimiento);
+    }
 
 
     public MantenedorEstablecimiento() {
@@ -144,6 +145,14 @@ public class MantenedorEstablecimiento implements Serializable {
 
     public void setEstablecimientoList(List<Establecimiento> establecimientoList) {
         this.establecimientoList = establecimientoList;
+    }
+
+    public List<Establecimiento> getEstablecimientoConfiltro() {
+        return establecimientoConfiltro;
+    }
+
+    public void setEstablecimientoConfiltro(List<Establecimiento> establecimientoConfiltro) {
+        this.establecimientoConfiltro = establecimientoConfiltro;
     }
 
     public String getText1() {
