@@ -3,58 +3,58 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
-    <h3 style="margin-top:0">Mantenedor Establecimientos</h3>
+    <h3 style="margin-top:0">Mantenedor Totems</h3>
     <h:panelGrid columns="2" cellpadding="10">
-        <h:outputLabel value="Totem"/>
 
-        <h:inputText styleClass="text-input" var="buscaLocal"/>
 
-        <h:commandButton   value="buscar"/>
+
+
         <br/>
-        <p:dataTable var="local" value="#{mantenedorMantencion}">
-            <p:column headerText="nombre">
-                <h:outputText value="#{local.nombreEstablecimiento}" />
+        <p:dataTable  var="local" value="#{mantenedorMantencion.mantenedorTotems.totems}" filteredValue="#{mantenedorMantencion.mantenedorTotems.totemConFiltro}"      >
+            <p:column headerText="nombre" filterBy="#{local.noserie}">
+                <h:outputText value="#{local.noserie}" />
             </p:column>
 
-            <p:column headerText="direccion">
-                <h:outputText value="#{local.direccion}" />
+            <p:column headerText="direccion" filterBy="#{local.establecimiento.nombreEstablecimiento}">
+                <h:outputText value="#{local.establecimiento.nombreEstablecimiento}" />
             </p:column>
 
-            <p:column headerText="fono">
-                <h:outputText value="#{local.fono}" />
+            <p:column headerText="fono" filterBy="#{local.establecimiento.ubicacion.descubicacion}" >
+                <h:outputText value="#{local.establecimiento.ubicacion.descubicacion}" />
             </p:column>
-            <p:column headerText="usuario">
-                <h:outputText value="#{local.fono}" />
+            <p:column headerText="ubicacion" filterBy="#{local.tipo}">
+                <h:outputText value="#{local.tipo}" />
             </p:column>
 
-
+            <p:column>
+                <h:commandButton value="eliminar" styleClass="form-control" actionListener="#{mantenedorMantencion.mantenedorEstablecimiento.eliminar(local)}"/>
+            </p:column>
         </p:dataTable>
     </h:panelGrid>
     <p:commandButton id="nuevoBtn" value="Agrega" type="button"/>
-    <p:overlayPanel id="agregapanel" for="nuevoBtn" hideEffect="fade" dynamic="true" style="width:600px">
+    <p:overlayPanel id="agregapanel" for="nuevoBtn" showEvent="click" hideEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
         <p:outputPanel>
             <h:outputLabel value="Nombre"/>
             <h:inputText styleClass="form-control"
-                         value="#{mantenedorMantencion}"/>
+                         value="#{mantenedorMantencion.mantenedorTotems.totem.noserie}"/>
             <h:outputLabel value="Direccion"/>
-            <h:inputText styleClass="form-control" value="#{mantenedorMantencion}"/>
+            <h:inputText styleClass="form-control" value="#{mantenedorMantencion.mantenedorTotems.totem.tipo}"/>
             <h:outputLabel value="Fono"/>
-            <h:inputText styleClass="form-control" value="#{mantenedorMantencion}"/>
 
-            <h:selectOneMenu class="form-control" value="#{mantenedorMantencion}"
+            <h:selectOneMenu class="form-control" value="#{mantenedorMantencion.mantenedorTotems.totem.establecimiento.nombreEstablecimiento}"
                              converter="entityConverter">
-                <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
+                <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione establecimiento --"/>
                 <f:selectItems value="#{mantenedorMantencion.mantenedorEstablecimiento.ubicaciones}" var="ubica"
-                               itemLabel="#{ubica.descubicacion}" itemValue="#{ubica}"/>
+                               itemLabel="#{ubica.descubicacion}"/>
             </h:selectOneMenu>
+
+
             <br/>
 
-            <p:commandButton id="addBtn" value="Agrega" type="submit"
-                             action="#{mantenedorMantencion}"/>
+            <p:commandButton id="addBtn" for="agregapanel" value="Agrega"
+                             action="#{mantenedorMantencion.mantenedorTotems.agregarTotem()}"/>
         </p:outputPanel>
     </p:overlayPanel>
-
-
 
 
 </ui:composition>

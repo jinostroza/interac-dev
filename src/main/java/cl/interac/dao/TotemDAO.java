@@ -35,4 +35,7 @@ public class TotemDAO {
         em.remove(totem);
     }
 
+    public List<Totem> obtenerConRelacion(){
+       return em.createNamedQuery("Totem.findWithRelationship").getResultList();
+    }
 }

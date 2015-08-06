@@ -47,6 +47,7 @@ public class MantenedorCampana implements Serializable {
         //campanas = logicaCampana.obtenerTodas(); // para eager
         campanas = logicaCampana.obtenerTodosConRelaciones(); // para lazy
         operacion = TipoOperacion.INGRESAR;
+        campana = new Campana();
     }
     //flows shift+f6 es refactor
 

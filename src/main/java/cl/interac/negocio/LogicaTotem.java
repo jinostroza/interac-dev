@@ -25,6 +25,7 @@ import java.util.List;
 public class LogicaTotem {
    @Autowired
    private TotemDAO totemDAO;
+
      @Transactional(readOnly = true)
     public List<Totem> obtenerTodos() {
        return totemDAO.obtenerTodos();
@@ -37,6 +38,9 @@ public class LogicaTotem {
     public void eliminarTotem(Totem t){
        totemDAO.eliminarTotem(t);
    }
+
+    @Transactional(readOnly = true)
+    public List<Totem> obtenerConRelacion(){return totemDAO.obtenerConRelacion();}
 
 
 
