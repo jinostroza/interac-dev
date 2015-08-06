@@ -65,6 +65,10 @@ public class MantenedorEstablecimiento implements Serializable {
         establecimiento = new Establecimiento();
     }
 
+   public void eliminar(Establecimiento establecimiento){
+       logicaEstablecimiento.eliminar(establecimiento);
+   }
+
 
     public MantenedorEstablecimiento() {
         new Establecimiento();

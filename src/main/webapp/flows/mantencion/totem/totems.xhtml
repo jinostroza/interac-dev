@@ -1,0 +1,60 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    <h3 style="margin-top:0">Mantenedor Establecimientos</h3>
+    <h:panelGrid columns="2" cellpadding="10">
+        <h:outputLabel value="Totem"/>
+
+        <h:inputText styleClass="text-input" var="buscaLocal"/>
+
+        <h:commandButton   value="buscar"/>
+        <br/>
+        <p:dataTable var="local" value="#{mantenedorMantencion}">
+            <p:column headerText="nombre">
+                <h:outputText value="#{local.nombreEstablecimiento}" />
+            </p:column>
+
+            <p:column headerText="direccion">
+                <h:outputText value="#{local.direccion}" />
+            </p:column>
+
+            <p:column headerText="fono">
+                <h:outputText value="#{local.fono}" />
+            </p:column>
+            <p:column headerText="usuario">
+                <h:outputText value="#{local.fono}" />
+            </p:column>
+
+
+        </p:dataTable>
+    </h:panelGrid>
+    <p:commandButton id="nuevoBtn" value="Agrega" type="button"/>
+    <p:overlayPanel id="agregapanel" for="nuevoBtn" hideEffect="fade" dynamic="true" style="width:600px">
+        <p:outputPanel>
+            <h:outputLabel value="Nombre"/>
+            <h:inputText styleClass="form-control"
+                         value="#{mantenedorMantencion}"/>
+            <h:outputLabel value="Direccion"/>
+            <h:inputText styleClass="form-control" value="#{mantenedorMantencion}"/>
+            <h:outputLabel value="Fono"/>
+            <h:inputText styleClass="form-control" value="#{mantenedorMantencion}"/>
+
+            <h:selectOneMenu class="form-control" value="#{mantenedorMantencion}"
+                             converter="entityConverter">
+                <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
+                <f:selectItems value="#{mantenedorMantencion.mantenedorEstablecimiento.ubicaciones}" var="ubica"
+                               itemLabel="#{ubica.descubicacion}" itemValue="#{ubica}"/>
+            </h:selectOneMenu>
+            <br/>
+
+            <p:commandButton id="addBtn" value="Agrega" type="submit"
+                             action="#{mantenedorMantencion}"/>
+        </p:outputPanel>
+    </p:overlayPanel>
+
+
+
+
+</ui:composition>

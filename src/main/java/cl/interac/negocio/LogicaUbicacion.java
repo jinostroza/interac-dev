@@ -8,8 +8,8 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.*;
 
-import javax.transaction.*;
-import javax.transaction.Transactional;
+
+
 import java.util.List;
 
 /**
@@ -21,10 +21,10 @@ public class LogicaUbicacion {
    @Autowired
     private UbicacionDAO ubicacionDAO;
 
-    @org.springframework.transaction.annotation.Transactional(readOnly = false)
+    @Transactional(readOnly = false)
     public void guardar(Ubicacion ubicacion){ubicacionDAO.guardar(ubicacion);}
 
-    @org.springframework.transaction.annotation.Transactional(readOnly = true)
+    @Transactional(readOnly = true)
     public List<Ubicacion> obtenerTodas(){return ubicacionDAO.ObtenerTodos();}
 
 

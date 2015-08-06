@@ -9,6 +9,27 @@
         <h:inputText var="buscaLocal"/>
         <h:button ajax="true" value="buscar"/>
 
+        <p:dataTable var="local" value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimientoList}">
+        <p:column headerText="nombre">
+            <h:outputText value="#{local.nombreEstablecimiento}" />
+        </p:column>
+
+        <p:column headerText="direccion">
+            <h:outputText value="#{local.direccion}" />
+        </p:column>
+
+        <p:column headerText="fono">
+            <h:outputText value="#{local.fono}" />
+        </p:column>
+            <p:column headerText="">
+                <h:commandButton type="submit" actionListener="#{mantenedorMantencion.mantenedorEstablecimiento.eliminar(local)}" styleClass="form-control-static" label="eliminar"/>
+
+            </p:column>
+
+       </p:dataTable>
+
+
+
     </h:panelGrid>
     <p:commandButton id="nuevoBtn" value="Agrega" type="button"/>
     <p:overlayPanel id="agregapanel" for="nuevoBtn" showEvent="click" hideEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
@@ -25,7 +46,7 @@
                              converter="entityConverter">
                 <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
                 <f:selectItems value="#{mantenedorMantencion.mantenedorEstablecimiento.ubicaciones}" var="ubica"
-                               itemLabel="#{ubica.descubicacion}"/>
+                               itemLabel="#{ubica.descubicacion}" itemValue="ubica"/>
             </h:selectOneMenu>
             <br/>
             <h:outputLabel value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimiento.ubicacion.idubicacion}"/>

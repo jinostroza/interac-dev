@@ -24,7 +24,7 @@ public class Ubicacion implements Serializable {
     private String descubicacion;
 
     // relaciones
-    private Establecimiento establecimientoList;
+    private List<Establecimiento> establecimientoList;
 
 
     @Id
@@ -50,12 +50,12 @@ public class Ubicacion implements Serializable {
     }
 
 
-    @OneToOne(mappedBy = "ubicacion")
-    public Establecimiento getEstablecimientoList() {
+    @OneToMany(mappedBy = "ubicacion")
+    public List<Establecimiento> getEstablecimientoList() {
         return establecimientoList;
     }
 
-    public void setEstablecimientoList(Establecimiento establecimientoList) {
+    public void setEstablecimientoList(List<Establecimiento> establecimientoList) {
         this.establecimientoList = establecimientoList;
     }
 

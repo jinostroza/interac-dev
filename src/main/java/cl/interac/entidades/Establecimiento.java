@@ -66,7 +66,7 @@ public class Establecimiento implements Serializable {
 
 
     @Basic
-    @Column(name = "desestablecimiento")
+    @Column(name = "desestablecimiento",insertable = true,length = 200)
     public String getNombreEstablecimiento() {
         return nombreEstablecimiento;
     }
@@ -96,8 +96,8 @@ public class Establecimiento implements Serializable {
     }
 
 
-    @JoinColumn(name = "idubicacion", nullable = false)
-    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idubicacion", referencedColumnName = "idubicacion")
+    @ManyToOne(fetch = FetchType.LAZY)
     public Ubicacion getUbicacion() {
         return ubicacion;
     }
