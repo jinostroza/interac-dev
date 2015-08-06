@@ -25,12 +25,10 @@
                              converter="entityConverter">
                 <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
                 <f:selectItems value="#{mantenedorMantencion.mantenedorEstablecimiento.ubicaciones}" var="ubica"
-                               itemLabel="#{ubica.descubicacion}"  />
+                               itemLabel="#{ubica.descubicacion}" />
             </h:selectOneMenu>
             <br/>
-            <h:outputLabel value="#{userSession.usuario.username}"/>
-
-            <p:commandButton id="addBtn" for="agregapanel" value="Agrega"
+            <p:commandButton id="addBtn" for="agregapanel" value="Agrega" type="submit"
                              action="#{mantenedorMantencion.mantenedorEstablecimiento.agregarEstablecimiento()}"/>
         </p:outputPanel>
     </p:overlayPanel>
