@@ -76,10 +76,12 @@ public class MantenedorEstablecimiento implements Serializable {
 
     public void agregarEstablecimiento() {
         operacion = TipoOperacion.INSERTAR;
-        logicaEstablecimiento.guardar(establecimiento);
         establecimiento.setUsuario(userSession.getUsuario());
-        logicaUbicacion.guardar(ubicacion);
-        if (esAgregar()) {
+        establecimiento.setUbicacion(ubicacion);
+        logicaEstablecimiento.guardar(establecimiento);
+
+
+        if (esEditar()) {
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el establecimiento [" + establecimiento.getNombreEstablecimiento() + "]");
         } else {
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el establecimiento [" + establecimiento.getNombreEstablecimiento() + "]");
