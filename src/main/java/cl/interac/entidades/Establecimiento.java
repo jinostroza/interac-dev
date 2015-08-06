@@ -18,7 +18,8 @@ import java.util.List;
                         "inner join fetch e.ubicacion"),
         @NamedQuery(name = "establecimiento.findNombreEstablecimiento",
                 query = "select e from Establecimiento e " +
-                        "where e.nombreEstablecimiento =:buscaLocal ")
+                        "where e.nombreEstablecimiento =:buscaLocal "),
+        @NamedQuery(name = "establecimiento.findIdestablecimiento", query = "SELECT e from Establecimiento e where e.idEstablecimiento = :estable")
 })
 
 public class Establecimiento implements Serializable {

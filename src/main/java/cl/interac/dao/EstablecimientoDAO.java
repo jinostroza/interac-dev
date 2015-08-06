@@ -39,6 +39,9 @@ public class EstablecimientoDAO {
         return em.createNamedQuery("establecimiento.findNombreEstablecimiento").setParameter("buscaLocal", text1).getResultList();
 
     }
+    public Establecimiento obtenerPorId(Integer id) {
+        return em.find(Establecimiento.class, id);
+    }
 
 
 }

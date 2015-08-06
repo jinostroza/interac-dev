@@ -35,6 +35,7 @@ public class MantenedorEstablecimiento implements Serializable {
     private List<Ubicacion> ubicaciones;
     private List<Usuario> usuario;
     private String text1;
+    private int idestable;
     private Establecimiento establecimiento;
     private Ubicacion ubicacion;
 
@@ -79,6 +80,19 @@ public class MantenedorEstablecimiento implements Serializable {
         operacion = TipoOperacion.INSERTAR;
         establecimiento.setUsuario(userSession.getUsuario());
         establecimiento.setUbicacion(ubicacion);
+        logicaEstablecimiento.guardar(establecimiento);
+
+
+        if (esEditar()) {
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el establecimiento [" + establecimiento.getNombreEstablecimiento() + "]");
+        } else {
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el establecimiento [" + establecimiento.getNombreEstablecimiento() + "]");
+        }
+
+    }
+    public void editarEstablecimiento(int idestable) {
+        operacion = TipoOperacion.EDITAR;
+        establecimiento.setIdEstablecimiento(idestable);
         logicaEstablecimiento.guardar(establecimiento);
 
 
@@ -162,4 +176,12 @@ public class MantenedorEstablecimiento implements Serializable {
     public void setText1(String text1) {
         this.text1 = text1;
     }
+    public int getIdestable() {
+        return idestable;
+    }
+
+    public void setIdestable(int idestable) {
+        this.idestable = idestable;
+    }
 }
+
