@@ -19,10 +19,7 @@ public class MantenedorMantencion implements Serializable {
 
     @Autowired
     private MantenedorEstablecimiento mantenedorEstablecimiento;
-    @Autowired
-    private MantenedorTotems mantenedorTotems;
-    @Autowired
-    private MantenedorCampana mantenedorCampana;
+
 
 
     public void cambioPestania(TabChangeEvent event) {
@@ -43,20 +40,6 @@ public class MantenedorMantencion implements Serializable {
     public void setMantenedorEstablecimiento(MantenedorEstablecimiento mantenedorEstablecimiento) {
         this.mantenedorEstablecimiento = mantenedorEstablecimiento;
     }
-    public MantenedorCampana getMantenedorCampana() {
-        return mantenedorCampana;
-    }
 
-    public void setMantenedorCampana(MantenedorCampana mantenedorCampana) {
-        this.mantenedorCampana = mantenedorCampana;
-    }
-
-    public MantenedorTotems getMantenedorTotems() {
-        return mantenedorTotems;
-    }
-
-    public void setMantenedorTotems(MantenedorTotems mantenedorTotems) {
-        this.mantenedorTotems = mantenedorTotems;
-    }
 
 }
