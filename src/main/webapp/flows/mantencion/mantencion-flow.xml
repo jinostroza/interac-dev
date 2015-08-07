@@ -5,10 +5,19 @@
        start-state="inicioMantenedores" >
 
      <on-start>
-         <evaluate expression="mantenedorAnuncios.inicio()"></evaluate>
+         <evaluate expression="mantenedorEstablecimiento.inicio()"></evaluate>
      </on-start>
 
       <view-state id="inicioMantenedores">
+
+          <transition>
+          <evaluate expression="mantenedorTotems.inicio()"></evaluate>
+      </transition>
+          <transition>
+              <evaluate expression="mantenedorEstablecimiento.inicio()"></evaluate>
+          </transition>
+
+
 
       </view-state>
 

@@ -7,7 +7,7 @@
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
-        <h:form class="container" id="crearAnuncio">
+        <h:form class="container" id="crearAnuncio" enctype="multipart/form-data">
             <header>
                 <h2>Crea tu anuncio</h2>
             </header>
@@ -20,14 +20,16 @@
                         <br></br>
 
                         <div id="cuadro-imagen" class="dz-default dz-message">
-                            <p:fileUpload mode="advanced"
-                                          allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/"
-                                          auto="true"
+                            <p:fileUpload rendered="true"  auto="false" multiple="true"
+                                          mode="advanced"
                                           fileUploadListener="#{mantenedorAnuncios.subir}" uploadLabel="Subir"
                                           cancelLabel="Cancelar"
+                                          allowTypes="/(\.|\/)(jpg|png|gif)$/i"
                                           label="Cargar nuevo archivo"
                                           fileLimit="4"
-                                          fileLimitMessage="Solo se puede subir 4 documento(s)"/>
+                                          immediate="true"
+                                          fileLimitMessage="Solo se puede subir 4 documento(s)" />
+
                         </div>
                         <br></br>
                         <label>Nota: La imagen tiene que tener una resolución de

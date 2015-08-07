@@ -92,6 +92,8 @@ public class MantenedorEstablecimiento implements Serializable {
     }
     public void editarEstablecimiento(int idestable) {
         operacion = TipoOperacion.EDITAR;
+        establecimiento.setUsuario(userSession.getUsuario());
+        establecimiento.setUbicacion(ubicacion);
         establecimiento.setIdEstablecimiento(idestable);
         logicaEstablecimiento.guardar(establecimiento);
 
