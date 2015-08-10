@@ -1,5 +1,6 @@
 package cl.interac.presentacion.totems;
 
+import cl.interac.entidades.Establecimiento;
 import cl.interac.entidades.Totem;
 import cl.interac.entidades.Ubicacion;
 import cl.interac.negocio.LogicaCampana;
@@ -30,33 +31,39 @@ public class MantenedorTotems implements Serializable
     @Autowired
     private LogicaUbicacion logicaUbicacion;
 
+    public enum TipoOperacion {
+        INSERTAR,
+        EDITAR,
+    }
 
+    private TipoOperacion operacion;
     private Totem totem;
     private List<Totem> totems;
     private List<Totem> totemConFiltro;
-    private Ubicacion ubicacion;
+    private List<Establecimiento> establecimientoList;
+    private Establecimiento establecimiento;
 
 
     // logica vista
     public void mantenedorTotems() {
-        totem = new Totem();
+      new Totem();
     }
     public void agregarTotem(){
         logicaTotem.guardar(totem);
-        logicaUbicacion.guardar(ubicacion);
+        logicaEstablecimiento.guardar(establecimiento);
 
     }
 
-     public void eliminarTotem(){
-             totems.remove(totem);
+     public void eliminarTotem(Totem totem){
+
              logicaTotem.eliminarTotem(totem);
          }
 
 
 
     public void inicio(){
-        logicaTotem.obtenerConRelacion();
-        logicaEstablecimiento.obtenerConRelacion();
+        totems = logicaTotem.obtenerConRelacion();
+        establecimientoList = logicaEstablecimiento.obtenerTodos();
         logicaUbicacion.obtenerTodas();
         totem = new Totem();
 

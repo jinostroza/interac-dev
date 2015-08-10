@@ -123,4 +123,11 @@ public class Establecimiento implements Serializable {
     public int hashCode() {
         return idEstablecimiento != null ? 31 * idEstablecimiento.hashCode() : 0;
     }
+
+    @Override
+    public String toString() {
+        return "Establecimiento{" +
+                "idEstablecimiento=" + idEstablecimiento +
+                '}';
+    }
 }

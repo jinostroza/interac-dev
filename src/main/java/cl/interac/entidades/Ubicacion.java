@@ -75,4 +75,11 @@ public class Ubicacion implements Serializable {
     public int hashCode() {
         return idubicacion != null ? 31 * idubicacion.hashCode() : 0;
     }
+
+    @Override
+    public String toString() {
+        return "Ubicacion{" +
+                "idubicacion=" + idubicacion +
+                '}';
+    }
 }

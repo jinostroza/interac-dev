@@ -7,7 +7,7 @@
 
     <h:panelGrid columns="2" cellpadding="10">
         <br/>
-        <p:dataTable id="establecimientos" var="local"
+        <p:dataTable id="establecimientos" var="local" widgetVar="dtEstablecimientos"
                      value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimientoList}"
                      filteredValue="#{mantenedorMantencion.mantenedorEstablecimiento.establecimientoConfiltro}">
             <p:column headerText="nombre" filterBy="#{local.nombreEstablecimiento}">
@@ -57,7 +57,7 @@
             </p:column>
         </p:dataTable>
     </h:panelGrid>
-    <p:commandButton id="nuevoBtn" value="Agrega" type="button"/>
+    <p:commandButton id="nuevoBtn" value="Agrega"   type="button"/>
     <p:overlayPanel id="agregapanel" for="nuevoBtn" showEvent="click" hideEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
         <p:outputPanel>
             <h:outputLabel value="Nombre"/>
@@ -76,7 +76,7 @@
             </h:selectOneMenu>
             <br/>
             <h:outputLabel value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimiento.ubicacion.idubicacion}"/>
-            <p:commandButton id="addBtn" for="agregapanel" value="Agrega"
+            <p:commandButton id="addBtn" for="agregapanel" value="Agrega" update="establecimientos"
                              action="#{mantenedorMantencion.mantenedorEstablecimiento.agregarEstablecimiento()}"/>
         </p:outputPanel>
     </p:overlayPanel>

@@ -5,47 +5,43 @@
                 xmlns:p="http://primefaces.org/ui">
     <h3 style="margin-top:0">Mantenedor Totems</h3>
     <h:panelGrid columns="2" cellpadding="10">
-
-
-
-
         <br/>
-        <p:dataTable id="totemsDT" var="local" value="#{mantenedorMantencion.mantenedorTotems.totems}" filteredValue="#{mantenedorMantencion.mantenedorTotems.totemConFiltro}"      >
-            <p:column headerText="nombre" filterBy="#{local.noserie}">
-                <h:outputText value="#{local.noserie}" />
+        <p:dataTable id="totemsDT" var="totm" value="#{mantenedorMantencion.mantenedorTotems.totems}" filteredValue="#{mantenedorMantencion.mantenedorTotems.totemConFiltro}"      >
+            <p:column headerText="N°Serie" filterBy="#{totm.noserie}">
+                <h:outputText value="#{totm.noserie}" />
             </p:column>
 
-            <p:column headerText="direccion" filterBy="#{local.establecimiento.nombreEstablecimiento}">
-                <h:outputText value="#{local.establecimiento.nombreEstablecimiento}" />
+            <p:column headerText="Establecimiento" filterBy="#{totm.establecimiento.nombreEstablecimiento}">
+                <h:outputText value="#{totm.establecimiento.idEstablecimiento}" />
             </p:column>
 
-            <p:column headerText="fono" filterBy="#{local.establecimiento.ubicacion.descubicacion}" >
-                <h:outputText value="#{local.establecimiento.ubicacion.descubicacion}" />
+            <p:column headerText="Ubicacion" filterBy="#{totm.establecimiento.ubicacion.descubicacion}" >
+                <h:outputText value="#{totm.establecimiento.ubicacion.idubicacion}" />
             </p:column>
-            <p:column headerText="ubicacion" filterBy="#{local.tipo}">
-                <h:outputText value="#{local.tipo}" />
+            <p:column headerText="Tipo" filterBy="#{totm.tipo}">
+                <h:outputText value="#{totm.tipo}" />
             </p:column>
 
             <p:column>
-                <h:commandButton value="eliminar" styleClass="form-control" actionListener="#{mantenedorMantencion.mantenedorEstablecimiento.eliminar(local)}"/>
+                <h:commandButton value="eliminar" styleClass="form-control" actionListener="#{mantenedorMantencion.mantenedorTotems.eliminarTotem(totm)}"/>
             </p:column>
         </p:dataTable>
     </h:panelGrid>
     <p:commandButton id="nuevoBtnTotem" value="Agrega"  type="button"/>
     <p:overlayPanel id="agregapanelTotem" for="nuevoBtnTotem" showEvent="click" hideEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
         <p:outputPanel>
-            <h:outputLabel value="Nombre"/>
+            <h:outputLabel value="N°Serie"/>
             <h:inputText styleClass="form-control"
                          value="#{mantenedorMantencion.mantenedorTotems.totem.noserie}"/>
-            <h:outputLabel value="Direccion"/>
+            <h:outputLabel value="Tipo"/>
             <h:inputText styleClass="form-control" value="#{mantenedorMantencion.mantenedorTotems.totem.tipo}"/>
-            <h:outputLabel value="Fono"/>
+            <h:outputLabel value="Establecimiento"/>
 
-            <h:selectOneMenu class="form-control" value="#{mantenedorMantencion.mantenedorTotems.totem.establecimiento.nombreEstablecimiento}"
+            <h:selectOneMenu class="form-control" value="#{mantenedorMantencion.mantenedorTotems.totems}"
                              converter="entityConverter">
                 <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione establecimiento --"/>
-                <f:selectItems value="#{mantenedorMantencion.mantenedorEstablecimiento.ubicaciones}" var="ubica"
-                               itemLabel="#{ubica.descubicacion}"/>
+                <f:selectItems value="#{mantenedorMantencion.mantenedorTotems.totems}" var="totemPL"
+                               itemLabel="#{totemPL.establecimiento.idEstablecimiento}"/>
             </h:selectOneMenu>
 
 

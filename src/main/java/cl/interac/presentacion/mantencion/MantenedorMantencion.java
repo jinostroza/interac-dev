@@ -29,7 +29,7 @@ public class MantenedorMantencion implements Serializable {
 
         if (nombrePestania.equals("Establecimiento")) {
             mantenedorEstablecimiento.inicio();
-        } else if (nombrePestania.equals("Totem's")) {
+        } else if (nombrePestania.equals("Totem")) {
             mantenedorTotems.inicio();
         }
     }
