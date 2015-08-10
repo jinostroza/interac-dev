@@ -30,7 +30,7 @@ public class EstablecimientoDAO {
         em.remove(establecimiento);
     }
 
-    public List<Establecimiento> ObtenerConRelacion() {
+    public List<Establecimiento> obtenerConRelacion() {
         return em.createNamedQuery("estabecimiento.findAllByusuario").getResultList();
     }
 

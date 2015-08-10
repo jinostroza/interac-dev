@@ -19,6 +19,8 @@ public class MantenedorMantencion implements Serializable {
 
     @Autowired
     private MantenedorEstablecimiento mantenedorEstablecimiento;
+    @Autowired
+    private MantenedorTotems mantenedorTotems;
 
 
 
@@ -26,10 +28,10 @@ public class MantenedorMantencion implements Serializable {
         String nombrePestania = event.getTab().getTitle();
 
         if (nombrePestania.equals("Establecimiento")) {
-            mantenedorEstablecimiento.inicio();}
-
-
-
+            mantenedorEstablecimiento.inicio();
+        } else if (nombrePestania.equals("Totem's")) {
+            mantenedorTotems.inicio();
+        }
     }
 
     // getter and setter
@@ -40,6 +42,12 @@ public class MantenedorMantencion implements Serializable {
     public void setMantenedorEstablecimiento(MantenedorEstablecimiento mantenedorEstablecimiento) {
         this.mantenedorEstablecimiento = mantenedorEstablecimiento;
     }
+    public MantenedorTotems getMantenedorTotems() {
+        return mantenedorTotems;
+    }
 
+    public void setMantenedorTotems(MantenedorTotems mantenedorTotems) {
+        this.mantenedorTotems = mantenedorTotems;
+    }
 
 }

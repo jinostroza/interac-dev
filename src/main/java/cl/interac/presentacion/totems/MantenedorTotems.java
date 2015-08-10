@@ -17,7 +17,7 @@ import java.util.List;
  * Created by Joaco on 24-04-2015.
  */
 @Component
-@Scope("Prototype")
+@Scope("prototype")
 public class MantenedorTotems implements Serializable
 {
 
@@ -56,7 +56,8 @@ public class MantenedorTotems implements Serializable
 
     public void inicio(){
         logicaTotem.obtenerConRelacion();
-        logicaEstablecimiento.ObtenerConRelacion();
+        logicaEstablecimiento.obtenerConRelacion();
+        logicaUbicacion.obtenerTodas();
         totem = new Totem();
 
     }

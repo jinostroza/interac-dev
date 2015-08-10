@@ -6,20 +6,19 @@
                 template="/templates/default.xhtml">
     <ui:define name="contenido">
         <h3 style="margin-top:0">Configuraciones de la empresa</h3>
-        <h:form>
-            <p:tabView dynamic="true" cache="true">
+        <h:form id="frmMant">
+            <p:tabView id="tabsMant" dynamic="true" cache="true">
                 <p:ajax event="tabChange" listener="#{mantenedorMantencion.cambioPestania}"></p:ajax>
 
                 <p:tab title="Campaña">
                     Campaña campañosa
                 </p:tab>
                 <p:tab title="Establecimiento">
-                    <!-- esto de que me guste el webeo xD -->
                     <ui:include src="establecimientos/mantenedorEstablecimiento.xhtml"/>
                 </p:tab>
 
                 <p:tab title="Totem's">
-                    Tillible totem
+                    <ui:include src="totem/totems.xhtml"/>
                 </p:tab>
 
                 <p:tab title="Anuncios">

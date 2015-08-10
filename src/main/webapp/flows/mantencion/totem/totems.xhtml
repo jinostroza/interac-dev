@@ -10,7 +10,7 @@
 
 
         <br/>
-        <p:dataTable  var="local" value="#{mantenedorMantencion.mantenedorTotems.totems}" filteredValue="#{mantenedorMantencion.mantenedorTotems.totemConFiltro}"      >
+        <p:dataTable id="totemsDT" var="local" value="#{mantenedorMantencion.mantenedorTotems.totems}" filteredValue="#{mantenedorMantencion.mantenedorTotems.totemConFiltro}"      >
             <p:column headerText="nombre" filterBy="#{local.noserie}">
                 <h:outputText value="#{local.noserie}" />
             </p:column>
@@ -31,8 +31,8 @@
             </p:column>
         </p:dataTable>
     </h:panelGrid>
-    <p:commandButton id="nuevoBtn" value="Agrega" type="button"/>
-    <p:overlayPanel id="agregapanel" for="nuevoBtn" showEvent="click" hideEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
+    <p:commandButton id="nuevoBtnTotem" value="Agrega"  type="button"/>
+    <p:overlayPanel id="agregapanelTotem" for="nuevoBtnTotem" showEvent="click" hideEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
         <p:outputPanel>
             <h:outputLabel value="Nombre"/>
             <h:inputText styleClass="form-control"
@@ -51,7 +51,7 @@
 
             <br/>
 
-            <p:commandButton id="addBtn" for="agregapanel" value="Agrega"
+            <p:commandButton id="addBtnTotem" for="agregapanelTotem" update="totemsDT" value="Agrega"
                              action="#{mantenedorMantencion.mantenedorTotems.agregarTotem()}"/>
         </p:outputPanel>
     </p:overlayPanel>

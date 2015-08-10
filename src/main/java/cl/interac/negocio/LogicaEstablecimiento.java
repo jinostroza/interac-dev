@@ -28,7 +28,8 @@ public class LogicaEstablecimiento {
     public void guardar(Establecimiento e) {
         establecimientoDAO.guardar(e);
     }
-       @Transactional(readOnly = false)
+
+    @Transactional(readOnly = false)
     public void eliminar(Establecimiento e) {
         establecimientoDAO.eliminar(e);
     }
@@ -43,8 +44,8 @@ public class LogicaEstablecimiento {
         return establecimientoDAO.obtenerPorId(id);
     }
     @Transactional(readOnly = true)
-    public List<Establecimiento> ObtenerConRelacion() {
-        return establecimientoDAO.ObtenerConRelacion();
+    public List<Establecimiento> obtenerConRelacion() {
+        return establecimientoDAO.obtenerConRelacion();
     }
 
 }

@@ -29,7 +29,6 @@ public class MantenedorEstablecimiento implements Serializable {
     //manejo manual
     private TipoOperacion operacion;
     private List<Establecimiento> establecimientoList;
-
     private List<Establecimiento> establecimientoConfiltro;
     private List<Totem> totems;
     private List<Ubicacion> ubicaciones;
@@ -62,7 +61,7 @@ public class MantenedorEstablecimiento implements Serializable {
         logicaEstablecimiento.buscar(text1);  }
 
     public void inicio() {
-        establecimientoList = logicaEstablecimiento.ObtenerConRelacion();
+        establecimientoList = logicaEstablecimiento.obtenerConRelacion();
         ubicaciones = logicaUbicacion.obtenerTodas();
         establecimiento = new Establecimiento();
     }
@@ -81,29 +80,18 @@ public class MantenedorEstablecimiento implements Serializable {
         establecimiento.setUsuario(userSession.getUsuario());
         establecimiento.setUbicacion(ubicacion);
         logicaEstablecimiento.guardar(establecimiento);
+        establecimientoList = logicaEstablecimiento.obtenerConRelacion();
 
-
-        if (esEditar()) {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el establecimiento [" + establecimiento.getNombreEstablecimiento() + "]");
-        } else {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el establecimiento [" + establecimiento.getNombreEstablecimiento() + "]");
-        }
-
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el establecimiento [" + establecimiento.getNombreEstablecimiento() + "]");
     }
-    public void editarEstablecimiento(int idestable) {
+    public void editarEstablecimiento(Establecimiento e) {
         operacion = TipoOperacion.EDITAR;
-        establecimiento.setUsuario(userSession.getUsuario());
-        establecimiento.setUbicacion(ubicacion);
-        establecimiento.setIdEstablecimiento(idestable);
+
+        establecimiento = e;
         logicaEstablecimiento.guardar(establecimiento);
+        establecimientoList = logicaEstablecimiento.obtenerConRelacion();
 
-
-        if (esEditar()) {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el establecimiento [" + establecimiento.getNombreEstablecimiento() + "]");
-        } else {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el establecimiento [" + establecimiento.getNombreEstablecimiento() + "]");
-        }
-
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el establecimiento [" + establecimiento.getNombreEstablecimiento() + "]");
     }
 
     public List<Totem> getTotems() {
