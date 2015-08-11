@@ -3,6 +3,7 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
+
     <h3 style="margin-top:0">Mantenedor Establecimientos</h3>
 
     <h:panelGrid columns="2" cellpadding="10">
@@ -10,25 +11,26 @@
         <p:dataTable id="establecimientos" var="local" widgetVar="dtEstablecimientos"
                      value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimientoList}"
                      filteredValue="#{mantenedorMantencion.mantenedorEstablecimiento.establecimientoConfiltro}">
-            <p:column headerText="nombre" filterBy="#{local.nombreEstablecimiento}">
-                <h:outputText value="#{local.nombreEstablecimiento}" />
-            </p:column>
 
-            <p:column headerText="direccion" filterBy="#{local.direccion}">
+            <p:column headerText="nombre" filterBy="#{local.nombreEstablecimiento}">
+                <h:outputText value="#{local.nombreEstablecimiento}"/>
+            </p:column>
+            <p:column headerText="ubicacion" filterBy="#{local.ubicacion.descubicacion}" >
+                <h:outputText value="#{local.ubicacion.descubicacion}" />
+            </p:column>
+            <p:column headerText="direccion">
                 <h:outputText value="#{local.direccion}" />
             </p:column>
 
             <p:column headerText="fono">
                 <h:outputText value="#{local.fono}" />
             </p:column>
-            <p:column headerText="ubicacion" filterBy="#{local.ubicacion.descubicacion}" filterMatchMode="contains">
-                <h:outputText value="#{local.ubicacion.descubicacion}" />
-            </p:column>
+
 
 
 
             <p:column>
-                <h:commandButton value="eliminar" styleClass="form-control" action="#{mantenedorMantencion.mantenedorEstablecimiento.eliminar(local)}"/>
+                <h:commandButton value="eliminar" styleClass="form-control" update="establecimientos" action="#{mantenedorMantencion.mantenedorEstablecimiento.eliminar(local)}"/>
             </p:column>
 
             <p:column>

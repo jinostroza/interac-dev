@@ -13,9 +13,8 @@ import java.util.List;
                 @NamedQuery(name = "Totem.findAll", query = "SELECT t FROM Totem t "),
                 @NamedQuery(name="Totem.findWithRelationship",
                         query="SELECT t FROM Totem t " +
-                        "left join fetch t.establecimiento e " +
-                                "left join e.ubicacion u "
-                )
+                        "left join t.establecimiento e "
+                                       )
         }
 )
 public class Totem implements Serializable {

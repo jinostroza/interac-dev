@@ -33,7 +33,7 @@ public class MantenedorEstablecimiento implements Serializable {
     private List<Totem> totems;
     private List<Ubicacion> ubicaciones;
     private List<Usuario> usuario;
-    private String text1;
+
     private int idestable;
     private Establecimiento establecimiento;
     private Ubicacion ubicacion;
@@ -57,8 +57,6 @@ public class MantenedorEstablecimiento implements Serializable {
         return operacion == TipoOperacion.INSERTAR;
     }
 
-    public void buscar(String text1) {
-        logicaEstablecimiento.buscar(text1);  }
 
     public void inicio() {
         establecimientoList = logicaEstablecimiento.obtenerConRelacion();
@@ -84,6 +82,7 @@ public class MantenedorEstablecimiento implements Serializable {
 
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el establecimiento [" + establecimiento.getNombreEstablecimiento() + "]");
     }
+    /*
     public void editarEstablecimiento(Establecimiento e) {
         operacion = TipoOperacion.EDITAR;
 
@@ -93,7 +92,7 @@ public class MantenedorEstablecimiento implements Serializable {
 
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el establecimiento [" + establecimiento.getNombreEstablecimiento() + "]");
     }
-
+*/
     public List<Totem> getTotems() {
         return totems;
     }
@@ -159,13 +158,7 @@ public class MantenedorEstablecimiento implements Serializable {
         this.establecimientoConfiltro = establecimientoConfiltro;
     }
 
-    public String getText1() {
-        return text1;
-    }
 
-    public void setText1(String text1) {
-        this.text1 = text1;
-    }
     public int getIdestable() {
         return idestable;
     }

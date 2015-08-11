@@ -7,6 +7,7 @@ import cl.interac.negocio.LogicaCampana;
 import cl.interac.negocio.LogicaEstablecimiento;
 import cl.interac.negocio.LogicaTotem;
 import cl.interac.negocio.LogicaUbicacion;
+import cl.interac.util.components.FacesUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -19,57 +20,55 @@ import java.util.List;
  */
 @Component
 @Scope("prototype")
-public class MantenedorTotems implements Serializable
-{
+public class MantenedorTotems implements Serializable{
 
     @Autowired
     private LogicaTotem logicaTotem;
-    @Autowired
-    private LogicaCampana logicaCampana;
     @Autowired
     private LogicaEstablecimiento logicaEstablecimiento;
     @Autowired
     private LogicaUbicacion logicaUbicacion;
 
-    public enum TipoOperacion {
-        INSERTAR,
-        EDITAR,
-    }
-
-    private TipoOperacion operacion;
+    private Establecimiento establecimiento;
+    private List<Establecimiento> establecimientoList;
     private Totem totem;
     private List<Totem> totems;
     private List<Totem> totemConFiltro;
-    private List<Establecimiento> establecimientoList;
-    private Establecimiento establecimiento;
+    private Ubicacion ubicacion;
 
 
     // logica vista
-    public void mantenedorTotems() {
-      new Totem();
+    public MantenedorTotems() {
+        totem = new Totem();
     }
+
     public void agregarTotem(){
         logicaTotem.guardar(totem);
-        logicaEstablecimiento.guardar(establecimiento);
+        totem.setEstablecimiento(establecimiento);
+        logicaUbicacion.guardar(ubicacion);
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha Lobesnizado el Totem [" + totem.getNoserie() + "]");
 
     }
 
-     public void eliminarTotem(Totem totem){
-
+     public void eliminarTotem(){
+             totems.remove(totem);
              logicaTotem.eliminarTotem(totem);
          }
+    public void editarTotem(Totem t){
 
-
+        totem = t;
+        logicaTotem.guardar(totem);
+        totems = logicaTotem.obtenerTodos();
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el Totem [" + totem.getNoserie() + "]");
+    }
 
     public void inicio(){
         totems = logicaTotem.obtenerConRelacion();
         establecimientoList = logicaEstablecimiento.obtenerTodos();
-        logicaUbicacion.obtenerTodas();
         totem = new Totem();
-
     }
-    //get and set
 
+    //get and set
     public List<Totem> getTotemConFiltro() {
         return totemConFiltro;
     }
@@ -77,6 +76,7 @@ public class MantenedorTotems implements Serializable
     public void setTotemConFiltro(List<Totem> totemConFiltro) {
         this.totemConFiltro = totemConFiltro;
     }
+
     public List<Totem> getTotems() {
         return totems;
     }
@@ -93,24 +93,28 @@ public class MantenedorTotems implements Serializable
         this.totem = totem;
     }
 
-    public LogicaTotem getLogicaTotem() {
-        return logicaTotem;
+    public Establecimiento getEstablecimiento() {
+        return establecimiento;
     }
 
-    public void setLogicaTotem(LogicaTotem logicaTotem) {
-        this.logicaTotem = logicaTotem;
+    public void setEstablecimiento(Establecimiento establecimiento) {
+        this.establecimiento = establecimiento;
     }
 
-    public LogicaCampana getLogicaCampana() {
-        return logicaCampana;
+    public List<Establecimiento> getEstablecimientoList() {
+        return establecimientoList;
     }
 
-    public void setLogicaCampana(LogicaCampana logicaCampana) {
-        this.logicaCampana = logicaCampana;
+    public void setEstablecimientoList(List<Establecimiento> establecimientoList) {
+        this.establecimientoList = establecimientoList;
+    }
+    public Ubicacion getUbicacion() {
+        return ubicacion;
     }
 
-
-
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
+    }
 }
 
 

@@ -22,8 +22,6 @@ public class MantenedorMantencion implements Serializable {
     @Autowired
     private MantenedorTotems mantenedorTotems;
 
-
-
     public void cambioPestania(TabChangeEvent event) {
         String nombrePestania = event.getTab().getTitle();
 

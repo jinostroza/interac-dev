@@ -11,9 +11,12 @@
             <li>
                 <p:outputLabel value="#{userSession.usuario.username}" />
             </li>
+            <li>
+                <p:commandLink value="inicio" action="#{facesUtil.redirigir('/plataforma/inicioweb')}" />
+            </li>
 
             <li>
-                <p:commandLink value="Mis Campañas" action="#{facesUtil.redirigir('/plataforma/campana')}"/>
+                <p:commandLink value="Mis Campañas" action="#{facesUtil.redirigir('/plataforma/panelDeControl')}"/>
             </li>
             <li>
                 <p:commandLink value="Mis Anuncios" action="#{facesUtil.redirigir('/plataforma/creacion')}"/>
