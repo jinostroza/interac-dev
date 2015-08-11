@@ -8,9 +8,11 @@
          <evaluate expression="mantenedorTotems.inicio()"></evaluate>
      </on-start>
 
-      <view-state id="inicioMantenedores">
-
+      <view-state id="inicioMantenedores" >
+          <transition>
+              <evaluate expression="mantenedorEstablecimiento.inicio()"/>
+          </transition>
       </view-state>
 
 
-</flow>
+   </flow>

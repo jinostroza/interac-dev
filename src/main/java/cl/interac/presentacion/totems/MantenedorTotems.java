@@ -1,12 +1,12 @@
 package cl.interac.presentacion.totems;
 
-import cl.interac.entidades.Establecimiento;
-import cl.interac.entidades.Totem;
-import cl.interac.entidades.Ubicacion;
+import cl.interac.entidades.*;
 import cl.interac.negocio.LogicaCampana;
 import cl.interac.negocio.LogicaEstablecimiento;
 import cl.interac.negocio.LogicaTotem;
 import cl.interac.negocio.LogicaUbicacion;
+import cl.interac.util.components.FacesUtil;
+import cl.interac.util.components.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -41,13 +41,19 @@ public class MantenedorTotems implements Serializable
     private List<Totem> totems;
     private List<Totem> totemConFiltro;
     private List<Establecimiento> establecimientoList;
+    private List<Establecimiento> establecimientoConfiltro;
     private Establecimiento establecimiento;
 
+    public boolean esEditar() {
+        return operacion == TipoOperacion.EDITAR;
+    }
+
+    public boolean esAgregar() {
+        return operacion == TipoOperacion.INSERTAR;
+    }
 
     // logica vista
-    public void mantenedorTotems() {
-      new Totem();
-    }
+    public MantenedorTotems(){new Totem();}
     public void agregarTotem(){
         logicaTotem.guardar(totem);
         logicaEstablecimiento.guardar(establecimiento);
@@ -62,7 +68,7 @@ public class MantenedorTotems implements Serializable
 
 
     public void inicio(){
-        totems = logicaTotem.obtenerConRelacion();
+        totems = logicaTotem.obtenerTodos();
         establecimientoList = logicaEstablecimiento.obtenerTodos();
         logicaUbicacion.obtenerTodas();
         totem = new Totem();
@@ -109,7 +115,13 @@ public class MantenedorTotems implements Serializable
         this.logicaCampana = logicaCampana;
     }
 
+    public TipoOperacion getOperacion() {
+        return operacion;
+    }
 
+    public void setOperacion(TipoOperacion Operacion) {
+        operacion = Operacion;
+    }
 
 }
 

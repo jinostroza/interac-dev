@@ -4,7 +4,7 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
     <h3 style="margin-top:0">Mantenedor Totems</h3>
-    <h:panelGrid columns="2" cellpadding="10">
+    <h:panelGrid id="totemPG" columns="2" cellpadding="10">
         <br/>
         <p:dataTable id="totemsDT" var="totm" value="#{mantenedorMantencion.mantenedorTotems.totems}" filteredValue="#{mantenedorMantencion.mantenedorTotems.totemConFiltro}"      >
             <p:column headerText="N°Serie" filterBy="#{totm.noserie}">
@@ -15,10 +15,7 @@
                 <h:outputText value="#{totm.establecimiento.idEstablecimiento}" />
             </p:column>
 
-            <p:column headerText="Ubicacion" filterBy="#{totm.establecimiento.ubicacion.descubicacion}" >
-                <h:outputText value="#{totm.establecimiento.ubicacion.idubicacion}" />
-            </p:column>
-            <p:column headerText="Tipo" filterBy="#{totm.tipo}">
+                        <p:column headerText="Tipo" filterBy="#{totm.tipo}">
                 <h:outputText value="#{totm.tipo}" />
             </p:column>
 
@@ -28,7 +25,7 @@
         </p:dataTable>
     </h:panelGrid>
     <p:commandButton id="nuevoBtnTotem" value="Agrega"  type="button"/>
-    <p:overlayPanel id="agregapanelTotem" for="nuevoBtnTotem" showEvent="click" hideEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
+    <p:overlayPanel id="agregapanelTotem" for="nuevoBtnTotem" hideEffect="fade" dynamic="true" style="width:600px">
         <p:outputPanel>
             <h:outputLabel value="N°Serie"/>
             <h:inputText styleClass="form-control"
@@ -41,13 +38,13 @@
                              converter="entityConverter">
                 <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione establecimiento --"/>
                 <f:selectItems value="#{mantenedorMantencion.mantenedorTotems.totems}" var="totemPL"
-                               itemLabel="#{totemPL.establecimiento.idEstablecimiento}"/>
+                               itemLabel="#{totemPL.establecimiento.nombreEstablecimiento}" />
             </h:selectOneMenu>
 
 
             <br/>
 
-            <p:commandButton id="addBtnTotem" for="agregapanelTotem" update="totemsDT" value="Agrega"
+            <p:commandButton id="addBtnTotem" for="agregapanelTotem" update="totemPG" value="Agrega"
                              action="#{mantenedorMantencion.mantenedorTotems.agregarTotem()}"/>
         </p:outputPanel>
     </p:overlayPanel>
