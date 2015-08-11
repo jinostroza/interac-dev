@@ -20,11 +20,11 @@
             </p:column>
 
             <p:column>
-                <h:commandButton value="eliminar" styleClass="form-control" actionListener="#{mantenedorMantencion.mantenedorTotems.eliminarTotem(totm)}"/>
+                <h:commandButton value="eliminar" styleClass="form-control" update="totemDT" actionListener="#{mantenedorMantencion.mantenedorTotems.eliminarTotem(totm)}"/>
             </p:column>
         </p:dataTable>
     </h:panelGrid>
-    <p:commandButton id="nuevoBtnTotem" value="Agrega"  type="button"/>
+    <p:commandButton id="nuevoBtnTotem" value="Agrega" update="totemDT" type="button"/>
     <p:overlayPanel id="agregapanelTotem" for="nuevoBtnTotem" hideEffect="fade" dynamic="true" style="width:600px">
         <p:outputPanel>
             <h:outputLabel value="N°Serie"/>
@@ -38,7 +38,7 @@
                              converter="entityConverter">
                 <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione establecimiento --"/>
                 <f:selectItems value="#{mantenedorMantencion.mantenedorTotems.totems}" var="totemPL"
-                               itemLabel="#{totemPL.establecimiento.nombreEstablecimiento}" />
+                               itemLabel="#{totemPL.establecimiento.idEstablecimiento}" />
             </h:selectOneMenu>
 
 
