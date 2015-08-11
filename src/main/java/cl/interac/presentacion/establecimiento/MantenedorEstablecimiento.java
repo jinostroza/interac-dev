@@ -68,11 +68,6 @@ public class MantenedorEstablecimiento implements Serializable {
         logicaEstablecimiento.eliminar(establecimiento);
     }
 
-
-    public MantenedorEstablecimiento() {
-        new Establecimiento();
-    }
-
     public void agregarEstablecimiento() {
         operacion = TipoOperacion.INSERTAR;
         establecimiento.setUsuario(userSession.getUsuario());
@@ -82,7 +77,7 @@ public class MantenedorEstablecimiento implements Serializable {
 
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el establecimiento [" + establecimiento.getNombreEstablecimiento() + "]");
     }
-    /*
+
     public void editarEstablecimiento(Establecimiento e) {
         operacion = TipoOperacion.EDITAR;
 
@@ -92,7 +87,7 @@ public class MantenedorEstablecimiento implements Serializable {
 
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el establecimiento [" + establecimiento.getNombreEstablecimiento() + "]");
     }
-*/
+
     public List<Totem> getTotems() {
         return totems;
     }

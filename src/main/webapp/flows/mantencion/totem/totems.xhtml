@@ -6,7 +6,9 @@
     <h3 style="margin-top:0">Mantenedor Totems</h3>
     <h:panelGrid id="totemPG" columns="2" cellpadding="10">
         <br/>
-        <p:dataTable id="totemsDT" var="totm" value="#{mantenedorMantencion.mantenedorTotems.totems}" filteredValue="#{mantenedorMantencion.mantenedorTotems.totemConFiltro}"      >
+        <p:dataTable id="totemsDT" var="totm" value="#{mantenedorMantencion.mantenedorTotems.totems}"
+                     filteredValue="#{mantenedorMantencion.mantenedorTotems.totemConFiltro}"      >
+
             <p:column headerText="N°Serie" filterBy="#{totm.noserie}">
                 <h:outputText value="#{totm.noserie}" />
             </p:column>
@@ -20,25 +22,52 @@
             </p:column>
 
             <p:column>
-                <h:commandButton value="eliminar" styleClass="form-control" update="totemDT" actionListener="#{mantenedorMantencion.mantenedorTotems.eliminarTotem(totm)}"/>
+                <h:commandButton value="eliminar" styleClass="form-control"
+                                 actionListener="#{mantenedorMantencion.mantenedorTotems.eliminarTotem(totm)}"/>
             </p:column>
+
+            <p:column>
+                <p:commandButton id="editBtnTotem" styleClass="form-control" value="editar" update="totemDT" type="button"/>
+                <p:overlayPanel id="editPanel" for="editBtnTotem" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
+                    <p:outputPanel>
+                        <h:outputLabel value="NoSerie"/>
+                        <h:inputText required="true" styleClass="form-control"
+                                     value="#{totm.noserie}"/>
+                        <h:outputLabel  value="Tipo"/>
+                        <h:inputText required="true" styleClass="form-control" value="#{totm.tipo}" />
+                        <h:outputLabel value="Fono"/>
+
+                        <h:selectOneMenu class="form-control" value="#{mantenedorMantencion.mantenedorTotems.totem.establecimiento}"
+                                         converter="entityConverter">
+                            <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
+                            <f:selectItems value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimientoList}" var="localEdit"
+                                           itemLabel="#{localEdit.nombreEstablecimiento}"/>
+                        </h:selectOneMenu>
+                        <br/>
+                        <!-- update="establecimientoPG"-->
+                        <p:commandButton id="editBTN" for="editPanel" value="Editar"
+                                         action="#{mantenedorMantencion.mantenedorEstablecimiento.editarEstablecimiento(localEdit)}"/>
+                    </p:outputPanel>
+                </p:overlayPanel>
+            </p:column>
+
         </p:dataTable>
     </h:panelGrid>
     <p:commandButton id="nuevoBtnTotem" value="Agrega" update="totemDT" type="button"/>
     <p:overlayPanel id="agregapanelTotem" for="nuevoBtnTotem" hideEffect="fade" dynamic="true" style="width:600px">
         <p:outputPanel>
             <h:outputLabel value="N°Serie"/>
-            <h:inputText styleClass="form-control"
+            <h:inputText required="true" styleClass="form-control"
                          value="#{mantenedorMantencion.mantenedorTotems.totem.noserie}"/>
             <h:outputLabel value="Tipo"/>
-            <h:inputText styleClass="form-control" value="#{mantenedorMantencion.mantenedorTotems.totem.tipo}"/>
+            <h:inputText required="true" styleClass="form-control" value="#{mantenedorMantencion.mantenedorTotems.totem.tipo}"/>
             <h:outputLabel value="Establecimiento"/>
 
-            <h:selectOneMenu class="form-control" value="#{mantenedorMantencion.mantenedorTotems.totems}"
+            <h:selectOneMenu class="form-control" value="#{mantenedorMantencion.mantenedorTotems.establecimiento}"
                              converter="entityConverter">
                 <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione establecimiento --"/>
-                <f:selectItems value="#{mantenedorMantencion.mantenedorTotems.totems}" var="totemPL"
-                               itemLabel="#{totemPL.establecimiento.idEstablecimiento}" />
+                <f:selectItems value="#{mantenedorMantencion.mantenedorTotems.establecimientoList}" var="totemPL"
+                               itemLabel="#{totemPL.nombreEstablecimiento}" />
             </h:selectOneMenu>
 
 

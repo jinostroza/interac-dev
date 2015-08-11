@@ -9,11 +9,12 @@
         <h:form id="frmMant">
             <p:tabView id="tabsMant" dynamic="true" cache="true">
                 <p:ajax event="tabChange" listener="#{mantenedorMantencion.cambioPestania}"></p:ajax>
-                <p:tab title="Totem">
-                     <ui:include src="totem/totems.xhtml"/>
-                </p:tab>
+
                 <p:tab title="Campaña">
                     Campaña campañosa
+                </p:tab>
+                <p:tab title="Totem">
+                    <ui:include src="totem/totems.xhtml"/>
                 </p:tab>
                 <p:tab title="Establecimiento">
                     <ui:include src="establecimientos/mantenedorEstablecimiento.xhtml"/>

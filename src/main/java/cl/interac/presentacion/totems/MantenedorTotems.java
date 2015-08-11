@@ -19,8 +19,7 @@ import java.util.List;
  */
 @Component
 @Scope("prototype")
-public class MantenedorTotems implements Serializable
-{
+public class MantenedorTotems implements Serializable {
 
     @Autowired
     private LogicaTotem logicaTotem;
@@ -48,29 +47,31 @@ public class MantenedorTotems implements Serializable
         return operacion == TipoOperacion.EDITAR;
     }
 
+
     public boolean esAgregar() {
         return operacion == TipoOperacion.INSERTAR;
     }
 
     // logica vista
-    public MantenedorTotems(){new Totem();}
-    public void agregarTotem(){
+    public MantenedorTotems() {
+        new Totem();
+    }
+
+    public void agregarTotem() {
         logicaTotem.guardar(totem);
         logicaEstablecimiento.guardar(establecimiento);
 
     }
 
-     public void eliminarTotem(Totem totem){
+    public void eliminarTotem(Totem totem) {
 
-             logicaTotem.eliminarTotem(totem);
-         }
+        logicaTotem.eliminarTotem(totem);
+    }
 
 
-
-    public void inicio(){
-        totems = logicaTotem.obtenerTodos();
+    public void inicio() {
+        totems = logicaTotem.obtenerConRelacion();
         establecimientoList = logicaEstablecimiento.obtenerTodos();
-        logicaUbicacion.obtenerTodas();
         totem = new Totem();
 
     }
@@ -83,6 +84,7 @@ public class MantenedorTotems implements Serializable
     public void setTotemConFiltro(List<Totem> totemConFiltro) {
         this.totemConFiltro = totemConFiltro;
     }
+
     public List<Totem> getTotems() {
         return totems;
     }
@@ -99,21 +101,6 @@ public class MantenedorTotems implements Serializable
         this.totem = totem;
     }
 
-    public LogicaTotem getLogicaTotem() {
-        return logicaTotem;
-    }
-
-    public void setLogicaTotem(LogicaTotem logicaTotem) {
-        this.logicaTotem = logicaTotem;
-    }
-
-    public LogicaCampana getLogicaCampana() {
-        return logicaCampana;
-    }
-
-    public void setLogicaCampana(LogicaCampana logicaCampana) {
-        this.logicaCampana = logicaCampana;
-    }
 
     public TipoOperacion getOperacion() {
         return operacion;
@@ -122,6 +109,32 @@ public class MantenedorTotems implements Serializable
     public void setOperacion(TipoOperacion Operacion) {
         operacion = Operacion;
     }
+
+    public Establecimiento getEstablecimiento() {
+        return establecimiento;
+    }
+
+    public void setEstablecimiento(Establecimiento establecimiento) {
+        this.establecimiento = establecimiento;
+    }
+
+    public List<Establecimiento> getEstablecimientoList() {
+
+        return establecimientoList;
+    }
+
+    public void setEstablecimientoList(List<Establecimiento> establecimientoList) {
+        this.establecimientoList = establecimientoList;
+    }
+
+    public List<Establecimiento> getEstablecimientoConfiltro() {
+        return establecimientoConfiltro;
+    }
+
+    public void setEstablecimientoConfiltro(List<Establecimiento> establecimientoConfiltro) {
+        this.establecimientoConfiltro = establecimientoConfiltro;
+    }
+
 
 }
 

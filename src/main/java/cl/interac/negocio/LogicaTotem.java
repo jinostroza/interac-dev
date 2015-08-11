@@ -17,33 +17,35 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- *
  * @author edggar
  */
 @Service
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class LogicaTotem {
-   @Autowired
-   private TotemDAO totemDAO;
-
-     @Transactional(readOnly = true)
-    public List<Totem> obtenerTodos() {
-       return totemDAO.obtenerTodos();
-   }
-    @Transactional(readOnly = false)
-   public void guardar(Totem t){
-       totemDAO.guardar(t);
-   }
-    @Transactional(readOnly = false)
-    public void eliminarTotem(Totem t){
-       totemDAO.eliminarTotem(t);
-   }
+    @Autowired
+    private TotemDAO totemDAO;
 
     @Transactional(readOnly = true)
-    public List<Totem> obtenerConRelacion(){return totemDAO.obtenerConRelacion();}
-
-
-
+    public List<Totem> obtenerTodos() {
+        return totemDAO.obtenerTodos();
     }
+
+    @Transactional(readOnly = false)
+    public void guardar(Totem t) {
+        totemDAO.guardar(t);
+    }
+
+    @Transactional(readOnly = false)
+    public void eliminarTotem(Totem t) {
+        totemDAO.eliminarTotem(t);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Totem> obtenerConRelacion() {
+        return totemDAO.obtenerConRelacion();
+    }
+
+
+}
 
 
