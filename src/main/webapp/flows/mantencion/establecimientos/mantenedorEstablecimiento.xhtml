@@ -3,45 +3,40 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
-
     <h3 style="margin-top:0">Mantenedor Establecimientos</h3>
 
-    <h:panelGrid columns="2" cellpadding="10">
+    <h:panelGrid id="establecimientoPG" columns="2" cellpadding="10">
         <br/>
         <p:dataTable id="establecimientos" var="local" widgetVar="dtEstablecimientos"
                      value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimientoList}"
                      filteredValue="#{mantenedorMantencion.mantenedorEstablecimiento.establecimientoConfiltro}">
-
             <p:column headerText="nombre" filterBy="#{local.nombreEstablecimiento}">
-                <h:outputText value="#{local.nombreEstablecimiento}"/>
+                <h:outputText value="#{local.nombreEstablecimiento}" />
             </p:column>
-            <p:column headerText="ubicacion" filterBy="#{local.ubicacion.descubicacion}" >
-                <h:outputText value="#{local.ubicacion.descubicacion}" />
-            </p:column>
-            <p:column headerText="direccion">
+
+            <p:column headerText="direccion" filterBy="#{local.direccion}">
                 <h:outputText value="#{local.direccion}" />
             </p:column>
 
             <p:column headerText="fono">
                 <h:outputText value="#{local.fono}" />
             </p:column>
-
-
-
-
+            <p:column headerText="ubicacion" filterBy="#{local.ubicacion.descubicacion}" filterMatchMode="contains">
+                <h:outputText value="#{local.ubicacion.descubicacion}" />
+            </p:column>
             <p:column>
-                <h:commandButton value="eliminar" styleClass="form-control" update="establecimientos" action="#{mantenedorMantencion.mantenedorEstablecimiento.eliminar(local)}"/>
+                <h:commandButton value="eliminar" styleClass="form-control" action="#{mantenedorMantencion.mantenedorEstablecimiento.eliminar(local)}"/>
             </p:column>
 
             <p:column>
                 <h:commandButton id="modifica" value="Modificar" styleClass="form-control" type="button"/>
-                <p:overlayPanel id="editPanel" for="modifica" showEvent="click" hideEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
+                <p:overlayPanel id="editPanel" for="modifica" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
                     <p:outputPanel>
                         <h:outputLabel value="Nombre"/>
                         <h:inputText styleClass="form-control"
                                      value="#{local.nombreEstablecimiento}"/>
                         <h:outputLabel value="Direccion"/>
-                        <h:inputText styleClass="form-control" value="#{local.direccion}"/>
+                        <h:inputText styleClass="form-control" value="#{local.direccion}" />
                         <h:outputLabel value="Fono"/>
                         <h:inputText styleClass="form-control" value="#{local.fono}"/>
                         <h:outputLabel value="Ubicacion"/>
@@ -52,7 +47,7 @@
                                            itemLabel="#{ubica.descubicacion}"/>
                         </h:selectOneMenu>
                         <br/>
-                        <p:commandButton id="editBTN" for="editPanel" value="Editar" update="establecimientos"
+                        <p:commandButton id="editBTN" for="editPanel" value="Editar" update="establecimientoPG"
                                          action="#{mantenedorMantencion.mantenedorEstablecimiento.editarEstablecimiento(local)}"/>
                     </p:outputPanel>
                 </p:overlayPanel>
@@ -63,14 +58,14 @@
     <p:overlayPanel id="agregapanel" for="nuevoBtn" showEvent="click" hideEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
         <p:outputPanel>
             <h:outputLabel value="Nombre"/>
-            <h:inputText styleClass="form-control"
+            <h:inputText styleClass="form-control" required="true"
                          value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimiento.nombreEstablecimiento}"/>
             <h:outputLabel value="Direccion"/>
-            <h:inputText styleClass="form-control" value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimiento.direccion}"/>
+            <h:inputText styleClass="form-control" required="true" value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimiento.direccion}"/>
             <h:outputLabel value="Fono"/>
-            <h:inputText styleClass="form-control" value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimiento.fono}"/>
+            <h:inputText styleClass="form-control" required="true" value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimiento.fono}"/>
             <h:outputLabel value="Ubicacion"/>
-            <h:selectOneMenu class="form-control" value="#{mantenedorMantencion.mantenedorEstablecimiento.ubicacion}"
+            <h:selectOneMenu class="form-control" required="true" value="#{mantenedorMantencion.mantenedorEstablecimiento.ubicacion}"
                              converter="entityConverter">
                 <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
                 <f:selectItems value="#{mantenedorMantencion.mantenedorEstablecimiento.ubicaciones}" var="ubica"
@@ -78,7 +73,7 @@
             </h:selectOneMenu>
             <br/>
             <h:outputLabel value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimiento.ubicacion.idubicacion}"/>
-            <p:commandButton id="addBtn" for="agregapanel" value="Agrega" update="establecimientos"
+            <p:commandButton id="addBtn" for="agregapanel" value="Agrega" update="establecimientoPG"
                              action="#{mantenedorMantencion.mantenedorEstablecimiento.agregarEstablecimiento()}"/>
         </p:outputPanel>
     </p:overlayPanel>

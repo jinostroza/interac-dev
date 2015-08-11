@@ -3,51 +3,48 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
-
-
     <h3 style="margin-top:0">Mantenedor Totems</h3>
-    <h:panelGrid columns="2" cellpadding="10">
-
+    <h:panelGrid id="totemPG" columns="2" cellpadding="10">
         <br/>
-        <p:dataTable id="totemsDT" var="t" value="#{mantenedorMantencion.mantenedorTotems.totems}" filteredValue="#{mantenedorMantencion.mantenedorTotems.totemConFiltro}">
-            <p:column headerText="NO. serie" filterBy="#{t.noserie}">
-                <h:outputText value="#{t.noserie}" />
+        <p:dataTable id="totemsDT" var="totm" value="#{mantenedorMantencion.mantenedorTotems.totems}" filteredValue="#{mantenedorMantencion.mantenedorTotems.totemConFiltro}"      >
+            <p:column headerText="N°Serie" filterBy="#{totm.noserie}">
+                <h:outputText value="#{totm.noserie}" />
             </p:column>
 
-            <p:column headerText="establecimiento" filterBy="#{t.establecimiento.nombreEstablecimiento}">
-                <h:outputText value="#{t.establecimiento.idEstablecimiento}" />
+            <p:column headerText="Establecimiento" filterBy="#{totm.establecimiento.nombreEstablecimiento}">
+                <h:outputText value="#{totm.establecimiento.idEstablecimiento}" />
             </p:column>
 
-            <p:column headerText="tipo" filterBy="#{t.tipo}">
-                <h:outputText value="#{t.tipo}" />
+                        <p:column headerText="Tipo" filterBy="#{totm.tipo}">
+                <h:outputText value="#{totm.tipo}" />
             </p:column>
 
             <p:column>
-                <h:commandButton value="eliminar" styleClass="form-control"  actionListener="#{mantenedorMantencion.mantenedorTotems.eliminarTotem()}"/>
+                <h:commandButton value="eliminar" styleClass="form-control" actionListener="#{mantenedorMantencion.mantenedorTotems.eliminarTotem(totm)}"/>
             </p:column>
         </p:dataTable>
     </h:panelGrid>
     <p:commandButton id="nuevoBtnTotem" value="Agrega"  type="button"/>
-    <p:overlayPanel id="agregapanelTotem" for="nuevoBtnTotem" showEvent="click" hideEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
+    <p:overlayPanel id="agregapanelTotem" for="nuevoBtnTotem" hideEffect="fade" dynamic="true" style="width:600px">
         <p:outputPanel>
-            <h:outputLabel value="NO. serie"/>
+            <h:outputLabel value="N°Serie"/>
             <h:inputText styleClass="form-control"
                          value="#{mantenedorMantencion.mantenedorTotems.totem.noserie}"/>
-            <h:outputLabel value="tipo"/>
+            <h:outputLabel value="Tipo"/>
             <h:inputText styleClass="form-control" value="#{mantenedorMantencion.mantenedorTotems.totem.tipo}"/>
-            <h:outputLabel value="establecimiento"/>
+            <h:outputLabel value="Establecimiento"/>
 
-            <h:selectOneMenu class="form-control" value="#{mantenedorMantencion.mantenedorTotems.establecimiento}"
+            <h:selectOneMenu class="form-control" value="#{mantenedorMantencion.mantenedorTotems.totems}"
                              converter="entityConverter">
                 <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione establecimiento --"/>
-                <f:selectItems value="#{mantenedorMantencion.mantenedorTotems.establecimientoList}" var="ub"
-                               itemLabel="#{ub.nombreEstablecimiento}"/>
+                <f:selectItems value="#{mantenedorMantencion.mantenedorTotems.totems}" var="totemPL"
+                               itemLabel="#{totemPL.establecimiento.nombreEstablecimiento}" />
             </h:selectOneMenu>
 
 
             <br/>
 
-            <p:commandButton id="addBtnTotem" for="agregapanelTotem" update="totemsDT" value="Agrega"
+            <p:commandButton id="addBtnTotem" for="agregapanelTotem" update="totemPG" value="Agrega"
                              action="#{mantenedorMantencion.mantenedorTotems.agregarTotem()}"/>
         </p:outputPanel>
     </p:overlayPanel>
