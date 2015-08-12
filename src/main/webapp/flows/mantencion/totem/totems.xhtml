@@ -27,7 +27,7 @@
             </p:column>
 
             <p:column>
-                <p:commandButton id="editBtnTotem" styleClass="form-control" value="editar" update="totemDT" type="button"/>
+                <h:commandButton id="editBtnTotem" value="editar" update="totemDT" styleClass="form-control" type="button"/>
                 <p:overlayPanel id="editPanel" for="editBtnTotem" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
                     <p:outputPanel>
                         <h:outputLabel value="NoSerie"/>
@@ -44,7 +44,7 @@
                         </h:selectOneMenu>
                         <br/>
                         <!-- update="establecimientoPG"-->
-                        <p:commandButton id="editBTN" for="editPanel" value="Editar" styleClass="form-control"
+                        <h:commandButton id="editBTN" for="editPanel" value="Editar" styleClass="form-control"
                                          action="#{mantenedorMantencion.mantenedorTotems.editarTotem(totm)}"/>
                     </p:outputPanel>
                 </p:overlayPanel>
@@ -52,7 +52,7 @@
 
         </p:dataTable>
     </h:panelGrid>
-    <p:commandButton id="nuevoBtnTotem" value="Agrega" update="totemDT" type="button"/>
+    <h:commandButton id="nuevoBtnTotem" value="Agrega" update="totemDT" type="button"/>
     <p:overlayPanel id="agregapanelTotem" for="nuevoBtnTotem" hideEffect="fade" dynamic="true" style="width:600px">
         <p:outputPanel>
             <h:outputLabel value="N°Serie"/>
@@ -69,7 +69,7 @@
                                itemLabel="#{totemPL.nombreEstablecimiento}"  />
             </h:selectOneMenu>
             <br/>
-            <p:commandButton id="addBtnTotem" for="agregapanelTotem" update="totemPG" value="Agrega"
+            <h:commandButton id="addBtnTotem" for="agregapanelTotem" update="totemPG" value="Agrega"
                              action="#{mantenedorMantencion.mantenedorTotems.agregarTotem()}"/>
         </p:outputPanel>
     </p:overlayPanel>
