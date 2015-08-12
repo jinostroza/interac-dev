@@ -42,6 +42,7 @@ public class MantenedorMantencion implements Serializable {
     }
     public MantenedorTotems getMantenedorTotems() {
         return mantenedorTotems;
+
     }
 
     public void setMantenedorTotems(MantenedorTotems mantenedorTotems) {
