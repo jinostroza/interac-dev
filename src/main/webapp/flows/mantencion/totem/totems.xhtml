@@ -35,18 +35,17 @@
                                      value="#{totm.noserie}"/>
                         <h:outputLabel  value="Tipo"/>
                         <h:inputText required="true" styleClass="form-control" value="#{totm.tipo}" />
-                        <h:outputLabel value="Fono"/>
-
-                        <h:selectOneMenu class="form-control" value="#{mantenedorMantencion.mantenedorTotems.totem.establecimiento}"
+                        <h:outputLabel value="Establecimiento"/>
+                        <h:selectOneMenu class="form-control" value="#{totm.establecimiento}"
                                          converter="entityConverter">
-                            <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
-                            <f:selectItems value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimientoList}" var="localEdit"
+                            <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione establecimiento --"/>
+                            <f:selectItems value="#{mantenedorMantencion.mantenedorTotems.establecimientoList}" var="localEdit"
                                            itemLabel="#{localEdit.nombreEstablecimiento}"/>
                         </h:selectOneMenu>
                         <br/>
                         <!-- update="establecimientoPG"-->
-                        <p:commandButton id="editBTN" for="editPanel" value="Editar"
-                                         action="#{mantenedorMantencion.mantenedorEstablecimiento.editarEstablecimiento(localEdit)}"/>
+                        <p:commandButton id="editBTN" for="editPanel" value="Editar" styleClass="form-control"
+                                         action="#{mantenedorMantencion.mantenedorTotems.editarTotem(totm)}"/>
                     </p:outputPanel>
                 </p:overlayPanel>
             </p:column>
