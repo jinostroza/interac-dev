@@ -66,7 +66,7 @@ public class MantenedorTotems implements Serializable {
 
     public void agregarTotem() {
         operacion = TipoOperacion.INSERTAR;
-//        totem.setEstablecimiento(establecimiento);
+        totem.setEstablecimiento(establecimiento);
         System.err.println("totem e: "+totem.getEstablecimiento());
         totems = logicaTotem.obtenerConRelacion();
         logicaTotem.guardar(totem);
