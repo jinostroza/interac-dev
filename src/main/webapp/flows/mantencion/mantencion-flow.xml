@@ -5,7 +5,7 @@
        start-state="inicioMantenedores" >
 
      <on-start>
-         <evaluate expression="mantenedorTotems.inicio()"></evaluate>
+         <evaluate expression="mantenedorCategoria.inicio()"></evaluate>
      </on-start>
 
       <view-state id="inicioMantenedores" >

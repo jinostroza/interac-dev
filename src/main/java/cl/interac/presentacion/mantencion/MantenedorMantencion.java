@@ -3,6 +3,7 @@ package cl.interac.presentacion.mantencion;
 import cl.interac.presentacion.campana.MantenedorCampana;
 import cl.interac.presentacion.establecimiento.MantenedorEstablecimiento;
 import cl.interac.presentacion.totems.MantenedorTotems;
+import cl.interac.presentacion.categorias.MantenedorCategoria;
 import org.primefaces.event.TabChangeEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -21,6 +22,8 @@ public class MantenedorMantencion implements Serializable {
     private MantenedorEstablecimiento mantenedorEstablecimiento;
     @Autowired
     private MantenedorTotems mantenedorTotems;
+    @Autowired
+    private MantenedorCategoria mantenedorCategoria;
 
     public void cambioPestania(TabChangeEvent event) {
         String nombrePestania = event.getTab().getTitle();
@@ -29,6 +32,9 @@ public class MantenedorMantencion implements Serializable {
             mantenedorEstablecimiento.inicio();
         } else if (nombrePestania.equals("Totem")) {
             mantenedorTotems.inicio();
+        }
+        else if (nombrePestania.equals("Categorias Campaña")) {
+            mantenedorCategoria.inicio();
         }
     }
 
@@ -46,6 +52,13 @@ public class MantenedorMantencion implements Serializable {
 
     public void setMantenedorTotems(MantenedorTotems mantenedorTotems) {
         this.mantenedorTotems = mantenedorTotems;
+    }
+    public MantenedorCategoria getMantenedorCategoria() {
+        return mantenedorCategoria;
+    }
+
+    public void setMantenedorCategoria(MantenedorCategoria mantenedorCategoria) {
+        this.mantenedorCategoria = mantenedorCategoria;
     }
 
 }
