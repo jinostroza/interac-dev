@@ -47,9 +47,6 @@ public class UsuarioDAO {
             return null;
 
         }
-
-
-
-
     }
+    public List<Usuario> obtenerConRelacion(){ return em.createNamedQuery("Uusuario.findWithRelationship").getResultList();}
 }

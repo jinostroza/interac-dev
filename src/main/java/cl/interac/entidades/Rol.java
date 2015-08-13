@@ -12,7 +12,8 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "Rol.findAll", query = "select r from Rol r"),
-        @NamedQuery(name = "Rol.findIdRol", query = "SELECT r.idrol from Rol r")
+
+
 })
 public class Rol implements Serializable {
 

@@ -21,6 +21,11 @@ import java.util.List;
                         query = "SELECT u FROM Usuario u WHERE u.username = :username"
                 ),
 
+                @NamedQuery(
+                        name="Uusuario.findWithRelationship",
+                        query="Select u from Usuario u " +
+                                "left join fetch u.rol"
+                )
         }
 )
 public class Usuario implements Serializable {
@@ -97,7 +102,7 @@ public class Usuario implements Serializable {
     }
 
 
-    @JoinColumn(referencedColumnName = "id_rol", name = "idrol")
+    @JoinColumn(name = "idrol",referencedColumnName = "id_rol",nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     public Rol getRol() {
         return rol;
