@@ -38,7 +38,7 @@ public class MantenedorMantencion implements Serializable {
         }else if (nombrePestania.equals("Perfiles")){
             mantenedorUsuarios.inicio();
         }
-        else if (nombrePestania.equals("Categorias Campaña")) {
+        else if (nombrePestania.equals("Categorias")) {
             mantenedorCategoria.inicio();
         }
     }
