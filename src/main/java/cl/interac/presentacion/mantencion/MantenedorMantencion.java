@@ -3,7 +3,11 @@ package cl.interac.presentacion.mantencion;
 import cl.interac.presentacion.campana.MantenedorCampana;
 import cl.interac.presentacion.establecimiento.MantenedorEstablecimiento;
 import cl.interac.presentacion.totems.MantenedorTotems;
+<<<<<<< HEAD
 import cl.interac.presentacion.categorias.MantenedorCategoria;
+=======
+import cl.interac.presentacion.usuarios.MantenedorUsuarios;
+>>>>>>> ca5e50f17c6dc7209764d3cbe7af29094fc3ad38
 import org.primefaces.event.TabChangeEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -23,7 +27,11 @@ public class MantenedorMantencion implements Serializable {
     @Autowired
     private MantenedorTotems mantenedorTotems;
     @Autowired
+<<<<<<< HEAD
     private MantenedorCategoria mantenedorCategoria;
+=======
+    private MantenedorUsuarios mantenedorUsuarios;
+>>>>>>> ca5e50f17c6dc7209764d3cbe7af29094fc3ad38
 
     public void cambioPestania(TabChangeEvent event) {
         String nombrePestania = event.getTab().getTitle();
@@ -32,6 +40,8 @@ public class MantenedorMantencion implements Serializable {
             mantenedorEstablecimiento.inicio();
         } else if (nombrePestania.equals("Totem")) {
             mantenedorTotems.inicio();
+        }else if (nombrePestania.equals("Perfiles")){
+            mantenedorUsuarios.inicio();
         }
         else if (nombrePestania.equals("Categorias Campaña")) {
             mantenedorCategoria.inicio();
@@ -48,6 +58,7 @@ public class MantenedorMantencion implements Serializable {
     }
     public MantenedorTotems getMantenedorTotems() {
         return mantenedorTotems;
+
     }
 
     public void setMantenedorTotems(MantenedorTotems mantenedorTotems) {
@@ -61,4 +72,11 @@ public class MantenedorMantencion implements Serializable {
         this.mantenedorCategoria = mantenedorCategoria;
     }
 
+    public MantenedorUsuarios getMantenedorUsuarios() {
+        return mantenedorUsuarios;
+    }
+
+    public void setMantenedorUsuarios(MantenedorUsuarios mantenedorUsuarios) {
+        this.mantenedorUsuarios = mantenedorUsuarios;
+    }
 }

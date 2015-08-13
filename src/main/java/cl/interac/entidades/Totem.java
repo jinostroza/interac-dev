@@ -24,7 +24,6 @@ public class Totem implements Serializable {
 
     // relaciones
     private List<Campana> campanas;
-
     private Establecimiento establecimiento;
 
     @Id
@@ -70,7 +69,7 @@ public class Totem implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idestablecimiento",referencedColumnName = "idestablecimiento")
+    @JoinColumn(name = "idestablecimiento" ,referencedColumnName = "idestablecimiento", nullable = false)
     public Establecimiento getEstablecimiento() {
         return establecimiento;
     }

@@ -23,7 +23,7 @@ public class LogicaRol {
     private RolDAO rolDAO;
 
     @Transactional(readOnly = true)
-    private List<Rol> obtenerTodos() {
+   public List<Rol> obtenerTodos() {
         return rolDAO.obtenerTodos();
     }
 }

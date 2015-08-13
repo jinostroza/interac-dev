@@ -38,4 +38,7 @@ public class LogicaUsuario {
     public Usuario obtener(String username) {
         return usuarioDAO.obtenerPorUsuario(username);
     }
+
+    @Transactional(readOnly = true)
+    public List<Usuario> obtenetConRol(){return usuarioDAO.obtenerConRelacion();}
 }
