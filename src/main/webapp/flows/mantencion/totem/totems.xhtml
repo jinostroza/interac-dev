@@ -64,7 +64,7 @@
             <h:inputText  styleClass="form-control" value="#{mantenedorMantencion.mantenedorTotems.totem.tipo}"/>
             <h:outputLabel value="Establecimiento"/>
 
-            <h:selectOneMenu class="form-control" value="#{mantenedorMantencion.mantenedorTotems.totem.establecimiento}"
+            <h:selectOneMenu class="form-control" value="#{mantenedorMantencion.mantenedorTotems.establecimiento}"
                              converter="entityConverter">
                 <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione establecimiento --"/>
                 <f:selectItems value="#{mantenedorMantencion.mantenedorTotems.establecimientoList}" var="totemPL"
