@@ -3,6 +3,7 @@ package cl.interac.presentacion.mantencion;
 import cl.interac.presentacion.campana.MantenedorCampana;
 import cl.interac.presentacion.establecimiento.MantenedorEstablecimiento;
 import cl.interac.presentacion.totems.MantenedorTotems;
+import cl.interac.presentacion.categorias.MantenedorCategoria;
 import cl.interac.presentacion.usuarios.MantenedorUsuarios;
 import org.primefaces.event.TabChangeEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class MantenedorMantencion implements Serializable {
     @Autowired
     private MantenedorTotems mantenedorTotems;
     @Autowired
+    private MantenedorCategoria mantenedorCategoria;
+    @Autowired
     private MantenedorUsuarios mantenedorUsuarios;
 
     public void cambioPestania(TabChangeEvent event) {
@@ -34,6 +37,9 @@ public class MantenedorMantencion implements Serializable {
             mantenedorTotems.inicio();
         }else if (nombrePestania.equals("Perfiles")){
             mantenedorUsuarios.inicio();
+        }
+        else if (nombrePestania.equals("Categorias")) {
+            mantenedorCategoria.inicio();
         }
     }
 
@@ -52,6 +58,13 @@ public class MantenedorMantencion implements Serializable {
 
     public void setMantenedorTotems(MantenedorTotems mantenedorTotems) {
         this.mantenedorTotems = mantenedorTotems;
+    }
+    public MantenedorCategoria getMantenedorCategoria() {
+        return mantenedorCategoria;
+    }
+
+    public void setMantenedorCategoria(MantenedorCategoria mantenedorCategoria) {
+        this.mantenedorCategoria = mantenedorCategoria;
     }
 
     public MantenedorUsuarios getMantenedorUsuarios() {
