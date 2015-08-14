@@ -31,7 +31,6 @@ public class MantenedorAnuncios implements Serializable {
         INSERTAR,
         EDITAR
     }
-
     ;
     private TipoOperacion operacion;
     private List<Categoria> categorias;
@@ -94,6 +93,7 @@ public class MantenedorAnuncios implements Serializable {
         System.err.println("LLEGO A LA WA " + fue);
         String path = fileUploader.subir(fue, "/anuncios/");
         System.err.println("SE SUPONE QUE SUBI EN " + path);
+        afiche = new Afiche();
         afiche.setPath(path);
         logicaAfiche.guardar(afiche);
 
