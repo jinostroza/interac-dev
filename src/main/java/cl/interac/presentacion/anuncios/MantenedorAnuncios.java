@@ -90,15 +90,17 @@ public class MantenedorAnuncios implements Serializable {
 
 
     public void subir(FileUploadEvent fue) {
+        operacion = TipoOperacion.INSERTAR;
         System.err.println("LLEGO A LA WA " + fue);
         String path = fileUploader.subir(fue, "/anuncios/");
         System.err.println("SE SUPONE QUE SUBI EN " + path);
-        operacion = TipoOperacion.INSERTAR;
+        afiche.setPath(path);
+        logicaAfiche.guardar(afiche);
 
         if (esEditar()) {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña [" + anuncio.getDescanuncio() + "]");
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña [" + afiche.getIdAfiche() + "]");
         } else {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado la campaña [" + anuncio.getDescanuncio() + "]");
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el afiche [" + afiche.getIdAfiche() + "]");
         }
         //logicaDocumentos.guardar(path, "algo más") // no se pos aqui tu decides xD
     }
@@ -145,5 +147,23 @@ public class MantenedorAnuncios implements Serializable {
     public void setAnuncio(Anuncio anuncio) {
         this.anuncio = anuncio;
     }
+
+    public List<Afiche> getAficheList() {
+        return afiches;
+    }
+
+    public void setAficheList(List<Afiche> aficheList) {
+        this.afiches = aficheList;
+    }
+
+    public Afiche getAfiche() {
+        return afiche;
+    }
+
+    public void setAfiche(Afiche afiche) {
+        this.afiche = afiche;
+    }
+
+
 
 }
