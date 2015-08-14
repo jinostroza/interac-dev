@@ -4,7 +4,14 @@
       xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
         start-state="panel">
 
+      <on-start>
+            <evaluate expression="mantenedorPanelControl.inicio()"/>
+      </on-start>
       <view-state id="panel">
+
+      </view-state>
+
+      <view-state id="exito">
 
       </view-state>
 

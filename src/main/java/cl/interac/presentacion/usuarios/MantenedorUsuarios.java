@@ -50,7 +50,7 @@ public class MantenedorUsuarios implements Serializable {
     }
 
 
-    public void guardarUsuario(Rol rol) {
+    public void guardarUsuario() {
      operacion = TipoOperacion.INGRESAR;
      usuario.setRol(rol);
      logicaUsuario.guardar(usuario);

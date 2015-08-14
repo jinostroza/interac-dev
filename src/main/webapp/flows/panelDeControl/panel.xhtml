@@ -5,6 +5,30 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/templates/default.xhtml">
     <ui:define name="contenido">
+ <h1>Modificar Usuario</h1>
+
+        <p:panelGrid columns="2" styleClass=".col-xs-6 .col-sm-3 "  >
+            <p:outputLabel value="usuario :#{userSession.usuario.username} " />
+            <p:outputLabel value="correo :#{userSession.usuario.correo}"/>
+            <p:outputLabel value="empresa :#{userSession.usuario.empresa}"/>
+
+
+
+        </p:panelGrid>
+
+        <h:panelGrid columns="2">
+            <h:outputText value="Contraseña:"/>
+            <h:inputText value="#{mantenedorPanelControl.usuario.password}"/>
+            <h:outputText value="nuevaContraseña:"/>
+            <h:inputText value="#{mantenedorPanelControl.usuario.password}"/>
+            <h:outputText value="Correo:" />
+            <h:inputText value="#{mantenedorPanelControl.usuario.correo}" />
+
+
+
+
+        </h:panelGrid>
+
 
 
     </ui:define>

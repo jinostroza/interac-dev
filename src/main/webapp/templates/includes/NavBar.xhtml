@@ -9,14 +9,14 @@
     <p:outputPanel styleClass="user-menu pull-right" rendered="#{userSession.usuario != null}">
         <ul>
             <li>
-                <p:outputLabel value="#{userSession.usuario.username}" />
+                <p:commandLink value="#{userSession.usuario.username}" action="#{facesUtil.redirigir('/plataforma/panelDeControl')}" />
             </li>
             <li>
                 <p:commandLink value="inicio" action="#{facesUtil.redirigir('/plataforma/inicioweb')}" />
             </li>
 
             <li>
-                <p:commandLink value="Mis Campañas" action="#{facesUtil.redirigir('/plataforma/panelDeControl')}"/>
+                <p:commandLink value="Mis Campañas" />
             </li>
             <li>
                 <p:commandLink value="Mis Anuncios" action="#{facesUtil.redirigir('/plataforma/creacion')}"/>

@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by claudio on 11-11-14.
@@ -20,6 +21,7 @@ public class UserSession implements Serializable {
     private LogicaUsuario logicaUsuario;
 
     private Usuario usuario;
+
 
     public UserSession() {
     }

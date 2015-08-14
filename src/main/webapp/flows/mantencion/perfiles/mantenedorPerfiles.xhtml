@@ -11,9 +11,11 @@
             <p:column headerText="Usuario" filterBy="#{usuario.username}">
                 #{usuario.username}
             </p:column>
-            <p:column headerText="Correo Electrónico" >
+            <p:column >
                 #{usuario.correo}
             </p:column>
+
+
             <p:column headerText="rol" filterBy="#{usuario.rol.namerol}">
                 #{usuario.rol.namerol}
             </p:column>
@@ -21,7 +23,7 @@
                 <h:commandButton icon="ui-icon-key" styleClass="form-control" value="volver" action="#{facesUtil.redirigir('/inicio.jsf')}"/>
             </p:column>
             <p:column>
-                <h:commandButton id="modifica" value="Modificar" update="establecimientos" styleClass="form-control" type="button">
+                <h:commandButton id="modifica" value="Modificar"  styleClass="form-control" type="button">
                     <p:overlayPanel id="editPanel" for="modifica" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
                         <p:outputPanel>
                             <h:outputLabel value="nombre de usuario"/>
@@ -51,6 +53,29 @@
             </p:column>
 
         </p:dataTable>
+
+        <h:commandButton id="aggUsuario" value="agregar"  styleClass="form-control" type="button">
+            <p:overlayPanel id="agregPanel" for="aggUsuario" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
+                <p:outputPanel>
+                    <h:outputLabel value="usuario"/>
+                    <h:inputText styleClass="form-control"
+                                 value="#{mantenedorMantencion.mantenedorUsuarios.usuario.username}"/>
+                    <h:inputText styleClass="form-control"
+                            value="#{mantenedorMantencion.mantenedorUsuarios.usuario.password}"/>
+
+                    <h:outputLabel value="Rol"/>
+                    <h:selectOneMenu class="form-control" value="#{mantenedorMantencion.mantenedorUsuarios.usuario.rol}"
+                                     converter="entityConverter">
+                        <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Rol --"/>
+                        <f:selectItems value="#{mantenedorMantencion.mantenedorUsuarios.roles}" var="perfi"
+                                       itemLabel="#{perfi.namerol}"/>
+                    </h:selectOneMenu>
+                    <br/>
+                    <p:commandButton id="aggBTN" for="aggUsuario" value="guardar"
+                                     action="#{mantenedorMantencion.mantenedorUsuarios.guardarUsuario()}"/>
+                </p:outputPanel>
+            </p:overlayPanel>
+        </h:commandButton>
 
 
     </h:form>
