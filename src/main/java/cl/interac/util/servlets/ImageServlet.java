@@ -47,6 +47,8 @@ public class ImageServlet extends HttpServlet {
             return;
         }
 
+        System.out.println("Image Servlet pasando");
+
         // Decode the file name (might contain spaces and on) and prepare file object.
         File image = new File(pathImagenes, URLDecoder.decode(requestedImage, "UTF-8"));
 

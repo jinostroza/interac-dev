@@ -31,7 +31,7 @@ public class MantenedorAnuncios implements Serializable {
         INSERTAR,
         EDITAR
     }
-    ;
+
     private TipoOperacion operacion;
     private List<Categoria> categorias;
     private List<Campana> campanas;
@@ -89,18 +89,15 @@ public class MantenedorAnuncios implements Serializable {
 
 
     public void subir(FileUploadEvent fue) {
-        operacion = TipoOperacion.INSERTAR;
         System.err.println("LLEGO A LA WA " + fue);
         String path = fileUploader.subir(fue, "/anuncios/");
         System.err.println("SE SUPONE QUE SUBI EN " + path);
-        afiche = new Afiche();
-        afiche.setPath(path);
-        logicaAfiche.guardar(afiche);
+        operacion = TipoOperacion.INSERTAR;
 
         if (esEditar()) {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña [" + afiche.getIdAfiche() + "]");
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña [" + anuncio.getDescanuncio() + "]");
         } else {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el afiche [" + afiche.getIdAfiche() + "]");
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado la campaña [" + anuncio.getDescanuncio() + "]");
         }
         //logicaDocumentos.guardar(path, "algo más") // no se pos aqui tu decides xD
     }
@@ -147,23 +144,5 @@ public class MantenedorAnuncios implements Serializable {
     public void setAnuncio(Anuncio anuncio) {
         this.anuncio = anuncio;
     }
-
-    public List<Afiche> getAficheList() {
-        return afiches;
-    }
-
-    public void setAficheList(List<Afiche> aficheList) {
-        this.afiches = aficheList;
-    }
-
-    public Afiche getAfiche() {
-        return afiche;
-    }
-
-    public void setAfiche(Afiche afiche) {
-        this.afiche = afiche;
-    }
-
-
 
 }
