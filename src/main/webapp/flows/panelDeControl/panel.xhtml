@@ -18,14 +18,14 @@
 
         <h:panelGrid columns="2">
             <h:outputText value="Contraseña:"/>
-            <h:inputText value="#{mantenedorPanelControl.usuario.password}"/>
+            <h:inputText value="#{userSession.usuario.password}"/>
             <h:outputText value="nuevaContraseña:"/>
-            <h:inputText value="#{mantenedorPanelControl.usuario.password}"/>
+            <h:inputText value="#{userSession.usuario.password}"/>
             <h:outputText value="Correo:" />
-            <h:inputText value="#{mantenedorPanelControl.usuario.correo}" />
+            <h:inputText value="#{userSession.usuario.correo}" />
 
 
-
+           <h:commandButton value="guardar" action="#{mantenedorPanelControl.editarPerfil(usuario)}" />
 
         </h:panelGrid>
 

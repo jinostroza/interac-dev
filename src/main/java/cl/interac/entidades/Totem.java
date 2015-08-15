@@ -25,6 +25,7 @@ public class Totem implements Serializable {
     // relaciones
     private List<Campana> campanas;
     private Establecimiento establecimiento;
+    private Tipototem tipototem;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,7 +50,7 @@ public class Totem implements Serializable {
     }
 
     @Basic
-    @Column(name = "tipo", insertable = true, nullable = true, length = 20)
+    @Column(name = "idtipo", insertable = true, nullable = true, length = 20)
     public String getTipo() {
         return tipo;
     }
@@ -67,6 +68,19 @@ public class Totem implements Serializable {
     public void setCampanas(List<Campana> campanas) {
         this.campanas = campanas;
     }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="idtipo" ,referencedColumnName = "idtipo" , nullable = false)
+    public Tipototem getTipototem() {
+        return tipototem;
+    }
+
+    public void setTipototem(Tipototem tipototem) {
+        this.tipototem = tipototem;
+    }
+
+
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idestablecimiento" ,referencedColumnName = "idestablecimiento", nullable = false)

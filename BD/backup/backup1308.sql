@@ -610,12 +610,12 @@ SELECT pg_catalog.setval('rol_idrol_seq', 3, true);
 -- Data for Name: totem; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO totem (idtotem, noserie, tipo, idestablecimiento) VALUES (131, '1231', '2', 47);
-INSERT INTO totem (idtotem, noserie, tipo, idestablecimiento) VALUES (133, '123457', '1', 62);
-INSERT INTO totem (idtotem, noserie, tipo, idestablecimiento) VALUES (166, '217831736', 'totem porfiado', 63);
-INSERT INTO totem (idtotem, noserie, tipo, idestablecimiento) VALUES (24, '12345623842', 'pantalla rota', 1);
-INSERT INTO totem (idtotem, noserie, tipo, idestablecimiento) VALUES (113, '637y42', 'lastre', 43);
-INSERT INTO totem (idtotem, noserie, tipo, idestablecimiento) VALUES (167, '1432142', 'sin pantalla', 61);
+INSERT INTO totem (idtotem, noserie, idtipo, idestablecimiento) VALUES (131, '1231', '2', 47);
+INSERT INTO totem (idtotem, noserie, idtipo, idestablecimiento) VALUES (133, '123457', '1', 62);
+INSERT INTO totem (idtotem, noserie, idtipo, idestablecimiento) VALUES (166, '217831736', 'totem porfiado', 63);
+INSERT INTO totem (idtotem, noserie, idtipo, idestablecimiento) VALUES (24, '12345623842', 'pantalla rota', 1);
+INSERT INTO totem (idtotem, noserie, idtipo, idestablecimiento) VALUES (113, '637y42', 'lastre', 43);
+INSERT INTO totem (idtotem, noserie, idtipo, idestablecimiento) VALUES (167, '1432142', 'sin pantalla', 61);
 
 
 --
