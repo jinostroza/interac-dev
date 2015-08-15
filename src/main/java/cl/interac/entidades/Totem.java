@@ -11,10 +11,11 @@ import java.util.List;
 @NamedQueries(
         {
                 @NamedQuery(name = "Totem.findAll", query = "SELECT t FROM Totem t "),
-                @NamedQuery(name = "Totem.findWithRelationship",
-                        query = "SELECT t FROM Totem t " +
-                                "left join fetch t.establecimiento e "
-                )
+                @NamedQuery(name="Totem.findWithRelationship",
+                        query="SELECT t FROM Totem t " +
+                        "left join fetch t.establecimiento e " +
+                        "left join fetch t.tipototem i"
+                                       )
         }
 )
 public class Totem implements Serializable {
@@ -58,7 +59,7 @@ public class Totem implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idtipo", referencedColumnName = "idtipo", nullable = false)
+    @JoinColumn(name="idtipo" ,referencedColumnName = "idtipo" , nullable = false)
     public Tipototem getTipototem() {
         return tipototem;
     }
@@ -68,8 +69,10 @@ public class Totem implements Serializable {
     }
 
 
+
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idestablecimiento", referencedColumnName = "idestablecimiento", nullable = false)
+    @JoinColumn(name = "idestablecimiento" ,referencedColumnName = "idestablecimiento", nullable = false)
     public Establecimiento getEstablecimiento() {
         return establecimiento;
     }
