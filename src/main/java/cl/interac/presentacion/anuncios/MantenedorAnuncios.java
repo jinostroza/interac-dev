@@ -99,7 +99,7 @@ public class MantenedorAnuncios implements Serializable {
         } else {
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado la campaña [" + anuncio.getDescanuncio() + "]");
         }
-        //logicaDocumentos.guardar(path, "algo más") // no se pos aqui tu decides xD
+
     }
 
 
