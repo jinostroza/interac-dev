@@ -17,10 +17,6 @@
                 <h:outputText value="#{totm.establecimiento.nombreEstablecimiento}" />
             </p:column>
 
-                        <p:column headerText="Tipo" filterBy="#{totm.tipo}">
-                <h:outputText value="#{totm.tipo}" />
-            </p:column>
-
             <p:column>
                 <h:commandButton value="eliminar" styleClass="form-control"
                                  actionListener="#{mantenedorTotems.eliminarTotem(totm)}"/>
@@ -33,8 +29,6 @@
                         <h:outputLabel value="NoSerie"/>
                         <h:inputText styleClass="form-control"
                                      value="#{totm.noserie}"/>
-                        <h:outputLabel  value="Tipo"/>
-                        <h:inputText  styleClass="form-control" value="#{totm.tipo}" />
                         <h:outputLabel value="Fono"/>
 
 
