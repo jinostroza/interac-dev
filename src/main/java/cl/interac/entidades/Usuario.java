@@ -1,43 +1,68 @@
 package cl.interac.entidades;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 /**
- * Created by JIU on 14-08-15.
+ * Created by jiu on 24-04-15.
  */
 @Entity
-public class Usuario {
-    private int idusuario;
+//@Table(name="Usuario")
+@NamedQueries(
+        {
+                @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u "),
+                @NamedQuery(
+                        name = "Usuario.findByUserAndPassword",
+                        query = "SELECT u FROM Usuario u WHERE u.username = :username and u.password = :password"
+                ),
+                @NamedQuery(
+                        name = "Usuario.findByUser",
+                        query = "SELECT u FROM Usuario u WHERE u.username = :username"
+                ),
+
+                @NamedQuery(
+                        name="Uusuario.findWithRelationship",
+                        query="Select u from Usuario u " +
+                                "left join fetch u.rol"
+                )
+        }
+)
+public class Usuario implements Serializable {
+    private Integer idUsuario;
     private String username;
     private String password;
     private String correo;
     private String empresa;
 
+
+    // relaciones
+    private List<Campana> campanas;
+    private Rol rol;
+
     @Id
-    @Column(name = "idusuario")
-    public int getIdusuario() {
-        return idusuario;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idusuario", nullable = false, insertable = true, updatable = true)
+    public Integer getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setIdusuario(int idusuario) {
-        this.idusuario = idusuario;
+    public void setIdUsuario(Integer idusuario) {
+        this.idUsuario = idusuario;
     }
 
     @Basic
-    @Column(name = "username")
+    @Column(name = "username", nullable = true, insertable = true, updatable = true, length = 45)
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String user) {
+        this.username = user;
     }
 
     @Basic
-    @Column(name = "password")
+    @Column(name = "password", nullable = true, insertable = true, updatable = true, length = 45)
     public String getPassword() {
         return password;
     }
@@ -47,7 +72,7 @@ public class Usuario {
     }
 
     @Basic
-    @Column(name = "correo")
+    @Column(name = "correo", nullable = true, insertable = true, updatable = true, length = 45)
     public String getCorreo() {
         return correo;
     }
@@ -57,7 +82,7 @@ public class Usuario {
     }
 
     @Basic
-    @Column(name = "empresa")
+    @Column(name = "empresa", nullable = true, insertable = true, updatable = true, length = 45)
     public String getEmpresa() {
         return empresa;
     }
@@ -66,6 +91,28 @@ public class Usuario {
         this.empresa = empresa;
     }
 
+
+    @OneToMany(mappedBy = "cliente")
+    public List<Campana> getCampanas() {
+        return campanas;
+    }
+
+    public void setCampanas(List<Campana> campanas) {
+        this.campanas = campanas;
+    }
+
+
+    @JoinColumn(name = "idrol",referencedColumnName = "id_rol",nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -73,22 +120,20 @@ public class Usuario {
 
         Usuario usuario = (Usuario) o;
 
-        if (idusuario != usuario.idusuario) return false;
-        if (username != null ? !username.equals(usuario.username) : usuario.username != null) return false;
-        if (password != null ? !password.equals(usuario.password) : usuario.password != null) return false;
-        if (correo != null ? !correo.equals(usuario.correo) : usuario.correo != null) return false;
-        if (empresa != null ? !empresa.equals(usuario.empresa) : usuario.empresa != null) return false;
-
-        return true;
+        if (usuario.getIdUsuario() == null || this.getIdUsuario() == null) return false;
+        return this.getIdUsuario().intValue() == usuario.getIdUsuario().intValue();
     }
 
     @Override
     public int hashCode() {
-        int result = idusuario;
-        result = 31 * result + (username != null ? username.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (correo != null ? correo.hashCode() : 0);
-        result = 31 * result + (empresa != null ? empresa.hashCode() : 0);
-        return result;
+        return idUsuario != null ? 31 * idUsuario.hashCode() : 0;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "idUsuario=" + idUsuario +
+                '}';
+    }
+
 }
