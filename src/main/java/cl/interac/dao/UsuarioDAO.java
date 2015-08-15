@@ -17,7 +17,7 @@ public class UsuarioDAO {
     private EntityManager em;
 
     public void guardar(Usuario u) {
-        if (u.getIdusuario() == null) em.persist(u);
+        if (u.getIdUsuario() == null) em.persist(u);
         else em.merge(u);
     }
 

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.Serializable;
 import java.util.List;
 
@@ -18,7 +19,7 @@ import java.util.List;
  * Created by Joaco on 24-04-2015.
  */
 @Component
-@Scope("prototype")
+@Scope("view")
 public class MantenedorTotems implements Serializable {
 
     @Autowired
@@ -30,12 +31,6 @@ public class MantenedorTotems implements Serializable {
     @Autowired
     private LogicaUbicacion logicaUbicacion;
 
-    public enum TipoOperacion {
-        INSERTAR,
-        EDITAR,
-    }
-
-    private TipoOperacion operacion;
     private Totem totem;
     private List<Totem> totems;
     private List<Totem> totemConFiltro;
@@ -43,40 +38,26 @@ public class MantenedorTotems implements Serializable {
     private List<Establecimiento> establecimientoConfiltro;
     private Establecimiento establecimiento;
 
-    public boolean esEditar() {
-        return operacion == TipoOperacion.EDITAR;
-    }
-
-
-    public boolean esAgregar() {
-        return operacion == TipoOperacion.INSERTAR;
-    }
-
-    // logica vista
-
-
-
-    public void agregarTotem() {
-        operacion = TipoOperacion.INSERTAR;
-        totem.setEstablecimiento(establecimiento);
-        System.err.println("totem e: "+totem.getEstablecimiento());
-        totems = logicaTotem.obtenerConRelacion();
-        logicaTotem.guardar(totem);
-        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el Totem [" + totem.getNoserie() + "]");
-        
-    }
-
-    public void eliminarTotem(Totem totem) {
-
-        logicaTotem.eliminarTotem(totem);
-    }
-
-
+    @PostConstruct
     public void inicio() {
         totems = logicaTotem.obtenerConRelacion();
         establecimientoList = logicaEstablecimiento.obtenerTodos();
         totem = new Totem();
 
+    }
+
+    // logica vista
+    public void agregarTotem() {
+        totem.setEstablecimiento(establecimiento);
+        System.err.println("totem e: "+totem.getEstablecimiento());
+        totems = logicaTotem.obtenerConRelacion();
+        logicaTotem.guardar(totem);
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el Totem [" + totem.getNoserie() + "]");
+
+    }
+
+    public void eliminarTotem(Totem totem) {
+        logicaTotem.eliminarTotem(totem);
     }
     //get and set
 
@@ -102,15 +83,6 @@ public class MantenedorTotems implements Serializable {
 
     public void setTotem(Totem totem) {
         this.totem = totem;
-    }
-
-
-    public TipoOperacion getOperacion() {
-        return operacion;
-    }
-
-    public void setOperacion(TipoOperacion Operacion) {
-        operacion = Operacion;
     }
 
     public Establecimiento getEstablecimiento() {

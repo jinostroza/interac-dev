@@ -14,31 +14,16 @@ import java.util.List;
  * Created by Joaco on 24-04-2015.
  */
 @Component
-@Scope("prototype")
+@Scope("view")
 public class MantenedorCategoria implements Serializable
 {
-    public enum TipoOperacion {
-        INSERTAR,
-        EDITAR,
-    }
-    //manejo manual
-    private TipoOperacion operacion;
     public Categoria categoria;
     @Autowired
     private LogicaCategoria logicaCategoria;
 
     private List<Categoria> categorias;
 
-    public boolean esEditar() {
-        return operacion == TipoOperacion.EDITAR;
-    }
-
-    public boolean esAgregar() {
-        return operacion == TipoOperacion.INSERTAR;
-    }
-
-
-    public void inicio() {
+    public void MantenedorCategoria() {
         categorias = logicaCategoria.obtenerTodos();
         categoria = new Categoria();
     }
@@ -47,7 +32,6 @@ public class MantenedorCategoria implements Serializable
     }
 
     public void agregaCategoria() {
-        operacion = TipoOperacion.INSERTAR;
         logicaCategoria.guardar(categoria);
         categorias = logicaCategoria.obtenerTodos();
 
@@ -55,7 +39,6 @@ public class MantenedorCategoria implements Serializable
     }
 
     public void editarCategoria(Categoria c) {
-        operacion = TipoOperacion.EDITAR;
         categoria = c;
         logicaCategoria.guardar(categoria);
         categorias = logicaCategoria.obtenerTodos();
@@ -87,12 +70,4 @@ public class MantenedorCategoria implements Serializable
     public void setCategorias(List<Categoria> categorias) {
         this.categorias = categorias;
     }
-    public TipoOperacion getOperacion() {
-        return operacion;
-    }
-
-    public void setOperacion(TipoOperacion Operacion) {
-        operacion = Operacion;
-    }
-
 }

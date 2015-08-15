@@ -8,8 +8,8 @@
     <h:panelGrid id="categoriasPG" columns="2" cellpadding="10">
         <br/>
         <p:dataTable id="categorias" var="localCT"
-                     value="#{mantenedorMantencion.mantenedorCategoria.categorias}"
-                     filteredValue="#{mantenedorMantencion.mantenedorCategoria.categoria.desccategoria}">
+                     value="#{mantenedorCategoria.categorias}"
+                     filteredValue="#{mantenedorCategoria.categoria.desccategoria}">
             <p:column headerText="ID" filterBy="#{localCT.idcategoria}">
                 <h:outputText value="#{localCT.idcategoria}" />
             </p:column>
@@ -19,7 +19,7 @@
             </p:column>
 
             <p:column>
-                <h:commandButton value="eliminar" styleClass="form-control" action="#{mantenedorMantencion.mantenedorCategoria.eliminar(localCT)}"/>
+                <h:commandButton value="eliminar" styleClass="form-control" action="#{mantenedorCategoria.eliminar(localCT)}"/>
             </p:column>
 
             <p:column>
@@ -31,7 +31,7 @@
                             <h:inputText styleClass="form-control" value="#{localCT.desccategoria}" />
                             <br/>
                             <p:commandButton id="editBtnCT" for="editPanelCT" value="Editar" update="categorias"
-                                             action="#{mantenedorMantencion.mantenedorCategoria.editarCategoria(localCT)}"/>
+                                             action="#{mantenedorCategoria.editarCategoria(localCT)}"/>
                         </p:outputPanel>
                     </p:overlayPanel>
                 </h:commandButton>
@@ -43,10 +43,10 @@
             <p:outputPanel>
                 <h:outputLabel value="Descripcion Categoria"/>
                 <h:inputText  required="true" requiredMessage="Ingrese nombre" styleClass="form-control"
-                              value="#{mantenedorMantencion.mantenedorCategoria.categoria.desccategoria}"/>
+                              value="#{mantenedorCategoria.categoria.desccategoria}"/>
                 <br/>
                 <p:commandButton id="addBtnCT" for="agregapanelCT" value="Agrega" update="categoriasPG"
-                                 action="#{mantenedorMantencion.mantenedorCategoria.agregaCategoria}"/>
+                                 action="#{mantenedorCategoria.agregaCategoria}"/>
             </p:outputPanel>
         </p:overlayPanel>
     </p:commandButton>
