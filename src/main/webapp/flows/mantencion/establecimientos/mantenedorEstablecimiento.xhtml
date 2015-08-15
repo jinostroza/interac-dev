@@ -8,8 +8,8 @@
     <h:panelGrid id="establecimientoPG" columns="2" cellpadding="10">
         <br/>
         <p:dataTable id="establecimientos" var="local" widgetVar="dtEstablecimientos"
-                     value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimientoList}"
-                     filteredValue="#{mantenedorMantencion.mantenedorEstablecimiento.establecimientoConfiltro}">
+                     value="#{mantenedorEstablecimiento.establecimientoList}"
+                     filteredValue="#{mantenedorEstablecimiento.establecimientoConfiltro}">
             <p:column headerText="nombre" filterBy="#{local.nombreEstablecimiento}">
                 <h:outputText value="#{local.nombreEstablecimiento}" />
             </p:column>
@@ -25,7 +25,7 @@
                 <h:outputText value="#{local.ubicacion.descubicacion}" />
             </p:column>
             <p:column>
-                <h:commandButton value="eliminar" styleClass="form-control" action="#{mantenedorMantencion.mantenedorEstablecimiento.eliminar(local)}"/>
+                <h:commandButton value="eliminar" styleClass="form-control" action="#{mantenedorEstablecimiento.eliminar(local)}"/>
             </p:column>
 
             <p:column>
@@ -43,12 +43,12 @@
                         <h:selectOneMenu class="form-control" value="#{local.ubicacion}"
                                          converter="entityConverter">
                             <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
-                            <f:selectItems value="#{mantenedorMantencion.mantenedorEstablecimiento.ubicaciones}" var="ubica"
+                            <f:selectItems value="#{mantenedorEstablecimiento.ubicaciones}" var="ubica"
                                            itemLabel="#{ubica.descubicacion}"/>
                         </h:selectOneMenu>
                         <br/>
                         <p:commandButton id="editBTN" for="editPanel" value="Editar" update="establecimientos"
-                                         action="#{mantenedorMantencion.mantenedorEstablecimiento.editarEstablecimiento(local)}"/>
+                                         action="#{mantenedorEstablecimiento.editarEstablecimiento(local)}"/>
                     </p:outputPanel>
                 </p:overlayPanel>
                 </h:commandButton>
@@ -60,21 +60,21 @@
         <p:outputPanel>
             <h:outputLabel value="Nombre"/>
             <h:inputText  required="true" requiredMessage="Ingrese nombre" styleClass="form-control"
-                         value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimiento.nombreEstablecimiento}"/>
+                         value="#{mantenedorEstablecimiento.establecimiento.nombreEstablecimiento}"/>
             <h:outputLabel value="Direccion"/>
-            <h:inputText  required="true" requiredMessage="Ingrese nombre" styleClass="form-control"  value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimiento.direccion}"/>
+            <h:inputText  required="true" requiredMessage="Ingrese nombre" styleClass="form-control"  value="#{mantenedorEstablecimiento.establecimiento.direccion}"/>
             <h:outputLabel value="Fono"/>
-            <h:inputText  required="true" requiredMessage="Ingrese nombre" styleClass="form-control"  value="#{mantenedorMantencion.mantenedorEstablecimiento.establecimiento.fono}"/>
+            <h:inputText  required="true" requiredMessage="Ingrese nombre" styleClass="form-control"  value="#{mantenedorEstablecimiento.establecimiento.fono}"/>
             <h:outputLabel value="Ubicacion"/>
-            <h:selectOneMenu class="form-control" value="#{mantenedorMantencion.mantenedorEstablecimiento.ubicacion}"
+            <h:selectOneMenu class="form-control" value="#{mantenedorEstablecimiento.ubicacion}"
                              converter="entityConverter">
                 <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
-                <f:selectItems value="#{mantenedorMantencion.mantenedorEstablecimiento.ubicaciones}" var="ubica"
+                <f:selectItems value="#{mantenedorEstablecimiento.ubicaciones}" var="ubica"
                                itemLabel="#{ubica.descubicacion}"/>
             </h:selectOneMenu>
             <br/>
             <p:commandButton id="addBtn" for="agregapanel" value="Agrega" update="establecimientoPG"
-                             action="#{mantenedorMantencion.mantenedorEstablecimiento.agregarEstablecimiento()}"/>
+                             action="#{mantenedorEstablecimiento.agregarEstablecimiento()}"/>
         </p:outputPanel>
     </p:overlayPanel>
     </p:commandButton>

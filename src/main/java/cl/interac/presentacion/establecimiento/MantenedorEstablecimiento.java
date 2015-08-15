@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.Serializable;
 import java.util.List;
 
@@ -18,16 +19,9 @@ import java.util.List;
  * Created by Pedro Pablo on 22-05-2015.
  */
 @Component
-@Scope("prototype")
+@Scope("view")
 public class MantenedorEstablecimiento implements Serializable {
-
-    public enum TipoOperacion {
-        INSERTAR,
-        EDITAR,
-    }
-
     //manejo manual
-    private TipoOperacion operacion;
     private List<Establecimiento> establecimientoList;
     private List<Establecimiento> establecimientoConfiltro;
     private List<Totem> totems;
@@ -49,15 +43,8 @@ public class MantenedorEstablecimiento implements Serializable {
     @Autowired
     private LogicaTotem logicaTotem;
 
-    public boolean esEditar() {
-        return operacion == TipoOperacion.EDITAR;
-    }
 
-    public boolean esAgregar() {
-        return operacion == TipoOperacion.INSERTAR;
-    }
-
-
+    @PostConstruct
     public void inicio() {
         establecimientoList = logicaEstablecimiento.obtenerConRelacion();
         ubicaciones = logicaUbicacion.obtenerTodas();
@@ -69,7 +56,6 @@ public class MantenedorEstablecimiento implements Serializable {
     }
 
     public void agregarEstablecimiento() {
-        operacion = TipoOperacion.INSERTAR;
         establecimiento.setUsuario(userSession.getUsuario());
         establecimiento.setUbicacion(ubicacion);
         logicaEstablecimiento.guardar(establecimiento);
@@ -79,8 +65,6 @@ public class MantenedorEstablecimiento implements Serializable {
     }
 
     public void editarEstablecimiento(Establecimiento e) {
-        operacion = TipoOperacion.EDITAR;
-
         establecimiento = e;
         logicaEstablecimiento.guardar(establecimiento);
         establecimientoList = logicaEstablecimiento.obtenerConRelacion();
@@ -120,15 +104,6 @@ public class MantenedorEstablecimiento implements Serializable {
         this.ubicacion = ubicacion;
     }
 
-
-    public TipoOperacion getOperacion() {
-        return operacion;
-    }
-
-    public void setOperacion(TipoOperacion Operacion) {
-        operacion = Operacion;
-    }
-
     public Establecimiento getEstablecimiento() {
         return establecimiento;
     }
@@ -152,7 +127,6 @@ public class MantenedorEstablecimiento implements Serializable {
     public void setEstablecimientoConfiltro(List<Establecimiento> establecimientoConfiltro) {
         this.establecimientoConfiltro = establecimientoConfiltro;
     }
-
 
     public int getIdestable() {
         return idestable;

@@ -9,14 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author interac
-*/
+ */
 @Component
-@Scope("prototype")
+@Scope("view")
 public class MantenedorUsuarios implements Serializable {
     @Autowired
     private LogicaUsuario logicaUsuario;
@@ -29,43 +30,28 @@ public class MantenedorUsuarios implements Serializable {
     private List<Usuario> usuariosFiltro;
     private Usuario usuario;
 
-    private enum TipoOperacion {
-        INGRESAR,
-        EDITAR
-    }
-    
-    private TipoOperacion operacion;
-
-    public void editarPerfil(Usuario u){
-        usuario= u;
-        logicaUsuario.guardar(usuario);
-        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el establecimiento [" + usuario.getUsername() + "]");
-    }
-
-
+    @PostConstruct
     public void inicio() {
         usuarios = logicaUsuario.obtenetConRol();
         roles = logicaRol.obtenerTodos();
         usuario = new Usuario();
     }
 
+    public void editarPerfil(Usuario u) {
+        usuario = u;
+        logicaUsuario.guardar(usuario);
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el establecimiento [" + usuario.getUsername() + "]");
+    }
+
 
     public void guardarUsuario() {
-     operacion = TipoOperacion.INGRESAR;
-     usuario.setRol(rol);
-     logicaUsuario.guardar(usuario);
+        usuario.setRol(rol);
+        logicaUsuario.guardar(usuario);
 
-        FacesUtil.mostrarMensajeInformativo("el usuario","[" +usuario.getUsername()+"] ha sido registrado con exito");
+        FacesUtil.mostrarMensajeInformativo("el usuario", "[" + usuario.getUsername() + "] ha sido registrado con exito");
     }
 
-  // getter and settter
-    public boolean esIngreso() {
-        return operacion == TipoOperacion.INGRESAR;
-    }
-
-    public boolean esEdicion() {
-        return operacion == TipoOperacion.EDITAR;
-    }
+    // getter and settter
 
     public List<Usuario> getUsuarios() {
         return usuarios;
@@ -82,6 +68,7 @@ public class MantenedorUsuarios implements Serializable {
     public void setUsuariosFiltro(List<Usuario> usuariosFiltro) {
         this.usuariosFiltro = usuariosFiltro;
     }
+
     public List<Rol> getRoles() {
         return roles;
     }
