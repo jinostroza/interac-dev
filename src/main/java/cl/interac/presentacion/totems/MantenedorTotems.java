@@ -1,10 +1,7 @@
 package cl.interac.presentacion.totems;
 
 import cl.interac.entidades.*;
-import cl.interac.negocio.LogicaCampana;
-import cl.interac.negocio.LogicaEstablecimiento;
-import cl.interac.negocio.LogicaTotem;
-import cl.interac.negocio.LogicaUbicacion;
+import cl.interac.negocio.*;
 import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +27,12 @@ public class MantenedorTotems implements Serializable {
     private LogicaEstablecimiento logicaEstablecimiento;
     @Autowired
     private LogicaUbicacion logicaUbicacion;
+    @Autowired
+    private LogicaTipototem logicaTipototem;
 
     private Totem totem;
     private List<Totem> totems;
+    private List<Tipototem> tipototems;
     private List<Totem> totemConFiltro;
     private List<Establecimiento> establecimientoList;
     private List<Establecimiento> establecimientoConfiltro;
@@ -42,6 +42,7 @@ public class MantenedorTotems implements Serializable {
     public void inicio() {
         totems = logicaTotem.obtenerConRelacion();
         establecimientoList = logicaEstablecimiento.obtenerTodos();
+        tipototems = logicaTipototem.obtenerTodos();
         totem = new Totem();
 
     }
