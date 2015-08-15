@@ -37,6 +37,8 @@ import java.util.List;
 
         public void editarPerfil(Usuario u){
             usuario= u;
+
+
             logicaUsuario.guardar(usuario);
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el establecimiento [" + usuario.getUsername() + "]");
         }
