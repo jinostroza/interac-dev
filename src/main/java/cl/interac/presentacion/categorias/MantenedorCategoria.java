@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import cl.interac.util.components.FacesUtil;
 
+import javax.annotation.PostConstruct;
 import java.io.Serializable;
 import java.util.List;
 
@@ -23,10 +24,12 @@ public class MantenedorCategoria implements Serializable
 
     private List<Categoria> categorias;
 
-    public void MantenedorCategoria() {
+    @PostConstruct
+    public void inicio() {
         categorias = logicaCategoria.obtenerTodos();
         categoria = new Categoria();
     }
+
     public void eliminar(Categoria categoria){
         logicaCategoria.eliminar(categoria);
     }
