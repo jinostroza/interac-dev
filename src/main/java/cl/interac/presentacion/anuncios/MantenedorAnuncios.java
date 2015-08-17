@@ -1,7 +1,7 @@
 package cl.interac.presentacion.anuncios;
 
 import cl.interac.entidades.*;
-import cl.interac.negocio.LogicaAfiche;
+import cl.interac.negocio.LogicaContenido;
 import cl.interac.negocio.LogicaCampana;
 import cl.interac.negocio.LogicaCategoria;
 import cl.interac.util.components.UserSession;
@@ -31,7 +31,7 @@ public class MantenedorAnuncios implements Serializable {
         INSERTAR,
         EDITAR
     }
-
+    ;
     private TipoOperacion operacion;
     private List<Categoria> categorias;
     private List<Campana> campanas;
@@ -39,11 +39,12 @@ public class MantenedorAnuncios implements Serializable {
     private Anuncio anuncio;
     private Campana campana;
     private Categoria categoria;
-    private Afiche afiche;
-    private List<Afiche> afiches;
+    private Usuario usuario;
+    private Contenido contenido;
+    private List<Contenido> contenidoList;
 
     @Autowired
-    private LogicaAfiche logicaAfiche;
+    private LogicaContenido logicaContenido;
     @Autowired
     private LogicaAnuncio logicaAnuncio;
     @Autowired
@@ -87,17 +88,20 @@ public class MantenedorAnuncios implements Serializable {
 
 
     public void subir(FileUploadEvent fue) {
+        operacion = TipoOperacion.INSERTAR;
         System.err.println("LLEGO A LA WA " + fue);
         String path = fileUploader.subir(fue, "/anuncios/");
         System.err.println("SE SUPONE QUE SUBI EN " + path);
-        operacion = TipoOperacion.INSERTAR;
-
+        contenido = new Contenido();
+        contenido.setPath(path);
+        contenido.setUsuario(userSession.getUsuario());
+        logicaContenido.guardar(contenido);
         if (esEditar()) {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña [" + anuncio.getDescanuncio() + "]");
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña [" + contenido.getIdcontenido() + "]");
         } else {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado la campaña [" + anuncio.getDescanuncio() + "]");
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el afiche [" + contenido.getIdcontenido() + "]");
         }
-        //logicaDocumentos.guardar(path, "algo más") // no se pos aqui tu decides xD
+
     }
 
 
@@ -142,5 +146,23 @@ public class MantenedorAnuncios implements Serializable {
     public void setAnuncio(Anuncio anuncio) {
         this.anuncio = anuncio;
     }
+
+    public List<Contenido> getContenidoList() {
+        return contenidoList;
+    }
+
+    public void setContenidoList(List<Contenido> contenidoList) {
+        this.contenidoList = contenidoList;
+    }
+
+    public Contenido getContenido() {
+        return contenido;
+    }
+
+    public void setContenido(Contenido contenido) {
+        this.contenido = contenido;
+    }
+
+
 
 }

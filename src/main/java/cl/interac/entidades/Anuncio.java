@@ -32,7 +32,7 @@ public class Anuncio implements Serializable {
     // relaciones
     private Categoria categoria;
     private Campana campana;
-    private Afiche afiche;
+    private Contenido contenido;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -86,14 +86,14 @@ public class Anuncio implements Serializable {
     }
 
 
-    @JoinColumn(name = "idafiche", referencedColumnName = "idafiche")
+    @JoinColumn(name = "idcontenido", referencedColumnName = "idcontenido")
     @OneToOne(fetch = FetchType.LAZY)
-    public Afiche getAfiche() {
-        return afiche;
+    public Contenido getContenido() {
+        return contenido;
     }
 
-    public void setAfiche(Afiche afiche) {
-        this.afiche = afiche;
+    public void setContenido(Contenido contenido) {
+        this.contenido = contenido;
     }
 
 
