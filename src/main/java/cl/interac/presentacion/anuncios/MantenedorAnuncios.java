@@ -1,7 +1,7 @@
 package cl.interac.presentacion.anuncios;
 
 import cl.interac.entidades.*;
-import cl.interac.negocio.LogicaAfiche;
+import cl.interac.negocio.LogicaContenido;
 import cl.interac.negocio.LogicaCampana;
 import cl.interac.negocio.LogicaCategoria;
 import cl.interac.util.components.UserSession;
@@ -39,11 +39,12 @@ public class MantenedorAnuncios implements Serializable {
     private Anuncio anuncio;
     private Campana campana;
     private Categoria categoria;
-    private Afiche afiche;
-    private List<Afiche> afiches;
+    private Usuario usuario;
+    private Contenido contenido;
+    private List<Contenido> contenidoList;
 
     @Autowired
-    private LogicaAfiche logicaAfiche;
+    private LogicaContenido logicaContenido;
     @Autowired
     private LogicaAnuncio logicaAnuncio;
     @Autowired
@@ -93,13 +94,14 @@ public class MantenedorAnuncios implements Serializable {
         System.err.println("LLEGO A LA WA " + fue);
         String path = fileUploader.subir(fue, "/anuncios/");
         System.err.println("SE SUPONE QUE SUBI EN " + path);
-        afiche = new Afiche();
-        afiche.setPath(path);
-        logicaAfiche.guardar(afiche);
+        contenido = new Contenido();
+        contenido.setPath(path);
+        contenido.setUsuario(userSession.getUsuario());
+        logicaContenido.guardar(contenido);
         if (esEditar()) {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña [" + afiche.getIdAfiche() + "]");
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña [" + contenido.getIdcontenido() + "]");
         } else {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el afiche [" + afiche.getIdAfiche() + "]");
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el afiche [" + contenido.getIdcontenido() + "]");
         }
 
     }
@@ -147,20 +149,20 @@ public class MantenedorAnuncios implements Serializable {
         this.anuncio = anuncio;
     }
 
-    public List<Afiche> getAficheList() {
-        return afiches;
+    public List<Contenido> getContenidoList() {
+        return contenidoList;
     }
 
-    public void setAficheList(List<Afiche> aficheList) {
-        this.afiches = aficheList;
+    public void setContenidoList(List<Contenido> contenidoList) {
+        this.contenidoList = contenidoList;
     }
 
-    public Afiche getAfiche() {
-        return afiche;
+    public Contenido getContenido() {
+        return contenido;
     }
 
-    public void setAfiche(Afiche afiche) {
-        this.afiche = afiche;
+    public void setContenido(Contenido contenido) {
+        this.contenido = contenido;
     }
 
 
