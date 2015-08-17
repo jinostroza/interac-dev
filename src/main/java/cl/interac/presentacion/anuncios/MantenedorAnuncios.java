@@ -55,9 +55,7 @@ public class MantenedorAnuncios implements Serializable {
     @Autowired
     private UserSession userSession;
 
-    public MantenedorAnuncios() {
-        anuncio = new Anuncio();
-    }
+
 
     //flows
     public boolean esEditar() {

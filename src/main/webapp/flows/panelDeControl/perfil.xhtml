@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
+                template="/templates/default.xhtml">
+
+    <ui:define name="contenido">
+        <h2>Perfil de Usuario</h2>
+        <h:form id="perfil">
+            <p:panel header="Datos de la Cuenta">
+                <h:panelGrid columns="3">
+                    <h:outputLabel value="Tipo de Usuario"/>:
+                    <h:outputText rendered="#{!sesionCliente.usuario.externo}" value="Personal Interno"/>
+                    <h:outputText rendered="#{sesionCliente.usuario.externo}" value="Usuario Externo"/>
+                    <h:outputLabel value="Usuario"/>:
+                    <h:outputText value="#{userSession.usuario.username}" />
+                     <h:outputLabel value="Contraseña"/>:
+                    <p:commandButton icon="ui-icon-pencil" value="Cambiar" action="#{mantenedorPefil.irCambiarClave}"/>
+                </h:panelGrid>
+            </p:panel>
+            <p:panel header="Datos Personales">
+                <h:panelGrid columns="3">
+
+                </h:panelGrid>
+            </p:panel>
+
+        </h:form>
+    </ui:define>
+</ui:composition>

@@ -2,6 +2,7 @@ package cl.interac.util.components;
 
 import cl.interac.entidades.Usuario;
 import cl.interac.negocio.LogicaUsuario;
+import cl.interac.util.dto.UsuarioDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.Authentication;
@@ -24,6 +25,7 @@ public class UserSession implements Serializable {
 
 
     public UserSession() {
+        usuario = null;
     }
 
     public void setUsuario(Usuario usuario) {

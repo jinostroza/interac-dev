@@ -2,8 +2,11 @@ package cl.interac.negocio;
 
 import cl.interac.entidades.Usuario;
 import cl.interac.dao.UsuarioDAO;
+import cl.interac.util.dto.UsuarioDto;
 import java.util.List;
 
+
+import cl.interac.util.pojo.Md5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -18,6 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class LogicaUsuario {
     @Autowired
     private UsuarioDAO usuarioDAO;
+
+
 
     @Transactional(readOnly = false)
     public void guardar(Usuario usuario) {
@@ -41,4 +46,20 @@ public class LogicaUsuario {
 
     @Transactional(readOnly = true)
     public List<Usuario> obtenetConRol(){return usuarioDAO.obtenerConRelacion();}
+
+
+    @Transactional(readOnly = false)
+    public void cambiarClave(String usuario, String clave) {
+        usuarioDAO.cambiarClave(usuario, clave);
+    }
+
+    @Transactional(readOnly = true)
+    public UsuarioDto logInExterno(String usuario, String password) {
+        try {
+            return usuarioDAO.obtenerUsuario(usuario,Md5.hash(password));
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 }

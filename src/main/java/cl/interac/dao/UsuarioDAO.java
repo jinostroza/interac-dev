@@ -1,6 +1,7 @@
 package cl.interac.dao;
 
 import cl.interac.entidades.Usuario;
+import cl.interac.util.dto.UsuarioDto;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -49,4 +50,29 @@ public class UsuarioDAO {
         }
     }
     public List<Usuario> obtenerConRelacion(){ return em.createNamedQuery("Uusuario.findWithRelationship").getResultList();}
+
+
+    public void cambiarClave(String usuario, String clave) {
+        Usuario u = (Usuario) em.createNamedQuery("Usuario.findByUser")
+                .setParameter("username", usuario).getSingleResult();
+
+        u.setPassword(clave);
+        em.merge(u);
+    }
+
+    public UsuarioDto obtenerUsuario(String usuario, String password) {
+        UsuarioDto u = null;
+        try {
+            Usuario ue = (Usuario) em.createNamedQuery("Usuario.findByUserAndPassword")
+                    .setParameter("username", usuario)
+                    .setParameter("password", password).getSingleResult();
+            u = new UsuarioDto();
+            u.setUsername(ue.getUsername());
+
+
+
+        } catch (Exception e) {
+        }
+        return u;
+    }
 }

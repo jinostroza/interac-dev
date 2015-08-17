@@ -4,9 +4,7 @@
       xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
       start-state="inicio">
 
-    <on-start>
-        <evaluate expression="mantenedorAnuncios.inicio()"/>
-    </on-start>
+
 
     <view-state id="inicio">
 

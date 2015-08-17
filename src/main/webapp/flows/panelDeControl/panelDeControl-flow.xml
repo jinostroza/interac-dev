@@ -2,17 +2,20 @@
 <flow xmlns="http://www.springframework.org/schema/webflow"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
-        start-state="panel">
+        start-state="perfil">
 
       <on-start>
-            <evaluate expression="mantenedorPanelControl.inicio()"/>
+            <evaluate expression="mantenedorPefil.inicio()"/>
       </on-start>
-      <view-state id="panel">
-
+      <view-state id="perfil">
+            <transition on="flowCambiarClave" to="cambiarClave"/>
       </view-state>
 
-      <view-state id="exito">
-
+      <view-state id="cambiarClave">
+            <transition on="flowVerPerfil" to="perfil"/>
       </view-state>
+
+
+
 
 </flow>

@@ -5,6 +5,8 @@ import cl.interac.entidades.Usuario;
 import cl.interac.negocio.LogicaRol;
 import cl.interac.negocio.LogicaUsuario;
 import cl.interac.util.components.FacesUtil;
+import cl.interac.util.components.UserSession;
+import cl.interac.util.pojo.Md5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -30,6 +32,8 @@ public class MantenedorUsuarios implements Serializable {
     private List<Usuario> usuariosFiltro;
     private Usuario usuario;
 
+    private UserSession userSession;
+
     @PostConstruct
     public void inicio() {
         usuarios = logicaUsuario.obtenetConRol();
@@ -37,11 +41,6 @@ public class MantenedorUsuarios implements Serializable {
         usuario = new Usuario();
     }
 
-    public void editarPerfil(Usuario u) {
-        usuario = u;
-        logicaUsuario.guardar(usuario);
-        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el establecimiento [" + usuario.getUsername() + "]");
-    }
 
 
     public void guardarUsuario() {
@@ -50,6 +49,7 @@ public class MantenedorUsuarios implements Serializable {
 
         FacesUtil.mostrarMensajeInformativo("el usuario", "[" + usuario.getUsername() + "] ha sido registrado con exito");
     }
+
 
     // getter and settter
 
