@@ -7,22 +7,19 @@
     <ui:define name="contenido">
         <h2>Perfil de Usuario</h2>
         <h:form id="perfil">
-            <p:panel header="Datos de la Cuenta">
-                <h:panelGrid columns="3">
-                    <h:outputLabel value="Tipo de Usuario"/>:
-                    <h:outputText rendered="#{!sesionCliente.usuario.externo}" value="Personal Interno"/>
-                    <h:outputText rendered="#{sesionCliente.usuario.externo}" value="Usuario Externo"/>
-                    <h:outputLabel value="Usuario"/>:
+            <p:panel header="Datos de la Cuenta" styleClass=".col-md-6">
+                <h:panelGrid columns="2" styleClass="form-group">
+                    <h:outputLabel value="Usuario :"/>
                     <h:outputText value="#{userSession.usuario.username}" />
-                     <h:outputLabel value="Contraseña"/>:
-                    <p:commandButton icon="ui-icon-pencil" value="Cambiar" action="#{mantenedorPefil.irCambiarClave}"/>
+                    <h:outputLabel value="correo :" />
+                    <h:outputText value="#{userSession.usuario.correo}"/>
+                    <h:outputLabel value="empresa :" />
+                    <h:outputText value="#{userSession.usuario.empresa}"/>
+                     <h:outputLabel value="Contraseña"/> :
+                    <p:commandButton icon="ui-icon-pencil" value="Cambiar" styleClass=" btn btn-default" action="#{mantenedorPefil.irCambiarClave}"/>
                 </h:panelGrid>
             </p:panel>
-            <p:panel header="Datos Personales">
-                <h:panelGrid columns="3">
 
-                </h:panelGrid>
-            </p:panel>
 
         </h:form>
     </ui:define>

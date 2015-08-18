@@ -25,8 +25,7 @@ public class MantenedorTotems implements Serializable {
     private LogicaCampana logicaCampana;
     @Autowired
     private LogicaEstablecimiento logicaEstablecimiento;
-    @Autowired
-    private LogicaUbicacion logicaUbicacion;
+
     @Autowired
     private LogicaTipototem logicaTipototem;
 
@@ -37,6 +36,7 @@ public class MantenedorTotems implements Serializable {
     private List<Establecimiento> establecimientoList;
     private List<Establecimiento> establecimientoConfiltro;
     private Establecimiento establecimiento;
+    private Tipototem tipototem;
 
     @PostConstruct
     public void inicio() {
@@ -46,10 +46,10 @@ public class MantenedorTotems implements Serializable {
         totem = new Totem();
 
     }
-
     // logica vista
     public void agregarTotem() {
         totem.setEstablecimiento(establecimiento);
+        totem.setTipototem(tipototem);
         System.err.println("totem e: "+totem.getEstablecimiento());
         totems = logicaTotem.obtenerConRelacion();
         logicaTotem.guardar(totem);
@@ -57,6 +57,12 @@ public class MantenedorTotems implements Serializable {
 
     }
 
+    public void editarTotem(Totem t){
+        totem = t;
+        logicaTotem.guardar(totem);
+        totems = logicaTotem.obtenerConRelacion();
+
+    }
     public void eliminarTotem(Totem totem) {
         logicaTotem.eliminarTotem(totem);
     }
@@ -111,7 +117,21 @@ public class MantenedorTotems implements Serializable {
         this.establecimientoConfiltro = establecimientoConfiltro;
     }
 
+    public List<Tipototem> getTipototems() {
+        return tipototems;
+    }
 
+    public void setTipototems(List<Tipototem> tipototems) {
+        this.tipototems = tipototems;
+    }
+
+    public Tipototem getTipototem() {
+        return tipototem;
+    }
+
+    public void setTipototem(Tipototem tipototem) {
+        this.tipototem = tipototem;
+    }
 }
 
 

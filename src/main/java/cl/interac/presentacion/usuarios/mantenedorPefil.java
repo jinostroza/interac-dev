@@ -5,10 +5,10 @@ import cl.interac.negocio.LogicaUsuario;
 import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.UserSession;
 import cl.interac.util.pojo.Md5;
+import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 
@@ -20,11 +20,13 @@ import java.io.Serializable;
 public class mantenedorPefil implements Serializable {
     @Autowired
     public LogicaUsuario logicaUsuario;
+    @Autowired
+    private UserSession userSession; // es un componente spring y de scope session, por ende hay que
+    // inyectarlo, popoooosho
 
     private String claveActual;
     private String claveNueva;
     private String claveConfirmada;
-    private UserSession userSession;
     private Usuario usuario;
 
 
@@ -39,14 +41,17 @@ public class mantenedorPefil implements Serializable {
         if (!claveConfirmada.equals(claveNueva)) {
             FacesUtil.mostrarMensajeError("Operación fallida", "La nueva contraseña no coincide con lo confirmado");
             return;
-        }
-        if (logicaUsuario.logInExterno(userSession.getUsuario().getUsername(), claveActual)== null) {
+
+        } else if (logicaUsuario.logInExterno(userSession.getUsuario().getUsername(), claveActual) == null) {
             FacesUtil.mostrarMensajeError("Operación fallida", "La nueva contraseña actual no coincide");
-            return;
-        }else
-        logicaUsuario.cambiarClave(userSession.getUsuario().getUsername(), Md5.hash(claveConfirmada));
-        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha cambiado correctamente la contraseña");
+        }else {
+
+            logicaUsuario.cambiarClave(userSession.getUsuario().getUsername(), claveConfirmada);
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha cambiado correctamente la contraseña");
+        }
     }
+
+
 
     //getter and setter
 

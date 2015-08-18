@@ -1,21 +1,27 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
         <h2>Perfil de Usuario</h2>
-        <p:messages autoUpdate="true" closable="true" showDetail="true"/>
+
         <h:form id="perfil">
+            <p:panel header="Cambiar Clave de usuario">
             <h:panelGrid columns="3">
                 <h:outputLabel for="iActual" value="Contraseña Actual"/>:
-                <h:inputSecret id="iActual" value="#{mantenedorPefil.claveActual}" required="true" requiredMessage="Debes especificar la contraseña actual"/>
+                <h:inputSecret id="iActual" value="#{mantenedorPefil.claveActual}" styleClass="form-control"
+                               required="true" requiredMessage="Debes especificar la contraseña actual"/>
                 <h:outputLabel for="iNueva" value="Contraseña Nueva"/>:
-                <h:inputSecret id="iNueva" value="#{mantenedorPefil.claveNueva}" required="true" requiredMessage="Debes especificar la contraseña nueva"/>
+                <h:inputSecret id="iNueva" value="#{mantenedorPefil.claveNueva}" styleClass="form-control"
+                               required="true" requiredMessage="Debes especificar la contraseña nueva"/>
                 <h:outputLabel for="iConfirmar" value="Repita la Nueva Contraseña"/>:
-                <h:inputSecret id="iConfirmar" value="#{mantenedorPefil.claveConfirmada}" required="true" requiredMessage="Debes confirmar la nueva contraseña"/>
+                <h:inputSecret id="iConfirmar" value="#{mantenedorPefil.claveConfirmada}"
+                               styleClass="form-control" required="true" requiredMessage="Debes confirmar la nueva contraseña"/>
             </h:panelGrid>
+            </p:panel>
             <p:outputPanel styleClass="actionPanel">
                 <p:commandButton action="#{mantenedorPefil.irVerPerfil()}" icon="ui-icon-arrowreturnthick-1-s"
                                  value="Volver"/>

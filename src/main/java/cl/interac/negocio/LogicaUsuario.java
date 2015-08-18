@@ -56,7 +56,7 @@ public class LogicaUsuario {
     @Transactional(readOnly = true)
     public UsuarioDto logInExterno(String usuario, String password) {
         try {
-            return usuarioDAO.obtenerUsuario(usuario,Md5.hash(password));
+            return usuarioDAO.obtenerUsuario(usuario,password);
         } catch (Exception e) {
             return null;
         }

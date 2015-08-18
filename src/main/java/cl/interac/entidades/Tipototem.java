@@ -48,15 +48,6 @@ public class Tipototem {
     public void setDestipo(String Destipo) {
         this.destipo = Destipo;
     }
-    @Basic
-    @Column(name = "destecnica")
-    public String getDestecnica() {
-        return destecnica;
-    }
-
-    public void setDestecnica(String destecnica) {
-        this.destecnica = destecnica;
-    }
 
 
     @OneToMany(mappedBy = "tipototem")
