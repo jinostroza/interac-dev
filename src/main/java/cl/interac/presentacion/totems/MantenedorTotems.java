@@ -29,12 +29,13 @@ public class MantenedorTotems implements Serializable {
     @Autowired
     private LogicaTipototem logicaTipototem;
 
-    private Totem totem;
     private List<Totem> totems;
     private List<Tipototem> tipototems;
     private List<Totem> totemConFiltro;
     private List<Establecimiento> establecimientoList;
     private List<Establecimiento> establecimientoConfiltro;
+
+    private Totem totem;
     private Establecimiento establecimiento;
     private Tipototem tipototem;
 
