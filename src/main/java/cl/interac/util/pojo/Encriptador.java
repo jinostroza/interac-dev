@@ -1,4 +1,4 @@
-package cl.antartis.interac.funciones;
+package cl.interac.util.pojo;
 
 import java.io.IOException;
 import java.io.InputStream;
