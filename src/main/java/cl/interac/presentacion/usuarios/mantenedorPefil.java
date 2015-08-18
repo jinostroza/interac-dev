@@ -30,6 +30,8 @@ public class mantenedorPefil implements Serializable {
     private String claveConfirmada;
     private Usuario usuario;
     private Encriptador encriptador;
+    private String Correo;
+    private String Empresa;
 
     public void inicio(){
         logicaUsuario.obtenerTodos();
@@ -52,8 +54,14 @@ public class mantenedorPefil implements Serializable {
         }
     }
 
-    public void cambiarPerfil(){
-
+    public void CambiaPerfil(Usuario u){
+        if (!userSession.getUsuario().getPassword().equals(claveActual) ) {
+            FacesUtil.mostrarMensajeError("Operación fallida", "contraseña invalida , no tiene protesis");
+            return;
+        }
+            usuario= u;
+            logicaUsuario.guardar(usuario);
+            FacesUtil.mostrarMensajeError("Operación Erxitozah ooiieezzz", ":D");
 
     }
 

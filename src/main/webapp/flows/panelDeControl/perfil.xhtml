@@ -15,8 +15,24 @@
                     <h:outputText value="#{userSession.usuario.correo}"/>
                     <h:outputLabel value="empresa :" />
                     <h:outputText value="#{userSession.usuario.empresa}"/>
+
                      <h:outputLabel value="Contraseña"/> :
                     <p:commandButton icon="ui-icon-pencil" value="Cambiar" styleClass=" btn btn-default" action="#{mantenedorPefil.irCambiarClave}"/>
+                </h:panelGrid>
+            </p:panel>
+            <p:panel header="editar" >
+                <h:panelGrid columns="2"  styleClass="form-group">
+                    <h:outputLabel value="Usuario :"/>
+                    <h:inputText styleClass="form-control" value="#{userSession.usuario.username}"/>
+                    <h:outputLabel value="Correo  :"/>
+                    <h:inputText styleClass="form-control" value="#{userSession.usuario.correo}"/>
+                    <h:outputLabel value="Empresa :"/>
+                    <h:inputText styleClass="form-control" value="#{userSession.usuario.empresa}"/>
+
+                    <h:outputLabel value="ingrese contraseña para confirmar :"/>
+                    <h:inputText styleClass="form-control" value="#{mantenedorPefil.claveActual()}" />
+
+                   <p:commandButton value="guardar" styleClass="btn btn-default" action="#{mantenedorPefil.CambiaPerfil(userSession)}"/>
                 </h:panelGrid>
             </p:panel>
 
