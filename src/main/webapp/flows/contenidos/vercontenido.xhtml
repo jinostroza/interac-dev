@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/default.xhtml">
+
+    <ui:define name="contenido">
+        <h:form>
+                <p:dataScroller  value="#{mantenedorContenido.contenidoList}"  var="conVar" chunkSize="10">
+                <f:facet name="header">
+                    Mis Contenidos
+                </f:facet>
+
+                <h:panelGrid columns="2" style="width:100%">
+                    <!-- Esta linea ta puro weando ya que nisiquiera ta cargando una imagen, si no una carpeta -->
+
+
+                    <p:outputPanel>
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputText value="ID:"/>
+                            <h:outputText value="#{conVar.idcontenido}" style="font-weight: bold"/>
+
+                            <h:outputText value="Usuario:"/>
+                            <h:outputText value="#{conVar.usuario.username}" style="font-weight: bold"/>
+
+                            <h:outputText value="Contenido:"/>
+                            <p:graphicImage id="image" value="/#{conVar.path}"  cache="false"/>
+                                          style="font-weight: bold"/>
+                            <p:separator/>
+                        </h:panelGrid>
+                    </p:outputPanel>
+                </h:panelGrid>
+            </p:dataScroller>
+        </h:form>
+
+
+    </ui:define>
+</ui:composition>
