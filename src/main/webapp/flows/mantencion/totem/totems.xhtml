@@ -44,10 +44,10 @@
                         </h:selectOneMenu>
 
 
-                        <h:selectOneMenu class="form-control" value="#{mantenedorTotems.totem.establecimiento}"
+                        <h:selectOneMenu class="form-control" value="#{totm.establecimiento}"
                                          converter="entityConverter">
                             <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
-                            <f:selectItems value="#{mantenedorEstablecimiento.establecimientoList}" var="localEdit"
+                            <f:selectItems value="#{mantenedorTotems.establecimientoList}" var="localEdit"
                                            itemLabel="#{localEdit.nombreEstablecimiento}"/>
                         </h:selectOneMenu>
                         <br/>
@@ -68,7 +68,7 @@
                          value="#{mantenedorTotems.totem.noserie}"/>
             <h:outputLabel value="Tipo"/>
 
-            <h:selectOneMenu class="form-control" value="#{mantenedorTotems.totem.tipototem}"
+            <h:selectOneMenu class="form-control" value="#{mantenedorTotems.tipototem}"
                              converter="entityConverter">
                 <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione tipo Totem --"/>
                 <f:selectItems value="#{mantenedorTotems.tipototems}" var="totemPL"

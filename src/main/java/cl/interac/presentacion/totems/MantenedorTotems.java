@@ -52,7 +52,6 @@ public class MantenedorTotems implements Serializable {
         totem.setEstablecimiento(establecimiento);
         totem.setTipototem(tipototem);
         System.err.println("totem e: "+totem.getEstablecimiento());
-        totems = logicaTotem.obtenerConRelacion();
         logicaTotem.guardar(totem);
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el Totem [" + totem.getNoserie() + "]");
 
@@ -62,6 +61,7 @@ public class MantenedorTotems implements Serializable {
         totem = t;
         logicaTotem.guardar(totem);
         totems = logicaTotem.obtenerConRelacion();
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha Lobeznisado el Totem [" + totem.getNoserie() + "]");
 
     }
     public void eliminarTotem(Totem totem) {

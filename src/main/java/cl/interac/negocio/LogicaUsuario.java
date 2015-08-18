@@ -6,6 +6,7 @@ import cl.interac.util.dto.UsuarioDto;
 import java.util.List;
 
 
+import cl.interac.util.pojo.Encriptador;
 import cl.interac.util.pojo.Md5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -36,7 +37,7 @@ public class LogicaUsuario {
 
     @Transactional(readOnly = true)
     public Usuario obtenerPorUsuarioContrasenna(String user, String password) {
-        return usuarioDAO.obtenerPorUsuarioContrasenna(user, password);
+        return usuarioDAO.obtenerPorUsuarioContrasenna(user,password);
     }
 
     @Transactional(readOnly = true)

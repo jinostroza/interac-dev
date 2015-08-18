@@ -1,5 +1,7 @@
 package cl.interac.util.pojo;
 
+import cl.interac.util.dto.StringUtils;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;

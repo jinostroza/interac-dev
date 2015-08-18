@@ -4,6 +4,7 @@ import cl.interac.entidades.Usuario;
 import cl.interac.negocio.LogicaUsuario;
 import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.UserSession;
+import cl.interac.util.pojo.Encriptador;
 import cl.interac.util.pojo.Md5;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class mantenedorPefil implements Serializable {
     private String claveNueva;
     private String claveConfirmada;
     private Usuario usuario;
-
+    private Encriptador encriptador;
 
     public void inicio(){
         logicaUsuario.obtenerTodos();
@@ -42,13 +43,18 @@ public class mantenedorPefil implements Serializable {
             FacesUtil.mostrarMensajeError("Operación fallida", "La nueva contraseña no coincide con lo confirmado");
             return;
 
-        } else if (logicaUsuario.logInExterno(userSession.getUsuario().getUsername(), claveActual) == null) {
+        } else if (logicaUsuario.logInExterno(userSession.getUsuario().getUsername(),  claveActual) == null) {
             FacesUtil.mostrarMensajeError("Operación fallida", "La nueva contraseña actual no coincide");
         }else {
 
             logicaUsuario.cambiarClave(userSession.getUsuario().getUsername(), claveConfirmada);
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha cambiado correctamente la contraseña");
         }
+    }
+
+    public void cambiarPerfil(){
+
+
     }
 
 

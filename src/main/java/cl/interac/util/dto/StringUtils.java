@@ -1,4 +1,4 @@
-package cl.antartis.interac.funciones;
+package cl.interac.util.dto;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
