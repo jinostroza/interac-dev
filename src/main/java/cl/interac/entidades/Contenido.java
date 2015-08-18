@@ -1,14 +1,17 @@
 package cl.interac.entidades;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Joaco on 17/08/2015.
  */
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Contenido.findAll", query = "select c from Contenido c")})
-public class Contenido {
+        @NamedQuery(name = "Contenido.findAll", query = "select c from Contenido c")
+})
+public class Contenido implements Serializable{
     private Integer idcontenido;
     private String path;
 
@@ -26,6 +29,7 @@ public class Contenido {
     }
 
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "idcontenido", nullable = false, insertable = true, updatable = true)
     public Integer getIdcontenido() {
         return idcontenido;
