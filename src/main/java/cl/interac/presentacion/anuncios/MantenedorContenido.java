@@ -2,7 +2,9 @@ package cl.interac.presentacion.anuncios;
 
 import cl.interac.entidades.*;
 import cl.interac.negocio.LogicaContenido;
+import cl.interac.negocio.LogicaUsuario;
 import cl.interac.util.components.UserSession;
+import cl.interac.negocio.LogicaAnuncio;
 import cl.interac.util.services.FileUploader;
 import org.primefaces.event.FileUploadEvent;
 import org.springframework.context.annotation.Scope;
@@ -43,6 +45,8 @@ public class MantenedorContenido implements Serializable{
     @Autowired
     private LogicaAnuncio logicaAnuncio;
     @Autowired
+    private LogicaUsuario logicaUsuario;
+    @Autowired
     private FileUploader fileUploader; // es un componente
     @Autowired
     private UserSession userSession;
@@ -60,8 +64,8 @@ public class MantenedorContenido implements Serializable{
     }
     @PostConstruct
     public void inicio() {
+        usuarios = logicaUsuario.obtenerTodos();
         contenidoList = logicaContenido.obtenerTodos();
-        contenido.setUsuario( userSession.getUsuario());
         contenido = new Contenido();
     }
     public void subir(FileUploadEvent fue) {
@@ -95,7 +99,14 @@ public class MantenedorContenido implements Serializable{
         this.campanas = campanas;
     }
 
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
 
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
 
     public List<Contenido> getContenidoList() {
         return contenidoList;

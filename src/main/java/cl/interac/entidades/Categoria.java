@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @NamedQueries(
         {
-                @NamedQuery(name = "Categoria.findAll", query = "SELECT g FROM Categoria g "),
+                @NamedQuery(name = "Categoria.findAll", query = "SELECT g FROM Categoria g ")
 
         }
 )

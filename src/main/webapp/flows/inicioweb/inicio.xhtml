@@ -43,7 +43,34 @@
 
             </div>
             <!-- dashboard-->
+            <h:form>
+                <h:graphicImage value="C:\apache-tomcat-7.0.61\static\interac\anuncios\Calendar.png"/>
+                <p:dataScroller  value="#{mantenedorAnuncios.anuncios}"  var="anun" chunkSize="10">
+                    <f:facet name="header">
+                        Publicidad
+                    </f:facet>
 
+                    <h:panelGrid columns="2" style="width:100%">
+                        <!-- Esta linea ta puro weando ya que nisiquiera ta cargando una imagen, si no una carpeta -->
+
+
+                        <p:outputPanel>
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputText value="descripcion:"/>
+                                <h:outputText value="#{anun.descanuncio}" style="font-weight: bold"/>
+
+                                <h:outputText value="rubro:"/>
+                                <h:outputText value="#{anun.rubro}" style="font-weight: bold"/>
+
+                                <h:outputText value="cliente:"/>
+                                <h:outputText value="#{anun.campana.cliente.username}"
+                                              style="font-weight: bold"/>
+                                <p:separator/>
+                            </h:panelGrid>
+                        </p:outputPanel>
+                    </h:panelGrid>
+                </p:dataScroller>
+            </h:form>
 
             <div class="push"></div>
 

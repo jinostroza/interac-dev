@@ -19,7 +19,7 @@ import java.util.List;
 public class Tipototem {
    private Integer idtipo;
     private String destipo;
-    private String destecnica;
+
 
 
 
