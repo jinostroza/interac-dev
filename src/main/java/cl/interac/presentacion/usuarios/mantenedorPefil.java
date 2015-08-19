@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by luisPc on 17-08-2015.
@@ -28,15 +30,17 @@ public class mantenedorPefil implements Serializable {
     private String claveActual;
     private String claveNueva;
     private String claveConfirmada;
+
+    private String correo;
+    private String empresa;
+    private String username;
     private Usuario usuario;
-    private Encriptador encriptador;
-    private String Correo;
-    private String Empresa;
+    private List<Usuario> usuarioList;
 
+    @PostConstruct
     public void inicio(){
-        logicaUsuario.obtenerTodos();
-      usuario = new Usuario();
-
+        usuarioList = logicaUsuario.obtenerTodos();
+        usuario = new Usuario();
     }
 
 
@@ -54,14 +58,14 @@ public class mantenedorPefil implements Serializable {
         }
     }
 
-    public void CambiaPerfil(Usuario u){
+    public void CambiaPerfil(){
         if (!userSession.getUsuario().getPassword().equals(claveActual) ) {
-            FacesUtil.mostrarMensajeError("Operación fallida", "contraseña invalida , no tiene protesis");
+            FacesUtil.mostrarMensajeError("Operación fallida", "contraseña invalida");
             return;
         }
-            usuario= u;
-            logicaUsuario.guardar(usuario);
-            FacesUtil.mostrarMensajeError("Operación Erxitozah ooiieezzz", ":D");
+
+          logicaUsuario.editarPerfil(userSession.getUsuario().getUsername(),correo,empresa);
+            FacesUtil.mostrarMensajeInformativo("Operación exitosa", "usuario ["+userSession.getUsuario().getUsername()+"] modificado");
 
     }
 
@@ -77,6 +81,45 @@ public class mantenedorPefil implements Serializable {
         return "flowCambiarClave";
     }
 
+    public List<Usuario> getUsuarioList() {
+        return usuarioList;
+    }
+
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(String empresa) {
+        this.empresa = empresa;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getClaveActual() {
         return claveActual;

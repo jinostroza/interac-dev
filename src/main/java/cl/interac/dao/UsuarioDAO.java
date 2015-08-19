@@ -49,7 +49,7 @@ public class UsuarioDAO {
 
         }
     }
-    public List<Usuario> obtenerConRelacion(){ return em.createNamedQuery("Uusuario.findWithRelationship").getResultList();}
+    public List<Usuario> obtenerConRelacion(){ return em.createNamedQuery("Usuario.findWithRelationship").getResultList();}
 
 
     public void cambiarClave(String usuario, String clave) {
@@ -58,6 +58,15 @@ public class UsuarioDAO {
 
         u.setPassword(clave);
         em.merge(u);
+    }
+    public void editarPerfil(String usuario,String correo,String empresa){
+        Usuario u = (Usuario) em.createNamedQuery("Usuario.findByUser")
+                .setParameter("username",usuario).getSingleResult();
+        u.setCorreo(correo);
+        u.setEmpresa(empresa);
+        em.merge(u);
+
+
     }
 
     public UsuarioDto obtenerUsuario(String usuario, String password) {

@@ -24,6 +24,7 @@ public class UserSession implements Serializable {
     private Usuario usuario;
 
 
+
     public UserSession() {
         usuario = null;
     }

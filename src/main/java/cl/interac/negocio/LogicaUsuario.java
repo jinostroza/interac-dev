@@ -62,5 +62,9 @@ public class LogicaUsuario {
             return null;
         }
     }
+    @Transactional(readOnly = true)
+    public void editarPerfil(String usuario,String correo, String empresa){
+        usuarioDAO.editarPerfil(usuario,correo,empresa);
+    }
 
 }

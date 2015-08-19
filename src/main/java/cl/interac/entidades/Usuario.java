@@ -22,9 +22,17 @@ import java.util.List;
                 ),
 
                 @NamedQuery(
-                        name="Uusuario.findWithRelationship",
+                        name="Usuario.findWithRelationship",
                         query="Select u from Usuario u " +
                                 "left join fetch u.rol"
+                ),
+                @NamedQuery(
+                        name="Usuario.findByCorreo",
+                        query = "SELECT u FROM Usuario u where u.correo= :correo "
+                ),
+                @NamedQuery(
+                        name="Usuario.findByEmpresa",
+                        query="SELECT u FROM Usuario u where u.empresa = :empresa"
                 )
         }
 )
