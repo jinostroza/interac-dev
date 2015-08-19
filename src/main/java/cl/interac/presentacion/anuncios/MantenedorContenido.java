@@ -13,6 +13,7 @@ import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.*;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import java.io.FileInputStream;
@@ -33,6 +34,7 @@ public class MantenedorContenido implements Serializable{
     private TipoOperacion operacion;
     private List<Campana> campanas;
     private Usuario usuario;
+    private List<Usuario> usuarios;
     private Contenido contenido;
     private List<Contenido> contenidoList;
 
@@ -56,10 +58,10 @@ public class MantenedorContenido implements Serializable{
     public boolean esAgregar() {
         return operacion == TipoOperacion.INSERTAR;
     }
-
+    @PostConstruct
     public void inicio() {
         contenidoList = logicaContenido.obtenerTodos();
-        userSession.getUsuario();
+        contenido.setUsuario( userSession.getUsuario());
         contenido = new Contenido();
     }
     public void subir(FileUploadEvent fue) {
