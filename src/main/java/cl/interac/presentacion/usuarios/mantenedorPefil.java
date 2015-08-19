@@ -62,6 +62,8 @@ public class mantenedorPefil implements Serializable {
         if (!userSession.getUsuario().getPassword().equals(claveActual) ) {
             FacesUtil.mostrarMensajeError("Operación fallida", "contraseña invalida");
             return;
+        }else if(correo==null || empresa== null){
+            FacesUtil.mostrarMensajeError("Operacion fallida","falta rellenar campos");
         }
 
           logicaUsuario.editarPerfil(userSession.getUsuario().getUsername(),correo,empresa);
