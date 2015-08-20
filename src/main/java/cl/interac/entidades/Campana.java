@@ -49,14 +49,6 @@ public class Campana implements Serializable {
         this.fechaspasadas = fechaspasadas;
     }
 
-    @OneToMany(mappedBy = "campana")
-    public List<Anuncio> getAnuncios() {
-        return anuncios;
-    }
-
-    public void setAnuncios(List<Anuncio> anuncios) {
-        this.anuncios = anuncios;
-    }
 
     @JoinColumn(name = "idtotem", referencedColumnName = "idtotem")
     @ManyToOne(fetch = FetchType.LAZY)

@@ -1,17 +1,20 @@
 package cl.interac.entidades;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 
 /**
- * Created by mary on 20/08/2015.
+ * Created by Joaco on 20/08/2015.
  */
 @Entity
 public class Campanun {
     private int idcamanun;
+    //relaciones
+    private Anuncio anuncio;
+    private Campana campana;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idcamanun", nullable = false, insertable = true, updatable = true)
     public int getIdcamanun() {
         return idcamanun;
