@@ -19,15 +19,12 @@
                         <br></br>
 
                         <div id="cuadro-imagen" class="dz-default dz-message">
-                            <p:fileUpload rendered="true"  auto="false" multiple="true"
-                                          mode="advanced"
-                                          fileUploadListener="#{mantenedorAnuncios.subir}" uploadLabel="Subir"
-                                          cancelLabel="Cancelar"
+                            <p:fileUpload mode="simple"
+                                          value="#{mantenedorContenido.contenido}"
+                                          skinSimple="true"
                                           allowTypes="/(\.|\/)(jpg|png|gif)$/i"
                                           label="Cargar nuevo archivo"
-                                          fileLimit="4"
-                                          immediate="true"
-                                          fileLimitMessage="Solo se puede subir 4 documento(s)" >
+                                          immediate="true" >
 
                             </p:fileUpload>
 

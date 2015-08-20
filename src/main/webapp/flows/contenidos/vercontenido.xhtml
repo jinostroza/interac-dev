@@ -6,7 +6,7 @@
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
-
+<h:form>
         <div class="container" id="myInterac">
         <header>
             <h2>Crea tu campaña</h2>
@@ -14,10 +14,10 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="dashbox">
-                    <p class="dashbox-header" >Crear anuncio</p>
-                    <h:commandButton styleClass="button_ crear-anuncio" >
+                    <h:link styleClass="dashbox-header" action="#{facesUtil.redirigir('/plataforma/creacion')}">Crear anuncio</h:link>
+                    <div class="button_ elegir-anuncio" >
 
-                    </h:commandButton>
+                    </div>
                     <p> Escoge aqui uno de los anuncios ya creados </p>
                 </div>
             </div>
@@ -42,7 +42,7 @@
 
         </div>
         </div>
-
+</h:form>
 
 
         <div class="table" style="margin-left: 31%" >

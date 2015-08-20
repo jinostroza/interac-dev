@@ -14,8 +14,6 @@ import java.util.Date;
                 @NamedQuery(name = "Anuncio.findAll", query = "SELECT a FROM Anuncio a "),
                 @NamedQuery(name = "Anuncio.findAllWithRelationships",
                         query = "SELECT a from Anuncio a " +
-                                "inner join fetch a.campana c " +
-                                "inner join fetch c.cliente cli " +
                                 "inner join fetch a.categoria ca")
 
 
@@ -24,10 +22,7 @@ import java.util.Date;
 public class Anuncio implements Serializable {
     private Integer idAnuncio;
     private String descanuncio;
-    private String nombreAnuncio;
-
-
-    private String rubro;
+    private String nombre;
 
     // relaciones
     private Categoria categoria;
@@ -56,13 +51,13 @@ public class Anuncio implements Serializable {
     }
 
     @Basic
-    @Column(name = "rubro", nullable = true, insertable = true, updatable = true, length = 45)
-    public String getRubro() {
-        return rubro;
+    @Column(name = "nombre", nullable = true, insertable = true, updatable = true, length = 45)
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setRubro(String rubro) {
-        this.rubro = rubro;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     @JoinColumn(name = "idcategoria", referencedColumnName = "idcategoria")
@@ -75,18 +70,7 @@ public class Anuncio implements Serializable {
         this.categoria = categoria;
     }
 
-    @JoinColumn(name = "idcampana", referencedColumnName = "idcampana")
-    @ManyToOne(fetch = FetchType.LAZY)
-    public Campana getCampana() {
-        return campana;
-    }
-
-    public void setCampana(Campana campana) {
-        this.campana = campana;
-    }
-
-
-    @JoinColumn(name = "idcontenido", referencedColumnName = "idcontenido")
+     @JoinColumn(name = "idcontenido", referencedColumnName = "idcontenido")
     @OneToOne(fetch = FetchType.LAZY)
     public Contenido getContenido() {
         return contenido;
