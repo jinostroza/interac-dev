@@ -110,7 +110,7 @@ tr.table-header{
 #cuadro-imagen{
 	border: 1px solid black;
 	height: 500px;
-	width: 300px;
+	width: 330px;
 	background-color: grey;
 	background-image:  url("/resources/css/img/cloud-upload.png");
 	background-size: 120px 100px;
