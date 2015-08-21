@@ -19,14 +19,11 @@
                         <br></br>
 
                         <div id="cuadro-imagen" class="dz-default dz-message">
-                            <p:fileUpload mode="simple"
-                                          value="#{mantenedorContenido.contenido}"
-                                          skinSimple="true"
-                                          allowTypes="/(\.|\/)(jpg|png|gif)$/i"
-                                          label="Cargar nuevo archivo"
-                                          immediate="true" >
+                            <p:fileUpload fileUploadListener="#{mantenedorContenido.subir}" mode="advanced"
+                                          previewWidth="296" update="messages" uploadLabel="Subir" cancelLabel="Cancelar" auto="false" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 
-                            </p:fileUpload>
+                            <p:growl id="messages" showDetail="true" />
+
 
                         </div>
                         <br></br>
@@ -38,9 +35,9 @@
                     </div>
                 </div>
                 <div class="col-md-6 formulario-texto">
-                    <div class="form-group">
+                    <div class="form-group" ontimeupdate="true">
                         <label>Nombre</label>
-                        <h:inputText styleClass="form-control" value="#{mantenedorAnuncios.anuncio.rubro}" />
+                        <h:inputText styleClass="form-control" value="#{mantenedorAnuncios.anuncio.nombre}" />
                         <br></br>
                         <br></br>
                         <label>Descripción</label>
@@ -57,14 +54,18 @@
                         </h:selectOneMenu>
 
                         <br></br>
-                        <label>Archivo</label>
+                        <label >Seleccionar Contenido</label>
 
-                        <p>No has subido ningún archivo</p>
+                        <h:selectOneMenu id="contenL" class="form-control" value="#{mantenedorAnuncios.contenidoList}"
+                                         converter="entityConverter">
+                            <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Contenido --"/>
+                            <f:selectItems value="#{mantenedorAnuncios.contenidoList}" var="conten"
+                                           itemLabel="#{conten.path}" itemValue="#{conten}"/>
+                        </h:selectOneMenu>
                         <br></br>
 
                         <br></br>
-
-                        <h:commandButton ajax="false" styleClass="btn btn-default btn-block" action="reg"
+                        <h:commandButton ajax="false" styleClass="btn btn-default btn-block" action="#{mantenedorAnuncios.guardar}"
                                          value="Crear Anuncio"/>
                     </div>
                 </div>

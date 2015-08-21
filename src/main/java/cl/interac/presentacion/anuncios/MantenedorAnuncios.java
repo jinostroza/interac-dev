@@ -70,10 +70,12 @@ public class MantenedorAnuncios implements Serializable {
 
     //logica Vista
     public void guardar() {
-
+        operacion = TipoOperacion.INSERTAR;
+        anuncio = new Anuncio();
+        anuncio.setContenido(contenido);
+        anuncio.setCategoria(categoria);
         logicaAnuncio.guardar(anuncio);
-        campana.setCliente(userSession.getUsuario());
-        logicaCampana.guardarCampana(campana);
+
         logicaCategoria.guardar(categoria);
         if (esEditar()) {
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña [" + anuncio.getDescanuncio() + "]");
