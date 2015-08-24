@@ -38,7 +38,7 @@ public class MantenedorAnuncios implements Serializable {
     private List<Campana> campanas;
     private List<Anuncio> anuncios;
     private Anuncio anuncio;
-    private Campana campana;
+
     private Categoria categoria;
     private Usuario usuario;
     private Contenido contenido;
@@ -72,15 +72,16 @@ public class MantenedorAnuncios implements Serializable {
     //logica Vista
     public void guardar() {
         operacion = TipoOperacion.INSERTAR;
-        logicaContenido.obtenerTodos();
+        anuncio.setCategoria(categoria);
+        anuncio.setContenido(contenido);
         logicaAnuncio.guardar(anuncio);
 
          if (esEditar()) {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña [" + anuncio.getDescanuncio() + "]");
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña [" + contenido.getPath() + "]");
         } else {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado la campaña [" + anuncio.getDescanuncio() + "]");
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado la campaña [" + contenido.getPath() + "]");
         }
-        anuncio = new Anuncio();
+
     }
 
     public void eliminar() {
@@ -111,12 +112,21 @@ public class MantenedorAnuncios implements Serializable {
         campanas = logicaCampana.obtenerTodos();
         contenidoList = logicaContenido.obtenerTodos();
         anuncios = logicaAnuncio.obtenerConRelaciones();
-//        anuncios = logicaAnuncio.obtenerTodos();
+
         anuncio = new Anuncio();
     }
 
 
     //get and set
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
     public List<Categoria> getCategorias() {
         return categorias;
     }

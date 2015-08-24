@@ -1,6 +1,7 @@
 package cl.interac.util.components;
 
 import cl.interac.entidades.Usuario;
+import cl.interac.negocio.LogicaAnuncio;
 import cl.interac.negocio.LogicaUsuario;
 import cl.interac.util.dto.UsuarioDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ import java.util.List;
 public class UserSession implements Serializable {
     @Autowired
     private LogicaUsuario logicaUsuario;
+    @Autowired
+    private Constantes constantes;
 
     private Usuario usuario;
 
@@ -49,7 +52,7 @@ public class UserSession implements Serializable {
         }
         return usuario;
     }
-  /*  public boolean estaAutentificado() {
+   public boolean estaAutentificado() {
         return getUsuario() != null;
     }
     public boolean tienePermiso(String permiso) {
@@ -58,6 +61,7 @@ public class UserSession implements Serializable {
         }
         HttpServletRequest request = (HttpServletRequest) FacesUtil.obtenerHttpServletRequest();
         return request.isUserInRole(permiso);
-    }*/
+    }
+
 
 }

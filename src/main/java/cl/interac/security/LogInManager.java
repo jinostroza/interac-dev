@@ -46,6 +46,7 @@ public class LogInManager implements AuthenticationProvider, Serializable {
     private List<GrantedAuthority> getAcceso(String u) {
         List<GrantedAuthority> listaRoles = new ArrayList<GrantedAuthority>();
         listaRoles.add(new SimpleGrantedAuthority("USUARIO_WEB"));
+
         return listaRoles;
     }
 

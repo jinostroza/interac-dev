@@ -47,7 +47,7 @@
                         <br></br>
                         <label>Categoría</label>
 
-                        <h:selectOneMenu  class="form-control" value="#{mantenedorAnuncios.anuncio.categoria}"
+                        <h:selectOneMenu  class="form-control" value="#{mantenedorAnuncios.categoria}"
                                          converter="entityConverter">
                             <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione categoria --"/>
                             <f:selectItems value="#{mantenedorAnuncios.categorias}" var="categor"
@@ -57,7 +57,7 @@
                         <br></br>
                         <label >Seleccionar Contenido</label>
 
-                        <h:selectOneMenu  id="contenL" class="form-control" value="#{mantenedorAnuncios.anuncio.contenido}"
+                        <h:selectOneMenu   class="form-control" value="#{mantenedorAnuncios.contenido}"
                                          converter="entityConverter">
                             <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Contenido --"/>
                             <f:selectItems value="#{mantenedorAnuncios.contenidoList}" var="conten"

@@ -31,7 +31,7 @@ public class Contenido implements Serializable{
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column(name = "idcontenido", nullable = false, insertable = true, updatable = true)
+    @Column(name = "idcontenido", nullable = false)
     public Integer getIdcontenido() {
         return idcontenido;
     }
@@ -67,16 +67,14 @@ public class Contenido implements Serializable{
 
         Contenido contenido = (Contenido) o;
 
-        if (idcontenido != contenido.idcontenido) return false;
-        if (path != null ? !path.equals(contenido.path) : contenido.path != null) return false;
-
-        return true;
+        if (this.getIdcontenido() == null || contenido.getIdcontenido() == null) return false;
+        else return this.getIdcontenido().intValue() == contenido.getIdcontenido().intValue();
     }
 
     @Override
     public int hashCode() {
-        int result = idcontenido;
-        result = 31 * result + (path != null ? path.hashCode() : 0);
-        return result;
+        return idcontenido != null ? 31 * idcontenido.hashCode() : 0;
     }
+
+
 }

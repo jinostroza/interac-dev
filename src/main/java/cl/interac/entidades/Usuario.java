@@ -43,10 +43,10 @@ public class Usuario implements Serializable {
     private String correo;
     private String empresa;
 
-
     // relaciones
     private List<Campana> campanas;
     private Rol rol;
+    private List<Contenido> contenido;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -110,7 +110,16 @@ public class Usuario implements Serializable {
     }
 
 
-    @JoinColumn(name = "idrol",referencedColumnName = "id_rol",nullable = false)
+    @OneToMany(mappedBy="usuario")
+    public List<Contenido> getContenido() {
+        return contenido;
+    }
+
+    public void setContenido(List<Contenido> contenido) {
+        this.contenido = contenido;
+    }
+
+   @JoinColumn(name = "idrol",referencedColumnName = "id_rol",nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     public Rol getRol() {
         return rol;
