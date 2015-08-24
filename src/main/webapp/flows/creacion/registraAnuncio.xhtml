@@ -34,19 +34,20 @@
                         </label>
                     </div>
                 </div>
+                <h:form>
                 <div class="col-md-6 formulario-texto">
                     <div class="form-group" ontimeupdate="true">
                         <label>Nombre</label>
-                        <h:inputText required="true" styleClass="form-control" value="#{mantenedorAnuncios.anuncio.nombre}" />
+                        <h:inputText  styleClass="form-control" value="#{mantenedorAnuncios.anuncio.nombre}" />
                         <br></br>
                         <br></br>
                         <label>Descripción</label>
-                        <h:inputTextarea required="true" class="form-control" rows="6" cols="33" autoResize="false"  value="#{mantenedorAnuncios.anuncio.descanuncio}"
+                        <h:inputTextarea  class="form-control" rows="6" cols="33" autoResize="false"  value="#{mantenedorAnuncios.anuncio.descanuncio}"
                                          placeholder="Escriba la descripción de su anuncio"/>
                         <br></br>
                         <label>Categoría</label>
 
-                        <h:selectOneMenu required="true" class="form-control" value="#{mantenedorAnuncios.anuncio.categoria}"
+                        <h:selectOneMenu  class="form-control" value="#{mantenedorAnuncios.anuncio.categoria}"
                                          converter="entityConverter">
                             <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione categoria --"/>
                             <f:selectItems value="#{mantenedorAnuncios.categorias}" var="categor"
@@ -56,7 +57,7 @@
                         <br></br>
                         <label >Seleccionar Contenido</label>
 
-                        <h:selectOneMenu required="true" id="contenL" class="form-control" value="#{mantenedorAnuncios.contenidoList}"
+                        <h:selectOneMenu  id="contenL" class="form-control" value="#{mantenedorAnuncios.anuncio.contenido}"
                                          converter="entityConverter">
                             <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Contenido --"/>
                             <f:selectItems value="#{mantenedorAnuncios.contenidoList}" var="conten"
@@ -65,11 +66,12 @@
                         <br></br>
 
                         <br></br>
-                        <h:commandButton ajax="false" styleClass="btn btn-default btn-block" action="#{mantenedorAnuncios.guardar}"
+                        <h:commandButton ajax="false" styleClass="btn btn-default btn-block" action="#{mantenedorAnuncios.guardar()}"
                                          value="Crear Anuncio">
                             </h:commandButton>
                     </div>
                 </div>
+                </h:form>
             </div>
         </h:form>
 

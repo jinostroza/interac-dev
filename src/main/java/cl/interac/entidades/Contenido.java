@@ -17,6 +17,7 @@ public class Contenido implements Serializable{
 
     //relaciones
     private Usuario usuario;
+    private List<Anuncio> anuncios;
 
     @JoinColumn(name = "idusuario", referencedColumnName = "idusuario")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -48,6 +49,16 @@ public class Contenido implements Serializable{
     public void setPath(String path) {
         this.path = path;
     }
+
+    @OneToMany(mappedBy = "contenido")
+    public List<Anuncio> getAnuncios() {
+        return anuncios;
+    }
+
+    public void setAnuncios(List<Anuncio> anuncios) {
+        this.anuncios = anuncios;
+    }
+
 
     @Override
     public boolean equals(Object o) {

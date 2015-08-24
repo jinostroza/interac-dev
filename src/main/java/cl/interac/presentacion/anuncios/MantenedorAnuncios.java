@@ -71,17 +71,15 @@ public class MantenedorAnuncios implements Serializable {
     //logica Vista
     public void guardar() {
         operacion = TipoOperacion.INSERTAR;
-        anuncio = new Anuncio();
-        anuncio.setContenido(contenido);
-        anuncio.setCategoria(categoria);
+        logicaContenido.obtenerTodos();
         logicaAnuncio.guardar(anuncio);
 
-        logicaCategoria.guardar(categoria);
-        if (esEditar()) {
+         if (esEditar()) {
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña [" + anuncio.getDescanuncio() + "]");
         } else {
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado la campaña [" + anuncio.getDescanuncio() + "]");
         }
+        anuncio = new Anuncio();
     }
 
     public void eliminar() {
@@ -111,9 +109,9 @@ public class MantenedorAnuncios implements Serializable {
         categorias = logicaCategoria.obtenerTodos();
         campanas = logicaCampana.obtenerTodos();
         contenidoList = logicaContenido.obtenerTodos();
-        anuncios = logicaAnuncio.obtenerTodos();
+        anuncios = logicaAnuncio.obtenerConRelaciones();
 //        anuncios = logicaAnuncio.obtenerTodos();
-        userSession.getUsuario();
+        anuncio = new Anuncio();
     }
 
 

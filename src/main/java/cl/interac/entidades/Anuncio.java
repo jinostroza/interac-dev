@@ -71,7 +71,7 @@ public class Anuncio implements Serializable {
     }
 
      @JoinColumn(name = "idcontenido", referencedColumnName = "idcontenido")
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     public Contenido getContenido() {
         return contenido;
     }

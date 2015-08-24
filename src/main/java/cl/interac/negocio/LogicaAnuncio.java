@@ -14,6 +14,8 @@ import java.util.List;
 
 import cl.interac.entidades.Campana;
 import cl.interac.entidades.Categoria;
+import cl.interac.util.services.FileUploader;
+import org.primefaces.event.FileUploadEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
