@@ -2,6 +2,7 @@ package cl.interac.presentacion.usuarios;
 
 import cl.interac.entidades.Usuario;
 import cl.interac.negocio.LogicaUsuario;
+import cl.interac.security.SHA512;
 import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.UserSession;
 import cl.interac.util.pojo.Encriptador;
@@ -49,7 +50,7 @@ public class mantenedorPefil implements Serializable {
             FacesUtil.mostrarMensajeError("Operación fallida", "La nueva contraseña no coincide con lo confirmado");
             return;
 
-        } else if (logicaUsuario.logInExterno(userSession.getUsuario().getUsername(),  claveActual) == null) {
+        } else if (logicaUsuario.logInExterno(userSession.getUsuario().getUsername(), SHA512.encode(claveActual)) == null) {
             FacesUtil.mostrarMensajeError("Operación fallida", "La nueva contraseña actual no coincide");
         }else {
 

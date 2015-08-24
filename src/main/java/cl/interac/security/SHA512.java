@@ -7,6 +7,7 @@ import org.springframework.security.core.token.Sha512DigestUtils;
  */
 public class SHA512 {
     public static String encode(String texto) {
+
         return Sha512DigestUtils.shaHex(texto);
     }
 }

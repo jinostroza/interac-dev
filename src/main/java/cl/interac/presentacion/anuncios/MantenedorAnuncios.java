@@ -15,6 +15,7 @@ import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.*;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import java.io.FileInputStream;
@@ -104,7 +105,7 @@ public class MantenedorAnuncios implements Serializable {
 
     }
 
-
+    @PostConstruct
     public void inicio() {
         categorias = logicaCategoria.obtenerTodos();
         campanas = logicaCampana.obtenerTodos();

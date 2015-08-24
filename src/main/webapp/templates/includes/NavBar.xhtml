@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+        >
 <f:view>
 
 
@@ -12,7 +14,7 @@
                 <p:commandLink value="#{userSession.usuario.username}" action="#{facesUtil.redirigir('/plataforma/panelDeControl')}" />
             </li>
             <li>
-                <p:commandLink value="inicio" action="#{facesUtil.redirigir('/plataforma/inicioweb')}" />
+                <p:commandLink value="inicio" action="#{facesUtil.redirigir('/inicio.jsf')}" />
             </li>
 
             <li>
@@ -24,8 +26,18 @@
             <li>
                 <p:commandLink value="Mantenedor" action="#{facesUtil.redirigir('/plataforma/mantencion')}"/>
             </li>
-            <li><a href="/logOut.jsf">Salir</a></li>
+            <li><a href="/logOut">Salir</a></li>
         </ul>
+    </p:outputPanel>
+    <p:outputPanel styleClass="user-menu pull-right" rendered="#{userSession.usuario == null}">
+    <ul>
+        <li>
+            <p:commandLink value="Iniciar Session" action="#{facesUtil.redirigir('/logIn.jsf')}"/>
+        </li>
+        <li>
+            <p:commandLink value="registrar" action="#{facesUtil.redirigir('/registrar.jsf')}"/>
+        </li>
+         </ul>
     </p:outputPanel>
 </f:view>
 </html>

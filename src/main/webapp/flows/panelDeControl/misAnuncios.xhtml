@@ -1,8 +1,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:p="http://primefaces.org/ui" xmlns:div="http://www.springframework.org/tags/form"
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
@@ -35,14 +35,5 @@
                 </h:panelGrid>
             </p:dataScroller>
         </h:form>
-        <h:form>
-            <p:galleria value="#{mantenedorContenido.contenidoList}" var="image" panelWidth="500" panelHeight="313" showCaption="true">
-                <p:graphicImage width="500" height="300" value="http://pngimg.com/upload/car_logo_PNG1658.png"  alt="Usuario #{image.usuario.idUsuario}" title="#{image.idcontenido}"/>
-            </p:galleria>
-        </h:form>
-
-    
-
-
-    </ui:define>
+        </ui:define>
 </ui:composition>

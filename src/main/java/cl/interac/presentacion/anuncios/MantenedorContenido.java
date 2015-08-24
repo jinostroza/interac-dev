@@ -73,14 +73,15 @@ public class MantenedorContenido implements Serializable{
         System.err.println("LLEGO A LA WA " + fue);
         String path = fileUploader.subir(fue, "/anuncios/");
         System.err.println("SE SUPONE QUE SUBI EN " + path);
+        String cont = fue.getFile().getFileName();
         contenido = new Contenido();
         contenido.setUsuario(userSession.getUsuario());
-        contenido.setPath(path);
+        contenido.setPath(cont);
         logicaContenido.guardar(contenido);
         if (esEditar()) {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña [" + contenido.getIdcontenido() + "]");
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña [" +cont + "]");
         } else {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el afiche [" + contenido.getIdcontenido() + "]");
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el afiche [" + cont + "]");
         }
 
     }

@@ -51,7 +51,7 @@ public class Anuncio implements Serializable {
     }
 
     @Basic
-    @Column(name = "nombre", nullable = true, insertable = true, updatable = true, length = 45)
+    @Column(name = "nombre")
     public String getNombre() {
         return nombre;
     }

@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.List;
 
@@ -48,5 +49,15 @@ public class UserSession implements Serializable {
         }
         return usuario;
     }
+  /*  public boolean estaAutentificado() {
+        return getUsuario() != null;
+    }
+    public boolean tienePermiso(String permiso) {
+        if (!this.estaAutentificado()) {
+            return false;
+        }
+        HttpServletRequest request = (HttpServletRequest) FacesUtil.obtenerHttpServletRequest();
+        return request.isUserInRole(permiso);
+    }*/
 
 }

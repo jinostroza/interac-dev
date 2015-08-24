@@ -9,7 +9,7 @@
         <h2>Perfil de Usuario</h2>
         <h:form id="perfil">
             <p:panel header="Datos de la Cuenta" styleClass="col-md-8">
-                <h:panelGrid columns="2" styleClass="form-group">
+                <h:panelGrid columns="2" cellpadding="5px" styleClass="form-group">
                     <h:outputLabel value="Usuario :"/>
                     <h:outputText value="#{userSession.usuario.username}" />
                     <h:outputLabel value="correo :" />
@@ -17,11 +17,11 @@
                     <h:outputLabel value="empresa :" />
                     <h:outputText value="#{userSession.usuario.empresa}"/>
                     <h:outputLabel value="Contraseña"/> :
-                    <p:commandButton icon="ui-icon-pencil" value="Cambiar" styleClass=" btn btn-default" action="#{mantenedorPefil.irCambiarClave}"/>
+                    <p:commandButton icon="ui-icon-pencil" value="Cambiar" styleClass="form-control" action="#{mantenedorPefil.irCambiarClave}"/>
                 </h:panelGrid>
             </p:panel>
             <p:panel header="CambiarPerfil" styleClass="col-md-8">
-                <h:panelGrid columns="2" >
+                <h:panelGrid columns="2" cellpadding="5px" >
                     <h:outputLabel value="Usuario :"/>
                     <h:outputLabel  value="#{userSession.usuario.username}"/>
                     <h:outputLabel value="Correo  :"/>

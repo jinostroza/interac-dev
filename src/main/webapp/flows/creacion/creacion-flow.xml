@@ -10,18 +10,16 @@
 
     <view-state id="registraAnuncio">
         <transition on="reg" to="registraCampana">
-            <evaluate expression="mantenedorAnuncios.inicio()"/>
+
         </transition>
 
     </view-state>
 
     <view-state id="registraCampana">
-        <transition on="sel" to="seleccionarContenido" />
+        <transition on="sel" to="seleccionarTotem" />
     </view-state>
 
-    <view-state id="seleccionarContenido">
-        <transition on="totem" to="seleccionarTotem" />
-    </view-state>
+
     <view-state id="seleccionarTotem">
        <transition on="finalizar" to="finalizar" />
     </view-state>
