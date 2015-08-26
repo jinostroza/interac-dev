@@ -12,20 +12,20 @@
             <p:panel header="Cambiar Clave de usuario">
             <h:panelGrid columns="3">
                 <h:outputLabel for="iActual" value="Contraseña Actual"/>:
-                <h:inputSecret id="iActual" value="#{mantenedorPefil.claveActual}" styleClass="form-control"
+                <h:inputSecret id="iActual" value="#{MantenedorPerfil.claveActual}" styleClass="form-control"
                                required="true" requiredMessage="Debes especificar la contraseña actual"/>
                 <h:outputLabel for="iNueva" value="Contraseña Nueva"/>:
-                <h:inputSecret id="iNueva" value="#{mantenedorPefil.claveNueva}" styleClass="form-control"
+                <h:inputSecret id="iNueva" value="#{MantenedorPerfil.claveNueva}" styleClass="form-control"
                                required="true" requiredMessage="Debes especificar la contraseña nueva"/>
                 <h:outputLabel for="iConfirmar" value="Repita la Nueva Contraseña"/>:
-                <h:inputSecret id="iConfirmar" value="#{mantenedorPefil.claveConfirmada}"
+                <h:inputSecret id="iConfirmar" value="#{MantenedorPerfil.claveConfirmada}"
                                styleClass="form-control" required="true" requiredMessage="Debes confirmar la nueva contraseña"/>
             </h:panelGrid>
             </p:panel>
             <p:outputPanel styleClass="actionPanel">
-                <p:commandButton action="#{mantenedorPefil.irVerPerfil()}" icon="ui-icon-arrowreturnthick-1-s"
+                <p:commandButton action="#{MantenedorPerfil.irVerPerfil()}" icon="ui-icon-arrowreturnthick-1-s"
                                  value="Volver"/>
-                <p:commandButton action="#{mantenedorPefil.cambiarClave()}" icon="ui-icon-disk" value="Guardar"/>
+                <p:commandButton action="#{MantenedorPerfil.cambiarClave()}" icon="ui-icon-disk" value="Guardar"/>
             </p:outputPanel>
         </h:form>
     </ui:define>

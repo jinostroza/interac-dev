@@ -1,5 +1,6 @@
 package cl.interac.dao;
 
+import cl.interac.entidades.Rol;
 import cl.interac.entidades.Usuario;
 import cl.interac.security.SHA512;
 import cl.interac.util.dto.UsuarioDto;
@@ -29,6 +30,7 @@ public class UsuarioDAO {
         return em.createNamedQuery("Usuario.findAll").getResultList();
     }
 
+
     public Usuario obtenerPorUsuarioContrasenna(String user, String password) {
         Query q = em.createNamedQuery("Usuario.findByUserAndPassword");
         q.setParameter("username", user);
@@ -53,7 +55,6 @@ public class UsuarioDAO {
 
         }
     }
-    public List<Usuario> obtenerConRelacion(){ return em.createNamedQuery("Usuario.findWithRelationship").getResultList();}
 
 
     public void cambiarClave(String usuario, String clave) {
@@ -90,6 +91,9 @@ public class UsuarioDAO {
 
 
 
+    }
+    public List<Usuario> obtenerConrelacionMasRol(){
+        return em.createNamedQuery("Usuario.findByRol").getResultList();
     }
 
 }

@@ -7,42 +7,24 @@
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
-        <title>Plataforma de Marketing</title>
-        <div class="container" id="myInterac">
-            <header>
-                <h2>Crea tu campaña</h2>
-            </header>
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="dashbox">
-                        <p class="dashbox-header">Crear anuncio</p>
-                        <div  Class="button_ crear-anuncio" >
-                            <p:commandLink value="Crear Anuncio" action="#{facesUtil.redirigir('/plataforma/creacion')}"/>
-                        </div>
-                        <p> Escoge aqui uno de los anuncios ya creados </p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="dashbox">
-                        <p class="dashbox-header">Crear campaña</p>
-                        <div Class="button_ crear-campana">
 
-                        </div>
-                        <p> Escoge aqui uno de los anuncios ya creados </p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="dashbox">
-                        <p class="dashbox-header">Pagar</p>
 
-                        <div class="button_ pagar"></div>
-                        <p> Escoge aqui uno de los anuncios ya creados </p>
 
-                    </div>
-                </div>
+        <h:form rendered="#{userSession.estaAutentificado()}" >
+            <p:panel header="Módulos Mantenedores">
+                <h:panelGrid style="margin-left: auto; margin-right: auto" columns="6">
+                    <h:commandLink ajax="false" rendered="#{userSession.tienePermiso('ANUNCIANTE')}"
+                                   action="#{facesUtil.redirigir('/plataforma/anunciante')}"
+                                   value="miAnuncio y weas">
 
-            </div>
-        </div>
+                        <h:outputLabel value="Mantenedor de Personal"/>
+                    </h:commandLink>
 
+
+                </h:panelGrid>
+            </p:panel>
+
+
+        </h:form>
     </ui:define>
 </ui:composition>

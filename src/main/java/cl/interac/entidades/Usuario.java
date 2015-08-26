@@ -22,10 +22,11 @@ import java.util.List;
                 ),
 
                 @NamedQuery(
-                        name="Usuario.findWithRelationship",
-                        query="Select u from Usuario u " +
-                                "left join fetch u.rol"
+                  name="Usuario.findByRol"
+                        ,query="select u from Usuario u " +
+                        "left join fetch u.rol"
                 ),
+
                 @NamedQuery(
                         name="Usuario.findByCorreo",
                         query = "SELECT u FROM Usuario u where u.correo= :correo "

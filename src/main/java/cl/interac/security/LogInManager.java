@@ -45,9 +45,17 @@ public class LogInManager implements AuthenticationProvider, Serializable {
 
     private List<GrantedAuthority> getAcceso(String u) {
         List<GrantedAuthority> listaRoles = new ArrayList<GrantedAuthority>();
-        listaRoles.add(new SimpleGrantedAuthority("USUARIO_WEB"));
+            List<Usuario> roles = null;
 
-        return listaRoles;
+        // ta mal, debiera ser un obtener rol según usuario por eso tenias todos los roles.
+            roles = logicaUsuario.obtenerTodosMasRol();
+            for (Usuario r: roles) {
+                listaRoles.add(new SimpleGrantedAuthority(r.getRol().getNamerol().toUpperCase().replaceAll(" ", "_")));
+            }
+
+            listaRoles.add(new SimpleGrantedAuthority("USUARIO_WEB"));
+            return listaRoles;
+
     }
 
     public boolean supports(Class<? extends Object> authentication) {

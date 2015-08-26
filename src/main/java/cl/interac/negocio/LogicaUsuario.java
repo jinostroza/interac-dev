@@ -14,6 +14,8 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.management.Query;
+
 /**
  * Created by Jorge on 15-04-15.
  */
@@ -37,16 +39,13 @@ public class LogicaUsuario {
 
     @Transactional(readOnly = true)
     public Usuario obtenerPorUsuarioContrasenna(String user, String password) {
-        return usuarioDAO.obtenerPorUsuarioContrasenna(user,password);
+        return usuarioDAO.obtenerPorUsuarioContrasenna(user, password);
     }
 
     @Transactional(readOnly = true)
     public Usuario obtener(String username) {
         return usuarioDAO.obtenerPorUsuario(username);
     }
-
-    @Transactional(readOnly = true)
-    public List<Usuario> obtenetConRol(){return usuarioDAO.obtenerConRelacion();}
 
 
     @Transactional(readOnly = false)
@@ -62,9 +61,16 @@ public class LogicaUsuario {
             return null;
         }
     }
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = false)
     public void editarPerfil(String usuario,String correo, String empresa){
         usuarioDAO.editarPerfil(usuario,correo,empresa);
     }
+  @Transactional(readOnly = true)
+    public List<Usuario> obtenerTodosMasRol(){
+      return usuarioDAO.obtenerConrelacionMasRol();
+
+    }
+
+
 
 }

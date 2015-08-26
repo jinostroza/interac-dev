@@ -94,7 +94,7 @@ public class MantenedorAnuncios implements Serializable {
         System.err.println("LLEGO A LA WA " + fue);
         String path = fileUploader.subir(fue, "/anuncios/");
         System.err.println("SE SUPONE QUE SUBI EN " + path);
-        contenido = new Contenido();
+
         contenido.setUsuario(userSession.getUsuario());
           contenido.setPath(path);
           logicaContenido.guardar(contenido);
