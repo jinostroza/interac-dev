@@ -62,7 +62,7 @@ public class MantenedorContenido implements Serializable{
     public boolean esAgregar() {
         return operacion == TipoOperacion.INSERTAR;
     }
-    @PostConstruct
+
     public void inicio() {
         usuarios = logicaUsuario.obtenerTodos();
         contenidoList = logicaContenido.obtenerTodos();
@@ -82,6 +82,7 @@ public class MantenedorContenido implements Serializable{
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña [" +cont + "]");
         } else {
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el afiche [" + cont + "]");
+
         }
 
     }

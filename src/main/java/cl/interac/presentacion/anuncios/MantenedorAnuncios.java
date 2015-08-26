@@ -37,6 +37,7 @@ public class MantenedorAnuncios implements Serializable {
     private List<Categoria> categorias;
     private List<Campana> campanas;
     private List<Anuncio> anuncios;
+    private List<Anuncio> selecAnuncios;
     private Anuncio anuncio;
 
     private Categoria categoria;
@@ -112,7 +113,6 @@ public class MantenedorAnuncios implements Serializable {
         campanas = logicaCampana.obtenerTodos();
         contenidoList = logicaContenido.obtenerTodos();
         anuncios = logicaAnuncio.obtenerConRelaciones();
-
         anuncio = new Anuncio();
     }
 
@@ -137,6 +137,12 @@ public class MantenedorAnuncios implements Serializable {
 
     public List<Anuncio> getAnuncios() {
         return anuncios;
+    }
+    public List<Anuncio> getSelecAnuncios() {
+        return selecAnuncios;
+    }
+    public void setSelecAnuncios(List<Anuncio> selecAnuncios) {
+        this.selecAnuncios = selecAnuncios;
     }
 
     public List<Campana> getCampanas() {

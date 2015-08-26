@@ -56,19 +56,20 @@
 
                         <br></br>
                         <label >Seleccionar Contenido</label>
-
-                        <h:selectOneMenu   class="form-control" value="#{mantenedorAnuncios.contenido}"
+                        <h:selectOneMenu id="contll" class="form-control" value="#{mantenedorAnuncios.contenido}"
                                          converter="entityConverter">
                             <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Contenido --"/>
                             <f:selectItems value="#{mantenedorAnuncios.contenidoList}" var="conten"
-                                           itemLabel="#{conten.path}" itemValue="#{conten}"/>
+                                           itemLabel="#{conten.path}" itemValue="#{conten}" />
                         </h:selectOneMenu>
-                        <br></br>
 
                         <br></br>
                         <h:commandButton ajax="false" styleClass="btn btn-default btn-block" action="#{mantenedorAnuncios.guardar()}"
                                          value="Crear Anuncio">
                             </h:commandButton>
+                        <h:commandButton ajax="false" styleClass="btn btn-default btn-block" action="reg"
+                                                                value="Crear Campaña">
+                    </h:commandButton>
                     </div>
                 </div>
                 </h:form>
