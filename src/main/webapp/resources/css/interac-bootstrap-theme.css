@@ -286,7 +286,7 @@ tr.table-header{
 	color:white;
 }
 .dashbox-header:hover
-{
+{''
 	font-weight: bold;
 	font-size: 18px;
 	color:#444444;
@@ -316,7 +316,13 @@ tr.table-header{
 	background-color: #454545;
 	color: #fff !important;
 }
+.btn-interac:hover{
+	background-color: #fff;
+	color: #454545 !important;
+	border-color: #454545;
+	border-radius: 4px;
 
+}
 .contenido-mapa
 {
 	width: 100%;
