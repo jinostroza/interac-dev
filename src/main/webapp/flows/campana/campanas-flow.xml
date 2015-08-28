@@ -10,11 +10,17 @@
             <transition on="reg" to="registraCampana">
 
             </transition>
+            <transition on="next2" to="seleccionarTotem"></transition>
       </view-state>
 
-      <view-state id="registraCampana">
-            <transition on="back" to="campanapasos">
 
-            </transition>
+      <view-state id="registraCampana" >
+
       </view-state>
+      <view-state id="seleccionarTotem">
+
+
+
+      </view-state>
+
 </flow>
