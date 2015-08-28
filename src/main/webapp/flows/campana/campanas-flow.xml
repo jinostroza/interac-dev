@@ -6,5 +6,15 @@
       <on-start>
             <evaluate expression="mantenedorContenido.inicio()"/>
       </on-start>
-<view-state id="campanapasos"></view-state>
+      <view-state id="campanapasos">
+            <transition on="reg" to="registraCampana">
+
+            </transition>
+      </view-state>
+
+      <view-state id="registraCampana">
+            <transition on="back" to="campanapasos">
+
+            </transition>
+      </view-state>
 </flow>
