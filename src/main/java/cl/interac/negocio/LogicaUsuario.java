@@ -1,5 +1,6 @@
 package cl.interac.negocio;
 
+import cl.interac.entidades.Rol;
 import cl.interac.entidades.Usuario;
 import cl.interac.dao.UsuarioDAO;
 import cl.interac.util.dto.UsuarioDto;
@@ -53,6 +54,18 @@ public class LogicaUsuario {
         usuarioDAO.cambiarClave(usuario, clave);
     }
 
+    // cachate dice obtener rol y retorna usuario, fuck the police
+    @Transactional(readOnly = true)
+    public Rol obtenerRol(Usuario usuario) {
+        return usuarioDAO.obtenerRol(usuario);
+    }
+
+
+    @Transactional(readOnly = false)
+    public void editarPerfil(String usuario,String correo, String empresa){
+        usuarioDAO.editarPerfil(usuario,correo,empresa);
+    }
+
     @Transactional(readOnly = true)
     public UsuarioDto logInExterno(String usuario, String password) {
         try {
@@ -60,15 +73,6 @@ public class LogicaUsuario {
         } catch (Exception e) {
             return null;
         }
-    }
-    @Transactional(readOnly = false)
-    public void editarPerfil(String usuario,String correo, String empresa){
-        usuarioDAO.editarPerfil(usuario,correo,empresa);
-    }
-  @Transactional(readOnly = true)
-    public List<Usuario> obtenerTodosMasRol(){
-      return usuarioDAO.obtenerConrelacionMasRol();
-
     }
 
 

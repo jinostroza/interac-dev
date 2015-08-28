@@ -36,7 +36,7 @@ public class MantenedorUsuarios implements Serializable {
 
     @PostConstruct
     public void inicio() {
-        usuarios = logicaUsuario.obtenerTodosMasRol();
+        usuarios = logicaUsuario.obtenerTodos();
         roles = logicaRol.obtenerTodos();
         usuario = new Usuario();
     }

@@ -14,11 +14,11 @@
             <li>
                 <p:commandLink value="#{userSession.usuario.username}" action="#{facesUtil.redirigir('/plataforma/panelDeControl')}" />
             </li>
-
+            <ui:fragment rendered="#{userSession.estaAutentificado()}">
             <li>
                 <p:commandLink value="Inicio" action="#{facesUtil.redirigir('/inicio.jsf')}" />
             </li>
-
+             </ui:fragment>
             <ui:fragment rendered="#{!userSession.estaAutentificado()}">
                 <li>
                     <p:commandLink value="Iniciar Session" action="#{facesUtil.redirigir('/logIn.jsf')}"/>
@@ -31,7 +31,7 @@
                 </li>
             </ui:fragment>
 
-            <ui:fragment rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')}">
+            <ui:fragment rendered="#{userSession.tienePermiso('CLIENTE')}">
                 <li>
                     <p:commandLink value="Mis Campañas" />
                 </li>

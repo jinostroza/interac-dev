@@ -1,5 +1,6 @@
 package cl.interac.presentacion;
 
+import cl.interac.entidades.Rol;
 import cl.interac.entidades.Usuario;
 import cl.interac.negocio.LogicaUsuario;
 import cl.interac.util.components.FacesUtil;
@@ -17,6 +18,7 @@ public class RegistrarBean {
 
     private LogicaUsuario logicaUsuario;
     private Usuario usuario;
+    private Rol rol;
 
     // Spring nos instanciará el bean cuando cree el componente, pero antes debemos setear el usuario para poder usar
     // sus atributos en el jsf
@@ -27,6 +29,7 @@ public class RegistrarBean {
     public void signUp() {
         System.err.println("LLEGO A REGISTRAR");
         logicaUsuario.guardar(usuario);
+        usuario.setRol(rol);
         FacesUtil.mostrarMensajeInformativo("Resultado de la operación", "Usuario guardado exitosamente");
     }
 

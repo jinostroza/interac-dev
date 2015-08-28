@@ -20,10 +20,10 @@ public class UsuarioDAO {
     private EntityManager em;
 
     public void guardar(Usuario u) {
-        if (u.getIdUsuario() == null){
+        if (u.getIdUsuario() == null) {
 
-            em.persist(u);}
-        else em.merge(u);
+            em.persist(u);
+        } else em.merge(u);
     }
 
     public List<Usuario> obtenerTodos() {
@@ -64,15 +64,28 @@ public class UsuarioDAO {
         u.setPassword(clave);
         em.merge(u);
     }
-    public void editarPerfil(String usuario,String correo,String empresa){
+
+    public void editarPerfil(String usuario, String correo, String empresa) {
         Usuario u = (Usuario) em.createNamedQuery("Usuario.findByUser")
-                .setParameter("username",usuario).getSingleResult();
+                .setParameter("username", usuario).getSingleResult();
         u.setCorreo(correo);
         u.setEmpresa(empresa);
         em.merge(u);
 
 
     }
+
+    public Rol obtenerRol(Usuario usuario) {
+        Query q = em.createNamedQuery("Rol.findByUser");
+        q.setParameter("user", usuario);
+
+        try {
+            return (Rol) q.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 
     public UsuarioDto obtenerUsuario(String usuario, String password) {
         UsuarioDto u = null;
@@ -84,16 +97,13 @@ public class UsuarioDAO {
             u.setUsername(ue.getUsername());
 
 
-
         } catch (Exception e) {
         }
         return u;
 
 
+    }
 
-    }
-    public List<Usuario> obtenerConrelacionMasRol(){
-        return em.createNamedQuery("Usuario.findByRol").getResultList();
-    }
+
 
 }
