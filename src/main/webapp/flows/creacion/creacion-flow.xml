@@ -16,12 +16,7 @@
     </view-state>
 
 
-    <view-state id="registraCampana">
-        <transition on="sel" to="seleccionarTotem" />
-    </view-state>
-
-
-    <view-state id="seleccionarTotem">
+   <view-state id="seleccionarTotem">
        <transition on="finalizar" to="finalizar" />
     </view-state>
     <view-state id="crearcampana">
