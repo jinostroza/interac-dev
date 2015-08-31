@@ -6,21 +6,38 @@
       <on-start>
             <evaluate expression="mantenedorContenido.inicio()"/>
       </on-start>
-      <view-state id="campanapasos">
+      <view-state id="campanapasos" view="campanapasos.xhtml">
             <transition on="reg" to="registraCampana">
 
             </transition>
-            <transition on="next2" to="seleccionarTotem"></transition>
+            <transition on="next2" to="seleccionarTotem">
+                  <evaluate expression="mantenedorCategoria.inicio()"/>
+                  <evaluate expression="mantenedorTotems.inicio()"/>
+            </transition>
+            <transition on="next3" to="planificar-pasadas">
+
+            </transition>
       </view-state>
 
 
-      <view-state id="registraCampana" >
+    <view-state id="registraCampana" view="registraCampana.xhtml">
+          <transition on="next1" to="seleccionarTotem"> </transition>
+
+    </view-state>
+      <view-state id="seleccionarTotem" view="seleccionarTotem.xhtml">
 
       </view-state>
-      <view-state id="seleccionarTotem">
+      <view-state id="planificar-pasadas" view="planificar-pasadas.xhtml">
+            <transition on="reg" to="registraCampana">
 
+            </transition>
+            <transition on="next2" to="seleccionarTotem">
+                  <evaluate expression="mantenedorCategoria.inicio()"/>
+                  <evaluate expression="mantenedorTotems.inicio()"/>
+            </transition>
+            <transition on="next3" to="planificar-pasadas">
 
-
+            </transition>
       </view-state>
 
 </flow>

@@ -30,7 +30,7 @@
                 <div class="row">
                     <div class="col-lg-3 col-lg-offset-1">
                         <div class="dashbox">
-                            <p:commandLink value="Elegir Contenido" styleClass="dashbox-header" action="#{facesUtil.redirigir('/plataforma/creacion/seleccionarTotem.jsf')}"/>
+                            <p:commandLink value="Elegir Contenido" styleClass="dashbox-header" action="#{facesUtil.redirigir('/plataforma/campana')}"/>
                             <div Class="button_ elegir-contenido" ></div>
                             <p> Elige el contenido para mostrar en tu campaña </p>
                     </div>
@@ -71,9 +71,6 @@
             <p:dataTable id="checkboxDT" var="anun" value="#{mantenedorAnuncios.anuncios}" rows="3" selection="#{mantenedorAnuncios.selecAnuncios}" rowKey="#{anun.idAnuncio}" style="margin-bottom:0">
 
                 <p:column selectionMode="multiple" style="width:40px;text-align:center"/>
-                <p:column headerText="Id">
-                    <h:outputText value="#{anun.idAnuncio}" />
-                </p:column>
                 <p:column headerText="Nombre">
                     <h:outputText value="#{anun.nombre}" />
                 </p:column>
@@ -94,9 +91,9 @@
         </div>
         <br/>
         <div class="pull-right" style="margin-right: 10%;margin-bottom: 2%">
-            <h:commandButton ajax="false" class="btn btn-interac" value="Volver" action="back"></h:commandButton> <span/>
-            <h:commandButton  class="btn btn-interac" value="Crear nuevo Anuncio"></h:commandButton> <span/>
-            <h:commandButton  class="btn btn-interac" value="Elegir contenido" action="next1"></h:commandButton>
+            <h:button  class="btn btn-interac" value="Volver" action="#{facesUtil.redirigir('/plataforma/campana/campanapasos.jsf')}"></h:button> <span/>
+
+            <h:button  class="btn btn-interac" value="Elegir contenido" action="next1"></h:button>
         </div>
         <p:spacer>  </p:spacer>
         <br/>
