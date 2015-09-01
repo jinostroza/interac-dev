@@ -7,41 +7,37 @@
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
-        <title>Plataforma de Marketing</title>
-        <div class="container" id="myInterac">
-            <header>
-                <h2>Crea tu campaña</h2>
-            </header>
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="dashbox">
-                        <p:commandLink value="Crear Anuncio" styleClass="dashbox-header" action="#{facesUtil.redirigir('/plataforma/creacion')}"/>
-                        <div  Class="button_ crear-anuncio" >
-                                                    </div>
-                        <p> Escoge aqui uno de los anuncios ya creados </p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="dashbox">
-                        <p:commandLink value="Crear Campaña" styleClass="dashbox-header" action="#{facesUtil.redirigir('/plataforma/campana')}"/>
-                        <div Class="button_ crear-campana">
+        <h:form>
+        <p:dataScroller  styleClass="ui-grid-col-11" style="padding: 0px 20px 0px 20px"
+                         value="#{inicioPlataforma.totemList}" var="tom" chunkSize="10">
+            <h:panelGrid columns="2"   columnClasses="logo,detail" >
+             <h:graphicImage id="myImagen" url="http://geo.tv-sign.ru/photo/2013/11/ads_totem.jpg"  />
+                <p:outputPanel>
+                    <h:panelGrid columns="2"  cellpadding="5">
+                        <h:outputLabel value="No° serie:" />
+                        <h:outputText style="font-weight: bold" value="#{tom.noserie}" />
 
-                        </div>
-                        <p> Escoge aqui uno de los anuncios ya creados </p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="dashbox">
-                        <p class="dashbox-header">Pagar</p>
+                        <h:outputLabel value="Tipo:" />
+                        <h:outputText style="font-weight: bold" value="#{tom.tipototem.destipo}" />
 
-                        <div class="button_ pagar"></div>
-                        <p> Escoge aqui uno de los anuncios ya creados </p>
+                        <h:outputLabel value="Establecimiento:" />
+                        <h:outputText style="font-weight: bold" value="#{tom.establecimiento.nombreEstablecimiento}" />
 
-                    </div>
-                </div>
+                        <h:outputLabel value="Ubicacion"/>
+                        <h:outputText style="font-weight: bold" value="#{tom.establecimiento.ubicacion.descubicacion}"/>
 
-            </div>
-        </div>
+                        <h:commandLink rendered="#{!userSession.estaAutentificado()}"
+                                       value="Publica Aqui" action="#{facesUtil.redirigir('logIn.jsf')}"/>
+                        <h:commandLink rendered="#{userSession.tienePermiso('ANUNCIANTE')}"
+                                value="Publica Aqui" actionListener="#{facesUtil.redirigir('/plataforma/anunciante')}"/>
+                        <p:separator/>
+
+                    </h:panelGrid>
+                </p:outputPanel>
+            </h:panelGrid>
+        </p:dataScroller>
+
+        </h:form>
 
     </ui:define>
 </ui:composition>

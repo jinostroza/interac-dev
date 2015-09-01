@@ -30,6 +30,7 @@ public class RegistrarBean {
         System.err.println("LLEGO A REGISTRAR");
         logicaUsuario.guardar(usuario);
         usuario.setRol(rol);
+
         FacesUtil.mostrarMensajeInformativo("Resultado de la operación", "Usuario guardado exitosamente");
     }
 

@@ -69,6 +69,10 @@ tr.table-header{
 	padding:0;
 }
 
+#myImagen{
+	background-size:300px 300px;
+}
+
 /* Contenido Home Usuario */
 #myInterac{
 	background-color:white;

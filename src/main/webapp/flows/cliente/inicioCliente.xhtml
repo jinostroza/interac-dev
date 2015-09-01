@@ -2,18 +2,51 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:p="http://primefaces.org/ui" xmlns:div="http://www.springframework.org/tags/form"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:div="http://www.springframework.org/tags/form"
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
-    <p:panel header="Cliente" >
 
-        <h:panelGrid styleClass="form-group" >
-            <h:outputLabel value="cliente :" />
 
-        </h:panelGrid>
-    </p:panel>
+        <h:form>
+            <div class="container" id="myInterac">
+                <header>
+                    <h2>Sube Tu Anuncio</h2>
+                </header>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h:commandLink styleClass="dashbox" >
+                            <p class="dashbox-header">Crear anuncio</p>
+                            <i class="button_ crear-anuncio"></i>
+                            <p> Escoge aqui uno de los anuncios ya creados </p>
+                        </h:commandLink>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="dashbox">
+                            <p class="dashbox-header">Crear campaña</p>
+                            <div class="button_ crear-campana"></div>
+                            <p> Escoge aqui uno de los anuncios ya creados </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="dashbox">
+                            <p class="dashbox-header">Pagar</p>
+                            <div class="button_ pagar"></div>
+                            <p> Escoge aqui uno de los anuncios ya creados </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="push"></div>
+            </div>
 
+
+
+
+
+
+
+        </h:form>
 
     </ui:define>
 </ui:composition>
