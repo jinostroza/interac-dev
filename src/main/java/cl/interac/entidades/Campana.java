@@ -71,6 +71,15 @@ public class Campana implements Serializable {
         this.fechaFin = fechaFin;
     }
     @Basic
+    @Column(name = "fechainicio")
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+    @Basic
     @Column(name = "pasadas")
     public Integer getPasadas() {
         return pasadas;

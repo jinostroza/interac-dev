@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -53,6 +55,7 @@ public class MantenedorCampana implements Serializable {
 
     public void guardar() {
         campana.setCliente(userSession.getUsuario());
+        campana.setFechaCreacion(Date.from(Instant.now()));
         logicaCampana.guardarCampana(campana);
 
         if (esEdicion()) {

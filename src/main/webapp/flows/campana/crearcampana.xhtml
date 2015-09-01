@@ -3,6 +3,7 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
+
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
@@ -12,39 +13,16 @@
                 <h:form>
                 <div class="col-md-6 formulario-texto">
                     <div class="form-group" ontimeupdate="true">
-                        <label>Nombre</label>
-                        <h:inputText  styleClass="form-control" value="#{mantenedorAnuncios.anuncio.nombre}" />
+                        <h1>Dale Nombre a tu campaña</h1>
+                        <h:inputText  styleClass="form-control" value="#{mantenedorCampana.campana.nombre}" />
                         <br></br>
-                        <br></br>
-                        <label>Descripción</label>
-                        <h:inputTextarea  class="form-control" rows="6" cols="33" autoResize="false"  value="#{mantenedorAnuncios.anuncio.descanuncio}"
-                                         placeholder="Escriba la descripción de su anuncio"/>
-                        <br></br>
-                        <label>Categoría</label>
 
-                        <h:selectOneMenu  class="form-control" value="#{mantenedorAnuncios.categoria}"
-                                         converter="entityConverter">
-                            <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione categoria --"/>
-                            <f:selectItems value="#{mantenedorAnuncios.categorias}" var="categor"
-                                           itemLabel="#{categor.desccategoria}" itemValue="#{categor}"/>
-                        </h:selectOneMenu>
-
-                        <br></br>
-                        <label >Seleccionar Contenido</label>
-                        <h:selectOneMenu id="contll" class="form-control" value="#{mantenedorAnuncios.contenido}"
-                                         converter="entityConverter">
-                            <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Contenido --"/>
-                            <f:selectItems value="#{mantenedorAnuncios.contenidoList}" var="conten"
-                                           itemLabel="#{conten.path}" itemValue="#{conten}" />
-                        </h:selectOneMenu>
-
-                        <br></br>
-                        <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{mantenedorAnuncios.guardar()}"
-                                         value="Crear Anuncio">
-                            </h:commandButton><span>  </span>
-                        <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
+                        <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('inicio.jsf')}"
+                                         value="volver"> <span/>
+                        </h:commandButton>
+                        <h:commandButton ajax="false" styleClass="btn btn-interac" actionListener="#{mantenedorCampana.guardar}"
                                                                 value="Crear Campaña">
-                    </h:commandButton>
+                        </h:commandButton>
                     </div>
                 </div>
                 </h:form>
