@@ -1,5 +1,6 @@
 package cl.interac.negocio;
 
+import cl.interac.entidades.Rol;
 import cl.interac.entidades.Usuario;
 import cl.interac.dao.UsuarioDAO;
 import cl.interac.util.dto.UsuarioDto;
@@ -13,6 +14,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.management.Query;
 
 /**
  * Created by Jorge on 15-04-15.
@@ -37,7 +40,7 @@ public class LogicaUsuario {
 
     @Transactional(readOnly = true)
     public Usuario obtenerPorUsuarioContrasenna(String user, String password) {
-        return usuarioDAO.obtenerPorUsuarioContrasenna(user,password);
+        return usuarioDAO.obtenerPorUsuarioContrasenna(user, password);
     }
 
     @Transactional(readOnly = true)
@@ -45,13 +48,22 @@ public class LogicaUsuario {
         return usuarioDAO.obtenerPorUsuario(username);
     }
 
-    @Transactional(readOnly = true)
-    public List<Usuario> obtenetConRol(){return usuarioDAO.obtenerConRelacion();}
-
 
     @Transactional(readOnly = false)
     public void cambiarClave(String usuario, String clave) {
         usuarioDAO.cambiarClave(usuario, clave);
+    }
+
+    // cachate dice obtener rol y retorna usuario, fuck the police
+    @Transactional(readOnly = true)
+    public Rol obtenerRol(Usuario usuario) {
+        return usuarioDAO.obtenerRol(usuario);
+    }
+
+
+    @Transactional(readOnly = false)
+    public void editarPerfil(String usuario,String correo, String empresa){
+        usuarioDAO.editarPerfil(usuario,correo,empresa);
     }
 
     @Transactional(readOnly = true)
@@ -62,9 +74,7 @@ public class LogicaUsuario {
             return null;
         }
     }
-    @Transactional(readOnly = true)
-    public void editarPerfil(String usuario,String correo, String empresa){
-        usuarioDAO.editarPerfil(usuario,correo,empresa);
-    }
+
+
 
 }

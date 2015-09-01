@@ -1,0 +1,102 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/templates/default.xhtml">
+    <ui:define name="contenido">
+
+        <div class="container" id="myInterac">
+            <header>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2>Programar campaña</h2>
+                    </div>
+                    <div class="nav-submenu col-lg-6">
+                        <ul>
+                            <li><a  class="active"  href="#">Elegir</a></li>
+                            <li><a href="#">Seleccionar</a></li>
+                            <li><a href="#">Planificar</a></li>
+                            <li><a href="#">Confirmar</a></li>
+                        </ul>
+                    </div>
+                </div>
+             </header>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>Elegir contenido</h3>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3 col-lg-offset-1">
+                        <div class="dashbox">
+                            <p:commandLink value="Elegir Contenido" styleClass="dashbox-header" action="#{facesUtil.redirigir('/plataforma/campana')}"/>
+                            <div Class="button_ elegir-contenido" ></div>
+                            <p> Elige el contenido para mostrar en tu campaña </p>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="dashbox">
+                        <p:commandLink value="Crear Anuncio" styleClass="dashbox-header" action="#{facesUtil.redirigir('/plataforma/creacion')}"/>
+                        <div class="button_ crear-anuncio"></div>
+                        <p> Sube un nuevo anuncio a nuestra plataforma </p>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="dashbox">
+                    <p:commandLink value="Elegir mas tarde" styleClass="dashbox-header" action="#{facesUtil.redirigir('/inicio.jsf')}"/>
+                    <div class="button_ elegir-mas-tarde"  ></div>
+                    <p>Elige tu contenido para la campaña después </p>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+        <div class="col-lg-6">
+            <h3 align="center" style="align-items: flex-start">Seleccionar contenido</h3>
+        </div>
+<div class="input-group col-lg-3 col-lg-offset-9" style="margin-right: 20%" >
+<span class="input-group-btn" style="align-self: center" >
+	        		<p:commandButton class="btn btn-interac" icon="ui-icon-search" style="width: 40px;height: 34px " type="button">
+
+                    </p:commandButton>
+      			</span>
+<p:inputText type="text" class="form-control" placeholder="Busca anuncios según palabra clave"/>
+</div><!-- /input-group -->
+        <br/>
+        <div class="ui-grid ui-grid-responsive">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-1"></div>
+            <div class="ui-grid-col-10 table-header" >
+            <p:dataTable id="checkboxDT" var="anun" value="#{mantenedorAnuncios.anuncios}" rows="3" selection="#{mantenedorAnuncios.selecAnuncios}" rowKey="#{anun.idAnuncio}" style="margin-bottom:0">
+
+                <p:column selectionMode="multiple" style="width:40px;text-align:center"/>
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{anun.nombre}" />
+                </p:column>
+                <p:column headerText="Descripcion" >
+                    <h:outputText value="#{anun.descanuncio}" />
+                </p:column>
+                <p:column headerText="Contenido">
+                    <h:outputText value="#{anun.contenido.path}" />
+                </p:column>
+                <p:column headerText="Categoria">
+                    <h:outputText value="#{anun.categoria.desccategoria}" />
+                </p:column>
+
+            </p:dataTable>
+                </div>
+            <div class="ui-grid-col-1"></div>
+        </div>
+        </div>
+        <br/>
+        <div class="pull-right" style="margin-right: 10%;margin-bottom: 2%">
+            <h:button  class="btn btn-interac" value="Volver" action="#{facesUtil.redirigir('/plataforma/campana/campanapasos.jsf')}"></h:button> <span/>
+
+            <h:button  class="btn btn-interac" value="Elegir contenido" action="next1"></h:button>
+        </div>
+        <p:spacer>  </p:spacer>
+        <br/>
+
+    </ui:define>
+</ui:composition>

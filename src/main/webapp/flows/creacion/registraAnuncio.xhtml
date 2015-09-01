@@ -19,7 +19,7 @@
                         <br></br>
 
                         <div id="cuadro-imagen" class="dz-default dz-message">
-                            <p:fileUpload fileUploadListener="#{mantenedorContenido.subir}" mode="advanced"
+                            <p:fileUpload style="width: 330px" fileUploadListener="#{mantenedorContenido.subir}" mode="advanced"
                                           previewWidth="296" update="messages" uploadLabel="Subir" cancelLabel="Cancelar" auto="false" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 
                             <p:growl id="messages" showDetail="true" />
@@ -56,19 +56,20 @@
 
                         <br></br>
                         <label >Seleccionar Contenido</label>
-
-                        <h:selectOneMenu   class="form-control" value="#{mantenedorAnuncios.contenido}"
+                        <h:selectOneMenu id="contll" class="form-control" value="#{mantenedorAnuncios.contenido}"
                                          converter="entityConverter">
                             <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Contenido --"/>
                             <f:selectItems value="#{mantenedorAnuncios.contenidoList}" var="conten"
-                                           itemLabel="#{conten.path}" itemValue="#{conten}"/>
+                                           itemLabel="#{conten.path}" itemValue="#{conten}" />
                         </h:selectOneMenu>
-                        <br></br>
 
                         <br></br>
-                        <h:commandButton ajax="false" styleClass="btn btn-default btn-block" action="#{mantenedorAnuncios.guardar()}"
+                        <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{mantenedorAnuncios.guardar()}"
                                          value="Crear Anuncio">
-                            </h:commandButton>
+                            </h:commandButton><span>  </span>
+                        <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
+                                                                value="Crear Campaña">
+                    </h:commandButton>
                     </div>
                 </div>
                 </h:form>

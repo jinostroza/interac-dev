@@ -2,6 +2,7 @@ package cl.interac.presentacion.usuarios;
 
 import cl.interac.entidades.Usuario;
 import cl.interac.negocio.LogicaUsuario;
+import cl.interac.security.LogInManager;
 import cl.interac.security.SHA512;
 import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.UserSession;
@@ -10,6 +11,7 @@ import cl.interac.util.pojo.Md5;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -21,12 +23,14 @@ import java.util.List;
  */
 @Component
 @Scope("flow")
-public class mantenedorPefil implements Serializable {
+public class MantenedorPerfil implements Serializable {
     @Autowired
     public LogicaUsuario logicaUsuario;
     @Autowired
     private UserSession userSession; // es un componente spring y de scope session, por ende hay que
-    // inyectarlo, popoooosho
+    @Autowired
+    LogInManager logInManager;
+
 
     private String claveActual;
     private String claveNueva;
@@ -38,8 +42,8 @@ public class mantenedorPefil implements Serializable {
     private Usuario usuario;
     private List<Usuario> usuarioList;
 
-    @PostConstruct
-    public void inicio(){
+
+    public void inicio() {
         usuarioList = logicaUsuario.obtenerTodos();
         usuario = new Usuario();
     }
@@ -50,26 +54,25 @@ public class mantenedorPefil implements Serializable {
             FacesUtil.mostrarMensajeError("Operación fallida", "La nueva contraseña no coincide con lo confirmado");
             return;
 
-        } else if (logicaUsuario.logInExterno(userSession.getUsuario().getUsername(), SHA512.encode(claveActual)) == null) {
+        } else if (logicaUsuario.logInExterno(userSession.getUsuario().getUsername(), (claveActual)) == null) {
             FacesUtil.mostrarMensajeError("Operación fallida", "La nueva contraseña actual no coincide");
-        }else {
+        } else {
 
             logicaUsuario.cambiarClave(userSession.getUsuario().getUsername(), claveConfirmada);
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha cambiado correctamente la contraseña");
         }
     }
 
-    public void CambiaPerfil(){
-        if (!userSession.getUsuario().getPassword().equals(claveActual) ) {
+    public void cambiaPerfil() {
+        if (!userSession.getUsuario().getPassword().equals(claveActual)) {
             FacesUtil.mostrarMensajeError("Operación fallida", "contraseña invalida");
             return;
-        }else if(correo==null || empresa== null){
-            FacesUtil.mostrarMensajeError("Operacion fallida","falta rellenar campos");
+        } else if (correo == null || empresa == null) {
+            FacesUtil.mostrarMensajeError("Operacion fallida", "falta rellenar campos");
         }
 
-          logicaUsuario.editarPerfil(userSession.getUsuario().getUsername(),correo,empresa);
-            FacesUtil.mostrarMensajeInformativo("Operación exitosa", "usuario ["+userSession.getUsuario().getUsername()+"] modificado");
-
+        logicaUsuario.editarPerfil(userSession.getUsuario().getUsername(), correo, empresa);
+        FacesUtil.mostrarMensajeInformativo("Operación exitosa", "usuario [" + userSession.getUsuario().getUsername() + "] modificado");
     }
 
 

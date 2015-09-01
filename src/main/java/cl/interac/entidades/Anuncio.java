@@ -3,6 +3,7 @@ package cl.interac.entidades;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Jorge on 25-04-15.
@@ -14,7 +15,9 @@ import java.util.Date;
                 @NamedQuery(name = "Anuncio.findAll", query = "SELECT a FROM Anuncio a "),
                 @NamedQuery(name = "Anuncio.findAllWithRelationships",
                         query = "SELECT a from Anuncio a " +
-                                "inner join fetch a.categoria ca")
+                                "inner join fetch a.categoria ca"+
+                                "inner join fetch a.contenido co"
+                )
 
 
         }
@@ -61,16 +64,15 @@ public class Anuncio implements Serializable {
     }
 
     @JoinColumn(name = "idcategoria", referencedColumnName = "idcategoria")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY )
     public Categoria getCategoria() {
         return categoria;
     }
-
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
-     @JoinColumn(name = "idcontenido", referencedColumnName = "idcontenido")
+    @JoinColumn(name = "idcontenido", referencedColumnName = "idcontenido")
     @ManyToOne(fetch = FetchType.LAZY)
     public Contenido getContenido() {
         return contenido;
@@ -96,4 +98,5 @@ public class Anuncio implements Serializable {
     public int hashCode() {
         return idAnuncio != null ? 31 * idAnuncio.hashCode() : 0;
     }
+
 }
