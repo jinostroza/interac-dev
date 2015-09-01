@@ -15,17 +15,21 @@ import java.util.List;
                 @NamedQuery(
                         name = "Campana.findAllWithRelationships",
                         query = "SELECT c FROM Campana c " +
-                                "INNER JOIN FETCH c.totem t " +
                                 "INNER JOIN FETCH c.cliente cli"
                 )
         }
 )
 public class Campana implements Serializable {
     private Integer idcampana;
-    private Date fechaspasadas;
+    private Date fechaCreacion;
+    private String nombre;
+    private Date fechaFin;
+    private Date fechaInicio;
+    private Integer pasadas;
+
     // relaciones
     private List<Anuncio> anuncios;
-    private Totem totem;
+
     private Usuario cliente;
 
     @Id
@@ -40,24 +44,49 @@ public class Campana implements Serializable {
     }
 
     @Basic
-    @Column(name = "fechaspasadas")
-    public Date getFechaspasadas() {
-        return fechaspasadas;
+    @Column(name = "fechacreacion")
+    public Date getFechaCreacion() {
+        return fechaCreacion;
     }
 
-    public void setFechaspasadas(Date fechaspasadas) {
-        this.fechaspasadas = fechaspasadas;
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+    @Basic
+    @Column(name = "nombre")
+    public String getNombre() {
+        return nombre;
     }
 
-
-    @JoinColumn(name = "idtotem", referencedColumnName = "idtotem")
-    @ManyToOne(fetch = FetchType.LAZY)
-    public Totem getTotem() {
-        return totem;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    @Basic
+    @Column(name = "fechafin")
+    public Date getFechaFin() {
+        return fechaFin;
     }
 
-    public void setTotem(Totem totem) {
-        this.totem = totem;
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+    @Basic
+    @Column(name = "fechainicio")
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+    @Basic
+    @Column(name = "pasadas")
+    public Integer getPasadas() {
+        return pasadas;
+    }
+
+    public void setPasadas(Integer pasadas) {
+        this.pasadas = pasadas;
     }
 
     @JoinColumn(name = "idcliente", referencedColumnName = "idusuario")

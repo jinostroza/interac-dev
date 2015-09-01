@@ -49,15 +49,6 @@ public class Totem implements Serializable {
         this.noserie = noserie;
     }
 
-    @OneToMany(mappedBy = "totem")
-    public List<Campana> getCampanas() {
-        return campanas;
-    }
-
-    public void setCampanas(List<Campana> campanas) {
-        this.campanas = campanas;
-    }
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idtipo", referencedColumnName = "idtipo", nullable = false)
     public Tipototem getTipototem() {

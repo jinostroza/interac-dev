@@ -45,7 +45,7 @@ module.exports = function Sincronizador() {
                                 });
                             }
                             if (pendientes == 0) {
-                                self.Ftp.end;
+                                self.Ftp.end();
                             }
                         });
                     })(remoteFile, i);

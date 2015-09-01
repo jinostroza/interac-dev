@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+
+                template="/templates/default.xhtml">
+
+    <ui:define name="contenido">
+        <header>
+            <h2>Crea tu Campaña</h2>
+        </header>
+                <h:form>
+                <div class="col-md-6 formulario-texto">
+                    <div class="form-group" ontimeupdate="true">
+                        <h1>Dale Nombre a tu campaña</h1>
+                        <h:inputText  styleClass="form-control" value="#{mantenedorCampana.campana.nombre}" />
+                        <br></br>
+
+                        <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('inicio.jsf')}"
+                                         value="volver"> <span/>
+                        </h:commandButton>
+                        <h:commandButton ajax="false" styleClass="btn btn-interac" actionListener="#{mantenedorCampana.guardar}"
+                                                                value="Crear Campaña">
+                        </h:commandButton>
+                    </div>
+                </div>
+                </h:form>
+
+
+
+
+    </ui:define>
+</ui:composition>
