@@ -7,6 +7,7 @@
             <evaluate expression="mantenedorContenido.inicio()"/>
       </on-start>
       <view-state id="crearcampana">
+            <transition on="pasos" to="campanapasos"></transition>
 
       </view-state>
       <view-state id="campanapasos" view="campanapasos.xhtml">
@@ -20,6 +21,7 @@
             <transition on="next3" to="planificar-pasadas">
 
             </transition>
+
       </view-state>
 
 
