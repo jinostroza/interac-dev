@@ -11,11 +11,7 @@
 
     <p:outputPanel styleClass="user-menu pull-right">
         <ul>
-            <ui:fragment rendered="#{userSession.estaAutentificado()}">
-                <li>
-                    <p:commandLink value="Inicio" action="#{facesUtil.redirigir('/inicio.jsf')}" />
-                </li>
-            </ui:fragment>
+
 
             <ui:fragment rendered="#{userSession.estaAutentificado() || userSession.tienePermiso('CLIENTE')}">
             <li>

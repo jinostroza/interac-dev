@@ -116,7 +116,7 @@ public class Usuario implements Serializable {
         this.contenido = contenido;
     }
 
-   @JoinColumn(name = "idrol",referencedColumnName = "id_rol",nullable = false, columnDefinition = "1")
+   @JoinColumn(name = "idrol",referencedColumnName = "id_rol",nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     public Rol getRol() {
         return rol;

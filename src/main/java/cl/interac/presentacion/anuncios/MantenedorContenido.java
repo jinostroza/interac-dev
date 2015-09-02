@@ -3,6 +3,7 @@ package cl.interac.presentacion.anuncios;
 import cl.interac.entidades.*;
 import cl.interac.negocio.LogicaContenido;
 import cl.interac.negocio.LogicaUsuario;
+import cl.interac.util.components.Constantes;
 import cl.interac.util.components.UserSession;
 import cl.interac.negocio.LogicaAnuncio;
 import cl.interac.util.services.FileUploader;
@@ -14,12 +15,11 @@ import cl.interac.util.components.FacesUtil;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.*;
 import java.lang.*;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import java.io.FileInputStream;
-import java.io.Serializable;
 import java.util.List;
 /**
  * Created by Joaco on 17/08/2015.
@@ -51,6 +51,9 @@ public class MantenedorContenido implements Serializable{
     @Autowired
     private UserSession userSession;
 
+    @Autowired
+    private Constantes constantes;
+
     public MantenedorContenido(){
         contenido = new Contenido();
     }
@@ -68,24 +71,48 @@ public class MantenedorContenido implements Serializable{
         contenidoList = logicaContenido.obtenerTodos();
         contenido = new Contenido();
     }
+
+
+
+
     public void subir(FileUploadEvent fue) {
         operacion = TipoOperacion.INSERTAR;
         System.err.println("LLEGO A LA WA " + fue);
-        String path = fileUploader.subir(fue, "/anuncios/");
-        System.err.println("SE SUPONE QUE SUBI EN " + path);
-        String cont = fue.getFile().getFileName();
-        contenido = new Contenido();
-        contenido.setUsuario(userSession.getUsuario());
-        contenido.setPath(cont);
-        logicaContenido.guardar(contenido);
-        if (esEditar()) {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña [" +cont + "]");
-        } else {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el afiche [" + cont + "]");
+
+
+            try {
+                String path = fileUploader.subir(fue, "/anuncios/" + userSession.getUsuario().getUsername() + "/");
+                System.err.println("SE SUPONE QUE SUBI EN " + path);
+                contenido = new Contenido();
+                contenido.setUsuario(userSession.getUsuario());
+                contenido.setPath(path);
+                logicaContenido.guardar(contenido);
+
+                 /*  boolean renombrado = archivo1.renameTo(archivo2);
+
+
+            File archivo1 = new File(path);
+                File archivo2 = new File(constantes.getPathArchivos() +"/anuncios/"+userSession.getUsuario().getUsername()+"/"  + ".jpg");
+                if (renombrado) {
+                    FacesUtil.mostrarMensajeInformativo(archivo2.getName(), "Archivo Renombrado con éxito");
+                } else {
+                    FacesUtil.mostrarMensajeError(null, "No se pudo renombrar el archivo");
+                } */
+
+                if (esEditar()) {
+                    FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Su imagen a sido subida [");
+                } else {
+                    FacesUtil.mostrarMensajeInformativo("error","ocurrio Algo");
+
+                }
+            }catch (Exception e){ return;}
+
+
+
 
         }
 
-    }
+
     public void eliminar() {
        logicaContenido.eliminarContenido(contenido);
     }
