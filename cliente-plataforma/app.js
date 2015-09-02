@@ -6,7 +6,7 @@ var Sincronizador = require("./sincronizador.js");
 
 // variables
 var serverPort = 3000
-var sleepTime = 10000;
+var sleepTime = 60 * 60 * 1000; // cada 1 hora
 
 // motor de plantillas
 App.set("view engine", "jade");
@@ -41,7 +41,6 @@ var server = App.listen(serverPort, function () {
 function sincronizar() {
     console.log("Hilo sincronizador lanzado");
     this.run();
-
     setTimeout(sincronizar.bind(this), sleepTime);
 }
 
