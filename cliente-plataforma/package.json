@@ -1,0 +1,19 @@
+{
+  "name": "cliente-plataforma",
+  "version": "1.0.0",
+  "description": "Dependencias NPM para la app cliente Interac",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Claudio Olivares",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.13.3",
+    "fs": "0.0.2",
+    "ftp": "^0.3.10",
+    "jade": "^1.11.0",
+    "path": "^0.11.14"
+  }
+}

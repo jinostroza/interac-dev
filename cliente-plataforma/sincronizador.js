@@ -15,6 +15,40 @@ function Sincronizador() {
 }
 
 (function() {
+    // método privado
+    var processData = function(data) {
+        var self = this;
+
+        if (!data.length) {
+            self.Ftp.end();
+            return;
+        }
+
+        var remoteFile = data.shift();
+
+        console.log("sincronizando "+remoteFile.name);
+        FileSystem.stat(self.localData + remoteFile.name, function(error, stats) {
+            if (error || stats.size != remoteFile.size) {
+                console.log("intentando descargar", remoteFile.name);
+
+                self.Ftp.get(self.remoteData + remoteFile.name, function(error, stream) {
+                    if (error) {
+                        console.log("no se pudo descargar", error);
+                        return null;
+                    };
+                    console.log("se ha descargado " + self.remoteData + remoteFile.name);
+
+                    stream.once('close', function() {});
+                    stream.pipe(FileSystem.createWriteStream(self.localData + remoteFile.name));
+                    processData.call(self, data);
+                });
+            } else {
+                processData.call(self, data);
+            }
+        });
+    };
+
+    // método público
     this.run = function() {
         this.Ftp.connect({
             host: this.server,
@@ -28,37 +62,17 @@ function Sincronizador() {
         var self = this;
 
         this.Ftp.on("ready", function() {
-            console.log("conectado");
+            console.log("conectado al ftp");
             self.Ftp.list(self.remoteData, function(error, data) {
-                console.log("directorio listado");
+                console.log("directorio remoto listado");
                 if (error) return null;
-
-                (function(archivos) {
-                    while (archivos.length) {
-                        remoteFile = archivos.shift();
-                        console.log("Sincronizando "+remoteFile.name);
-                        FileSystem.stat(__dirname + "/" + self.localData + remoteFile.name, function(error, stats) {
-                            var obj = {};
-                            if (error || stats.size != remoteFile.size || stats.mtime != remoteFile.date) {
-
-                                self.Ftp.get(self.remoteData + remoteFile.name, function(error, stream) {
-                                    console.log("descargando " + self.remoteData + remoteFile.name, stream);
-                                    if (error) return null;
-
-                                    stream.once('close', function() {});
-                                    stream.pipe(FileSystem.createWriteStream(self.localData + remoteFile.name));
-                                });
-                            }
-                        });
-                    }
-                    self.Ftp.end();
-                })(data);
+                processData.call(self, data);
             });
         });
 
-        this.Ftp.on("close", function(closed) { console.log("Cerrando conexiones", closed); });
-        this.Ftp.on("end", function() { console.log("Finalizando conexiones"); });
-        this.Ftp.on("error", function(error) { console.log("Error:", error); });
+        this.Ftp.on("close", function(closed) { console.log("conexión ftp cerrada", closed); });
+        this.Ftp.on("end", function() { console.log("finalizando conexión"); });
+        this.Ftp.on("error", function(error) { console.log("error:", error); });
 
         this.firstTime = false;
     };

@@ -3,30 +3,36 @@ var Express = require("express");
 var BodyParser = require("body-parser");
 var App = Express();
 var Sincronizador = require("./sincronizador.js");
+var Path = require("path");
 
 // variables
 var serverPort = 3000
-var sleepTime = 60 * 60 * 1000; // cada 1 hora
+var sleepTime = 6 * 60 * 60 * 1000; // cada 6 horas
+// var sleepTime = 20 * 1000; // cada 20 segundos
 
 // motor de plantillas
 App.set("view engine", "jade");
 
-// para poder procesar solicitudes POST
-App.use(BodyParser.urlencoded({ extended: false }));
-App.use(BodyParser.json());
+// definimos la carpeta de recursos estaticos
+App.use("/public", Express.static("public"));
 
 // middleware para inteceptar los errores internos
 App.use(function(err, req, res, next) {
     res.render("error");
 });
 
-// definimos la carpeta de recursos estaticos
-App.use("/public", Express.static("public"));
-
-// el inicio de nuestro sitio
-App.get("/", function (req, res) {
-    res.render("index", { title: "Plataforma Interac"});
+// middleware para mantener el appPath
+App.use(function(req, res, next) {
+    req.appPath = __dirname;
+    next();
 });
+
+// enrutador de solicitudes de la aplicación
+var Routes = require("./routes/main.js")(App);
+
+// para poder procesar solicitudes POST
+App.use(BodyParser.urlencoded({ extended: false }));
+App.use(BodyParser.json());
 
 // levantamos el servidor
 var server = App.listen(serverPort, function () {
