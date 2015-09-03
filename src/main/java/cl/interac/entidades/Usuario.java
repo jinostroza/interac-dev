@@ -116,17 +116,19 @@ public class Usuario implements Serializable {
         this.contenido = contenido;
     }
 
-   @JoinColumn(name = "idrol",referencedColumnName = "id_rol",nullable = false)
+   @JoinColumn(name = "idrol",referencedColumnName = "id_rol",nullable = false , columnDefinition ="1" )
     @ManyToOne(fetch = FetchType.LAZY)
     public Rol getRol() {
         return rol;
     }
 
     public void setRol(Rol rol) {
-        this.rol = rol;
+        if (rol == null) {
+            rol = new Rol();
+            rol.setIdrol(1);
+        }
+        this.rol=rol;
     }
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

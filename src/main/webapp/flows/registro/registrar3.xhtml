@@ -15,28 +15,31 @@
                 background-color: #E52620;
             }
         </h:outputStylesheet>
+        <h:form>
 <div class="container">
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10" id="cuadro-registro">
             <div class="btn-register_ paso-uno-inactive"></div>
-            <div class="btn-register_ paso-dos-active"></div>
             <div class="btn-register_ paso-tres-active"></div>
             <div class="col-md-6 col-md-offset-3" >
             <br/>
         <br/>
     <br/>
+
         <h3>¡Gracias por registrarte!</h3>
         <p>Haz creado correctamente una cuenta en <strong>Interac</strong>. Por favor revisa tu correo electrónico y haz clic en el enlace para confirmar tu cuenta.</p>
-                <h:commandLink />
+                <h:commandLink value="inicio" action="#{facesUtil.redirigir('inicio.jsf')}" />
+
         </div>
          </div>
         </div>
+
         <div class="col-md-1"></div>
                 </div>
         <div class="push"></div>
 
-
+        </h:form>
 <ui:include src="/templates/includes/Footer.xhtml"/>
         </ui:define>
         </ui:composition>

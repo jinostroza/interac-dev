@@ -59,7 +59,7 @@
                         <ui:fragment rendered="#{!userSession.estaAutentificado()}">
                         <h:commandLink class="col-lg-4" action="#{facesUtil.redirigir('logIn.jsf')}" >
                             <div class="dashbox">
-                                <h:outputLabel value="Entrega LA' Monea" styleClass="dashbox-header"/>
+                                <h:outputLabel value="pagar" styleClass="dashbox-header"/>
                                 <div class="button_ pagar"></div>
                                 <p> Escoge aqui uno de los anuncios ya creados </p>
                             </div>
@@ -68,7 +68,7 @@
                         <ui:fragment rendered="#{userSession.estaAutentificado()}">
                         <h:commandLink class="col-lg-4">
                             <div class="dashbox">
-                                <h:outputLabel value="Entrega LA' Monea" styleClass="dashbox-header"/>
+                                <h:outputLabel value="pagar" styleClass="dashbox-header"/>
                                 <div class="button_ pagar"></div>
                                 <p> Escoge aqui uno de los anuncios ya creados </p>
                             </div>

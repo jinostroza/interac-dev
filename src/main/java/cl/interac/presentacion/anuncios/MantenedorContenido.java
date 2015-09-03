@@ -99,14 +99,14 @@ public class MantenedorContenido implements Serializable{
                     FacesUtil.mostrarMensajeError(null, "No se pudo renombrar el archivo");
                 } */
 
-                if (esEditar()) {
+
                     FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Su imagen a sido subida [");
-                } else {
-                    FacesUtil.mostrarMensajeInformativo("error","ocurrio Algo");
 
-                }
+
+
+
             }catch (Exception e){ return;}
-
+        FacesUtil.mostrarMensajeInformativo("error","ocurrio Algo");
 
 
 
