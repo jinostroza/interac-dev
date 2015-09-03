@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/logInTemplate.xhtml">
+
+    <ui:define name="contenido">
+        <title>Registro</title>
+        <div class="login-header">
+            <div class="login-logo"></div>
+        </div>
+        <h:outputStylesheet>
+            body {
+                background-color: #E52620;
+            }
+        </h:outputStylesheet>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10" id="cuadro-registro">
+                    <div class="btn-register_ paso-uno-inactive"></div>
+                    <div class="btn-register_ paso-dos-active"></div>
+                    <div class="btn-register_ paso-tres-active"></div>
+                    <div class="col-md-6 col-md-offset-3" >
+                        <h4>Define el tipo de usuario</h4>
+                    </div>
+                    <div class="row col-md-offset-1">
+                        <div class="col-md-3 col-md-offset-1 tipo-usuario_ btn-anunciante">
+                            <input type="checkbox" class="margen-box" /><a href="#"></a>
+                        </div>
+                        <div class="col-md-3 tipo-usuario_ btn-empresa">
+                            <input type="checkbox" class="margen-box"/><a href="#"></a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+
+        <div class="push"></div>
+
+
+        <ui:include src="/templates/includes/Footer.xhtml"/>
+    </ui:define>
+</ui:composition>

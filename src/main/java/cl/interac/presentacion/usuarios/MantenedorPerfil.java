@@ -1,5 +1,6 @@
 package cl.interac.presentacion.usuarios;
 
+import cl.interac.entidades.Rol;
 import cl.interac.entidades.Usuario;
 import cl.interac.negocio.LogicaUsuario;
 import cl.interac.security.LogInManager;
@@ -35,7 +36,7 @@ public class MantenedorPerfil implements Serializable {
     private String claveActual;
     private String claveNueva;
     private String claveConfirmada;
-
+    private Rol rol;
     private String correo;
     private String empresa;
     private String username;
@@ -151,5 +152,11 @@ public class MantenedorPerfil implements Serializable {
         this.claveConfirmada = claveConfirmada;
     }
 
+    public Rol getRol() {
+        return rol;
+    }
 
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
 }
