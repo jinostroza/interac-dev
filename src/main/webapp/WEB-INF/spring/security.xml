@@ -12,13 +12,13 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
 
     <security:http auto-config="false" entry-point-ref="authenticationEntryPoint"
                    use-expressions="true"
-                   access-denied-page="/inicio.jsf">
+                   access-denied-page="/home.jsf">
 
         <security:form-login login-page="/logIn.jsf" always-use-default-target="true" default-target-url="/inicio.jsf"/>
 
 
 
-        <security:session-management invalid-session-url="/inicio.jsf">
+        <security:session-management invalid-session-url="/home.jsf">
             <security:concurrency-control max-sessions="1"/>
         </security:session-management>
 
@@ -27,11 +27,11 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
 
         <security:logout invalidate-session="true"
                          delete-cookies="true"
-                         logout-success-url="/inicio.jsf"
+                         logout-success-url="/home.jsf"
                          logout-url="/logOut"/>
 
 
-        <security:intercept-url pattern="inicio.jsf" access="permitAll"/>
+        <security:intercept-url pattern="home.jsf" access="permitAll"/>
         <security:intercept-url pattern="plataforma/mantencion/**" access="hasRole('ADMINISTRADOR')"/>
         <security:intercept-url pattern="plataforma/anunciante/**" access="hasRole('ANUNCIOANTE')"/>
         <security:intercept-url pattern="plataforma/cliente/**" access="hasRole('CLIENTE')"/>

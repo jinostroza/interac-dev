@@ -6194,12 +6194,12 @@ button.close {
 }
 .carousel-control .icon-prev,
 .carousel-control .glyphicon-chevron-left {
-  left: 50%;
+  left: 10%;
   margin-left: -10px;
 }
 .carousel-control .icon-next,
 .carousel-control .glyphicon-chevron-right {
-  right: 50%;
+  right: 10%;
   margin-right: -10px;
 }
 .carousel-control .icon-prev,
@@ -6580,4 +6580,51 @@ button.close {
     display: none !important;
   }
 }
+.main {
+  width:90%;
+  max-width:1000px;
+  margin:20px auto;
+}
+
+.slides {
+  width:100%;
+}
+
+.slides img {
+  width:100%;
+}
+
+.slidesjs-pagination {
+  background:#424242;
+  list-style:none;
+  overflow:hidden;
+}
+.slidesjs-pagination li {
+  float:left;
+}
+
+.slidesjs-pagination li a {
+  display:block;
+  padding:10px 20px;
+  color:#fff;
+  text-decoration:none;
+}
+
+.slidesjs-pagination li a:hover {
+  background:#000;
+}
+
+.slides .active {
+  background:#000;
+}
+
+.slidesjs-navigation{
+  background:#000;
+  color:#fff;
+  text-decoration:none;
+  display:inline-block;
+  padding:13.5px 20px;
+  float:right;
+}
+
 /*# sourceMappingURL=bootstrap.css.map */
