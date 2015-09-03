@@ -29,7 +29,7 @@ tr.table-header{
 }
 .header .header-top .logo{
 	position: absolute;
-	background-image: url('/resources/css/img/interacblanco.png');
+	background-image: url('../img/interacblanco.png');
 	width: 200px;
 	height: 60px;
 	margin: 25px 0 15px 50px;

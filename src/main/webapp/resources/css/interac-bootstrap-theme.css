@@ -69,6 +69,10 @@ tr.table-header{
 	padding:0;
 }
 
+#myImagen{
+	background-size:300px 300px;
+}
+
 /* Contenido Home Usuario */
 #myInterac{
 	background-color:white;
@@ -184,11 +188,11 @@ tr.table-header{
 }
 .pagar
 {
-	background-image: url("/resources/css/img/buttons/confirmar-campaña.png");
+	background-image: url("../css/img/buttons/confirmar-campaña.png");
 }
 #myInterac .dashbox:hover > .pagar
 {
-	background-image: url("/resources/css/img/buttons/confirmar-campaña-hover.png");
+	background-image: url("../css/img/buttons/confirmar-campaña-hover.png");
 }
 .usar-plantilla
 {
@@ -286,10 +290,10 @@ tr.table-header{
 	color:white;
 }
 .dashbox-header:hover
-{''
+{
 	font-weight: bold;
 	font-size: 18px;
-	color:#444444;
+	color:#ffffff;
 }
 .container
 {

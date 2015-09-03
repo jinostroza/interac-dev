@@ -2,9 +2,41 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:p="http://primefaces.org/ui" xmlns:div="http://www.springframework.org/tags/form"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:div="http://www.springframework.org/tags/form"
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
+        <h:form>
+        <div class="container" id="myInterac">
+            <header>
+                <h2>Sube Tu anuncio</h2>
+            </header>
+            <div class="row">
+                <h:commandLink styleClass="col-lg-4"  action="sube" >
+                    <div class="dashbox" >
+                        <h:outputLabel value="Crear anuncio" styleClass="dashbox-header"/>
+                        <div class="button_ crear-anuncio"></div>
+                        <p> Escoge aqui uno de los anuncios ya creados </p>
+                    </div>
+                </h:commandLink>
+                <h:commandLink  styleClass="col-lg-4" >
+                    <div class="dashbox">
+                        <h:outputLabel value="Crear campaña" styleClass="dashbox-header"/>
+                        <div class="button_ crear-campana"></div>
+                        <p> Escoge aqui uno de los anuncios ya creados </p>
+                    </div>
+                </h:commandLink>
+                <h:commandLink class="col-lg-4">
+                    <div class="dashbox">
+                        <h:outputLabel value="Entrega LA' Monea" styleClass="dashbox-header"/>
+                        <div class="button_ pagar"></div>
+                        <p> Escoge aqui uno de los anuncios ya creados </p>
+                    </div>
+                </h:commandLink>
+            </div>
+            <div class="push"></div>
+        </div>
+        </h:form>
     </ui:define>
 </ui:composition>

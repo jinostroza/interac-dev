@@ -2,9 +2,81 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:p="http://primefaces.org/ui" xmlns:div="http://www.springframework.org/tags/form"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:div="http://www.springframework.org/tags/form"
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
+        <h:form class="container" id="crearAnuncio" enctype="multipart/form-data">
+            <header>
+                <h2>Crea tu anuncio</h2>
+            </header>
+            <div class="row">
+                <div class="col-lg-6 formulario-imagen">
+                    <div class="form-group">
+                        <div class="radio-inline">
+
+                        </div>
+                        <br></br>
+
+                        <div id="cuadro-imagen" class="dz-default dz-message">
+                            <p:fileUpload style="width: 330px" fileUploadListener="#{mantenedorContenido.subir}" mode="advanced"
+                                          previewWidth="296" update="messages" uploadLabel="Subir" cancelLabel="Cancelar" auto="false" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+
+                            <p:growl id="messages" showDetail="true" />
+
+
+                        </div>
+                        <br></br>
+                        <label>Nota: La imagen tiene que tener una resolución de
+                            <mark>1920 x 1080</mark>
+                            pixeles y en formato
+                            <mark>.JPG</mark>
+                        </label>
+                    </div>
+                </div>
+                <h:form>
+                    <div class="col-md-6 formulario-texto">
+                        <div class="form-group" ontimeupdate="true">
+                            <label>Nombre</label>
+                            <h:inputText  styleClass="form-control" value="#{mantenedorAnuncios.anuncio.nombre}" />
+                            <br></br>
+                            <br></br>
+                            <label>Descripción</label>
+                            <h:inputTextarea  class="form-control" rows="6" cols="33" autoResize="false"
+                                              value="#{mantenedorAnuncios.anuncio.descanuncio}"
+                                              placeholder="Escriba la descripción de su anuncio"/>
+                            <br></br>
+                            <label>Categoría</label>
+
+                            <h:selectOneMenu  class="form-control" value="#{mantenedorAnuncios.categoria}"
+                                              converter="entityConverter">
+                                <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione categoria --"/>
+                                <f:selectItems value="#{mantenedorAnuncios.categorias}" var="categor"
+                                               itemLabel="#{categor.desccategoria}" itemValue="#{categor}"/>
+                            </h:selectOneMenu>
+
+                            <br></br>
+                            <label >Seleccionar Contenido</label>
+                            <h:selectOneMenu id="contll" class="form-control" value="#{mantenedorAnuncios.contenido}"
+                                             converter="entityConverter">
+                                <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Contenido --"/>
+                                <f:selectItems value="#{mantenedorAnuncios.contenidoList}" var="conten"
+                                               itemLabel="#{conten.path}" itemValue="#{conten}" />
+                            </h:selectOneMenu>
+
+                            <br></br>
+                            <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{mantenedorAnuncios.guardar()}"
+                                             value="Crear Anuncio">
+                            </h:commandButton><span>  </span>
+                            <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
+                                             value="Crear Campaña">
+                            </h:commandButton>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </h:form>
+
     </ui:define>
 </ui:composition>

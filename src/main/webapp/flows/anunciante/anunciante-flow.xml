@@ -4,15 +4,19 @@
       xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
         start-state="inicioAnunciante">
 
+
+      <on-start>
+            <evaluate expression="mantenedorContenido.inicio()"/>
+      </on-start>
       <view-state id="inicioAnunciante">
-
+            <transition on="sube" to="subirContenido"/>
       </view-state>
 
-      <view-state id="elegirTotem">
 
-      </view-state>
 
       <view-state id="subirContenido">
+
+
 
       </view-state>
 
