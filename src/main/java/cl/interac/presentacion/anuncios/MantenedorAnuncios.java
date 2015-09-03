@@ -20,6 +20,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import java.io.FileInputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,6 +40,7 @@ public class MantenedorAnuncios implements Serializable {
     private List<Anuncio> anuncios;
     private List<Anuncio> selecAnuncios;
     private Anuncio anuncio;
+    private List<Integer> ids;
 
     private Categoria categoria;
     private Usuario usuario;
@@ -104,6 +106,12 @@ public class MantenedorAnuncios implements Serializable {
         } else {
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el afiche [" + contenido.getIdcontenido() + "]");
         }
+
+
+    }
+    public void addCampana() {
+        operacion = TipoOperacion.INSERTAR;
+        System.err.println("Anuncios seleccionados " + getSelecAnuncios());
 
     }
 

@@ -46,7 +46,7 @@
                         </h:commandLink>
                         </ui:fragment>
                         <ui:fragment rendered="#{userSession.estaAutentificado()}">
-                        <h:commandLink  styleClass="col-lg-4" >
+                        <h:commandLink  styleClass="col-lg-4"  action="#{facesUtil.redirigir('plataforma/campana')}">
                             <div class="dashbox">
                                 <h:outputLabel value="Crear campaña" styleClass="dashbox-header"/>
                                 <div class="button_ crear-campana"></div>
