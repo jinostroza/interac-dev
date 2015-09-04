@@ -40,7 +40,6 @@ public class MantenedorAnuncios implements Serializable {
     private List<Anuncio> anuncios;
     private List<Anuncio> selecAnuncios;
     private Anuncio anuncio;
-    private List<Integer> ids;
 
     private Categoria categoria;
     private Usuario usuario;
@@ -111,7 +110,7 @@ public class MantenedorAnuncios implements Serializable {
     }
     public void addCampana() {
         operacion = TipoOperacion.INSERTAR;
-        System.err.println("Anuncios seleccionados " + getSelecAnuncios());
+        System.err.println("Anuncios seleccionados " + selecAnuncios);
 
     }
 

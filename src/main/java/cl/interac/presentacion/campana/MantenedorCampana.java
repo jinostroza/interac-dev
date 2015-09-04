@@ -31,6 +31,8 @@ public class MantenedorCampana implements Serializable {
     private List<Campana> campanas;
     private List<Totem> totems;
     private Campana campana;
+    private Campana selCampana;
+
 
     @Autowired
     private LogicaCampana logicaCampana;
@@ -69,6 +71,11 @@ public class MantenedorCampana implements Serializable {
         return operacion == TipoOperacion.EDITAR;
     }
 
+    public void addCampana() {
+        operacion = TipoOperacion.INGRESAR;
+        System.err.println("Anuncios seleccionados " + campana.getIdcampana());
+
+    }
     public Campana getCampana() {
         return campana;
     }
@@ -96,6 +103,8 @@ public class MantenedorCampana implements Serializable {
     public void setCampana(Campana campana) {
         this.campana = campana;
     }
+    public Campana getSelCampana() {return selCampana;}
+    public void setSelCampana(Campana selCampana){this.selCampana=selCampana;}
 }
 
 

@@ -10,22 +10,51 @@
         <header>
             <h2>Crea tu Campaña</h2>
         </header>
-                <h:form>
-                <div class="col-md-6 formulario-texto">
-                    <div class="form-group" ontimeupdate="true">
-                        <h1>Dale Nombre a tu campaña</h1>
+        <h:form>
+            <div class="row">
+                <div class="form-group" style="margin-left: 2%" ontimeupdate="true">
+                    <h3>Dale Nombre a tu nueva campaña</h3>
+                    <div class="col-lg-4">
                         <h:inputText  styleClass="form-control" value="#{mantenedorCampana.campana.nombre}" />
-                        <br></br>
+                    </div> <div class="col-lg-4">
+                    <h:commandButton ajax="false" styleClass="btn btn-interac" action="pasos" actionListener="#{mantenedorCampana.guardar}"
+                                     value="Crear Campaña"/>
+                </div>
+                </div>
+                <br/>
+            </div>
+            <div class="row">
+            <div class="form-group" style="margin-left: 2%" ontimeupdate="true">
+                <h3>O Elige una campaña existente</h3>
+                <div class="col-lg-4" >
+                    <h:selectOneMenu  class="form-control" value="#{mantenedorCampana.campana}"
+                                      converter="entityConverter">
+                        <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione campaña --"/>
+                        <f:selectItems value="#{mantenedorCampana.campanas}" var="campana"
+                                       itemLabel="#{campana.nombre}" itemValue="#{campana}"/>
+                    </h:selectOneMenu>
+                </div>
 
-                        <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('inicio.jsf')}"
-                                         value="volver"> <span/>
-                        </h:commandButton>
-                        <h:commandButton ajax="false" styleClass="btn btn-interac" action="pasos" actionListener="#{mantenedorCampana.guardar}"
-                                                                value="Crear Campaña">
-                        </h:commandButton>
+
+                    <div class="col-lg-4">
+                    <h:commandButton ajax="false" styleClass="btn btn-interac" action="pasos" actionListener="#{mantenedorCampana.addCampana}" value="Seleccionar"/>
                     </div>
                 </div>
-                </h:form>
+
+                <br></br>
+                <br/>
+            </div>
+
+            <br></br>
+            <br/>
+                <h:commandButton ajax="false" styleClass="btn btn-interac" style="margin-left: 2%" action="#{facesUtil.redirigir('inicio.jsf')}"
+                                 value="volver"/>
+
+
+
+            <div class="push"></div>
+
+        </h:form>
 
 
 

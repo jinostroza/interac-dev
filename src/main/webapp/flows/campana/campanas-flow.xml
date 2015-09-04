@@ -4,7 +4,7 @@
       xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
       start-state="crearcampana">
       <on-start>
-            <evaluate expression="mantenedorContenido.inicio()"/>
+            <evaluate expression="mantenedorCampana.inicio()"/>
       </on-start>
       <view-state id="crearcampana">
             <transition on="pasos" to="campanapasos"></transition>
@@ -25,10 +25,10 @@
       </view-state>
 
 
-    <view-state id="registraCampana" view="registraCampana.xhtml">
-          <transition on="next1" to="seleccionarTotem"> </transition>
+      <view-state id="registraCampana" view="registraCampana.xhtml">
+            <transition on="next1" to="seleccionarTotem"> </transition>
 
-    </view-state>
+      </view-state>
       <view-state id="seleccionarTotem" view="seleccionarTotem.xhtml">
 
       </view-state>
@@ -44,5 +44,6 @@
 
             </transition>
       </view-state>
+
 
 </flow>
