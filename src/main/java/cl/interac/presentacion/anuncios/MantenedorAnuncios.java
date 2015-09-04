@@ -188,6 +188,4 @@ public class MantenedorAnuncios implements Serializable {
         this.contenido = contenido;
     }
 
-
-
 }
