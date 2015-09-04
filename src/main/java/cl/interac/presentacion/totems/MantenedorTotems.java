@@ -11,6 +11,10 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.io.Serializable;
 import java.util.List;
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 
 /**
  * Created by Joaco on 24-04-2015.
@@ -29,6 +33,7 @@ public class MantenedorTotems implements Serializable {
     @Autowired
     private LogicaTipototem logicaTipototem;
 
+    private MapModel simpleModel;
     private List<Totem> totems;
     private List<Tipototem> tipototems;
     private List<Totem> totemConFiltro;
@@ -63,6 +68,26 @@ public class MantenedorTotems implements Serializable {
         totems = logicaTotem.obtenerConRelacion();
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha Lobeznisado el Totem [" + totem.getNoserie() + "]");
 
+    }
+    @PostConstruct
+    public void init() {
+        simpleModel = new DefaultMapModel();
+
+        //Shared coordinates
+        LatLng coord1 = new LatLng(-33.044740, -71.613915);
+        LatLng coord2 = new LatLng(-33.044740, -72.613915);
+        LatLng coord3 = new LatLng(-34.044740, -71.613915);
+        LatLng coord4 = new LatLng(-33.044740, -71.613800);
+
+        //Basic marker
+        simpleModel.addOverlay(new Marker(coord1, "Konyaalti"));
+        simpleModel.addOverlay(new Marker(coord2, "Ataturk Parki"));
+        simpleModel.addOverlay(new Marker(coord3, "Karaalioglu Parki"));
+        simpleModel.addOverlay(new Marker(coord4, "Kaleici"));
+    }
+
+    public MapModel getSimpleModel() {
+        return simpleModel;
     }
     public void eliminarTotem(Totem totem) {
         logicaTotem.eliminarTotem(totem);
