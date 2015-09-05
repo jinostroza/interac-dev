@@ -14,13 +14,13 @@ var Slide = {
 
             for (var i = mediaFiles.length - 1, display = "block"; i >= 0; i--, display = "none") {
                 if (mediaFiles[i].endsWith(".mp4") || mediaFiles[i].endsWith(".ogg")) {
-                    var video = jQuery("<video controls='false'><source></source></video>");
+                    var video = jQuery("<video controls='false' style='widht:900;margin-top:10%;margin-right:30%'><source></source></video>");
                     video.css("display", display);
                     video.find("source").first().attr("src", mediaFiles[i]);
                     video.find("source").first().attr("type", "video/" + mediaFiles[i].substr(mediaFiles[i].lastIndexOf(".") + 1, mediaFiles[i].length));
                     jQuery("div.center").append(video);
                 } else {
-                    var img = jQuery("<img></img>");
+                    var img = jQuery("<img style='width: 1060px;height: 1900px'></img>");
                     img.attr("src", mediaFiles[i]);
                     img.css("display", display);
                     jQuery("div.center").append(img);
