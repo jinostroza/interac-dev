@@ -12,8 +12,8 @@
       </view-state>
       <view-state id="campanapasos" >
             <transition on="next" to="registraCampana"/>
-            <transition on="next1" to="planificar-pasadas"/>
-            <transition on="next2" to="seleccionarTotem"/>
+            <transition on="next1" to="seleccionarTotem"/>
+            <transition on="next2" to="planificar-pasadas"/>
             <transition on="next3" to="campanaConfirmada"/>
 
       </view-state>
