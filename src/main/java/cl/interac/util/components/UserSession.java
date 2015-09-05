@@ -1,6 +1,7 @@
 package cl.interac.util.components;
 
 import cl.interac.dao.UsuarioDAO;
+import cl.interac.entidades.Campana;
 import cl.interac.entidades.Rol;
 import cl.interac.entidades.Usuario;
 import cl.interac.negocio.LogicaAnuncio;
@@ -31,6 +32,8 @@ public class UserSession implements Serializable {
 
     private Usuario usuario;
 
+
+
     public Usuario getUsuario() {
         Authentication a = SecurityContextHolder.getContext().getAuthentication();
 
@@ -51,6 +54,8 @@ public class UserSession implements Serializable {
     public UserSession() {
         usuario = null;
     }
+
+
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;

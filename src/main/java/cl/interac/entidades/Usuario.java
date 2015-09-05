@@ -21,7 +21,8 @@ import java.util.List;
                         query = "SELECT u FROM Usuario u WHERE u.username = :username"
                 ),
 
-
+                @NamedQuery(name= "Usuario.findByCampana",query="SELECT u FROM Usuario u " +
+                        " left join fetch u.campanas c "),
 
                 @NamedQuery(
                         name="Usuario.findByCorreo",

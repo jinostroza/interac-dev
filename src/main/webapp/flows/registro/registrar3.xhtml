@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10" id="cuadro-registro">
-            <div class="btn-register_ paso-uno-inactive"></div>
+
             <div class="btn-register_ paso-tres-active"></div>
             <div class="col-md-6 col-md-offset-3" >
             <br/>
@@ -29,7 +29,7 @@
 
         <h3>¡Gracias por registrarte!</h3>
         <p>Haz creado correctamente una cuenta en <strong>Interac</strong>. Por favor revisa tu correo electrónico y haz clic en el enlace para confirmar tu cuenta.</p>
-                <h:commandLink value="inicio" action="#{facesUtil.redirigir('inicio.jsf')}" />
+                <h:commandLink value="inicio" action="#{facesUtil.redirigir('/plataforma/campana')}" />
 
         </div>
          </div>
@@ -40,6 +40,6 @@
         <div class="push"></div>
 
         </h:form>
-<ui:include src="/templates/includes/Footer.xhtml"/>
+        <ui:include src="/templates/includes/Footer.xhtml"/>
         </ui:define>
         </ui:composition>

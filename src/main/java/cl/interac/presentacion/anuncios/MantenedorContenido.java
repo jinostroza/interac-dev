@@ -39,6 +39,8 @@ public class MantenedorContenido implements Serializable{
     private List<Usuario> usuarios;
     private Contenido contenido;
     private List<Contenido> contenidoList;
+    private Anuncio anuncio;
+    private Categoria categoria;
 
     @Autowired
     private LogicaContenido logicaContenido;
@@ -75,6 +77,7 @@ public class MantenedorContenido implements Serializable{
 
 
 
+
     public void subir(FileUploadEvent fue) {
         operacion = TipoOperacion.INSERTAR;
         System.err.println("LLEGO A LA WA " + fue);
@@ -87,30 +90,20 @@ public class MantenedorContenido implements Serializable{
                 contenido.setUsuario(userSession.getUsuario());
                 contenido.setPath(path);
                 logicaContenido.guardar(contenido);
-
+                anuncio.setCategoria(categoria);
+                logicaAnuncio.guardar(anuncio);
                  /*  boolean renombrado = archivo1.renameTo(archivo2);
-
-
-            File archivo1 = new File(path);
+                     File archivo1 = new File(path);
                 File archivo2 = new File(constantes.getPathArchivos() +"/anuncios/"+userSession.getUsuario().getUsername()+"/"  + ".jpg");
                 if (renombrado) {
                     FacesUtil.mostrarMensajeInformativo(archivo2.getName(), "Archivo Renombrado con éxito");
                 } else {
                     FacesUtil.mostrarMensajeError(null, "No se pudo renombrar el archivo");
                 } */
-
-
-                    FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Su imagen a sido subida [");
-
-
-
+                    FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Su imagen a sido subida ");
 
             }catch (Exception e){ return;}
-        FacesUtil.mostrarMensajeInformativo("error","ocurrio Algo");
-
-
-
-        }
+    }
 
 
     public void eliminar() {
