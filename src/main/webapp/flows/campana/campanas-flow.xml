@@ -23,16 +23,16 @@
             <transition on="next5" to="seleccionarTotem"> </transition>
             <transition on="back1" to="campanapasos"/>
       </view-state>
-      <view-state id="seleccionarTotem" view="seleccionarTotem.xhtml">
-
+      <view-state id="seleccionarTotem">
+            <transition on="next6" to="planificar-pasadas"/>
       </view-state>
+
       <view-state id="planificar-pasadas" >
             <transition on="back2" to="registraCampana"/>
             <transition on="back3" to="campanapasos"/>
+            <transition on="end1" to="campanaConfirmada"/>
 
-            <transition on="next6" to="planificar-pasadas">
 
-            </transition>
       </view-state>
 
       <view-state id="campanaConfirmada">
