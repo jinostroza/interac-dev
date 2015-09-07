@@ -39,13 +39,14 @@ public class LogicaEstablecimiento {
         return establecimientoDAO.ObtenerPorNombre(text1);
 
     }
+
     @Transactional(readOnly = true)
     public Establecimiento obtenerPorId(Integer id) {
         return establecimientoDAO.obtenerPorId(id);
     }
+
     @Transactional(readOnly = true)
     public List<Establecimiento> obtenerConRelacion() {
         return establecimientoDAO.obtenerConRelacion();
     }
-
 }

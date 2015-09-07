@@ -43,11 +43,9 @@ public class InicioPlataforma {
     public void inicio(){
         totem = new Totem();
         establecimientoList = logicaEstablecimiento.obtenerTodos();
-       totemList = logicaTotem.obtenerConRelacion();
+        totemList = logicaTotem.obtenerConRelacion();
         tipototems = logicaTipototem.obtenerConRelacion();
         ubicacionList = logicaUbicacion.obtenerTodas();
-
-
     }
 
     public List<Totem> getTotemList() {

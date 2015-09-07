@@ -94,9 +94,12 @@ public class MantenedorAnuncios implements Serializable {
     public void subir(FileUploadEvent fue) {
         operacion = TipoOperacion.INSERTAR;
         System.err.println("LLEGO A LA WA " + fue);
-        String path = fileUploader.subir(fue, "/anuncios/");
+        String path = fileUploader.subir(fue, "/anuncios/"+userSession.getUsuario().getUsername() + "/");
         System.err.println("SE SUPONE QUE SUBI EN " + path);
 
+        anuncio.setCategoria(categoria);
+        anuncio.setContenido(contenido);
+        logicaAnuncio.guardar(anuncio);
         contenido.setUsuario(userSession.getUsuario());
           contenido.setPath(path);
           logicaContenido.guardar(contenido);
@@ -187,7 +190,5 @@ public class MantenedorAnuncios implements Serializable {
     public void setContenido(Contenido contenido) {
         this.contenido = contenido;
     }
-
-
 
 }

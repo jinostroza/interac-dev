@@ -2,7 +2,7 @@
 <flow xmlns="http://www.springframework.org/schema/webflow"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
-      start-state="crearcampana">
+      start-state="campanapasos">
       <on-start>
             <evaluate expression="mantenedorCampana.inicio()"/>
       </on-start>
@@ -10,40 +10,33 @@
             <transition on="pasos" to="campanapasos"></transition>
 
       </view-state>
-      <view-state id="campanapasos" view="campanapasos.xhtml">
-            <transition on="reg" to="registraCampana">
-
-            </transition>
-            <transition on="next2" to="seleccionarTotem">
-                  <evaluate expression="mantenedorCategoria.inicio()"/>
-                  <evaluate expression="mantenedorTotems.inicio()"/>
-            </transition>
-            <transition on="next3" to="planificar-pasadas">
-
-            </transition>
+      <view-state id="campanapasos" >
+            <transition on="next" to="registraCampana"/>
+            <transition on="next1" to="seleccionarTotem"/>
+            <transition on="next2" to="planificar-pasadas"/>
+            <transition on="next3" to="campanaConfirmada"/>
 
       </view-state>
 
 
-      <view-state id="registraCampana" view="registraCampana.xhtml">
-            <transition on="next1" to="seleccionarTotem"> </transition>
-
+      <view-state id="registraCampana" >
+            <transition on="next5" to="seleccionarTotem"> </transition>
+            <transition on="back1" to="campanapasos"/>
       </view-state>
-      <view-state id="seleccionarTotem" view="seleccionarTotem.xhtml">
-
-      </view-state>
-      <view-state id="planificar-pasadas" view="planificar-pasadas.xhtml">
-            <transition on="reg" to="registraCampana">
-
-            </transition>
-            <transition on="next2" to="seleccionarTotem">
-                  <evaluate expression="mantenedorCategoria.inicio()"/>
-                  <evaluate expression="mantenedorTotems.inicio()"/>
-            </transition>
-            <transition on="next3" to="planificar-pasadas">
-
-            </transition>
+      <view-state id="seleccionarTotem">
+            <transition on="next6" to="planificar-pasadas"/>
       </view-state>
 
+      <view-state id="planificar-pasadas" >
+            <transition on="back2" to="registraCampana"/>
+            <transition on="back3" to="campanapasos"/>
+            <transition on="end1" to="campanaConfirmada"/>
+
+
+      </view-state>
+
+      <view-state id="campanaConfirmada">
+
+      </view-state>
 
 </flow>

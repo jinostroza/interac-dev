@@ -17,7 +17,7 @@
                     <div class="col-lg-4">
                         <h:inputText  styleClass="form-control" value="#{mantenedorCampana.campana.nombre}" />
                     </div> <div class="col-lg-4">
-                    <h:commandButton ajax="false" styleClass="btn btn-interac" action="pasos" actionListener="#{mantenedorCampana.guardar}"
+                    <h:commandButton ajax="false" styleClass="btn btn-interac" action="pasos"
                                      value="Crear Campaña"/>
                 </div>
                 </div>
@@ -27,18 +27,8 @@
             <div class="form-group" style="margin-left: 2%" ontimeupdate="true">
                 <h3>O Elige una campaña existente</h3>
                 <div class="col-lg-4" >
-                    <h:selectOneMenu  class="form-control" value="#{mantenedorCampana.campana}"
-                                      converter="entityConverter">
-                        <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione campaña --"/>
-                        <f:selectItems value="#{mantenedorCampana.campanas}" var="campana"
-                                       itemLabel="#{campana.nombre}" itemValue="#{campana}"/>
-                    </h:selectOneMenu>
+
                 </div>
-
-
-                    <div class="col-lg-4">
-                    <h:commandButton ajax="false" styleClass="btn btn-interac" action="pasos" actionListener="#{mantenedorCampana.addCampana}" value="Seleccionar"/>
-                    </div>
                 </div>
 
                 <br></br>
@@ -47,7 +37,7 @@
 
             <br></br>
             <br/>
-                <h:commandButton ajax="false" styleClass="btn btn-interac" style="margin-left: 2%" action="#{facesUtil.redirigir('inicio.jsf')}"
+                <h:commandButton ajax="false" styleClass="btn btn-interac" style="margin-left: 2%" action="pasos"
                                  value="volver"/>
 
 

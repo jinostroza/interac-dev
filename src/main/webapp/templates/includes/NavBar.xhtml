@@ -21,7 +21,7 @@
 
             <ui:fragment rendered="#{userSession.estaAutentificado()}">
             <li>
-                <p:commandLink value="Inicio" action="#{facesUtil.redirigir('/inicio.jsf')}" />
+                <p:commandLink value="Inicio" action="#{facesUtil.redirigir('/plataforma/campana')}" />
             </li>
              </ui:fragment>
             <ui:fragment rendered="#{!userSession.estaAutentificado()}">
@@ -48,7 +48,7 @@
                 </li>
             </ui:fragment>
 
-            <ui:fragment rendered="#{userSession.tienePermiso('ADMINISTRADOR')}">
+            <ui:fragment rendered="#{userSession.tienePermiso('ADMINISTRADOR')  }">
                 <li>
                     <p:commandLink value="Mantenedor" action="#{facesUtil.redirigir('/plataforma/mantencion')}"/>
                 </li>

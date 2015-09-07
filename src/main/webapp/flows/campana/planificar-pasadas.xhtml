@@ -6,7 +6,7 @@
                 xmlns:div="http://www.springframework.org/tags/form"
                 template="/templates/default.xhtml">
     <ui:define name="contenido">
-
+     <h:form>
         <div class="row">
             <div class="col-lg-6">
                 <h2>Programar campaña</h2>
@@ -33,11 +33,11 @@
         <div class="row">
             <div class="col-lg-5">
                 <p:outputLabel for="inicio" value="Inicio Campaña:" />
-                <p:calendar id="inicio"  />
+                <p:calendar id="inicio" value="#{mantenedorCampana.campana.fechaInicio}" />
             </div>
             <div class="col-lg-5">
                 <p:outputLabel for="fin" value="Fin Campaña:" />
-                <p:calendar id="fin"  />
+                <p:calendar id="fin" value="#{mantenedorCampana.campana.fechaFin}"  />
             </div>
         </div>
     </div>
@@ -66,41 +66,46 @@
         <br/>
     </div>
 </div>
-<div class="col-lg-6">
-    <h5>Pasadas al día</h5>
-    <p>Número total de pasadas diarias por anuncio</p>
-    <p:spinner id="basic" />
-</div>
-<br/>
-<br/>
-<br/>
-</div>
-<div class="row datos-campania"><h3>Detalles de planificación</h3>
-<div class="col-lg-4">
-    <span class="datos-campania-titulo">Costo cada 10 segundos</span>
-    <span class="datos-campania-texto">100 Pesos</span>
-</div>
-<div class="col-lg-4">
-    <span class="datos-campania-titulo">Duración anuncios</span>
-    <span class="datos-campania-texto"> 10 segundos</span>
-</div>
-<div class="col-lg-4 pagar-campania">
-    <span class="datos-campania-titulo">Costo de pasadas</span>
-    <span class="datos-campania-texto">100.000 Pesos</span>
-</div>
-</div>
-<div class="row botones-pagar-campania">
-<div class="col-lg-5"></div>
-<div class="col-lg-2">
-    <button class="btn btn-default btn-block" type="button">Volver</button>
-</div>
-<div class="col-lg-2">
-    <button class="btn btn-default btn-block" type="button">Guardar</button>
-</div>
-<div class="col-lg-3">
-    <button class="btn btn-default btn-block" type="button">Planificar pasadas</button>
-</div>
-</div>
+    <div class="col-lg-6"  >
+        <h5>Pasadas al día</h5>
+        <p>Número total de pasadas diarias por anuncio</p>
+        <p:spinner id="ajaxSpinner" min="0" max="100" value="#{mantenedorCampana.precio}">
+            <p:ajax update="ajaxSpinnerValue"  process="@this"  />
+        </p:spinner>
 
-        </ui:define>
-        </ui:composition>
+      </div>
+    <br/>
+    <br/>
+    <br/>
+</div>
+        <div class="row datos-campania"><h3>Detalles de planificación</h3>
+            <div class="col-lg-4">
+                <span class="datos-campania-titulo">Costo cada 10 segundos</span>
+                <span class="datos-campania-texto">100 Pesos</span>
+            </div>
+            <div class="col-lg-4">
+                <span class="datos-campania-titulo">Duración anuncios</span>
+                <span class="datos-campania-texto"> 10 segundos</span>
+            </div>
+               <p:outputPanel  styleClass="col-lg-4 pagar-campania">
+                <span class="datos-campania-titulo">Costo de pasadas</span>
+                <h:outputText class="datos-campania-texto" id="ajaxSpinnerValue"
+                               value="#{mantenedorCampana.precio}pesos" style="padding-left: 10px" />
+               </p:outputPanel>
+        </div>
+        <div class="row botones-pagar-campania">
+            <div class="col-lg-5"></div>
+            <div class="col-lg-2">
+                <button class="btn btn-default btn-block" type="button">Volver</button>
+            </div>
+            <div class="col-lg-2">
+                <button class="btn btn-default btn-block" type="button">Guardar</button>
+            </div>
+            <div class="col-lg-3">
+                <h:commandButton styleClass="btn btn-default btn-block" action="#{mantenedorCampana.guardar}"
+                                 value="planificar campana"/>
+            </div>
+        </div>
+     </h:form>
+    </ui:define>
+</ui:composition>

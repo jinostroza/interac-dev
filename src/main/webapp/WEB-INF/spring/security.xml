@@ -32,6 +32,7 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
 
 
         <security:intercept-url pattern="home.jsf" access="permitAll"/>
+        <security:intercept-url pattern="plataforma/campana/**" access="permitAll"/>
         <security:intercept-url pattern="plataforma/mantencion/**" access="hasRole('ADMINISTRADOR')"/>
         <security:intercept-url pattern="plataforma/anunciante/**" access="hasRole('ANUNCIOANTE')"/>
         <security:intercept-url pattern="plataforma/cliente/**" access="hasRole('CLIENTE')"/>

@@ -2,8 +2,10 @@ package cl.interac.presentacion.campana;
 
 import cl.interac.entidades.Campana;
 import cl.interac.entidades.Totem;
+import cl.interac.entidades.Usuario;
 import cl.interac.negocio.LogicaCampana;
 import cl.interac.negocio.LogicaTotem;
+import cl.interac.negocio.LogicaUsuario;
 import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +33,12 @@ public class MantenedorCampana implements Serializable {
     private List<Campana> campanas;
     private List<Totem> totems;
     private Campana campana;
-    private Campana selCampana;
-
-
+    private int precio;
+    private String retor;
+    private String end1;
+    private List<Usuario> usuarios;
+    @Autowired
+    private LogicaUsuario logicaUsuario;
     @Autowired
     private LogicaCampana logicaCampana;
     @Autowired
@@ -50,12 +55,15 @@ public class MantenedorCampana implements Serializable {
         // para los Lazy Exception (Excepcion de carga ligera) usar FetchType.EAGER (Con cautela) o hacer una query con las relaciones (Lo seguro aunque tardas más programando :P)
         //campanas = logicaCampana.obtenerTodas(); // para eager
         campanas = logicaCampana.obtenerTodosConRelaciones(); // para lazy
+        usuarios = logicaUsuario.obtenerTodos();
         operacion = TipoOperacion.INGRESAR;
         campana = new Campana();
     }
     //flows shift+f6 es refactor
 
-    public void guardar() {
+
+    public String guardar() {
+
         campana.setCliente(userSession.getUsuario());
         campana.setFechaCreacion(Date.from(Instant.now()));
         logicaCampana.guardarCampana(campana);
@@ -65,17 +73,32 @@ public class MantenedorCampana implements Serializable {
         } else {
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado la campaña ");
         }
+        return end1 ;
+    }
+
+
+    public String getEnd1() {
+        return end1;
+    }
+
+    public void setEnd1(String end1) {
+        this.end1 = end1;
+    }
+
+    public int getPrecio() {
+
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+
+        this.precio = precio * 100;
     }
 
     public boolean esEdicion() {
         return operacion == TipoOperacion.EDITAR;
     }
 
-    public void addCampana() {
-        operacion = TipoOperacion.INGRESAR;
-        System.err.println("Anuncios seleccionados " + campana.getIdcampana());
-
-    }
     public Campana getCampana() {
         return campana;
     }
@@ -103,8 +126,6 @@ public class MantenedorCampana implements Serializable {
     public void setCampana(Campana campana) {
         this.campana = campana;
     }
-    public Campana getSelCampana() {return selCampana;}
-    public void setSelCampana(Campana selCampana){this.selCampana=selCampana;}
 }
 
 

@@ -19,8 +19,9 @@
                         <br></br>
 
                         <div id="cuadro-imagen" class="dz-default dz-message">
-                            <p:fileUpload style="width: 330px" fileUploadListener="#{mantenedorContenido.subir}" mode="advanced"
-                                          previewWidth="296" update="messages" uploadLabel="Subir" cancelLabel="Cancelar" auto="false" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                            <p:fileUpload style="width: 330px"  mode="advanced"
+                                          previewWidth="296" update="messages" uploadLabel="Subir"
+                                          cancelLabel="Cancelar" auto="false" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 
                             <p:growl id="messages" showDetail="true" />
 
@@ -42,7 +43,8 @@
                         <br></br>
                         <br></br>
                         <label>Descripción</label>
-                        <h:inputTextarea  class="form-control" rows="6" cols="33" autoResize="false"  value="#{mantenedorAnuncios.anuncio.descanuncio}"
+                        <h:inputTextarea  class="form-control" rows="6" cols="33" autoResize="false"
+                                          value="#{mantenedorAnuncios.anuncio.descanuncio}"
                                          placeholder="Escriba la descripción de su anuncio"/>
                         <br></br>
                         <label>Categoría</label>
@@ -64,7 +66,8 @@
                         </h:selectOneMenu>
 
                         <br></br>
-                        <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{mantenedorAnuncios.guardar()}"
+                        <h:commandButton ajax="false" styleClass="btn btn-interac"
+                                         action="#{mantenedorContenido.subir}"
                                          value="Crear Anuncio">
                             </h:commandButton><span>  </span>
                         <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"

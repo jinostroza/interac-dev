@@ -3,7 +3,9 @@ var Slide = {
     syncTime: 60 * 1000, // 60 segundos
 
     sliderTimerID: null,
-    syncTimerID: null
+    syncTimerID: null,
+
+
 };
 
 (function() {
@@ -19,7 +21,9 @@ var Slide = {
                     video.find("source").first().attr("src", mediaFiles[i]);
                     video.find("source").first().attr("type", "video/" + mediaFiles[i].substr(mediaFiles[i].lastIndexOf(".") + 1, mediaFiles[i].length));
                     jQuery("div.center").append(video);
-                } else {
+                } else 
+                {
+
                     var img = jQuery("<img style='width: 1060px;height: 1900px'></img>");
                     img.attr("src", mediaFiles[i]);
                     img.css("display", display);

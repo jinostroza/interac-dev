@@ -12,14 +12,7 @@
                     <div class="col-lg-6">
                         <h2>Programar campaña</h2>
                     </div>
-                    <div class="nav-submenu col-lg-6">
-                        <ul>
-                            <li><a  class="active"  href="#">Elegir</a></li>
-                            <li><a href="#">Seleccionar</a></li>
-                            <li><a href="#">Planificar</a></li>
-                            <li><a href="#">Confirmar</a></li>
-                        </ul>
-                    </div>
+
                 </div>
              </header>
             <div class="row">
@@ -35,7 +28,7 @@
                             <p> Elige el contenido para mostrar en tu campaña </p>
                     </div>
                 </h:commandLink>
-                <h:commandLink styleClass="col-lg-3" action="#{facesUtil.redirigir('/plataforma/creacion')}">
+                <h:commandLink styleClass="col-lg-3" action="#{facesUtil.redirigir('/plataforma/anunciante')}">
                     <div class="dashbox">
                         <h:outputLabel value="Crear Anuncio" styleClass="dashbox-header" />
                         <div class="button_ crear-anuncio"></div>
@@ -68,7 +61,8 @@
         <div class="ui-grid-row">
             <div class="ui-grid-col-1"></div>
             <div class="ui-grid-col-10 table-header" >
-            <p:dataTable id="checkboxDT" var="anun" value="#{mantenedorAnuncios.anuncios}" rows="3" selection="#{mantenedorAnuncios.selecAnuncios}" rowKey="#{anun.idAnuncio}" style="margin-bottom:0">
+            <p:dataTable id="checkboxDT" var="anun" value="#{mantenedorAnuncios.anuncios}"
+                         rows="3" selection="#{mantenedorAnuncios.selecAnuncios}" rowKey="#{anun.idAnuncio}" style="margin-bottom:0">
 
                 <p:column selectionMode="multiple" style="width:40px;text-align:center"/>
                 <p:column headerText="Nombre">
@@ -91,9 +85,9 @@
         </div>
         <br/>
         <div class="pull-right" style="margin-right: 10%;margin-bottom: 2%">
-            <h:button  class="btn btn-interac" value="Volver" action="#{facesUtil.redirigir('/plataforma/campana/campanapasos.jsf')}"></h:button> <span/>
+            <h:commandButton styleClass="btn btn-interac" value="Volver" action="back1" /> <span/>
 
-            <h:commandButton  class="btn btn-interac" value="Elegir contenido" action="next1" actionListener="#{mantenedorAnuncios.addCampana}" />
+            <h:commandButton  class="btn btn-interac" value="Elegir contenido" action="next5"  />
 
         </div>
         <p:spacer>  </p:spacer>
