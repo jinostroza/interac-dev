@@ -4,8 +4,6 @@ var Slide = {
 
     sliderTimerID: null,
     syncTimerID: null,
-
-
 };
 
 (function() {

@@ -74,14 +74,8 @@ public class MantenedorContenido implements Serializable{
         contenido = new Contenido();
     }
 
-
-
-
-
     public void subir(FileUploadEvent fue) {
         operacion = TipoOperacion.INSERTAR;
-        System.err.println("LLEGO A LA WA " + fue);
-
 
             try {
                 String path = fileUploader.subir(fue, "/anuncios/" + userSession.getUsuario().getUsername() + "/");
