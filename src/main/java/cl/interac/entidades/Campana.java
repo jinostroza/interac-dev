@@ -59,6 +59,11 @@ public class Campana implements Serializable {
     }
 
     public void setNombre(String nombre) {
+        if(nombre==null){
+          String  nom="eraUnaCampanaMuyChiquita" ;
+         setNombre(nom);
+           }
+
         this.nombre = nombre;
     }
     @Basic

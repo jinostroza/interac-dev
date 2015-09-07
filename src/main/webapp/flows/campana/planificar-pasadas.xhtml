@@ -6,7 +6,7 @@
                 xmlns:div="http://www.springframework.org/tags/form"
                 template="/templates/default.xhtml">
     <ui:define name="contenido">
-     <h:form>
+
         <div class="row">
             <div class="col-lg-6">
                 <h2>Programar campaña</h2>
@@ -78,6 +78,7 @@
     <br/>
     <br/>
 </div>
+
         <div class="row datos-campania"><h3>Detalles de planificación</h3>
             <div class="col-lg-4">
                 <span class="datos-campania-titulo">Costo cada 10 segundos</span>
@@ -93,19 +94,19 @@
                                value="#{mantenedorCampana.precio}pesos" style="padding-left: 10px" />
                </p:outputPanel>
         </div>
+        <h:form>
         <div class="row botones-pagar-campania">
             <div class="col-lg-5"></div>
             <div class="col-lg-2">
-                <button class="btn btn-default btn-block" type="button">Volver</button>
+                <h:commandButton ajax="false" styleClass="btn btn-interac" action="vuelveTotem" value="volver"/>
             </div>
-            <div class="col-lg-2">
-                <button class="btn btn-default btn-block" type="button">Guardar</button>
-            </div>
+
             <div class="col-lg-3">
-                <h:commandButton styleClass="btn btn-default btn-block" action="#{mantenedorCampana.guardar}"
-                                 value="planificar campana"/>
+                <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{mantenedorCampana.guardar()}"
+                                 value="finalizar"/>
             </div>
+
         </div>
-     </h:form>
+</h:form>
     </ui:define>
 </ui:composition>

@@ -35,7 +35,7 @@ public class MantenedorCampana implements Serializable {
     private Campana campana;
     private int precio;
     private String retor;
-    private String end1;
+    private String end1 = "end1";
     private List<Usuario> usuarios;
     @Autowired
     private LogicaUsuario logicaUsuario;
@@ -66,6 +66,7 @@ public class MantenedorCampana implements Serializable {
 
         campana.setCliente(userSession.getUsuario());
         campana.setFechaCreacion(Date.from(Instant.now()));
+
         logicaCampana.guardarCampana(campana);
 
         if (esEdicion()) {
