@@ -41,6 +41,7 @@ public class MantenedorContenido implements Serializable{
     private List<Contenido> contenidoList;
     private Anuncio anuncio;
     private Categoria categoria;
+    private List<Contenido> selecContenido;
 
     @Autowired
     private LogicaContenido logicaContenido;
@@ -138,6 +139,12 @@ public class MantenedorContenido implements Serializable{
 
     public void setContenido(Contenido contenido) {
         this.contenido = contenido;
+    }
+    public List<Contenido> getSelecContenido() {
+        return selecContenido;
+    }
+    public void setSelecContenido(List<Contenido> selecContenido) {
+        this.selecContenido = selecContenido;
     }
 
 }

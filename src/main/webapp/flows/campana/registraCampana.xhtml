@@ -61,22 +61,16 @@
         <div class="ui-grid-row">
             <div class="ui-grid-col-1"></div>
             <div class="ui-grid-col-10 table-header" >
-            <p:dataTable id="checkboxDT" var="anun" value="#{mantenedorAnuncios.anuncios}"
-                         rows="3" selection="#{mantenedorAnuncios.selecAnuncios}" rowKey="#{anun.idAnuncio}" style="margin-bottom:0">
+            <p:dataTable id="checkboxDT" var="con" value="#{mantenedorContenido.contenidoList}"
+                          selection="#{mantenedorContenido.selecContenido}" rowKey="#{con.idcontenido}" style="margin-bottom:0">
 
                 <p:column selectionMode="multiple" style="width:40px;text-align:center"/>
-                <p:column headerText="Nombre">
-                    <h:outputText value="#{anun.nombre}" />
-                </p:column>
-                <p:column headerText="Descripcion" >
-                    <h:outputText value="#{anun.descanuncio}" />
-                </p:column>
+
                 <p:column headerText="Contenido">
-                    <h:outputText value="#{anun.contenido.path}" />
+                    <h:outputText value="#{con.path}" />
                 </p:column>
-                <p:column headerText="Categoria">
-                    <h:outputText value="#{anun.categoria.desccategoria}" />
-                </p:column>
+
+
 
             </p:dataTable>
                 </div>
@@ -85,7 +79,7 @@
         </div>
         <br/>
         <div class="pull-right" style="margin-right: 10%;margin-bottom: 2%">
-            <h:commandButton styleClass="btn btn-interac" value="Volver" action="back1" /> <span/>
+            <h:commandButton styleClass="btn btn-interac" value="Volver" action="#{facesUtil.redirigir('/plataforma/campana')}" /> <span/>
 
             <h:commandButton  class="btn btn-interac" value="Elegir contenido" action="next1"  />
 

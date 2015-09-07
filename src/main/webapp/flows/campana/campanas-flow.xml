@@ -3,35 +3,41 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
       start-state="campanapasos">
-
       <on-start>
             <evaluate expression="mantenedorCampana.inicio()"/>
       </on-start>
-
       <view-state id="crearcampana">
-            <transition on="pasos" to="campanapasos"/>
+            <transition on="pasos" to="campanapasos"></transition>
 
       </view-state>
-
       <view-state id="campanapasos" >
-            <transition on="next" to="registraCampana"/>
+            <transition on="regisCamp" to="registraCampana">
+                  <evaluate expression="mantenedorContenido.inicio()"/>
+            </transition>
+
+
       </view-state>
+
 
       <view-state id="registraCampana" >
-            <transition on="next1" to="seleccionarTotem"/>
-            <transition on="back1" to="campanapasos"/>
-      </view-state>
+            <transition on="selectTotem" to="seleccionarTotem"/>
 
-      <view-state id="seleccionarTotem" >
-            <transition on="irA" to="planificar-pasadas" />
+
+      </view-state>
+      <view-state id="seleccionarTotem">
+
+            <transition on="planPasada" to="planificar-pasadas"/>
       </view-state>
 
       <view-state id="planificar-pasadas" >
-            <transition on="back2" to="registraCampana"/>
+            <transition on="vuelveTotem" to="seleccionarTotem"/>
             <transition on="end1" to="campanaConfirmada"/>
+
+
       </view-state>
 
       <view-state id="campanaConfirmada">
 
       </view-state>
+
 </flow>
