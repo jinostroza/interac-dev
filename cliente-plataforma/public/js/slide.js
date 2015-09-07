@@ -16,7 +16,7 @@ var Slide = {
 
             for (var i = mediaFiles.length - 1, display = "block"; i >= 0; i--, display = "none") {
                 if (mediaFiles[i].endsWith(".mp4") || mediaFiles[i].endsWith(".ogg")) {
-                    var video = jQuery("<video controls='false'><source></source></video>");
+                    var video = jQuery("<video controls='false' style='width: 1060px'><source></source></video>");
                     video.css("display", display);
                     video.find("source").first().attr("src", mediaFiles[i]);
                     video.find("source").first().attr("type", "video/" + mediaFiles[i].substr(mediaFiles[i].lastIndexOf(".") + 1, mediaFiles[i].length));

@@ -65,7 +65,7 @@ public class MantenedorCampana implements Serializable {
     public String guardar() {
 
         campana.setCliente(userSession.getUsuario());
-        campana.setFechaCreacion(Date.from(Instant.now()));
+        //campana.setFechaCreacion(Date.from(Instant.now()));
 
         logicaCampana.guardarCampana(campana);
 
@@ -74,17 +74,14 @@ public class MantenedorCampana implements Serializable {
         } else {
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado la campaña ");
         }
-        return end1 ;
+        return End1() ;
     }
 
 
-    public String getEnd1() {
-        return end1;
+    public String End1() {
+        return "end1";
     }
 
-    public void setEnd1(String end1) {
-        this.end1 = end1;
-    }
 
     public int getPrecio() {
 
