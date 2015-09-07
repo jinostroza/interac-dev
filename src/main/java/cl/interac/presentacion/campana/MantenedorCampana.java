@@ -65,7 +65,7 @@ public class MantenedorCampana implements Serializable {
     public String guardar() {
 
         campana.setCliente(userSession.getUsuario());
-        //campana.setFechaCreacion(Date.from(Instant.now()));
+        campana.setFechaCreacion(Date.from(Instant.now()));
 
         logicaCampana.guardarCampana(campana);
 

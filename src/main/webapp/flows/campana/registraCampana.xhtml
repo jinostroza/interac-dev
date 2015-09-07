@@ -12,7 +12,14 @@
                     <div class="col-lg-6">
                         <h2>Programar campaña</h2>
                     </div>
-
+                    <div class="nav-submenu col-lg-6">
+                        <ul>
+                            <li><a class="active" href="#">Elegir</a></li>
+                            <li><a href="#">Seleccionar</a></li>
+                            <li><a  href="#">Planificar</a></li>
+                            <li><a href="#">Confirmar</a></li>
+                        </ul>
+                    </div>
                 </div>
              </header>
             <div class="row">
@@ -81,7 +88,7 @@
         <div class="pull-right" style="margin-right: 10%;margin-bottom: 2%">
             <h:commandButton styleClass="btn btn-interac" value="Volver" action="#{facesUtil.redirigir('/plataforma/campana')}" /> <span/>
 
-            <h:commandButton  class="btn btn-interac" value="Elegir contenido" action="next1"  />
+            <h:commandButton  class="btn btn-interac" value="Elegir contenido" action="selectTotem"  />
 
         </div>
         <p:spacer>  </p:spacer>
