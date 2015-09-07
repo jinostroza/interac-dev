@@ -1,5 +1,5 @@
 var Slide = {
-    showTime: 10 * 1000, // 10 segundos
+    showTime: 20 * 1000, // 10 segundos
     syncTime: 60 * 1000, // 60 segundos
 
     sliderTimerID: null,
@@ -14,7 +14,7 @@ var Slide = {
 
             for (var i = mediaFiles.length - 1, display = "block"; i >= 0; i--, display = "none") {
                 if (mediaFiles[i].endsWith(".mp4") || mediaFiles[i].endsWith(".ogg")) {
-                    var video = jQuery("<video controls='false' style='widht:900;margin-top:10%;margin-right:30%'><source></source></video>");
+                    var video = jQuery("<video controls='false' autoplay width='1080' height='1920'><source></source></video>");
                     video.css("display", display);
                     video.find("source").first().attr("src", mediaFiles[i]);
                     video.find("source").first().attr("type", "video/" + mediaFiles[i].substr(mediaFiles[i].lastIndexOf(".") + 1, mediaFiles[i].length));
