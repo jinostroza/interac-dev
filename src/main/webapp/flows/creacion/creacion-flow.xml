@@ -15,7 +15,7 @@
 
 
    <view-state id="seleccionarTotem">
-       <transition on="finalizar" to="finalizar" />
+       <transition on="finaliza" to="finalizar" />
     </view-state>
     <view-state id="crearcampana">
         <transition on="con" to="registraAnuncio" />

@@ -69,7 +69,7 @@
     <div class="col-lg-6"  >
         <h5>Pasadas al día</h5>
         <p>Número total de pasadas diarias por anuncio</p>
-        <p:spinner id="ajaxSpinner" min="0" max="100" value="#{mantenedorCampana.precio}">
+        <p:spinner id="ajaxSpinner" min="0" max="100" value="#{mantenedorCampana.campana.pasadas}">
             <p:ajax update="ajaxSpinnerValue"  process="@this"  />
         </p:spinner>
 

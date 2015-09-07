@@ -74,10 +74,10 @@ public class MantenedorCampana implements Serializable {
         } else {
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado la campaña ");
         }
-        return end1 ;
+        return end1() ;
     }
 
-
+    public String end1(){ return "end1";}
     public String getEnd1() {
         return end1;
     }

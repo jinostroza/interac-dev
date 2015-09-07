@@ -20,7 +20,7 @@
                         <br></br>
 
                         <div id="cuadro-imagen" class="dz-default dz-message">
-                            <p:fileUpload style="width: 330px"  mode="advanced"
+                            <p:fileUpload style="width: 330px"  mode="advanced" fileUploadListener="#{mantenedorContenido.subir}"
                                           previewWidth="296" update="messages"  auto="false" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 
                             <p:growl id="messages" showDetail="true" />
@@ -66,9 +66,8 @@
                             </h:selectOneMenu>
 
                             <br></br>
-                            <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{mantenedorAnuncios.guardar}"
-                                             value="Crear Anuncio">
-                            </h:commandButton><span>  </span>
+
+                          <span>  </span>
                             <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
                                              value="Crear Campaña">
                             </h:commandButton>

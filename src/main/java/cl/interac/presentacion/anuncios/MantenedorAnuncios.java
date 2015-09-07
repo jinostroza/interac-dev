@@ -92,25 +92,23 @@ public class MantenedorAnuncios implements Serializable {
 
 
     public void subir(FileUploadEvent fue) {
-        operacion = TipoOperacion.INSERTAR;
-        System.err.println("LLEGO A LA WA " + fue);
-        String path = fileUploader.subir(fue, "/anuncios/"+userSession.getUsuario().getUsername() + "/");
-        System.err.println("SE SUPONE QUE SUBI EN " + path);
 
-        anuncio.setCategoria(categoria);
-        anuncio.setContenido(contenido);
-        logicaAnuncio.guardar(anuncio);
-        contenido.setUsuario(userSession.getUsuario());
-          contenido.setPath(path);
-          logicaContenido.guardar(contenido);
+
+            System.err.println("LLEGO A LA WA " + fue);
+            String path = fileUploader.subir(fue, "/anuncios/" + userSession.getUsuario().getUsername() + "/");
+            System.err.println("SE SUPONE QUE SUBI EN " + path);
+            logicaContenido.guardar(contenido);
+            contenido.setUsuario(userSession.getUsuario());
+           contenido.setPath(fue.getFile().getFileName());
+
+
         if (esEditar()) {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña [" + contenido.getIdcontenido() + "]");
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa","se ha subido tu Contenido" );
         } else {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el afiche [" + contenido.getIdcontenido() + "]");
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa","se ha subido tu Contenido" );
         }
-
-
     }
+
     public void addCampana() {
         operacion = TipoOperacion.INSERTAR;
         System.err.println("Anuncios seleccionados " + selecAnuncios);

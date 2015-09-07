@@ -74,24 +74,17 @@ public class MantenedorContenido implements Serializable{
         contenido = new Contenido();
     }
 
-
-
-
-
     public void subir(FileUploadEvent fue) {
         operacion = TipoOperacion.INSERTAR;
         System.err.println("LLEGO A LA WA " + fue);
 
-
-            try {
                 String path = fileUploader.subir(fue, "/anuncios/" + userSession.getUsuario().getUsername() + "/");
                 System.err.println("SE SUPONE QUE SUBI EN " + path);
                 contenido = new Contenido();
                 contenido.setUsuario(userSession.getUsuario());
-                contenido.setPath(path);
+                contenido.setPath(fue.getFile().getFileName());
                 logicaContenido.guardar(contenido);
-                anuncio.setCategoria(categoria);
-                logicaAnuncio.guardar(anuncio);
+
                  /*  boolean renombrado = archivo1.renameTo(archivo2);
                      File archivo1 = new File(path);
                 File archivo2 = new File(constantes.getPathArchivos() +"/anuncios/"+userSession.getUsuario().getUsername()+"/"  + ".jpg");
@@ -102,7 +95,7 @@ public class MantenedorContenido implements Serializable{
                 } */
                     FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Su imagen a sido subida ");
 
-            }catch (Exception e){ return;}
+
     }
 
 
