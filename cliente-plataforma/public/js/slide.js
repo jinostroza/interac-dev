@@ -58,7 +58,6 @@ var Slide = {
                     var src = obj.is("video") ? obj.find("source").attr("src") : obj.attr("src");
                     var encontrado = false;
 
-                
                     if (src == syncMedia[i]) {
                         encontrado = true;
                         break;
