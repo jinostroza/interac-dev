@@ -7,6 +7,13 @@ import javax.persistence.*;
  * Created by Joaco on 20/08/2015.
  */
 @Entity
+
+@NamedQueries(
+        {
+                @NamedQuery(name = "Campanun.findAll", query = "SELECT ca FROM Campanun ca ")
+
+        })
+
 public class Campanun {
     private int idcamanun;
     //relaciones

@@ -9,7 +9,8 @@ import java.util.List;
  */
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Contenido.findAll", query = "select c from Contenido c")
+        @NamedQuery(name = "Contenido.findAll", query = "select c from Contenido c"),
+        @NamedQuery(name = "Contenido.findWith", query = "select c from Contenido c,Usuario u "+" where c.usuario.idUsuario=u.idUsuario ")
 })
 public class Contenido implements Serializable{
     private Integer idcontenido;

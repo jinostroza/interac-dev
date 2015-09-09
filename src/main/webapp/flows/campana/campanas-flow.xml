@@ -11,25 +11,26 @@
 
       </view-state>
       <view-state id="campanapasos" >
-            <transition on="next" to="registraCampana"/>
-            <transition on="next1" to="seleccionarTotem"/>
-            <transition on="next2" to="planificar-pasadas"/>
-            <transition on="next3" to="campanaConfirmada"/>
+            <transition on="regisCamp" to="registraCampana">
+                  <evaluate expression="mantenedorContenido.inicio()"/>
+            </transition>
+
 
       </view-state>
 
 
       <view-state id="registraCampana" >
-            <transition on="next5" to="seleccionarTotem"> </transition>
-            <transition on="back1" to="campanapasos"/>
+            <transition on="selectTotem" to="seleccionarTotem"/>
+
+
       </view-state>
       <view-state id="seleccionarTotem">
-            <transition on="next6" to="planificar-pasadas"/>
+
+            <transition on="planPasada" to="planificar-pasadas"/>
       </view-state>
 
       <view-state id="planificar-pasadas" >
-            <transition on="back2" to="registraCampana"/>
-            <transition on="back3" to="campanapasos"/>
+            <transition on="vuelveTotem" to="seleccionarTotem"/>
             <transition on="end1" to="campanaConfirmada"/>
 
 

@@ -184,15 +184,15 @@ tr.table-header{
 }
 #myInterac .dashbox:hover  > .planificar-campana
 {
-	background-image: url("/resources/css/img/buttons/planificar-campaña-hover.png");
+	background-image: url("/resources/css/img/buttons/planificar-campana-hover.png");
 }
 .pagar
 {
-	background-image: url("/resources/css/img/buttons/confirmar-campaña.png");
+	background-image: url("/resources/css/img/buttons/confirmar-campana.png");
 }
 #myInterac .dashbox:hover > .pagar
 {
-	background-image: url("/resources/css/img/buttons/confirmar-campaña-hover.png");
+	background-image: url("/resources/css/img/buttons/confirmar-campana-hover.png");
 }
 .usar-plantilla
 {

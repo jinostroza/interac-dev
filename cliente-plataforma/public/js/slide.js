@@ -1,11 +1,9 @@
 var Slide = {
-    showTime: 20 * 1000, // 10 segundos
+    showTime: 10 * 1000, // 10 segundos
     syncTime: 60 * 1000, // 60 segundos
 
     sliderTimerID: null,
     syncTimerID: null,
-
-
 };
 
 (function() {
@@ -16,15 +14,13 @@ var Slide = {
 
             for (var i = mediaFiles.length - 1, display = "block"; i >= 0; i--, display = "none") {
                 if (mediaFiles[i].endsWith(".mp4") || mediaFiles[i].endsWith(".ogg")) {
-                    var video = jQuery("<video controls='false' autoplay width='1080' height='1920'><source></source></video>");
+                    var video = jQuery("<video controls='false' style='width: 1060px'><source></source></video>");
                     video.css("display", display);
                     video.find("source").first().attr("src", mediaFiles[i]);
                     video.find("source").first().attr("type", "video/" + mediaFiles[i].substr(mediaFiles[i].lastIndexOf(".") + 1, mediaFiles[i].length));
                     jQuery("div.center").append(video);
-                } else 
-                {
-
-                    var img = jQuery("<img style='width: 1060px;height: 1900px'></img>");
+                } else {
+                    var img = jQuery("<img style='width: 1060px;height: 1900px' ></img>");
                     img.attr("src", mediaFiles[i]);
                     img.css("display", display);
                     jQuery("div.center").append(img);
@@ -62,7 +58,6 @@ var Slide = {
                     var src = obj.is("video") ? obj.find("source").attr("src") : obj.attr("src");
                     var encontrado = false;
 
-                
                     if (src == syncMedia[i]) {
                         encontrado = true;
                         break;

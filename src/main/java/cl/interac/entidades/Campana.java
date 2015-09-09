@@ -16,7 +16,7 @@ import java.util.List;
                         name = "Campana.findAllWithRelationships",
                         query = "SELECT c FROM Campana c " +
                                 "INNER JOIN FETCH c.cliente cli"
-                )
+)
         }
 )
 public class Campana implements Serializable {
@@ -59,6 +59,11 @@ public class Campana implements Serializable {
     }
 
     public void setNombre(String nombre) {
+        if(nombre==null){
+          String  nom="eraUnaCampanaMuyChiquita" ;
+         setNombre(nom);
+           }
+
         this.nombre = nombre;
     }
     @Basic

@@ -8,7 +8,7 @@ var Path = require("path");
 // variables
 var serverPort = 3000
 var sleepTime = 6 * 60 * 60 * 1000; // cada 6 horas
-// var sleepTime = 20 * 1000; // cada 20 segundos
+//var sleepTime = 20 * 1000; // cada 20 segundos
 
 // motor de plantillas
 App.set("view engine", "jade");

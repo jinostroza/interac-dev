@@ -16,7 +16,7 @@ public class ContenidoDAO {
 
     public List<Contenido> obtenerTodos(){ return em.createNamedQuery("Contenido.findAll").getResultList();}
 
-
+    public List<Contenido> obtenerConRelacion(){ return em.createNamedQuery("Contenido.findWith").getResultList();}
     public void  guardar(Contenido c){
         if(c.getIdcontenido() == null )  em.persist(c);
         else em.merge(c);

@@ -41,6 +41,7 @@ public class MantenedorContenido implements Serializable{
     private List<Contenido> contenidoList;
     private Anuncio anuncio;
     private Categoria categoria;
+    private List<Contenido> selecContenido;
 
     @Autowired
     private LogicaContenido logicaContenido;
@@ -74,17 +75,11 @@ public class MantenedorContenido implements Serializable{
         contenido = new Contenido();
     }
 
-
-
-
-
     public void subir(FileUploadEvent fue) {
         operacion = TipoOperacion.INSERTAR;
-        System.err.println("LLEGO A LA WA " + fue);
-
 
             try {
-                String path = fileUploader.subir(fue, "/anuncios/" + userSession.getUsuario().getUsername() + "/");
+                String path = fileUploader.subir(fue,"/media");
                 System.err.println("SE SUPONE QUE SUBI EN " + path);
                 contenido = new Contenido();
                 contenido.setUsuario(userSession.getUsuario());
@@ -144,6 +139,12 @@ public class MantenedorContenido implements Serializable{
 
     public void setContenido(Contenido contenido) {
         this.contenido = contenido;
+    }
+    public List<Contenido> getSelecContenido() {
+        return selecContenido;
+    }
+    public void setSelecContenido(List<Contenido> selecContenido) {
+        this.selecContenido = selecContenido;
     }
 
 }
