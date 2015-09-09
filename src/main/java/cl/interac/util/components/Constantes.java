@@ -26,7 +26,7 @@ public class Constantes implements Serializable {
                 return null;
             }
         });
-        pathArchivos = System.getProperty("catalina.home") + "/static/interac";
+        pathArchivos = System.getProperty("catalina.home") + "/ec2-user";
     }
 
     public String getPathArchivos() {

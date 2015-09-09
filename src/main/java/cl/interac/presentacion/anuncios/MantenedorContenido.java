@@ -79,7 +79,7 @@ public class MantenedorContenido implements Serializable{
         operacion = TipoOperacion.INSERTAR;
 
             try {
-                String path = fileUploader.subir(fue, "/anuncios/" + userSession.getUsuario().getUsername() + "/");
+                String path = fileUploader.subir(fue,"/media");
                 System.err.println("SE SUPONE QUE SUBI EN " + path);
                 contenido = new Contenido();
                 contenido.setUsuario(userSession.getUsuario());
