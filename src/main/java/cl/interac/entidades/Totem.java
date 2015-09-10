@@ -22,8 +22,8 @@ import java.util.List;
 public class Totem implements Serializable {
     private Integer idtotem;
     private String noserie;
-    private String lat;
-    private String longi;
+    private Double lat;
+    private Double longi;
 
     // relaciones
     private List<Campana> campanas;
@@ -73,21 +73,21 @@ public class Totem implements Serializable {
     }
     @Basic
     @Column(name = "latitud")
-    public String getLat() {
+    public Double getLat() {
         return lat;
     }
 
-    public void setLat(String lat) {
+    public void setLat(Double lat) {
         this.lat = lat;
     }
 
     @Basic
     @Column(name = "longitud")
-    public String getLongi() {
+    public Double getLongi() {
         return longi;
     }
 
-    public void setLongi(String longi) {
+    public void setLongi(Double longi) {
         this.longi = longi;
     }
 

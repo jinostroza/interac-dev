@@ -32,8 +32,10 @@ public class MantenedorTotems implements Serializable {
 
     @Autowired
     private LogicaTipototem logicaTipototem;
-
     private MapModel simpleModel;
+
+    private Marker marker;
+
     private List<Totem> totems;
     private List<Tipototem> tipototems;
     private List<Totem> totemConFiltro;
@@ -74,16 +76,12 @@ public class MantenedorTotems implements Serializable {
         simpleModel = new DefaultMapModel();
 
         //Shared coordinates
-        LatLng coord1 = new LatLng(-33.044740, -71.613915);
-        LatLng coord2 = new LatLng(-33.044740, -72.613915);
-        LatLng coord3 = new LatLng(-34.044740, -71.613915);
-        LatLng coord4 = new LatLng(-33.044740, -71.613800);
+        LatLng coord1 = new LatLng(totem.getLat(),totem.getLongi());
+
 
         //Basic marker
-        simpleModel.addOverlay(new Marker(coord1, "Konyaalti"));
-        simpleModel.addOverlay(new Marker(coord2, "Ataturk Parki"));
-        simpleModel.addOverlay(new Marker(coord3, "Karaalioglu Parki"));
-        simpleModel.addOverlay(new Marker(coord4, "Kaleici"));
+        simpleModel.addOverlay(new Marker(coord1, totem.getNoserie()));
+
     }
 
     public MapModel getSimpleModel() {
@@ -141,6 +139,14 @@ public class MantenedorTotems implements Serializable {
 
     public void setEstablecimientoConfiltro(List<Establecimiento> establecimientoConfiltro) {
         this.establecimientoConfiltro = establecimientoConfiltro;
+    }
+
+    public Marker getMarker() {
+        return marker;
+    }
+
+    public void setMarker(Marker marker) {
+        this.marker = marker;
     }
 
     public List<Tipototem> getTipototems() {

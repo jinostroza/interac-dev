@@ -91,23 +91,7 @@ public class MantenedorAnuncios implements Serializable {
     }
 
 
-    public void subir(FileUploadEvent fue) {
 
-
-            System.err.println("LLEGO A LA WA " + fue);
-            String path = fileUploader.subir(fue, "/anuncios/" + userSession.getUsuario().getUsername() + "/");
-            System.err.println("SE SUPONE QUE SUBI EN " + path);
-            logicaContenido.guardar(contenido);
-            contenido.setUsuario(userSession.getUsuario());
-           contenido.setPath(fue.getFile().getFileName());
-
-
-        if (esEditar()) {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa","se ha subido tu Contenido" );
-        } else {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa","se ha subido tu Contenido" );
-        }
-    }
 
     public void addCampana() {
         operacion = TipoOperacion.INSERTAR;
@@ -120,7 +104,7 @@ public class MantenedorAnuncios implements Serializable {
         categorias = logicaCategoria.obtenerTodos();
         campanas = logicaCampana.obtenerTodos();
         contenidoList = logicaContenido.obtenerTodos();
-        anuncios = logicaAnuncio.obtenerConRelaciones();
+        anuncios = logicaAnuncio.obtenerAnuncio(userSession.getUsuario().getUsername());
         anuncio = new Anuncio();
     }
 

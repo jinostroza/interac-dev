@@ -15,9 +15,15 @@ import java.util.List;
                 @NamedQuery(name = "Anuncio.findAll", query = "SELECT a FROM Anuncio a "),
                 @NamedQuery(name = "Anuncio.findAllWithRelationships",
                         query = "SELECT a from Anuncio a " +
-                                "inner join fetch a.categoria ca"+
-                                "inner join fetch a.contenido co"
-                )
+                                "inner join fetch a.categoria ca "+
+                                "inner join fetch a.contenido co "
+                                     ),
+                @NamedQuery(name="Anuncio.findByContenidoAndUsuario",
+                             query="SELECT a FROM Anuncio a " +
+                                   "inner join fetch a.categoria ca "+
+                                   "inner join fetch a.contenido co "+
+                                   "inner join fetch co.usuario u " +
+                                     "where u.username=:user " )
 
 
         }

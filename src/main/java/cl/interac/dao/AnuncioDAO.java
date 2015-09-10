@@ -37,6 +37,10 @@ public class AnuncioDAO {
     public Anuncio obtenerPorId(Integer id) {
         return em.find(Anuncio.class, id);
     }
+
+    public List<Anuncio> obtieneAnuncio(String user){
+    return em.createNamedQuery("Anuncio.findByContenidoAndUsuario").setParameter("user",user).getResultList();
+    }
 }
 
 
