@@ -63,7 +63,7 @@
             <div class="ui-grid-col-10 table-header" >
             <p:dataTable id="checkboxDT" var="anun" value="#{mantenedorAnuncios.anuncios}"
                          rows="3" selection="#{mantenedorAnuncios.selecAnuncios}" rowKey="#{anun.idAnuncio}" style="margin-bottom:0">
-
+                 <h:graphicImage url="#{anun.contenido.path}" style="width:30px; height:40px;" />
                 <p:column selectionMode="multiple" style="width:40px;text-align:center"/>
                 <p:column headerText="Nombre">
                     <h:outputText value="#{anun.descanuncio}" />
@@ -71,9 +71,7 @@
                 <p:column headerText="Descripcion" >
                     <h:outputText value="#{anun.nombre}" />
                 </p:column>
-                <p:column headerText="Contenido">
-                    <h:outputText value="#{anun.contenido.path}" />
-                </p:column>
+
                 <p:column headerText="Categoria">
                     <h:outputText value="#{anun.categoria.desccategoria}" />
                 </p:column>
