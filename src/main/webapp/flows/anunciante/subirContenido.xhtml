@@ -1,3 +1,4 @@
+
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
@@ -20,8 +21,10 @@
                         <br></br>
 
                         <div id="cuadro-imagen" class="dz-default dz-message">
-                            <p:fileUpload style="width: 330px"  mode="advanced" fileUploadListener="#{mantenedorContenido.subir}"
-                                          previewWidth="296" update="messages"  auto="false" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                            <p:fileUpload style="width: 330px"  mode="advanced"
+                                          previewWidth="296" update="messages" uploadLabel="Subir"
+                                          fileUploadListener="#{mantenedorContenido.subir}"
+                                          cancelLabel="Cancelar" auto="false" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 
                             <p:growl id="messages" showDetail="true" />
 
@@ -57,19 +60,13 @@
                             </h:selectOneMenu>
 
                             <br></br>
-                            <label >Seleccionar Contenido</label>
-                            <h:selectOneMenu id="contll" class="form-control" value="#{mantenedorAnuncios.contenido}"
-                                             converter="entityConverter">
-                                <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Contenido --"/>
-                                <f:selectItems value="#{mantenedorAnuncios.contenidoList}" var="conten"
-                                               itemLabel="#{conten.path}" itemValue="#{conten}" />
-                            </h:selectOneMenu>
+
+
 
                             <br></br>
 
-                          <span>  </span>
                             <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
-                                             value="Crear Campaña">
+                                             value="Siguiente">
                             </h:commandButton>
                         </div>
                     </div>

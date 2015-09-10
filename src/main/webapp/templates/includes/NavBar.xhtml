@@ -36,15 +36,9 @@
                 </li>
             </ui:fragment>
 
-            <ui:fragment rendered="#{userSession.tienePermiso('CLIENTE')}">
-                <li>
-                    <p:commandLink value="Mis Campañas" />
-                </li>
-            </ui:fragment>
-
             <ui:fragment rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')}">
                 <li>
-                    <p:commandLink value="Mis Contenidos" action="#{facesUtil.redirigir('/plataforma/creacion')}"/>
+                    <p:commandLink value="Mis Contenidos" action="#{facesUtil.redirigir('/plataforma/contenidos')}"/>
                 </li>
             </ui:fragment>
 

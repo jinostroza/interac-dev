@@ -16,7 +16,7 @@ import java.util.List;
                         name = "Campana.findAllWithRelationships",
                         query = "SELECT c FROM Campana c " +
                                 "INNER JOIN FETCH c.cliente cli"
-                )
+)
         }
 )
 public class Campana implements Serializable {

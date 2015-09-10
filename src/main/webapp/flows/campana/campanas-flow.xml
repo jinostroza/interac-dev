@@ -11,7 +11,9 @@
 
       </view-state>
       <view-state id="campanapasos" >
-            <transition on="regisCamp" to="registraCampana"/>
+            <transition on="regisCamp" to="registraCampana">
+                  <evaluate expression="mantenedorContenido.inicio()"/>
+            </transition>
 
 
       </view-state>

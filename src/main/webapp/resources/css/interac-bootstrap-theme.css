@@ -156,43 +156,43 @@ tr.table-header{
 }
 .elegir-contenido, .elegir-anuncio
 {
-	background-image: url("../resources/css/img/buttons/elige-un-anuncio.png");
+	background-image: url("/resources/css/img/buttons/elige-un-anuncio.png");
 }
 #myInterac .dashbox:hover > .elegir-contenido
 {
-	background-image: url("../resources/css/img/buttons/elegir-contenido-hover.png");
+	background-image: url("/resources/css/img/buttons/elegir-contenido-hover.png");
 }
 #myInterac .dashbox:hover  > .elegir-anuncio
 {
-	background-image: url("../resources/css/img/buttons/elegir-contenido-hover.png");
+	background-image: url("/resources/css/img/buttons/elegir-contenido-hover.png");
 }
 .crear-campana , .seleccionar-pantallas
 {
-	background-image: url("../resources/css/img/buttons/seleccionar-pantalla.png");
+	background-image: url("/resources/css/img/buttons/seleccionar-pantalla.png");
 }
 #myInterac .dashbox:hover > .crear-campana:hover
 {
-	background-image: url("../resources/css/img/buttons/seleccionar-pantalla-hover.png");
+	background-image: url("/resources/css/img/buttons/seleccionar-pantalla-hover.png");
 }
 #myInterac .dashbox:hover > .seleccionar-pantallas
 {
-	background-image: url("../resources/css/img/buttons/seleccionar-pantalla-hover.png");
+	background-image: url("/resources/css/img/buttons/seleccionar-pantalla-hover.png");
 }
 .planificar-campana
 {
-	background-image: url("../resources/css/img/buttons/planificar-pantalla.png");
+	background-image: url("/resources/css/img/buttons/planificar-pantalla.png");
 }
 #myInterac .dashbox:hover  > .planificar-campana
 {
-	background-image: url("../resources/css/img/buttons/planificar-campaña-hover.png");
+	background-image: url("/resources/css/img/buttons/planificar-campana-hover.png");
 }
 .pagar
 {
-	background-image: url("../resources/css/img/buttons/confirmar-campaña.png");
+	background-image: url("/resources/css/img/buttons/confirmar-campana.png");
 }
 #myInterac .dashbox:hover > .pagar
 {
-	background-image: url("../resources/css/img/buttons/confirmar-campaña-hover.png");
+	background-image: url("/resources/css/img/buttons/confirmar-campana-hover.png");
 }
 .usar-plantilla
 {
