@@ -94,7 +94,7 @@ public class MantenedorContenido implements Serializable {
 
             if ("desarrollo".equals(ambiente))
                 // dentro del server siempre podra subir, no importa si es wintendo o linux
-                contenido.setPath(fue.getFile().getFileName());
+                contenido.setPath(pathTemporal);
             else if ("produccion".equals(ambiente)) {
                 // si es producción estamos obligado a usar el ftp
                 String totem = "colivares"; // por ahora, después se suponeque cambia
@@ -108,7 +108,7 @@ public class MantenedorContenido implements Serializable {
                 // por ende le pasamos la fecha con hora minuto y segundo + formato rescatado anteriormente
                 nombreArchivo = sdf.format(new Date()) + nombreArchivo;
                 Files.copy(Paths.get(pathTemporal), Paths.get("/home/ec2-user/media/" + totem + "/" + nombreArchivo));
-                contenido.setPath(fue.getFile().getFileName());
+                contenido.setPath(nombreArchivo);
             }
 
             // error ql wn, estabamos mandando nul pq el path se seteaba antes de la instancia,silovi

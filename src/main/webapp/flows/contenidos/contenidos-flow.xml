@@ -5,7 +5,7 @@
       start-state="vercontenido">
 
     <on-start>
-        <evaluate expression="mantenedorAnuncios.inicio()"/>
+        <evaluate expression="mantenedorContenido.inicio()"/>
     </on-start>
 
     <view-state id="vercontenido">
