@@ -27,4 +27,8 @@ public class ContenidoDAO {
         em.remove(contenidos);
 
     }
+
+    public List<Contenido> obtenContenido(String user){
+        return em.createNamedQuery("Contenido.findByUsuario").setParameter("user",user).getResultList();
+    }
 }

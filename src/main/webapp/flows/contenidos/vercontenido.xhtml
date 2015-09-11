@@ -9,39 +9,33 @@
     <ui:define name="contenido">
 
         <h:form>
-
-            <p:dataScroller  value="#{mantenedorAnuncios.anuncios}" styleClass="ui-grid-col-12" var="anun" chunkSize="10">
+            <p:dataScroller value="#{mantenedorContenido.contenidoList}" var="nun" chunkSize="10">
                 <f:facet name="header">
-                    Publicidad
+                    hueheu
                 </f:facet>
 
-                <h:panelGrid columns="2" style="width:100%">
+                <f:facet name="loader">
+                    <p:commandButton type="button" value="More" icon="ui-icon-circle-triangle-s"/>
+                </f:facet>
 
+                <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+                    <h:graphicImage name="#{nun.path}"/>
 
                     <p:outputPanel>
                         <h:panelGrid columns="2" cellpadding="5">
-                            <h:outputText value="descripcion:"/>
-                            <h:outputText value="#{anun.descanuncio}" style="font-weight: bold"/>
 
-                            <h:outputText value="rubro:"/>
-                            <h:outputText value="#{anun.nombre}" style="font-weight: bold"/>
+                            <h:outputText value="Year:" />
+                            <h:outputText value="#{nun.idcontenido}" style="font-weight: bold"/>
 
 
-
-                            <p:separator/>
                         </h:panelGrid>
                     </p:outputPanel>
                 </h:panelGrid>
+
             </p:dataScroller>
-        </h:form>
-        <h:form>
-            <p:galleria value="#{mantenedorContenido.contenidoList}" var="image" panelWidth="500" panelHeight="313" showCaption="true">
-                <p:graphicImage width="500" height="300" value="http://pngimg.com/upload/car_logo_PNG1658.png"  alt="Usuario #{image.usuario.idUsuario}" title="#{image.idcontenido}"/>
-            </p:galleria>
-        </h:form>
+            <a class="twitter-timeline" href="https://twitter.com/erlosho" data-widget-id="642361476662099968">Tweets por el @erlosho.</a>
 
-    
-
+        </h:form>
 
     </ui:define>
 </ui:composition>

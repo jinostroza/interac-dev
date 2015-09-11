@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -73,9 +74,11 @@ public class MantenedorContenido implements Serializable {
         return operacion == TipoOperacion.INSERTAR;
     }
 
+
+    @PostConstruct
     public void inicio() {
         usuarios = logicaUsuario.obtenerTodos();
-        contenidoList = logicaContenido.obtenerTodos();
+        contenidoList = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
         contenido = new Contenido();
     }
 

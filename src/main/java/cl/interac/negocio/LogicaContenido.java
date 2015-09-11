@@ -34,4 +34,10 @@ public class LogicaContenido {
         contenidoDAO.eliminar(c);
     }
 
+    @Transactional(readOnly = false)
+    public List<Contenido> obtenContenido(String user){
+        return contenidoDAO.obtenContenido(user);
+    }
+
+
 }

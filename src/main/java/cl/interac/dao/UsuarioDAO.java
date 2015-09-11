@@ -1,5 +1,6 @@
 package cl.interac.dao;
 
+import cl.interac.entidades.Contenido;
 import cl.interac.entidades.Rol;
 import cl.interac.entidades.Usuario;
 import cl.interac.security.SHA512;
@@ -103,6 +104,8 @@ public class UsuarioDAO {
 
 
     }
+
+
 
 
 

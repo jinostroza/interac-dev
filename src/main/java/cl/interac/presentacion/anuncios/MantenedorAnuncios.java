@@ -111,6 +111,54 @@ public class MantenedorAnuncios implements Serializable {
 
     //get and set
 
+    public TipoOperacion getOperacion() {
+        return operacion;
+    }
+
+    public void setOperacion(TipoOperacion operacion) {
+        this.operacion = operacion;
+    }
+
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
+    }
+
+    public List<Campana> getCampanas() {
+        return campanas;
+    }
+
+    public void setCampanas(List<Campana> campanas) {
+        this.campanas = campanas;
+    }
+
+    public List<Anuncio> getAnuncios() {
+        return anuncios;
+    }
+
+    public void setAnuncios(List<Anuncio> anuncios) {
+        this.anuncios = anuncios;
+    }
+
+    public List<Anuncio> getSelecAnuncios() {
+        return selecAnuncios;
+    }
+
+    public void setSelecAnuncios(List<Anuncio> selecAnuncios) {
+        this.selecAnuncios = selecAnuncios;
+    }
+
+    public Anuncio getAnuncio() {
+        return anuncio;
+    }
+
+    public void setAnuncio(Anuncio anuncio) {
+        this.anuncio = anuncio;
+    }
+
     public Categoria getCategoria() {
         return categoria;
     }
@@ -119,50 +167,12 @@ public class MantenedorAnuncios implements Serializable {
         this.categoria = categoria;
     }
 
-    public List<Categoria> getCategorias() {
-        return categorias;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public Anuncio getAnuncio() {
-        return anuncio;
-    }
-
-    public List<Anuncio> getAnuncios() {
-        return anuncios;
-    }
-    public List<Anuncio> getSelecAnuncios() {
-        return selecAnuncios;
-    }
-    public void setSelecAnuncios(List<Anuncio> selecAnuncios) {
-        this.selecAnuncios = selecAnuncios;
-    }
-
-    public List<Campana> getCampanas() {
-        return campanas;
-    }
-
-    public void setCategorias(List<Categoria> categorias) {
-        this.categorias = categorias;
-    }
-
-    public void setCampanas(List<Campana> campanas) {
-        this.campanas = campanas;
-    }
-
-    public void setAnuncios(List<Anuncio> anuncios) {
-        this.anuncios = anuncios;
-    }
-
-    public void setAnuncio(Anuncio anuncio) {
-        this.anuncio = anuncio;
-    }
-
-    public List<Contenido> getContenidoList() {
-        return contenidoList;
-    }
-
-    public void setContenidoList(List<Contenido> contenidoList) {
-        this.contenidoList = contenidoList;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Contenido getContenido() {
@@ -173,4 +183,11 @@ public class MantenedorAnuncios implements Serializable {
         this.contenido = contenido;
     }
 
+    public List<Contenido> getContenidoList() {
+        return contenidoList;
+    }
+
+    public void setContenidoList(List<Contenido> contenidoList) {
+        this.contenidoList = contenidoList;
+    }
 }

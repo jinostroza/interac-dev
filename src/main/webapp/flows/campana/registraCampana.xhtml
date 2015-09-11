@@ -65,9 +65,8 @@
                          rows="3" selection="#{mantenedorAnuncios.selecAnuncios}" rowKey="#{anun.idAnuncio}" style="margin-bottom:0">
 
                 <p:column selectionMode="multiple" style="width:40px;text-align:center"/>
-                <p:column headerText="imagen" >
-                    <h:graphicImage name="#{anun.contenido.path}" style="width:30px; height:50px;"/>
-                </p:column>
+
+
                 <p:column headerText="Nombre">
                     <h:outputText value="#{anun.descanuncio}" />
                 </p:column>

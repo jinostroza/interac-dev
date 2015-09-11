@@ -27,7 +27,7 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
 
         <security:logout invalidate-session="true"
                          delete-cookies="true"
-                         logout-success-url="/interac/home.jsf"
+                         logout-success-url="/home.jsf"
                          logout-url="/logOut"/>
 
 
