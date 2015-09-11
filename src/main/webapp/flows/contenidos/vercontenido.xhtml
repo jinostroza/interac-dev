@@ -19,13 +19,13 @@
                 </f:facet>
 
                 <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-                    <h:graphicImage name="#{nun.path}"/>
+                    <h:graphicImage url="ftp://54.172.118.246/-#{nun.path}"/>
 
                     <p:outputPanel>
                         <h:panelGrid columns="2" cellpadding="5">
 
                             <h:outputText value="Year:" />
-                            <h:outputText value="#{nun.idcontenido}" style="font-weight: bold"/>
+                            <h:outputText value="#{nun.usuario.username}" style="font-weight: bold"/>
 
 
                         </h:panelGrid>
