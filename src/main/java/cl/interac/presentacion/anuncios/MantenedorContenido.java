@@ -114,8 +114,7 @@ public class MantenedorContenido implements Serializable {
 
             contenido.setUsuario(userSession.getUsuario());
             logicaContenido.guardar(contenido);
-            anuncio.setCategoria(categoria);
-            logicaAnuncio.guardar(anuncio);
+
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Su imagen a sido subida ");
 
         } catch (Exception e) {
