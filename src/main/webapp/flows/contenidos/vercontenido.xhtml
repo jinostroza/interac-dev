@@ -11,7 +11,7 @@
         <h:form>
             <p:dataScroller value="#{mantenedorContenido.contenidoList}" var="nun" chunkSize="10">
                 <f:facet name="header">
-                    hueheu
+                   Mis Contenidos
                 </f:facet>
 
                 <f:facet name="loader">
@@ -19,13 +19,13 @@
                 </f:facet>
 
                 <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-                    <h:graphicImage url="ftp://54.172.118.246/#{nun.path}"/>
+                    <h:graphicImage style="width: 200px;height: 150px;overflow: hidden;" url="ftp://54.172.118.246/#{nun.path}"/>
 
                     <p:outputPanel>
                         <h:panelGrid columns="2" cellpadding="5">
 
-                            <h:outputText value="Year:" />
-                            <h:outputText value="#{nun.usuario.username}" style="font-weight: bold"/>
+                            <h:outputText value="Contenido:" />
+                            <h:outputText value="#{nun.idcontenido}" style="font-weight: bold"/>
 
 
                         </h:panelGrid>
@@ -33,7 +33,6 @@
                 </h:panelGrid>
 
             </p:dataScroller>
-            <a class="twitter-timeline" href="https://twitter.com/erlosho" data-widget-id="642361476662099968">Tweets por el @erlosho.</a>
 
         </h:form>
 

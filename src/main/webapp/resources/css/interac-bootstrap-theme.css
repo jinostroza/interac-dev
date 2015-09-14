@@ -29,7 +29,7 @@ tr.table-header{
 }
 .header .header-top .logo{
 	position: absolute;
-	background-image: url('resources/css/img/interacblanco.png');
+	background-image: url('css/img/interacblanco.png');
 	width: 200px;
 	height: 60px;
 	margin: 25px 0 15px 50px;
@@ -116,7 +116,7 @@ tr.table-header{
 	height: 500px;
 	width: 330px;
 	background-color: grey;
-	background-image:  url("resources/css/img/cloud-upload.png");
+	background-image:  url("css/img/cloud-upload.png");
 	background-size: 120px 100px;
 	background-repeat: no-repeat;
 	background-position: 90px 180px;
@@ -156,119 +156,119 @@ tr.table-header{
 }
 .elegir-contenido, .elegir-anuncio
 {
-	background-image: url("resources/css/img/buttons/elige-un-anuncio.png");
+	background-image: url("css/img/buttons/elige-un-anuncio.png");
 }
 #myInterac .dashbox:hover > .elegir-contenido
 {
-	background-image: url("resources/css/img/buttons/elegir-contenido-hover.png");
+	background-image: url("css/img/buttons/elegir-contenido-hover.png");
 }
 #myInterac .dashbox:hover  > .elegir-anuncio
 {
-	background-image: url("resources/css/img/buttons/elegir-contenido-hover.png");
+	background-image: url("css/img/buttons/elegir-contenido-hover.png");
 }
 .crear-campana , .seleccionar-pantallas
 {
-	background-image: url("resources/css/img/buttons/seleccionar-pantalla.png");
+	background-image: url("css/img/buttons/seleccionar-pantalla.png");
 }
 #myInterac .dashbox:hover > .crear-campana:hover
 {
-	background-image: url("resources/css/img/buttons/seleccionar-pantalla-hover.png");
+	background-image: url("css/img/buttons/seleccionar-pantalla-hover.png");
 }
 #myInterac .dashbox:hover > .seleccionar-pantallas
 {
-	background-image: url("resources/css/img/buttons/seleccionar-pantalla-hover.png");
+	background-image: url("css/img/buttons/seleccionar-pantalla-hover.png");
 }
 .planificar-campana
 {
-	background-image: url("resources/css/img/buttons/planificar-pantalla.png");
+	background-image: url("css/img/buttons/planificar-pantalla.png");
 }
 #myInterac .dashbox:hover  > .planificar-campana
 {
-	background-image: url("resources/css/img/buttons/planificar-campana-hover.png");
+	background-image: url("css/img/buttons/planificar-campana-hover.png");
 }
 .pagar
 {
-	background-image: url("resources/css/img/buttons/confirmar-campana.png");
+	background-image: url("css/img/buttons/confirmar-campana.png");
 }
 #myInterac .dashbox:hover > .pagar
 {
-	background-image: url("resources/css/img/buttons/confirmar-campana-hover.png");
+	background-image: url("css/img/buttons/confirmar-campana-hover.png");
 }
 .usar-plantilla
 {
-	background-image: url("resources/css/img/buttons/usa-una-plantilla.png");
+	background-image: url("css/img/buttons/usa-una-plantilla.png");
 }
 #myInterac .dashbox:hover > .usar-plantilla
 {
-	background-image: url("resources/css/img/buttons/usa-una-plantilla-hover.png");
+	background-image: url("css/img/buttons/usa-una-plantilla-hover.png");
 }
 .subir-imagen
 {
-	background-image: url("resources/css/img/buttons/sube-una-imagen.png");
+	background-image: url("css/img/buttons/sube-una-imagen.png");
 }
 #myInterac .dashbox:hover > .subir-imagen
 {
-	background-image: url("resources/css/img/buttons/sube-una-imagen-hover.png");
+	background-image: url("css/img/buttons/sube-una-imagen-hover.png");
 }
 .subir-video
 {
-	background-image: url("resources/css/img/buttons/sube-un video.png");
+	background-image: url("css/img/buttons/sube-un video.png");
 }
 #myInterac .dashbox:hover > .subir-video
 {
-	background-image: url("resources/css/img/buttons/sube-un-video-hover.png");
+	background-image: url("css/img/buttons/sube-un-video-hover.png");
 }
 .paso-uno
 {
-	background-image: url("resources/css/img/buttons/user-register-active.png");
+	background-image: url("css/img/buttons/user-register-active.png");
 }
 .paso-uno-inactive
 {
-	background-image: url("resources/css/img/buttons/user-register-active.png");
+	background-image: url("css/img/buttons/user-register-active.png");
 }
 .paso-dos
 {
-	background-image: url("resources/css/img/buttons/user-type-icon.png");
+	background-image: url("css/img/buttons/user-type-icon.png");
 }
 .paso-dos-active
 {
-	background-image: url("resources/css/img/buttons/user-type-active.png");
+	background-image: url("css/img/buttons/user-type-active.png");
 }
 .paso-tres
 {
-	background-image: url("resources/css/img/buttons/confirm-account-icon.png");
+	background-image: url("css/img/buttons/confirm-account-icon.png");
 }
 .paso-tres-active
 {
-	background-image: url("resources/css/img/buttons/confirm-account-active.png");
+	background-image: url("css/img/buttons/confirm-account-active.png");
 }
 .crear-anuncio
 {
-	background-image: url("resources/css/img/buttons/crea-un-anuncio-nuevo.png");
+	background-image: url("css/img/buttons/crea-un-anuncio-nuevo.png");
 }
 #myInterac .dashbox:hover  > .crear-anuncio
 {
-	background-image: url("resources/css/img/buttons/crear-nuevo-anuncio-hover.png");
+	background-image: url("css/img/buttons/crear-nuevo-anuncio-hover.png");
 }
 .elegir-mas-tarde
 {
-	background-image: url("resources/css/img/buttons/elige-mas-tarde.png");
+	background-image: url("css/img/buttons/elige-mas-tarde.png");
 }
 #myInterac .dashbox:hover > .elegir-mas-tarde
 {
-	background-image: url("resources/css/img/buttons/elige-mas-tarde-hover.png");
+	background-image: url("css/img/buttons/elige-mas-tarde-hover.png");
 }
 .crear-nuevo-anuncio
 {
-	background-image: url("resources/css/img/buttons/elige-mas-tarde.png");
+	background-image: url("css/img/buttons/elige-mas-tarde.png");
 }
 .btn-anunciante
 {
-	background-image: url("resources/css/img/buttons/btn-anunciante.png");
+	background-image: url("css/img/buttons/btn-anunciante.png");
 }
 .btn-empresa
 {
-	background-image: url("resources/css/img/buttons/btn-empresa.png");
+	background-image: url("css/img/buttons/btn-empresa.png");
 }
 
 #myInterac .dashbox:hover
@@ -422,7 +422,7 @@ tr.table-header{
 	background-color: #E52721;
 }
 .panelDeControl .boton-editar{
-	background-image: url('resources/css/img/buttons/edit-20-01.png');
+	background-image: url('css/img/buttons/edit-20-01.png');
 	width: 20px;
 	height: 20px;
 	background-size: contain;
@@ -430,7 +430,7 @@ tr.table-header{
 	margin: 0 auto;
 }
 .panelDeControl .boton-eliminar{
-	background-image: url('resources/css/img/buttons/bin-20-01.png');
+	background-image: url('css/img/buttons/bin-20-01.png');
 	width: 20px;
 	height: 20px;
 	background-size: contain;
@@ -456,7 +456,7 @@ tr.table-header{
 	text-align: center;
 }
 #crearAnuncioPlantillas .row .anuncioPlantilla .plantillaImagen{
-	background-image: url('resources/css/img/buttons/menu-prueba-plantilla-21.png');
+	background-image: url('css/img/buttons/menu-prueba-plantilla-21.png');
 	height: 200px;
 	margin: 10px 0;
 }
@@ -465,7 +465,7 @@ tr.table-header{
 	height:30px;
 	position:relative;
 	float:left;
-	background-image: url('resources/css/img/buttons/edit-plantilla.png');
+	background-image: url('css/img/buttons/edit-plantilla.png');
 	background-repeat: no-repeat;
 	left:330px;
 }
@@ -474,7 +474,7 @@ tr.table-header{
 	height:20px;
 	position:relative;
 	float:left;
-	background-image: url('resources/css/img/buttons/edit-info-34.png');
+	background-image: url('css/img/buttons/edit-info-34.png');
 	background-repeat: no-repeat;
 	left: 580px;
 	top: 195px;
@@ -484,7 +484,7 @@ tr.table-header{
 	height:20px;
 	position:relative;
 	float:left;
-	background-image: url('resources/css/img/buttons/edit-info-34.png');
+	background-image: url('css/img/buttons/edit-info-34.png');
 	background-repeat: no-repeat;
 	left: 195px;
 	top: 320px;
@@ -494,7 +494,7 @@ tr.table-header{
 	height:20px;
 	position:relative;
 	float:left;
-	background-image: url('resources/css/img/buttons/edit-info-34.png');
+	background-image: url('css/img/buttons/edit-info-34.png');
 	background-repeat: no-repeat;
 	left: 570px;
 	top: 230px;
@@ -525,7 +525,7 @@ tr.table-header{
 }
 .footer .footer-image{
 	vertical-align: middle;
-	background-image: url('resources/css/img/buttons/book-open-blanco.png');
+	background-image: url('css/img/buttons/book-open-blanco.png');
 	background-size: contain;
 	background-repeat: no-repeat;
 	width: 40px;
@@ -536,7 +536,7 @@ tr.table-header{
 }
 .footer .footer-image-cell{
 	vertical-align: middle;
-	background-image: url('resources/css/img/buttons/cellphone-blanco.png');
+	background-image: url('css/img/buttons/cellphone-blanco.png');
 	background-size: contain;
 	background-repeat: no-repeat;
 	width: 40px;
@@ -547,7 +547,7 @@ tr.table-header{
 }
 .footer .footer-image-email{
 	vertical-align: middle;
-	background-image: url('resources/css/img/buttons/email-blanco.png');
+	background-image: url('css/img/buttons/email-blanco.png');
 	background-size: contain;
 	background-repeat: no-repeat;
 	width: 40px;
@@ -570,7 +570,7 @@ tr.table-header{
 	border-radius: 12px;
 }
 div.login-logo{
-	background-image: url('resources/css/img/interacblanco.png');
+	background-image: url('css/img/interacblanco.png');
 	width: 181px;
 	height: 69px;
 	background-size: contain;
@@ -589,14 +589,14 @@ div.login-logo{
 }
 #loginEmail
 {
-	background-image: url('resources/css/img/buttons/login-user.png');
+	background-image: url('css/img/buttons/login-user.png');
 	background-position: 325px center;
 	background-repeat: no-repeat;
 	padding:0 0 0 16px;
 }
 #loginPassword
 {
-	background-image: url('resources/css/img/buttons/login-password.png');
+	background-image: url('css/img/buttons/login-password.png');
 	background-position: 330px center;
 	background-repeat: no-repeat;
 	padding:0 0 0 16px;
@@ -665,11 +665,11 @@ div.login-logo{
 .vista-campania{
 	width: 570px;
 	height: 400px;
-	background-image: url('resources/css/img/buttons/imagen-campania-21.png');
+	background-image: url('css/img/buttons/imagen-campania-21.png');
 }
 .editando-plantilla{
 	width: 760px;
 	height:427px;
-	background-image: url('resources/css/img/buttons/promo-del-dia1-22.png');
+	background-image: url('css/img/buttons/promo-del-dia1-22.png');
 	margin:auto;
 }
