@@ -11,7 +11,6 @@ import cl.interac.util.components.UserSession;
 import cl.interac.util.services.FileUploader;
 
 
-
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
@@ -50,6 +49,8 @@ public class MantenedorContenido implements Serializable {
     private Anuncio anuncio;
     private Categoria categoria;
     private List<Contenido> selecContenido;
+
+
 
     @Autowired
     private LogicaContenido logicaContenido;
@@ -130,21 +131,17 @@ public class MantenedorContenido implements Serializable {
     }
 
 
-    public void eliminararchivo(String archivo){
-
-
-        File fichero = new File (archivo);
-
-        if(fichero.delete()){
-
-            System.out.println("archivo eliminado");
-
+    public boolean eliminarFichero(String ftpDelete){
+        try {
+            logicaContenido.eliminarContenido(contenido);
+            Files.delete(Paths.get("/home/ec2-user/media/colivares/"+contenido.getPath()));
+             FacesUtil.mostrarMensajeInformativo("se borro tu imach", "ya puedes morir en paz");
+            return true;
+        } catch (IOException e) {
+           FacesUtil.mostrarMensajeInformativo("no se borro tu imach", "babuinos trabajando en el problema");
         }
 
-    }
-
-    public void eliminar() {
-        logicaContenido.eliminarContenido(contenido);
+        return false;
     }
 
 
