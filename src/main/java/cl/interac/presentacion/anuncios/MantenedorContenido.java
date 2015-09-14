@@ -17,7 +17,7 @@ import org.primefaces.event.UnselectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import com.sun.java.util.*;
+
 import javax.annotation.PostConstruct;
 import java.io.*;
 import java.io.Serializable;
@@ -131,17 +131,20 @@ public class MantenedorContenido implements Serializable {
     }
 
 
-    public boolean eliminarFichero(String ftpDelete){
+    public void eliminarFichero(Contenido contenido){
+
         try {
             logicaContenido.eliminarContenido(contenido);
-            Files.delete(Paths.get("/home/ec2-user/media/colivares/"+contenido.getPath()));
-             FacesUtil.mostrarMensajeInformativo("se borro tu imach", "ya puedes morir en paz");
-            return true;
-        } catch (IOException e) {
-           FacesUtil.mostrarMensajeInformativo("no se borro tu imach", "babuinos trabajando en el problema");
+            Files.delete(Paths.get("/home/ec2-user/media/colivares/20150911.070557.gif"));
+            FacesUtil.mostrarMensajeInformativo("se borro tu imach", "ya puedes morir en paz");
+
+        }catch (Exception e){
+            FacesUtil.mostrarMensajeInformativo("se borro tu imach", "ya puedes morir en paz");
         }
 
-        return false;
+
+
+
     }
 
 
