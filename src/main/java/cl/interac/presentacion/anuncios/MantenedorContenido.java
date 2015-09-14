@@ -131,11 +131,11 @@ public class MantenedorContenido implements Serializable {
     }
 
 
-    public void eliminarFichero(Contenido contenido){
+    public void eliminarFichero(Contenido conte){
 
         try {
-            logicaContenido.eliminarContenido(contenido);
-            Files.delete(Paths.get("/home/ec2-user/media/colivares/20150911.070557.gif"));
+            logicaContenido.eliminarContenido(conte);
+            Files.delete(Paths.get("/home/ec2-user/media/colivares/"+conte.getPath()));
             FacesUtil.mostrarMensajeInformativo("se borro tu imach", "ya puedes morir en paz");
 
         }catch (Exception e){
