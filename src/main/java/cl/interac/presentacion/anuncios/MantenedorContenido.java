@@ -10,11 +10,15 @@ import cl.interac.util.components.PropertyReader;
 import cl.interac.util.components.UserSession;
 import cl.interac.util.services.FileUploader;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -170,5 +174,6 @@ public class MantenedorContenido implements Serializable {
     public void setSelecContenido(List<Contenido> selecContenido) {
         this.selecContenido = selecContenido;
     }
+
 
 }

@@ -19,21 +19,22 @@
                 </f:facet>
 
                 <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-                    <h:graphicImage url="ftp://54.172.118.246/#{nun.path}"/>
+                <h:graphicImage url="ftp://54.172.118.246/#{nun.path}"/>
 
                     <p:outputPanel>
                         <h:panelGrid columns="2" cellpadding="5">
 
                             <h:outputText value="Year:" />
                             <h:outputText value="#{nun.usuario.username}" style="font-weight: bold"/>
-
-
+                           <h:column>
+                            <h:commandButton value="borrar" action="#{mantenedorContenido.eliminar()}" />
+                           </h:column>
                         </h:panelGrid>
+
                     </p:outputPanel>
                 </h:panelGrid>
-
             </p:dataScroller>
-            <a class="twitter-timeline" href="https://twitter.com/erlosho" data-widget-id="642361476662099968">Tweets por el @erlosho.</a>
+
 
         </h:form>
 

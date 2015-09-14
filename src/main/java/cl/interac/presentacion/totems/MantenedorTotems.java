@@ -29,9 +29,9 @@ public class MantenedorTotems implements Serializable {
     private LogicaCampana logicaCampana;
     @Autowired
     private LogicaEstablecimiento logicaEstablecimiento;
-
     @Autowired
     private LogicaTipototem logicaTipototem;
+
     private MapModel simpleModel;
 
     private Marker marker;
@@ -52,13 +52,19 @@ public class MantenedorTotems implements Serializable {
         establecimientoList = logicaEstablecimiento.obtenerTodos();
         tipototems = logicaTipototem.obtenerTodos();
         totem = new Totem();
+        simpleModel = new DefaultMapModel();
+        //Shared coordinates
+        LatLng coord1 = new LatLng(-33.044830, -71.613881);
+        //Basic marker
+        simpleModel.addOverlay(new Marker(coord1, "PUCV"));
 
     }
+
     // logica vista
     public void agregarTotem() {
         totem.setEstablecimiento(establecimiento);
         totem.setTipototem(tipototem);
-        System.err.println("totem e: "+totem.getEstablecimiento());
+        System.err.println("totem e: " + totem.getEstablecimiento());
         logicaTotem.guardar(totem);
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el Totem [" + totem.getNoserie() + "]");
 
@@ -71,18 +77,7 @@ public class MantenedorTotems implements Serializable {
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha Lobeznisado el Totem [" + totem.getNoserie() + "]");
 
     }
-    @PostConstruct
-    public void init() {
-        simpleModel = new DefaultMapModel();
 
-        //Shared coordinates
-        LatLng coord1 = new LatLng(totem.getLat(),totem.getLongi());
-
-
-        //Basic marker
-        simpleModel.addOverlay(new Marker(coord1, totem.getNoserie()));
-
-    }
 
     public MapModel getSimpleModel() {
         return simpleModel;
