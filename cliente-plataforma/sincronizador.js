@@ -6,6 +6,7 @@ var Path = require('path');
 function Sincronizador() {
     this.Ftp = new FtpClient();
     this.server = "54.172.118.246";
+    // this.server = "localhost";
     this.port = 21;
     this.user = "colivares";
     this.pass = "colivares";
@@ -48,8 +49,33 @@ function Sincronizador() {
         });
     };
 
+    var clearOldData = function(data) {
+        var self = this;
+        var ftpFiles = getFilesNames.call(this, data);
+
+        FileSystem.readdir(this.localData, function(err, files) {
+            for (var i = 0; i < files.length; i++) {
+                if (ftpFiles.indexOf(files[i]) != -1) continue;
+                var eliminar = self.localData + files[i];
+                FileSystem.unlink(eliminar, function(err) {
+                    if (err) return;
+                    console.log("Eliminando", eliminar);
+                });
+            }
+        });
+    };
+
+    var getFilesNames = function(data) {
+        var retorno = [];
+        for (var i = 0; i < data.length; i++) {
+            retorno.push(data[i].name);
+        }
+        return retorno;
+    };
+
     // método público
     this.run = function() {
+        this.syncFiles = [];
         this.Ftp.connect({
             host: this.server,
             port: this.port,
@@ -66,7 +92,11 @@ function Sincronizador() {
             self.Ftp.list(self.remoteData, function(error, data) {
                 console.log("directorio remoto listado");
                 if (error) return null;
-                processData.call(self, data);
+                if (!data.length) return null;
+
+                // el slice lo hago para hacer una copia del array, ya que en js los parámetros son por referencia
+                clearOldData.call(self, data.slice(0, data.length -1));
+                processData.call(self, data.slice(0, data.length -1));
             });
         });
 
