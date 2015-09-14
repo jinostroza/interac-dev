@@ -9,16 +9,18 @@ import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.PropertyReader;
 import cl.interac.util.components.UserSession;
 import cl.interac.util.services.FileUploader;
+
+
+
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
+import com.sun.java.util.*;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
+import java.io.*;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -127,6 +129,19 @@ public class MantenedorContenido implements Serializable {
         }
     }
 
+
+    public void eliminararchivo(String archivo){
+
+
+        File fichero = new File (archivo);
+
+        if(fichero.delete()){
+
+            System.out.println("archivo eliminado");
+
+        }
+
+    }
 
     public void eliminar() {
         logicaContenido.eliminarContenido(contenido);
