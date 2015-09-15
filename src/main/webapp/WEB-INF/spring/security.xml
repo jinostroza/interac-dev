@@ -12,13 +12,13 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
 
     <security:http auto-config="false" entry-point-ref="authenticationEntryPoint"
                    use-expressions="true"
-                   access-denied-page="/home.jsf">
+                   access-denied-page="/logIn.jsf">
 
         <security:form-login login-page="/logIn.jsf" always-use-default-target="true" default-target-url="/inicio.jsf"/>
 
 
 
-        <security:session-management invalid-session-url="/home.jsf">
+        <security:session-management invalid-session-url="/logIn.jsf">
             <security:concurrency-control max-sessions="1"/>
         </security:session-management>
 
@@ -27,14 +27,14 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
 
         <security:logout invalidate-session="true"
                          delete-cookies="true"
-                         logout-success-url="/home.jsf"
+                         logout-success-url="http://www.interac.cl/"
                          logout-url="/logOut"/>
 
 
-        <security:intercept-url pattern="home.jsf" access="permitAll"/>
+        <security:intercept-url pattern="logIn.jsf" access="permitAll"/>
         <security:intercept-url pattern="plataforma/campana/**" access="permitAll"/>
         <security:intercept-url pattern="plataforma/mantencion/**" access="hasRole('ADMINISTRADOR')"/>
-        <security:intercept-url pattern="plataforma/anunciante/**" access="hasRole('ANUNCIOANTE')"/>
+        <security:intercept-url pattern="plataforma/anunciante/**" access="hasRole('ANUNCIANTE')"/>
         <security:intercept-url pattern="plataforma/cliente/**" access="hasRole('CLIENTE')"/>
 
     </security:http>

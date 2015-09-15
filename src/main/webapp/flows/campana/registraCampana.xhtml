@@ -64,7 +64,7 @@
             <p:dataTable  var="anun" value="#{mantenedorContenido.contenidoList}" style="margin-bottom:0">
 
                 <p:column headerText="contenido">
-                    <h:graphicImage url="ftp://54.172.118.246/#{anun.path}"  style="width:100px; height:150px;" />
+                    <h:graphicImage value="/imagenes/#{anun.path}"  style="width:100px; height:150px;" />
                 </p:column>
                 <p:column headerText="id" >
                     <h:outputText value="#{anun.idcontenido}" />
