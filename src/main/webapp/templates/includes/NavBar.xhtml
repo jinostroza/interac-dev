@@ -13,13 +13,13 @@
         <ul>
 
 
-            <ui:fragment rendered="#{userSession.estaAutentificado() || userSession.tienePermiso('CLIENTE')}">
+            <ui:fragment rendered="#{userSession.estaAutentificado() and userSession.tienePermiso('CLIENTE')}">
             <li>
                 <p:commandLink value="#{userSession.usuario.username}" action="#{facesUtil.redirigir('/plataforma/panelDeControl')}" />
             </li>
             </ui:fragment>
 
-            <ui:fragment rendered="#{userSession.estaAutentificado()}">
+            <ui:fragment rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR')}">
             <li>
                 <p:commandLink value="Inicio" action="#{facesUtil.redirigir('/plataforma/campana')}" />
             </li>

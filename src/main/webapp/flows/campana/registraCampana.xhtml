@@ -5,6 +5,9 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 template="/templates/default.xhtml">
     <ui:define name="contenido">
+        <ui:fragment rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR')}">
+
+
 <h:form>
         <div class="container" id="myInterac">
             <header>
@@ -90,5 +93,6 @@
         <p:spacer>  </p:spacer>
         <br/>
 </h:form>
+        </ui:fragment>
     </ui:define>
 </ui:composition>

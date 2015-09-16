@@ -23,7 +23,7 @@ var Slide = {
                     var img = jQuery("<img style='width: 1060px;height: 1900px' ></img>");
                     img.attr("src", mediaFiles[i]);
                     img.css("display", display);
-                    jQuery("div.center").append(img);
+                    jQuery("div.content").append(img);
                 }
             }
 
@@ -33,7 +33,7 @@ var Slide = {
     };
 
     this.change = function() {
-        var media = jQuery("div.center").find("img, video");
+        var media = jQuery("div.content").find("img, video");
         for (var i=0; i<media.length; i++) {
             if (jQuery(media[i]).is(":not(:visible)")) continue;
             var siguiente = jQuery(media[(i + 1) % media.length]);
@@ -49,7 +49,7 @@ var Slide = {
 
     this.checkNewData = function() {
         jQuery.get("/getMedia").done(function(data) {
-            var media = jQuery("div.center").find("img, video");
+            var media = jQuery("div.content").find("img, video");
             var syncMedia = JSON.parse(data);
 
             for (var i = 0; i < syncMedia.length; i++) {
@@ -71,12 +71,12 @@ var Slide = {
                         video.css("display", display);
                         video.find("source").first().attr("src", syncMedia[i]);
                         video.find("source").first().attr("type", "video/" + syncMedia[i].substr(syncMedia[i].lastIndexOf(".") + 1, syncMedia[i].length));
-                        jQuery("div.center").append(video);
+                        jQuery("div.content").append(video);
                     } else {
                         var img = jQuery("<img></img>");
                         img.attr("src", syncMedia[i]);
                         img.css("display", display);
-                        jQuery("div.center").append(img);
+                        jQuery("div.content").append(img);
                     }
                 }
             }

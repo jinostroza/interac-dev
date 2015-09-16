@@ -2,15 +2,19 @@ doctype html
 html
     head
         title= title
+        link(href='public/css/style.css', rel='stylesheet')
+        link(href='public/css/interac-bootstrap-theme.css', rel='stylesheet')
         script(src='public/js/jquery-2.1.4.min.js')
         script(src='public/js/slide.js')
     body
 
         div(class="container")
-            div(class="left")
+            div(class="header"  )
                 a(class="twitter-timeline", data-widget-id="643873820030464000", href="https://twitter.com/INGENIERIAPUCV", data-chrome="nofooter noborders") @INGENIERIAPUCV
-            div(class="center")
-            div(class="right")
+            div(class="content" style="padding: 0")
+
+            div(class="dashbox") algo
+
         script(type='text/javascript').
             jQuery(document).ready(function() {
                 !function (d, s, id) {
