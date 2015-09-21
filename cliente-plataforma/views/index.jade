@@ -3,17 +3,30 @@ html
     head
         title= title
         link(href='public/css/style.css', rel='stylesheet')
-        link(href='public/css/interac-bootstrap-theme.css', rel='stylesheet')
         script(src='public/js/jquery-2.1.4.min.js')
         script(src='public/js/slide.js')
+        script(type='text/javascript').
+            jQuery(document).ready(function () {
+                jQuery("#boton").click(function (event) {
+                    jQuery("#content").load('http://ingenieria.ucv.cl/conocenos/conocenos_unidadesacademicas.html');
+                    });
+                });
+
     body
 
         div(class="container")
-            div(class="header"  )
+            div(class="header")
                 a(class="twitter-timeline", data-widget-id="643873820030464000", href="https://twitter.com/INGENIERIAPUCV", data-chrome="nofooter noborders") @INGENIERIAPUCV
-            div(class="content" style="padding: 0")
+            #content
+                .content(style="padding: 0px")
+            div(class="dashbox")
+                    div(class="footer")
+                        button(class="escuela",onClick="location.href='http://ingenieria.ucv.cl/conocenos/conocenos_unidadesacademicas.html'")
+                    div(class="footer")
+                        button(class="flickr",onClick="location.href='https://www.flickr.com/photos/facultadingenieriapucv/albums'")
+                    div(class="footer")
+                        button(class="maker", onclick="location.href='http://incubadora.chrysalis.cl/makerspacevalpo/'")
 
-            div(class="dashbox") algo
 
         script(type='text/javascript').
             jQuery(document).ready(function() {

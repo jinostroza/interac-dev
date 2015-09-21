@@ -84,34 +84,103 @@ body {
 /* Footer
 -----------------------------------------------------------------------------*/
 .footer {
-	width: 1060px;
-	height: 200px;
-	background: #BFF08E;
+	width: 300px;
+	height: 100%;
 	position: relative;
-	display: none;
+	float: left;
+	margin-left: 10px;
+	margin-top: 10px;
 }
------------------------------------------------------------------------------*/
-.footer:hover
-{
-display: block;
 
-}
 
 .dashbox
 {
-	height: 150px;
+	height: 400px;
 	width: 1060px;
 	position: relative;
-	margin-top: 10px;
 	text-align: center;
+	background-repeat: no-repeat;
+	background-position: right bottom;
+	background-image: url("img/interac.png");	
+	background-size: 400px;
 	
-}
-.dashbox:hover
-{
-	height: 300px;
-	margin-top: -150px;
-	position: relative;
-	text-align: center;
-	background-color: #FFE680
 
 }
+.dashbox1
+{
+	height: 380px;
+	margin-top: -300px;	
+	position: relative;
+	text-align: center;
+	background-color: #999966;
+	background-repeat: no-repeat;
+	background-position: right bottom;
+	background-image: url("img/interac.png");
+	background-size: 400px;
+	
+}
+.escuela
+{
+	width: 300px;
+	height: 60%;
+	background-color: #1F1F5C;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100%;
+
+	position: relative;
+	float: left;
+	margin-left: 10px;
+	margin-top: 10px;
+	
+    border-radius: 50%;
+    
+    overflow: hidden;
+	
+	background-image: url("img/logopucv.png");
+	
+}
+.maker
+{
+	width: 300px;
+	height: 60%;
+	background-color: #002400;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100%;
+
+	position: relative;
+	float: left;
+	margin-left: 10px;
+	margin-top: 10px;
+	
+    border-radius: 50%;
+    
+    overflow: hidden;
+	
+	background-image: url("img/maker.png");
+	
+}
+.flickr
+{
+	width: 300px;
+	height: 60%;
+	background-color: #ffffff;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100%;
+
+	position: relative;
+	float: left;
+	margin-left: 10px;
+	margin-top: 10px;
+	
+    border-radius: 50%;
+    
+    overflow: hidden;
+	
+	background-image: url("img/Flickr_logo.png");
+	
+}
+
+
