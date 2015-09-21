@@ -61,6 +61,7 @@ body {
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
+	background-color: #333333;
 }
 
 
@@ -68,7 +69,9 @@ body {
 -----------------------------------------------------------------------------*/
 .header {
 	height: 150px;
-	background: #FFE680;
+	width: 800px;
+	background-color: #333333;
+
 }
 
 
@@ -84,25 +87,23 @@ body {
 /* Footer
 -----------------------------------------------------------------------------*/
 .footer {
-	width: 300px;
-	height: 100%;
+	width: 230px;
+	height: 230px;
 	position: relative;
 	float: left;
-	margin-left: 10px;
-	margin-top: 10px;
+	margin: 10px;
+
 }
 
 
 .dashbox
 {
-	height: 400px;
-	width: 1060px;
-	position: relative;
+	height: 230px;
+	width: 768px;
+	position: absolute;
 	text-align: center;
-	background-repeat: no-repeat;
-	background-position: right bottom;
-	background-image: url("img/interac.png");	
-	background-size: 400px;
+	background-color:#333333;
+	
 	
 
 }
@@ -121,8 +122,8 @@ body {
 }
 .escuela
 {
-	width: 300px;
-	height: 60%;
+	width: 200px;
+	height: 90%;
 	background-color: #1F1F5C;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -130,8 +131,10 @@ body {
 
 	position: relative;
 	float: left;
-	margin-left: 10px;
+	margin-left: 50px;
 	margin-top: 10px;
+
+
 	
     border-radius: 50%;
     
@@ -142,8 +145,8 @@ body {
 }
 .maker
 {
-	width: 300px;
-	height: 60%;
+	width: 200px;
+	height: 90%;
 	background-color: #002400;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -151,9 +154,8 @@ body {
 
 	position: relative;
 	float: left;
-	margin-left: 10px;
+	margin-left: 20px;
 	margin-top: 10px;
-	
     border-radius: 50%;
     
     overflow: hidden;
@@ -163,8 +165,8 @@ body {
 }
 .flickr
 {
-	width: 300px;
-	height: 60%;
+	width: 200px;
+	height: 90%;
 	background-color: #ffffff;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -172,9 +174,8 @@ body {
 
 	position: relative;
 	float: left;
-	margin-left: 10px;
+	margin-left: 20px;
 	margin-top: 10px;
-	
     border-radius: 50%;
     
     overflow: hidden;

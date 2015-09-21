@@ -3,22 +3,33 @@ html
     head
         title= title
         link(href='public/css/style.css', rel='stylesheet')
+        link(rel='stylesheet', type='text/css', href='public/css/clock.css')
         script(src='public/js/jquery-2.1.4.min.js')
         script(src='public/js/slide.js')
+        script(src='public/js/clock.js')
+
 
     body
 
         div(class="container")
             div(class="header")
-                a(class="twitter-timeline", data-widget-id="643873820030464000", href="https://twitter.com/INGENIERIAPUCV", data-chrome="nofooter noborders") @INGENIERIAPUCV
+               div(class="clock")
+                    span#hours
+                    |       :
+                    span#minutes
+                    |       :
+                    span#seconds
+
+                a.twitter-timeline(href='https://twitter.com/SEKPacifico', data-widget-id='495754794292633600' data-chrome="transparent noborders noheader nofooter noscrollbar"
+                height="200" width="500" data-slide-to="right" style="margin-left: 20px") Tweets por el @SEKPacifico.
+
             #content
                 .content(style="padding: 0px")
             div(class="dashbox")
-                    div(class="footer")
                         button(class="escuela",onClick="location.href='http://ingenieria.ucv.cl/conocenos/conocenos_unidadesacademicas.html'")
-                    div(class="footer")
+
                         button(class="flickr",onClick="location.href='https://www.flickr.com/photos/facultadingenieriapucv/albums'")
-                    div(class="footer")
+
                         button(class="maker", onclick="location.href='http://incubadora.chrysalis.cl/makerspacevalpo/'")
 
 
