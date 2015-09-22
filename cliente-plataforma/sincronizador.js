@@ -95,7 +95,7 @@ function Sincronizador() {
                 if (!data.length) return null;
 
                 // el slice lo hago para hacer una copia del array, ya que en js los parámetros son por referencia
-                clearOldData.call(self, data.slice());
+                clearOldData.call(self, data);
                 processData.call(self, data.slice());
             });
         });

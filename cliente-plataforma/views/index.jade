@@ -7,34 +7,25 @@ html
         script(src='public/js/jquery-2.1.4.min.js')
         script(src='public/js/slide.js')
         script(src='public/js/clock.js')
-
-
+        script(src='public/js/dashbox.js')
     body
-
+        iframe(class="overlay", style="display:none")
         div(class="container")
             div(class="header")
-               div(class="clock")
-                    span#hours
-                    |       :
-                    span#minutes
-                    |       :
-                    span#seconds
-
+                div(class="clock")
                 a.twitter-timeline(href='https://twitter.com/SEKPacifico', data-widget-id='495754794292633600' data-chrome="transparent noborders noheader nofooter noscrollbar"
                 height="200" width="500" data-slide="right" style="margin-left: 20px") Tweets por el @SEKPacifico.
 
-            #content
-                .content(style="padding: 0px")
+            #content.content(style="padding: 0px")
+
             div(class="dashbox")
-                        button(class="escuela",onClick="location.href='http://ingenieria.ucv.cl/conocenos/conocenos_unidadesacademicas.html'")
-
-                        button(class="flickr",onClick="location.href='https://www.flickr.com/photos/facultadingenieriapucv/albums'")
-
-                        button(class="maker", onclick="location.href='http://incubadora.chrysalis.cl/makerspacevalpo/'")
+                button(class="escuela")
+                button(class="flickr")
+                button(class="maker")
 
 
         script(type='text/javascript').
-            jQuery(document).ready(function() {
+            jQuery(document).ready(function () {
                 !function (d, s, id) {
                     var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
                     if (!d.getElementById(id)) {
@@ -45,5 +36,7 @@ html
                     }
                 }(document, "script", "twitter-wjs");
                 Slide.start();
+                Clock.start();
+                DashBox.start();
             });
 

@@ -1,15 +1,14 @@
-var Slide = {
-    showTime: 10 * 1000, // 10 segundos
-    syncTime: 60 * 1000, // 60 segundos
+var Slide = {};
 
-    sliderTimerID: null,
-    syncTimerID: null,
-};
+(function () {
+    var showTime = 10 * 1000; // 10 segundos
+    var syncTime = 60 * 1000; // 60 segundos
+    var sliderTimerID = null;
+    var syncTimerID = null;
 
-(function() {
-    this.start = function() {
+    this.start = function () {
         var self = this;
-        jQuery.get("/getMedia").done(function(data) {
+        jQuery.get("/getMedia").done(function (data) {
             var mediaFiles = JSON.parse(data);
 
             for (var i = mediaFiles.length - 1, display = "block"; i >= 0; i--, display = "none") {
@@ -32,9 +31,9 @@ var Slide = {
         });
     };
 
-    this.change = function() {
+    this.change = function () {
         var media = jQuery("div.content").find("img, video");
-        for (var i=0; i<media.length; i++) {
+        for (var i = 0; i < media.length; i++) {
             if (jQuery(media[i]).is(":not(:visible)")) continue;
             var siguiente = jQuery(media[(i + 1) % media.length]);
             jQuery(media[i]).hide();
@@ -47,16 +46,16 @@ var Slide = {
         self.sliderTimerID = setTimeout(this.change.bind(this), this.showTime);
     };
 
-    this.checkNewData = function() {
-        jQuery.get("/getMedia").done(function(data) {
+    this.checkNewData = function () {
+        jQuery.get("/getMedia").done(function (data) {
             var media = jQuery("div.content").find("img, video");
             var syncMedia = JSON.parse(data);
+            var encontrado = false;
 
             for (var i = 0; i < syncMedia.length; i++) {
                 for (var j = 0; j < media.length; j++) {
                     var obj = $(media[j]);
                     var src = obj.is("video") ? obj.find("source").attr("src") : obj.attr("src");
-                    var encontrado = false;
 
                     if (src == syncMedia[i]) {
                         encontrado = true;
@@ -82,4 +81,4 @@ var Slide = {
             }
         });
     };
-}).apply(Slide);
+}).apply(Slide); //(namespace proxy)

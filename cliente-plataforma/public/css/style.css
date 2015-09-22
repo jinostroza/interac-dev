@@ -12,176 +12,166 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, menu, nav, section {
-	display: block;
+    display: block;
 }
+
 body {
-	line-height: 1;
+    line-height: 1;
 }
+
 ol, ul {
-	list-style: none;
+    list-style: none;
 }
+
 blockquote, q {
-	quotes: none;
+    quotes: none;
 }
+
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: '';
-	content: none;
+    content: '';
+    content: none;
 }
+
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
+
 /* End of Eric Meyer's CSS Reset */
 
 html {
-	height: 100%;
+    height: 100%;
 }
+
 article, aside, details, figcaption, figure, footer, header, main, nav, section, summary {
-	display: block;
+    display: block;
 }
+
 body {
-	font: 12px/18px Arial, sans-serif;
-	width: 100%;
-	height: 100%;
-}
-.wrapper {
-	width: 1060px;
-	margin: 0 auto;
-	min-height: 100%;
-	height: auto !important;
-	height: 100%;
-	background-color: #333333;
+    font: 12px/18px Arial, sans-serif;
+    width: 100%;
+    height: 100%;
 }
 
-
+.container {
+    width: 1060px;
+    margin: 0 auto;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    background-color: #333333;
+}
 /* Header
 -----------------------------------------------------------------------------*/
 .header {
-	height: 150px;
-	width: 800px;
-	background-color: #333333;
+    height: 150px;
+    width: 800px;
+    background-color: #333333;
 
 }
-
 
 /* Middle
 -----------------------------------------------------------------------------*/
 .content {
-	padding: 0 0 200px;
+    padding: 0 0 200px;
 }
-
-
-
 
 /* Footer
 -----------------------------------------------------------------------------*/
 .footer {
-	width: 230px;
-	height: 230px;
-	position: relative;
-	float: left;
-	margin: 10px;
+    width: 230px;
+    height: 230px;
+    position: relative;
+    float: left;
+    margin: 10px;
 
 }
 
-
-.dashbox
-{
-	height: 230px;
-	width: 768px;
-	position: absolute;
-	text-align: center;
-	background-color:#333333;
-	
-	
-
+.dashbox {
+    height: 230px;
+    width: 1060px;
+    text-align: center;
+    background-color: #333333;
+    margin-left: auto;
+    margin-right: auto;
 }
-.dashbox1
-{
-	height: 380px;
-	margin-top: -300px;	
-	position: relative;
-	text-align: center;
-	background-color: #999966;
-	background-repeat: no-repeat;
-	background-position: right bottom;
-	background-image: url("img/interac.png");
-	background-size: 400px;
-	
-}
-.escuela
-{
-	width: 200px;
-	height: 90%;
-	background-color: #1F1F5C;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 100%;
 
-	position: relative;
-	float: left;
-	margin-left: 50px;
-	margin-top: 10px;
+.escuela {
+    width: 200px;
+    height: 90%;
+    background-color: #1F1F5C;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
 
+    position: relative;
+    margin-left: 50px;
+    margin-top: 10px;
 
-	
     border-radius: 50%;
-    
-    overflow: hidden;
-	
-	background-image: url("img/logopucv.png");
-	
-}
-.maker
-{
-	width: 200px;
-	height: 90%;
-	background-color: #002400;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 100%;
 
-	position: relative;
-	float: left;
-	margin-left: 20px;
-	margin-top: 10px;
-    border-radius: 50%;
-    
     overflow: hidden;
-	
-	background-image: url("img/maker.png");
-	
-}
-.flickr
-{
-	width: 200px;
-	height: 90%;
-	background-color: #ffffff;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 100%;
 
-	position: relative;
-	float: left;
-	margin-left: 20px;
-	margin-top: 10px;
+    background-image: url("img/logopucv.png");
+
+}
+
+.maker {
+    width: 200px;
+    height: 90%;
+    background-color: #002400;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+
+    position: relative;
+    margin-left: 20px;
+    margin-top: 10px;
     border-radius: 50%;
-    
+
     overflow: hidden;
-	
-	background-image: url("img/Flickr_logo.png");
-	
+
+    background-image: url("img/maker.png");
+
+}
+
+.flickr {
+    width: 200px;
+    height: 90%;
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+
+    position: relative;
+    margin-left: 20px;
+    margin-top: 10px;
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    background-image: url("img/Flickr_logo.png");
+
+}
+
+.overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    background-color: black;
 }
 
 
