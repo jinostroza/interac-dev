@@ -14,13 +14,11 @@
             <p:column >
                 #{usuario.correo}
             </p:column>
-
-
             <p:column headerText="rol" filterBy="#{usuario.rol.namerol}">
                 #{usuario.rol.namerol}
             </p:column>
             <p:column >
-                <h:commandButton icon="ui-icon-key" styleClass="form-control" value="volver" action="#{facesUtil.redirigir('/inicio.jsf')}"/>
+                <h:commandButton icon="ui-icon-key" styleClass="form-control" value="volver" action="#{facesUtil.redirigir('/plataforma/campana')}"/>
             </p:column>
             <p:column>
                 <h:commandButton id="modifica" value="Modificar"  styleClass="form-control" type="button">

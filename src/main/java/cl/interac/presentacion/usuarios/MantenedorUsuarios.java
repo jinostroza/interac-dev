@@ -36,7 +36,7 @@ public class MantenedorUsuarios implements Serializable {
 
     @PostConstruct
     public void inicio() {
-        usuarios = logicaUsuario.obtenerTodos();
+        usuarios = logicaUsuario.obtenerMisContenidos();
         roles = logicaRol.obtenerTodos();
         usuario = new Usuario();
     }
@@ -46,7 +46,6 @@ public class MantenedorUsuarios implements Serializable {
     public void guardarUsuario() {
         usuario.setRol(rol);
         logicaUsuario.guardar(usuario);
-
         FacesUtil.mostrarMensajeInformativo("el usuario", "[" + usuario.getUsername() + "] ha sido registrado con exito");
     }
 

@@ -1,6 +1,9 @@
 package cl.interac.presentacion;
 
+import cl.interac.security.LogInManager;
 import cl.interac.util.components.FacesUtil;
+import cl.interac.util.components.UserSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +18,11 @@ import java.io.Serializable;
 @Scope("view")
 public class AutenticarBean implements Serializable {
 
+    @Autowired
+    UserSession userSession;
+    @Autowired
+    LogInManager logInManager;
+
     private String user;
     private String pass;
 
@@ -23,6 +31,7 @@ public class AutenticarBean implements Serializable {
             HttpServletRequest request = FacesUtil.obtenerHttpServletRequest();
             request.login(user, pass);
             FacesUtil.redirigir("/plataforma/campana");
+
         } catch (ServletException ex) {
             FacesUtil.mostrarMensajeError(ex.getMessage(), null);
         }

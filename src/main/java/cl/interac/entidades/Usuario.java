@@ -21,8 +21,6 @@ import java.util.List;
                         query = "SELECT u FROM Usuario u WHERE u.username = :username"
                 ),
 
-                @NamedQuery(name= "Usuario.findByCampana",query="SELECT u FROM Usuario u " +
-                        " left join fetch u.campanas c "),
 
                 @NamedQuery(
                         name="Usuario.findByCorreo",
@@ -31,6 +29,12 @@ import java.util.List;
                 @NamedQuery(
                         name="Usuario.findByEmpresa",
                         query="SELECT u FROM Usuario u where u.empresa = :empresa"
+                ),
+                @NamedQuery(
+                       name="Usuario.findWithRelationship",
+                        query="SELECT u FROM Usuario u " +
+                                "LEFT JOIN FETCH u.rol " +
+                                "LEFT JOIN FETCH u.contenido "
                 )
         }
 )
@@ -42,7 +46,7 @@ public class Usuario implements Serializable {
     private String empresa;
 
     // relaciones
-    private List<Campana> campanas;
+
     private Rol rol;
     private List<Contenido> contenido;
 
@@ -98,14 +102,6 @@ public class Usuario implements Serializable {
     }
 
 
-    @OneToMany(mappedBy = "cliente")
-    public List<Campana> getCampanas() {
-        return campanas;
-    }
-
-    public void setCampanas(List<Campana> campanas) {
-        this.campanas = campanas;
-    }
 
 
     @OneToMany(mappedBy="usuario")

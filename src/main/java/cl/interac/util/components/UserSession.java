@@ -32,6 +32,8 @@ public class UserSession implements Serializable {
 
     private Usuario usuario;
 
+    private boolean InicioSesion;
+
 
 
     public Usuario getUsuario() {

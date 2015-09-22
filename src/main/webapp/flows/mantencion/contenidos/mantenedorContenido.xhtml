@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+
+    <h3>Contenidos</h3>
+    <h:form>
+
+                <p:dataTable id="usuarios" value="#{mantenedorContenido.contenidoList}"
+                             filteredValue="#{mantenedorContenido.selecContenido}" var="cont">
+
+                    <p:column >
+                        <h:graphicImage value="img/colivares/#{cont.path}"/>
+                    </p:column>
+                    <p:column headerText="nombre" >
+                        #{cont.path}
+                    </p:column>
+                    <p:column headerText="Usuario" filterBy="#{cont.usuario.username}">
+                        #{cont.usuario.username}
+                    </p:column>
+                    <p:column >
+                        <h:commandButton icon="ui-icon-key" styleClass="form-control" value="volver" action="#{facesUtil.redirigir('/inicio.jsf')}"/>
+                    </p:column>
+
+                </p:dataTable>
+
+                <h:commandButton id="aggUsuario" value="agregar"  styleClass="form-control" type="button">
+
+                </h:commandButton>
+
+
+
+
+
+
+
+
+    </h:form>
+
+</ui:composition>
+

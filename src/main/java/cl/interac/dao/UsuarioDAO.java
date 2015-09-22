@@ -87,6 +87,9 @@ public class UsuarioDAO {
         }
     }
 
+    public List<Usuario> obtenerMisContenidos(){
+        return em.createNamedQuery("Usuario.findWithRelationship").getResultList();
+    }
 
     public UsuarioDto obtenerUsuario(String usuario, String password) {
         UsuarioDto u = null;

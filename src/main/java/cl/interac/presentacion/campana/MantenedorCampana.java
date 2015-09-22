@@ -4,6 +4,7 @@ import cl.interac.entidades.Campana;
 import cl.interac.entidades.Totem;
 import cl.interac.entidades.Usuario;
 import cl.interac.negocio.LogicaCampana;
+import cl.interac.negocio.LogicaContenido;
 import cl.interac.negocio.LogicaTotem;
 import cl.interac.negocio.LogicaUsuario;
 import cl.interac.util.components.FacesUtil;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Date;
@@ -45,26 +47,29 @@ public class MantenedorCampana implements Serializable {
     private LogicaTotem logicaTotem;
     @Autowired
     private UserSession userSession;
+    @Autowired
+    private LogicaContenido logicaContenido;
 
     public MantenedorCampana() {
         campana = new Campana();
     }
 
+    @PostConstruct
     public void inicio() {
         totems = logicaTotem.obtenerTodos();
-        // para los Lazy Exception (Excepcion de carga ligera) usar FetchType.EAGER (Con cautela) o hacer una query con las relaciones (Lo seguro aunque tardas más programando :P)
-        //campanas = logicaCampana.obtenerTodas(); // para eager
-        campanas = logicaCampana.obtenerTodosConRelaciones(); // para lazy
+
+
+        campanas= logicaCampana.obtenerPorUsuario(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
         operacion = TipoOperacion.INGRESAR;
         campana = new Campana();
     }
-    //flows shift+f6 es refactor
+
 
 
     public String guardar() {
 
-        campana.setCliente(userSession.getUsuario());
+
         campana.setFechaCreacion(Date.from(Instant.now()));
 
         logicaCampana.guardarCampana(campana);

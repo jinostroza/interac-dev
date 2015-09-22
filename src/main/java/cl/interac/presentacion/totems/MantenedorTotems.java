@@ -54,7 +54,8 @@ public class MantenedorTotems implements Serializable {
         totem = new Totem();
         simpleModel = new DefaultMapModel();
         //Shared coordinates
-        LatLng coord1 = new LatLng(-33.044830, -71.613881);
+
+        LatLng coord1 = new LatLng(totem.getLat().doubleValue(), totem.getLat().doubleValue());
         //Basic marker
         simpleModel.addOverlay(new Marker(coord1, "PUCV"));
 

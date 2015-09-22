@@ -11,6 +11,7 @@ import cl.interac.util.components.UserSession;
 import cl.interac.util.services.FileUploader;
 
 
+import cl.interac.util.servlets.ImageServlet;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
@@ -50,8 +51,6 @@ public class MantenedorContenido implements Serializable {
     private Categoria categoria;
     private List<Contenido> selecContenido;
 
-
-
     @Autowired
     private LogicaContenido logicaContenido;
     @Autowired
@@ -62,7 +61,6 @@ public class MantenedorContenido implements Serializable {
     private FileUploader fileUploader; // es un componente
     @Autowired
     private UserSession userSession;
-
     @Autowired
     private Constantes constantes;
     @Autowired
@@ -95,7 +93,7 @@ public class MantenedorContenido implements Serializable {
         contenido = new Contenido();
 
         try {
-            String pathTemporal = fileUploader.subir(fue, "/contenido");
+            String pathTemporal = fileUploader.subir(fue,"/contenido");
 
             String ambiente = propertyReader.get("ambiente");
 
@@ -136,16 +134,25 @@ public class MantenedorContenido implements Serializable {
         try {
             logicaContenido.eliminarContenido(conte);
             Files.delete(Paths.get("/home/ec2-user/media/colivares/"+conte.getPath()));
-            FacesUtil.mostrarMensajeInformativo("se borro tu imach", "ya puedes morir en paz");
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha borrado la imagen");
 
         }catch (Exception e){
-            FacesUtil.mostrarMensajeInformativo("se borro tu imach", "ya puedes morir en paz");
+            FacesUtil.mostrarMensajeInformativo("Operación Fallida","Algo Ocurrio");
         }
 
 
 
 
     }
+
+    public TipoOperacion getOperacion() {
+        return operacion;
+    }
+
+    public void setOperacion(TipoOperacion operacion) {
+        this.operacion = operacion;
+    }
+
 
 
     public List<Campana> getCampanas() {

@@ -27,14 +27,13 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
 
         <security:logout invalidate-session="true"
                          delete-cookies="true"
-                         logout-success-url="http://www.interac.cl/"
+                         logout-success-url="/logIn.jsf"
                          logout-url="/logOut"/>
 
 
         <security:intercept-url pattern="logIn.jsf" access="permitAll"/>
-        <security:intercept-url pattern="plataforma/campana/**" access="hasRole('ADMINISTRADOR')"/>
+
         <security:intercept-url pattern="plataforma/campana/**" access="hasRole('ANUNCIANTE')"/>
-        <security:intercept-url pattern="plataforma/campana/**" access="hasRole('CLIENTE')"/>
         <security:intercept-url pattern="plataforma/mantencion/**" access="hasRole('ADMINISTRADOR')"/>
         <security:intercept-url pattern="plataforma/anunciante/**" access="hasRole('ANUNCIANTE')"/>
         <security:intercept-url pattern="plataforma/cliente/**" access="hasRole('CLIENTE')"/>

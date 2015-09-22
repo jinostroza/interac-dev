@@ -12,25 +12,31 @@ import java.util.List;
 @NamedQueries(
         {
                 @NamedQuery(name = "Campana.findAll", query = "SELECT c FROM Campana c "),
-                @NamedQuery(
-                        name = "Campana.findAllWithRelationships",
-                        query = "SELECT c FROM Campana c " +
-                                "INNER JOIN FETCH c.cliente cli"
-)
+                @NamedQuery(name ="Campana.findBycontenido",
+                           query="SELECT c FROM Campana c  " +
+                                   "INNER JOIN FETCH c.contenido co " +
+                                   "INNER JOIN FETCH c.totem to "),
+                @NamedQuery(name="Campana.findByUsuario",query = "SELECT c FROM Campana c " +
+                        "INNER JOIN FETCH c.contenido co " +
+                        "INNER JOIN FETCH c.totem to " +
+                        "INNER JOIN FETCH co.usuario u " +
+                        "WHERE u.username=:username "),
+
+
         }
 )
 public class Campana implements Serializable {
     private Integer idcampana;
     private Date fechaCreacion;
-    private String nombre;
     private Date fechaFin;
     private Date fechaInicio;
     private Integer pasadas;
 
-    // relaciones
-    private List<Anuncio> anuncios;
 
-    private Usuario cliente;
+    // relaciones
+    private Contenido contenido;
+    private Totem totem;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,20 +58,7 @@ public class Campana implements Serializable {
     public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
-    @Basic
-    @Column(name = "nombre")
-    public String getNombre() {
-        return nombre;
-    }
 
-    public void setNombre(String nombre) {
-        if(nombre==null){
-          String  nom="eraUnaCampanaMuyChiquita" ;
-         setNombre(nom);
-           }
-
-        this.nombre = nombre;
-    }
     @Basic
     @Column(name = "fechafin")
     public Date getFechaFin() {
@@ -94,15 +87,29 @@ public class Campana implements Serializable {
         this.pasadas = pasadas;
     }
 
-    @JoinColumn(name = "idcliente", referencedColumnName = "idusuario")
-    @ManyToOne(fetch = FetchType.LAZY)
-    public Usuario getCliente() {
-        return cliente;
+
+    @JoinColumn(name="idcontenido",referencedColumnName = "idcontenido")
+    @ManyToOne(fetch=FetchType.LAZY)
+    public Contenido getContenido() {
+        return contenido;
     }
 
-    public void setCliente(Usuario usuario) {
-        this.cliente = usuario;
+    public void setContenido(Contenido contenido) {
+        this.contenido = contenido;
     }
+
+
+    @JoinColumn(name="idtotem",referencedColumnName = "idtotem")
+    @ManyToOne(fetch=FetchType.LAZY)
+    public Totem getTotem() {
+        return totem;
+    }
+
+    public void setTotem(Totem totem) {
+        this.totem = totem;
+    }
+
+
 
     @Override
     public boolean equals(Object o) {
