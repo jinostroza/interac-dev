@@ -19,16 +19,16 @@ var Slide = {};
                     video.find("source").first().attr("type", "video/" + mediaFiles[i].substr(mediaFiles[i].lastIndexOf(".") + 1, mediaFiles[i].length));
                     jQuery("div.center").append(video);
                 } else {
-                    var img = jQuery("<img style='width: 1060px;height: 1900px' ></img>");
+                    var img = jQuery("<img style='width: 1060px;height: 1520px' ></img>");
                     img.attr("src", mediaFiles[i]);
                     img.css("display", display);
                     jQuery("div.content").append(img);
                 }
             }
 
-            self.sliderTimerID = setTimeout(self.change.bind(self), self.showTime);
-            self.syncTimerID = setTimeout(self.checkNewData.bind(self), self.syncTime);
-        });
+            sliderTimerID = setTimeout(self.change.bind(self), showTime);
+            syncTimerID = setTimeout(self.checkNewData.bind(self), syncTime);
+        }); 
     };
 
     this.change = function () {
@@ -43,7 +43,7 @@ var Slide = {};
             }
             break;
         }
-        self.sliderTimerID = setTimeout(this.change.bind(this), this.showTime);
+        sliderTimerID = setTimeout(this.change.bind(this), showTime);
     };
 
     this.checkNewData = function () {

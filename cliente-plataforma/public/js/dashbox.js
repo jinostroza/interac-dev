@@ -3,25 +3,27 @@
  */
 var DashBox = {
     showtime: 10000 // 10 segundos
+
 };
 
 (function() {
+    var newWindow;
     var srcWatcher = function(button) {
-        var url = "";
+
+
         switch ($(button).attr("class")) {
             case "escuela":
-                url = "http://ingenieria.ucv.cl/conocenos/conocenos_unidadesacademicas.html";
+               newWindow= window.open("http://ingenieria.ucv.cl/conocenos/conocenos_unidadesacademicas.html","Escuela Ingenieria","width=1060,height=1900,resizable,scrollbars,status")
                 break;
             case "flickr":
-                url = "https://www.flickr.com/photos/facultadingenieriapucv/albums";
+               newWindow=window.open("https://www.flickr.com/photos/facultadingenieriapucv/albums","Flickr Escuela","width=1060,height=1900,resizable,scrollbar,status")
                 break;
             case "maker":
-                url = "http://incubadora.chrysalis.cl/makerspacevalpo/";
+                newWindow=window.open("http://incubadora.chrysalis.cl/makerspacevalpo/","Maker Space Valparaiso","width=1060,height=1900,resizable,scrollbars,status")
                 break;
         }
-        $("iframe.overlay").attr("src", url);
-        $("iframe.overlay").show();
-        setTimeout(this.hide.bind(this), this.showtime);
+
+        setTimeout(function () { newWindow.close();}, 300000);
     };
 
     this.start = function() {
@@ -29,6 +31,7 @@ var DashBox = {
 
         $("button.escuela").click(function() {
             srcWatcher.call(self, this);
+
         });
         $("button.flickr").click(function() {
             srcWatcher.call(self, this);
