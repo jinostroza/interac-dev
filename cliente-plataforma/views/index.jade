@@ -8,14 +8,16 @@ html
         script(src='public/js/slide.js')
         script(src='public/js/clock.js')
         script(src='public/js/dashbox.js')
+        script(src='public/js/idle.js')
+
 
     body
         iframe(class="overlay", style="display:none")
         div(class="container")
             div(class="header")
                 div(class="clock")
-                div(style="margin-left:20%;")
-                a.twitter-timeline(href='https://twitter.com/SEKPacifico', data-widget-id='495754794292633600'  width="520" data-chrome="nofooter noborders noheaders noscrollbar" data-border-color="#a80000") Tweets por el @SEKPacifico.
+                div(class="twitter")
+                  a.twitter-timeline(aria-haspopup="true" data-target="https://twitter.com/ingenieriapucv" data-widget-id='495754794292633600', data-chrome='noheader nofooter noborders ', data-tweet-limit='6', data-link-color='#FFFFFF', data-border-color='#FFFFFF', lang='EN', data-theme='dark', height='200', width='520', data-screen-name='INGENIERIAPUCV', data-show-replies='false', data-aria-polite='assertive') Tweets por el @INGENIERIAPUCV
             #content.content(style="padding: 0px")
 
             div(class="dashbox")
@@ -38,5 +40,7 @@ html
                 Slide.start();
                 Clock.start();
                 DashBox.start();
+
+
             });
 
