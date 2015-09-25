@@ -12,10 +12,6 @@ document.onmousemove = function() {
 document.onkeypress = function() {
     _idleSecondsCounter = 0;
 };
-window.onload = function() {
-    _idleSecondsCounter = 0;
-};
-
 var win=window.setInterval(CheckIdleTime, 1000);
 
 function CheckIdleTime() {
@@ -23,18 +19,18 @@ function CheckIdleTime() {
     var oPanel = document.getElementById("SecondsUntilExpire");
     if (oPanel)
         oPanel.innerHTML = (IDLE_TIMEOUT - _idleSecondsCounter) + "";
-    if(window.top.location.href=="http://localhost:3000"){
-        _idleSecondsCounter=0;
-        IDLE_TIMEOUT=3600;
-    }
-    else {
-       if (_idleSecondsCounter >= IDLE_TIMEOUT)
-     {
-         _idleSecondsCounter=0;
-         IDLE_TIMEOUT=60;
-         window.open("http://localhost:3000","_blank");
-         window.clearInterval(win);
-         window.top.close();
 
-            }}
+    if (_idleSecondsCounter >= IDLE_TIMEOUT) {
+        if(window.top.location.href=="http://localhost:3000"){
+            _idleSecondsCounter=0;
+            IDLE_TIMEOUT=180;
+        }
+        else {
+            _idleSecondsCounter = 0;
+            IDLE_TIMEOUT = 180;
+            newWindow.targe
+            window.open("http://localhost:3000", "_blank");
+            window.clearInterval(win);
+            window.top.close();
+        } }
 }
