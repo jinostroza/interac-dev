@@ -42,12 +42,12 @@
                     <div class="col-md-6 formulario-texto">
                         <div class="form-group" ontimeupdate="true">
                             <label>Nombre</label>
-                            <h:inputText  styleClass="form-control" value="#{mantenedorAnuncios.anuncio.nombre}" />
+                            <h:inputText  styleClass="form-control"  />
                             <br></br>
                             <br></br>
                             <label>Descripción</label>
                             <h:inputTextarea  class="form-control" rows="6" cols="33" autoResize="false"
-                                              value="#{mantenedorAnuncios.anuncio.descanuncio}"
+
                                               placeholder="Escriba la descripción de su anuncio"/>
                             <br></br>
                             <label>Categoría</label>
@@ -66,8 +66,8 @@
                             <br></br>
 
                             <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
-                                             value="Siguiente">
-                            </h:commandButton>
+                                             value="Siguiente"/>
+
                         </div>
                     </div>
                 </h:form>

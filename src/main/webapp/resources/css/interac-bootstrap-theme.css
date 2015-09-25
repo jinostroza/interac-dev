@@ -343,7 +343,7 @@ tr.table-header{
 }
 .list-group
 {
-	max-height: 243px;
+	max-height:360px;
 	overflow-y:auto;
 }
 .list-group-item

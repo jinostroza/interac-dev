@@ -9,7 +9,7 @@
     <ui:define name="contenido">
 
         <h:form>
-            <p:dataScroller value="#{mantenedorCampana.campanas}" var="nun" chunkSize="10">
+            <p:dataScroller value="#{mantenedorCampana.contenidos}" var="nun" chunkSize="10">
                 <f:facet name="header">
                     contenidos
                 </f:facet>
@@ -19,19 +19,9 @@
                 </f:facet>
 
                 <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-                    <h:graphicImage value="img/colivares/#{nun.contenido.path}"/>
+                    <h:graphicImage value="img/colivares/#{nun.path}"/>
                     <p:outputPanel>
                         <h:panelGrid columns="2" cellpadding="5">
-                            <h:outputLabel value="fecha inicio"/>
-                            <h:outputText value="#{nun.fechaInicio}"/>
-                            <h:outputLabel value="fecha fin"/>
-                            <h:outputText value="#{nun.fechaFin}"/>
-                            <h:outputLabel value="fecha de creacion"/>
-                            <h:outputText value="#{nun.fechaCreacion}"/>
-                            <h:outputLabel value="Totem"/>
-                            <h:outputText value="#{nun.totem.noserie}"/>
-
-
 
 
                         </h:panelGrid>

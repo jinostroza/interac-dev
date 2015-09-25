@@ -14,19 +14,25 @@ import java.util.List;
 
         @NamedQuery(name="Contenido.findByUsuario",
                 query="SELECT c FROM Contenido c " +
-                        "inner join c.usuario u " +
+                        "inner join fetch c.categoria " +
+                        "inner join fetch c.usuario u " +
                          " where u.username=:user "
-        )
+        ),
+        @NamedQuery(name="Contenido.findByCategoriaAndUser",
+                    query="SELECT c FROM Contenido c " +
+                            "left join fetch c.categoria")
 
 
 })
 public class Contenido implements Serializable{
     private Integer idcontenido;
     private String path;
+    private String nombrecont;
 
     //relaciones
     private Usuario usuario;
-    private List<Anuncio> anuncios;
+    private Categoria categoria;
+
 
     @JoinColumn(name = "idusuario", referencedColumnName = "idusuario")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -36,6 +42,16 @@ public class Contenido implements Serializable{
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    @JoinColumn(name = "idcategoria", referencedColumnName = "idcategoria")
+    @ManyToOne(fetch = FetchType.LAZY)
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     @Id
@@ -59,14 +75,18 @@ public class Contenido implements Serializable{
         this.path = path;
     }
 
-    @OneToMany(mappedBy = "contenido")
-    public List<Anuncio> getAnuncios() {
-        return anuncios;
+
+
+    @Basic
+   @Column(name="nombrecont", insertable=true ,updatable = true , length = 50)
+    public String getNombrecont() {
+        return nombrecont;
     }
 
-    public void setAnuncios(List<Anuncio> anuncios) {
-        this.anuncios = anuncios;
+    public void setNombrecont(String nombrecont) {
+        this.nombrecont = nombrecont;
     }
+
 
 
     @Override

@@ -41,7 +41,12 @@ public class CampanaDAO {
     }
 
 
-    public List<Campana> obtenerTodosConRelaciones() {
-        return em.createNamedQuery("Campana.findAllWithRelationships").getResultList();
+   public List<Campana> obtenerTodasLosContenidos(){
+       return em.createNamedQuery("Campana.findBycontenido").getResultList();
+   }
+
+    public List<Campana> obtenerCampanaPorUsuario(String user){
+        return em.createNamedQuery("Campana.findByUsuario").setParameter("username",user).getResultList();
     }
+
 }

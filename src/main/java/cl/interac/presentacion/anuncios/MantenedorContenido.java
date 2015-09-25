@@ -2,6 +2,7 @@ package cl.interac.presentacion.anuncios;
 
 import cl.interac.entidades.*;
 import cl.interac.negocio.LogicaAnuncio;
+import cl.interac.negocio.LogicaCategoria;
 import cl.interac.negocio.LogicaContenido;
 import cl.interac.negocio.LogicaUsuario;
 import cl.interac.util.components.Constantes;
@@ -47,14 +48,16 @@ public class MantenedorContenido implements Serializable {
     private List<Usuario> usuarios;
     private Contenido contenido;
     private List<Contenido> contenidoList;
-    private Anuncio anuncio;
+    private List<Categoria> categorias;
     private Categoria categoria;
-    private List<Contenido> selecContenido;
+    private List<Contenido> selecContenidos;
+    private Categoria selecContenido;
+
 
     @Autowired
     private LogicaContenido logicaContenido;
     @Autowired
-    private LogicaAnuncio logicaAnuncio;
+    private LogicaCategoria logicaCategoria;
     @Autowired
     private LogicaUsuario logicaUsuario;
     @Autowired
@@ -84,7 +87,8 @@ public class MantenedorContenido implements Serializable {
     public void inicio() {
         usuarios = logicaUsuario.obtenerTodos();
         contenidoList = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
-        contenido = new Contenido();
+
+
     }
 
     public void subir(FileUploadEvent fue) {
@@ -120,6 +124,7 @@ public class MantenedorContenido implements Serializable {
 
             contenido.setUsuario(userSession.getUsuario());
             logicaContenido.guardar(contenido);
+            contenido.setCategoria(categoria);
 
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Su imagen a sido subida ");
 
@@ -189,13 +194,35 @@ public class MantenedorContenido implements Serializable {
         this.contenido = contenido;
     }
 
-    public List<Contenido> getSelecContenido() {
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public List<Contenido> getSelecContenidos() {
+        return selecContenidos;
+    }
+
+    public void setSelecContenidos(List<Contenido> selecContenidos) {
+        this.selecContenidos = selecContenidos;
+    }
+
+    public Categoria getSelecContenido() {
         return selecContenido;
     }
 
-    public void setSelecContenido(List<Contenido> selecContenido) {
+    public void setSelecContenido(Categoria selecContenido) {
         this.selecContenido = selecContenido;
     }
-
-
 }

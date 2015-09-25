@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
@@ -32,8 +33,8 @@ public class MantenedorTotems implements Serializable {
     @Autowired
     private LogicaTipototem logicaTipototem;
 
-    private MapModel simpleModel;
 
+    private MapModel simpleModel;
     private Marker marker;
 
     private List<Totem> totems;
@@ -41,25 +42,24 @@ public class MantenedorTotems implements Serializable {
     private List<Totem> totemConFiltro;
     private List<Establecimiento> establecimientoList;
     private List<Establecimiento> establecimientoConfiltro;
-
     private Totem totem;
     private Establecimiento establecimiento;
     private Tipototem tipototem;
+
+
 
     @PostConstruct
     public void inicio() {
         totems = logicaTotem.obtenerConRelacion();
         establecimientoList = logicaEstablecimiento.obtenerTodos();
         tipototems = logicaTipototem.obtenerTodos();
-        totem = new Totem();
         simpleModel = new DefaultMapModel();
-        //Shared coordinates
-
-        LatLng coord1 = new LatLng(totem.getLat().doubleValue(), totem.getLat().doubleValue());
-        //Basic marker
-        simpleModel.addOverlay(new Marker(coord1, "PUCV"));
-
+          for(Totem totem : totems) {
+              simpleModel.addOverlay(new Marker(new LatLng(totem.getLat(), totem.getLongi()), totem.getNoserie()));
+          }
     }
+
+
 
     // logica vista
     public void agregarTotem() {
@@ -80,9 +80,7 @@ public class MantenedorTotems implements Serializable {
     }
 
 
-    public MapModel getSimpleModel() {
-        return simpleModel;
-    }
+
     public void eliminarTotem(Totem totem) {
         logicaTotem.eliminarTotem(totem);
     }
@@ -121,7 +119,6 @@ public class MantenedorTotems implements Serializable {
     }
 
     public List<Establecimiento> getEstablecimientoList() {
-
         return establecimientoList;
     }
 

@@ -23,6 +23,7 @@ import java.util.List;
                         "WHERE u.username=:username "),
 
 
+
         }
 )
 public class Campana implements Serializable {
@@ -31,6 +32,7 @@ public class Campana implements Serializable {
     private Date fechaFin;
     private Date fechaInicio;
     private Integer pasadas;
+    private String nombrecampana;
 
 
     // relaciones
@@ -85,6 +87,16 @@ public class Campana implements Serializable {
 
     public void setPasadas(Integer pasadas) {
         this.pasadas = pasadas;
+    }
+
+    @Basic
+    @Column(name="nombrecampana")
+    public String getNombrecampana() {
+        return nombrecampana;
+    }
+
+    public void setNombrecampana(String nombrecampana) {
+        this.nombrecampana = nombrecampana;
     }
 
 

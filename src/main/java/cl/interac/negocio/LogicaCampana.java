@@ -39,8 +39,13 @@ public class LogicaCampana {
        campanaDAO.eliminarCampana(campana);
    }
 
+   @Transactional(readOnly = true)
+    public List<Campana> obtenerPorUsuario(String user){
+       return  campanaDAO.obtenerCampanaPorUsuario(user);
+   }
     @Transactional(readOnly = true)
-    public List<Campana> obtenerTodosConRelaciones() {
-        return campanaDAO.obtenerTodosConRelaciones();
+    public List<Campana> obtenerTodoLosContenidos(){
+        return campanaDAO.obtenerTodasLosContenidos();
     }
+
 }

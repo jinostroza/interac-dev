@@ -8,24 +8,23 @@
       </on-start>
       <view-state id="crearcampana">
             <transition on="pasos" to="campanapasos"></transition>
-
       </view-state>
+
       <view-state id="campanapasos" >
             <transition on="regisCamp" to="registraCampana">
-                  <evaluate expression="mantenedorContenido.inicio()"/>
+
             </transition>
-
-
       </view-state>
 
 
       <view-state id="registraCampana" >
-            <transition on="selectTotem" to="seleccionarTotem"/>
+            <transition on="selectTotem" to="seleccionarTotem">
+
+            </transition>
 
 
       </view-state>
       <view-state id="seleccionarTotem">
-
             <transition on="planPasada" to="planificar-pasadas"/>
       </view-state>
 

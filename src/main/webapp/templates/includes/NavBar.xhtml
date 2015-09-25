@@ -13,7 +13,7 @@
         <ul>
 
 
-            <ui:fragment rendered="#{userSession.estaAutentificado() and userSession.tienePermiso('CLIENTE')}">
+            <ui:fragment rendered="#{userSession.estaAutentificado() }">
             <li>
                 <p:commandLink value="#{userSession.usuario.username}" action="#{facesUtil.redirigir('/plataforma/panelDeControl')}" />
             </li>
@@ -49,7 +49,7 @@
             </ui:fragment>
 
             <ui:fragment rendered="#{userSession.estaAutentificado()}">
-                <li><a href="interac/logOut" >Salir</a></li>
+                <li><a href="/interac/logOut" >Salir</a></li>
             </ui:fragment>
         </ul>
     </p:outputPanel>

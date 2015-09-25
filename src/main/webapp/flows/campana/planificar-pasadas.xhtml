@@ -6,7 +6,7 @@
                 xmlns:div="http://www.springframework.org/tags/form"
                 template="/templates/default.xhtml">
     <ui:define name="contenido">
-
+    <h:form>
         <div class="row">
             <div class="col-lg-6">
                 <h2>Programar campaña</h2>
@@ -24,7 +24,7 @@
 
     <h3>Planificar pasadas</h3>
     <div class="row">
-        <center><h4>Escoge los días para las pasadas de tus anuncios</h4></center>
+       <h4>Escoge los días para las pasadas de tus anuncios</h4>
     <br/>
 <br/>
 <div class="col-lg-6 col-lg-offset-3">
@@ -94,18 +94,14 @@
                                value="#{mantenedorCampana.precio}pesos" style="padding-left: 10px" />
                </p:outputPanel>
         </div>
-        <h:form>
+
         <div class="row botones-pagar-campania">
             <div class="col-lg-5"></div>
             <div class="col-lg-2">
                 <h:commandButton ajax="false" styleClass="btn btn-interac" action="vuelveTotem" value="volver"/>
             </div>
-
-            <div class="col-lg-3">
-                <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{mantenedorCampana.guardar()}"
-                                 value="finalizar"/>
-            </div>
-
+            <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{mantenedorCampana.guardar}"
+                             value="finalizar"/>
         </div>
 </h:form>
     </ui:define>

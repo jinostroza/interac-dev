@@ -13,10 +13,10 @@ import java.util.List;
                 @NamedQuery(name = "Totem.findAll", query = "SELECT t FROM Totem t "),
                 @NamedQuery(name = "Totem.findWithRelationship",
                         query = "SELECT t FROM Totem t " +
-                                "left join fetch t.establecimiento e " +
-                                "left join fetch t.tipototem i " +
-                                "left join fetch e.ubicacion u "
-                )
+                                "left join fetch t.establecimiento e "
+
+                               )
+
         }
 )
 public class Totem implements Serializable {
@@ -71,6 +71,16 @@ public class Totem implements Serializable {
     public void setEstablecimiento(Establecimiento establecimiento) {
         this.establecimiento = establecimiento;
     }
+
+    @OneToMany(mappedBy = "totem")
+    public List<Campana> getCampanas() {
+        return campanas;
+    }
+
+    public void setCampanas(List<Campana> campanas) {
+        this.campanas = campanas;
+    }
+
     @Basic
     @Column(name = "latitud")
     public Double getLat() {
