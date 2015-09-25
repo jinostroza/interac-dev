@@ -41,9 +41,10 @@ public class MantenedorCampana implements Serializable {
     private List<Campana> campanas;
     private List<Totem> totems;
     private Campana campana;
+    private int pasada;
     private int precio;
     private String retor;
-    private String end1 = "end1";
+    private String end1;
     private List<Usuario> usuarios;
     private Totem totem;
     private Totem totemSelecionado;
@@ -55,6 +56,7 @@ public class MantenedorCampana implements Serializable {
     private Contenido contenido;
 
     private MapModel simpleModel;
+
     @Autowired
     private LogicaUsuario logicaUsuario;
     @Autowired
@@ -81,13 +83,14 @@ public class MantenedorCampana implements Serializable {
         }
     }
 
-    public String guardar() {
+    public void guardar() {
         campana.setFechaCreacion(Date.from(Instant.now()));
         campana.setContenido(contenidosSelecionado);
         campana.setTotem(totemSelecionado);
         logicaCampana.guardarCampana(campana);
-        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la campaña ");
-        return end1() ;
+        campana.setPasadas(pasada);
+        FacesUtil.mostrarMensajeInformativo("operacion exitosa","se ha creado tu campaña");
+
     }
     //gettet and setter
 
@@ -112,19 +115,32 @@ public class MantenedorCampana implements Serializable {
     public String getEnd1() {
         return end1;
     }
-
     public void setEnd1(String end1) {
         this.end1 = end1;
     }
 
-    public int getPrecio() {
 
+    public int calulator(){
+       precio = pasada*100 ;
+
+        return precio;
+
+    }
+
+    public int getPrecio() {
         return precio;
     }
 
     public void setPrecio(int precio) {
+        this.precio = precio;
+    }
 
-        this.precio = precio * 100;
+    public int getPasada() {
+        return pasada;
+    }
+
+    public void setPasada(int pasada) {
+        this.pasada = pasada;
     }
 
     public List<Totem> getTotemsConrelacion() {

@@ -12,18 +12,22 @@
 
       <view-state id="campanapasos">
             <transition on="regisCamp" to="registraCampana">
+
             </transition>
       </view-state>
 
 
       <view-state id="registraCampana" >
             <transition on="selectTotem" to="seleccionarTotem">
+
             </transition>
 
 
       </view-state>
       <view-state id="seleccionarTotem">
-            <transition on="planPasada" to="planificar-pasadas"/>
+            <transition on="planPasada" to="planificar-pasadas">
+
+            </transition>
       </view-state>
 
       <view-state id="planificar-pasadas" >

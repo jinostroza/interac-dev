@@ -57,10 +57,10 @@
                                       value="#{mantenedorCampana.totemSelecionados}"
                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true">
                         <f:selectItems
-                                value="#{mantenedorCampana.totems}"
-                                var="tot" itemLabel="#{tot.noserie}" itemValue="#{tot}" />
+                                value="#{mantenedorCampana.totemsConrelacion}"
+                                var="tot" itemLabel="#{tot.establecimiento.nombreEstablecimiento}" itemValue="#{tot}" />
                         <p:column>
-                            <h:outputText value="#{t.noserie}" />
+                            <h:outputText value="#{t.establecimiento.nombreEstablecimiento}" />
                         </p:column>
                     </p:selectManyMenu>
                 </div>
