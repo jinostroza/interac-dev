@@ -9,6 +9,8 @@ var enrutador = function(App) {
         });
     });
 
+
+
     App.get("/getMedia", function(req, res) {
         FileSystem.readdir(req.appPath + "/public/media/", function(error, files){
             var media = [];

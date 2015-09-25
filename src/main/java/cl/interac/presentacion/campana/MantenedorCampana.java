@@ -71,7 +71,7 @@ public class MantenedorCampana implements Serializable {
     public void inicio() {
 
         totemsConrelacion = logicaTotem.obtenerConRelacion();
-        totems = logicaTotem.obtenerTodos();
+
         campanas = logicaCampana.obtenerPorUsuario(userSession.getUsuario().getUsername());
         contenidos = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();

@@ -10,16 +10,14 @@
             <transition on="pasos" to="campanapasos"></transition>
       </view-state>
 
-      <view-state id="campanapasos" >
+      <view-state id="campanapasos">
             <transition on="regisCamp" to="registraCampana">
-
             </transition>
       </view-state>
 
 
       <view-state id="registraCampana" >
             <transition on="selectTotem" to="seleccionarTotem">
-
             </transition>
 
 
@@ -31,12 +29,9 @@
       <view-state id="planificar-pasadas" >
             <transition on="vuelveTotem" to="seleccionarTotem"/>
             <transition on="end1" to="campanaConfirmada"/>
-
-
       </view-state>
 
       <view-state id="campanaConfirmada">
-
       </view-state>
 
 </flow>
