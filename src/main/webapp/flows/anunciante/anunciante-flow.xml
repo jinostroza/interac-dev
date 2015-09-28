@@ -12,12 +12,10 @@
 
       </view-state>
 
-
-
       <view-state id="subirContenido">
-
-            <transition on="sube" to="subirContenido"/>
-
+            <transition on="sub" to="finish"></transition>
       </view-state>
+
+      <end-state id="finish" view="/flows/campana/seleccionarTotem.xhtml" />
 
 </flow>

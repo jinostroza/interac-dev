@@ -113,8 +113,8 @@ tr.table-header{
 }
 #cuadro-imagen{
 	border: 1px solid black;
-	height: 500px;
-	width: 330px;
+	height: 600px;
+	width: 450px;
 	background-image:  url("css/img/nota.png");
 	background-repeat: no-repeat;
 	background-size: 100%;

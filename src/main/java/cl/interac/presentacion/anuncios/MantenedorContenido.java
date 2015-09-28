@@ -126,7 +126,7 @@ public class MantenedorContenido implements Serializable {
 
             contenido.setUsuario(userSession.getUsuario());
             logicaContenido.guardar(contenido);
-            contenido.setCategoria(categoria);
+
 
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Su imagen a sido subida ");
             fileUploadCount = fileUploadCount + 1;
@@ -134,6 +134,13 @@ public class MantenedorContenido implements Serializable {
         } catch (Exception e) {
             return;
         }
+    }
+    public void editarContenido(Contenido c) {
+        contenido = c;
+        contenido.setCategoria(categoria);
+        logicaContenido.guardar(contenido);
+
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el Contenido [" + contenido.getIdcontenido() + "]");
     }
 
 
