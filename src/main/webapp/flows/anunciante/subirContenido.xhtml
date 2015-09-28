@@ -12,47 +12,43 @@
             <header>
                 <h2>Crea tu anuncio</h2>
             </header>
-
                 <h:form>
                     <div class="col-md-6 formulario-texto">
                         <div class="form-group" ontimeupdate="true">
                             <label>Nombre</label>
-                            <h:inputText  styleClass="form-control"  />
+                            <h:inputText  styleClass="form-control" required="true" requiredMessage="Ingrese un Nombre para su Anuncio" />
                             <br></br>
                             <br></br>
                             <label>Categoría</label>
 
                             <h:selectOneMenu  class="form-control" value="#{mantenedorContenido.categoria}"
-                                              converter="entityConverter">
+                                              converter="entityConverter" required="true" requiredMessage="Debe Seleccionar una Categoria">
                                 <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione categoria --"/>
                                 <f:selectItems value="#{mantenedorContenido.categorias}" var="categor"
                                                itemLabel="#{categor.desccategoria}" itemValue="#{categor}"/>
                             </h:selectOneMenu>
-                            <div id="cuadro-imagen" class="dz-default dz-message">
-                                <p:fileUpload style="width: 330px"  mode="advanced"
+                            <br></br>
+                            <br></br>
+                        </div>
+                            <div  class="row">
+                                <div id="cuadro-imagen" >
+                                <p:fileUpload style="width: 330px;"  mode="advanced"
                                               previewWidth="296" update="messages" label="Seleccionar contenido" uploadLabel="Subir"
                                               fileUploadListener="#{mantenedorContenido.subir}"
-                                              cancelLabel="Cancelar" auto="false"  oncomplete="disabled='true'" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                                              cancelLabel="Cancelar" auto="false" disabled="#{mantenedorContenido.fileUploadCount >= 1}" oncomplete="javascript:window.location.reload(true)" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 
                                 <p:growl id="messages" showDetail="true" />
-
-
+                                </div>
+                                <div class="col-lg-offset-12">
+                                <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
+                                                 value="Siguiente"/>
+                                </div>
+                                <br></br>
+                                <br></br>
                             </div>
-
-                            <br></br>
-
-
-
-                            <br></br>
-
-                            <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
-                                             value="Siguiente"/>
-
                         </div>
-                    </div>
+
                 </h:form>
-
-
         </h:form>
     </ui:define>
 </ui:composition>

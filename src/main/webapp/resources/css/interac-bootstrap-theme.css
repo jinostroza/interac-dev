@@ -115,11 +115,11 @@ tr.table-header{
 	border: 1px solid black;
 	height: 500px;
 	width: 330px;
-	background-color: grey;
-	background-image:  url("css/img/cloud-upload.png");
-	background-size: 120px 100px;
+	background-image:  url("css/img/nota.png");
 	background-repeat: no-repeat;
-	background-position: 90px 180px;
+	background-size: 100%;
+	background-position-y: 80px;
+
 
 }
 

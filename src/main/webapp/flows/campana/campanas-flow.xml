@@ -28,6 +28,9 @@
             <transition on="planPasada" to="planificar-pasadas">
 
             </transition>
+            <transition on="regisCamp" to="registraCampana">
+
+            </transition>
       </view-state>
 
       <view-state id="planificar-pasadas" >

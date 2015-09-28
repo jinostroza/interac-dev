@@ -52,6 +52,7 @@ public class MantenedorContenido implements Serializable {
     private Categoria categoria;
     private List<Contenido> selecContenidos;
     private Categoria selecContenido;
+    private int fileUploadCount;
 
 
     @Autowired
@@ -128,6 +129,7 @@ public class MantenedorContenido implements Serializable {
             contenido.setCategoria(categoria);
 
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Su imagen a sido subida ");
+            fileUploadCount = fileUploadCount + 1;
 
         } catch (Exception e) {
             return;
@@ -226,4 +228,13 @@ public class MantenedorContenido implements Serializable {
     public void setSelecContenido(Categoria selecContenido) {
         this.selecContenido = selecContenido;
     }
+
+    public int getFileUploadCount() {
+        return fileUploadCount;
+    }
+
+    public void setFileUploadCount(int fileUploadCount) {
+        this.fileUploadCount = fileUploadCount;
+    }
+
 }
