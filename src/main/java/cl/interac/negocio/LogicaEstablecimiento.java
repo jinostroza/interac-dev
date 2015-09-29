@@ -35,9 +35,8 @@ public class LogicaEstablecimiento {
     }
 
     @Transactional(readOnly = true)
-    public List<Establecimiento> buscar(String text1) {
-        return establecimientoDAO.ObtenerPorNombre(text1);
-
+    public List<Establecimiento> obtenerPorUsuario(String username) {
+        return establecimientoDAO.obtenerPorUsuario(username);
     }
 
     @Transactional(readOnly = true)

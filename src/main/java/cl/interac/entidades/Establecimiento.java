@@ -16,10 +16,15 @@ import java.util.List;
                 query = "select e from Establecimiento e " +
                         "inner join fetch e.usuario " +
                         "inner join fetch e.ubicacion"),
-        @NamedQuery(name = "establecimiento.findNombreEstablecimiento",
-                query = "select e from Establecimiento e " +
-                        "where e.nombreEstablecimiento =:buscaLocal "),
-        @NamedQuery(name = "establecimiento.findIdestablecimiento", query = "SELECT e from Establecimiento e where e.idEstablecimiento = :estable")
+
+        @NamedQuery(name = "establecimiento.findIdestablecimiento",
+                query = "SELECT e from Establecimiento e where e.idEstablecimiento = :estable"),
+        @NamedQuery(name= "establecimiento.findbyUser",
+                        query="SELECT e FROM Establecimiento e " +
+                                "INNER JOIN FETCH e.ubicacion ub " +
+                                "INNER JOIN FETCH e.usuario u " +
+                                "INNER JOIN FETCH e.totem t " +
+                                "WHERE u.username=:username ")
 })
 
 public class Establecimiento implements Serializable {

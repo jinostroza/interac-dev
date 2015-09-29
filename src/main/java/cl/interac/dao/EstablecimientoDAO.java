@@ -34,14 +34,15 @@ public class EstablecimientoDAO {
         return em.createNamedQuery("estabecimiento.findAllByusuario").getResultList();
     }
 
-    public List<Establecimiento> ObtenerPorNombre(String text1) {
 
-        return em.createNamedQuery("establecimiento.findNombreEstablecimiento").setParameter("buscaLocal", text1).getResultList();
-
+    public List<Establecimiento> obtenerPorUsuario(String usuario){
+     return em.createNamedQuery("Campana.findByUsuario").setParameter("username",usuario).getResultList();
     }
     public Establecimiento obtenerPorId(Integer id) {
         return em.find(Establecimiento.class, id);
     }
+
+
 
 
 }
