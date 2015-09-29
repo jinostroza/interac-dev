@@ -47,4 +47,7 @@ public class LogicaCampana {
         return campanaDAO.obtenerTodasLosContenidos();
     }
 
+    @Transactional(readOnly = true)
+    public List<Campana> obtenerCampanaPorTotem(int totem){
+        return campanaDAO.obtenerCampanaPorTotem(totem);}
 }

@@ -49,4 +49,9 @@ public class CampanaDAO {
         return em.createNamedQuery("Campana.findByUsuario").setParameter("username",user).getResultList();
     }
 
+    public List<Campana> obtenerCampanaPorTotem(int totem){
+        return em.createNamedQuery("Campana.findByTotem").setParameter("idTotem",totem).getResultList();
+
+    }
+
 }

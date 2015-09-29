@@ -19,6 +19,7 @@ import java.util.List;
 public class mantenedorCliente implements Serializable {
     //entities
     private Totem totem;
+    private Totem totemSeleccionado;
     private Campana campana;
     private Usuario usuario;
     private Establecimiento establecimiento;
@@ -28,7 +29,8 @@ public class mantenedorCliente implements Serializable {
     private List<Campana> campanaList;
     private List<Establecimiento> establecimientoList;
     private List<Tipototem> tipototemList;
-    private List<Totem> totemSeleccionado;
+    private List<Totem> totemSeleccionados;
+
 
     //autowired
     @Autowired
@@ -46,25 +48,32 @@ public class mantenedorCliente implements Serializable {
 
 
 
-    @PostConstruct
+
     public void inicio(){
         totemList= logicaTotem.obtenerPorUsuario(userSession.getUsuario().getUsername());
 
 
     }
 
-
+    public void obtener(){
+        campanaList = logicaCampana.obtenerCampanaPorTotem(totemSeleccionado.getIdtotem());
+    }
 
 
 
 //getter and setter
 
+
+    public void setTotemSeleccionado(Totem totemSeleccionado) {
+        this.totemSeleccionado = totemSeleccionado;
+    }
+
     public List<Totem> getTotemSeleccionado() {
-        return totemSeleccionado;
+        return totemSeleccionados;
     }
 
     public void setTotemSeleccionado(List<Totem> totemSeleccionado) {
-        this.totemSeleccionado = totemSeleccionado;
+        this.totemSeleccionados = totemSeleccionados;
     }
 
     public Totem getTotem() {

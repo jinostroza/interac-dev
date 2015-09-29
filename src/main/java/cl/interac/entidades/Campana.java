@@ -21,6 +21,10 @@ import java.util.List;
                         "INNER JOIN FETCH c.totem to " +
                         "INNER JOIN FETCH co.usuario u " +
                         "WHERE u.username=:username "),
+                @NamedQuery(name="Campana.findByTotem",
+                        query ="SELECT c FROM Campana c " +
+                                "INNER JOIN FETCH c.totem t " +
+                                "where t.idtotem=:idTotem")
 
 
 
