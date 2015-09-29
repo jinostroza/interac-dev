@@ -61,32 +61,32 @@
                 <div class="ui-grid-row">
                         <p:dataTable id="basicDT" var="cont" rows="5" paginator="true"
                           styleClass="col-lg-10 col-lg-offset-5"
-                          style="margin-left: 10%" value="#{mantenedorCampana.contenidos}">
+                          style="margin-left: 10%;text-align-all: center;" value="#{mantenedorCampana.contenidos}">
 
                             <f:facet name="header">
                                 Mis Contenidos
                             </f:facet>
 
-                            <p:column  styleClass="col-lg-3" headerText="Imagenes">
-                                <h:graphicImage value="img/colivares/#{cont.path}" style="width:100px; height:200px ;"/>
+                            <p:column  styleClass="col-lg-2" headerText="Imagenes">
+                                <h:graphicImage value="img/colivares/#{cont.path}" style="width:50px; height:100px ;"/>
                             </p:column>
                             <p:column styleClass="col-lg-2" headerText="nombre">
                                 <h:outputText value="#{cont.nombrecont}" />
                             </p:column>
-                            <p:column styleClass="col-lg-3" headerText="categoria">
+                            <p:column styleClass="col-lg-2" headerText="categoria">
                                 <h:outputText value="#{cont.categoria.desccategoria}" />
                             </p:column>
-                            <p:column styleClass="col-lg-3" headerText="estado">
+                            <p:column styleClass="col-lg-2" headerText="estado">
                                 <h:outputText value="#{cont.estado}" />
                             </p:column>
 
-                            <p:column styleClass="col-lg-3" style="width:32px;text-align: center">
-                                <p:commandButton icon="ui-icon-pin-s" action="selectTotem" title="View">
+                            <p:column styleClass="col-lg-3" style="text-align: center">
+                                <p:commandButton icon="ui-icon-pin-s" value="Crear Campaña" action="selectTotem" title="View">
                                     <f:setPropertyActionListener value="#{cont}" target="#{mantenedorCampana.contenidosSelecionado}" />
                                 </p:commandButton>
                             </p:column>
-                            <p:column styleClass="col-lg-3" style="width:32px;text-align: center;margin-right: 2px">
-                                <p:commandButton icon="ui-icon-trash" action="#{mantenedorContenido.eliminarFichero(cont)}" title="View">
+                            <p:column styleClass="col-lg-3" style="text-align: center;margin-right: 2px">
+                                <p:commandButton icon="ui-icon-trash" value="Eliminar" action="#{mantenedorContenido.eliminarFichero(cont)}" title="View">
 
                                 </p:commandButton>
                             </p:column>

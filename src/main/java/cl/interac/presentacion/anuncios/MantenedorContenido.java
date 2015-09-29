@@ -1,7 +1,6 @@
 package cl.interac.presentacion.anuncios;
 
 import cl.interac.entidades.*;
-import cl.interac.negocio.LogicaAnuncio;
 import cl.interac.negocio.LogicaCategoria;
 import cl.interac.negocio.LogicaContenido;
 import cl.interac.negocio.LogicaUsuario;
