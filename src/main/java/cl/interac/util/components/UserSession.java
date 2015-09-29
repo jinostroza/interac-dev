@@ -1,12 +1,8 @@
 package cl.interac.util.components;
 
 import cl.interac.dao.UsuarioDAO;
-import cl.interac.entidades.Campana;
-import cl.interac.entidades.Rol;
 import cl.interac.entidades.Usuario;
-import cl.interac.negocio.LogicaAnuncio;
 import cl.interac.negocio.LogicaUsuario;
-import cl.interac.util.dto.UsuarioDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.Authentication;
@@ -15,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by claudio on 11-11-14.

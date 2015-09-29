@@ -38,4 +38,9 @@ public class TotemDAO {
     public List<Totem> obtenerConRelacion(){
        return em.createNamedQuery("Totem.findWithRelationship").getResultList();
     }
+
+    public List<Totem> obtenerConUsuario(String username){
+        return em.createNamedQuery("Totem.findbyUsuario").setParameter("username",username).getResultList();
+
+    }
 }

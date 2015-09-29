@@ -10,35 +10,41 @@
 
 
         <h:form>
-            <div class="container" id="myInterac">
-                <header>
-                    <h2>Sube Tu Anuncio</h2>
-                </header>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <h:commandLink styleClass="dashbox" >
-                            <p class="dashbox-header">Crear anuncio</p>
-                            <i class="button_ crear-anuncio"></i>
-                            <p> Escoge aqui uno de los anuncios ya creados </p>
-                        </h:commandLink>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="dashbox">
-                            <p class="dashbox-header">Crear campaña</p>
-                            <div class="button_ crear-campana"></div>
-                            <p> Escoge aqui uno de los anuncios ya creados </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="dashbox">
-                            <p class="dashbox-header">Pagar</p>
-                            <div class="button_ pagar"></div>
-                            <p> Escoge aqui uno de los anuncios ya creados </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="push"></div>
-            </div>
+            <h3>ADMINISTRACION</h3>
+
+            <p:dataTable var="cli" value="#{mantenedorCliente.totemList}"  cellpadding="5px"
+                         styleClass="ui-grid-col-12"
+                         rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <f:facet name="header">
+                    Mis totems
+                </f:facet>
+                <p:column headerText="NO° serie">
+                    <h:outputText value="#{cli.noserie}"/>
+                </p:column>
+                <p:column headerText="estabecimiento">
+                    <h:outputText value="#{cli.establecimiento.nombreEstablecimiento}"/>
+                </p:column>
+                <p:column headerText="ubicacion">
+                    <h:outputText value="#{cli.establecimiento.ubicacion.descubicacion}"/>
+                </p:column>
+                <p:column headerText="direccion">
+                    <h:outputText value="#{cli.establecimiento.direccion}"/>
+                </p:column>
+                <p:column style="width:32px;text-align: center">
+                    <p:commandButton  icon="ui-icon-search" title="View">
+                        <f:setPropertyActionListener value="#{cli}"
+                                                     target="#{mantenedorCliente.campana}" />
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+
+
+
+
         </h:form>
 
     </ui:define>

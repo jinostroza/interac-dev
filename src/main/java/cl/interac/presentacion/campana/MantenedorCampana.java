@@ -68,8 +68,6 @@ public class MantenedorCampana implements Serializable {
     @Autowired
     private LogicaContenido logicaContenido;
 
-
-    @PostConstruct
     public void inicio() {
 
         totemsConrelacion = logicaTotem.obtenerConRelacion();
@@ -83,14 +81,14 @@ public class MantenedorCampana implements Serializable {
         }
     }
 
-    public void guardar() {
-        campana.setFechaCreacion(Date.from(Instant.now()));
+    public String guardar() {
+        campana.setFechaCreacion(Date.from(Instant.now())); // new Date() hhace lo mismo
         campana.setContenido(contenidosSelecionado);
         campana.setTotem(totemSelecionado);
-        logicaCampana.guardarCampana(campana);
         campana.setPasadas(pasada);
+        logicaCampana.guardarCampana(campana);
         FacesUtil.mostrarMensajeInformativo("operacion exitosa","se ha creado tu campaña");
-
+        return "end1";
     }
     //gettet and setter
 
@@ -109,22 +107,6 @@ public class MantenedorCampana implements Serializable {
 
     public void setSimpleModel(MapModel simpleModel) {
         this.simpleModel = simpleModel;
-    }
-
-    public String end1(){ return "end1";}
-    public String getEnd1() {
-        return end1;
-    }
-    public void setEnd1(String end1) {
-        this.end1 = end1;
-    }
-
-
-    public int calulator(){
-       precio = pasada*100 ;
-
-        return precio;
-
     }
 
     public int getPrecio() {

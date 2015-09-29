@@ -15,7 +15,13 @@ import java.util.List;
                         query = "SELECT t FROM Totem t " +
                                 "left join fetch t.establecimiento e "
 
-                               )
+                               ),
+                @NamedQuery(name="Totem.findbyUsuario",
+                            query="SELECT t FROM Totem t " +
+                                    "LEFT JOIN FETCH t.establecimiento e " +
+                                    "LEFT JOIN FETCH e.ubicacion ub " +
+                                    "LEFT JOIN FETCH e.usuario u " +
+                                    "where u.username=:username")
 
         }
 )

@@ -11,7 +11,7 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name="Tipototem.findAll",query="SELECT t From Tipototem t "),
         @NamedQuery(name="Tipototem.findWithRelationship",
-                query="select t from Tipototem t " +
+                         query="select t from Tipototem t " +
                         "left join fetch t.totems " )
 
 

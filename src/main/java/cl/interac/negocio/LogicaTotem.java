@@ -45,6 +45,10 @@ public class LogicaTotem {
         return totemDAO.obtenerConRelacion();
     }
 
+    @Transactional(readOnly = true)
+    public List<Totem> obtenerPorUsuario(String username){
+        return totemDAO.obtenerConUsuario(username);
+    }
 
 }
 
