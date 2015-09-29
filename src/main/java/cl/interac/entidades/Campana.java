@@ -51,7 +51,7 @@ public class Campana implements Serializable {
         this.idcampana = idcampana;
     }
 
-    @Basic
+    @Temporal(TemporalType.DATE)
     @Column(name = "fechacreacion")
     public Date getFechaCreacion() {
         return fechaCreacion;
@@ -61,7 +61,7 @@ public class Campana implements Serializable {
         this.fechaCreacion = fechaCreacion;
     }
 
-    @Basic
+    @Temporal(TemporalType.DATE)
     @Column(name = "fechafin")
     public Date getFechaFin() {
         return fechaFin;
@@ -70,7 +70,7 @@ public class Campana implements Serializable {
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
-    @Basic
+    @Temporal(TemporalType.DATE)
     @Column(name = "fechainicio")
     public Date getFechaInicio() {
         return fechaInicio;

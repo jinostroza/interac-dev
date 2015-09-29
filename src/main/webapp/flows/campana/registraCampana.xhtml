@@ -17,10 +17,10 @@
                             </div>
                             <div class="nav-submenu col-lg-6">
                                 <ul>
-                                    <li><a class="active" href="#">Elegir</a></li>
-                                    <li><a   href="#">Seleccionar</a></li>
-                                    <li><a href="#">Planificar</a></li>
-                                    <li><a href="#">Confirmar</a></li>
+                                    <li><a class="active">Elegir</a></li>
+                                    <li><a>Seleccionar</a></li>
+                                    <li><a>Planificar</a></li>
+                                    <li><a>Confirmar</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                 <div class="col-lg-4">
                     <h3 align="center" style="align-items: flex-start">Seleccionar contenido</h3>
                 </div>
-                <div class="input-group col-lg-3 col-lg-offset-8" style="margin-right: 20%" >
+                 <div class="input-group col-lg-3 col-lg-offset-8" style="margin-right: 20%" >
                  <span class="input-group-btn" style="align-self: center" >
 
       			</span>
@@ -59,7 +59,10 @@
                 <br/>
 
                 <div class="ui-grid-row">
-                        <p:dataTable id="basicDT" var="cont" rows="5" paginator="true" styleClass="col-lg-10 col-lg-offset-5" style="margin-left: 10%" value="#{mantenedorCampana.contenidos}">
+                        <p:dataTable id="basicDT" var="cont" rows="5" paginator="true"
+                          styleClass="col-lg-10 col-lg-offset-5"
+                          style="margin-left: 10%" value="#{mantenedorCampana.contenidos}">
+
                             <f:facet name="header">
                                 Mis Contenidos
                             </f:facet>

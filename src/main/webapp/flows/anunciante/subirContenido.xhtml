@@ -12,48 +12,45 @@
             <header>
                 <h2>Crea tu anuncio</h2>
             </header>
-                <h:form>
-                    <div id="cuadro-imagen" >
-                        <p:fileUpload style="width: 450px;"  mode="advanced"
-                                      previewWidth="430" update="messages" label="Seleccionar contenido" uploadLabel="Subir"
-                                      fileUploadListener="#{mantenedorContenido.subir}"
-                                      cancelLabel="Cancelar" auto="false" disabled="#{mantenedorContenido.fileUploadCount >= 1}" oncomplete="javascript:window.location.reload(true)" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 
-                        <p:growl id="messages" showDetail="true" />
-                    </div>
+            <div id="cuadro-imagen" >
+                <p:fileUpload style="width: 450px;"  mode="advanced"
+                              previewWidth="430" update="messages" label="Seleccionar contenido" uploadLabel="Subir"
+                              fileUploadListener="#{mantenedorContenido.subir}"
+                              cancelLabel="Cancelar" auto="false" disabled="#{mantenedorContenido.fileUploadCount >= 1}" oncomplete="javascript:window.location.reload(true)" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 
-                            <div  class="row">
-                                <div class="col-lg-5">
-                                <label>Nombre</label>
-                                <h:inputText  value="#{mantenedorContenido.contenido.nombrecont}" styleClass="form-control" required="true" requiredMessage="Ingrese un Nombre para su Anuncio" />
-                                <br></br>
-                                <br></br>
-                                <label>Categoría</label>
+                <p:growl id="messages" showDetail="true" />
+            </div>
 
-                                <h:selectOneMenu  class="form-control" value="#{mantenedorContenido.categoria}"
-                                                  converter="entityConverter" required="true" requiredMessage="Debe Seleccionar una Categoria">
-                                    <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione categoria --"/>
-                                    <f:selectItems value="#{mantenedorContenido.categorias}" var="categor"
-                                                   itemLabel="#{categor.desccategoria}" itemValue="#{categor}"/>
-                                </h:selectOneMenu>
-                                <br></br>
-                                <br></br>
-                                <p:outputLabel value="#{mantenedorContenido.contenido.path}"></p:outputLabel>
-                                </div>
-                            </div>
-                                <div class="col-lg-12" style="margin-left: 60%">
-                                <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
-                                                 value="Volver" immediate="true"/>
-                                    <span>   </span>
-                                <h:commandButton ajax="false" styleClass="btn btn-interac" action="sub" actionListener="#{mantenedorContenido.editarContenido(mantenedorContenido.contenido)}"
-                                                     value="Siguiente"/>
-                                </div>
-                                <br></br>
-                                <br></br>
+            <div  class="row">
+                <div class="col-lg-5">
+                    <label>Nombre</label>
+                    <h:inputText  value="#{mantenedorContenido.contenido.nombrecont}" styleClass="form-control" required="true" requiredMessage="Ingrese un Nombre para su Anuncio" />
+                    <br/>
+                    <br></br>
+                    <label>Categoría</label>
 
+                    <h:selectOneMenu  class="form-control" value="#{mantenedorContenido.categoria}"
+                                      converter="entityConverter" required="true" requiredMessage="Debe Seleccionar una Categoria">
+                        <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione categoria --"/>
+                        <f:selectItems value="#{mantenedorContenido.categorias}" var="categor"
+                                       itemLabel="#{categor.desccategoria}" itemValue="#{categor}"/>
+                    </h:selectOneMenu>
+                    <br></br>
+                    <br></br>
+                    <p:outputLabel value="#{mantenedorContenido.contenido.path}"></p:outputLabel>
+                </div>
+            </div>
+            <div class="col-lg-12" style="margin-left: 60%">
+                <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
+                                 value="Volver" immediate="true"/>
+                <span>   </span>
+                <h:commandButton ajax="false" styleClass="btn btn-interac" action="sub" actionListener="#{mantenedorContenido.editarContenido(mantenedorContenido.contenido)}"
+                                 value="Siguiente"/>
+            </div>
+            <br></br>
+            <br/>
 
-
-                </h:form>
         </h:form>
     </ui:define>
 </ui:composition>

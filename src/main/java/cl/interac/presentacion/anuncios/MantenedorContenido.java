@@ -1,7 +1,6 @@
 package cl.interac.presentacion.anuncios;
 
 import cl.interac.entidades.*;
-import cl.interac.negocio.LogicaAnuncio;
 import cl.interac.negocio.LogicaCategoria;
 import cl.interac.negocio.LogicaContenido;
 import cl.interac.negocio.LogicaUsuario;
@@ -12,22 +11,20 @@ import cl.interac.util.components.UserSession;
 import cl.interac.util.services.FileUploader;
 
 
-import cl.interac.util.servlets.ImageServlet;
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.event.SelectEvent;
-import org.primefaces.event.UnselectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.io.*;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+
 
 /**
  * Created by Joaco on 17/08/2015.

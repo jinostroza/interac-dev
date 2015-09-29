@@ -24,7 +24,7 @@
         <http-client>3.1</http-client>
         <poi-version>3.10-FINAL</poi-version>
         <apache-commons-fu>1.3.1</apache-commons-fu>
-        <apache-commons-io>1.3.2</apache-commons-io>
+        <apache-commons-io>2.4</apache-commons-io>
         <jstl-version>1.2</jstl-version>
         <mail-version>1.4</mail-version>
         <postgresql-version>9.1-901.jdbc3</postgresql-version>
