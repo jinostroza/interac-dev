@@ -19,7 +19,7 @@
                                       fileUploadListener="#{mantenedorContenido.subir}"
                                       cancelLabel="Cancelar" auto="false" disabled="#{mantenedorContenido.fileUploadCount >= 1}" oncomplete="javascript:window.location.reload(true)" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 
-                        <p:growl id="messages" showDetail="true" />
+                        <p:growl id="messages" showDetail="true" sticky="true" />
                     </div>
 
                             <div  class="row">
@@ -38,15 +38,20 @@
                                 </h:selectOneMenu>
                                 <br></br>
                                 <br></br>
-                                <p:outputLabel value="#{mantenedorContenido.contenido.path}"></p:outputLabel>
+                                <p:outputLabel value="#{mantenedorContenido.contenido.idcontenido}"></p:outputLabel>
+                                    <br></br>
+                                    <br></br>
+                                    <p:outputLabel value="#{mantenedorContenido.contenido.estado}" ></p:outputLabel>
+
                                 </div>
                             </div>
                                 <div class="col-lg-12" style="margin-left: 60%">
                                 <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
                                                  value="Volver" immediate="true"/>
                                     <span>   </span>
-                                <h:commandButton ajax="false" styleClass="btn btn-interac" action="sub" actionListener="#{mantenedorContenido.editarContenido(mantenedorContenido.contenido)}"
-                                                     value="Siguiente"/>
+                                <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}" actionListener="#{mantenedorContenido.editarContenido(mantenedorContenido.contenido)}"
+                                                     value="Crear" />
+                                    <p:growl id="newmssg" showDetail="true" sticky="true" autoUpdate="true" />
                                 </div>
                                 <br></br>
                                 <br></br>

@@ -1,13 +1,16 @@
 package cl.interac.entidades;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by Joaco on 17/08/2015.
  */
 @Entity
+@DynamicInsert
 @NamedQueries({
         @NamedQuery(name = "Contenido.findAll", query = "select c from Contenido c"),
         @NamedQuery(name = "Contenido.findWith", query = "select c from Contenido c,Usuario u "+" where c.usuario.idUsuario=u.idUsuario "),
@@ -28,6 +31,7 @@ public class Contenido implements Serializable{
     private Integer idcontenido;
     private String path;
     private String nombrecont;
+    private String estado;
 
     //relaciones
     private Usuario usuario;
@@ -75,6 +79,15 @@ public class Contenido implements Serializable{
         this.path = path;
     }
 
+    @Basic
+    @Column(name= "estado",length = 50,nullable =false,insertable=true ,updatable = true  )
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
 
     @Basic

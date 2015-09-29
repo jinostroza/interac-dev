@@ -13,9 +13,10 @@
       </view-state>
 
       <view-state id="subirContenido">
-            <transition on="sub" to="finish"></transition>
+            <transition on="sub" to="finish" ></transition>
       </view-state>
 
-      <end-state id="finish" view="/flows/campana/seleccionarTotem.xhtml" />
+
+      <end-state id="finish" view="/flows/campana/" />
 
 </flow>

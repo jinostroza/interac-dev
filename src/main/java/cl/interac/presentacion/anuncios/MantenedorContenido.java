@@ -29,6 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+
 /**
  * Created by Joaco on 17/08/2015.
  */
@@ -53,6 +54,7 @@ public class MantenedorContenido implements Serializable {
     private List<Contenido> selecContenidos;
     private Categoria selecContenido;
     private int fileUploadCount;
+
 
 
     @Autowired
@@ -125,6 +127,7 @@ public class MantenedorContenido implements Serializable {
             // error ql wn, estabamos mandando nul pq el path se seteaba antes de la instancia,silovi
 
             contenido.setUsuario(userSession.getUsuario());
+            contenido.setEstado("Validando");
             logicaContenido.guardar(contenido);
 
 
@@ -138,6 +141,7 @@ public class MantenedorContenido implements Serializable {
     public void editarContenido(Contenido c) {
         contenido = c;
         contenido.setCategoria(categoria);
+        System.err.println("Estado:"+ contenido.getEstado());
         logicaContenido.guardar(contenido);
 
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el Contenido [" + contenido.getIdcontenido() + "]");
@@ -148,7 +152,7 @@ public class MantenedorContenido implements Serializable {
 
         try {
             logicaContenido.eliminarContenido(conte);
-            Files.delete(Paths.get("/home/ec2-user/media/colivares/"+conte.getPath()));
+            Files.delete(Paths.get("/home/ec2-user/media/colivares/" + conte.getPath()));
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha borrado la imagen");
 
         }catch (Exception e){
@@ -243,5 +247,6 @@ public class MantenedorContenido implements Serializable {
     public void setFileUploadCount(int fileUploadCount) {
         this.fileUploadCount = fileUploadCount;
     }
+
 
 }
