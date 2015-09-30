@@ -9,6 +9,22 @@
     <ui:define name="contenido">
         <h:form>
             <p:dataTable var="misc" value="#{mantenedorCliente.campanaList}" >
+                <f:facet name="header">
+                    Campañas
+                </f:facet>
+                <p:column>
+                    <h:outputText value="#{misc.fechaCreacion}" />
+                </p:column>
+                <p:column>
+                    <h:outputText value="#{misc.fechaInicio}"/>
+                </p:column>
+                <p:column>
+                    <h:outputText value="#{misc.fechaFin}"/>
+                </p:column>
+                <p:column>
+                    <h:outputText value="#{misc.pasadas}" />
+                </p:column>
+
 
             </p:dataTable>
 

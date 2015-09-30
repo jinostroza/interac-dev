@@ -22,11 +22,17 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * Created by luis on 25-04-2015.
@@ -71,7 +77,6 @@ public class MantenedorCampana implements Serializable {
     public void inicio() {
 
         totemsConrelacion = logicaTotem.obtenerConRelacion();
-
         campanas = logicaCampana.obtenerPorUsuario(userSession.getUsuario().getUsername());
         contenidos = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
@@ -82,16 +87,61 @@ public class MantenedorCampana implements Serializable {
     }
 
     public String guardar() {
-        campana.setFechaCreacion(Date.from(Instant.now())); // new Date() hhace lo mismo
-        campana.setContenido(contenidosSelecionado);
-        campana.setTotem(totemSelecionado);
-        campana.setPasadas(pasada);
-        logicaCampana.guardarCampana(campana);
+
+
+        for(Totem totem: totemSelecionados) {
+            campana.setContenido(contenidosSelecionado);
+            campana.setTotem(totemSelecionado);
+            logicaCampana.guardarCampana(campana);
+        }
+        ;
         FacesUtil.mostrarMensajeInformativo("operacion exitosa","se ha creado tu campaña");
         return "end1";
     }
-    //gettet and setter
 
+    public void EnvioCorreo (){
+            // La dirección de envío (to)
+            String para = "ripvan20@gmail.com";
+            // La dirección de la cuenta de envío (from)
+            String de = "Probando@unawea.cl";
+            // El servidor (host). En este caso usamos localhost
+            String host = "localhost";
+            // Obtenemos las propiedades del sistema
+            Properties propiedades = System.getProperties();
+
+            // Configuramos el servidor de correo
+            propiedades.setProperty("mail.smtp.host", host);
+
+            // Obtenemos la sesión por defecto
+            Session sesion = Session.getDefaultInstance(propiedades);
+
+            try{
+                // Creamos un objeto mensaje tipo MimeMessage por defecto.
+                MimeMessage mensaje = new MimeMessage(sesion);
+
+                // Asignamos el “de o from” al header del correo.
+                mensaje.setFrom(new InternetAddress(de));
+
+                // Asignamos el “para o to” al header del correo.
+                mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(para));
+
+                // Asignamos el asunto
+                mensaje.setSubject("Primer correo sencillo");
+
+                // Asignamos el mensaje como tal
+                mensaje.setText("weqfssssrdcczsfsd");
+                 FacesUtil.mostrarMensajeInformativo("dasdsa","correo algo");
+                // Enviamos el correo
+                Transport.send(mensaje);
+                System.out.println("Mensaje enviado");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+    }
+
+
+    //gettet and setter
 
     public List<Totem> getTotemSelecionados() {
         return totemSelecionados;

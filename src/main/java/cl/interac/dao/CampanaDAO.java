@@ -51,7 +51,7 @@ public class CampanaDAO {
 
     public List<Campana> obtenerCampanaPorTotem(int totem){
         return em.createNamedQuery("Campana.findByTotem").setParameter("idTotem",totem).getResultList();
-
+ 
     }
 
 }

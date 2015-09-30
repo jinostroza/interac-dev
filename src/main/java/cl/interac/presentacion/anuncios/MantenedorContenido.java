@@ -31,7 +31,10 @@ import java.util.List;
 
 /**
  * Created by Joaco on 17/08/2015.
- */
+ */import java.util.*;
+import javax.mail.*;
+import javax.mail.internet.*;
+import javax.activation.*;
 
 @Component
 @Scope("flow")
