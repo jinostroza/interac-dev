@@ -7,7 +7,7 @@
     <h:panelGrid id="totemPG" columns="2" cellpadding="10">
         <br/>
         <p:dataTable id="totemsDT" var="totm" value="#{mantenedorTotems.totems}"
-                     filteredValue="#{mantenedorTotems.totemConFiltro}"      >
+                       >
 
             <p:column headerText="N°Serie" filterBy="#{totm.noserie}">
                 <h:outputText value="#{totm.noserie}" />
@@ -17,9 +17,9 @@
                 <h:outputText value="#{totm.establecimiento.nombreEstablecimiento}" />
             </p:column>
 
-            <p:column filterBy="#{totm.tipototem.destipo}" headerText="Tipo">
+            <p:column  headerText="Tipo">
 
-                <h:outputText value="#{totm.tipototem.destipo}" />
+                <h:outputText value="#{totm.tipototem.idtipo}" />
             </p:column>
 
             <p:column>
@@ -36,12 +36,7 @@
                                      value="#{totm.noserie}"/>
                         <h:outputLabel value="Tipo"/>
 
-                        <h:selectOneMenu class="form-control" value="#{totm.tipototem}"
-                                         converter="entityConverter">
-                            <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione tipo Totem --"/>
-                            <f:selectItems value="#{mantenedorTotems.tipototems}" var="totemPe"
-                                           itemLabel="#{totemPe.destipo}"  />
-                        </h:selectOneMenu>
+
 
 
                         <h:selectOneMenu class="form-control" value="#{totm.establecimiento}"
@@ -72,19 +67,22 @@
                              converter="entityConverter">
                 <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione tipo Totem --"/>
                 <f:selectItems value="#{mantenedorTotems.tipototems}" var="totemPL"
-                               itemLabel="#{totemPL.destipo}"  />
+                               itemLabel="#{totemPL.destipo}" itemValue="#{totemPL}"  />
             </h:selectOneMenu>
             <h:outputLabel value="Establecimiento"/>
 
-            <h:selectOneMenu class="form-control" value="#{mantenedorTotems.establecimiento}"
+            <h:selectOneMenu id="menuEst" class="form-control" value="#{mantenedorTotems.establecimiento}"
                              converter="entityConverter">
                 <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione establecimiento --"/>
                 <f:selectItems value="#{mantenedorTotems.establecimientoList}" var="ErLugar"
-                               itemLabel="#{ErLugar.nombreEstablecimiento}"  />
+                               itemLabel="#{ErLugar.nombreEstablecimiento}" itemValue="#{ErLugar}" />
             </h:selectOneMenu>
             <br/>
+            <p:outputLabel value="#{mantenedorTotems.establecimiento.lat}"></p:outputLabel>
+            <br/>
+            <p:outputLabel value="#{mantenedorTotems.establecimiento.longi}"></p:outputLabel>
             <p:commandButton id="addBtnTotem" for="agregapanelTotem"  value="Agrega"
-                             action="#{mantenedorTotems.agregarTotem()}"/>
+                             action="#{mantenedorTotems.agregarTotem}"/>
         </p:outputPanel>
     </p:overlayPanel>
 

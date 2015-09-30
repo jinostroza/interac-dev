@@ -32,6 +32,9 @@ public class Establecimiento implements Serializable {
     private String nombreEstablecimiento;
     private String direccion;
     private String fono;
+    private Double lat;
+    private Double longi;
+
 
     // Relaciones
     private Usuario usuario;
@@ -101,6 +104,25 @@ public class Establecimiento implements Serializable {
         this.fono = fono;
     }
 
+    @Basic
+    @Column(name = "latitud")
+    public Double getLat() {
+        return lat;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    @Basic
+    @Column(name = "longitud")
+    public Double getLongi() {
+        return longi;
+    }
+
+    public void setLongi(Double longi) {
+        this.longi = longi;
+    }
 
     @JoinColumn(name = "idubicacion", referencedColumnName = "idubicacion")
     @ManyToOne(fetch = FetchType.LAZY)

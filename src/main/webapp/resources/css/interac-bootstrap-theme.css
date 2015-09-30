@@ -270,7 +270,10 @@ tr.table-header{
 {
 	background-image: url("css/img/buttons/btn-empresa.png");
 }
-
+.btn-perfil
+{
+	background-image: url("css/img/buttons/user-register-icon.png");
+}
 #myInterac .dashbox:hover
 {
 	background-color: #fff;

@@ -8,12 +8,22 @@
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
-        <h:form class="container" id="crearAnuncio" enctype="multipart/form-data">
-            <header>
+        <div class="row" >
+            <div class="col-lg-6" style="padding-left:  10%">
                 <h2>Crea tu anuncio</h2>
-            </header>
-                <h:form>
-                    <div id="cuadro-imagen" >
+            </div>
+            <div class="nav-submenu col-lg-6">
+                <ul>
+                    <li><a class="active">Creando</a></li>
+                    <li><a>Planificar</a></li>
+                    <li><a>Confirmar</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+                <h:form style="margin-left: 20%">
+                    <div id="cuadro-imagen" style="padding-right: 100px" >
                         <p:fileUpload style="width: 450px;"  mode="advanced"
                                       previewWidth="430" update="messages" label="Seleccionar contenido" uploadLabel="Subir"
                                       fileUploadListener="#{mantenedorContenido.subir}"
@@ -49,7 +59,7 @@
                                 <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
                                                  value="Volver" immediate="true"/>
                                     <span>   </span>
-                                <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}" actionListener="#{mantenedorContenido.editarContenido(mantenedorContenido.contenido)}"
+                                <h:commandButton ajax="false" styleClass="btn btn-interac" action="sub" actionListener="#{mantenedorContenido.editarContenido(mantenedorContenido.contenido)}"
                                                      value="Crear" />
                                     <p:growl id="newmssg" showDetail="true" sticky="true" autoUpdate="true" />
                                 </div>
@@ -59,6 +69,6 @@
 
 
                 </h:form>
-        </h:form>
+
     </ui:define>
 </ui:composition>

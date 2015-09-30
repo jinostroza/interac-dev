@@ -72,6 +72,12 @@
                 <f:selectItems value="#{mantenedorEstablecimiento.ubicaciones}" var="ubica"
                                itemLabel="#{ubica.descubicacion}"/>
             </h:selectOneMenu>
+            <h:outputLabel value="Latitud"/>
+            <h:inputText  required="true" requiredMessage="Ingrese Latitud" styleClass="form-control"
+                          value="#{mantenedorEstablecimiento.establecimiento.lat}"/>
+            <h:outputLabel value="Longitud"/>
+            <h:inputText  required="true" requiredMessage="Ingrese Longitud" styleClass="form-control"
+                          value="#{mantenedorEstablecimiento.establecimiento.longi}"/>
             <br/>
             <p:commandButton id="addBtn" for="agregapanel" value="Agrega" update="establecimientoPG"
                              action="#{mantenedorEstablecimiento.agregarEstablecimiento()}"/>

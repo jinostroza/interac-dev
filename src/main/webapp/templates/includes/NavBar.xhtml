@@ -13,14 +13,8 @@
         <ul>
 
 
-            <ui:fragment rendered="#{userSession.estaAutentificado() }">
-            <li>
-                <p:commandLink value="#{userSession.usuario.username}" action="#{facesUtil.redirigir('/plataforma/panelDeControl')}" />
-            </li>
-            </ui:fragment>
-
             <ui:fragment rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR')}">
-            <li>
+            <li style="padding-right: 860px;margin-right: 213px">
                 <p:commandLink value="Inicio" action="#{facesUtil.redirigir('/plataforma/campana')}" />
             </li>
              </ui:fragment>
@@ -30,9 +24,9 @@
                 </li>
             </ui:fragment>
 
-            <ui:fragment rendered="#{userSession.tienePermiso('CLIENTE') or userSession.tienePermiso('ADMINISTRADOR')}">
+            <ui:fragment rendered="#{userSession.tienePermiso('ADMINISTRADOR')}">
                 <li>
-                    <p:commandLink value="Mis Totems" action="#{facesUtil.redirigir('/plataforma/cliente')}"/>
+                    <p:commandLink value="Mis Pantallas" action="#{facesUtil.redirigir('/plataforma/cliente')}"/>
                 </li>
             </ui:fragment>
 
@@ -42,7 +36,7 @@
                 </li>
             </ui:fragment>
 
-            <ui:fragment rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')}">
+            <ui:fragment rendered="#{userSession.tienePermiso('ADMINISTRADOR')}">
                 <li>
                     <p:commandLink value="Mis Contenidos" action="#{facesUtil.redirigir('/plataforma/contenidos')}"/>
                 </li>
@@ -55,7 +49,7 @@
             </ui:fragment>
 
             <ui:fragment rendered="#{userSession.estaAutentificado()}">
-                <li><a href="/interac/logOut" >Salir</a></li>
+                <li><a href="/interac/logOut" >Cerrar Sesion</a></li>
             </ui:fragment>
         </ul>
     </p:outputPanel>

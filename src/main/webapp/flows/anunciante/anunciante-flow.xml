@@ -17,6 +17,6 @@
       </view-state>
 
 
-      <end-state id="finish" view="/flows/campana/" />
+      <end-state id="finish" view="/flows/campana/seleccionarTotem.xhtml" />
 
 </flow>
