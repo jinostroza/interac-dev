@@ -12,8 +12,8 @@
                 <div class="container" id="myInterac">
                     <header>
                         <div class="row">
-                            <div class="col-lg-6">
-                                <h2>Planifica tu Campaña en 3 Pasos</h2>
+                            <div class="col-lg-6 col-lg-offset-3">
+                                <h2>Planifica tu Campaña en 3 simples Pasos</h2>
                             </div>
 
                         </div>
@@ -23,18 +23,27 @@
 
                         </div>
 
-                        <div class="row" style="padding-left: 100px">
-                            <h:commandLink styleClass="col-lg-3 col-lg-offset-1">
+                        <div class="row" style="padding-left: 200px">
+                            <ui:fragment rendered="#{userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR')}">
+                            <h:commandLink styleClass="col-lg-3 col-lg-3" style="padding-left: -300px;margin-left: -100px" action="totems">
+                                <div class="dashbox">
+                                    <h:outputLabel value="Activar Pantallas" styleClass="dashbox-header" />
+                                    <div class="button_ crear-campana"></div>
+                                    <p> Activa tus propias pantallas publicitarias </p>
+                                </div>
+                            </h:commandLink>
+                            </ui:fragment>
+                            <h:commandLink styleClass="col-lg-3 " action="crear">
                                 <div class="dashbox">
                                     <h:outputLabel value="Crear Anuncio" styleClass="dashbox-header" />
                                     <div class="button_ subir-imagen"></div>
                                     <p> Sube un nuevo anuncio a nuestra plataforma </p>
                                 </div>
                             </h:commandLink>
-                            <h:commandLink styleClass="col-lg-3" action="#{facesUtil.redirigir('/plataforma/anunciante')}">
+                            <h:commandLink styleClass="col-lg-3" action="selectTotem">
                                 <div class="dashbox">
                                     <h:outputLabel value="Programar Campaña" styleClass="dashbox-header" />
-                                    <div class="button_ crear-campana"></div>
+                                    <div class="button_ planificar-campana"></div>
                                     <p> Elige cuando y donde quieres publicitar </p>
                                 </div>
                             </h:commandLink>
@@ -49,7 +58,9 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <h3 align="center" style="align-items: flex-start">Estado de tus Anuncios</h3>
+                    <ui:fragment rendered="#{userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR')}">
+                    <h3 align="center" style="align-items: flex-start">Estado de tus Pantallas</h3>
+                    </ui:fragment>
                 </div>
                  <div class="input-group col-lg-3 col-lg-offset-8" style="margin-right: 20%" >
                  <span class="input-group-btn" style="align-self: center" >
@@ -58,7 +69,32 @@
 
                 </div><!-- /input-group -->
                 <br/>
+                <div class="ui-grid-row">
+                    <ui:fragment rendered="#{userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR')}">
+                    <p:dataTable id="pantallasDT" var="tot" rows="5" paginator="true"
+                                 styleClass="col-lg-10 col-lg-offset-5"
+                                 style="margin-left: 10%;text-align-all: center;" value="#{mantenedorTotems.totemConFiltro}">
 
+                        <f:facet name="header">
+                            Mis Pantallas
+                        </f:facet>
+
+                        <p:column  styleClass="col-lg-2" headerText="nº Serie">
+                            <h:outputText value="#{tot.noserie}" style="width:50px; height:100px"/>
+                        </p:column>
+                        <p:column styleClass="col-lg-2" headerText="Direccion">
+                            <h:outputText value="#{tot.establecimiento.direccion}" />
+                        </p:column>
+                        <p:column styleClass="col-lg-2" headerText="Tipo">
+                            <h:outputText value="#{tot.tipototem.destipo}" />
+                        </p:column>
+                    </p:dataTable>
+                    </ui:fragment>
+                </div>
+                <br/>
+                <div class="col-lg-4">
+                    <h3 align="center" style="align-items: flex-start">Estado de tus Anuncios</h3>
+                </div>
                 <div class="ui-grid-row">
                         <p:dataTable id="basicDT" var="cont" rows="5" paginator="true"
                           styleClass="col-lg-10 col-lg-offset-5"

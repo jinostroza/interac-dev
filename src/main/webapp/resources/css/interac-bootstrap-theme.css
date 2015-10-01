@@ -218,6 +218,10 @@ tr.table-header{
 {
 	background-image: url("css/img/buttons/sube-un-video-hover.png");
 }
+.confirma-campana
+{
+	background-image: url("css/img/buttons/check-01.png");
+}
 .paso-uno
 {
 	background-image: url("css/img/buttons/user-register-active.png");

@@ -19,11 +19,23 @@
 
 
       <view-state id="registraCampana" >
-            <transition on="selectTotem" to="seleccionarTotem">
+            <transition on="crear" to="subirContenido">
 
             </transition>
 
+            <transition on="selectTotem" to="seleccionarTotem">
 
+            </transition>
+            <transition on="totems" to="inicioCliente">
+
+            </transition>
+
+      </view-state>
+      <view-state id="inicioCliente">
+
+      </view-state>
+      <view-state id="subirContenido">
+            <transition on="subir" to="seleccionarTotem"></transition>
       </view-state>
       <view-state id="seleccionarTotem">
             <transition on="planPasada" to="planificar-pasadas">

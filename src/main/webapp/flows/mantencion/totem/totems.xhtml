@@ -76,11 +76,13 @@
                 <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione establecimiento --"/>
                 <f:selectItems value="#{mantenedorTotems.establecimientoList}" var="ErLugar"
                                itemLabel="#{ErLugar.nombreEstablecimiento}" itemValue="#{ErLugar}" />
+                <p:ajax update="lbl1 lbl2" />
             </h:selectOneMenu>
             <br/>
-            <p:outputLabel value="#{mantenedorTotems.establecimiento.lat}"></p:outputLabel>
+            <p:outputLabel id="lbl1" value="#{mantenedorTotems.establecimiento.lat}"></p:outputLabel>
             <br/>
-            <p:outputLabel value="#{mantenedorTotems.establecimiento.longi}"></p:outputLabel>
+            <p:outputLabel id="lbl2" value="#{mantenedorTotems.establecimiento.longi}"></p:outputLabel>
+            <br/>
             <p:commandButton id="addBtnTotem" for="agregapanelTotem"  value="Agrega"
                              action="#{mantenedorTotems.agregarTotem}"/>
         </p:outputPanel>
