@@ -6,14 +6,7 @@
                 template="/templates/default.xhtml">
     <ui:define name="contenido">
         <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
-        <script>
-            function iniciar() {
-                var mapOptions = {
-                    center: new google.maps.LatLng(25.80, -80.30),
-                    zoom: 10,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP};
-                var map = new google.maps.Map(document.getElementById("gmap"),mapOptions);}
-        </script>
+
 
         <div id="map"></div>
         <h:form style="width: 100%">
@@ -55,9 +48,21 @@
                                 value="#{mantenedorCampana.totemsConrelacion}"
                                 var="tot" itemLabel="#{tot.establecimiento.nombreEstablecimiento}" itemValue="#{tot}" />
                         <p:column>
-                            <h:outputText value="#{t.establecimiento.nombreEstablecimiento}" />
+                            <h:outputText value="#{t.noserie}" />
                         </p:column>
                     </p:selectManyMenu>
+                    <p:commandButton value="Submit" update="display" oncomplete="PF('dlg').show()" icon="ui-icon-check" />
+
+                    <p:dialog header="Selected Values" modal="true" showEffect="fade" widgetVar="dlg" resizable="false">
+                        <p:panelGrid columns="2" id="display" columnClasses="label,output">
+
+
+                            <h:outputText value="Advanced:" />
+                            <p:dataList value="#{mantenedorCampana.totemSelecionados}" var="t">
+                                <h:outputText value="#{t}" />
+                            </p:dataList>
+                        </p:panelGrid>
+                    </p:dialog>
                 </div>
             </div>
             <br></br>

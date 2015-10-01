@@ -33,21 +33,19 @@ public class LogicaCampana {
         campanaDAO.guardar(campana);
     }
 
-   @Transactional(readOnly = false)
+    @Transactional(readOnly = false)
     public void eliminarCampana(Campana campana){
-       campanaDAO.eliminarCampana(campana);
-   }
+        campanaDAO.eliminarCampana(campana);
+    }
 
-   @Transactional(readOnly = true)
+    @Transactional(readOnly = true)
     public List<Campana> obtenerPorUsuario(String user){
-       return  campanaDAO.obtenerCampanaPorUsuario(user);
-   }
+        return  campanaDAO.obtenerCampanaPorUsuario(user);
+    }
+
     @Transactional(readOnly = true)
     public List<Campana> obtenerTodoLosContenidos(){
         return campanaDAO.obtenerTodasLosContenidos();
     }
 
-    @Transactional(readOnly = true)
-    public List<Campana> obtenerCampanaPorTotem(int totem){
-        return campanaDAO.obtenerCampanaPorTotem(totem);}
 }

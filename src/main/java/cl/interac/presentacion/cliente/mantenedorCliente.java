@@ -55,9 +55,6 @@ public class mantenedorCliente implements Serializable {
 
     }
 
-    public void obtener(){
-        campanaList = logicaCampana.obtenerCampanaPorTotem(totemSeleccionado.getIdtotem());
-    }
 
 
 

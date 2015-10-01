@@ -3,7 +3,9 @@ package cl.interac.entidades;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Jorge on 25-04-15.
@@ -14,17 +16,14 @@ import java.util.List;
                 @NamedQuery(name = "Campana.findAll", query = "SELECT c FROM Campana c "),
                 @NamedQuery(name ="Campana.findBycontenido",
                            query="SELECT c FROM Campana c  " +
-                                   "INNER JOIN FETCH c.contenido co " +
-                                   "INNER JOIN FETCH c.totem to "),
+                                   "INNER JOIN FETCH c.contenido co " ),
+
                 @NamedQuery(name="Campana.findByUsuario",query = "SELECT c FROM Campana c " +
                         "INNER JOIN FETCH c.contenido co " +
-                        "INNER JOIN FETCH c.totem to " +
+                        "INNER JOIN FETCH c.totemList t " +
                         "INNER JOIN FETCH co.usuario u " +
                         "WHERE u.username=:username "),
-                @NamedQuery(name="Campana.findByTotem",
-                        query ="SELECT c FROM Campana c " +
-                                "INNER JOIN FETCH c.totem t " +
-                                "where t.idtotem=:idTotem")
+
 
 
 
@@ -41,8 +40,7 @@ public class Campana implements Serializable {
 
     // relaciones
     private Contenido contenido;
-    private Totem totem;
-
+    private List<Totem> totemList;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -114,18 +112,28 @@ public class Campana implements Serializable {
         this.contenido = contenido;
     }
 
-
-    @JoinColumn(name="idtotem",referencedColumnName = "idtotem")
-    @ManyToOne(fetch=FetchType.LAZY)
-    public Totem getTotem() {
-        return totem;
+    // dale pregunto varias veces para cuestionar no más xD
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "campatotem",
+            inverseJoinColumns = {
+                    @JoinColumn(name = "idtotem")
+            },
+            // me demore pq siempre me enredo un poquito join inverso es como llego a mi destino
+            // es decir al totem y como la tabla es campatotem mediante idtotem
+            joinColumns = {
+                    @JoinColumn(name = "idcampana")
+            }
+            // join normal es como llego al nav, y listo tamos mapeados ... se cacha? sii,
+            // veamos si no miento
+    )
+    public List<Totem> getTotemList() {
+        return totemList;
     }
 
-    public void setTotem(Totem totem) {
-        this.totem = totem;
+    public void setTotemList(List<Totem> totemList) {
+        this.totemList = totemList;
     }
-
-
 
     @Override
     public boolean equals(Object o) {

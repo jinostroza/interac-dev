@@ -54,10 +54,7 @@ public class MantenedorTotems implements Serializable {
         establecimientoList = logicaEstablecimiento.obtenerTodos();
         tipototems = logicaTipototem.obtenerTodos();
         totem = new Totem();
-        simpleModel = new DefaultMapModel();
-          for(Totem totem : totems) {
-              simpleModel.addOverlay(new Marker(new LatLng(totem.getLat(), totem.getLongi()), totem.getNoserie()));
-          }
+
     }
 
 

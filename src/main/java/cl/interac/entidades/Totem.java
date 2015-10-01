@@ -2,7 +2,9 @@ package cl.interac.entidades;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Jorge on 25-04-15.
@@ -28,8 +30,7 @@ import java.util.List;
 public class Totem implements Serializable {
     private Integer idtotem;
     private String noserie;
-    private Double lat;
-    private Double longi;
+
 
     // relaciones
     private List<Campana> campanas;
@@ -41,6 +42,24 @@ public class Totem implements Serializable {
     @Column(name = "idtotem")
     public Integer getIdtotem() {
         return idtotem;
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "campatotem",
+            inverseJoinColumns = {
+                    @JoinColumn(name = "idcampana")
+            },
+            joinColumns = {
+                    @JoinColumn(name = "idtotem")
+            }
+    )
+    public List<Campana> getCampanas() {
+        return campanas;
+    }
+
+    public void setCampanas(List<Campana> campanas) {
+        this.campanas = campanas;
     }
 
     public void setIdtotem(Integer idtotem) {
@@ -77,36 +96,6 @@ public class Totem implements Serializable {
     public void setEstablecimiento(Establecimiento establecimiento) {
         this.establecimiento = establecimiento;
     }
-
-    @OneToMany(mappedBy = "totem")
-    public List<Campana> getCampanas() {
-        return campanas;
-    }
-
-    public void setCampanas(List<Campana> campanas) {
-        this.campanas = campanas;
-    }
-
-    @Basic
-    @Column(name = "latitud")
-    public Double getLat() {
-        return lat;
-    }
-
-    public void setLat(Double lat) {
-        this.lat = lat;
-    }
-
-    @Basic
-    @Column(name = "longitud")
-    public Double getLongi() {
-        return longi;
-    }
-
-    public void setLongi(Double longi) {
-        this.longi = longi;
-    }
-
 
     @Override
     public boolean equals(Object o) {

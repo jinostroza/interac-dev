@@ -21,14 +21,14 @@ import java.util.List;
 public class CampanaDAO {
     @PersistenceContext
     private EntityManager em;
-    
+
     public List<Campana> obtenerTodos() {
         return em.createNamedQuery("Campana.findAll").getResultList();
     }
 
     public void guardar(Campana c){
-       if (c.getIdcampana()== null) em.persist(c);
-       else em.merge(c);
+        if (c.getIdcampana()== null) em.persist(c);
+        else em.merge(c);
     }
 
     public void eliminarCampana(Campana c){
@@ -41,17 +41,12 @@ public class CampanaDAO {
     }
 
 
-   public List<Campana> obtenerTodasLosContenidos(){
-       return em.createNamedQuery("Campana.findBycontenido").getResultList();
-   }
+    public List<Campana> obtenerTodasLosContenidos(){
+        return em.createNamedQuery("Campana.findBycontenido").getResultList();
+    }
 
     public List<Campana> obtenerCampanaPorUsuario(String user){
         return em.createNamedQuery("Campana.findByUsuario").setParameter("username",user).getResultList();
-    }
-
-    public List<Campana> obtenerCampanaPorTotem(int totem){
-        return em.createNamedQuery("Campana.findByTotem").setParameter("idTotem",totem).getResultList();
- 
     }
 
 }

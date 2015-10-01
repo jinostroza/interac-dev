@@ -1,15 +1,13 @@
 package cl.interac.presentacion.campana;
 
-import cl.interac.entidades.Campana;
-import cl.interac.entidades.Contenido;
-import cl.interac.entidades.Totem;
-import cl.interac.entidades.Usuario;
+import cl.interac.entidades.*;
 import cl.interac.negocio.LogicaCampana;
 import cl.interac.negocio.LogicaContenido;
 import cl.interac.negocio.LogicaTotem;
 import cl.interac.negocio.LogicaUsuario;
 import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.UserSession;
+import org.hibernate.action.internal.OrphanRemovalAction;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
@@ -61,6 +59,7 @@ public class MantenedorCampana implements Serializable {
     private List<Contenido> contenidosSelecionados;
     private Contenido contenido;
 
+
     private MapModel simpleModel;
 
     @Autowired
@@ -81,67 +80,70 @@ public class MantenedorCampana implements Serializable {
         contenidos = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
         simpleModel = new DefaultMapModel();
-        for(Totem totem : totemsConrelacion) {
-            simpleModel.addOverlay(new Marker(new LatLng(totem.getLat(), totem.getLongi()),totem.getEstablecimiento().getNombreEstablecimiento() ));
-        }
+
     }
 
     public String guardar() {
 
+        try {
 
-        for(Totem totem: totemSelecionados) {
-            campana.setContenido(contenidosSelecionado);
-            campana.setTotem(totemSelecionado);
+            campana.setContenido(contenido);
             logicaCampana.guardarCampana(campana);
+            FacesUtil.mostrarMensajeInformativo("operacion exitosa","se ha creado tu campaña");
+
+        }catch (Exception e){
+
+            FacesUtil.mostrarMensajeInformativo("operacion no exitosa","ocurrio Algo");
+
         }
-        ;
-        FacesUtil.mostrarMensajeInformativo("operacion exitosa","se ha creado tu campaña");
         return "end1";
     }
 
     public void EnvioCorreo (){
-            // La dirección de envío (to)
-            String para = "ripvan20@gmail.com";
-            // La dirección de la cuenta de envío (from)
-            String de = "Probando@unawea.cl";
-            // El servidor (host). En este caso usamos localhost
-            String host = "localhost";
-            // Obtenemos las propiedades del sistema
-            Properties propiedades = System.getProperties();
+        // La dirección de envío (to)
+        String para = "ripvan20@gmail.com";
+        // La dirección de la cuenta de envío (from)
+        String de = "Probando@unawea.cl";
+        // El servidor (host). En este caso usamos localhost
+        String host = "localhost";
+        // Obtenemos las propiedades del sistema
+        Properties propiedades = System.getProperties();
 
-            // Configuramos el servidor de correo
-            propiedades.setProperty("mail.smtp.host", host);
+        // Configuramos el servidor de correo
+        propiedades.setProperty("mail.smtp.host", host);
 
-            // Obtenemos la sesión por defecto
-            Session sesion = Session.getDefaultInstance(propiedades);
+        // Obtenemos la sesión por defecto
+        Session sesion = Session.getDefaultInstance(propiedades);
 
-            try{
-                // Creamos un objeto mensaje tipo MimeMessage por defecto.
-                MimeMessage mensaje = new MimeMessage(sesion);
+        try{
+            // Creamos un objeto mensaje tipo MimeMessage por defecto.
+            MimeMessage mensaje = new MimeMessage(sesion);
 
-                // Asignamos el “de o from” al header del correo.
-                mensaje.setFrom(new InternetAddress(de));
+            // Asignamos el “de o from” al header del correo.
+            mensaje.setFrom(new InternetAddress(de));
 
-                // Asignamos el “para o to” al header del correo.
-                mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(para));
+            // Asignamos el “para o to” al header del correo.
+            mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(para));
 
-                // Asignamos el asunto
-                mensaje.setSubject("Primer correo sencillo");
+            // Asignamos el asunto
+            mensaje.setSubject("Primer correo sencillo");
 
-                // Asignamos el mensaje como tal
-                mensaje.setText("weqfssssrdcczsfsd");
-                 FacesUtil.mostrarMensajeInformativo("dasdsa","correo algo");
-                // Enviamos el correo
-                Transport.send(mensaje);
-                System.out.println("Mensaje enviado");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            // Asignamos el mensaje como tal
+            mensaje.setText("weqfssssrdcczsfsd");
+            FacesUtil.mostrarMensajeInformativo("dasdsa","correo algo");
+            // Enviamos el correo
+            Transport.send(mensaje);
+            System.out.println("Mensaje enviado");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
 
     //gettet and setter
+
+
 
     public List<Totem> getTotemSelecionados() {
         return totemSelecionados;

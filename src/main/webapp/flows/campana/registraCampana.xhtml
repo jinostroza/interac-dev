@@ -118,7 +118,7 @@
                             </p:column>
 
                             <p:column styleClass="col-lg-3" style="text-align: center">
-                                <p:commandButton icon="ui-icon-pin-s" value="Crear Campaña" action="selectTotem" title="View">
+                                <p:commandButton icon="ui-icon-pin-s" value="Crear Campaña" action="#{mantenedorCampana.guardar()}" title="View">
                                     <f:setPropertyActionListener value="#{cont}" target="#{mantenedorCampana.contenidosSelecionado}" />
                                 </p:commandButton>
                             </p:column>
@@ -130,6 +130,36 @@
 
                         </p:dataTable>
                         </div>
+
+
+
+                <div class="ui-grid-row">
+                    <p:dataTable  var="camton" rows="5" paginator="true"
+                                 styleClass="col-lg-10 col-lg-offset-5"
+                                 style="margin-left: 10%;text-align-all: center;" value="#{mantenedorCampana.campanas}">
+
+                        <f:facet name="header">
+                            Mis Campañas
+                        </f:facet>
+
+                        <p:column  styleClass="col-lg-2" headerText="nombre">
+                            <h:outputText value="#{camton.contenido.path}"/>
+                        </p:column>
+                        <p:column styleClass="col-lg-2" headerText="fecha">
+                            <h:outputText value="#{camton.fechaCreacion}" />
+                        </p:column>
+                        <p:column styleClass="col-lg-2" headerText="pasadas">
+                            <h:outputText value="#{camton.pasadas}" />
+                        </p:column>
+                        <p:column styleClass="col-lg-2" headerText="fecha inicio">
+                            <h:outputText value="#{camton.fechaInicio}" />
+                        </p:column>
+                            <p:column styleClass="col-lg-2" headerText="fecha fin">
+                                <h:outputText value="#{camton.fechaFin}" />
+                            </p:column>
+
+                    </p:dataTable>
+                </div>
 
 
                 <br/>
