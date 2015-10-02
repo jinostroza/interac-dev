@@ -88,6 +88,7 @@ public class MantenedorCampana implements Serializable {
         try {
 
             campana.setContenido(contenido);
+            campana.setTotemList(totemSelecionados);
             logicaCampana.guardarCampana(campana);
             FacesUtil.mostrarMensajeInformativo("operacion exitosa","se ha creado tu campaña");
 

@@ -147,6 +147,7 @@ public class MantenedorContenido implements Serializable {
         logicaContenido.guardar(contenido);
 
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el Contenido [" + contenido.getIdcontenido() + "]");
+
     }
 
 

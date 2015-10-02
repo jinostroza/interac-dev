@@ -30,7 +30,8 @@ import java.util.Set;
 public class Totem implements Serializable {
     private Integer idtotem;
     private String noserie;
-
+    private Double lat;
+    private Double longi;
 
     // relaciones
     private List<Campana> campanas;
@@ -67,6 +68,26 @@ public class Totem implements Serializable {
     }
 
     @Basic
+    @Column(name = "latitud")
+    public Double getLat() {
+        return lat;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    @Basic
+    @Column(name = "longitud")
+    public Double getLongi() {
+        return longi;
+    }
+
+    public void setLongi(Double longi) {
+        this.longi = longi;
+    }
+
+    @Basic
     @Column(name = "Noserie")
     public String getNoserie() {
         return noserie;
@@ -96,6 +117,8 @@ public class Totem implements Serializable {
     public void setEstablecimiento(Establecimiento establecimiento) {
         this.establecimiento = establecimiento;
     }
+
+
 
     @Override
     public boolean equals(Object o) {
