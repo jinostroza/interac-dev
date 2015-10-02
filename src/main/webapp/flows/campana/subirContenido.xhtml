@@ -25,7 +25,7 @@
                 <h:form style="margin-left: 20%">
                     <div id="cuadro-imagen" style="padding-right: 100px" >
                         <p:fileUpload style="width: 450px;"  mode="advanced"
-                                      previewWidth="430" update="messages" label="Seleccionar contenido" uploadLabel="Subir"
+                                      previewWidth="430" update="messages" required="true" label="Seleccionar contenido" uploadLabel="Subir"
                                       fileUploadListener="#{mantenedorContenido.subir}"
                                       cancelLabel="Cancelar" auto="false" disabled="#{mantenedorContenido.fileUploadCount >= 1}" oncomplete="javascript:window.location.reload(true)" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 
@@ -59,7 +59,7 @@
                                 <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
                                                  value="Volver" immediate="true"/>
                                     <span>   </span>
-                                <h:commandButton ajax="false" styleClass="btn btn-interac" actionListener="#{mantenedorContenido.editarContenido(mantenedorContenido.contenido)}"
+                                <h:commandButton ajax="false" styleClass="btn btn-interac" action="subir" actionListener="#{mantenedorContenido.editarContenido(mantenedorContenido.contenido)}"
                                                      value="Crear" />
                                     <p:growl id="newmssg" showDetail="true" sticky="true" autoUpdate="true" />
                                 </div>
