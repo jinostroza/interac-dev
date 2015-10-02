@@ -3,55 +3,38 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
       start-state="registraCampana">
-      <on-start>
-            <evaluate expression="mantenedorCampana.inicio()"/>
-      </on-start>
+    <on-start>
+        <evaluate expression="mantenedorCampana.inicio()"/>
+    </on-start>
 
-      <view-state id="crearcampana">
-            <transition on="pasos" to="campanapasos"></transition>
-      </view-state>
+    <view-state id="crearcampana">
+        <transition on="pasos" to="campanapasos"></transition>
+    </view-state>
 
-      <view-state id="campanapasos">
-            <transition on="regisCamp" to="registraCampana">
-
-            </transition>
-      </view-state>
+    <view-state id="campanapasos">
+        <transition on="regisCamp" to="registraCampana"/>
+    </view-state>
 
 
-      <view-state id="registraCampana" >
-            <transition on="crear" to="subirContenido">
+    <view-state id="registraCampana">
+        <transition on="crear" to="subirContenido"/>
+        <transition on="selectTotem" to="seleccionarTotem"/>
+        <transition on="totems" to="inicioCliente"/>
+    </view-state>
 
-            </transition>
+    <view-state id="inicioCliente">
 
-            <transition on="selectTotem" to="seleccionarTotem">
+    </view-state>
+    <view-state id="subirContenido">
+        <transition on="subir" to="seleccionarTotem"></transition>
+    </view-state>
 
-            </transition>
-            <transition on="totems" to="inicioCliente">
+    <view-state id="seleccionarTotem">
+        <transition on="regisCamp" to="registraCampana"/>
+        <transition on="end1" to="campanaConfirmada"/>
+    </view-state>
 
-            </transition>
-
-      </view-state>
-      <view-state id="inicioCliente">
-
-      </view-state>
-      <view-state id="subirContenido">
-            <transition on="subir" to="seleccionarTotem"></transition>
-      </view-state>
-      <view-state id="seleccionarTotem">
-            <transition on="planPasada" to="planificar-pasadas">
-
-            </transition>
-            <transition on="regisCamp" to="registraCampana">
-
-            </transition>
-      </view-state>
-
-      <view-state id="planificar-pasadas" >
-            <transition on="vuelveTotem" to="seleccionarTotem"/>
-            <transition on="end1" to="campanaConfirmada"/>
-      </view-state>
-
-      <view-state id="campanaConfirmada">
-      </view-state>
+    <view-state id="campanaConfirmada">
+    </view-state>
 
 </flow>

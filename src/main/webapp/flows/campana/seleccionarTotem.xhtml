@@ -79,11 +79,11 @@
                         <div class="row">
                             <div class="col-mg-5">
                                 <p:outputLabel for="inicio" value="Inicio Campaña:" />
-                                <p:calendar id="inicio" locale="es_ES" pattern="dd/MM/yyyy" value="#{mantenedorCampana.campana.fechaInicio}"/>
+                                <p:calendar id="inicio" locale="es" pattern="dd/MM/yyyy" value="#{mantenedorCampana.campana.fechaInicio}"/>
                             </div>
                             <div class="col-mg-5">
                                 <p:outputLabel for="fin" value="Fin Campaña:" />
-                                <p:calendar id="fin" locale="es_ES" pattern="dd/MM/yyyy" value="#{mantenedorCampana.campana.fechaFin}"/>
+                                <p:calendar id="fin" locale="es" pattern="dd/MM/yyyy" value="#{mantenedorCampana.campana.fechaFin}"/>
                             </div>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
             <div class="col-lg-12" style="margin-left: 60%">
                 <p:commandButton  value="Volver" action="regisCamp" immediate="true" />
 
-                <p:commandButton value="Siguente" action="#{mantenedorCampana.guardar}" />
+                <p:commandButton value="Siguente" action="#{mantenedorCampana.guardar()}" />
 
             </div>
             </div>

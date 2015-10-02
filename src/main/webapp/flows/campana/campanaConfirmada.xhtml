@@ -18,6 +18,12 @@
         <h:form>
             <div class="container">
                 <div class="row">
+                    <!--
+                     xs: pantallas extra pequeñas
+                     sm: pantallas pequeñas
+                     md: pantallas medianas
+                     lg: pantallas largas/grandes
+                    -->
                     <div class="col-md-1"></div>
                     <div class="col-md-10" id="cuadro-registro">
 
@@ -29,22 +35,30 @@
 
                             <h3>!Se ha creado tu campaña!</h3>
                             <p>has subido tu publicidad exitosamente</p> <strong>Interac</strong>.
-                            <p:outputLabel value="#{mantenedorCampana.campana.fechaCreacion}"></p:outputLabel>
-                            <p:outputLabel  value="#{mantenedorCampana.campana.fechaInicio}">"Inicio de Campaña"</p:outputLabel>
-                            <p:outputLabel  value="#{mantenedorCampana.campana.fechaFin}">Hasta</p:outputLabel>
-                            <p:outputLabel  value="#{mantenedorCampana.campana.pasadas}">Pasadas diarias</p:outputLabel>
+
+                            <h:outputLabel>
+                                <h:outputText value="#{mantenedorCampana.campana.fechaCreacion}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:outputText>
+                                <br/>
+                                <h:outputText value="#{mantenedorCampana.campana.fechaInicio}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:outputText>
+                                Desde
+                                <h:outputText value="#{mantenedorCampana.campana.fechaFin}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:outputText> Hasta
+                                #{mantenedorCampana.campana.pasadas} Pasadas diarias
+                            </h:outputLabel>
+
                             <h:commandLink value="inicio" action="#{facesUtil.redirigir('/plataforma/campana')}" />
-
-
-
                         </div>
                         <div class="btn-register_ confirma-campana"></div>
                     </div>
                 </div>
-
-                <div class="col-md-1"></div>
             </div>
-            <div class="push"></div>
+            <div class="push">
+            </div>
 
         </h:form>
         <ui:include src="/templates/includes/Footer.xhtml"/>

@@ -7,28 +7,18 @@ import cl.interac.negocio.LogicaTotem;
 import cl.interac.negocio.LogicaUsuario;
 import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.UserSession;
-import org.hibernate.action.internal.OrphanRemovalAction;
-import org.primefaces.event.SelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
-import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
-import org.primefaces.model.map.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.Serializable;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -45,8 +35,7 @@ public class MantenedorCampana implements Serializable {
     private List<Campana> campanas;
     private List<Totem> totems;
     private Campana campana;
-    private int pasada;
-    private int precio;
+    private Integer precio;
     private String retor;
     private String end1;
     private List<Usuario> usuarios;
@@ -54,10 +43,8 @@ public class MantenedorCampana implements Serializable {
     private Totem totemSelecionado;
     private List<Totem> totemSelecionados;
     private List<Totem> totemsConrelacion;
-    private List<Contenido> contenidos;
-    private Contenido contenidosSelecionado;
-    private List<Contenido> contenidosSelecionados;
     private Contenido contenido;
+    private List<Contenido> contenidos;
 
 
     private MapModel simpleModel;
@@ -81,6 +68,12 @@ public class MantenedorCampana implements Serializable {
         usuarios = logicaUsuario.obtenerTodos();
         simpleModel = new DefaultMapModel();
 
+    }
+
+    public String irCrear(Contenido c) {
+        contenido = c;
+        campana = new Campana();
+        return "selectTotem";
     }
 
     public String guardar() {
@@ -142,9 +135,16 @@ public class MantenedorCampana implements Serializable {
     }
 
 
-    //gettet and setter
+    //getter and setter
 
 
+    public List<Contenido> getContenidos() {
+        return contenidos;
+    }
+
+    public void setContenidos(List<Contenido> contenidos) {
+        this.contenidos = contenidos;
+    }
 
     public List<Totem> getTotemSelecionados() {
         return totemSelecionados;
@@ -162,20 +162,12 @@ public class MantenedorCampana implements Serializable {
         this.simpleModel = simpleModel;
     }
 
-    public int getPrecio() {
+    public Integer getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(Integer precio) {
         this.precio = precio;
-    }
-
-    public int getPasada() {
-        return pasada;
-    }
-
-    public void setPasada(int pasada) {
-        this.pasada = pasada;
     }
 
     public List<Totem> getTotemsConrelacion() {
@@ -228,29 +220,6 @@ public class MantenedorCampana implements Serializable {
 
     public void setCampana(Campana campana) {
         this.campana = campana;
-    }
-
-    public List<Contenido> getContenidos() {
-        return contenidos;
-    }
-
-    public void setContenidos(List<Contenido> contenidos) {
-        this.contenidos = contenidos;
-    }
-    public Contenido getContenidosSelecionado() {
-        return contenidosSelecionado;
-    }
-
-    public void setContenidosSelecionado(Contenido contenidosSelecionado) {
-        this.contenidosSelecionado = contenidosSelecionado;
-    }
-
-    public List<Contenido> getContenidosSelecionados() {
-        return contenidosSelecionados;
-    }
-
-    public void setContenidosSelecionados(List<Contenido> contenidosSelecionados) {
-        this.contenidosSelecionados = contenidosSelecionados;
     }
 
     public Contenido getContenido() {
