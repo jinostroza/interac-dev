@@ -26,8 +26,8 @@
                     <div id="cuadro-imagen" style="padding-right: 100px" >
                         <p:fileUpload style="width: 450px;"  mode="advanced"
                                       previewWidth="430" update="messages" required="true" label="Seleccionar contenido" uploadLabel="Subir"
-                                      fileUploadListener="#{mantenedorContenido.subir}"
-                                      cancelLabel="Cancelar" auto="false" disabled="#{mantenedorContenido.fileUploadCount >= 1}" oncomplete="javascript:window.location.reload(true)" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                                      fileUploadListener="#{mantenedorCampana.subir}"
+                                      cancelLabel="Cancelar" auto="false" disabled="#{mantenedorCampana.fileUploadCount >= 1}" oncomplete="javascript:window.location.reload(true)" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 
                         <p:growl id="messages" showDetail="true" sticky="true" />
                     </div>
@@ -35,7 +35,7 @@
                             <div  class="row">
                                 <div class="col-lg-5">
                                 <label>Nombre</label>
-                                <h:inputText  value="#{mantenedorContenido.contenido.nombrecont}" styleClass="form-control" required="true" requiredMessage="Ingrese un Nombre para su Anuncio" />
+                                <h:inputText  value="#{mantenedorCampana.contenido.nombrecont}" styleClass="form-control" required="true" requiredMessage="Ingrese un Nombre para su Anuncio" />
                                 <br></br>
                                 <br></br>
                                 <label>Categoría</label>
@@ -48,10 +48,10 @@
                                 </h:selectOneMenu>
                                 <br></br>
                                 <br></br>
-                                <p:outputLabel value="#{mantenedorContenido.contenido.idcontenido}"></p:outputLabel>
+                                <p:outputLabel value="#{mantenedorCampana.contenido.idcontenido}"></p:outputLabel>
                                     <br></br>
                                     <br></br>
-                                    <p:outputLabel value="#{mantenedorContenido.contenido.estado}" ></p:outputLabel>
+                                    <p:outputLabel value="#{mantenedorCampana.contenido.estado}" ></p:outputLabel>
 
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                                 <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
                                                  value="Volver" immediate="true"/>
                                     <span>   </span>
-                                <h:commandButton ajax="false" styleClass="btn btn-interac" action="subir" actionListener="#{mantenedorContenido.editarContenido(mantenedorContenido.contenido)}"
+                                <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{mantenedorCampana.editarContenido(mantenedorCampana.contenido)}"
                                                      value="Crear" />
                                     <p:growl id="newmssg" showDetail="true" sticky="true" autoUpdate="true" />
                                 </div>

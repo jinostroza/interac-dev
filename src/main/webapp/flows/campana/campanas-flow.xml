@@ -35,6 +35,7 @@
     </view-state>
 
     <view-state id="campanaConfirmada">
+        <transition on="fin2" to="registraCampana"></transition>
     </view-state>
 
 </flow>

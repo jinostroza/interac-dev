@@ -1,12 +1,12 @@
 package cl.interac.presentacion.campana;
 
 import cl.interac.entidades.*;
-import cl.interac.negocio.LogicaCampana;
-import cl.interac.negocio.LogicaContenido;
-import cl.interac.negocio.LogicaTotem;
-import cl.interac.negocio.LogicaUsuario;
+import cl.interac.negocio.*;
 import cl.interac.util.components.FacesUtil;
+import cl.interac.util.components.PropertyReader;
 import cl.interac.util.components.UserSession;
+import cl.interac.util.services.FileUploader;
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.MapModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +19,10 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -45,10 +49,14 @@ public class MantenedorCampana implements Serializable {
     private List<Totem> totemsConrelacion;
     private Contenido contenido;
     private List<Contenido> contenidos;
+    private List<Categoria> categoriaList;
+    private Categoria categoria;
 
 
     private MapModel simpleModel;
 
+    @Autowired
+    private LogicaCategoria logicaCategoria;
     @Autowired
     private LogicaUsuario logicaUsuario;
     @Autowired
@@ -59,9 +67,16 @@ public class MantenedorCampana implements Serializable {
     private UserSession userSession;
     @Autowired
     private LogicaContenido logicaContenido;
+    @Autowired
+    private PropertyReader propertyReader;
+    @Autowired
+    private FileUploader fileUploader;
+    private Integer fileUploadCount;
+
 
     public void inicio() {
-
+        usuarios = logicaUsuario.obtenerTodos();
+        categoriaList = logicaCategoria.obtenerTodos();
         totemsConrelacion = logicaTotem.obtenerConRelacion();
         campanas = logicaCampana.obtenerPorUsuario(userSession.getUsuario().getUsername());
         contenidos = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
@@ -70,16 +85,72 @@ public class MantenedorCampana implements Serializable {
 
     }
 
-    public String irCrear(Contenido c) {
-        contenido = c;
-        campana = new Campana();
-        return "selectTotem";
+    public void subir(FileUploadEvent fue) {
+
+
+        contenido = new Contenido();
+
+        try {
+            String pathTemporal = fileUploader.subir(fue,"/contenido");
+
+            String ambiente = propertyReader.get("ambiente");
+
+            if ("desarrollo".equals(ambiente))
+                // dentro del server siempre podra subir, no importa si es wintendo o linux
+                contenido.setPath(pathTemporal);
+            else if ("produccion".equals(ambiente)) {
+                // si es producción estamos obligado a usar el ftp
+                String totem = "colivares"; // por ahora, después se suponeque cambia
+
+                // obtenemos el formato del archivo buscando el último .
+                String nombreArchivo = pathTemporal.substring(pathTemporal.lastIndexOf('.'));
+
+                // debemos asegurarnos que el nombre será unico para que no pise otra cosa en el FTP
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd.hhmmss");
+
+                // por ende le pasamos la fecha con hora minuto y segundo + formato rescatado anteriormente
+                nombreArchivo = sdf.format(new Date()) + nombreArchivo;
+                Files.copy(Paths.get(pathTemporal), Paths.get("/home/ec2-user/media/" + totem + "/" + nombreArchivo));
+                contenido.setPath(nombreArchivo);
+            }
+
+            // error ql wn, estabamos mandando nul pq el path se seteaba antes de la instancia,silovi
+
+            contenido.setUsuario(userSession.getUsuario());
+            contenido.setEstado("Validando");
+            logicaContenido.guardar(contenido);
+
+
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Su imagen a sido subida ");
+            fileUploadCount = fileUploadCount + 1;
+
+        } catch (Exception e) {
+            return;
+        }
     }
+    public String editarContenido(Contenido c) {
+        contenido = c;
+        contenido.setCategoria(categoria);
+        System.err.println("Estado:"+ contenido.getEstado());
+        logicaContenido.guardar(contenido);
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el Contenido [" + contenido.getIdcontenido() + "]");
+
+      return irCrear(c);
+
+    }
+
+     public String irCrear(Contenido c) {
+        contenido = c;
+         contenido = new Contenido();
+        campana = new Campana();
+        return "subir";
+    }
+
+
 
     public String guardar() {
 
         try {
-
             campana.setContenido(contenido);
             campana.setTotemList(totemSelecionados);
             logicaCampana.guardarCampana(campana);
@@ -93,50 +164,49 @@ public class MantenedorCampana implements Serializable {
         return "end1";
     }
 
-    public void EnvioCorreo (){
-        // La dirección de envío (to)
-        String para = "ripvan20@gmail.com";
-        // La dirección de la cuenta de envío (from)
-        String de = "Probando@unawea.cl";
-        // El servidor (host). En este caso usamos localhost
-        String host = "localhost";
-        // Obtenemos las propiedades del sistema
-        Properties propiedades = System.getProperties();
 
-        // Configuramos el servidor de correo
-        propiedades.setProperty("mail.smtp.host", host);
+    public void eliminarFichero(Contenido conte){
 
-        // Obtenemos la sesión por defecto
-        Session sesion = Session.getDefaultInstance(propiedades);
+        try {
+            logicaContenido.eliminarContenido(conte);
+            Files.delete(Paths.get("/home/ec2-user/media/colivares/" + conte.getPath()));
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha borrado la imagen");
 
-        try{
-            // Creamos un objeto mensaje tipo MimeMessage por defecto.
-            MimeMessage mensaje = new MimeMessage(sesion);
-
-            // Asignamos el “de o from” al header del correo.
-            mensaje.setFrom(new InternetAddress(de));
-
-            // Asignamos el “para o to” al header del correo.
-            mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(para));
-
-            // Asignamos el asunto
-            mensaje.setSubject("Primer correo sencillo");
-
-            // Asignamos el mensaje como tal
-            mensaje.setText("weqfssssrdcczsfsd");
-            FacesUtil.mostrarMensajeInformativo("dasdsa","correo algo");
-            // Enviamos el correo
-            Transport.send(mensaje);
-            System.out.println("Mensaje enviado");
-        } catch (Exception e) {
-            e.printStackTrace();
+        }catch (Exception e){
+            FacesUtil.mostrarMensajeInformativo("Operación Fallida","Algo Ocurrio");
         }
+
+
+
 
     }
 
+   //getter and setter
 
-    //getter and setter
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public List<Categoria> getCategoriaList() {
+        return categoriaList;
+    }
+
+    public void setCategoriaList(List<Categoria> categoriaList) {
+        this.categoriaList = categoriaList;
+    }
+
+    public Integer getFileUploadCount() {
+        return fileUploadCount;
+    }
+
+    public void setFileUploadCount(Integer fileUploadCount) {
+        this.fileUploadCount = fileUploadCount;
+    }
 
     public List<Contenido> getContenidos() {
         return contenidos;
