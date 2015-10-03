@@ -34,9 +34,10 @@ public class Totem implements Serializable {
     private Double longi;
 
     // relaciones
-//    private List<Campana> campanas;
+   private List<Campana> campanas;
     private Establecimiento establecimiento;
     private Tipototem tipototem;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,25 +49,23 @@ public class Totem implements Serializable {
     public void setIdtotem(Integer idtotem) {
         this.idtotem = idtotem;
     }
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(
-//            name = "campatotem",
-//            inverseJoinColumns = {
-//                    @JoinColumn(name = "idcampana", referencedColumnName = "idcampana")
-//            },
-//            joinColumns = {
-//                    @JoinColumn(name = "idtotem" , referencedColumnName = "idtotem")
-//            }
-//    )
-//    public List<Campana> getCampanas() {
-//        return campanas;
-//    }
-//
-//    public void setCampanas(List<Campana> campanas) {
-//        this.campanas = campanas;
-//    }
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "campatotem",
+            inverseJoinColumns = {
+                    @JoinColumn(name = "idcampana", referencedColumnName = "idcampana")
+            },
+            joinColumns = {
+                    @JoinColumn(name = "idtotem" , referencedColumnName = "idtotem")
+            }
+    )
+    public List<Campana> getCampanas() {
+        return campanas;
+    }
 
-
+    public void setCampanas(List<Campana> campanas) {
+        this.campanas = campanas;
+    }
 
     @Basic
     @Column(name = "latitud")

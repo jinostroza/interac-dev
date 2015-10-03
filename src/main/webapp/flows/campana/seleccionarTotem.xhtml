@@ -40,15 +40,17 @@
                                 type="HYBRID" styleClass="col-lg-8 mapa" model="#{mantenedorCampana.simpleModel}"
                                 style="margin-left:-15px ; width:103%;height:420px"/>
                     </div>
-
-                    <p:selectManyMenu id="advanced" styleClass="col-lg-4 col-md-4 col-xs-4 listado-rubros" required="true"
+                    <p:selectManyMenu styleClass="col-lg-4 col-md-4 col-xs-4 listado-rubros" required="true"
                                       requiredMessage="seleccione una Pantalla"
-                                      value="#{mantenedorCampana.totemSelecionados}"
+                                      value="#{mantenedorCampana.totemSelecionados}" converter="entityConverter"
                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true">
                         <f:selectItems
                                 value="#{mantenedorCampana.totemsConrelacion}"
-                                var="tot" itemLabel="#{tot.establecimiento.nombreEstablecimiento}" itemValue="#{tot}" />
+                                var="tot" itemLabel="#{tot.establecimiento.nombreEstablecimiento}" itemValue="#{tot}"/>
 
+                        <p:column>
+                            <h:outputText value="#{t.establecimiento.nombreEstablecimiento}"/>
+                        </p:column>
                     </p:selectManyMenu>
 
 
@@ -57,13 +59,13 @@
             <br></br>
             <div class="row">
                 <div class="col-lg-7 col-md-7">
-                    <h4>Programar tus pasadas</h4>
+                    <h2>Programar tus pasadas</h2>
                 </div>
             </div>
             <div class="row">
-                <h4>Escoge los días para las pasadas de tus anuncios</h4>
+                 <h4>Escoge los días para las pasadas de tus anuncios</h4>
 
-                <div class="col-lg-4 col-lg-offset-3">
+                <div class="col-lg-4 col-lg-offset-3 col-md-4 col-md-offset-3">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-xs-6">
                             <p:outputLabel for="inicio" value="Inicio Campaña:" />
@@ -79,16 +81,14 @@
 
             <div class="row">
                 <div class="col-lg-6">
-                    <h3>Programa tus pasadas</h3>
+                     <h3>Programa tus pasadas</h3>
                 </div>
 
                 <div class="col-lg-4 col-md-offset-4">
                     <h5>Pasadas al día</h5>
-                    <p:spinner id="ajaxSpinner" min="0" max="100" value="#{mantenedorCampana.campana.pasadas}">
-                    </p:spinner>
+                    <p:spinner id="ajaxSpinner" min="0" max="100" value="#{mantenedorCampana.campana.pasadas}"/>
                     <p>Número total de pasadas diarias por anuncio</p>
                 </div>
-
             </div>
             <div class="row datos-campania"><h3>Detalles de planificación</h3>
                 <div class="col-lg-4">
