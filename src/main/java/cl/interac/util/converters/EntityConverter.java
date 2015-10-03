@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UISelectItems;
+import javax.faces.component.html.HtmlSelectManyMenu;
 import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -21,7 +22,7 @@ public class EntityConverter implements Converter {
         }
 
         List<Object> objetosComponenteList = new ArrayList<Object>();
-        if (component instanceof HtmlSelectOneMenu) {
+        if (component instanceof HtmlSelectOneMenu || component instanceof HtmlSelectManyMenu) {
             for (UIComponent child : component.getChildren()) {
                 if (child instanceof UISelectItems) {
                     // found it, now get the real SelectItem list
