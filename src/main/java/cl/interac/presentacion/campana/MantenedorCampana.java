@@ -22,6 +22,7 @@ import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -44,8 +45,7 @@ public class MantenedorCampana implements Serializable {
     private String end1;
     private List<Usuario> usuarios;
     private Totem totem;
-    private Totem totemSelecionado;
-    private List<Totem> totemSelecionados;
+    private List<Integer> totemSelecionados;
     private List<Totem> totemsConrelacion;
     private Contenido contenido;
     private List<Contenido> contenidos;
@@ -140,26 +140,33 @@ public class MantenedorCampana implements Serializable {
     }
 
      public String irCrear(Contenido c) {
-        contenido = c;
-         contenido = new Contenido();
-        campana = new Campana();
-        return "subir";
+         contenido = c;
+         campana = new Campana();
+         return "subir";
     }
 
 
 
-    public String guardar() {
 
+
+    public String guardar() {
+        System.out.println("llego");
         try {
+
             campana.setContenido(contenido);
-            campana.setTotemList(totemSelecionados);
+
+            // mientras para no hacer un converter
+            campana.setTotemList(new ArrayList<Totem>());
+            for (Integer id : totemSelecionados) {
+                Totem t = new Totem();
+                t.setIdtotem(id);
+                campana.getTotemList().add(t);
+            }
             logicaCampana.guardarCampana(campana);
             FacesUtil.mostrarMensajeInformativo("operacion exitosa","se ha creado tu campaña");
 
         }catch (Exception e){
-
             FacesUtil.mostrarMensajeInformativo("operacion no exitosa","ocurrio Algo");
-
         }
         return "end1";
     }
@@ -175,15 +182,9 @@ public class MantenedorCampana implements Serializable {
         }catch (Exception e){
             FacesUtil.mostrarMensajeInformativo("Operación Fallida","Algo Ocurrio");
         }
-
-
-
-
     }
 
    //getter and setter
-
-
     public Categoria getCategoria() {
         return categoria;
     }
@@ -216,11 +217,11 @@ public class MantenedorCampana implements Serializable {
         this.contenidos = contenidos;
     }
 
-    public List<Totem> getTotemSelecionados() {
+    public List<Integer> getTotemSelecionados() {
         return totemSelecionados;
     }
 
-    public void setTotemSelecionados(List<Totem> totemSelecionados) {
+    public void setTotemSelecionados(List<Integer> totemSelecionados) {
         this.totemSelecionados = totemSelecionados;
     }
 
@@ -248,13 +249,7 @@ public class MantenedorCampana implements Serializable {
         this.totemsConrelacion = totemsConrelacion;
     }
 
-    public Totem getTotemSelecionado() {
-        return totemSelecionado;
-    }
 
-    public void setTotemSelecionado(Totem totemSelecionado) {
-        this.totemSelecionado = totemSelecionado;
-    }
 
     public Totem getTotem() {
         return totem;

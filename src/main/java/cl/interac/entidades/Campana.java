@@ -117,12 +117,12 @@ public class Campana implements Serializable {
     @JoinTable(
             name = "campatotem",
             inverseJoinColumns = {
-                    @JoinColumn(name = "idtotem")
+                    @JoinColumn(name = "idtotem", referencedColumnName = "idtotem")
             },
             // me demore pq siempre me enredo un poquito join inverso es como llego a mi destino
             // es decir al totem y como la tabla es campatotem mediante idtotem
             joinColumns = {
-                    @JoinColumn(name = "idcampana")
+                    @JoinColumn(name = "idcampana" , referencedColumnName = "idcampana")
             }
             // join normal es como llego al nav, y listo tamos mapeados ... se cacha? sii,
             // veamos si no miento

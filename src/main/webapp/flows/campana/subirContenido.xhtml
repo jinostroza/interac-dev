@@ -40,10 +40,10 @@
                                 <br></br>
                                 <label>Categoría</label>
 
-                                <h:selectOneMenu  class="form-control" value="#{mantenedorContenido.categoria}"
+                                <h:selectOneMenu  class="form-control" value="#{mantenedorCampana.categoria}"
                                                   converter="entityConverter" required="true" requiredMessage="Debe Seleccionar una Categoria">
                                     <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione categoria --"/>
-                                    <f:selectItems value="#{mantenedorContenido.categorias}" var="categor"
+                                    <f:selectItems value="#{mantenedorCampana.categoriaList}" var="categor"
                                                    itemLabel="#{categor.desccategoria}" itemValue="#{categor}"/>
                                 </h:selectOneMenu>
                                 <br></br>

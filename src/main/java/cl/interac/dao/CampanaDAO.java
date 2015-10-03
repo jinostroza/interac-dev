@@ -49,4 +49,6 @@ public class CampanaDAO {
         return em.createNamedQuery("Campana.findByUsuario").setParameter("username",user).getResultList();
     }
 
+
+
 }

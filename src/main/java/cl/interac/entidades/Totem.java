@@ -34,7 +34,7 @@ public class Totem implements Serializable {
     private Double longi;
 
     // relaciones
-    private List<Campana> campanas;
+//    private List<Campana> campanas;
     private Establecimiento establecimiento;
     private Tipototem tipototem;
 
@@ -45,27 +45,28 @@ public class Totem implements Serializable {
         return idtotem;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "campatotem",
-            inverseJoinColumns = {
-                    @JoinColumn(name = "idcampana")
-            },
-            joinColumns = {
-                    @JoinColumn(name = "idtotem")
-            }
-    )
-    public List<Campana> getCampanas() {
-        return campanas;
-    }
-
-    public void setCampanas(List<Campana> campanas) {
-        this.campanas = campanas;
-    }
-
     public void setIdtotem(Integer idtotem) {
         this.idtotem = idtotem;
     }
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(
+//            name = "campatotem",
+//            inverseJoinColumns = {
+//                    @JoinColumn(name = "idcampana", referencedColumnName = "idcampana")
+//            },
+//            joinColumns = {
+//                    @JoinColumn(name = "idtotem" , referencedColumnName = "idtotem")
+//            }
+//    )
+//    public List<Campana> getCampanas() {
+//        return campanas;
+//    }
+//
+//    public void setCampanas(List<Campana> campanas) {
+//        this.campanas = campanas;
+//    }
+
+
 
     @Basic
     @Column(name = "latitud")
@@ -134,5 +135,12 @@ public class Totem implements Serializable {
     @Override
     public int hashCode() {
         return idtotem != null ? 31 * idtotem.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Totem{" +
+                "idtotem=" + idtotem +
+                '}';
     }
 }
