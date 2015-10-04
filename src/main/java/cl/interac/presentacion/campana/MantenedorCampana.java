@@ -8,7 +8,9 @@ import cl.interac.util.components.UserSession;
 import cl.interac.util.services.FileUploader;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -45,7 +47,7 @@ public class MantenedorCampana implements Serializable {
     private String end1;
     private List<Usuario> usuarios;
     private Totem totem;
-    private List<Integer> totemSelecionados;
+    private List<Totem> totemSelecionados;
     private List<Totem> totemsConrelacion;
     private Contenido contenido;
     private List<Contenido> contenidos;
@@ -82,6 +84,9 @@ public class MantenedorCampana implements Serializable {
         contenidos = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
         simpleModel = new DefaultMapModel();
+        for(Totem totem: totemsConrelacion) {
+            simpleModel.addOverlay(new Marker(new LatLng(totem.getLat(), totem.getLongi()),totem.getEstablecimiento().getNombreEstablecimiento() ));
+        }
 
     }
 
@@ -145,23 +150,13 @@ public class MantenedorCampana implements Serializable {
          return "subir";
     }
 
-
-
-
-
     public String guardar() {
         System.out.println("llego");
         try {
-
             campana.setContenido(contenido);
-
-            // mientras para no hacer un converter
-            campana.setTotemList(new ArrayList<Totem>());
-            for (Integer id : totemSelecionados) {
-                Totem t = new Totem();
-                t.setIdtotem(id);
-                campana.getTotemList().add(t);
-            }
+            System.err.print(contenido.getIdcontenido());
+            campana.setTotemList(totemSelecionados);
+            System.out.print(totemSelecionados.get(1).getNoserie());
             logicaCampana.guardarCampana(campana);
             FacesUtil.mostrarMensajeInformativo("operacion exitosa","se ha creado tu campaña");
 
@@ -170,7 +165,6 @@ public class MantenedorCampana implements Serializable {
         }
         return "end1";
     }
-
 
     public void eliminarFichero(Contenido conte){
 
@@ -217,11 +211,11 @@ public class MantenedorCampana implements Serializable {
         this.contenidos = contenidos;
     }
 
-    public List<Integer> getTotemSelecionados() {
+    public List<Totem> getTotemSelecionados() {
         return totemSelecionados;
     }
 
-    public void setTotemSelecionados(List<Integer> totemSelecionados) {
+    public void setTotemSelecionados(List<Totem> totemSelecionados) {
         this.totemSelecionados = totemSelecionados;
     }
 

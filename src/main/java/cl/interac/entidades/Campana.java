@@ -20,7 +20,6 @@ import java.util.Set;
 
                 @NamedQuery(name="Campana.findByUsuario",query = "SELECT c FROM Campana c " +
                         "INNER JOIN FETCH c.contenido co " +
-                        "INNER JOIN FETCH c.totemList t " +
                         "INNER JOIN FETCH co.usuario u " +
                         "WHERE u.username=:username "),
 
@@ -127,6 +126,7 @@ public class Campana implements Serializable {
             // join normal es como llego al nav, y listo tamos mapeados ... se cacha? sii,
             // veamos si no miento
     )
+
     public List<Totem> getTotemList() {
         return totemList;
     }
