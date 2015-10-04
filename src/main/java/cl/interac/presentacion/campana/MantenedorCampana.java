@@ -24,10 +24,7 @@ import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * Created by luis on 25-04-2015.
@@ -47,7 +44,7 @@ public class MantenedorCampana implements Serializable {
     private String end1;
     private List<Usuario> usuarios;
     private Totem totem;
-    private List<Totem> totemSelecionados;
+    private Totem[] totemSelecionados;
     private List<Totem> totemsConrelacion;
     private Contenido contenido;
     private List<Contenido> contenidos;
@@ -155,8 +152,7 @@ public class MantenedorCampana implements Serializable {
         try {
             campana.setContenido(contenido);
             System.err.print(contenido.getIdcontenido());
-            campana.setTotemList(totemSelecionados);
-            System.out.print(totemSelecionados.get(1).getNoserie());
+            campana.setTotemList(Arrays.asList(totemSelecionados));
             logicaCampana.guardarCampana(campana);
             FacesUtil.mostrarMensajeInformativo("operacion exitosa","se ha creado tu campaña");
 
@@ -211,11 +207,11 @@ public class MantenedorCampana implements Serializable {
         this.contenidos = contenidos;
     }
 
-    public List<Totem> getTotemSelecionados() {
+    public Totem[] getTotemSelecionados() {
         return totemSelecionados;
     }
 
-    public void setTotemSelecionados(List<Totem> totemSelecionados) {
+    public void setTotemSelecionados(Totem[] totemSelecionados) {
         this.totemSelecionados = totemSelecionados;
     }
 

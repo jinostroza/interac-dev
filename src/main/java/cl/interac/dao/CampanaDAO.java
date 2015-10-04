@@ -10,6 +10,7 @@ import cl.interac.negocio.LogicaCampana;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQueries;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -46,9 +47,15 @@ public class CampanaDAO {
     }
 
     public List<Campana> obtenerCampanaPorUsuario(String user){
-        return em.createNamedQuery("Campana.findByUsuario").setParameter("username",user).getResultList();
+        return em.createNamedQuery("Campana.findByUsuario").setParameter("username", user).getResultList();
     }
 
 
-
+    public Campana obtenerPorIdConTotems(Integer id) {
+        try {
+            return (Campana) em.createNamedQuery("Campana.findByIdWithTotems").setParameter("id", id).getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

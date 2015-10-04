@@ -48,4 +48,13 @@ public class LogicaCampana {
         return campanaDAO.obtenerTodasLosContenidos();
     }
 
+    @Transactional(readOnly = true)
+    public Campana obtenerPorId(Integer id) {
+        return campanaDAO.obtenerPorId(id);
+    }
+
+    @Transactional(readOnly = true)
+    public Campana obtenerPorIdConTotems(Integer id) {
+        return campanaDAO.obtenerPorIdConTotems(id);
+    }
 }
