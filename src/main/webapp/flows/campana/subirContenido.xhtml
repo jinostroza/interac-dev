@@ -8,6 +8,7 @@
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
+        <h:form class="container" id="crearAnuncio" enctype="multipart/form-data">
         <div class="row" >
             <div class="col-lg-6" style="padding-left:  10%">
                 <h2>Crea tu anuncio</h2>
@@ -15,7 +16,7 @@
             <div class="nav-submenu col-lg-6">
                 <ul>
                     <li><a class="active">Creando</a></li>
-                    <li><a>Planificar</a></li>
+                    <li><a>Programando</a></li>
                     <li><a>Confirmar</a></li>
                 </ul>
             </div>
@@ -25,11 +26,11 @@
                 <h:form style="margin-left: 20%">
                     <div id="cuadro-imagen" style="padding-right: 100px" >
                         <p:fileUpload style="width: 450px;"  mode="advanced"
-                                      previewWidth="430" update="messages" required="true" label="Seleccionar contenido" uploadLabel="Subir"
+                                      previewWidth="430" update="messages" label="Seleccionar contenido" uploadLabel="Subir"
                                       fileUploadListener="#{mantenedorCampana.subir}"
                                       cancelLabel="Cancelar" auto="false" disabled="#{mantenedorCampana.fileUploadCount >= 1}" oncomplete="javascript:window.location.reload(true)" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 
-                        <p:growl id="messages" showDetail="true" sticky="true" />
+                        <p:growl id="messages" showDetail="true" />
                     </div>
 
                             <div  class="row">
@@ -48,20 +49,20 @@
                                 </h:selectOneMenu>
                                 <br></br>
                                 <br></br>
-                                <p:outputLabel value="#{mantenedorCampana.contenido.idcontenido}"></p:outputLabel>
+                                <p:outputLabel value="Identificador de tu anuncio : #{mantenedorCampana.contenido.idcontenido}"></p:outputLabel>
                                     <br></br>
                                     <br></br>
-                                    <p:outputLabel value="#{mantenedorCampana.contenido.estado}" ></p:outputLabel>
+                                    <p:outputLabel value="Estado de tu Anuncio : #{mantenedorCampana.contenido.estado}" ></p:outputLabel>
 
                                 </div>
                             </div>
                                 <div class="col-lg-12" style="margin-left: 60%">
                                 <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
-                                                 value="Volver" immediate="true"/>
+                                                 actionListener="#{mantenedorCampana.eliminarFichero(mantenedorCampana.contenido)}" value="Volver" immediate="true"/>
                                     <span>   </span>
                                 <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{mantenedorCampana.editarContenido(mantenedorCampana.contenido)}"
                                                      value="Crear" />
-                                    <p:growl id="newmssg" showDetail="true" sticky="true" autoUpdate="true" />
+
                                 </div>
                                 <br></br>
                                 <br></br>
@@ -69,6 +70,6 @@
 
 
                 </h:form>
-
+    </h:form>
     </ui:define>
 </ui:composition>

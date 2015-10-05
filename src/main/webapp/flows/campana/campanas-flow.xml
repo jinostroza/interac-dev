@@ -18,7 +18,7 @@
 
     <view-state id="registraCampana">
         <transition on="crear" to="subirContenido"/>
-        <transition on="selectTotem" to="seleccionarTotem"/>
+        <transition on="selectTotem" to="vercontenido"/>
         <transition on="totems" to="inicioCliente"/>
     </view-state>
 
@@ -32,6 +32,10 @@
     <view-state id="seleccionarTotem">
         <transition on="regisCamp" to="registraCampana"/>
         <transition on="end1" to="campanaConfirmada"/>
+    </view-state>
+
+    <view-state id="vercontenido">
+        <transition on="subir" to="seleccionarTotem"></transition>
     </view-state>
 
     <view-state id="campanaConfirmada">

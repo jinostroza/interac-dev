@@ -24,6 +24,7 @@ import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.*;
 
 /**
@@ -51,6 +52,8 @@ public class MantenedorCampana implements Serializable {
     private List<Categoria> categoriaList;
     private Categoria categoria;
     private MapModel simpleModel;
+    private Contenido contenidosSelecionado;
+    private List<Contenido> contenidosSelecionados;
 
     @Autowired
     private LogicaCategoria logicaCategoria;
@@ -68,7 +71,7 @@ public class MantenedorCampana implements Serializable {
     private PropertyReader propertyReader;
     @Autowired
     private FileUploader fileUploader;
-    private Integer fileUploadCount;
+    private int fileUploadCount;
 
 
     public void inicio() {
@@ -151,6 +154,7 @@ public class MantenedorCampana implements Serializable {
             campana.setContenido(contenido);
             System.err.print(contenido.getIdcontenido());
             campana.setTotemList(Arrays.asList(totemSelecionados));
+            campana.setFechaCreacion(Date.from(Instant.now()));
             logicaCampana.guardarCampana(campana);
             FacesUtil.mostrarMensajeInformativo("operacion exitosa","se ha creado tu campaña");
 
@@ -280,6 +284,21 @@ public class MantenedorCampana implements Serializable {
 
     public void setContenido(Contenido contenido) {
         this.contenido = contenido;
+    }
+    public Contenido getContenidosSelecionado() {
+        return contenidosSelecionado;
+    }
+
+    public void setContenidosSelecionado(Contenido contenidosSelecionado) {
+        this.contenidosSelecionado = contenidosSelecionado;
+    }
+
+    public List<Contenido> getContenidosSelecionados() {
+        return contenidosSelecionados;
+    }
+
+    public void setContenidosSelecionados(List<Contenido> contenidosSelecionados) {
+        this.contenidosSelecionados = contenidosSelecionados;
     }
 }
 
