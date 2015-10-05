@@ -6,16 +6,15 @@
                 template="/templates/logInTemplate.xhtml">
 
     <ui:define name="contenido">
-        <title>Registro</title>
-        <div class="login-header">
-
-        </div>
+        <h:form>
+        <title>¡¡Campaña creada!!</title>
+        <div class="login-header"></div>
         <h:outputStylesheet>
             body {
                 background-color: #E52620;
             }
         </h:outputStylesheet>
-        <h:form>
+
             <div class="container">
                 <div class="row">
                     <!--
@@ -48,15 +47,24 @@
                                 <h:outputText value="#{mantenedorCampana.campana.fechaFin}">
                                     <f:convertDateTime pattern="dd/MM/yyyy"/>
                                 </h:outputText> Hasta
-                                #{mantenedorCampana.campana.pasadas} Pasadas diarias
+                                <h:outputText value="#{mantenedorCampana.campana.pasadas} Pasadas diarias"/>
+
                             </h:outputLabel>
+                            <h:outputLabel value="Se publicara en :" />
+
+                            <p:dataList value="#{mantenedorCampana.totemSelecionados}" var="car" type="ordered">
+                               Pantalla: #{car.noserie} - #{car.establecimiento.nombreEstablecimiento}
+
+
+                            </p:dataList>
+
 
                             <h:commandLink value="inicio" action="fin2" />
                         </div>
                         <div class="btn-register_ confirma-campana"></div>
                     </div>
                 </div>
-            </div>
+          </div>
             <div class="push">
             </div>
 

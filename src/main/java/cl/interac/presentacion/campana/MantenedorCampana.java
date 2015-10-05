@@ -50,8 +50,6 @@ public class MantenedorCampana implements Serializable {
     private List<Contenido> contenidos;
     private List<Categoria> categoriaList;
     private Categoria categoria;
-
-
     private MapModel simpleModel;
 
     @Autowired
@@ -174,6 +172,7 @@ public class MantenedorCampana implements Serializable {
         }
     }
 
+
    //getter and setter
     public Categoria getCategoria() {
         return categoria;
@@ -238,8 +237,6 @@ public class MantenedorCampana implements Serializable {
     public void setTotemsConrelacion(List<Totem> totemsConrelacion) {
         this.totemsConrelacion = totemsConrelacion;
     }
-
-
 
     public Totem getTotem() {
         return totem;
