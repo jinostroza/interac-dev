@@ -3,24 +3,24 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
- <!--DATA SOURCE SERVER PRODUCCION
-    <persistence-unit name="primary" transaction-type="RESOURCE_LOCAL">
-        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-          <properties>
-            <property name="hibernate.connection.url" value="jdbc:postgresql://54.172.118.246:5432/Plataforma"/>
-            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
-            <property name="hibernate.connection.username" value="postgres"/>
-            <property name="hibernate.connection.password" value="vince2315"/>
-              <property name="hibernate.show_sql" value="true"/>
-              <property name="hibernate.c3p0.timeout" value="0"/>
-                <property name="hibernate.c3p0.maxConnectionAge" value="0"/>
-              <property name="hibernate.c3p0.acquireRetryAttemps" value="3"/>
-              <property name="hibernate.c3p0.preferredTestQuery" value="select 1"/>
-              <property name="hibernate.c3p0.idleConnectionTestPeriod" value="50"/>
-        </properties>
-    </persistence-unit>-->
+ <!--DATA SOURCE SERVER PRODUCCION-->
+    <!--  <persistence-unit name="primary" transaction-type="RESOURCE_LOCAL">
+          <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+            <properties>
+              <property name="hibernate.connection.url" value="jdbc:postgresql://54.172.118.246:5432/Interac-Test"/>
+              <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+              <property name="hibernate.connection.username" value="postgres"/>
+              <property name="hibernate.connection.password" value="vince2315"/>
+                <property name="hibernate.show_sql" value="true"/>
+                <property name="hibernate.c3p0.timeout" value="0"/>
+                    <property name="hibernate.c3p0.maxConnectionAge" value="0"/>
+                <property name="hibernate.c3p0.acquireRetryAttemps" value="3"/>
+                <property name="hibernate.c3p0.preferredTestQuery" value="select 1"/>
+                <property name="hibernate.c3p0.idleConnectionTestPeriod" value="50"/>
+          </properties>
+      </persistence-unit>-->
 
-   <!-- DATA SOURCE SERVER LOCAL-->
+     <!-- DATA SOURCE SERVER LOCAL-->
     <persistence-unit name="primary" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <properties>

@@ -27,26 +27,33 @@
                             <br/>
                             <ui:fragment rendered="#{mantenedorCampana.totemSelecionados != null }" >
                             <h3>!Se ha creado tu campaña!</h3>
-                            <p>has subido tu publicidad exitosamente</p> <strong>Interac</strong>.
+                            <p>has subido tu publicidad exitosamente</p>
 
-                            <h:outputLabel>
-                                <h:outputText value="Fecha de Creacion :#{mantenedorCampana.campana.fechaCreacion}">
-                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                </h:outputText>
-                                <br/>
-                                <h:outputText value="Fecha de Inicio :#{mantenedorCampana.campana.fechaInicio}">
-                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                </h:outputText>
-                                Desde
-                                <h:outputText value="Fecha de Termino :#{mantenedorCampana.campana.fechaFin}">
-                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                </h:outputText> Hasta
-                                <h:outputText value="Pasadas diarias :#{mantenedorCampana.campana.pasadas}"/>
+                                <p:panelGrid columns="2">
+                                    <f:facet name="header">
+                                        <p:graphicImage name="ftp://54.172.118.246/#{mantenedorCampana.campana.contenido.path}" />
+                                    </f:facet>
 
-                            </h:outputLabel>
-                            <h:outputLabel value="Se publicara en : " />
+                                    <h:outputText value="fecha Creacion:" />
+                                    <h:outputText value="#{mantenedorCampana.campana.fechaCreacion}" >
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
 
+                                    <h:outputText value="fecha inicio:" />
+                                    <h:outputText value="#{mantenedorCampana.campana.fechaInicio}" >
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+
+                                    <h:outputText value="fecha fin:" />
+                                    <h:outputText value="#{mantenedorCampana.campana.fechaFin}" >
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+
+                                    <h:outputText value="Pasadas:" />
+                                    <h:outputText value="#{mantenedorCampana.campana.pasadas}" />
+                                </p:panelGrid>
                             <p:dataList value="#{mantenedorCampana.totemSelecionados}" var="car" type="ordered">
+                                <f:facet name="header">Tu anuncio se publicara En :</f:facet>
                                Pantalla: #{car.noserie}-#{car.establecimiento.nombreEstablecimiento}
                             </p:dataList>
                             </ui:fragment>
@@ -77,7 +84,7 @@
                             </p:panelGrid>
                             </ui:fragment>
 
-                            <div class="row" style="margin-top: 30%">
+                            <div class="row" style="margin-top: 20%">
 
                                 <p:commandButton value="Volver Inicio" styleClass="btn btn-interac" action="fin"></p:commandButton>
                                 <h:panelGrid styleClass="col-lg-3" columns="1" cellpadding="5">

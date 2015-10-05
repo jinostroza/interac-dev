@@ -121,7 +121,10 @@
                         </f:facet>
 
                         <p:column styleClass="col-lg-2" headerText="nombre">
-                            <p:graphicImage url="img/colivares/#{camton.contenido.path}"/>
+                            <h:outputText value="#{camton.contenido.nombrecont}" />
+                        </p:column>
+                        <p:column styleClass="col-lg-2" headerText="estado">
+                            <h:outputText value="#{camton.contenido.estado}" />
                         </p:column>
                         <p:column styleClass="col-lg-2" headerText="fecha">
                             <h:outputText value="#{camton.fechaCreacion}"/>
