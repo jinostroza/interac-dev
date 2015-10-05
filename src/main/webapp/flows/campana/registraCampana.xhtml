@@ -28,7 +28,7 @@
                             <ui:fragment
                                     rendered="#{userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR')}">
                                 <h:commandLink styleClass="col-lg-3 col-md-3 "
-                                               style="padding-left: -300px;margin-left: -100px" action="totems">
+                                               style="padding-left: -300px;margin-left: -100px" action="#{facesUtil.redirigir('/plataforma/cliente')}">
                                     <div class="dashbox">
                                         <h:outputLabel value="Activar Pantallas" styleClass="dashbox-header"/>
 

@@ -21,9 +21,7 @@
         <transition on="micampana" to="miscampanas" />
     </view-state>
 
-    <view-state id="inicioCliente">
-        <transition on="totems" to="inicioCliente"></transition>
-    </view-state>
+
     <view-state id="subirContenido">
         <transition on="subir" to="seleccionarTotem"></transition>
     </view-state>
