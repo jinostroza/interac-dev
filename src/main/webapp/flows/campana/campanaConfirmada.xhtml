@@ -50,29 +50,36 @@
                                Pantalla: #{car.noserie}-#{car.establecimiento.nombreEstablecimiento}
                             </p:dataList>
                             </ui:fragment>
-                            <ui:fragment rendered="#{mantenedorCampana.totemSelecionados = null}">
+
+
                             <p:panelGrid columns="2">
                                 <f:facet name="header">
-                                    <p:graphicImage name="img/colivares/#{mantenedorCampana.campana}" />
+                                    <p:graphicImage name="img/colivares/#{mantenedorCampana.campana.contenido.path}" />
                                 </f:facet>
 
+                                <h:outputText value="fecha Creacion:" />
+                                <h:outputText value="#{mantenedorCampana.campana.fechaCreacion}" >
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+
                                 <h:outputText value="fecha inicio:" />
-                                <h:outputText value="#{mantenedorCampana.campana.fechaCreacion}" />
+                                <h:outputText value="#{mantenedorCampana.campana.fechaInicio}" >
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
 
-                                <h:outputText value="Team:" />
-                                <h:outputText value="Los Angeles Lakers" />
+                                <h:outputText value="fecha fin:" />
+                                <h:outputText value="#{mantenedorCampana.campana.fechaFin}" >
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
 
-                                <h:outputText value="Position:" />
-                                <h:outputText value="Shooting Guard" />
-
-                                <h:outputText value="Number:" />
-                                <h:outputText value="24" />
+                                <h:outputText value="Pasadas:" />
+                                <h:outputText value="#{mantenedorCampana.campana.pasadas}" />
                             </p:panelGrid>
-                            </ui:fragment>
+
 
                             <div class="row">
                             <h:commandLink styleClass="col-lg-6 col-md-6 col-xs-6" value="volver inicio" action="fin" />
-                            <p:commandButton styleClass="col-lg-6 col-md-6 col-xs-6" value="pagar" url="https://www.webpay.cl/portalpagodirecto/pages/index.jsf" />
+                            <p:commandLink styleClass="col-lg-6 col-md-6 col-xs-6" value="pagar" url="https://www.webpay.cl/portalpagodirecto/pages/index.jsf" />
                             </div>
                         </div>
                         <div class="btn-register_ confirma-campana col-lg-4 col-md-4 col-xs-4 " ></div>
