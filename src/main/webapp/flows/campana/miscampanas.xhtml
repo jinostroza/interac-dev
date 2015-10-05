@@ -20,7 +20,7 @@
                         Mis Campañas
                     </f:facet>
                     <p:column styleClass="col-lg-2" headerText="nombre">
-                        <h:outputText value="#{camton.contenido.nombrecont}"/>
+                        <h:outputText value="#{camton.contenido.path}"/>
                     </p:column>
                     <p:column styleClass="col-lg-2" headerText="fecha">
                         <h:outputText value="#{camton.fechaCreacion}"/>
@@ -39,9 +39,11 @@
                     </p:column>
                 </p:dataTable>
             </div>
-                <p:commandButton ajax="false" styleClass="btn btn-interac" style="margin-left: 2%"
-                                 action="#{facesUtil.redirigir('plataforma/campana')}"
-                                 value="volver"/>
+            <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
+                             value="Volver" immediate="true"/>
+
+
+
             <div class="push"></div>
 
         </h:form>
