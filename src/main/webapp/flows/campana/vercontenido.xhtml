@@ -9,6 +9,9 @@
     <ui:define name="contenido">
 
         <h:form>
+            <div class="col-lg-4">
+                <h3 align="center" style="align-items: flex-start">Programar Mis Anuncios</h3>
+            </div>
             <div class="ui-grid-row">
                 <p:dataTable id="basicDT" var="cont" rows="5" paginator="true"
                              styleClass="col-lg-10 col-lg-offset-5"
@@ -32,8 +35,7 @@
                     </p:column>
 
                     <p:column styleClass="col-lg-3" style="width:32px;text-align: center">
-                        <p:commandButton icon="ui-icon-pin-s" action="selectTotem" title="View">
-                            <f:setPropertyActionListener value="#{cont}" target="#{mantenedorCampana.irCrear(cont)}" />
+                        <p:commandButton icon="ui-icon-pin-s" action="#{mantenedorCampana.irCrear(cont)}" title="View" >
                         </p:commandButton>
                     </p:column>
                     <p:column styleClass="col-lg-3" style="width:32px;text-align: center;margin-right: 2px">
@@ -44,7 +46,12 @@
 
                 </p:dataTable>
             </div>
-
+            <br/>
+            <div class="col-lg-12" style="margin-left: 90%;margin-bottom: 2%">
+            <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
+                              value="Volver" immediate="true"/>
+            </div>
+            <br/>
         </h:form>
 
     </ui:define>
