@@ -1,6 +1,7 @@
 package cl.interac.entidades;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ import java.util.List;
 
 
 })
-public class Tipototem {
+public class Tipototem implements Serializable {
    private Integer idtipo;
     private String destipo;
 

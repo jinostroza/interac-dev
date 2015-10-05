@@ -17,7 +17,7 @@
                     <h:outputLabel value="empresa :" />
                     <h:outputText value="#{userSession.usuario.empresa}"/>
                     <h:outputLabel value="Contraseña"/> :
-                    <p:commandButton icon="ui-icon-pencil" value="Cambiar" styleClass="form-control" action="#{mantenedorPerfil.irCambiarClave()}"/>
+                    <p:commandButton icon="ui-icon-pencil" value="Cambiar" styleClass="btn btn-interac" action="#{mantenedorPerfil.irCambiarClave()}"/>
                 </h:panelGrid>
             </p:panel>
             <p:panel header="CambiarPerfil" styleClass="col-md-8">
@@ -29,13 +29,13 @@
                     <h:outputLabel value="Empresa :"/>
                     <h:inputText styleClass="form-control" value="#{mantenedorPerfil.empresa}"/>
 
-                   <p:commandButton id="modifica" value="Modificar" type="button">
+                   <p:commandButton id="modifica" styleClass="btn btn-interac" value="Modificar" type="button">
                         <p:overlayPanel id="editPanel" for="modifica" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
                             <p:outputPanel>
                                 <h:outputLabel value="ingrese su contraseña para confirmar el cambio"/>
                                 <h:inputSecret styleClass="form-control" value="#{mantenedorPerfil.claveActual}" />
                                 <br/>
-                                <p:commandButton value="guardar"  action="#{mantenedorPerfil.cambiaPerfil()}"/>
+                                <p:commandButton value="guardar" styleClass="btn btn-interac"  action="#{mantenedorPerfil.cambiaPerfil()}"/>
                             </p:outputPanel>
                         </p:overlayPanel>
                     </p:commandButton>

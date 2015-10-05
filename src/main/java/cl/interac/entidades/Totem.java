@@ -23,6 +23,7 @@ import java.util.Set;
                                     "LEFT JOIN FETCH t.establecimiento e " +
                                     "LEFT JOIN FETCH e.ubicacion ub " +
                                     "LEFT JOIN FETCH e.usuario u " +
+                                     "LEFT JOIN FETCH t.tipototem " +
                                     "where u.username=:username")
 
         }
