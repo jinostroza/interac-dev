@@ -17,6 +17,7 @@
         <transition on="crear" to="subirContenido"/>
         <transition on="selectTotem" to="seleccionarTotem"/>
         <transition on="totems" to="inicioCliente"/>
+        <transition on="micampana" to="campanaConfirmada" />
     </view-state>
 
     <view-state id="inicioCliente">
@@ -27,6 +28,7 @@
     </view-state>
 
     <view-state id="seleccionarTotem">
+
         <transition on="regisCamp" to="registraCampana"/>
         <transition on="end1" to="campanaConfirmada"/>
     </view-state>

@@ -51,13 +51,7 @@ public class mantenedorCliente implements Serializable {
 
     public void inicio(){
         totemList= logicaTotem.obtenerPorUsuario(userSession.getUsuario().getUsername());
-
-
     }
-
-
-
-
 //getter and setter
 
 
