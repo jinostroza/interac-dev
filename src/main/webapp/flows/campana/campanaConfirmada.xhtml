@@ -7,27 +7,22 @@
 
     <ui:define name="contenido">
 
-        <title>¡¡Campaña creada!!</title>
-        <div class="login-header"></div>
+
         <h:outputStylesheet>
             body {
                 background-color: #E52620;
             }
         </h:outputStylesheet>
           <h:form>
+              <div class="login-header"></div>
             <div class="container">
+
                 <div class="row">
-                    <!--
-                     xs: pantallas extra pequeñas
-                     sm: pantallas pequeñas
-                     md: pantallas medianas
-                     lg: pantallas largas/grandes
-                    -->
 
-                    <div class="col-md-10" id="cuadro-registro">
+                    <div class="row" id="cuadro-registro">
 
 
-                        <div class="col-md-6 col-md-offset-3" >
+                        <div class="col-md-6 col-md-offset-2" >
                             <br/>
                             <br/>
                             <ui:fragment rendered="#{mantenedorCampana.totemSelecionados != null }" >
@@ -55,13 +50,32 @@
                                Pantalla: #{car.noserie}-#{car.establecimiento.nombreEstablecimiento}
                             </p:dataList>
                             </ui:fragment>
+                            <ui:fragment rendered="#{mantenedorCampana.totemSelecionados = null}">
+                            <p:panelGrid columns="2">
+                                <f:facet name="header">
+                                    <p:graphicImage name="img/colivares/#{mantenedorCampana.campana}" />
+                                </f:facet>
+
+                                <h:outputText value="fecha inicio:" />
+                                <h:outputText value="#{mantenedorCampana.campana.fechaCreacion}" />
+
+                                <h:outputText value="Team:" />
+                                <h:outputText value="Los Angeles Lakers" />
+
+                                <h:outputText value="Position:" />
+                                <h:outputText value="Shooting Guard" />
+
+                                <h:outputText value="Number:" />
+                                <h:outputText value="24" />
+                            </p:panelGrid>
+                            </ui:fragment>
 
                             <div class="row">
-                            <h:commandLink styleClass="col-lg-6 col-md-6 col-xs-6" value="volver inicio" action="" />
+                            <h:commandLink styleClass="col-lg-6 col-md-6 col-xs-6" value="volver inicio" action="fin" />
                             <p:commandButton styleClass="col-lg-6 col-md-6 col-xs-6" value="pagar" url="https://www.webpay.cl/portalpagodirecto/pages/index.jsf" />
                             </div>
                         </div>
-                        <div class="btn-register_ confirma-campana"></div>
+                        <div class="btn-register_ confirma-campana col-lg-4 col-md-4 col-xs-4 " ></div>
                     </div>
                 </div>
           </div>

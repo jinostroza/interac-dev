@@ -17,7 +17,7 @@
         <transition on="crear" to="subirContenido"/>
         <transition on="selectTotem" to="seleccionarTotem"/>
         <transition on="totems" to="inicioCliente"/>
-        <transition on="micampana" to="campanaConfirmada" />
+        <transition on="micampana" to="miscampanas" />
     </view-state>
 
     <view-state id="inicioCliente">
