@@ -78,6 +78,7 @@ public class MantenedorCampana implements Serializable {
         usuarios = logicaUsuario.obtenerTodos();
         categoriaList = logicaCategoria.obtenerTodos();
         totemsConrelacion = logicaTotem.obtenerConRelacion();
+        totems = logicaTotem.obtenerPorUsuario(userSession.getUsuario().getUsername());
         campanas = logicaCampana.obtenerPorUsuario(userSession.getUsuario().getUsername());
         contenidos = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
@@ -140,6 +141,11 @@ public class MantenedorCampana implements Serializable {
 
       return irCrear(c);
 
+    }
+
+    public String irPagar(Campana ca ){
+        campana = ca ;
+        return "paga";
     }
 
      public String irCrear(Contenido c) {

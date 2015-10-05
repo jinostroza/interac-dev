@@ -53,7 +53,7 @@
                                     <p> Elige cuando y donde quieres publicitar </p>
                                 </div>
                             </h:commandLink>
-                            <h:commandLink class="col-lg-3 col-md-3 ">
+                            <h:commandLink class="col-lg-3 col-md-3 " action="micampana" >
                                 <div class="dashbox">
                                     <h:outputLabel value="Pagar" styleClass="dashbox-header"/>
 
@@ -85,7 +85,7 @@
                         <p:dataTable id="pantallasDT" var="tot" rows="5" paginator="true"
                                      styleClass="col-lg-10 col-lg-offset-5"
                                      style="margin-left: 10%;text-align-all: center;"
-                                     value="#{mantenedorTotems.totemConFiltro}">
+                                     value="#{mantenedorCampana.totems}">
 
                             <f:facet name="header">
                                 Mis Pantallas
@@ -104,6 +104,7 @@
                     </ui:fragment>
                 </div>
                 <br/>
+                <div class="ui-grid-row">
                 <div class="col-lg-4">
                     <h3 align="center" style="align-items: flex-start">Estado de tus Campañas</h3>
                 </div>
@@ -120,7 +121,7 @@
                         </f:facet>
 
                         <p:column styleClass="col-lg-2" headerText="nombre">
-                            <h:outputText value="#{camton.contenido.path}"/>
+                            <p:graphicImage url="img/colivares/#{camton.contenido.path}"/>
                         </p:column>
                         <p:column styleClass="col-lg-2" headerText="fecha">
                             <h:outputText value="#{camton.fechaCreacion}"/>

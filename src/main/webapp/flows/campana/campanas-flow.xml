@@ -7,18 +7,15 @@
         <evaluate expression="mantenedorCampana.inicio()"/>
     </on-start>
 
-    <view-state id="crearcampana">
-        <transition on="pasos" to="campanapasos"></transition>
+    <view-state id="miscampanas">
+        <transition on="paga" to="campanaConfirmada"></transition>
     </view-state>
 
-    <view-state id="campanapasos">
-        <transition on="regisCamp" to="registraCampana"/>
-    </view-state>
 
 
     <view-state id="registraCampana">
         <transition on="crear" to="subirContenido"/>
-        <transition on="selectTotem" to="vercontenido"/>
+        <transition on="selectTotem" to="seleccionarTotem"/>
         <transition on="totems" to="inicioCliente"/>
     </view-state>
 
@@ -39,7 +36,12 @@
     </view-state>
 
     <view-state id="campanaConfirmada">
-        <transition on="fin2" to="registraCampana"></transition>
+       <transition on="fin" to="campanapasos"/>
     </view-state>
+
+    <end-state id="campanapasos">
+
+    </end-state>
+
 
 </flow>

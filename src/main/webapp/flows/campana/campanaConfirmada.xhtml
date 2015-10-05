@@ -6,7 +6,7 @@
                 template="/templates/logInTemplate.xhtml">
 
     <ui:define name="contenido">
-        <h:form>
+
         <title>¡¡Campaña creada!!</title>
         <div class="login-header"></div>
         <h:outputStylesheet>
@@ -14,7 +14,7 @@
                 background-color: #E52620;
             }
         </h:outputStylesheet>
-
+          <h:form>
             <div class="container">
                 <div class="row">
                     <!--
@@ -30,8 +30,7 @@
                         <div class="col-md-6 col-md-offset-3" >
                             <br/>
                             <br/>
-                            <br/>
-
+                            <ui:fragment rendered="#{mantenedorCampana.totemSelecionados != null }" >
                             <h3>!Se ha creado tu campaña!</h3>
                             <p>has subido tu publicidad exitosamente</p> <strong>Interac</strong>.
 
@@ -53,13 +52,14 @@
                             <h:outputLabel value="Se publicara en :" />
 
                             <p:dataList value="#{mantenedorCampana.totemSelecionados}" var="car" type="ordered">
-                               Pantalla: #{car.noserie} - #{car.establecimiento.nombreEstablecimiento}
-
-
+                               Pantalla: #{car.noserie}-#{car.establecimiento.nombreEstablecimiento}
                             </p:dataList>
+                            </ui:fragment>
 
-
-                            <h:commandLink value="inicio" action="fin2" />
+                            <div class="row">
+                            <h:commandLink styleClass="col-lg-6 col-md-6 col-xs-6" value="volver inicio" action="" />
+                            <p:commandButton styleClass="col-lg-6 col-md-6 col-xs-6" value="pagar" url="https://www.webpay.cl/portalpagodirecto/pages/index.jsf" />
+                            </div>
                         </div>
                         <div class="btn-register_ confirma-campana"></div>
                     </div>

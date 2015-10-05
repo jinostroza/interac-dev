@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+
+                template="/templates/default.xhtml">
+
+    <ui:define name="contenido">
+        <header>
+            <h2>Mis campanas</h2>
+        </header>
+        <h:form>
+            <div class="ui-grid-row">
+                <p:dataTable var="camton" rows="5" paginator="true"
+                             styleClass="col-lg-10 col-lg-offset-5"
+                             style="margin-left: 10%;text-align-all: center;"
+                             value="#{mantenedorCampana.campanas}">
+                    <f:facet name="header">
+                        Mis Campañas
+                    </f:facet>
+                    <p:column styleClass="col-lg-2" headerText="nombre">
+                        <h:outputText value="#{camton.contenido.path}"/>
+                    </p:column>
+                    <p:column styleClass="col-lg-2" headerText="fecha">
+                        <h:outputText value="#{camton.fechaCreacion}"/>
+                    </p:column>
+                    <p:column styleClass="col-lg-2" headerText="pasadas">
+                        <h:outputText value="#{camton.pasadas}"/>
+                    </p:column>
+                    <p:column styleClass="col-lg-2" headerText="fecha inicio">
+                        <h:outputText value="#{camton.fechaInicio}"/>
+                    </p:column>
+                    <p:column styleClass="col-lg-2" headerText="fecha fin">
+                        <h:outputText value="#{camton.fechaFin}"/>
+                    </p:column>
+                    <p:column styleClass="col-lg-2" headerText="fecha fin">
+                        <p:commandButton value="Ir a Pagar" action="#{mantenedorCampana.irPagar(camton)}" icon="fa fa-dollar"  />
+                    </p:column>
+                </p:dataTable>
+            </div>
+                <p:commandButton ajax="false" styleClass="btn btn-interac" style="margin-left: 2%" action="pasos"
+                                 value="volver"/>
+
+
+
+            <div class="push"></div>
+
+        </h:form>
+
+
+
+
+    </ui:define>
+</ui:composition>
