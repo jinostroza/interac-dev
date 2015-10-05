@@ -34,12 +34,12 @@
                         <h:outputText value="#{cont.estado}" />
                     </p:column>
 
-                    <p:column styleClass="col-lg-3" style="width:32px;text-align: center">
-                        <p:commandButton icon="ui-icon-pin-s" action="#{mantenedorCampana.irCrear(cont)}" title="View" >
+                    <p:column styleClass="col-lg-3" style="text-align: center">
+                        <p:commandButton icon="ui-icon-pin-s" action="#{mantenedorCampana.irCrear(cont)}" value="Seleccionar" title="View" >
                         </p:commandButton>
                     </p:column>
-                    <p:column styleClass="col-lg-3" style="width:32px;text-align: center;margin-right: 2px">
-                        <p:commandButton icon="ui-icon-trash" action="#{mantenedorCampana.eliminarFichero(cont)}" title="View">
+                    <p:column styleClass="col-lg-3" style="text-align: center;margin-right: 2px">
+                        <p:commandButton icon="ui-icon-trash" action="#{mantenedorCampana.eliminarFichero(cont)}" value="Eliminar" title="View">
 
                         </p:commandButton>
                     </p:column>
