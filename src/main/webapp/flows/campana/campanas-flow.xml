@@ -17,13 +17,16 @@
         <transition on="vercon" to="vercontenido"/>
         <transition on="crear" to="subirContenido"/>
         <transition on="selectTotem" to="vercontenido"/>
-        <transition on="totems" to="inicioCliente"/>
+        <transition on="ver" to="misTotems"/>
         <transition on="micampana" to="miscampanas" />
     </view-state>
 
 
     <view-state id="subirContenido">
         <transition on="subir" to="seleccionarTotem"></transition>
+    </view-state>
+    <view-state id="misTotems">
+
     </view-state>
 
     <view-state id="seleccionarTotem">

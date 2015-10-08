@@ -181,6 +181,14 @@ public class MantenedorCampana implements Serializable {
             FacesUtil.mostrarMensajeInformativo("Operación Fallida","Algo Ocurrio");
         }
     }
+    public String ver(int t){
+        System.err.println("Totem:"+ t);
+        logicaCampana.obtenerPorIdConTotems(t);
+
+
+        return "ver";
+
+    }
 
 
    //getter and setter

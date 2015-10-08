@@ -55,6 +55,7 @@ public class MantenedorContenido implements Serializable {
     private Categoria categoria;
     private List<Contenido> selecContenidos;
     private Categoria selecContenido;
+    private List<Contenido> contenidosall;
     private int fileUploadCount;
 
 
@@ -93,7 +94,7 @@ public class MantenedorContenido implements Serializable {
         usuarios = logicaUsuario.obtenerTodos();
         categorias = logicaCategoria.obtenerTodos();
         contenidoList = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
-
+        contenidosall = logicaContenido.obtenerTodos();
 
     }
 
@@ -249,6 +250,13 @@ public class MantenedorContenido implements Serializable {
 
     public void setFileUploadCount(int fileUploadCount) {
         this.fileUploadCount = fileUploadCount;
+    }
+    public List<Contenido> getContenidosall() {
+        return contenidosall;
+    }
+
+    public void setContenidosall(List<Contenido> contenidosall) {
+        this.contenidosall = contenidosall;
     }
 
 

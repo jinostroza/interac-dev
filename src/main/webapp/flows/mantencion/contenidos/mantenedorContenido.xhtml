@@ -8,17 +8,17 @@
     <h3>Contenidos</h3>
     <h:form>
 
-                <p:dataTable id="usuarios" value="#{mantenedorContenido.contenidoList}"
+                <p:dataTable id="usuarios" value="#{mantenedorContenido.contenidosall}"
                              filteredValue="#{mantenedorContenido.selecContenido}" var="cont">
 
                     <p:column >
-                        <h:graphicImage value="img/colivares/#{cont.path}"/>
+                        <h:graphicImage value="ftp://54.172.118.246/#{cont.path}"/>
                     </p:column>
                     <p:column headerText="nombre" >
                         #{cont.path}
                     </p:column>
-                    <p:column headerText="Usuario" filterBy="#{cont.usuario.username}">
-                        #{cont.usuario.username}
+                    <p:column headerText="Usuario" filterBy="#{cont.usuario.idUsuario}">
+                        #{cont.usuario.idUsuario}
                     </p:column>
                     <p:column >
                         <h:commandButton icon="ui-icon-key" styleClass="form-control" value="volver" action="#{facesUtil.redirigir('/inicio.jsf')}"/>
