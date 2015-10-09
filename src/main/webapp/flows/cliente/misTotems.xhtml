@@ -6,15 +6,32 @@
                 template="/templates/default.xhtml">
     <ui:define name="contenido">
      <h:form>
-         <p:panelGrid>
-             <p:outputPanel>
+         <p:dataTable var="car" value="#{mantenedorCliente.totemCampana}">
+             <f:facet name="header">
+                Smoke Weed Everyday
+             </f:facet>
+             <p:column style="width:16px">
+                 <p:rowToggler />
+             </p:column>
+             <p:column headerText="Id">
+                 <h:outputText value="#{car.noserie}" />
+             </p:column>
+             <p:column headerText="Year">
+                 <h:outputText value="#{car.establecimiento.nombreEstablecimiento}" />
+             </p:column>
 
-             </p:outputPanel>
+             <p:rowExpansion>
+                 <p:panelGrid>
+                         <p:dataList var="qwer" value="#{car.campanaList}">
+                             <h:outputText value="#{qwer.fechaInicio}" />
 
-         </p:panelGrid>
+
+                             <h:outputText value="#{qwer.fechaCreacion}" />
+                     </p:dataList>
+
+                 </p:panelGrid>
+             </p:rowExpansion>
+         </p:dataTable>
      </h:form>
-
-
-
     </ui:define>
 </ui:composition>

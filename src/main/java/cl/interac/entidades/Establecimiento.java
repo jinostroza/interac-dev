@@ -24,7 +24,8 @@ import java.util.List;
                                 "INNER JOIN FETCH e.ubicacion ub " +
                                 "INNER JOIN FETCH e.usuario u " +
                                 "INNER JOIN FETCH e.totem t " +
-                                "WHERE u.username=:username ")
+                                "WHERE u.username=:username "),
+
 })
 
 public class Establecimiento implements Serializable {

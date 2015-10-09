@@ -25,7 +25,17 @@ import java.util.Set;
                 @NamedQuery(
                         name = "Campana.findByIdWithTotems",
                         query = "SELECT c FROM Campana c INNER JOIN FETCH c.totemList WHERE c.id = :id"
+                ),
+                @NamedQuery(
+                        name="Campana.findByTotemsAndCampana",
+                        query="SELECT c FROM Campana c " +
+                              "INNER JOIN FETCH c.totemList t " +
+                              "INNER JOIN FETCH t.establecimiento e " +
+                              "WHERE c.id=:id"
+
                 )
+
+
         }
 )
 public class Campana implements Serializable {
@@ -111,20 +121,15 @@ public class Campana implements Serializable {
         this.contenido = contenido;
     }
 
-    // dale pregunto varias veces para cuestionar no más xD
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "campatotem",
             inverseJoinColumns = {
                     @JoinColumn(name = "idtotem", referencedColumnName = "idtotem")
             },
-            // me demore pq siempre me enredo un poquito join inverso es como llego a mi destino
-            // es decir al totem y como la tabla es campatotem mediante idtotem
             joinColumns = {
                     @JoinColumn(name = "idcampana" , referencedColumnName = "idcampana")
             }
-            // join normal es como llego al nav, y listo tamos mapeados ... se cacha? sii,
-            // veamos si no miento
     )
     public List<Totem> getTotemList() {
         return totemList;

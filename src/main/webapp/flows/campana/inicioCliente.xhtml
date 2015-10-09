@@ -1,0 +1,84 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:div="http://www.springframework.org/tags/form"
+                template="/templates/default.xhtml">
+
+    <ui:define name="contenido">
+
+
+        <h:form>
+            <h3>ADMINISTRACION</h3>
+
+            <p:dataTable var="cli" value="#{mantenedorCliente.totemList}"  cellpadding="5px"
+                         styleClass="ui-grid-col-12"
+                         rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+                         nullSortOrder="">
+                <f:facet name="header">
+                    Mis totems
+                </f:facet>
+                <p:column headerText="NO° serie">
+                    <h:outputText value="#{cli.noserie}"/>
+                </p:column>
+                <p:column headerText="estabecimiento">
+                    <h:outputText value="#{cli.establecimiento.nombreEstablecimiento}"/>
+                </p:column>
+                <p:column headerText="ubicacion">
+                    <h:outputText value="#{cli.establecimiento.ubicacion.descubicacion}"/>
+                </p:column>
+                <p:column headerText="direccion">
+                    <h:outputText value="#{cli.establecimiento.direccion}"/>
+                </p:column>
+                <p:column style="width:32px;text-align: center">
+                    <p:commandButton  icon="ui-icon-search" title="View">
+                        <f:setPropertyActionListener value="#{cli}"
+                                                     target="#{mantenedorCliente.campana}" />
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+            <p:commandButton id="nuevoBtnTotem" value="Agrega"  type="button"/>
+            <p:overlayPanel id="agregapanelTotem" for="nuevoBtnTotem" hideEffect="fade" dynamic="true" style="width:600px">
+                <p:outputPanel>
+                    <h:outputLabel value="N°Serie"/>
+                    <h:inputText  styleClass="form-control"
+                                  value="#{mantenedorTotems.totem.noserie}"/>
+                    <h:outputLabel value="Tipo"/>
+
+                    <h:selectOneMenu class="form-control" value="#{mantenedorTotems.tipototem}"
+                                     converter="entityConverter">
+                        <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione tipo Totem --"/>
+                        <f:selectItems value="#{mantenedorTotems.tipototems}" var="totemPL"
+                                       itemLabel="#{totemPL.destipo}" itemValue="#{totemPL}"  />
+                    </h:selectOneMenu>
+                    <h:outputLabel value="Establecimiento"/>
+
+                    <h:selectOneMenu id="menuEst" class="form-control" value="#{mantenedorTotems.establecimiento}"
+                                     converter="entityConverter">
+                        <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione establecimiento --"/>
+                        <f:selectItems value="#{mantenedorTotems.establecimientoList}" var="ErLugar"
+                                       itemLabel="#{ErLugar.nombreEstablecimiento}" itemValue="#{ErLugar}" />
+                        <p:ajax update="lbl1 lbl2" />
+                    </h:selectOneMenu>
+                    <br/>
+                    <p:outputLabel id="lbl1" value="#{mantenedorTotems.establecimiento.lat}"></p:outputLabel>
+                    <br/>
+                    <p:outputLabel id="lbl2" value="#{mantenedorTotems.establecimiento.longi}"></p:outputLabel>
+                    <br/>
+                    <p:commandButton id="addBtnTotem" for="agregapanelTotem"  value="Agrega"
+                                     action="#{mantenedorTotems.agregarTotem}"/>
+                </p:outputPanel>
+            </p:overlayPanel>
+
+
+
+
+        </h:form>
+
+    </ui:define>
+</ui:composition>

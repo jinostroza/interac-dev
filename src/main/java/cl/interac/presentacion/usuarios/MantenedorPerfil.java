@@ -50,29 +50,22 @@ public class MantenedorPerfil implements Serializable {
     }
 
 
-    public void cambiarClave() {
+       public void cambiaPerfil() {
+
         if (!claveConfirmada.equals(claveNueva)) {
             FacesUtil.mostrarMensajeError("Operación fallida", "La nueva contraseña no coincide con lo confirmado");
             return;
-
-        } else if (logicaUsuario.logInExterno(userSession.getUsuario().getUsername(), (claveActual)) == null) {
-            FacesUtil.mostrarMensajeError("Operación fallida", "La nueva contraseña actual no coincide");
-        } else {
-
+        }else{
             logicaUsuario.cambiarClave(userSession.getUsuario().getUsername(), claveConfirmada);
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha cambiado correctamente la contraseña");
         }
-    }
 
-    public void cambiaPerfil() {
         if (!userSession.getUsuario().getPassword().equals(claveActual)) {
             FacesUtil.mostrarMensajeError("Operación fallida", "contraseña invalida");
             return;
-        } else if (correo == null || empresa == null) {
-            FacesUtil.mostrarMensajeError("Operacion fallida", "falta rellenar campos");
         }
 
-        logicaUsuario.editarPerfil(userSession.getUsuario().getUsername(), correo, empresa);
+        logicaUsuario.editarPerfil(userSession.getUsuario().getUsername(),correo,empresa);
         FacesUtil.mostrarMensajeInformativo("Operación exitosa", "usuario [" + userSession.getUsuario().getUsername() + "] modificado");
     }
 

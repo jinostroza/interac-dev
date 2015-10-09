@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.List;
 
 /**
@@ -30,7 +31,7 @@ public class mantenedorCliente implements Serializable {
     private List<Establecimiento> establecimientoList;
     private List<Tipototem> tipototemList;
     private List<Totem> totemSeleccionados;
-
+    private List<Totem> totemCampana;
 
     //autowired
     @Autowired
@@ -47,13 +48,21 @@ public class mantenedorCliente implements Serializable {
     private LogicaEstablecimiento logicaEstablecimiento;
 
 
-
-
     public void inicio(){
-        totemList= logicaTotem.obtenerPorUsuario(userSession.getUsuario().getUsername());
+        totemList = logicaTotem.obtenerPorUsuario(userSession.getUsuario().getUsername());
+        totemCampana = logicaTotem.obtenerDeCampana();
+
     }
 //getter and setter
 
+
+    public List<Totem> getTotemCampana() {
+        return totemCampana;
+    }
+
+    public void setTotemCampana(List<Totem> totemCampana) {
+        this.totemCampana = totemCampana;
+    }
 
     public void setTotemSeleccionado(Totem totemSeleccionado) {
         this.totemSeleccionado = totemSeleccionado;

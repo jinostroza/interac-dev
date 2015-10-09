@@ -15,7 +15,7 @@
 
             <ui:fragment rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR')}">
             <li style="padding-right: 860px;margin-right: 213px">
-                <p:commandLink value="Inicio" action="#{facesUtil.redirigir('/plataforma/campana')}" />
+                <p:commandLink immediate="true" value="Inicio" action="#{facesUtil.redirigir('/plataforma/campana')}" />
             </li>
              </ui:fragment>
             <ui:fragment rendered="#{!userSession.estaAutentificado()}">

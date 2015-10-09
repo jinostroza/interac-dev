@@ -50,6 +50,9 @@ public class LogicaTotem {
         return totemDAO.obtenerConUsuario(username);
     }
 
+    @Transactional(readOnly = true)
+    public List<Totem> obtenerDeCampana(){return totemDAO.obtenerConCampana();}
+
 }
 
 

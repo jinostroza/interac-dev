@@ -24,7 +24,14 @@ import java.util.Set;
                                     "LEFT JOIN FETCH e.ubicacion ub " +
                                     "LEFT JOIN FETCH e.usuario u " +
                                      "LEFT JOIN FETCH t.tipototem " +
-                                    "where u.username=:username")
+                                    "where u.username=:username"),
+                @NamedQuery(name="Totem.findByIdWithTotem",
+                            query="SELECT t FROM Totem t " +
+                                  "LEFT JOIN FETCH t.campanaList cl " +
+                                  "LEFT JOIN FETCH t.establecimiento e "
+
+
+                )
 
         }
 )
@@ -35,7 +42,7 @@ public class Totem implements Serializable {
     private Double longi;
 
     // relaciones
-   private List<Campana> campanas;
+   private List<Campana> campanaList;
     private Establecimiento establecimiento;
     private Tipototem tipototem;
 
@@ -50,22 +57,25 @@ public class Totem implements Serializable {
     public void setIdtotem(Integer idtotem) {
         this.idtotem = idtotem;
     }
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "campatotem",
-            inverseJoinColumns = {
-                    @JoinColumn(name = "idcampana", referencedColumnName = "idcampana")
-            },
-            joinColumns = {
-                    @JoinColumn(name = "idtotem" , referencedColumnName = "idtotem")
-            }
-    )
-    public List<Campana> getCampanas() {
-        return campanas;
+
+
+
+  /* @JoinTable(
+                name = "campatotem",
+                inverseJoinColumns = {
+                        @JoinColumn(name = "idcampana", referencedColumnName = "idcampana")
+                },
+                joinColumns = {
+                        @JoinColumn(name = "idtotem" , referencedColumnName = "idtotem")
+                }
+        )*/
+  @ManyToMany(mappedBy = "totemList")
+    public List<Campana> getCampanaList() {
+        return campanaList;
     }
 
-    public void setCampanas(List<Campana> campanas) {
-        this.campanas = campanas;
+    public void setCampanaList(List<Campana> campanaList) {
+        this.campanaList = campanaList;
     }
 
     @Basic

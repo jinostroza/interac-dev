@@ -35,6 +35,15 @@ public class TotemDAO {
         em.remove(totem);
     }
 
+    public List<Totem> obtenerConCampana(){
+        try{
+         return em.createNamedQuery("Totem.findByIdWithTotem").getResultList();
+        }catch (Exception e){
+            return null;
+        }
+
+    }
+
     public List<Totem> obtenerConRelacion(){
        return em.createNamedQuery("Totem.findWithRelationship").getResultList();
     }
