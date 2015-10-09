@@ -33,7 +33,15 @@ import java.util.Set;
                               "INNER JOIN FETCH t.establecimiento e " +
                               "WHERE c.id=:id"
 
-                )
+                ),
+
+                @NamedQuery(name="Campana.findByTotem",
+                            query="SELECT c FROM Campana c " +
+                                  "RIGHT JOIN FETCH c.totemList tl "+
+                                  "RIGHT JOIN FETCH tl.establecimiento e " +
+                                  "RIGHT JOIN FETCH e.usuario u " +
+                                  "where u.username=:username "
+                                   )
 
 
         }

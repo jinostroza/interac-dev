@@ -58,4 +58,14 @@ public class CampanaDAO {
             return null;
         }
     }
+
+    public List<Campana> obtenerLasCampanasDelosTotems(String user){
+        try{
+            return em.createNamedQuery("Campana.findByTotem").setParameter("username",user).getResultList();
+        }catch (Exception e){
+            return null;
+        }
+
+    }
+
 }

@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.List;
 
 /**
@@ -49,8 +47,8 @@ public class mantenedorCliente implements Serializable {
 
 
     public void inicio(){
-        totemList = logicaTotem.obtenerPorUsuario(userSession.getUsuario().getUsername());
-        totemCampana = logicaTotem.obtenerDeCampana();
+        totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
+        campanaList= logicaCampana.obtenerLasCampanasDeLosTotems(userSession.getUsuario().getUsername());
 
     }
 //getter and setter
