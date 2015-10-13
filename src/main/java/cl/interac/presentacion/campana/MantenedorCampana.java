@@ -189,6 +189,10 @@ public class MantenedorCampana implements Serializable {
         return "ver";
 
     }
+    public void calculator(){
+         precio= precio * 3000;
+
+    }
 
 
    //getter and setter
