@@ -70,14 +70,23 @@
                         <div class="col-lg-6 col-md-6 col-xs-6">
                             <p:outputLabel for="inicio" value="Inicio Campaña:" />
                             <p:calendar id="inicio" locale="es" pattern="dd/MM/yyyy"
-                                        value="#{mantenedorCampana.campana.fechaInicio}"/>
+                                        value="#{mantenedorCampana.campana.fechaInicio}">
+                                <p:ajax event="dateSelect" update="inline"/>
+                                <p:ajax event="change" update="inline"/>
+                            </p:calendar>
                         </div>
                         <div class="col-lg-6 col-md-6 col-xs-6">
                             <p:outputLabel for="fin" value="Fin Campaña:" />
-                            <p:calendar id="fin" locale="es" pattern="dd/MM/yyyy"
-                                        value="#{mantenedorCampana.campana.fechaFin}"/>
+                            <p:calendar id="fin"  locale="es" pattern="dd/MM/yyyy"
+                                        value="#{mantenedorCampana.campana.fechaFin}" >
+                                <p:ajax event="dateSelect" update="inline"/>
+                                <p:ajax event="change" update="inline"/>
+                            </p:calendar>
                         </div>
                     </div>
+                    <div class="row">
+                        <p:calendar id="inline"  mindate="#{mantenedorCampana.campana.fechaInicio}" maxdate="#{mantenedorCampana.campana.fechaFin}" mode="inline"/>
+                        </div>
                 </div>
             </div>
 

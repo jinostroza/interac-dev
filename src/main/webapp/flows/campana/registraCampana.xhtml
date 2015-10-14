@@ -82,28 +82,34 @@
                 <div class="ui-grid-row">
                     <ui:fragment
                             rendered="#{userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR')}">
-                        <p:dataTable id="pantallasDT" var="tot" rows="5" paginator="true"
+                        <p:dataTable var="car" value="#{mantenedorCampana.totemCampana}" rows="5" paginator="true"
                                      styleClass="col-lg-10 col-lg-offset-5"
-                                     style="margin-left: 10%;text-align-all: center;"
-                                     value="#{mantenedorCampana.totems}">
-
+                                     style="margin-left: 10%;text-align-all: center;">
                             <f:facet name="header">
-                                Mis Pantallas
+                                Selecione Pantalla Para Desplegar Campañas
                             </f:facet>
-
-                            <p:column styleClass="col-lg-2" headerText="nº Serie">
-                                <h:outputText value="#{tot.noserie}" style="width:50px; height:100px"/>
+                            <p:column style="width:30px;" >
+                                <p:rowToggler />
                             </p:column>
-                            <p:column styleClass="col-lg-2" headerText="Direccion">
-                                <h:outputText value="#{tot.establecimiento.direccion}"/>
+                            <p:column headerText="NO° serie" >
+                                <h:outputText value="#{car.idtotem}" />
                             </p:column>
-                            <p:column styleClass="col-lg-2" headerText="Tipo">
-                                <h:outputText value="#{tot.tipototem.destipo}"/>
-                            </p:column>
-                            <p:column styleClass="col-lg-2" >
-                                <p:commandButton value="Ver" action="#{mantenedorCampana.ver(tot.idtotem)}" icon="fa fa-dollar"  />
+                            <p:column headerText="Estalecimiento">
+                                <h:outputText value="#{car.establecimiento.nombreEstablecimiento}" />
                             </p:column>
 
+                            <p:rowExpansion>
+                                <p:panelGrid>
+                                    <p:dataList var="qwer" value="#{car.campanaList}">
+                                        <p:outputLabel>
+                                            <h:outputText value="#{qwer.fechaInicio}-" />
+                                            <h:outputText value="#{qwer.fechaCreacion}-" />
+                                            <h:outputText value="#{qwer.pasadas}"/>
+                                        </p:outputLabel>
+                                    </p:dataList>
+
+                                </p:panelGrid>
+                            </p:rowExpansion>
                         </p:dataTable>
                     </ui:fragment>
                 </div>

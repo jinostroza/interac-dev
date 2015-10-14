@@ -38,15 +38,26 @@ public class MantenedorCampana implements Serializable {
     // manejo manual
 
     private List<Campana> campanas;
+    private List<Campana> campanaList;
     private List<Totem> totems;
     private Campana campana;
     private Integer precio;
+
+    public List<Campana> getCampanaList() {
+        return campanaList;
+    }
+
+    public void setCampanaList(List<Campana> campanaList) {
+        this.campanaList = campanaList;
+    }
+
     private String retor;
     private String end1;
     private List<Usuario> usuarios;
     private Totem totem;
     private Totem[] totemSelecionados;
     private List<Totem> totemsConrelacion;
+    private List<Totem> totemCampana;
     private Contenido contenido;
     private List<Contenido> contenidos;
     private List<Categoria> categoriaList;
@@ -81,8 +92,11 @@ public class MantenedorCampana implements Serializable {
         totems = logicaTotem.obtenerPorUsuario(userSession.getUsuario().getUsername());
         campanas = logicaCampana.obtenerPorUsuario(userSession.getUsuario().getUsername());
         contenidos = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
+        campanaList= logicaCampana.obtenerLasCampanasDeLosTotems(userSession.getUsuario().getUsername());
+        totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
         simpleModel = new DefaultMapModel();
+
         for(Totem totem: totemsConrelacion) {
             simpleModel.addOverlay(new Marker(new LatLng(totem.getLat(), totem.getLongi()),totem.getEstablecimiento().getNombreEstablecimiento() ));
         }
@@ -317,6 +331,14 @@ public class MantenedorCampana implements Serializable {
 
     public void setContenidosSelecionados(List<Contenido> contenidosSelecionados) {
         this.contenidosSelecionados = contenidosSelecionados;
+    }
+
+    public List<Totem> getTotemCampana() {
+        return totemCampana;
+    }
+
+    public void setTotemCampana(List<Totem> totemCampana) {
+        this.totemCampana = totemCampana;
     }
 }
 
