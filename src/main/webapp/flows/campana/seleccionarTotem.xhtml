@@ -6,6 +6,13 @@
                 template="/templates/default.xhtml">
     <ui:define name="contenido">
         <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
+        <style type="text/css">
+            .ui-datepicker {
+                background: #333;
+                border: 1px solid #555;
+                color: #EEE;
+            }
+        </style>
 
 
         <div id="map"></div>
@@ -67,26 +74,33 @@
 
                 <div class="col-lg-4 col-lg-offset-3 col-md-4 col-md-offset-3">
                     <div class="row">
-                        <div class="col-lg-6 col-md-6 col-xs-6">
+                        <div class="col-lg-4 col-md-4 col-xs-4" >
                             <p:outputLabel for="inicio" value="Inicio Campaña:" />
                             <p:calendar id="inicio" locale="es" pattern="dd/MM/yyyy"
-                                        value="#{mantenedorCampana.campana.fechaInicio}">
+                                        value="#{mantenedorCampana.campana.fechaInicio}" mask="Click Aqui">
                                 <p:ajax event="dateSelect" update="inline"/>
                                 <p:ajax event="change" update="inline"/>
+                                <p:ajax event="dateSelect" listener="#{mantenedorCampana.dateDiff}" />
                             </p:calendar>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-xs-6">
+                        <div class="col-lg-4 col-md-4 col-xs-4 col-lg-offset-4" >
                             <p:outputLabel for="fin" value="Fin Campaña:" />
                             <p:calendar id="fin"  locale="es" pattern="dd/MM/yyyy"
-                                        value="#{mantenedorCampana.campana.fechaFin}" >
+                                        value="#{mantenedorCampana.campana.fechaFin}" mask="Click Aqui">
                                 <p:ajax event="dateSelect" update="inline"/>
                                 <p:ajax event="change" update="inline"/>
+                                <p:ajax event="dateSelect" listener="#{mantenedorCampana.dateDiff}" />
                             </p:calendar>
                         </div>
                     </div>
+                    <br/>
                     <div class="row">
-                        <p:calendar id="inline"  mindate="#{mantenedorCampana.campana.fechaInicio}" maxdate="#{mantenedorCampana.campana.fechaFin}" mode="inline"/>
+                        <br/>
+                        <div class="col-lg-offset-4" >
+                        <p:calendar id="inline" locale="es" mindate="#{mantenedorCampana.campana.fechaInicio}" maxdate="#{mantenedorCampana.campana.fechaFin}" mode="inline"/>
                         </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -98,8 +112,10 @@
                 <div class="col-lg-4 col-md-offset-4">
                     <h5>Pasadas al día</h5>
                     <p:spinner id="ajaxSpinner" min="0" max="2880" stepFactor="360" value="#{mantenedorCampana.precio}">
-                        <p:ajax update="out"  listener="#{mantenedorCampana.calculator}" />
+                        <p:ajax update="out"  event="change" listener="#{mantenedorCampana.calculator}" />
+
                     </p:spinner>
+                    <p:outputLabel id="dias" value="#{mantenedorCampana.dateDiffValue}"></p:outputLabel>
                     <p>Número total de pasadas diarias por anuncio</p>
                 </div>
             </div>

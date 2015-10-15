@@ -65,6 +65,7 @@ public class MantenedorCampana implements Serializable {
     private MapModel simpleModel;
     private Contenido contenidosSelecionado;
     private List<Contenido> contenidosSelecionados;
+    private String dateDiffValue;
 
     @Autowired
     private LogicaCategoria logicaCategoria;
@@ -208,7 +209,40 @@ public class MantenedorCampana implements Serializable {
 
     }
 
+    public void dateDiff() {
 
+
+        if(campana.getFechaInicio()!=null && campana.getFechaFin()!=null)
+        {
+            //HH converts hour in 24 hours format (0-23), day calculation
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+
+            Date d1 = null;
+            Date d2 = null;
+            System.out.println(campana.getFechaInicio());
+            System.out.println(campana.getFechaFin().toString());
+
+            try {
+                d1 = campana.getFechaInicio();
+                d2 = campana.getFechaFin();
+
+
+                //in milliseconds
+                long diff = d2.getTime() - d1.getTime();
+
+                long diffSeconds = diff / 1000 % 60;
+                long diffMinutes = diff / (60 * 1000) % 60;
+                long diffHours = diff / (60 * 60 * 1000) % 24;
+                long diffDays = diff / (24 * 60 * 60 * 1000);
+
+                dateDiffValue=diffDays+1+"";
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
    //getter and setter
     public Categoria getCategoria() {
         return categoria;
@@ -339,6 +373,14 @@ public class MantenedorCampana implements Serializable {
 
     public void setTotemCampana(List<Totem> totemCampana) {
         this.totemCampana = totemCampana;
+    }
+
+    public String getDateDiffValue() {
+        return dateDiffValue;
+    }
+
+    public void setDateDiffValue(String dateDiffValue) {
+        this.dateDiffValue = dateDiffValue;
     }
 }
 
