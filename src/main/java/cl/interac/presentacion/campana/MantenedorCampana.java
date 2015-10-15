@@ -11,6 +11,7 @@ import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
+import org.primefaces.event.map.OverlaySelectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -42,15 +43,6 @@ public class MantenedorCampana implements Serializable {
     private List<Totem> totems;
     private Campana campana;
     private Integer precio;
-
-    public List<Campana> getCampanaList() {
-        return campanaList;
-    }
-
-    public void setCampanaList(List<Campana> campanaList) {
-        this.campanaList = campanaList;
-    }
-
     private String retor;
     private String end1;
     private List<Usuario> usuarios;
@@ -62,10 +54,11 @@ public class MantenedorCampana implements Serializable {
     private List<Contenido> contenidos;
     private List<Categoria> categoriaList;
     private Categoria categoria;
-    private MapModel simpleModel;
+    private MapModel advancedModel;
     private Contenido contenidosSelecionado;
     private List<Contenido> contenidosSelecionados;
     private String dateDiffValue;
+    private Marker marker;
 
     @Autowired
     private LogicaCategoria logicaCategoria;
@@ -96,10 +89,10 @@ public class MantenedorCampana implements Serializable {
         campanaList= logicaCampana.obtenerLasCampanasDeLosTotems(userSession.getUsuario().getUsername());
         totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
-        simpleModel = new DefaultMapModel();
+        advancedModel = new DefaultMapModel();
 
         for(Totem totem: totemsConrelacion) {
-            simpleModel.addOverlay(new Marker(new LatLng(totem.getLat(), totem.getLongi()),totem.getEstablecimiento().getNombreEstablecimiento() ));
+            advancedModel.addOverlay(new Marker(new LatLng(totem.getLat(), totem.getLongi()),totem.getEstablecimiento().getNombreEstablecimiento() ));
         }
 
     }
@@ -197,7 +190,7 @@ public class MantenedorCampana implements Serializable {
         }
     }
     public String ver(int t){
-        System.err.println("Totem:"+ t);
+        System.err.println("Totem:" + t);
         logicaCampana.obtenerPorIdConTotems(t);
 
 
@@ -243,6 +236,13 @@ public class MantenedorCampana implements Serializable {
         }
 
     }
+    public void onMarkerSelect(OverlaySelectEvent event) {
+        marker = (Marker) event.getOverlay();
+    }
+
+    public Marker getMarker() {
+        return marker;
+    }
    //getter and setter
     public Categoria getCategoria() {
         return categoria;
@@ -284,12 +284,12 @@ public class MantenedorCampana implements Serializable {
         this.totemSelecionados = totemSelecionados;
     }
 
-    public MapModel getSimpleModel() {
-        return simpleModel;
+    public MapModel getAdvancedModel() {
+        return advancedModel;
     }
 
-    public void setSimpleModel(MapModel simpleModel) {
-        this.simpleModel = simpleModel;
+    public void setAdvancedModel(MapModel advancedModel) {
+        this.advancedModel = advancedModel;
     }
 
     public Integer getPrecio() {
@@ -381,6 +381,13 @@ public class MantenedorCampana implements Serializable {
 
     public void setDateDiffValue(String dateDiffValue) {
         this.dateDiffValue = dateDiffValue;
+    }
+    public List<Campana> getCampanaList() {
+        return campanaList;
+    }
+
+    public void setCampanaList(List<Campana> campanaList) {
+        this.campanaList = campanaList;
     }
 }
 

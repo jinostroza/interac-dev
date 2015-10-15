@@ -44,8 +44,20 @@
                 <div class="row contenido-mapa">
                     <div id="googleMap" class="col-lg-8 col-md-8 col-xs-8 mapa">
                         <p:gmap id="gmap" center="-33.0447476,-71.6138359" zoom="13"
-                                type="HYBRID" styleClass="col-lg-8 mapa" model="#{mantenedorCampana.simpleModel}"
-                                style="margin-left:-15px ; width:103%;height:420px"/>
+                                type="HYBRID" styleClass="col-lg-8 mapa" model="#{mantenedorCampana.advancedModel}"
+                                style="margin-left:-15px ; width:103%;height:420px">
+                            <p:ajax event="overlaySelect" listener="#{mantenedorCampana.onMarkerSelect}" />
+
+                            <p:gmapInfoWindow id="infoWindow">
+                                <p:outputPanel style="text-align: center; margin: auto">
+
+                                    <p:graphicImage value="#{mantenedorCampana.marker.id}" height="150" />
+                                    <br />
+                                    <h:outputText value="#{mantenedorCampana.marker.title}" />
+
+                                </p:outputPanel>
+                            </p:gmapInfoWindow>
+                        </p:gmap>
                     </div>
                     <p:selectManyMenu styleClass="col-lg-4 col-md-4 col-xs-4 listado-rubros" required="true"
                                       requiredMessage="seleccione una Pantalla"
@@ -80,7 +92,7 @@
                                         value="#{mantenedorCampana.campana.fechaInicio}" mask="Click Aqui">
                                 <p:ajax event="dateSelect" update="inline"/>
                                 <p:ajax event="change" update="inline"/>
-                                <p:ajax event="dateSelect" listener="#{mantenedorCampana.dateDiff}" />
+                                <p:ajax event="dateSelect" listener="#{mantenedorCampana.dateDiff}" update="dias" />
                             </p:calendar>
                         </div>
                         <div class="col-lg-4 col-md-4 col-xs-4 col-lg-offset-4" >
@@ -89,7 +101,7 @@
                                         value="#{mantenedorCampana.campana.fechaFin}" mask="Click Aqui">
                                 <p:ajax event="dateSelect" update="inline"/>
                                 <p:ajax event="change" update="inline"/>
-                                <p:ajax event="dateSelect" listener="#{mantenedorCampana.dateDiff}" />
+                                <p:ajax event="dateSelect" listener="#{mantenedorCampana.dateDiff}" update="dias"/>
                             </p:calendar>
                         </div>
                     </div>
