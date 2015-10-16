@@ -101,11 +101,18 @@
                             <p:rowExpansion>
                                 <p:panelGrid>
                                     <p:dataList var="qwer" value="#{car.campanaList}">
-                                        <p:outputLabel>
-                                            <h:outputText value="#{qwer.fechaInicio}-" />
-                                            <h:outputText value="#{qwer.fechaCreacion}-" />
-                                            <h:outputText value="#{qwer.pasadas}"/>
-                                        </p:outputLabel>
+
+                                            <p:graphicImage style="width: 80px;height: 120px" value="http://g01.a.alicdn.com/kf/HTB1UZdtIXXXXXcSXpXXq6xXFXXXH/42-inch-TFT-LED-industrial-FULL-HD-vertical-screen-floor-stand-memory-card-advertising-player.jpg"></p:graphicImage>
+                                            <h4> #{qwer.fechaInicio} </h4>
+                                            <p>Fecha Inicio</p>
+                                            <h4>#{qwer.fechaFin}"</h4>
+                                            <p>Fecha Termino</p>
+                                            <h4>#{qwer.pasadas}</h4>
+                                            <p>nº Pasadas</p>
+                                        <p:commandButton value="activar"></p:commandButton>
+
+                                        <p:commandButton value="rechazar"></p:commandButton>
+
                                     </p:dataList>
 
                                 </p:panelGrid>

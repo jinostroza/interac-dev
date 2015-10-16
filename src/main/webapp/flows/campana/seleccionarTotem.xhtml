@@ -14,8 +14,6 @@
             }
         </style>
 
-
-        <div id="map"></div>
         <h:form style="width: 100%">
             <div class="container contenedor" id="myInterac">
                 <header>
@@ -41,39 +39,43 @@
                     </div>
                     <div class="col-lg-3"></div>
                 </div>
-                <div class="row contenido-mapa">
-                    <div id="googleMap" class="col-lg-8 col-md-8 col-xs-8 mapa">
-                        <p:gmap id="gmap" center="-33.0447476,-71.6138359" zoom="13"
-                                type="HYBRID" styleClass="col-lg-8 mapa" model="#{mantenedorCampana.advancedModel}"
-                                style="margin-left:-15px ; width:103%;height:420px">
-                            <p:ajax event="overlaySelect" listener="#{mantenedorCampana.onMarkerSelect}" />
+                <div class="row">
 
-                            <p:gmapInfoWindow id="infoWindow">
-                                <p:outputPanel style="text-align: center; margin: auto">
+                        <p:dataScroller styleClass="col-lg-8 col-lg-offset-4" value="#{mantenedorCampana.totemCampana}" var="totem" chunkSize="5">
+                            <f:facet name="header">
+                                Interac Plays
+                            </f:facet>
 
-                                    <p:graphicImage value="#{mantenedorCampana.marker.id}" height="150" />
-                                    <br />
-                                    <h:outputText value="#{mantenedorCampana.marker.title}" />
+                            <f:facet name="loader">
+                                <p:commandButton type="button" value="ver mas" icon="ui-icon-circle-triangle-s"/>
+                            </f:facet>
 
+                            <h:panelGrid columns="6" style="width:100%" >
+                                <p:selectBooleanCheckbox value="#{mantenedorCampana.totemSelecionados}" />
+                                <p:graphicImage style="width: 80px;height: 120px" value="http://g01.a.alicdn.com/kf/HTB1UZdtIXXXXXcSXpXXq6xXFXXXH/42-inch-TFT-LED-industrial-FULL-HD-vertical-screen-floor-stand-memory-card-advertising-player.jpg"></p:graphicImage>
+
+                                <p:outputPanel>
+                                    <h:panelGrid columns="6" cellpadding="1" >
+                                        <h4>Establecimiento</h4>
+                                        <p>#{totem.establecimiento.nombreEstablecimiento}</p>
+                                        <p><p:rating value="#{5}" readonly="true" /></p>
+                                        <h4>Tipo Pantalla:</h4>
+                                        <p>#{totem.tipototem.idtipo}</p>
+                                        <p:commandButton styleClass="ui-li-aside" icon="ui-icon-pin-s" value="ver" type="button" style="width: 30px" onclick="PF('dlg2').show();"></p:commandButton>
+                                        <p:dialog header="Trabajos en Progreso" widgetVar="dlg2" modal="true" height="500" width="600">
+                                            <p:gmap id="gmap" center="-33.0447476,-71.6138359" zoom="13"
+                                                    type="HYBRID"  model="#{mantenedorCampana.advancedModel}"
+                                                    style="width:580px;height:420px">
+                                            </p:gmap>
+                                        </p:dialog>
+                                    </h:panelGrid>
                                 </p:outputPanel>
-                            </p:gmapInfoWindow>
-                        </p:gmap>
-                    </div>
-                    <p:selectManyMenu styleClass="col-lg-4 col-md-4 col-xs-4 listado-rubros" required="true"
-                                      requiredMessage="seleccione una Pantalla"
-                                      value="#{mantenedorCampana.totemSelecionados}" converter="entityConverter"
-                                      var="t" filter="true" filterMatchMode="contains" showCheckbox="true">
-                        <f:selectItems
-                                value="#{mantenedorCampana.totemsConrelacion}"
-                                var="tot" itemLabel="#{tot.establecimiento.nombreEstablecimiento}" itemValue="#{tot}"/>
-
-                        <p:column>
-                            <h:outputText value="#{t.establecimiento.nombreEstablecimiento}"/>
-                        </p:column>
-                    </p:selectManyMenu>
+                            </h:panelGrid>
+                        </p:dataScroller>
 
 
-                </div>
+
+            </div>
             </div>
             <br></br>
             <div class="row" style="margin-left: 1%">
@@ -127,18 +129,26 @@
                         <p:ajax update="out"  event="change" listener="#{mantenedorCampana.calculator}" />
 
                     </p:spinner>
-                    <p:outputLabel id="dias" value="#{mantenedorCampana.dateDiffValue}"></p:outputLabel>
+
                     <p>Número total de pasadas diarias por anuncio</p>
                 </div>
             </div>
             <div class="row datos-campania" style="margin-left: 1%"><h3>Detalles de planificación</h3>
                 <div class="col-lg-4">
-                    <span class="datos-campania-titulo">Costo cada 10 segundos</span>
-                    <span class="datos-campania-texto">100 Pesos</span>
+                    <span class="datos-campania-titulo">Total dias</span>
+                    <h:outputLabel id="dias" styleClass="datos-campania-texto">
+
+                        <h:outputText  value="#{mantenedorCampana.dateDiffValue}" />
+
+                    </h:outputLabel>
                 </div>
                 <div class="col-lg-4">
-                    <span class="datos-campania-titulo">Duración anuncios</span>
-                    <span class="datos-campania-texto">10 segundos</span>
+                    <span class="datos-campania-titulo">Total de Pasadas</span>
+                    <h:outputLabel id="pasadas" styleClass="datos-campania-texto">
+                        <h:outputText value="" />
+                        <h:outputText value="#{mantenedorCampana.precio}" />
+
+                    </h:outputLabel>
                 </div>
                 <div  class="col-lg-4 pagar-campania">
                     <span class="datos-campania-titulo">Costo de pasadas</span>
