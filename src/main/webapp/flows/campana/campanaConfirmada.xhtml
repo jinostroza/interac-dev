@@ -1,0 +1,111 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/logInTemplate.xhtml">
+
+    <ui:define name="contenido">
+
+
+        <h:outputStylesheet>
+            body {
+                background-color: #E52620;
+            }
+        </h:outputStylesheet>
+          <h:form>
+              <div class="login-header"></div>
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="row" id="cuadro-registro">
+
+
+                        <div class="col-md-6 col-md-offset-2" >
+                            <br/>
+                            <br/>
+                            <ui:fragment rendered="#{mantenedorCampana.totemSelecionados != null }" >
+                            <h3>!Se ha creado tu campaña!</h3>
+                            <p>has subido tu publicidad exitosamente</p>
+
+                                <p:panelGrid columns="2">
+                                    <f:facet name="header">
+                                        <p:graphicImage url="ftp://54.172.118.246/#{mantenedorCampana.campana.contenido.path}" style="width:100px; height:200px ;" />
+                                    </f:facet>
+
+                                    <h:outputText value="fecha Creacion:" />
+                                    <h:outputText value="#{mantenedorCampana.campana.fechaCreacion}" >
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+
+                                    <h:outputText value="fecha inicio:" />
+                                    <h:outputText value="#{mantenedorCampana.campana.fechaInicio}" >
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+
+                                    <h:outputText value="fecha fin:" />
+                                    <h:outputText value="#{mantenedorCampana.campana.fechaFin}" >
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+
+                                    <h:outputText value="Pasadas:" />
+                                    <h:outputText value="#{mantenedorCampana.campana.pasadas}" />
+                                </p:panelGrid>
+                            <p:dataList value="#{mantenedorCampana.totemSelecionados}" var="car" type="ordered">
+                                <f:facet name="header">Tu anuncio se publicara En :</f:facet>
+                               Pantalla: #{car.noserie}-#{car.establecimiento.nombreEstablecimiento}
+                            </p:dataList>
+                            </ui:fragment>
+
+                            <ui:fragment rendered="#{mantenedorCampana.totemSelecionados == null }" >
+                            <p:panelGrid columns="2">
+                                <f:facet name="header">
+                                    <p:graphicImage url="ftp://54.172.118.246/#{mantenedorCampana.campana.contenido.path}" style="width:100px; height:200px ;" />
+                                </f:facet>
+
+                                <h:outputText value="fecha Creacion:" />
+                                <h:outputText value="#{mantenedorCampana.campana.fechaCreacion}" >
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+
+                                <h:outputText value="fecha inicio:" />
+                                <h:outputText value="#{mantenedorCampana.campana.fechaInicio}" >
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+
+                                <h:outputText value="fecha fin:" />
+                                <h:outputText value="#{mantenedorCampana.campana.fechaFin}" >
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+
+                                <h:outputText value="Pasadas:" />
+                                <h:outputText value="#{mantenedorCampana.campana.pasadas}" />
+                            </p:panelGrid>
+                            </ui:fragment>
+
+                            <div class="row" style="margin-top: 20%">
+
+                                <p:commandButton value="Volver Inicio" styleClass="btn btn-interac" action="fin"></p:commandButton>
+                                <h:panelGrid styleClass="col-lg-3" columns="1" cellpadding="5">
+
+                                    <p:commandButton value="Pagar" type="button" styleClass="btn btn-interac" onclick="PF('dlg2').show();" />
+                                </h:panelGrid>
+
+                                <p:dialog header="Trabajos en Progreso" widgetVar="dlg2" modal="true" height="500">
+                                    <h:outputText value="Estamos Trabajando en la Integracion de :" />
+                                    <h:graphicImage url="http://www.biocartuning.cl/catalogo/img/p/591-1573-large.jpg"></h:graphicImage>
+                                </p:dialog>
+                            </div>
+                        </div>
+                        <div class="btn-register_ confirma-campana col-lg-4 col-md-4 col-xs-4 " ></div>
+                    </div>
+                </div>
+          </div>
+            <div class="push">
+            </div>
+
+        </h:form>
+        <ui:include src="/templates/includes/Footer.xhtml"/>
+    </ui:define>
+</ui:composition>

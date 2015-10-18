@@ -2,26 +2,55 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+        >
 <f:view>
 
 
-    <p:outputPanel styleClass="user-menu pull-right" rendered="#{userSession.usuario != null}">
+    <p:outputPanel styleClass="user-menu pull-right">
         <ul>
-            <li>
-                <p:outputLabel value="#{userSession.usuario.username}" />
-            </li>
 
-            <li>
-                <p:commandLink value="Mis Campañas" action="#{facesUtil.redirigir('/plataforma/campana')}"/>
+
+            <ui:fragment rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR')}">
+            <li style="padding-right: 860px;margin-right: 213px">
+                <p:commandLink immediate="true" value="Inicio" action="#{facesUtil.redirigir('/plataforma/campana')}" />
             </li>
-            <li>
-                <p:commandLink value="Mis Anuncios" action="#{facesUtil.redirigir('/plataforma/creacion')}"/>
-            </li>
-            <li>
-                <p:commandLink value="Mantenedor" action="#{facesUtil.redirigir('/plataforma/mantencion')}"/>
-            </li>
-            <li><a href="/logOut.jsf">Salir</a></li>
+             </ui:fragment>
+            <ui:fragment rendered="#{!userSession.estaAutentificado()}">
+                <li>
+                    <p:commandLink value="Iniciar Sesion" action="#{facesUtil.redirigir('/logIn.jsf')}"/>
+                </li>
+            </ui:fragment>
+
+            <ui:fragment rendered="#{userSession.tienePermiso('ADMINISTRADOR')}">
+                <li>
+                    <p:commandLink value="Mis Pantallas" action="#{facesUtil.redirigir('/plataforma/cliente')}"/>
+                </li>
+            </ui:fragment>
+
+            <ui:fragment rendered="#{!userSession.estaAutentificado()}">
+                <li>
+                    <p:commandLink value="Registrar" action="#{facesUtil.redirigir('/plataforma/registro')}"/>
+                </li>
+            </ui:fragment>
+
+            <ui:fragment rendered="#{userSession.tienePermiso('ADMINISTRADOR')}">
+                <li>
+                    <p:commandLink value="Mis Contenidos" action="#{facesUtil.redirigir('/plataforma/contenidos')}"/>
+                </li>
+            </ui:fragment>
+
+            <ui:fragment rendered="#{userSession.tienePermiso('ADMINISTRADOR')}">
+                <li>
+                    <p:commandLink value="Mantenedor" action="#{facesUtil.redirigir('/plataforma/mantencion')}"/>
+                </li>
+            </ui:fragment>
+
+            <ui:fragment rendered="#{userSession.estaAutentificado()}">
+                <li><a href="/interac/logOut" >Cerrar Sesion</a></li>
+            </ui:fragment>
         </ul>
     </p:outputPanel>
 </f:view>

@@ -1,0 +1,81 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+
+    <h3>Perfiles</h3>
+    <h:form>
+        <p:dataTable id="usuarios" value="#{mantenedorUsuarios.usuarios}" filteredValue="#{mantenedorUsuarios.usuariosFiltro}" var="usuario">
+            <p:column headerText="Usuario" filterBy="#{usuario.username}">
+                #{usuario.username}
+            </p:column>
+            <p:column >
+                #{usuario.correo}
+            </p:column>
+            <p:column headerText="rol" filterBy="#{usuario.rol.namerol}">
+                #{usuario.rol.namerol}
+            </p:column>
+            <p:column >
+                <h:commandButton icon="ui-icon-key" styleClass="form-control" value="volver" action="#{facesUtil.redirigir('/plataforma/campana')}"/>
+            </p:column>
+            <p:column>
+                <h:commandButton id="modifica" value="Modificar"  styleClass="form-control" type="button">
+                    <p:overlayPanel id="editPanel" for="modifica" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
+                        <p:outputPanel>
+                            <h:outputLabel value="nombre de usuario"/>
+                            <h:inputText styleClass="form-control"
+                                         value="#{usuario.username}"/>
+
+                            <h:outputLabel value="Correo"/>
+                            <h:inputText styleClass="form-control"
+                                         value="#{usuario.correo}" />
+
+                            <h:inputText value="contraseña"/>
+                            <h:outputLabel value="#{usuario.password}" />
+
+                            <h:outputLabel value="Rol"/>
+                            <h:selectOneMenu class="form-control" value="#{mantenedorUsuarios.rol}"
+                                             converter="entityConverter">
+                                <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
+                                <f:selectItems value="#{mantenedorUsuarios.roles}" var="erRol"
+                                               itemLabel="#{erRol.namerol}"/>
+                            </h:selectOneMenu>
+                            <br/>
+
+                        </p:outputPanel>
+                    </p:overlayPanel>
+                </h:commandButton>
+
+            </p:column>
+
+        </p:dataTable>
+
+        <h:commandButton id="aggUsuario" value="agregar"  styleClass="form-control" type="button">
+            <p:overlayPanel id="agregPanel" for="aggUsuario" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
+                <p:outputPanel>
+                    <h:outputLabel value="usuario"/>
+                    <h:inputText styleClass="form-control"
+                                 value="#{mantenedorUsuarios.usuario.username}"/>
+                    <h:inputText styleClass="form-control"
+                            value="#{mantenedorUsuarios.usuario.password}"/>
+
+                    <h:outputLabel value="Rol"/>
+                    <h:selectOneMenu class="form-control" value="#{mantenedorUsuarios.usuario.rol}"
+                                     converter="entityConverter">
+                        <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Rol --"/>
+                        <f:selectItems value="#{mantenedorUsuarios.roles}" var="perfi"
+                                       itemLabel="#{perfi.namerol}"/>
+                    </h:selectOneMenu>
+                    <br/>
+                    <p:commandButton id="aggBTN" for="aggUsuario" value="guardar"
+                                     action="#{mantenedorUsuarios.guardarUsuario()}"/>
+                </p:outputPanel>
+            </p:overlayPanel>
+        </h:commandButton>
+
+
+    </h:form>
+
+        </ui:composition>

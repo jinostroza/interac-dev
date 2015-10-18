@@ -6,27 +6,26 @@
                 template="/templates/default.xhtml">
     <ui:define name="contenido">
         <h3 style="margin-top:0">Configuraciones de la empresa</h3>
-        <h:form>
-            <p:tabView dynamic="true" cache="true">
-                <p:ajax event="tabChange" listener="#{mantenedorMantencion.cambioPestania}"></p:ajax>
+        <h:form id="frmMant">
+            <p:tabView id="tabsMant" dynamic="true" cache="true">
 
-                <p:tab title="Campaña">
-                    Campaña campañosa
+                <p:tab title="Categorias">
+                    <ui:include src="campana/mantenedorCategoria.xhtml"/>
+                </p:tab>
+                <p:tab title="Contenido">
+                    <ui:include src="contenidos/mantenedorContenido.xhtml"/>
+                </p:tab>
+                <p:tab title="Totem">
+                    <ui:include src="totem/totems.xhtml"/>
                 </p:tab>
                 <p:tab title="Establecimiento">
-                    <!-- esto de que me guste el webeo xD -->
                     <ui:include src="establecimientos/mantenedorEstablecimiento.xhtml"/>
                 </p:tab>
-
-                <p:tab title="Totem's">
-                    Tillible totem
-                </p:tab>
-
-                <p:tab title="Anuncios">
-                    un verano naranja... pa pa pah!
+                <p:tab title="Perfiles">
+                    <ui:include src="perfiles/mantenedorPerfiles.xhtml"/>
                 </p:tab>
             </p:tabView>
-            <h:commandButton styleClass="btn"/>
+
         </h:form>
     </ui:define>
 

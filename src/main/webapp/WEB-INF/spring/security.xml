@@ -15,7 +15,8 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
                    access-denied-page="/logIn.jsf">
 
         <security:form-login login-page="/logIn.jsf" always-use-default-target="true" default-target-url="/inicio.jsf"/>
-        <security:logout delete-cookies="true" invalidate-session="true" logout-url="/logOut.jsf"/>
+
+
 
         <security:session-management invalid-session-url="/logIn.jsf">
             <security:concurrency-control max-sessions="1"/>
@@ -24,7 +25,18 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
         <security:form-login username-parameter="loginEmail" password-parameter="loginPassword"
                              always-use-default-target="false"/>
 
-        <security:intercept-url pattern="/plataforma/**" access="hasRole('USUARIO_WEB')"/>
+        <security:logout invalidate-session="true"
+                         delete-cookies="true"
+                         logout-success-url="/logIn.jsf"
+                         logout-url="/logOut"/>
+
+
+        <security:intercept-url pattern="logIn.jsf" access="permitAll"/>
+
+        <security:intercept-url pattern="plataforma/campana/**" access="hasRole('ANUNCIANTE')"/>
+        <security:intercept-url pattern="plataforma/mantencion/**" access="hasRole('ADMINISTRADOR')"/>
+        <security:intercept-url pattern="plataforma/anunciante/**" access="hasRole('ANUNCIANTE')"/>
+        <security:intercept-url pattern="plataforma/cliente/**" access="hasRole('CLIENTE')"/>
 
     </security:http>
     <security:authentication-manager alias="authenticationManager">

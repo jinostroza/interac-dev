@@ -7,7 +7,6 @@ package cl.interac.negocio;
 
 
 import cl.interac.dao.CampanaDAO;
-import cl.interac.entidades.Anuncio;
 import cl.interac.entidades.Campana;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -34,13 +33,33 @@ public class LogicaCampana {
         campanaDAO.guardar(campana);
     }
 
-   @Transactional(readOnly = false)
+    @Transactional(readOnly = false)
     public void eliminarCampana(Campana campana){
-       campanaDAO.eliminarCampana(campana);
-   }
+        campanaDAO.eliminarCampana(campana);
+    }
 
     @Transactional(readOnly = true)
-    public List<Campana> obtenerTodosConRelaciones() {
-        return campanaDAO.obtenerTodosConRelaciones();
+    public List<Campana> obtenerPorUsuario(String user){
+        return  campanaDAO.obtenerCampanaPorUsuario(user);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Campana> obtenerTodoLosContenidos(){
+        return campanaDAO.obtenerTodasLosContenidos();
+    }
+
+    @Transactional(readOnly = true)
+    public Campana obtenerPorId(Integer id) {
+        return campanaDAO.obtenerPorId(id);
+    }
+
+    @Transactional(readOnly = true)
+    public Campana obtenerPorIdConTotems(Integer id) {
+        return campanaDAO.obtenerPorIdConTotems(id);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Campana> obtenerLasCampanasDeLosTotems(String user){
+        return campanaDAO.obtenerLasCampanasDelosTotems(user);
     }
 }

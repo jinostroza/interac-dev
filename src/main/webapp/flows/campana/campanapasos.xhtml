@@ -1,0 +1,56 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:div="http://www.springframework.org/tags/form"
+                template="/templates/default.xhtml">
+
+    <ui:define name="contenido">
+        <h:form>
+        <div class="container" id="myInterac">
+            <header>
+                <h2>Sube tu publicidad en 4 sencilllos pasos</h2>
+            </header>
+            <div class="row">
+                <h:commandLink class="col-lg-3" action="regisCamp">
+                    <div class="dashbox">
+                        <div class="number-seccion"><span class="number-circulo">1</span></div>
+                        <h:outputLabel value="Elegir Contenido" styleClass="dashbox-header"  />
+                        <div class="button_ elegir-contenido"></div>
+                        <p> Elige el contenido para<br/>mostrar en tu pantalla </p>
+                    </div>
+                </h:commandLink>
+                <h:commandLink class="col-lg-3">
+                    <div class="dashbox">
+                        <div class="number-seccion"><span class="number-circulo">2</span></div>
+                        <h:outputLabel value="Seleccionar Pantalla" styleClass="dashbox-header" />
+                        <div class="button_ seleccionar-pantallas"></div>
+                        <p> Escoge aqui uno de<br/>los anuncios ya creados </p>
+                    </div>
+                </h:commandLink>
+                <h:commandLink class="col-lg-3" >
+                    <div class="dashbox">
+                        <div class="number-seccion"><span class="number-circulo">3</span></div>
+                        <h:outputLabel value="Planificar campaña" styleClass="dashbox-header" />
+                        <div class="button_ planificar-campana"></div>
+                        <p> Planifica según<br/>dias, semanas o meses </p>
+                    </div>
+                </h:commandLink>
+                <h:commandLink class="col-lg-3" >
+                    <div class="dashbox">
+                        <div class="number-seccion"><span class="number-circulo">4</span></div>
+                        <h:outputLabel value="Confirmar campaña" styleClass="dashbox-header" />
+                        <div class="button_ pagar"></div>
+                        <p> Obten un resumen de tu campaña para contratarla </p>
+                    </div>
+                </h:commandLink>
+            </div>
+            <br/>
+            <br/>
+            <p>Sigue estos simples pasos para crear tu campaña publicitaria en Interac. En caso de dudas o consultas sobre el sistema de pago, escribenos a <strong>contacto@interac.cl</strong> y te responderemos a la brevedad.</p>
+            <div class="push"></div>
+        </div>
+    </h:form>
+    </ui:define>
+</ui:composition>

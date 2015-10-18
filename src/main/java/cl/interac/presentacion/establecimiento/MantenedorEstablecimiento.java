@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.Serializable;
 import java.util.List;
 
@@ -18,21 +19,16 @@ import java.util.List;
  * Created by Pedro Pablo on 22-05-2015.
  */
 @Component
-@Scope("prototype")
+@Scope("view")
 public class MantenedorEstablecimiento implements Serializable {
-
-    public enum TipoOperacion {
-        INSERTAR,
-        EDITAR,
-    }
-
     //manejo manual
-    private TipoOperacion operacion;
     private List<Establecimiento> establecimientoList;
+    private List<Establecimiento> establecimientoConfiltro;
     private List<Totem> totems;
     private List<Ubicacion> ubicaciones;
     private List<Usuario> usuario;
-    private String text1;
+
+    private int idestable;
     private Establecimiento establecimiento;
     private Ubicacion ubicacion;
 
@@ -47,46 +43,33 @@ public class MantenedorEstablecimiento implements Serializable {
     @Autowired
     private LogicaTotem logicaTotem;
 
-    public boolean esEditar() {
-        return operacion == TipoOperacion.EDITAR;
-    }
 
-    public boolean esAgregar() {
-        return operacion == TipoOperacion.INSERTAR;
-    }
-
-    public void buscar(String text1) {
-        logicaEstablecimiento.buscar(text1);
-    }
-
+    @PostConstruct
     public void inicio() {
-        establecimientoList = logicaEstablecimiento.obtenerTodos();
+        establecimientoList = logicaEstablecimiento.obtenerConRelacion();
         ubicaciones = logicaUbicacion.obtenerTodas();
         establecimiento = new Establecimiento();
     }
 
-   public void eliminar(Establecimiento establecimiento){
-       logicaEstablecimiento.eliminar(establecimiento);
-   }
-
-
-    public MantenedorEstablecimiento() {
-        new Establecimiento();
+    public void eliminar(Establecimiento establecimiento){
+        logicaEstablecimiento.eliminar(establecimiento);
     }
 
     public void agregarEstablecimiento() {
-        operacion = TipoOperacion.INSERTAR;
         establecimiento.setUsuario(userSession.getUsuario());
         establecimiento.setUbicacion(ubicacion);
         logicaEstablecimiento.guardar(establecimiento);
+        establecimientoList = logicaEstablecimiento.obtenerConRelacion();
 
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el establecimiento [" + establecimiento.getNombreEstablecimiento() + "]");
+    }
 
-        if (esEditar()) {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el establecimiento [" + establecimiento.getNombreEstablecimiento() + "]");
-        } else {
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el establecimiento [" + establecimiento.getNombreEstablecimiento() + "]");
-        }
+    public void editarEstablecimiento(Establecimiento e) {
+        establecimiento = e;
+        logicaEstablecimiento.guardar(establecimiento);
+        establecimientoList = logicaEstablecimiento.obtenerConRelacion();
 
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el establecimiento [" + establecimiento.getNombreEstablecimiento() + "]");
     }
 
     public List<Totem> getTotems() {
@@ -121,15 +104,6 @@ public class MantenedorEstablecimiento implements Serializable {
         this.ubicacion = ubicacion;
     }
 
-
-    public TipoOperacion getOperacion() {
-        return operacion;
-    }
-
-    public void setOperacion(TipoOperacion Operacion) {
-        operacion = Operacion;
-    }
-
     public Establecimiento getEstablecimiento() {
         return establecimiento;
     }
@@ -146,11 +120,20 @@ public class MantenedorEstablecimiento implements Serializable {
         this.establecimientoList = establecimientoList;
     }
 
-    public String getText1() {
-        return text1;
+    public List<Establecimiento> getEstablecimientoConfiltro() {
+        return establecimientoConfiltro;
     }
 
-    public void setText1(String text1) {
-        this.text1 = text1;
+    public void setEstablecimientoConfiltro(List<Establecimiento> establecimientoConfiltro) {
+        this.establecimientoConfiltro = establecimientoConfiltro;
+    }
+
+    public int getIdestable() {
+        return idestable;
+    }
+
+    public void setIdestable(int idestable) {
+        this.idestable = idestable;
     }
 }
+

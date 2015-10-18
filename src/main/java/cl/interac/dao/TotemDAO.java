@@ -35,4 +35,21 @@ public class TotemDAO {
         em.remove(totem);
     }
 
+    public List<Totem> obtenerConCampana(String user){
+        try{
+         return em.createNamedQuery("Totem.findByIdWithTotem").setParameter("username",user).getResultList();
+        }catch (Exception e){
+            return null;
+        }
+
+    }
+
+    public List<Totem> obtenerConRelacion(){
+       return em.createNamedQuery("Totem.findWithRelationship").getResultList();
+    }
+
+    public List<Totem> obtenerConUsuario(String username){
+        return em.createNamedQuery("Totem.findbyUsuario").setParameter("username",username).getResultList();
+
+    }
 }

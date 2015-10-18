@@ -6,3 +6,4 @@
 target/
 *.iml
 /src/main/Diseño Plataforma Interac
+/**/*/node_modules

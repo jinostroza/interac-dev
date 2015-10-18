@@ -3,7 +3,9 @@ package cl.interac.entidades;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Jorge on 25-04-15.
@@ -12,21 +14,50 @@ import java.util.List;
 @NamedQueries(
         {
                 @NamedQuery(name = "Campana.findAll", query = "SELECT c FROM Campana c "),
+                @NamedQuery(name ="Campana.findBycontenido",
+                           query="SELECT c FROM Campana c  " +
+                                   "INNER JOIN FETCH c.contenido co " ),
+
+                @NamedQuery(name="Campana.findByUsuario",query = "SELECT c FROM Campana c " +
+                        "INNER JOIN FETCH c.contenido co " +
+                        "INNER JOIN FETCH co.usuario u " +
+                        "WHERE u.username=:username "),
                 @NamedQuery(
-                        name = "Campana.findAllWithRelationships",
-                        query = "SELECT c FROM Campana c " +
-                                "INNER JOIN FETCH c.totem t " +
-                                "INNER JOIN FETCH c.cliente cli"
-                )
+                        name = "Campana.findByIdWithTotems",
+                        query = "SELECT c FROM Campana c INNER JOIN FETCH c.totemList WHERE c.id = :id"
+                ),
+                @NamedQuery(
+                        name="Campana.findByTotemsAndCampana",
+                        query="SELECT c FROM Campana c " +
+                              "INNER JOIN FETCH c.totemList t " +
+                              "INNER JOIN FETCH t.establecimiento e " +
+                              "WHERE c.id=:id"
+
+                ),
+
+                @NamedQuery(name="Campana.findByTotem",
+                            query="SELECT c FROM Campana c " +
+                                  "RIGHT JOIN FETCH c.totemList tl "+
+                                  "RIGHT JOIN FETCH tl.establecimiento e " +
+                                  "RIGHT JOIN FETCH e.usuario u " +
+                                  "where u.username=:username "
+                                   )
+
+
         }
 )
 public class Campana implements Serializable {
     private Integer idcampana;
-    private Date fechaspasadas;
+    private Date fechaCreacion;
+    private Date fechaFin;
+    private Date fechaInicio;
+    private Integer pasadas;
+    private String nombrecampana;
+
+
     // relaciones
-    private List<Anuncio> anuncios;
-    private Totem totem;
-    private Usuario cliente;
+    private Contenido contenido;
+    private List<Totem> totemList;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,43 +70,81 @@ public class Campana implements Serializable {
         this.idcampana = idcampana;
     }
 
+    @Temporal(TemporalType.DATE)
+    @Column(name = "fechacreacion")
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "fechafin")
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+    @Temporal(TemporalType.DATE)
+    @Column(name = "fechainicio")
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
     @Basic
-    @Column(name = "fechaspasadas")
-    public Date getFechaspasadas() {
-        return fechaspasadas;
+    @Column(name = "pasadas")
+    public Integer getPasadas() {
+        return pasadas;
     }
 
-    public void setFechaspasadas(Date fechaspasadas) {
-        this.fechaspasadas = fechaspasadas;
+    public void setPasadas(Integer pasadas) {
+        this.pasadas = pasadas;
     }
 
-    @OneToMany(mappedBy = "campana")
-    public List<Anuncio> getAnuncios() {
-        return anuncios;
+    @Basic
+    @Column(name="nombrecampana")
+    public String getNombrecampana() {
+        return nombrecampana;
     }
 
-    public void setAnuncios(List<Anuncio> anuncios) {
-        this.anuncios = anuncios;
+    public void setNombrecampana(String nombrecampana) {
+        this.nombrecampana = nombrecampana;
     }
 
-    @JoinColumn(name = "idtotem", referencedColumnName = "idtotem")
-    @ManyToOne(fetch = FetchType.LAZY)
-    public Totem getTotem() {
-        return totem;
+
+    @JoinColumn(name="idcontenido",referencedColumnName = "idcontenido")
+    @ManyToOne(fetch=FetchType.LAZY)
+    public Contenido getContenido() {
+        return contenido;
     }
 
-    public void setTotem(Totem totem) {
-        this.totem = totem;
+    public void setContenido(Contenido contenido) {
+        this.contenido = contenido;
     }
 
-    @JoinColumn(name = "idcliente", referencedColumnName = "idusuario")
-    @ManyToOne(fetch = FetchType.LAZY)
-    public Usuario getCliente() {
-        return cliente;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "campatotem",
+            inverseJoinColumns = {
+                    @JoinColumn(name = "idtotem", referencedColumnName = "idtotem")
+            },
+            joinColumns = {
+                    @JoinColumn(name = "idcampana" , referencedColumnName = "idcampana")
+            }
+    )
+    public List<Totem> getTotemList() {
+        return totemList;
     }
 
-    public void setCliente(Usuario usuario) {
-        this.cliente = usuario;
+    public void setTotemList(List<Totem> totemList) {
+        this.totemList = totemList;
     }
 
     @Override

@@ -22,6 +22,7 @@
         <param-value>.xhtml</param-value>
     </context-param>
 
+
     <!--Cargamos Spring Security-->
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
@@ -78,7 +79,12 @@
 
     <context-param>
         <param-name>primefaces.UPLOADER</param-name>
-        <param-value>auto|native|commons</param-value>
+        <param-value>commons</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>blitzer</param-value>
     </context-param>
 
     <filter>
@@ -87,11 +93,6 @@
         <init-param>
             <param-name>thresholdSize</param-name>
             <param-value>512000</param-value>
-        </init-param>
-        <init-param>
-            <param-name>uploadDirectory</param-name>
-            <param-value>/var/bcom/temp</param-value>
-
         </init-param>
     </filter>
     <filter-mapping>

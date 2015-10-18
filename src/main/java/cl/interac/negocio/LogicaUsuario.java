@@ -1,14 +1,21 @@
 package cl.interac.negocio;
 
+import cl.interac.entidades.Rol;
 import cl.interac.entidades.Usuario;
 import cl.interac.dao.UsuarioDAO;
+import cl.interac.util.dto.UsuarioDto;
 import java.util.List;
 
+
+import cl.interac.util.pojo.Encriptador;
+import cl.interac.util.pojo.Md5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.management.Query;
 
 /**
  * Created by Jorge on 15-04-15.
@@ -18,6 +25,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class LogicaUsuario {
     @Autowired
     private UsuarioDAO usuarioDAO;
+
+
 
     @Transactional(readOnly = false)
     public void guardar(Usuario usuario) {
@@ -38,4 +47,38 @@ public class LogicaUsuario {
     public Usuario obtener(String username) {
         return usuarioDAO.obtenerPorUsuario(username);
     }
+
+
+    @Transactional(readOnly = false)
+    public void cambiarClave(String usuario, String clave) {
+        usuarioDAO.cambiarClave(usuario, clave);
+    }
+
+    // cachate dice obtener rol y retorna usuario, fuck the police
+    @Transactional(readOnly = true)
+    public Rol obtenerRol(Usuario usuario) {
+        return usuarioDAO.obtenerRol(usuario);
+    }
+
+
+    @Transactional(readOnly = false)
+    public void editarPerfil(String usuario,String correo, String empresa){
+        usuarioDAO.editarPerfil(usuario,correo,empresa);
+        }
+    @Transactional(readOnly = true)
+    public List<Usuario> obtenerMisContenidos(){
+        return usuarioDAO.obtenerMisContenidos();
+    }
+
+    @Transactional(readOnly = true)
+    public UsuarioDto logInExterno(String usuario, String password) {
+        try {
+            return usuarioDAO.obtenerUsuario(usuario,password);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
+
 }

@@ -1,13 +1,17 @@
 package cl.interac.util.converters;
 
+import cl.interac.entidades.Totem;
+import org.apache.poi.ss.formula.functions.T;
+
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.lang.reflect.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.el.ELContext;
+import javax.el.ValueExpression;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UISelectItems;
+import javax.faces.component.html.HtmlSelectManyMenu;
 import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -21,7 +25,7 @@ public class EntityConverter implements Converter {
         }
 
         List<Object> objetosComponenteList = new ArrayList<Object>();
-        if (component instanceof HtmlSelectOneMenu) {
+        if (component instanceof HtmlSelectOneMenu || component instanceof HtmlSelectManyMenu) {
             for (UIComponent child : component.getChildren()) {
                 if (child instanceof UISelectItems) {
                     // found it, now get the real SelectItem list
@@ -205,7 +209,10 @@ public class EntityConverter implements Converter {
     // Gets the class corresponding to the context in jsf page
     @SuppressWarnings("unchecked")
     private Class getClazz(FacesContext facesContext, UIComponent component) {
-        return component.getValueExpression("value").getType(facesContext.getELContext());
+        Class c = component.getValueExpression("value").getType(facesContext.getELContext());
+        if (c.getName().startsWith("[")) c = c.getComponentType();
+
+        return c;
     }
 
     /*

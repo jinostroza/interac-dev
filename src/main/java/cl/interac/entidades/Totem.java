@@ -2,7 +2,9 @@ package cl.interac.entidades;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Jorge on 25-04-15.
@@ -11,16 +13,41 @@ import java.util.List;
 @NamedQueries(
         {
                 @NamedQuery(name = "Totem.findAll", query = "SELECT t FROM Totem t "),
+                @NamedQuery(name = "Totem.findWithRelationship",
+                        query = "SELECT t FROM Totem t " +
+                                "left join fetch t.establecimiento e "
+
+                               ),
+                @NamedQuery(name="Totem.findbyUsuario",
+                            query="SELECT t FROM Totem t " +
+                                    "LEFT JOIN FETCH t.establecimiento e " +
+                                    "LEFT JOIN FETCH e.ubicacion ub " +
+                                    "LEFT JOIN FETCH e.usuario u " +
+                                     "LEFT JOIN FETCH t.tipototem " +
+                                    "where u.username=:username"),
+                @NamedQuery(name="Totem.findByIdWithTotem",
+                            query="SELECT t FROM Totem t " +
+                                  "LEFT JOIN FETCH t.campanaList cl " +
+                                  "LEFT JOIN FETCH t.establecimiento e " +
+                                  "Left join fetch e.usuario u " +
+                                  "WHERE u.username=:username "
+
+
+                )
+
         }
 )
 public class Totem implements Serializable {
     private Integer idtotem;
     private String noserie;
-    private String tipo;
+    private Double lat;
+    private Double longi;
 
     // relaciones
-    private List<Campana> campanas;
+   private List<Campana> campanaList;
     private Establecimiento establecimiento;
+    private Tipototem tipototem;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +61,45 @@ public class Totem implements Serializable {
     }
 
 
+
+  /* @JoinTable(
+                name = "campatotem",
+                inverseJoinColumns = {
+                        @JoinColumn(name = "idcampana", referencedColumnName = "idcampana")
+                },
+                joinColumns = {
+                        @JoinColumn(name = "idtotem" , referencedColumnName = "idtotem")
+                }
+        )*/
+  @ManyToMany(mappedBy = "totemList")
+    public List<Campana> getCampanaList() {
+        return campanaList;
+    }
+
+    public void setCampanaList(List<Campana> campanaList) {
+        this.campanaList = campanaList;
+    }
+
+    @Basic
+    @Column(name = "latitud")
+    public Double getLat() {
+        return lat;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    @Basic
+    @Column(name = "longitud")
+    public Double getLongi() {
+        return longi;
+    }
+
+    public void setLongi(Double longi) {
+        this.longi = longi;
+    }
+
     @Basic
     @Column(name = "Noserie")
     public String getNoserie() {
@@ -44,28 +110,19 @@ public class Totem implements Serializable {
         this.noserie = noserie;
     }
 
-    @Basic
-    @Column(name = "tipo", insertable = true, nullable = true, length = 20)
-    public String getTipo() {
-        return tipo;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idtipo", referencedColumnName = "idtipo", nullable = false)
+    public Tipototem getTipototem() {
+        return tipototem;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTipototem(Tipototem tipototem) {
+        this.tipototem = tipototem;
     }
 
-
-    @OneToMany(mappedBy = "totem")
-    public List<Campana> getCampanas() {
-        return campanas;
-    }
-
-    public void setCampanas(List<Campana> campanas) {
-        this.campanas = campanas;
-    }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idestablecimiento", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "idestablecimiento", referencedColumnName = "idestablecimiento", nullable = false)
     public Establecimiento getEstablecimiento() {
         return establecimiento;
     }
@@ -73,6 +130,7 @@ public class Totem implements Serializable {
     public void setEstablecimiento(Establecimiento establecimiento) {
         this.establecimiento = establecimiento;
     }
+
 
 
     @Override
@@ -89,5 +147,12 @@ public class Totem implements Serializable {
     @Override
     public int hashCode() {
         return idtotem != null ? 31 * idtotem.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Totem{" +
+                "idtotem=" + idtotem +
+                '}';
     }
 }

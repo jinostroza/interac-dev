@@ -1,0 +1,17 @@
+body {
+    background-color: #333333;
+}
+
+.clock {
+    font-size: 2em;
+    font-family: impact;
+    color: #FFFFFF;
+    text-align: center;
+    margin-top: 100px;
+    margin-right: -200px;
+    width: 100px;
+    height: 50px;
+    float: right;
+    position: relative;
+    background-color: #333333;
+}

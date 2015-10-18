@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/default.xhtml">
+    <ui:define name="contenido">
+     <h:form>
+         <p:dataTable id="contenidos" var="cont" rows="5" paginator="true"
+                      styleClass="col-lg-10 col-lg-offset-5"
+                      style="margin-left: 10%;text-align-all: center;"
+                      value="#{mantenedorCampana.contenidosSelecionados}">
+
+             <f:facet name="header">
+                 Contenido Pantalla
+             </f:facet>
+
+             <p:column styleClass="col-lg-2" headerText="nº Serie">
+                 <h:outputText value="#{cont.path}" style="width:50px; height:100px"/>
+             </p:column>
+             <p:column styleClass="col-lg-2" headerText="Direccion">
+                 <h:outputText value="#{cont.nombrecont}"/>
+             </p:column>
+             <p:column styleClass="col-lg-2" headerText="Tipo">
+                 <h:outputText value="#{cont.categoria.desccategoria}"/>
+             </p:column>
+             <p:column styleClass="col-lg-2" headerText="Tipo">
+                 <h:outputText value="#{cont.usuario.username}"/>
+             </p:column>
+
+         </p:dataTable>
+     </h:form>
+
+
+
+    </ui:define>
+</ui:composition>

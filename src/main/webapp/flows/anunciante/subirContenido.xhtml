@@ -1,0 +1,74 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:div="http://www.springframework.org/tags/form"
+                template="/templates/default.xhtml">
+
+    <ui:define name="contenido">
+        <div class="row" >
+            <div class="col-lg-6" style="padding-left:  10%">
+                <h2>Crea tu anuncio</h2>
+            </div>
+            <div class="nav-submenu col-lg-6">
+                <ul>
+                    <li><a class="active">Creando</a></li>
+                    <li><a>Planificar</a></li>
+                    <li><a>Confirmar</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+                <h:form style="margin-left: 20%">
+                    <div id="cuadro-imagen" style="padding-right: 100px" >
+                        <p:fileUpload style="width: 450px;"  mode="advanced"
+                                      previewWidth="430" update="messages" label="Seleccionar contenido" uploadLabel="Subir"
+                                      fileUploadListener="#{mantenedorContenido.subir}"
+                                      cancelLabel="Cancelar" auto="false" disabled="#{mantenedorContenido.fileUploadCount >= 1}" oncomplete="javascript:window.location.reload(true)" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+
+                        <p:growl id="messages" showDetail="true" sticky="true" />
+                    </div>
+
+                            <div  class="row">
+                                <div class="col-lg-5">
+                                <label>Nombre</label>
+                                <h:inputText  value="#{mantenedorContenido.contenido.nombrecont}" styleClass="form-control" required="true" requiredMessage="Ingrese un Nombre para su Anuncio" />
+                                <br></br>
+                                <br></br>
+                                <label>Categoría</label>
+
+                                <h:selectOneMenu  class="form-control" value="#{mantenedorContenido.categoria}"
+                                                  converter="entityConverter" required="true" requiredMessage="Debe Seleccionar una Categoria">
+                                    <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione categoria --"/>
+                                    <f:selectItems value="#{mantenedorContenido.categorias}" var="categor"
+                                                   itemLabel="#{categor.desccategoria}" itemValue="#{categor}"/>
+                                </h:selectOneMenu>
+                                <br></br>
+                                <br></br>
+                                <p:outputLabel value="#{mantenedorContenido.contenido.idcontenido}"></p:outputLabel>
+                                    <br></br>
+                                    <br></br>
+                                    <p:outputLabel value="#{mantenedorContenido.contenido.estado}" ></p:outputLabel>
+
+                                </div>
+                            </div>
+                                <div class="col-lg-12" style="margin-left: 60%">
+                                <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
+                                                 value="Volver" immediate="true"/>
+                                    <span>   </span>
+                                <h:commandButton ajax="false" styleClass="btn btn-interac" action="sub" actionListener="#{mantenedorContenido.editarContenido(mantenedorContenido.contenido)}"
+                                                     value="Crear" />
+                                    <p:growl id="newmssg" showDetail="true" sticky="true" autoUpdate="true" />
+                                </div>
+                                <br></br>
+                                <br></br>
+
+
+
+                </h:form>
+
+    </ui:define>
+</ui:composition>

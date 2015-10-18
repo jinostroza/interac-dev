@@ -1,0 +1,183 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+
+                template="/templates/default.xhtml">
+
+    <ui:define name="contenido">
+
+        <div class="col-lg-offset-4 modal-content" style="margin-right: 2%;margin-top: 2%">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="http://2.bp.blogspot.com/-P8mCM8PYSGA/U8PeH1ItrXI/AAAAAAAABug/PCVKr9Gjj8o/s1600/DS+Totem+Air+Centro+Comercial.jpeg" alt="Chania" style="width: 100%;height: 400px"/>
+                    </div>
+
+                    <div class="item">
+                        <img src="http://i00.i.aliimg.com/photo/v0/1927912350/42_inch_floor_stand_digital_signage_totem.jpg" alt="Chania" style="width: 100%;height: 400px"/>
+                    </div>
+
+                    <div class="item">
+                        <img src="http://www.interac.cl/wp-content/uploads/2015/05/senaletica.png" alt="Flower" style="width: 100%;height: 400px"/>
+                    </div>
+
+                    <div class="item">
+                        <img src="http://www.interac.cl/wp-content/uploads/2015/04/interac_instal_thumn1.png" alt="Flower" style="width: 100%;height: 400px"/>
+                    </div>
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Contenido -->
+        <div class="col-lg-12 "  >
+            <div class="col-lg-3 modal-backdrop modal-content" style="background-color:transparent ;margin-top: 10%;margin-left:2%;border-color: #080808;height: 300px">
+                <div class="control-group col-lg-offset-1">
+                    <div class="input-group col-lg-pull-0">
+                        <div class="input-group-btn search-panel">
+                            <button style="width: 38px;height: 34px" type="button" class="btn btn-interac dropdown-toggle" data-toggle="dropdown">
+                                <span id="search_concept">Filtrar</span> <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#contains">Por ID</a></li>
+                                <li><a href="#its_equal">Por Nº serie</a></li>
+                                <li><a href="#greather_than">Establecimiento</a></li>
+                                <li><a href="#less_than">Cliente </a></li>
+                                <li class="divider"></li>
+                                <li><a href="#all">Todo</a></li>
+                            </ul>
+                        </div>
+                        <input type="hidden" name="search_param" value="all" id="search_param"/>
+                        <input type="text" class="form-control" name="x" placeholder="Buscar totem..."/>
+                <span class="input-group-btn">
+                    <p:commandButton class="btn btn-interac" icon="ui-icon-search" style="width: 38px;height: 34px" type="button"><span class="glyphicon glyphicon-search"></span></p:commandButton>
+                </span>
+                    </div>
+                    <br/>
+                    <br/>
+
+                    <h4 class="pull-left" style="position: relative">Categorias</h4>
+                    <br/>
+                    <br/>
+                    <div class="controls span2">
+                        <label class="checkbox">
+                            <input type="checkbox" value="option1" id="inlineCheckbox1"/> Educacion
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" value="option2" id="inlineCheckbox2"/> Retail
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" value="option3" id="inlineCheckbox3"/> Comida
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" value="option3" id="inlineCheckbox4"/> Todas
+                        </label>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="row col-lg-offset-4 " style="margin-bottom: 10%" >
+
+                <div class="mb20">
+                    <h1>Resultados de la busqueda</h1>
+                    <h2 class="lead"><strong class="text-danger">3</strong> Totems encontrados <strong class="text-danger">Interac</strong></h2>
+                </div>
+
+                <section class="col-xs-12 col-sm-4 col-md-12">
+                    <article class="search-result row">
+                        <div class="col-xs-12 col-sm-12 col-md-3">
+                            <a href="#" title="Lorem ipsum" class="thumbnail"><img src="http://lorempixel.com/250/140/people" alt="Lorem ipsum" /></a>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-2">
+                            <ul class="meta-search">
+                                <li><i class="glyphicon glyphicon-calendar"></i> <span>02/15/2014</span></li>
+                                <li><i class="glyphicon glyphicon-time"></i> <span>4:28 pm</span></li>
+                                <li><i class="glyphicon glyphicon-tags"></i> <span>People</span></li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+                            <h3><a href="#" title="">El Belloto (Quilpué)</a></h3>
+                            <p> Dirección:	Avda. Ramón Freire 1851, Quilpué
+                                Fono:	600 400 3000.
+                                Horario de Apertura:	Lunes a Sábado 08:30 hrs.
+                                Domingo y Festivos 09:00 hrs.
+                                Horario de Cierre:	Lunes a Domingo 22:30 hrs.
+                                Gerente de Local:	Leonardo Retamal Quezada.</p>
+                            <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
+                        </div>
+                        <span class="clearfix borda"></span>
+                    </article>
+
+                    <article class="search-result row">
+                        <div class="col-xs-12 col-sm-12 col-md-3">
+                            <a href="#" title="Lorem ipsum" class="thumbnail"><img src="http://lorempixel.com/250/140/food" alt="Lorem ipsum" /></a>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-2">
+                            <ul class="meta-search">
+                                <li><i class="glyphicon glyphicon-calendar"></i> <span>02/13/2014</span></li>
+                                <li><i class="glyphicon glyphicon-time"></i> <span>8:32 pm</span></li>
+                                <li><i class="glyphicon glyphicon-tags"></i> <span>Food</span></li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-7">
+                            <h3><a href="#" title="">Biblioteca Mayor de Ingeniería</a></h3>
+                            <p>Atiende en forma preferente a todas las carreras dependientes de la Facultad de Ingeniería y alumnos del Instituto de Geografía.
+                                Horario de atención: lunes a jueves de 8:30 a 20:00 hrs.; vienes de 8:30 a 19:00 hrs.; sábado de 09:00 a 13:00 hrs.
+                                Cuenta con cubículos para trabajo en grupo, sala de lectura general y áreas de estudio silencioso.
+                                Cuenta con servicios de biblioteca virtual, especialmente destinado a profesores y alumnos de cursos superiores.</p>
+                            <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
+                        </div>
+                        <span class="clearfix borda"></span>
+                    </article>
+
+                    <article class="search-result row">
+                        <div class="col-xs-12 col-sm-12 col-md-3">
+                            <a href="#" title="Lorem ipsum" class="thumbnail"><img src="http://lorempixel.com/250/140/sports" alt="Lorem ipsum" /></a>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-2">
+                            <ul class="meta-search">
+                                <li><i class="glyphicon glyphicon-calendar"></i> <span>01/11/2014</span></li>
+                                <li><i class="glyphicon glyphicon-time"></i> <span>10:13 am</span></li>
+                                <li><i class="glyphicon glyphicon-tags"></i> <span>Sport</span></li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-7">
+                            <h3><a href="#" title="">Biblioteca de Mecánica</a></h3>
+                            <p>Atiende en forma preferente a todas las carreras dependientes de la Unidad Académica Ing. Mecánica.
+                                Horario de atención: lunes a jueves de 8:30 a 18:00 hrs.; viernes de 8:30 a 17:00 hrs.
+                                Cuenta con sala de lectura general.
+                                Cuenta con servicios de biblioteca virtual, especialmente destinado a profesores y alumnos de cursos superiores.</p>
+                            <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
+                        </div>
+                        <span class="clearfix border"></span>
+                    </article>
+
+                </section>
+            </div>
+        </div>
+
+      </ui:define>
+</ui:composition>

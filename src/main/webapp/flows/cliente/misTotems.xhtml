@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/default.xhtml">
+    <ui:define name="contenido">
+     <h:form>
+         <h1>Mis Pantallas</h1>
+         <h3>Monitorea tus Pantallas, vee las Campañas que circulan en tus Pantallas </h3>
+         <p:dataTable var="car" value="#{mantenedorCliente.totemCampana}">
+             <f:facet name="header">
+             Selecione Pantalla Para Desplegar Campañas
+             </f:facet>
+             <p:column style="width:30px;" >
+                 <p:rowToggler />
+             </p:column>
+             <p:column headerText="NO° serie" >
+                 <h:outputText value="#{car.noserie}" />
+             </p:column>
+             <p:column headerText="Estalecimiento">
+                 <h:outputText value="#{car.establecimiento.nombreEstablecimiento}" />
+             </p:column>
+
+             <p:rowExpansion>
+                 <p:panelGrid>
+                         <p:dataList var="qwer" value="#{car.campanaList}">
+                             <p:outputLabel>
+                                 <h:outputText value="#{qwer.fechaInicio}-" />
+                                 <h:outputText value="#{qwer.fechaCreacion}-" />
+                                 <h:outputText value="#{qwer.pasadas}"/>
+                             </p:outputLabel>
+                     </p:dataList>
+
+                 </p:panelGrid>
+             </p:rowExpansion>
+         </p:dataTable>
+     </h:form>
+    </ui:define>
+</ui:composition>

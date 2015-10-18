@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @NamedQueries(
         {
-                @NamedQuery(name = "Categoria.findAll", query = "SELECT g FROM Categoria g "),
+                @NamedQuery(name = "Categoria.findAll", query = "SELECT g FROM Categoria g ")
 
         }
 )
@@ -19,7 +19,7 @@ public class Categoria implements Serializable {
     private String desccategoria;
 
     // relaciones
-    private List<Anuncio> anuncios;
+   private List<Contenido> contenidos;
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -42,13 +42,14 @@ public class Categoria implements Serializable {
         this.desccategoria = desccategoria;
     }
 
-    @OneToMany(mappedBy = "categoria")
-    public List<Anuncio> getAnuncios() {
-        return anuncios;
+
+    @OneToMany(mappedBy="categoria")
+    public List<Contenido> getContenidos() {
+        return contenidos;
     }
 
-    public void setAnuncios(List<Anuncio> anuncios) {
-        this.anuncios = anuncios;
+    public void setContenidos(List<Contenido> contenidos) {
+        this.contenidos = contenidos;
     }
 
     @Override

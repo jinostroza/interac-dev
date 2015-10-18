@@ -16,9 +16,16 @@ import java.util.List;
                 query = "select e from Establecimiento e " +
                         "inner join fetch e.usuario " +
                         "inner join fetch e.ubicacion"),
-        @NamedQuery(name = "establecimiento.findNombreEstablecimiento",
-                query = "select e from Establecimiento e " +
-                        "where e.nombreEstablecimiento =:buscaLocal ")
+
+        @NamedQuery(name = "establecimiento.findIdestablecimiento",
+                query = "SELECT e from Establecimiento e where e.idEstablecimiento = :estable"),
+        @NamedQuery(name= "establecimiento.findbyUser",
+                        query="SELECT e FROM Establecimiento e " +
+                                "INNER JOIN FETCH e.ubicacion ub " +
+                                "INNER JOIN FETCH e.usuario u " +
+                                "INNER JOIN FETCH e.totem t " +
+                                "WHERE u.username=:username "),
+
 })
 
 public class Establecimiento implements Serializable {
@@ -26,6 +33,9 @@ public class Establecimiento implements Serializable {
     private String nombreEstablecimiento;
     private String direccion;
     private String fono;
+    private Double lat;
+    private Double longi;
+
 
     // Relaciones
     private Usuario usuario;
@@ -95,6 +105,25 @@ public class Establecimiento implements Serializable {
         this.fono = fono;
     }
 
+    @Basic
+    @Column(name = "latitud")
+    public Double getLat() {
+        return lat;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    @Basic
+    @Column(name = "longitud")
+    public Double getLongi() {
+        return longi;
+    }
+
+    public void setLongi(Double longi) {
+        this.longi = longi;
+    }
 
     @JoinColumn(name = "idubicacion", referencedColumnName = "idubicacion")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -121,5 +150,12 @@ public class Establecimiento implements Serializable {
     @Override
     public int hashCode() {
         return idEstablecimiento != null ? 31 * idEstablecimiento.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Establecimiento{" +
+                "idEstablecimiento=" + idEstablecimiento +
+                '}';
     }
 }

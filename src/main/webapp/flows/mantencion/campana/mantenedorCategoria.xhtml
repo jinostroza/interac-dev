@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    <h3 style="margin-top:0">Mantenedor Categorias Campañas</h3>
+
+    <h:panelGrid id="categoriasPG" columns="2" cellpadding="10">
+        <br/>
+        <p:dataTable id="categorias" var="localCT"
+                     value="#{mantenedorCategoria.categorias}"
+                     filteredValue="#{mantenedorCategoria.categoria.desccategoria}">
+            <p:column headerText="ID" filterBy="#{localCT.idcategoria}">
+                <h:outputText value="#{localCT.idcategoria}" />
+            </p:column>
+
+            <p:column headerText="Descripcion" filterBy="#{localCT.desccategoria}">
+                <h:outputText value="#{localCT.desccategoria}" />
+            </p:column>
+
+            <p:column>
+                <h:commandButton value="eliminar" styleClass="form-control" action="#{mantenedorCategoria.eliminar(localCT)}"/>
+            </p:column>
+
+            <p:column>
+                <h:commandButton id="modificaCT" value="Modificar" update="categorias" styleClass="form-control" type="button">
+                    <p:overlayPanel id="editPanelCT" for="modificaCT" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
+                        <p:outputPanel>
+                            <h:outputLabel value="ID :  / #{localCT.idcategoria}"/>
+                            <h:outputLabel value="Descripcion"/>
+                            <h:inputText styleClass="form-control" value="#{localCT.desccategoria}" />
+                            <br/>
+                            <p:commandButton id="editBtnCT" for="editPanelCT" value="Editar" update="categorias"
+                                             action="#{mantenedorCategoria.editarCategoria(localCT)}"/>
+                        </p:outputPanel>
+                    </p:overlayPanel>
+                </h:commandButton>
+            </p:column>
+        </p:dataTable>
+    </h:panelGrid>
+    <p:commandButton id="nuevoBtnCT" value="Agrega"   type="button">
+        <p:overlayPanel id="agregapanelCT" for="nuevoBtnCT" showEvent="click" hideEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
+            <p:outputPanel>
+                <h:outputLabel value="Descripcion Categoria"/>
+                <h:inputText  required="true" requiredMessage="Ingrese nombre" styleClass="form-control"
+                              value="#{mantenedorCategoria.categoria.desccategoria}"/>
+                <br/>
+                <p:commandButton id="addBtnCT" for="agregapanelCT" value="Agrega" update="categoriasPG"
+                                 action="#{mantenedorCategoria.agregaCategoria}"/>
+            </p:outputPanel>
+        </p:overlayPanel>
+    </p:commandButton>
+
+</ui:composition>

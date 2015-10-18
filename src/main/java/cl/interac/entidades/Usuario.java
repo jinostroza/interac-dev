@@ -5,10 +5,10 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by claudio on 24-04-15.
+ * Created by jiu on 24-04-15.
  */
 @Entity
-@Table(name="Usuario")
+//@Table(name="Usuario")
 @NamedQueries(
         {
                 @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u "),
@@ -21,6 +21,21 @@ import java.util.List;
                         query = "SELECT u FROM Usuario u WHERE u.username = :username"
                 ),
 
+
+                @NamedQuery(
+                        name="Usuario.findByCorreo",
+                        query = "SELECT u FROM Usuario u where u.correo= :correo "
+                ),
+                @NamedQuery(
+                        name="Usuario.findByEmpresa",
+                        query="SELECT u FROM Usuario u where u.empresa = :empresa"
+                ),
+                @NamedQuery(
+                       name="Usuario.findWithRelationship",
+                        query="SELECT u FROM Usuario u " +
+                                "LEFT JOIN FETCH u.rol " +
+                                "LEFT JOIN FETCH u.contenido "
+                )
         }
 )
 public class Usuario implements Serializable {
@@ -30,10 +45,10 @@ public class Usuario implements Serializable {
     private String correo;
     private String empresa;
 
-
     // relaciones
-    private List<Campana> campanas;
+
     private Rol rol;
+    private List<Contenido> contenido;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -87,27 +102,30 @@ public class Usuario implements Serializable {
     }
 
 
-    @OneToMany(mappedBy = "cliente")
-    public List<Campana> getCampanas() {
-        return campanas;
+
+
+    @OneToMany(mappedBy="usuario")
+    public List<Contenido> getContenido() {
+        return contenido;
     }
 
-    public void setCampanas(List<Campana> campanas) {
-        this.campanas = campanas;
+    public void setContenido(List<Contenido> contenido) {
+        this.contenido = contenido;
     }
 
-
-    @JoinColumn(referencedColumnName = "id_rol", name = "idrol")
+   @JoinColumn(name = "idrol",referencedColumnName = "id_rol",nullable = false , columnDefinition ="4" )
     @ManyToOne(fetch = FetchType.LAZY)
     public Rol getRol() {
         return rol;
     }
 
     public void setRol(Rol rol) {
-        this.rol = rol;
+        if (rol == null) {
+            rol = new Rol();
+            rol.setIdrol(4);
+        }
+        this.rol=rol;
     }
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -1,5 +1,6 @@
 package cl.interac.util.components;
 
+import cl.interac.dao.UsuarioDAO;
 import cl.interac.entidades.Usuario;
 import cl.interac.negocio.LogicaUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 
 /**
@@ -18,15 +20,16 @@ import java.io.Serializable;
 public class UserSession implements Serializable {
     @Autowired
     private LogicaUsuario logicaUsuario;
+    @Autowired
+    private Constantes constantes;
+    @Autowired
+    private transient UsuarioDAO usuarioDAO;
 
     private Usuario usuario;
 
-    public UserSession() {
-    }
+    private boolean InicioSesion;
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+
 
     public Usuario getUsuario() {
         Authentication a = SecurityContextHolder.getContext().getAuthentication();
@@ -43,5 +46,30 @@ public class UserSession implements Serializable {
         }
         return usuario;
     }
+
+
+    public UserSession() {
+        usuario = null;
+    }
+
+
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+
+    public boolean estaAutentificado() {
+        return getUsuario() != null;
+    }
+
+    public boolean tienePermiso(String permiso) {
+        if (!this.estaAutentificado()) {
+            return false;
+        }
+        HttpServletRequest request = (HttpServletRequest) FacesUtil.obtenerHttpServletRequest();
+        return request.isUserInRole(permiso);
+    }
+
 
 }

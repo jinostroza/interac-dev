@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+      start-state="registraCampana">
+    <on-start>
+        <evaluate expression="mantenedorCampana.inicio()"/>
+    </on-start>
+
+    <view-state id="miscampanas">
+        <transition on="paga" to="campanaConfirmada"></transition>
+    </view-state>
+
+
+
+    <view-state id="registraCampana">
+        <transition on="vercon" to="vercontenido"/>
+        <transition on="crear" to="subirContenido"/>
+        <transition on="selectTotem" to="vercontenido"/>
+        <transition on="ver" to="misTotems"/>
+        <transition on="micampana" to="miscampanas" />
+    </view-state>
+
+
+    <view-state id="subirContenido">
+        <transition on="subir" to="seleccionarTotem"></transition>
+    </view-state>
+    <view-state id="misTotems">
+
+    </view-state>
+
+    <view-state id="seleccionarTotem">
+
+        <transition on="regisCamp" to="registraCampana"/>
+        <transition on="end1" to="campanaConfirmada"/>
+    </view-state>
+
+    <view-state id="vercontenido">
+        <transition on="subir" to="seleccionarTotem"></transition>
+    </view-state>
+
+    <view-state id="campanaConfirmada">
+       <transition on="fin" to="campanapasos"/>
+    </view-state>
+
+    <end-state id="campanapasos">
+
+    </end-state>
+
+
+</flow>
