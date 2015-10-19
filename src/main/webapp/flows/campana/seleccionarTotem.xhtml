@@ -62,8 +62,8 @@
                                         <h4>Tipo Pantalla:</h4>
                                         <p>#{totem.tipototem.idtipo}</p>
                                         <p:commandButton styleClass="ui-li-aside" icon="ui-icon-pin-s" value="ver" type="button" style="width: 30px" onclick="PF('dlg2').show();"></p:commandButton>
-                                        <p:dialog header="Trabajos en Progreso" widgetVar="dlg2" modal="true" height="500" width="600">
-                                            <p:gmap id="gmap" center="-33.0447476,-71.6138359" zoom="13"
+                                        <p:dialog header="Ubicacion de Pantalla" widgetVar="dlg2" modal="true" height="500" width="600">
+                                            <p:gmap id="gmap" center="#{totem.lat},#{totem.longi}" zoom="13"
                                                     type="HYBRID"  model="#{mantenedorCampana.advancedModel}"
                                                     style="width:580px;height:420px">
                                             </p:gmap>

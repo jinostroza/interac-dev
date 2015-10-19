@@ -99,20 +99,19 @@
                             </p:column>
 
                             <p:rowExpansion>
-                                <p:panelGrid>
-                                    <p:dataList var="qwer" value="#{car.campanaList}">
+                                <p:panelGrid columns="4">
+                                    <p:dataList  var="qwer" value="#{car.campanaList}" rows="12">
+                                        <p:commandLink styleClass="row">
 
-                                            <p:graphicImage style="width: 80px;height: 120px" value="http://g01.a.alicdn.com/kf/HTB1UZdtIXXXXXcSXpXXq6xXFXXXH/42-inch-TFT-LED-industrial-FULL-HD-vertical-screen-floor-stand-memory-card-advertising-player.jpg"></p:graphicImage>
-                                            <h4> #{qwer.fechaInicio} </h4>
-                                            <p>Fecha Inicio</p>
-                                            <h4>#{qwer.fechaFin}"</h4>
-                                            <p>Fecha Termino</p>
-                                            <h4>#{qwer.pasadas}</h4>
-                                            <p>nº Pasadas</p>
-                                        <p:commandButton value="activar"></p:commandButton>
+                                            <p:graphicImage styleClass="col-lg-4"  style="width: 80px;height: 120px" value="http://g01.a.alicdn.com/kf/HTB1UZdtIXXXXXcSXpXXq6xXFXXXH/42-inch-TFT-LED-industrial-FULL-HD-vertical-screen-floor-stand-memory-card-advertising-player.jpg"></p:graphicImage>
+                                            <h4 class="col-lg-2">#{qwer.fechaInicio}  <small>Comienza</small> </h4>
 
-                                        <p:commandButton value="rechazar"></p:commandButton>
 
+                                            <h4 class="col-lg-2">#{qwer.fechaFin} <small >Termina</small> </h4>
+                                            <h4 class="col-lg-2">#{qwer.pasadas}    <small>Pasadas</small></h4>
+                                            <h4 class="col-lg-2">#{qwer.contenido.idcontenido}</h4>
+
+                                        </p:commandLink>
                                     </p:dataList>
 
                                 </p:panelGrid>
