@@ -64,7 +64,7 @@
                         <p:commandButton styleClass="btn btn-interac" value="Buscar" />
                     </div>
 
-                        <p:dataScroller styleClass="col-lg-8 " value="#{mantenedorCampana.totemCampana}" var="totem" chunkSize="5">
+                        <p:dataScroller styleClass="col-lg-8 " value="#{mantenedorCampana.totemsConrelacion}" var="totem" chunkSize="5">
                             <f:facet name="header">
                                 Interac Plays
                             </f:facet>
@@ -74,7 +74,7 @@
                             </f:facet>
 
                             <h:panelGrid columns="6" style="width:100%" >
-                                <p:selectBooleanCheckbox value="#{mantenedorCampana.totemSelecionados}" />
+                                <p:selectManyCheckbox value="#{mantenedorCampana.totemSelecionados}" />
                                 <p:graphicImage style="width: 80px;height: 120px" value="http://g01.a.alicdn.com/kf/HTB1UZdtIXXXXXcSXpXXq6xXFXXXH/42-inch-TFT-LED-industrial-FULL-HD-vertical-screen-floor-stand-memory-card-advertising-player.jpg"></p:graphicImage>
 
                                 <p:outputPanel>
@@ -88,7 +88,7 @@
 
                                         </p:commandButton>
                                         <p:dialog id="mapa" header="Ubicacion de Pantalla" widgetVar="dlg2" modal="true" height="500" width="600">
-                                            <p:gmap id="gmap" center="#{mantenedorCampana.location(mantenedorCampana.totem)}" zoom="15"
+                                            <p:gmap id="gmap" center="#{mantenedorCampana.location(totem)}" zoom="15"
                                                     type="HYBRID"  model="#{mantenedorCampana.advancedModel}"
                                                     style="width:580px;height:420px">
                                             </p:gmap>
