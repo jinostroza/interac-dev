@@ -25,10 +25,11 @@ import java.util.List;
         @NamedQuery(name="Contenido.findByCategoriaAndUser",
                     query="SELECT c FROM Contenido c " +
                             "left join fetch c.categoria"),
-        @NamedQuery(name="Contenido.findByEstadoAndCampaña",
-                    query="SELECT c FROM Contenido c " +
-                          "LEFT JOIN FETCH c.campanaList")
 
+        @NamedQuery(name="Contenido.findByEstadoAndCampana",
+                    query="SELECT c FROM Contenido c " +
+                          "LEFT JOIN FETCH c.campanaList ca "
+                           )
 
 
 

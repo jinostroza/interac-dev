@@ -39,6 +39,9 @@ public class LogicaContenido {
         return contenidoDAO.obtenContenido(user);
     }
 
-
+    /*@Transactional(readOnly = true)
+    public List<Contenido> obtenerEstadoYCampana(){
+        return contenidoDAO.obtenerEstadoYCampana();
+    }*/
 
 }

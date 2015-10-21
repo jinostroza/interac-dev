@@ -1,5 +1,6 @@
 package cl.interac.dao;
 
+import cl.interac.entidades.Campana;
 import cl.interac.entidades.Contenido;
 import org.springframework.stereotype.Repository;
 
@@ -29,7 +30,12 @@ public class ContenidoDAO {
     }
 
 
+
     public List<Contenido> obtenContenido(String user){
         return em.createNamedQuery("Contenido.findByUsuario").setParameter("user",user).getResultList();
     }
+
+   /* public List<Contenido> obtenerEstadoYCampana(){
+        return  em.createNamedQuery("Contenido.findByEstadoAndCampana").getResultList();
+    }*/
 }

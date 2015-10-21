@@ -25,7 +25,8 @@ public class LogicaCampana {
 
 
     @Transactional(readOnly = true)
-    public List<Campana> obtenerTodos() {return campanaDAO.obtenerTodos();
+    public List<Campana> obtenerTodos() {
+        return campanaDAO.obtenerTodos();
     }
 
     @Transactional(readOnly = false)
@@ -34,17 +35,17 @@ public class LogicaCampana {
     }
 
     @Transactional(readOnly = false)
-    public void eliminarCampana(Campana campana){
+    public void eliminarCampana(Campana campana) {
         campanaDAO.eliminarCampana(campana);
     }
 
     @Transactional(readOnly = true)
-    public List<Campana> obtenerPorUsuario(String user){
-        return  campanaDAO.obtenerCampanaPorUsuario(user);
+    public List<Campana> obtenerPorUsuario(String user) {
+        return campanaDAO.obtenerCampanaPorUsuario(user);
     }
 
     @Transactional(readOnly = true)
-    public List<Campana> obtenerTodoLosContenidos(){
+    public List<Campana> obtenerTodoLosContenidos() {
         return campanaDAO.obtenerTodasLosContenidos();
     }
 
@@ -59,11 +60,20 @@ public class LogicaCampana {
     }
 
     @Transactional(readOnly = true)
-    public List<Campana> obtenerLasCampanasDeLosTotems(String user){
+    public List<Campana> obtenerLasCampanasDeLosTotems(String user) {
         return campanaDAO.obtenerLasCampanasDelosTotems(user);
     }
+
     @Transactional(readOnly = true)
-    public List<Campana> obtenerPorEstado(String user){
+    public List<Campana> obtenerPorEstado(String user) {
         return campanaDAO.obtenerPorEstado(user);
     }
+
+    @Transactional(readOnly = true)
+    public long obtenerPorNumero(String user){
+        return campanaDAO.obtenerNumeroNuevas(user);
+    }
+
+
+
 }
