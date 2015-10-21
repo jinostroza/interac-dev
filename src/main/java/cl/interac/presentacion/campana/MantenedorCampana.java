@@ -54,11 +54,14 @@ public class MantenedorCampana implements Serializable {
     private List<Contenido> contenidos;
     private List<Categoria> categoriaList;
     private Categoria categoria;
+    private Establecimiento establecimiento;
+    private List<Establecimiento> establecimientoList;
     private MapModel advancedModel;
     private Contenido contenidosSelecionado;
     private List<Contenido> contenidosSelecionados;
     private String dateDiffValue;
     private Marker marker;
+    private String newCenter;
 
     @Autowired
     private LogicaCategoria logicaCategoria;
@@ -77,11 +80,14 @@ public class MantenedorCampana implements Serializable {
     @Autowired
     private FileUploader fileUploader;
     private int fileUploadCount;
+    @Autowired
+    private LogicaEstablecimiento logicaEstablecimiento;
 
 
     public void inicio() {
         usuarios = logicaUsuario.obtenerTodos();
         categoriaList = logicaCategoria.obtenerTodos();
+        establecimientoList=logicaEstablecimiento.obtenerTodos();
         totemsConrelacion = logicaTotem.obtenerConRelacion();
         totems = logicaTotem.obtenerPorUsuario(userSession.getUsuario().getUsername());
         campanas = logicaCampana.obtenerPorUsuario(userSession.getUsuario().getUsername());
@@ -240,10 +246,30 @@ public class MantenedorCampana implements Serializable {
         marker = (Marker) event.getOverlay();
     }
 
+    public String location(Totem t){
+        totem=t;
+        String lat=t.getLat().toString();
+        String lng=t.getLongi().toString();
+        System.err.println(""+t.getIdtotem());
+        newCenter=lat+","+lng;
+        System.err.println(newCenter);
+
+        return newCenter;
+
+    }
     public Marker getMarker() {
         return marker;
     }
    //getter and setter
+
+    public String getNewCenter() {
+        return newCenter;
+    }
+
+    public void setNewCenter(String newCenter) {
+        this.newCenter = newCenter;
+    }
+
     public Categoria getCategoria() {
         return categoria;
     }
@@ -388,6 +414,22 @@ public class MantenedorCampana implements Serializable {
 
     public void setCampanaList(List<Campana> campanaList) {
         this.campanaList = campanaList;
+    }
+
+    public Establecimiento getEstablecimiento() {
+        return establecimiento;
+    }
+
+    public void setEstablecimiento(Establecimiento establecimiento) {
+        this.establecimiento = establecimiento;
+    }
+
+    public List<Establecimiento> getEstablecimientoList() {
+        return establecimientoList;
+    }
+
+    public void setEstablecimientoList(List<Establecimiento> establecimientoList) {
+        this.establecimientoList = establecimientoList;
     }
 }
 

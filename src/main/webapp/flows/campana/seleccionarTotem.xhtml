@@ -40,6 +40,29 @@
                     <div class="col-lg-3"></div>
                 </div>
                 <div class="row">
+                     <p:accordionPanel >
+                        <p:outputLabel value="Seleccione Establecimiento"></p:outputLabel>
+                        <h:selectOneMenu id="esta" class="form-control" value="#{mantenedorCampana.establecimiento}"
+                                         converter="entityConverter" required="true" requiredMessage="Debe Seleccionar un establecimiento">
+                            <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Establecimiento --"/>
+                            <f:selectItems value="#{mantenedorCampana.establecimientoList}" var="estab"
+                                           itemLabel="#{estab.nombreEstablecimiento}" itemValue="#{estab}"/>
+                        </h:selectOneMenu>
+                        <p:tooltip id="toolesta" for="esta" value="Selecciona el establecimiento" trackMouse="true" />
+                        <br></br>
+
+                        <label>Categoría</label>
+
+                        <h:selectOneMenu id="onem" class="form-control" value="#{mantenedorCampana.categoria}"
+                                         converter="entityConverter" required="true" requiredMessage="Debe Seleccionar una Categoria">
+                            <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione categoria --"/>
+                            <f:selectItems value="#{mantenedorCampana.categoriaList}" var="categor"
+                                           itemLabel="#{categor.desccategoria}" itemValue="#{categor}"/>
+                        </h:selectOneMenu>
+                        <p:tooltip id="tooltipmenu" for="onem" value="Selecciona la categoria de tu anuncio" trackMouse="true" />
+                        <br></br>
+                        <p:commandButton styleClass="btn btn-interac" value="Buscar" />
+                     </p:accordionPanel>
 
                         <p:dataScroller styleClass="col-lg-8 col-lg-offset-4" value="#{mantenedorCampana.totemCampana}" var="totem" chunkSize="5">
                             <f:facet name="header">
@@ -56,14 +79,16 @@
 
                                 <p:outputPanel>
                                     <h:panelGrid columns="6" cellpadding="1" >
-                                        <h4>Establecimiento</h4>
-                                        <p>#{totem.establecimiento.nombreEstablecimiento}</p>
-                                        <p><p:rating value="#{5}" readonly="true" /></p>
-                                        <h4>Tipo Pantalla:</h4>
-                                        <p>#{totem.tipototem.idtipo}</p>
-                                        <p:commandButton styleClass="ui-li-aside" icon="ui-icon-pin-s" value="ver" type="button" style="width: 30px" onclick="PF('dlg2').show();"></p:commandButton>
-                                        <p:dialog header="Ubicacion de Pantalla" widgetVar="dlg2" modal="true" height="500" width="600">
-                                            <p:gmap id="gmap" center="#{totem.lat},#{totem.longi}" zoom="13"
+                                        <h4>Establecimiento: <small>#{totem.establecimiento.nombreEstablecimiento}</small></h4>
+
+                                        <small><p:rating value="#{3}" readonly="true" /></small>
+                                        <h4>Tipo Pantalla: <small>#{totem.tipototem.idtipo}</small></h4>
+
+                                        <p:commandButton styleClass="ui-li-aside" icon="ui-icon-pin-s" value="ver" type="button" update="mapa"  style="width: 30px" onclick="PF('dlg2').show();">
+
+                                        </p:commandButton>
+                                        <p:dialog id="mapa" header="Ubicacion de Pantalla" widgetVar="dlg2" modal="true" height="500" width="600">
+                                            <p:gmap id="gmap" center="#{mantenedorCampana.location(mantenedorCampana.totem)}" zoom="15"
                                                     type="HYBRID"  model="#{mantenedorCampana.advancedModel}"
                                                     style="width:580px;height:420px">
                                             </p:gmap>
@@ -72,11 +97,8 @@
                                 </p:outputPanel>
                             </h:panelGrid>
                         </p:dataScroller>
-
-
-
             </div>
-            </div>
+           </div>
             <br></br>
             <div class="row" style="margin-left: 1%">
                 <div class="col-lg-7 col-md-7">
