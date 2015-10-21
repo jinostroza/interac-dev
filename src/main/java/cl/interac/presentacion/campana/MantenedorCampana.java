@@ -48,6 +48,7 @@ public class MantenedorCampana implements Serializable {
     private List<Usuario> usuarios;
     private Totem totem;
     private Totem[] totemSelecionados;
+    private List<Totem> totemList;
     private List<Totem> totemsConrelacion;
     private List<Totem> totemCampana;
     private Contenido contenido;
@@ -430,6 +431,14 @@ public class MantenedorCampana implements Serializable {
 
     public void setEstablecimientoList(List<Establecimiento> establecimientoList) {
         this.establecimientoList = establecimientoList;
+    }
+
+    public List<Totem> getTotemList() {
+        return totemList;
+    }
+
+    public void setTotemList(List<Totem> totemList) {
+        this.totemList = totemList;
     }
 }
 
