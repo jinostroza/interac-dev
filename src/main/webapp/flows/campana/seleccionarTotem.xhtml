@@ -88,7 +88,7 @@
 
                                         </p:commandButton>
                                         <p:dialog id="mapa" header="Ubicacion de Pantalla" widgetVar="dlg2" modal="true" height="500" width="600">
-                                            <p:gmap id="gmap" center="#{mantenedorCampana.location(totem)}" zoom="15"
+                                            <p:gmap id="gmap" center="#{mantenedorCampana.location()}" zoom="15"
                                                     type="HYBRID"  model="#{mantenedorCampana.advancedModel}"
                                                     style="width:580px;height:420px">
                                             </p:gmap>

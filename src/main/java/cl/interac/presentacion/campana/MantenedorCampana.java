@@ -247,7 +247,7 @@ public class MantenedorCampana implements Serializable {
     }
 
     public String location(Totem t){
-        totem=t;
+
         String lat=t.getLat().toString();
         String lng=t.getLongi().toString();
         System.err.println(""+t.getIdtotem());

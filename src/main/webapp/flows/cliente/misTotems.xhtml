@@ -14,7 +14,7 @@
          <h5>Si un el anuncio le parece "inapropiado" para ser difundido en su pantalla haga click en Rechazar  </h5>
          <p:dataTable id="champa" dynamic="true" var="car" value="#{mantenedorCliente.campanaEnEspera}">
              <f:facet name="header">
-                 Tiene X Campañas por validar.
+                 Tiene #{mantenedorCliente.numeroCampanas} Campañas por validar.
              </f:facet>
              <p:column style="width:30px;" >
                 <p:rowToggler />
@@ -39,7 +39,7 @@
              </p:column>
              <p:column>
                <p:commandButton value="aprobar" process="@form" update="champa"
-                                action="#{mantenedorCliente.aprobar(car)}"  />
+                                action="#{mantenedorCliente.aprobar(car.contenido)}"  />
              </p:column>
              <p:column>
                  <p:commandButton value="rechazar" process="@form"
