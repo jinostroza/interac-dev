@@ -5,6 +5,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Joaco on 17/08/2015.
@@ -23,7 +24,12 @@ import java.io.Serializable;
         ),
         @NamedQuery(name="Contenido.findByCategoriaAndUser",
                     query="SELECT c FROM Contenido c " +
-                            "left join fetch c.categoria")
+                            "left join fetch c.categoria"),
+        @NamedQuery(name="Contenido.findByEstadoAndCampaña",
+                    query="SELECT c FROM Contenido c " +
+                          "LEFT JOIN FETCH c.campanaList")
+
+
 
 
 })
@@ -36,6 +42,17 @@ public class Contenido implements Serializable{
     //relaciones
     private Usuario usuario;
     private Categoria categoria;
+    private List<Campana> campanaList;
+
+
+    @OneToMany(mappedBy = "contenido")
+    public List<Campana> getCampanaList() {
+        return campanaList;
+    }
+
+    public void setCampanaList(List<Campana> campanaList) {
+        this.campanaList = campanaList;
+    }
 
 
     @JoinColumn(name = "idusuario", referencedColumnName = "idusuario")
@@ -80,7 +97,7 @@ public class Contenido implements Serializable{
     }
 
     @Basic
-    @Column(name= "estado",length = 50,nullable =false,insertable=true ,updatable = true  )
+    @Column(name= "estado",length = 50,nullable =false,insertable=true ,updatable = true ,columnDefinition = "validando" )
     public String getEstado() {
         return estado;
     }
@@ -99,6 +116,7 @@ public class Contenido implements Serializable{
     public void setNombrecont(String nombrecont) {
         this.nombrecont = nombrecont;
     }
+
 
 
 

@@ -2,11 +2,15 @@ package cl.interac.presentacion.cliente;
 
 import cl.interac.entidades.*;
 import cl.interac.negocio.*;
+import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.List;
 
@@ -15,7 +19,7 @@ import java.util.List;
  */
 @Component
 @Scope("flow")
-public class mantenedorCliente implements Serializable {
+public class MantenedorCliente implements Serializable {
     //entities
     private Totem totem;
     private Totem totemSeleccionado;
@@ -23,6 +27,7 @@ public class mantenedorCliente implements Serializable {
     private Usuario usuario;
     private Establecimiento establecimiento;
     private Tipototem tipototem;
+    private Contenido contenido;
     //list
     private List<Totem> totemList;
     private List<Campana> campanaList;
@@ -30,7 +35,7 @@ public class mantenedorCliente implements Serializable {
     private List<Tipototem> tipototemList;
     private List<Totem> totemSeleccionados;
     private List<Totem> totemCampana;
-
+    private List<Campana> campanaEnEspera;
     //autowired
     @Autowired
     private LogicaCampana logicaCampana;
@@ -45,14 +50,58 @@ public class mantenedorCliente implements Serializable {
     @Autowired
     private LogicaEstablecimiento logicaEstablecimiento;
 
+    // inicio y Logica de vista
 
     public void inicio(){
         totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
         campanaList= logicaCampana.obtenerLasCampanasDeLosTotems(userSession.getUsuario().getUsername());
+        campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
 
     }
+
+    public void aprobar(Campana c){
+        try {
+            campana =c ;
+            String aprobado = "aprobado";
+            campana.getContenido().setEstado(aprobado);
+            logicaCampana.guardarCampana(c);
+            campanaEnEspera.clear();
+            campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado campaña  [" +campana.getContenido().getNombrecont() + "]");
+
+        }catch (Exception e){
+            FacesUtil.mostrarMensajeError("Operación Fallida", "algo ocurrio");
+        }
+    }
+
+    public void rechazar(Campana c){
+        try {
+
+            campana= c ;
+            String rechazado = "rechazado";
+            campana.getContenido().setEstado(rechazado);
+            campanaEnEspera.clear();
+            campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado campaña  [" + campana.getContenido().getNombrecont() + "]");
+
+        }catch (Exception e){
+            FacesUtil.mostrarMensajeError("Operación Fallida","algo ocurrio");
+        }
+    }
+
+
+   // inicio y logica de vista
 //getter and setter
 
+
+
+    public List<Campana> getCampanaEnEspera() {
+        return campanaEnEspera;
+    }
+
+    public void setCampanaEnEspera(List<Campana> campanaEnEspera) {
+        this.campanaEnEspera = campanaEnEspera;
+    }
 
     public List<Totem> getTotemCampana() {
         return totemCampana;

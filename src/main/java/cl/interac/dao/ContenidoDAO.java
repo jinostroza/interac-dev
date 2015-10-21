@@ -28,6 +28,7 @@ public class ContenidoDAO {
 
     }
 
+
     public List<Contenido> obtenContenido(String user){
         return em.createNamedQuery("Contenido.findByUsuario").setParameter("user",user).getResultList();
     }

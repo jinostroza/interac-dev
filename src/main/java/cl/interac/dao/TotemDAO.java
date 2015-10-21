@@ -5,6 +5,7 @@
  */
 package cl.interac.dao;
 
+import cl.interac.entidades.Campana;
 import cl.interac.entidades.Totem;
 import org.springframework.stereotype.Repository;
 

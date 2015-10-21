@@ -25,15 +25,17 @@ import java.util.Set;
                                     "LEFT JOIN FETCH e.usuario u " +
                                      "LEFT JOIN FETCH t.tipototem " +
                                     "where u.username=:username"),
+
                 @NamedQuery(name="Totem.findByIdWithTotem",
                             query="SELECT t FROM Totem t " +
                                   "LEFT JOIN FETCH t.campanaList cl " +
                                   "LEFT JOIN FETCH t.establecimiento e " +
                                   "Left join fetch e.usuario u " +
                                   "WHERE u.username=:username "
+                ),
 
 
-                )
+
 
         }
 )

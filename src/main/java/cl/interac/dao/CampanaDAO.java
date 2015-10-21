@@ -67,5 +67,10 @@ public class CampanaDAO {
         }
 
     }
+    public List<Campana> obtenerPorEstado(String user){
+        return em.createNamedQuery("Campana.findByEstado").setParameter("username",user).getResultList();
+
+    }
+
 
 }

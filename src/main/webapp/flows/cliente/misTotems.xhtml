@@ -4,37 +4,61 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
                 template="/templates/default.xhtml">
+
     <ui:define name="contenido">
      <h:form>
-         <h1>Mis Pantallas</h1>
-         <h3>Monitorea tus Pantallas, vee las Campañas que circulan en tus Pantallas </h3>
-         <p:dataTable var="car" value="#{mantenedorCliente.totemCampana}">
+         <h1>Campañas pendientes</h1>
+         <br/>
+         <h3>apruebe las campañas pendientes </h3>
+         <br/>
+         <h5>Si un el anuncio le parece "inapropiado" para ser difundido en su pantalla haga click en Rechazar  </h5>
+         <p:dataTable id="champa" dynamic="true" var="car" value="#{mantenedorCliente.campanaEnEspera}">
              <f:facet name="header">
-             Selecione Pantalla Para Desplegar Campañas
+                 Tiene X Campañas por validar.
              </f:facet>
              <p:column style="width:30px;" >
-                 <p:rowToggler />
+                <p:rowToggler />
              </p:column>
-             <p:column headerText="NO° serie" >
-                 <h:outputText value="#{car.noserie}" />
+             <p:column headerText="Imagen">
+                 <p:graphicImage url="#{car.contenido.path}" />
              </p:column>
-             <p:column headerText="Estalecimiento">
-                 <h:outputText value="#{car.establecimiento.nombreEstablecimiento}" />
+             <p:column headerText="Contenido">
+                 <h:outputText value="#{car.contenido.nombrecont}" />
+             </p:column>
+             <p:column headerText="Fecha Inicio">
+                 <h:outputText value="#{car.fechaInicio}" />
+             </p:column>
+             <p:column headerText="Fecha Fin">
+                <h:outputText value="#{car.fechaFin}" />
+             </p:column>
+             <p:column headerText="Pasadas">
+                 <h:outputText value="#{car.pasadas}" />
+             </p:column>
+             <p:column headerText="estado">
+                 <h:outputText value="#{car.contenido.estado}" />
+             </p:column>
+             <p:column>
+               <p:commandButton value="aprobar" process="@form" update="champa"
+                                action="#{mantenedorCliente.aprobar(car)}"  />
+             </p:column>
+             <p:column>
+                 <p:commandButton value="rechazar" process="@form"
+                                  action="#{mantenedorCliente.rechazar(car)}" update="champa" />
              </p:column>
 
              <p:rowExpansion>
                  <p:panelGrid>
-                         <p:dataList var="qwer" value="#{car.campanaList}">
-                             <p:outputLabel>
-                                 <h:outputText value="#{qwer.fechaInicio}-" />
-                                 <h:outputText value="#{qwer.fechaCreacion}-" />
-                                 <h:outputText value="#{qwer.pasadas}"/>
-                             </p:outputLabel>
+                     <p:dataList var="qwer" value="#{car.totemList}">
+                         <p:outputLabel>
+                             <h:outputText value="#{qwer.noserie}" />
+
+                         </p:outputLabel>
                      </p:dataList>
 
                  </p:panelGrid>
              </p:rowExpansion>
          </p:dataTable>
+         <div class="push"></div>
      </h:form>
     </ui:define>
 </ui:composition>

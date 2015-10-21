@@ -22,18 +22,29 @@ import java.util.Set;
                         "INNER JOIN FETCH c.contenido co " +
                         "INNER JOIN FETCH co.usuario u " +
                         "WHERE u.username=:username "),
+
                 @NamedQuery(
                         name = "Campana.findByIdWithTotems",
                         query = "SELECT c FROM Campana c INNER JOIN FETCH c.totemList WHERE c.id = :id"
                 ),
+
                 @NamedQuery(
                         name="Campana.findByTotemsAndCampana",
                         query="SELECT c FROM Campana c " +
                               "INNER JOIN FETCH c.totemList t " +
                               "INNER JOIN FETCH t.establecimiento e " +
                               "WHERE c.id=:id"
-
                 ),
+
+                @NamedQuery(name="Campana.findByEstado",
+                        query="SELECT c FROM Campana c "+
+                              "INNER JOIN FETCH c.contenido co " +
+                              "INNER JOIN FETCH c.totemList tl " +
+                              "INNER JOIN FETCH tl.establecimiento e  " +
+                              "INNER JOIN FETCH e.usuario u " +
+                              " WHERE u.username=:username AND co.estado='esperando'"
+
+                           ),
 
                 @NamedQuery(name="Campana.findByTotem",
                             query="SELECT c FROM Campana c " +
@@ -42,8 +53,6 @@ import java.util.Set;
                                   "RIGHT JOIN FETCH e.usuario u " +
                                   "where u.username=:username "
                                    )
-
-
         }
 )
 public class Campana implements Serializable {
