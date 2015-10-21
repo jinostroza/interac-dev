@@ -40,9 +40,9 @@
                     <div class="col-lg-3"></div>
                 </div>
                 <div class="row">
-                     <p:accordionPanel >
+                    <div class="col-lg-4">
                         <p:outputLabel value="Seleccione Establecimiento"></p:outputLabel>
-                        <h:selectOneMenu id="esta" class="form-control" value="#{mantenedorCampana.establecimiento}"
+                        <h:selectOneMenu id="esta" styleClass="form-control" value="#{mantenedorCampana.establecimiento}"
                                          converter="entityConverter" required="true" requiredMessage="Debe Seleccionar un establecimiento">
                             <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Establecimiento --"/>
                             <f:selectItems value="#{mantenedorCampana.establecimientoList}" var="estab"
@@ -53,7 +53,7 @@
 
                         <label>Categoría</label>
 
-                        <h:selectOneMenu id="onem" class="form-control" value="#{mantenedorCampana.categoria}"
+                        <h:selectOneMenu id="onem" styleClass="form-control" value="#{mantenedorCampana.categoria}"
                                          converter="entityConverter" required="true" requiredMessage="Debe Seleccionar una Categoria">
                             <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione categoria --"/>
                             <f:selectItems value="#{mantenedorCampana.categoriaList}" var="categor"
@@ -62,9 +62,9 @@
                         <p:tooltip id="tooltipmenu" for="onem" value="Selecciona la categoria de tu anuncio" trackMouse="true" />
                         <br></br>
                         <p:commandButton styleClass="btn btn-interac" value="Buscar" />
-                     </p:accordionPanel>
+                    </div>
 
-                        <p:dataScroller styleClass="col-lg-8 col-lg-offset-4" value="#{mantenedorCampana.totemCampana}" var="totem" chunkSize="5">
+                        <p:dataScroller styleClass="col-lg-8 " value="#{mantenedorCampana.totemCampana}" var="totem" chunkSize="5">
                             <f:facet name="header">
                                 Interac Plays
                             </f:facet>
