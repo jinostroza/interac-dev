@@ -20,6 +20,7 @@ import java.util.List;
 @Component
 @Scope("flow")
 public class MantenedorCliente implements Serializable {
+
     //entities
     private Totem totem;
     private Totem totemSeleccionado;
@@ -28,6 +29,8 @@ public class MantenedorCliente implements Serializable {
     private Establecimiento establecimiento;
     private Tipototem tipototem;
     private Contenido contenido;
+    private Long numeroCampanas;
+
     //list
     private List<Totem> totemList;
     private List<Campana> campanaList;
@@ -36,6 +39,8 @@ public class MantenedorCliente implements Serializable {
     private List<Totem> totemSeleccionados;
     private List<Totem> totemCampana;
     private List<Campana> campanaEnEspera;
+    private List<Campana> traerNuevaCampana;
+
     //autowired
     @Autowired
     private LogicaCampana logicaCampana;
@@ -53,21 +58,22 @@ public class MantenedorCliente implements Serializable {
     // inicio y Logica de vista
 
     public void inicio(){
+        numeroCampanas = logicaCampana.obtenerPorNumero(userSession.getUsuario().getUsername());
         totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
         campanaList= logicaCampana.obtenerLasCampanasDeLosTotems(userSession.getUsuario().getUsername());
         campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
 
     }
 
-    public void aprobar(Campana c){
+    public void aprobar(Contenido c){
         try {
-            campana =c ;
+            contenido = c ;
             String aprobado = "aprobado";
-            campana.getContenido().setEstado(aprobado);
-            logicaCampana.guardarCampana(c);
+            contenido.setEstado(aprobado);
+            logicaContenido.guardar(contenido);
             campanaEnEspera.clear();
             campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado campaña  [" +campana.getContenido().getNombrecont() + "]");
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha aprobado campaña  [" +campana.getContenido().getNombrecont() + "]");
 
         }catch (Exception e){
             FacesUtil.mostrarMensajeError("Operación Fallida", "algo ocurrio");
@@ -76,10 +82,10 @@ public class MantenedorCliente implements Serializable {
 
     public void rechazar(Campana c){
         try {
-
             campana= c ;
             String rechazado = "rechazado";
             campana.getContenido().setEstado(rechazado);
+            logicaCampana.guardarCampana(c);
             campanaEnEspera.clear();
             campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado campaña  [" + campana.getContenido().getNombrecont() + "]");
@@ -94,6 +100,13 @@ public class MantenedorCliente implements Serializable {
 //getter and setter
 
 
+    public Long getNumeroCampanas() {
+        return numeroCampanas;
+    }
+
+    public void setNumeroCampanas(Long numeroCampanas) {
+        this.numeroCampanas = numeroCampanas;
+    }
 
     public List<Campana> getCampanaEnEspera() {
         return campanaEnEspera;
