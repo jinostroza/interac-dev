@@ -285,6 +285,7 @@ tr.table-header{
 }
 .dashbox
 {
+
 	padding-top: 25px;
 	padding-bottom: 25px;
 	margin: 10px;
@@ -296,12 +297,12 @@ tr.table-header{
 	font-size: 18px;
 	color:white;
 }
-.dashbox-header:hover
+/*.dashbox-header:hover
 {
 	font-weight: bold;
 	font-size: 18px;
-	color:#ffffff;
-}
+	color:#000000;
+}*/
 .container
 {
 

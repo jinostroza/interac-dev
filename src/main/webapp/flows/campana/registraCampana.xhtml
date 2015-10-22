@@ -26,20 +26,22 @@
 
                         <div class="row" style="padding-left: 200px">
                             <ui:fragment
-                                    rendered="#{userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR')}">
-                                <h:commandLink styleClass="col-lg-3 col-md-3 "
+                                    rendered="#{userSession.tienePermiso('CLIENTE')
+                                      or userSession.tienePermiso('ADMINISTRADOR')}">
+                                <p:commandLink styleClass="col-lg-3 col-md-3 "
                                                style="padding-left: -300px;margin-left: -100px" action="#{facesUtil.redirigir('/plataforma/cliente')}">
                                     <div class="dashbox">
-                                        <h:outputLabel value="Activar Pantallas" styleClass="dashbox-header"/>
-
+                                        <h:outputLabel value="Activar Pantallas"
+                                                   style="font-weight: bold;font-size: 18px;"/>
                                         <div class="button_ crear-campana"></div>
-                                        <p> Activa tus propias pantallas publicitarias </p>
+                                        <p>#{mantenedorCampana.contarCampanas} campañas por validar</p>
                                     </div>
-                                </h:commandLink>
+                                </p:commandLink>
                             </ui:fragment>
                             <h:commandLink styleClass="col-lg-3 col-md-3  " action="crear">
                                 <div class="dashbox">
-                                    <h:outputLabel value="Crear Anuncio" styleClass="dashbox-header"/>
+                                    <h:outputLabel style="font-weight: bold;font-size: 18px;"
+                                                   value="Crear Anuncio" />
 
                                     <div class="button_ subir-imagen"></div>
                                     <p> Sube un nuevo anuncio a nuestra plataforma </p>
@@ -47,15 +49,14 @@
                             </h:commandLink>
                             <h:commandLink styleClass="col-lg-3 col-md-3 " action="vercon">
                                 <div class="dashbox">
-                                    <h:outputLabel value="Programar Campaña" styleClass="dashbox-header"/>
-
+                                    <h:outputLabel value="Programar Campaña" style="font-weight: bold;font-size: 18px;"/>
                                     <div class="button_ planificar-campana"></div>
                                     <p> Elige cuando y donde quieres publicitar </p>
                                 </div>
                             </h:commandLink>
                             <h:commandLink class="col-lg-3 col-md-3 " action="micampana" >
                                 <div class="dashbox">
-                                    <h:outputLabel value="Pagar" styleClass="dashbox-header"/>
+                                    <h:outputLabel value="Pagar" style="font-weight: bold;font-size: 18px;"/>
 
                                     <div class="button_ pagar"></div>
                                     <p> Confirma y paga tu Campaña aqui!</p>
@@ -121,9 +122,9 @@
                 </div>
                 <br/>
                 <div class="ui-grid-row">
-                <div class="col-lg-4">
-                    <h3 align="center" style="align-items: flex-start">Estado de tus Campañas</h3>
-                </div>
+                    <div class="col-lg-4">
+                        <h3 align="center" style="align-items: flex-start">Estado de tus Campañas</h3>
+                    </div>
                 </div>
 
                 <div class="ui-grid-row">
@@ -154,14 +155,9 @@
                         <p:column styleClass="col-lg-2" headerText="fecha fin">
                             <h:outputText value="#{camton.fechaFin}"/>
                         </p:column>
-
                     </p:dataTable>
                 </div>
-
-
                 <br/>
-
-
                 <p:spacer> </p:spacer>
                 <br/>
             </h:form>

@@ -7,26 +7,23 @@ import cl.interac.util.components.PropertyReader;
 import cl.interac.util.components.UserSession;
 import cl.interac.util.services.FileUploader;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
-import org.primefaces.event.map.OverlaySelectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by luis on 25-04-2015.
@@ -67,6 +64,7 @@ public class MantenedorCampana implements Serializable {
     private String dateDiffValue;
     private Marker marker;
     private String newCenter;
+    private Long contarCampanas;
     private Integer ubica;
 
     @Autowired
@@ -95,6 +93,7 @@ public class MantenedorCampana implements Serializable {
 
 
     public void inicio() {
+        contarCampanas = logicaCampana.obtenerPorNumero(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
         categoriaList = logicaCategoria.obtenerTodos();
         establecimientoList=logicaEstablecimiento.obtenerTodos();
@@ -269,6 +268,10 @@ public class MantenedorCampana implements Serializable {
         return newCenter;
 
     }
+
+
+
+   //getter and setter
     public void filterUbica(Ubicacion u){
         ubicacion=u;
         ubica=u.getIdubicacion();
@@ -278,6 +281,16 @@ public class MantenedorCampana implements Serializable {
     }
 
     //getter and setter
+
+
+    public Long getContarCampanas() {
+        return contarCampanas;
+    }
+
+    public void setContarCampanas(Long contarCampanas) {
+        this.contarCampanas = contarCampanas;
+    }
+
     public Marker getMarker() {
         return marker;
     }
