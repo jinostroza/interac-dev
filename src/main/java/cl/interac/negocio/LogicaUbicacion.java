@@ -27,6 +27,9 @@ public class LogicaUbicacion {
     @Transactional(readOnly = true)
     public List<Ubicacion> obtenerTodas(){return ubicacionDAO.ObtenerTodos();}
 
+ @Transactional(readOnly = true)
+ public List<Ubicacion> obtenerConRealacion(){return ubicacionDAO.obtenerConRelacion();}
+
 
 
 

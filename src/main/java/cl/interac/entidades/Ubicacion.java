@@ -17,6 +17,7 @@ import java.util.List;
                 name = "Ubicacion.findAllWithRelationships",
                 query = "SELECT u from Ubicacion u " +
                         "inner join fetch u.establecimientoList "
+
         )
 })
 public class Ubicacion implements Serializable {

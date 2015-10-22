@@ -41,6 +41,8 @@ public class MantenedorCampana implements Serializable {
     private List<Campana> campanas;
     private List<Campana> campanaList;
     private List<Totem> totems;
+    private List<Tipototem> tipototemList;
+    private Tipototem tipototem;
     private Campana campana;
     private Integer precio;
     private String retor;
@@ -57,12 +59,15 @@ public class MantenedorCampana implements Serializable {
     private Categoria categoria;
     private Establecimiento establecimiento;
     private List<Establecimiento> establecimientoList;
+    private Ubicacion ubicacion;
+    private List<Ubicacion> ubicacionList;
     private MapModel advancedModel;
     private Contenido contenidosSelecionado;
     private List<Contenido> contenidosSelecionados;
     private String dateDiffValue;
     private Marker marker;
     private String newCenter;
+    private Integer ubica;
 
     @Autowired
     private LogicaCategoria logicaCategoria;
@@ -83,12 +88,18 @@ public class MantenedorCampana implements Serializable {
     private int fileUploadCount;
     @Autowired
     private LogicaEstablecimiento logicaEstablecimiento;
+    @Autowired
+    private LogicaUbicacion logicaUbicacion;
+    @Autowired
+    private LogicaTipototem logicaTipototem;
 
 
     public void inicio() {
         usuarios = logicaUsuario.obtenerTodos();
         categoriaList = logicaCategoria.obtenerTodos();
         establecimientoList=logicaEstablecimiento.obtenerTodos();
+        ubicacionList=logicaUbicacion.obtenerTodas();
+        tipototemList=logicaTipototem.obtenerTodos();
         totemsConrelacion = logicaTotem.obtenerConRelacion();
         totems = logicaTotem.obtenerPorUsuario(userSession.getUsuario().getUsername());
         campanas = logicaCampana.obtenerPorUsuario(userSession.getUsuario().getUsername());
@@ -258,10 +269,19 @@ public class MantenedorCampana implements Serializable {
         return newCenter;
 
     }
+    public void filterUbica(Ubicacion u){
+        ubicacion=u;
+        ubica=u.getIdubicacion();
+        System.err.println("ID" + ubica);
+
+
+    }
+
+    //getter and setter
     public Marker getMarker() {
         return marker;
     }
-   //getter and setter
+
 
     public String getNewCenter() {
         return newCenter;
@@ -439,6 +459,47 @@ public class MantenedorCampana implements Serializable {
 
     public void setTotemList(List<Totem> totemList) {
         this.totemList = totemList;
+    }
+
+    public Ubicacion getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
+
+    }
+
+    public List<Ubicacion> getUbicacionList() {
+        return ubicacionList;
+    }
+
+    public void setUbicacionList(List<Ubicacion> ubicacionList) {
+        this.ubicacionList = ubicacionList;
+    }
+
+    public Tipototem getTipototem() {
+        return tipototem;
+    }
+
+    public void setTipototem(Tipototem tipototem) {
+        this.tipototem = tipototem;
+    }
+
+    public List<Tipototem> getTipototemList() {
+        return tipototemList;
+    }
+
+    public void setTipototemList(List<Tipototem> tipototemList) {
+        this.tipototemList = tipototemList;
+    }
+
+    public Integer getUbica() {
+        return ubica;
+    }
+
+    public void setUbica(Integer ubica) {
+        this.ubica = ubica;
     }
 }
 

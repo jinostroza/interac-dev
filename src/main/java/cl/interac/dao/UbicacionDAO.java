@@ -16,7 +16,7 @@ public class UbicacionDAO  {
   @PersistenceContext
     private EntityManager em;
     public List<Ubicacion> ObtenerTodos(){return em.createNamedQuery("Ubicacion.findAll").getResultList();}
-
+    public List<Ubicacion> obtenerConRelacion(){return em.createNamedQuery("Ubicacion.findAllWithRelationships").getResultList();}
     public void guardar (Ubicacion b){
         if(b.getIdubicacion()== null) em.persist(b);
 
