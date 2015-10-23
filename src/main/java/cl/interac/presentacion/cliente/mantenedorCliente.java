@@ -11,7 +11,10 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import java.io.File;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 /**
@@ -67,32 +70,37 @@ public class MantenedorCliente implements Serializable {
 
     public void aprobar(Contenido c){
         try {
+
             contenido = c ;
             String aprobado = "aprobado";
             contenido.setEstado(aprobado);
             logicaContenido.guardar(contenido);
-            campanaEnEspera.clear();
-            campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
+
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha aprobado campaña  [" +campana.getContenido().getNombrecont() + "]");
 
         }catch (Exception e){
             FacesUtil.mostrarMensajeError("Operación Fallida", "algo ocurrio");
         }
+        campanaEnEspera.clear();
+        campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado campaña  [" + campana.getContenido().getNombrecont() + "]");
     }
 
-    public void rechazar(Campana c){
+    public void rechazar(Contenido c){
         try {
-            campana= c ;
+            contenido= c ;
             String rechazado = "rechazado";
             campana.getContenido().setEstado(rechazado);
-            logicaCampana.guardarCampana(c);
-            campanaEnEspera.clear();
-            campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
+            logicaContenido.guardar(contenido);
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado campaña  [" + campana.getContenido().getNombrecont() + "]");
 
         }catch (Exception e){
             FacesUtil.mostrarMensajeError("Operación Fallida","algo ocurrio");
         }
+
+        campanaEnEspera.clear();
+        campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado campaña  [" + campana.getContenido().getNombrecont() + "]");
     }
 
 
