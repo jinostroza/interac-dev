@@ -15,6 +15,7 @@ import java.util.Set;
                 @NamedQuery(name = "Totem.findAll", query = "SELECT t FROM Totem t "),
                 @NamedQuery(name = "Totem.findWithRelationship",
                         query = "SELECT t FROM Totem t " +
+                                "LEFT JOIN FETCH t.tipototem " +
                                 "left join fetch t.establecimiento e "
 
                                ),
@@ -28,12 +29,16 @@ import java.util.Set;
 
                 @NamedQuery(name="Totem.findByIdWithTotem",
                             query="SELECT t FROM Totem t " +
-                                  "LEFT JOIN FETCH t.campanaList cl " +
+                                  "LEFT JOIN FETCH t.campanaList cs " +
                                   "LEFT JOIN FETCH t.establecimiento e " +
                                   "Left join fetch e.usuario u " +
                                   "WHERE u.username=:username "
                 ),
 
+                @NamedQuery(name = "Totem.findTotemAndTodaLaWea",
+                            query="SELECT t FROM Totem t " +
+                                  "LEFT JOIN FETCH  t.campanaList cs " +
+                                  "LEFT JOIN FETCH t.establecimiento " )
 
 
 

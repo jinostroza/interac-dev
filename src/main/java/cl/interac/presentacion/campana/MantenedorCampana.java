@@ -21,6 +21,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -106,11 +107,6 @@ public class MantenedorCampana implements Serializable {
         campanaList= logicaCampana.obtenerLasCampanasDeLosTotems(userSession.getUsuario().getUsername());
         totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
-        advancedModel = new DefaultMapModel();
-
-        for(Totem totem: totemsConrelacion) {
-            advancedModel.addOverlay(new Marker(new LatLng(totem.getLat(), totem.getLongi()),totem.getEstablecimiento().getNombreEstablecimiento() ));
-        }
 
     }
 
@@ -188,7 +184,6 @@ public class MantenedorCampana implements Serializable {
             campana.setFechaCreacion(Date.from(Instant.now()));
             logicaCampana.guardarCampana(campana);
             FacesUtil.mostrarMensajeInformativo("operacion exitosa","se ha creado tu campaña");
-
         }catch (Exception e){
             FacesUtil.mostrarMensajeInformativo("operacion no exitosa","ocurrio Algo");
         }
@@ -196,12 +191,10 @@ public class MantenedorCampana implements Serializable {
     }
 
     public void eliminarFichero(Contenido conte){
-
         try {
             logicaContenido.eliminarContenido(conte);
             Files.delete(Paths.get("/home/ec2-user/media/colivares/" + conte.getPath()));
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha borrado la imagen");
-
         }catch (Exception e){
             FacesUtil.mostrarMensajeInformativo("Operación Fallida","Algo Ocurrio");
         }
@@ -209,14 +202,11 @@ public class MantenedorCampana implements Serializable {
     public String ver(int t){
         System.err.println("Totem:" + t);
         logicaCampana.obtenerPorIdConTotems(t);
-
-
         return "ver";
-
     }
+
     public void calculator(){
          precio= precio * 3000;
-
     }
 
     public void dateDiff() {
@@ -257,15 +247,15 @@ public class MantenedorCampana implements Serializable {
         marker = (Marker) event.getOverlay();
     }
 
-    public String location(Totem t){
+    public void location(Totem t){
+        totemsConrelacion.clear();
+        totemsConrelacion = logicaTotem.obtenerConRelacion();
+        totem = t;
+        newCenter=totem.getLat()+","+totem.getLongi();
+        advancedModel = new DefaultMapModel();
+        advancedModel.addOverlay(new Marker(new LatLng(totem.getLat(),totem.getLongi()),totem.getEstablecimiento().getNombreEstablecimiento()));
 
-        String lat=t.getLat().toString();
-        String lng=t.getLongi().toString();
-        System.err.println(""+t.getIdtotem());
-        newCenter=lat+","+lng;
         System.err.println(newCenter);
-
-        return newCenter;
 
     }
 
