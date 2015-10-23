@@ -67,7 +67,8 @@ public class MantenedorCampana implements Serializable {
     private String dateDiffValue;
     private Marker marker;
     private String newCenter;
-    private Integer ubica;
+    private Integer ubi;
+
 
     @Autowired
     private LogicaCategoria logicaCategoria;
@@ -269,13 +270,14 @@ public class MantenedorCampana implements Serializable {
         return newCenter;
 
     }
-    public void filterUbica(Ubicacion u){
+    public Integer ubicaciones(Ubicacion u){
         ubicacion=u;
-        ubica=u.getIdubicacion();
-        System.err.println("ID" + ubica);
-
+        ubi=u.getIdubicacion();
+        System.err.println(ubi);
+        return ubi;
 
     }
+
 
     //getter and setter
     public Marker getMarker() {
@@ -494,12 +496,12 @@ public class MantenedorCampana implements Serializable {
         this.tipototemList = tipototemList;
     }
 
-    public Integer getUbica() {
-        return ubica;
+    public Integer getUbi() {
+        return ubi;
     }
 
-    public void setUbica(Integer ubica) {
-        this.ubica = ubica;
+    public void setUbi(Integer ubi) {
+        this.ubi = ubi;
     }
 }
 

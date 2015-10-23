@@ -24,7 +24,7 @@ public class Test {
 
     @PostConstruct
     public void inicio() {
-        c = logicaCampana.obtenerPorIdConTotems(58);
+       /// c = logicaCampana.obtenerPorIdConTotems(58);
     }
 
     public String dummy() {

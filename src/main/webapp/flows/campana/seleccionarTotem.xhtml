@@ -46,14 +46,17 @@
                                          converter="entityConverter"  required="true" requiredMessage="Debe Seleccionar una Ubicacion">
                             <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Ciudad --"/>
                             <f:selectItems value="#{mantenedorCampana.ubicacionList}" var="ubic"
-                                           itemLabel="#{ubic.descubicacion}" itemValue="#{ubic}"/>
+                                           itemLabel="#{ubic.descubicacion}" itemValue="#{ubic}" />
+                            <p:ajax event="change" update="datapantallas" listener="#{mantenedorCampana.ubicaciones(mantenedorCampana.ubicacion)}" />
+
+
                         </p:selectOneMenu>
                         <p:tooltip id="tooltipUbica" for="ubica" value="Selecciona la Ubicacion" trackMouse="true" />
                         <br></br>
 
                         <label>Categoría</label>
 
-                        <p:selectOneMenu id="onem"  value="#{mantenedorCampana.tipototem}" onchange="PF('DTpantallas').filter()"
+                        <p:selectOneMenu id="onem"  value="#{mantenedorCampana.tipototem}"
                                          converter="entityConverter" required="true" requiredMessage="Debe Seleccionar una Categoria">
                             <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione categoria --"/>
                             <f:selectItems value="#{mantenedorCampana.tipototemList}" var="tipotot"
@@ -78,18 +81,19 @@
                         <p:commandButton styleClass="btn btn-interac" value="Buscar" />
                     </div>
 
-                        <p:dataTable widgetVar="DTpantallas" styleClass="col-lg-8 " value="#{mantenedorCampana.totemsConrelacion}" paginator="true" var="totem" rows="5" selection="#{mantenedorCampana.totems}" rowKey="#{totem}">
+                        <p:dataTable id="datapantallas" widgetVar="DTpantallas" styleClass="col-lg-8 "  value="#{mantenedorCampana.totemsConrelacion}" paginator="true" var="totem" rows="5" selection="#{mantenedorCampana.totems}" rowKey="#{totem}">
                             <f:facet name="header">
                                 Interac Plays
+                                <p:inputText id="globalFilter" value="#{mantenedorCampana.ubi}" onkeypress="PF('DTpantallas').filter()" style="width:150px; margin-left: 10px;" />
                             </f:facet>
                             <p:column selectionMode="multiple" style="width:30px;text-align:center"/>
                             <p:column>
                                 <p:graphicImage style="width: 80px;height: 120px" value="http://g01.a.alicdn.com/kf/HTB1UZdtIXXXXXcSXpXXq6xXFXXXH/42-inch-TFT-LED-industrial-FULL-HD-vertical-screen-floor-stand-memory-card-advertising-player.jpg"></p:graphicImage>
                                 </p:column>
-                                <p:column id="ubicacion" filterBy="#{totem.establecimiento.ubicacion.idubicacion}" filterMatchMode="exact">
+                                <p:column filterBy="#{totem.establecimiento.ubicacion.idubicacion}"  filterStyle="display: none"  >
                                 <h4>Establecimiento: <small>#{totem.establecimiento.nombreEstablecimiento}</small></h4>
                                 </p:column>
-                                <p:column filterBy="#{totem.tipototem.idtipo}">
+                                <p:column >
                                 <h4>Tipo Pantalla: <small>#{totem.tipototem.destipo}</small></h4>
                                 </p:column>
                                 <p:column>
@@ -106,6 +110,7 @@
                                 </p:column>
 
                         </p:dataTable>
+
 
             </div>
            </div>
