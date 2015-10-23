@@ -5,7 +5,7 @@
         start-state="misTotems">
 
       <on-start>
-            <evaluate expression="mantenedorCliente.inicio()"/>
+            <evaluate expression="mantenedorcliente.inicio()"/>
       </on-start>
 
       <view-state id="inicioCliente">
