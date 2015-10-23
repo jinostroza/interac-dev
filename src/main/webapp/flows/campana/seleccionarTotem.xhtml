@@ -46,17 +46,14 @@
                                          converter="entityConverter"  required="true" requiredMessage="Debe Seleccionar una Ubicacion">
                             <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Ciudad --"/>
                             <f:selectItems value="#{mantenedorCampana.ubicacionList}" var="ubic"
-                                           itemLabel="#{ubic.descubicacion}" itemValue="#{ubic}" />
-                            <p:ajax event="change" update="datapantallas" listener="#{mantenedorCampana.ubicaciones(mantenedorCampana.ubicacion)}" />
-
-
+                                           itemLabel="#{ubic.descubicacion}" itemValue="#{ubic}"/>
                         </p:selectOneMenu>
                         <p:tooltip id="tooltipUbica" for="ubica" value="Selecciona la Ubicacion" trackMouse="true" />
                         <br></br>
 
                         <label>Categoría</label>
 
-                        <p:selectOneMenu id="onem"  value="#{mantenedorCampana.tipototem}"
+                        <p:selectOneMenu id="onem"  value="#{mantenedorCampana.tipototem}" onchange="PF('DTpantallas').filter()"
                                          converter="entityConverter" required="true" requiredMessage="Debe Seleccionar una Categoria">
                             <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione categoria --"/>
                             <f:selectItems value="#{mantenedorCampana.tipototemList}" var="tipotot"
@@ -81,36 +78,37 @@
                         <p:commandButton styleClass="btn btn-interac" value="Buscar" />
                     </div>
 
-                        <p:dataTable id="datapantallas" widgetVar="DTpantallas" styleClass="col-lg-8 "  value="#{mantenedorCampana.totemsConrelacion}" paginator="true" var="totem" rows="5" selection="#{mantenedorCampana.totems}" rowKey="#{totem}">
+                        <p:dataTable widgetVar="DTpantallas" styleClass="col-lg-8 " value="#{mantenedorCampana.totemsConrelacion}"
+                               paginator="true" var="totem" rows="5" selection="#{mantenedorCampana.totemSelecionados}" rowKey="#{totem}">
                             <f:facet name="header">
                                 Interac Plays
-                                <p:inputText id="globalFilter" value="#{mantenedorCampana.ubi}" onkeypress="PF('DTpantallas').filter()" style="width:150px; margin-left: 10px;" />
                             </f:facet>
                             <p:column selectionMode="multiple" style="width:30px;text-align:center"/>
                             <p:column>
-                                <p:graphicImage style="width: 80px;height: 120px" value="http://g01.a.alicdn.com/kf/HTB1UZdtIXXXXXcSXpXXq6xXFXXXH/42-inch-TFT-LED-industrial-FULL-HD-vertical-screen-floor-stand-memory-card-advertising-player.jpg"></p:graphicImage>
+                              <p:graphicImage style="width: 80px;height: 120px"
+                                   value="http://g01.a.alicdn.com/kf/HTB1UZdtIXXXXXcSXpXXq6xXFXXXH/42-inch-TFT-LED-industrial-FULL-HD-vertical-screen-floor-stand-memory-card-advertising-player.jpg"/>
                                 </p:column>
-                                <p:column filterBy="#{totem.establecimiento.ubicacion.idubicacion}"  filterStyle="display: none"  >
+                                <p:column id="ubicacion" filterBy="#{totem.establecimiento.ubicacion.idubicacion}" filterMatchMode="exact">
                                 <h4>Establecimiento: <small>#{totem.establecimiento.nombreEstablecimiento}</small></h4>
                                 </p:column>
-                                <p:column >
+                                <p:column filterBy="#{totem.tipototem.idtipo}">
                                 <h4>Tipo Pantalla: <small>#{totem.tipototem.destipo}</small></h4>
                                 </p:column>
                                 <p:column>
 
-                                    <p:commandButton onclick="PF('dlg2').show();" icon="ui-icon-pin-s" value="ver" >
-                                    <p:ajax update="gmap" event="click" listener="#{mantenedorCampana.location(totem)}"></p:ajax>
-                                    </p:commandButton>
+                                    <p:commandButton process="@form" update="gmap" onclick="PF('dlg2').show();"
+                                                actionListener="#{mantenedorCampana.location(totem)}" icon="ui-icon-pin-s" value="ver" />
+
                                     <p:dialog id="mapa" header="Ubicacion de Pantalla" widgetVar="dlg2" modal="true" height="500" width="600">
-                                        <p:gmap id="gmap"  center="#{totem.lat},#{totem.longi}" zoom="20"
+                                        <p:gmap id="gmap"  center="#{totem.lat},#{totem.longi}"  zoom="20"
                                                 type="HYBRID"  model="#{mantenedorCampana.advancedModel}"
                                                 style="width:580px;height:420px">
                                         </p:gmap>
                                     </p:dialog>
+
                                 </p:column>
 
                         </p:dataTable>
-
 
             </div>
            </div>
