@@ -42,11 +42,12 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <p:outputLabel value="Seleccione Ciudad"></p:outputLabel>
-                        <p:selectOneMenu id="ubica" styleClass="" value="#{mantenedorCampana.ubicacion}" onchange="PF('DTpantallas').filter()"
+                        <p:selectOneMenu id="ubica" styleClass="" value="#{mantenedorCampana.ubicacion}"  onchange="PF('DTpantallas').filter()"
                                          converter="entityConverter"  required="true" requiredMessage="Debe Seleccionar una Ubicacion">
-                            <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Ciudad --"/>
+                            <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Ciudad --" />
                             <f:selectItems value="#{mantenedorCampana.ubicacionList}" var="ubic"
-                                           itemLabel="#{ubic.descubicacion}" itemValue="#{ubic}"/>
+                                           itemLabel="#{ubic.descubicacion}" itemValue="#{ubic}" />
+                            <p:ajax event="change"  update="datapantallas" onstart="PF('DTpantallas').filter()" listener="#{mantenedorCampana.filterUbica(mantenedorCampana.ubicacion)}"/>
                         </p:selectOneMenu>
                         <p:tooltip id="tooltipUbica" for="ubica" value="Selecciona la Ubicacion" trackMouse="true" />
                         <br></br>
@@ -78,20 +79,22 @@
                         <p:commandButton styleClass="btn btn-interac" value="Buscar" />
                     </div>
 
-                        <p:dataTable widgetVar="DTpantallas" styleClass="col-lg-8 " value="#{mantenedorCampana.totemsConrelacion}"
+                        <p:dataTable id="datapantallas" widgetVar="DTpantallas" styleClass="col-lg-8 " value="#{mantenedorCampana.totemsConrelacion}"
                                paginator="true" var="totem" rows="5" selection="#{mantenedorCampana.totemSelecionados}" rowKey="#{totem}">
                             <f:facet name="header">
                                 Interac Plays
+                                <p:inputText widgetVar="filtro" id="globalFilter" value="#{mantenedorCampana.ubica}" onkeyup="PF('DTpantallas').filter()" style="display: none" />
+                                <p:inputText widgetVar="filtro" id="globalFilter2" value="#{mantenedorCampana.ubica}" onkeyup="PF('DTpantallas').filter()" style="display: none" />
                             </f:facet>
                             <p:column selectionMode="multiple" style="width:30px;text-align:center"/>
                             <p:column>
                               <p:graphicImage style="width: 80px;height: 120px"
                                    value="http://g01.a.alicdn.com/kf/HTB1UZdtIXXXXXcSXpXXq6xXFXXXH/42-inch-TFT-LED-industrial-FULL-HD-vertical-screen-floor-stand-memory-card-advertising-player.jpg"/>
                                 </p:column>
-                                <p:column id="ubicacion" filterBy="#{totem.establecimiento.ubicacion.idubicacion}" filterMatchMode="exact">
-                                <h4>Establecimiento: <small>#{totem.establecimiento.nombreEstablecimiento}</small></h4>
+                                <p:column id="ubicacion" filterBy="#{totem.establecimiento.ubicacion.idubicacion}" filterMatchMode="contains"  filterStyle="display: none">
+                                    <h4>Establecimiento: <small>#{totem.establecimiento.nombreEstablecimiento}</small></h4>
                                 </p:column>
-                                <p:column filterBy="#{totem.tipototem.idtipo}">
+                                <p:column filterBy="#{totem.tipototem.destipo}" filterMatchMode="contains"  >
                                 <h4>Tipo Pantalla: <small>#{totem.tipototem.destipo}</small></h4>
                                 </p:column>
                                 <p:column>
