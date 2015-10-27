@@ -7,6 +7,7 @@ import cl.interac.util.components.PropertyReader;
 import cl.interac.util.components.UserSession;
 import cl.interac.util.services.FileUploader;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.data.FilterEvent;
 import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
@@ -66,6 +67,7 @@ public class MantenedorCampana implements Serializable {
     private Marker marker;
     private String newCenter;
     private Integer ubica;
+    private String tipot="";
     private Long contarCampanas;
 
 
@@ -260,15 +262,19 @@ public class MantenedorCampana implements Serializable {
 
     }
 
-
-
-   //getter and setter
     public Integer filterUbica(Ubicacion u){
         ubicacion=u;
         ubica=u.getIdubicacion();
         System.err.println("ID" + ubica);
         return ubica;
     }
+    public String filterTipo(Tipototem tp){
+        tipototem=tp;
+        tipot=tp.getDestipo();
+        System.err.println("ID" + tipot);
+        return tipot;
+    }
+
 
     //getter and setter
 
@@ -505,7 +511,13 @@ public class MantenedorCampana implements Serializable {
         this.ubica = ubica;
     }
 
+    public String getTipot() {
+        return tipot;
+    }
 
+    public void setTipot(String tipot) {
+        this.tipot = tipot;
+    }
 }
 
 

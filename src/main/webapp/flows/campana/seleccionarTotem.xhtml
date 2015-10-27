@@ -59,6 +59,8 @@
                             <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione categoria --"/>
                             <f:selectItems value="#{mantenedorCampana.tipototemList}" var="tipotot"
                                            itemLabel="#{tipotot.destipo}" itemValue="#{tipotot}"/>
+                            <p:ajax event="change" listener="#{mantenedorCampana.filterTipo(mantenedorCampana.tipototem)}" update="datapantallas" resetValues="datapantallas"/>
+                            <p:focus for="tipototem"  ></p:focus>
                         </p:selectOneMenu>
                         <p:tooltip id="tooltipmenu" for="onem" value="Selecciona la categoria de tu anuncio" trackMouse="true" />
                         <p:outputLabel for="inicio" value="Inicio Campaña:" />
@@ -80,11 +82,13 @@
                     </div>
 
                         <p:dataTable id="datapantallas" widgetVar="DTpantallas" styleClass="col-lg-8 " value="#{mantenedorCampana.totemsConrelacion}"
-                               paginator="true" var="totem" rows="5" selection="#{mantenedorCampana.totemSelecionados}" rowKey="#{totem}">
+                               paginator="true" var="totem" rows="5" selection="#{mantenedorCampana.totemSelecionados}" filterEvent="keyup" rowKey="#{totem}">
                             <f:facet name="header">
                                 Interac Plays
                                 <p:inputText widgetVar="filtro" id="globalFilter" value="#{mantenedorCampana.ubica}" onkeyup="PF('DTpantallas').filter()" style="display: none" />
-                                <p:inputText widgetVar="filtro" id="globalFilter2" value="#{mantenedorCampana.ubica}" onkeyup="PF('DTpantallas').filter()" style="display: none" />
+                                <p:inputText widgetVar="filtro" id="globalFilter2" value="#{mantenedorCampana.tipot}" onkeyup="PF('DTpantallas').filter()" style="display: none" />
+
+
                             </f:facet>
                             <p:column selectionMode="multiple" style="width:30px;text-align:center"/>
                             <p:column>
@@ -94,7 +98,7 @@
                                 <p:column id="ubicacion" filterBy="#{totem.establecimiento.ubicacion.idubicacion}" filterMatchMode="contains"  filterStyle="display: none">
                                     <h4>Establecimiento: <small>#{totem.establecimiento.nombreEstablecimiento}</small></h4>
                                 </p:column>
-                                <p:column filterBy="#{totem.tipototem.destipo}" filterMatchMode="contains"  >
+                                <p:column id="tipototem" filterBy="#{totem.tipototem.destipo}" filterMatchMode="contains" filterValue="#{mantenedorCampana.tipot}">
                                 <h4>Tipo Pantalla: <small>#{totem.tipototem.destipo}</small></h4>
                                 </p:column>
                                 <p:column>
@@ -185,6 +189,5 @@
 
 
         </h:form>
-
     </ui:define>
 </ui:composition>
