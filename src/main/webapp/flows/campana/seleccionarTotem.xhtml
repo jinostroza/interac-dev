@@ -41,65 +41,67 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-4">
-                        <p:outputLabel value="Seleccione Ciudad"></p:outputLabel>
-                        <p:selectOneMenu id="ubica" styleClass="" value="#{mantenedorCampana.ubicacion}"  onchange="PF('DTpantallas').filter()"
-                                         converter="entityConverter"  required="true" requiredMessage="Debe Seleccionar una Ubicacion">
-                            <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Ciudad --" />
-                            <f:selectItems value="#{mantenedorCampana.ubicacionList}" var="ubic"
-                                           itemLabel="#{ubic.descubicacion}" itemValue="#{ubic}" />
-                            <p:ajax event="change"  update="datapantallas" onstart="PF('DTpantallas').filter()" listener="#{mantenedorCampana.filterUbica(mantenedorCampana.ubicacion)}"/>
-                        </p:selectOneMenu>
-                        <p:tooltip id="tooltipUbica" for="ubica" value="Selecciona la Ubicacion" trackMouse="true" />
-                        <br></br>
-
-                        <label>Categoría</label>
-
-                        <p:selectOneMenu id="onem"  value="#{mantenedorCampana.tipototem}" onchange="PF('DTpantallas').filter()"
-                                         converter="entityConverter" required="true" requiredMessage="Debe Seleccionar una Categoria">
-                            <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione categoria --"/>
-                            <f:selectItems value="#{mantenedorCampana.tipototemList}" var="tipotot"
-                                           itemLabel="#{tipotot.destipo}" itemValue="#{tipotot}"/>
-                            <p:ajax event="change" listener="#{mantenedorCampana.filterTipo(mantenedorCampana.tipototem)}" update="datapantallas" resetValues="datapantallas"/>
-                            <p:focus for="tipototem"  ></p:focus>
-                        </p:selectOneMenu>
-                        <p:tooltip id="tooltipmenu" for="onem" value="Selecciona la categoria de tu anuncio" trackMouse="true" />
-                        <p:outputLabel for="inicio" value="Inicio Campaña:" />
-                        <p:calendar id="inicio" locale="es" pattern="dd/MM/yyyy"
-                                    value="#{mantenedorCampana.campana.fechaInicio}" mask="Click Aqui">
+                        <h4>Fechas</h4>
+                        <h:outputLabel for="inicio" value="Inicio Campaña:" />
+                        <p:calendar styleClass="form-control" id="inicio" locale="es" pattern="dd/MM/yyyy"
+                                    value="#{mantenedorCampana.campana.fechaInicio}" mindate="c1.today()" widgetVar="c1" required="true" requiredMessage="Debe indicar fecha de Inicio" >
                             <p:ajax event="dateSelect" update="inline"/>
                             <p:ajax event="change" update="inline"/>
                             <p:ajax event="dateSelect" listener="#{mantenedorCampana.dateDiff}" update="dias" />
                         </p:calendar>
-                        <p:outputLabel for="fin" value="Fin Campaña:" />
-                        <p:calendar id="fin"  locale="es" pattern="dd/MM/yyyy"
-                                    value="#{mantenedorCampana.campana.fechaFin}" mask="Click Aqui">
+                        <h:outputLabel for="fin" value="Fin Campaña:" />
+                        <p:calendar styleClass="form-control" id="fin"  locale="es" pattern="dd/MM/yyyy"
+                                    value="#{mantenedorCampana.campana.fechaFin}" mindate="c2.today()" widgetVar="c2" required="true" requiredMessage="Debe indicar la fecha de Termino" >
                             <p:ajax event="dateSelect" update="inline"/>
                             <p:ajax event="change" update="inline"/>
                             <p:ajax event="dateSelect" listener="#{mantenedorCampana.dateDiff}" update="dias"/>
                         </p:calendar>
+                        <p:tooltip for="inicio" value="Indique la fecha de comienzo para su campaña" trackMouse="true" ></p:tooltip>
+                        <p:tooltip for="fin" value="Indique la fecha de termino para su campaña" trackMouse="true" ></p:tooltip>
                         <br></br>
-                        <p:commandButton styleClass="btn btn-interac" value="Buscar" />
+                        <p:calendar id="inline" locale="es" mindate="#{mantenedorCampana.campana.fechaInicio}" maxdate="#{mantenedorCampana.campana.fechaFin}" mode="inline"/>
+                        <br></br>
+                        <h5>Pasadas al día</h5>
+                        <p:spinner id="ajaxSpinner" min="0" max="2880" stepFactor="360" value="#{mantenedorCampana.precio}" required="true" requiredMessage="Seleccione numero de pasadas diarias">
+                            <p:ajax update="out"  event="change" listener="#{mantenedorCampana.calculator}" />
+                            <p:ajax update="pasadas"  event="change" listener="#{mantenedorCampana.diasPasadas}"/>
+
+                        </p:spinner>
+                        <p:tooltip for="ajaxSpinner" value="Seleccione la cantidad de pasadas diarias " trackMouse="true" ></p:tooltip>
                     </div>
 
-                        <p:dataTable id="datapantallas" widgetVar="DTpantallas" styleClass="col-lg-8 " value="#{mantenedorCampana.totemsConrelacion}"
-                               paginator="true" var="totem" rows="5" selection="#{mantenedorCampana.totemSelecionados}" filterEvent="keyup" rowKey="#{totem}">
+                        <p:dataTable  id="datapantallas" widgetVar="DTpantallas" styleClass="col-lg-8 " value="#{mantenedorCampana.totemsConrelacion}"
+                               paginator="true" var="totem" rows="5" selection="#{mantenedorCampana.totemSelecionados}" rowKey="#{totem}" filteredValue="#{mantenedorCampana.totemList}">
                             <f:facet name="header">
                                 Interac Plays
-                                <p:inputText widgetVar="filtro" id="globalFilter" value="#{mantenedorCampana.ubica}" onkeyup="PF('DTpantallas').filter()" style="display: none" />
-                                <p:inputText widgetVar="filtro" id="globalFilter2" value="#{mantenedorCampana.tipot}" onkeyup="PF('DTpantallas').filter()" style="display: none" />
-
-
                             </f:facet>
-                            <p:column selectionMode="multiple" style="width:30px;text-align:center"/>
-                            <p:column>
+                            <p:column selectionMode="multiple"  style="width:30px;text-align:center"/>
+                            <p:column headerText="Busqueda..">
                               <p:graphicImage style="width: 80px;height: 120px"
+
                                    value="http://g01.a.alicdn.com/kf/HTB1UZdtIXXXXXcSXpXXq6xXFXXXH/42-inch-TFT-LED-industrial-FULL-HD-vertical-screen-floor-stand-memory-card-advertising-player.jpg"/>
-                                </p:column>
-                                <p:column id="ubicacion" filterBy="#{totem.establecimiento.ubicacion.idubicacion}" filterMatchMode="contains"  filterStyle="display: none">
+
+                            </p:column>
+                                <p:column id="ubicacion" filterBy="#{totem.establecimiento.ubicacion.idubicacion}" filterMatchMode="contains" >
+                                    <f:facet name="filter" >
+                                        <h:selectOneMenu styleClass="form-control" onchange="PF('DTpantallas').filter()">
+                                            <f:selectItem  itemLabel="Ubicacion" itemValue="#{null}" noSelectionOption="true"/>
+                                            <f:selectItems value="#{mantenedorCampana.ubicacionList}" var="ubica" itemLabel="#{ubica.descubicacion}" itemValue="#{ubica.idubicacion}"/>
+                                        </h:selectOneMenu>
+
+                                    </f:facet>
                                     <h4>Establecimiento: <small>#{totem.establecimiento.nombreEstablecimiento}</small></h4>
                                 </p:column>
-                                <p:column id="tipototem" filterBy="#{totem.tipototem.destipo}" filterMatchMode="contains" filterValue="#{mantenedorCampana.tipot}">
-                                <h4>Tipo Pantalla: <small>#{totem.tipototem.destipo}</small></h4>
+                                <p:column id="tipototem" filterBy="#{totem.tipototem.destipo}" filterMatchMode="contains" >
+                                    <f:facet name="filter" >
+                                        <h:selectOneMenu styleClass="form-control" onchange="PF('DTpantallas').filter()">
+                                            <f:selectItem  itemLabel="Tipo Pantalla" itemValue="#{null}" noSelectionOption="true"/>
+                                            <f:selectItems value="#{mantenedorCampana.tipototemList}" var="tip" itemLabel="#{tip.destipo}" itemValue="#{tip.destipo}"/>
+                                        </h:selectOneMenu>
+
+                                    </f:facet>
+
+                                    <h4>Tipo Pantalla: <small>#{totem.tipototem.destipo}</small></h4>
                                 </p:column>
                                 <p:column>
 
@@ -120,33 +122,9 @@
             </div>
            </div>
             <br></br>
-            <div class="row" style="margin-left: 1%">
-                <div class="col-lg-7 col-md-7">
-                    <h2>Programar tus pasadas</h2>
-                </div>
-            </div>
-            <div class="row">
-                        <br/>
-                        <div class="col-lg-offset-4" >
-                        <p:calendar id="inline" locale="es" mindate="#{mantenedorCampana.campana.fechaInicio}" maxdate="#{mantenedorCampana.campana.fechaFin}" mode="inline"/>
-                        </div>
-                    </div>
 
-            <div class="row" style="margin-left: 1%">
-                <div class="col-lg-6">
-                     <h3>Programa tus pasadas</h3>
-                </div>
 
-                <div class="col-lg-4 col-md-offset-4">
-                    <h5>Pasadas al día</h5>
-                    <p:spinner id="ajaxSpinner" min="0" max="2880" stepFactor="360" value="#{mantenedorCampana.precio}">
-                        <p:ajax update="out"  event="change" listener="#{mantenedorCampana.calculator}" />
 
-                    </p:spinner>
-
-                    <p>Número total de pasadas diarias por anuncio</p>
-                </div>
-            </div>
             <div class="row datos-campania" style="margin-left: 1%"><h3>Detalles de planificación</h3>
                 <div class="col-lg-4">
                     <span class="datos-campania-titulo">Total dias</span>
@@ -160,7 +138,7 @@
                     <span class="datos-campania-titulo">Total de Pasadas</span>
                     <h:outputLabel id="pasadas" styleClass="datos-campania-texto">
                         <h:outputText value="" />
-                        <h:outputText value="#{mantenedorCampana.precio}" />
+                        <h:outputText value="#{mantenedorCampana.pasadas}" />
 
                     </h:outputLabel>
                 </div>
@@ -168,7 +146,7 @@
                     <span class="datos-campania-titulo">Costo de pasadas</span>
                     <h:outputLabel id="out" styleClass="datos-campania-texto">
                         <h:outputText value="$" />
-                        <h:outputText value="#{mantenedorCampana.precio}" />
+                        <h:outputText value="#{mantenedorCampana.valor}" />
 
                     </h:outputLabel>
                 </div>
