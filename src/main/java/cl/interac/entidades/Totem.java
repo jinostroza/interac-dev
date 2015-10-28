@@ -18,6 +18,7 @@ import java.util.Set;
                                 "LEFT JOIN FETCH t.tipototem " +
                                 "left join fetch t.establecimiento e "
 
+
                                ),
                 @NamedQuery(name="Totem.findbyUsuario",
                             query="SELECT t FROM Totem t " +
