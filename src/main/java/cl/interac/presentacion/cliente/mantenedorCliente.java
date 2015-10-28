@@ -2,8 +2,10 @@ package cl.interac.presentacion.cliente;
 
 import cl.interac.entidades.*;
 import cl.interac.negocio.*;
+import cl.interac.util.components.EmailUtils;
 import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.UserSession;
+import cl.interac.util.services.MailSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -15,7 +17,10 @@ import java.io.File;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by pclucho on 28-09-15.
@@ -43,6 +48,7 @@ public class MantenedorCliente implements Serializable {
     private List<Totem> totemCampana;
     private List<Campana> campanaEnEspera;
     private List<Campana> traerNuevaCampana;
+    private Totem[] totems;
 
     //autowired
     @Autowired
@@ -57,6 +63,10 @@ public class MantenedorCliente implements Serializable {
     private UserSession userSession;
     @Autowired
     private LogicaEstablecimiento logicaEstablecimiento;
+    @Autowired
+    private MailSender mailSender;
+    @Autowired
+    private LogicaUsuario logicaUsuario;
 
     // inicio y Logica de vista
 
@@ -65,22 +75,28 @@ public class MantenedorCliente implements Serializable {
         totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
         campanaList= logicaCampana.obtenerLasCampanasDeLosTotems(userSession.getUsuario().getUsername());
         campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
-
     }
 
     public void aprobar(Contenido c){
         try {
-
             contenido = c ;
             String aprobado = "aprobado";
             contenido.setEstado(aprobado);
             logicaContenido.guardar(contenido);
-
+            String nombreArchivo = contenido.getPath().substring(contenido.getPath().lastIndexOf('.'));
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd.hhmmss");
+            nombreArchivo = sdf.format(new Date()) + nombreArchivo;
+            Files.copy(Paths.get(contenido.getPath()), Paths.get("/home/ec2-user/media/" + totem.getEstablecimiento().getUsuario().getUsername() + "/" + nombreArchivo));
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha aprobado campaña  [" +campana.getContenido().getNombrecont() + "]");
-
         }catch (Exception e){
             FacesUtil.mostrarMensajeError("Operación Fallida", "algo ocurrio");
         }
+
+        String[] destinos = new String[2];
+        destinos[0] = "jchacon@interac.cl";
+        destinos[1] = "fernando_06@live.cl";
+        mailSender.send(destinos,"una prueba","esta Lista la API");
+
         campanaEnEspera.clear();
         campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado campaña  [" + campana.getContenido().getNombrecont() + "]");
@@ -97,6 +113,11 @@ public class MantenedorCliente implements Serializable {
         }catch (Exception e){
             FacesUtil.mostrarMensajeError("Operación Fallida","algo ocurrio");
         }
+        String[] destinos = new String[2];
+        destinos[0] = "jchacon@interac.cl";
+        destinos[1] = "fernando_06@live.cl";
+        mailSender.send(destinos,"una prueba","esta Lista la API");
+
 
         campanaEnEspera.clear();
         campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
