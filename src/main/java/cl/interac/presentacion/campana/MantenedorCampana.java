@@ -45,6 +45,9 @@ public class MantenedorCampana implements Serializable {
     private Tipototem tipototem;
     private Campana campana;
     private Integer precio;
+    private Integer pasadas;
+    private Integer valor;
+    private Long dias;
     private String retor;
     private String end1;
     private List<Usuario> usuarios;
@@ -210,7 +213,8 @@ public class MantenedorCampana implements Serializable {
     }
 
     public void calculator(){
-         precio= precio * 3000;
+
+         valor= (precio * 2)*(dias.intValue()+1);
     }
 
     public void dateDiff() {
@@ -238,7 +242,7 @@ public class MantenedorCampana implements Serializable {
                 long diffMinutes = diff / (60 * 1000) % 60;
                 long diffHours = diff / (60 * 60 * 1000) % 24;
                 long diffDays = diff / (24 * 60 * 60 * 1000);
-
+                dias=diffDays;
                 dateDiffValue=diffDays+1+"";
 
             } catch (Exception e) {
@@ -278,6 +282,13 @@ public class MantenedorCampana implements Serializable {
         tipot=tp.getDestipo();
         System.err.println("ID" + tipot);
         return tipot;
+    }
+    public void diasPasadas(){
+
+        pasadas=precio*(dias.intValue()+1);
+        System.err.println(pasadas);
+
+
     }
 
 
@@ -522,6 +533,30 @@ public class MantenedorCampana implements Serializable {
 
     public void setTipot(String tipot) {
         this.tipot = tipot;
+    }
+
+    public Long getDias() {
+        return dias;
+    }
+
+    public Integer getPasadas() {
+        return pasadas;
+    }
+
+    public void setPasadas(Integer pasadas) {
+        this.pasadas = pasadas;
+    }
+
+    public void setDias(Long dias) {
+        this.dias = dias;
+    }
+
+    public Integer getValor() {
+        return valor;
+    }
+
+    public void setValor(Integer valor) {
+        this.valor = valor;
     }
 }
 

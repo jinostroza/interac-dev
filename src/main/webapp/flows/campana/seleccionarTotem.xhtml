@@ -95,34 +95,32 @@
                               <p:graphicImage style="width: 80px;height: 120px"
                                    value="http://g01.a.alicdn.com/kf/HTB1UZdtIXXXXXcSXpXXq6xXFXXXH/42-inch-TFT-LED-industrial-FULL-HD-vertical-screen-floor-stand-memory-card-advertising-player.jpg"/>
                                 </p:column>
-                                <p:column id="ubicacion" filterBy="#{totem.establecimiento.ubicacion.idubicacion}"
-                                          filterMatchMode="contains" filterStyle="display: none">
+                                <p:column id="ubicacion" filterBy="#{totem.establecimiento.ubicacion.idubicacion}" filterMatchMode="contains"  filterStyle="display: none">
                                     <h4>Establecimiento: <small>#{totem.establecimiento.nombreEstablecimiento}</small></h4>
                                 </p:column>
-                                <p:column id="tipototem" filterBy="#{totem.tipototem.destipo}"
-                                          filterMatchMode="contains" filterValue="#{mantenedorCampana.tipot}">
+                                <p:column id="tipototem" filterBy="#{totem.tipototem.destipo}" filterMatchMode="contains" filterValue="#{mantenedorCampana.tipot}">
                                 <h4>Tipo Pantalla: <small>#{totem.tipototem.destipo}</small></h4>
                                 </p:column>
                                 <p:column>
 
-                                   <p:commandButton process="@this" immediate="true" update="gmap" onclick="PF('dlg2').show();"
-                                                  actionListener="#{mantenedorCampana.location(totem)}" icon="ui-icon-pin-s" value="ver" />
+                                    <p:commandButton process="@form" update="gmap" onclick="PF('dlg2').show();"
+                                                actionListener="#{mantenedorCampana.location(totem)}" icon="ui-icon-pin-s" value="ver" />
 
-                                    <p:dialog id="mapa" header="Ubicacion de Pantalla" widgetVar="dlg2"
-                                              modal="true" height="500" width="600">
-                                        <p:gmap id="gmap"  center="#{mantenedorCampana.newCenter}"  zoom="20"
+                                    <p:dialog id="mapa" header="Ubicacion de Pantalla" widgetVar="dlg2" modal="true" height="500" width="600">
+                                        <p:gmap id="gmap"  center="#{totem.lat},#{totem.longi}"  zoom="20"
                                                 type="HYBRID"  model="#{mantenedorCampana.advancedModel}"
                                                 style="width:580px;height:420px">
-
                                         </p:gmap>
                                     </p:dialog>
 
                                 </p:column>
+
                         </p:dataTable>
-              </div>
+
+            </div>
            </div>
             <br></br>
-            <div class="row" style="margin-left: 1%;">
+            <div class="row" style="margin-left: 1%">
                 <div class="col-lg-7 col-md-7">
                     <h2>Programar tus pasadas</h2>
                 </div>
@@ -161,6 +159,8 @@
                 <div class="col-lg-4">
                     <span class="datos-campania-titulo">Total de Pasadas</span>
                     <h:outputLabel id="pasadas" styleClass="datos-campania-texto">
+                        <h:outputText value="" />
+                        <h:outputText value="#{mantenedorCampana.precio}" />
 
                     </h:outputLabel>
                 </div>
@@ -180,7 +180,7 @@
                     <p:commandButton  value="Volver"  styleClass="btn btn-interac" action="regisCamp" immediate="true" />
                     <span/>
 
-                    <p:commandButton value="Siguente" inmediate="true"  styleClass="btn btn-interac" action="#{mantenedorCampana.guardar()}" />
+                    <p:commandButton value="Siguente"  styleClass="btn btn-interac" action="#{mantenedorCampana.guardar()}" />
                 </div>
 
             </div>
