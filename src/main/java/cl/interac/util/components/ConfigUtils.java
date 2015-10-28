@@ -1,5 +1,7 @@
 package cl.interac.util.components;
 
+import cl.interac.util.pojo.Encriptador;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -7,10 +9,10 @@ import java.util.Properties;
 public class ConfigUtils {
 	
 	/**
-	 * Retorna valor de configuración. <p>
-	 * Retorna valor de configuración correspondiente a la variable 'key', si no existe retorna null.
-	 * @param key nombre de la variable de configuración a buscar.
-	 * @return String correspondiente al valor de configuración de la llave key
+	 * Retorna valor de configuraciï¿½n. <p>
+	 * Retorna valor de configuraciï¿½n correspondiente a la variable 'key', si no existe retorna null.
+	 * @param key nombre de la variable de configuraciï¿½n a buscar.
+	 * @return String correspondiente al valor de configuraciï¿½n de la llave key
 	 */
 	public static String loadProperties(String key) {
 		Properties props = new Properties();

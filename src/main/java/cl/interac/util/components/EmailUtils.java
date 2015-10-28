@@ -13,7 +13,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class EmailUtils {
+public class EmailUtils  {
 	private static String user = "";
 	private static String password = "";
 		
@@ -94,7 +94,7 @@ public class EmailUtils {
              try {
      			Transport.send(msg);
      		} catch (MessagingException e) {
-     			// TODO Auto-generated catch block
+     			//  TODO Auto-generated catch block
      			e.printStackTrace();
      			return false;
      		}

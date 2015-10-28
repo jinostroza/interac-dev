@@ -28,7 +28,7 @@ import java.util.Set;
                                     "where u.username=:username"),
 
                 @NamedQuery(name="Totem.findByIdWithTotem",
-                            query="SELECT t FROM Totem t " +
+                            query="SELECT DISTINCT t FROM Totem t " +
                                   "LEFT JOIN FETCH t.campanaList cs " +
                                   "LEFT JOIN FETCH t.establecimiento e " +
                                   "Left join fetch e.usuario u " +

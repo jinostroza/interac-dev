@@ -2,6 +2,7 @@ package cl.interac.presentacion.campana;
 
 import cl.interac.entidades.*;
 import cl.interac.negocio.*;
+import cl.interac.util.components.EmailUtils;
 import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.PropertyReader;
 import cl.interac.util.components.UserSession;
@@ -248,20 +249,24 @@ public class MantenedorCampana implements Serializable {
     }
     public void onMarkerSelect(OverlaySelectEvent event) {
         marker = (Marker) event.getOverlay();
+        System.err.print(marker);
     }
 
-    public void location(Totem t){
-        totemsConrelacion.clear();
-        totemsConrelacion = logicaTotem.obtenerConRelacion();
+    public String location(Totem t){
         totem = t;
-        newCenter=totem.getLat()+","+totem.getLongi();
+        newCenter= totem.getLat()+","+totem.getLongi();
         advancedModel = new DefaultMapModel();
-        advancedModel.addOverlay(new Marker(new LatLng(totem.getLat(),totem.getLongi()),totem.getEstablecimiento().getNombreEstablecimiento()));
-
-        System.err.println(newCenter);
+        advancedModel.addOverlay(new Marker(new LatLng(totem.getLat(),totem.getLongi()),totem.getEstablecimiento().getNombreEstablecimiento()
+          , "http://www.google.com/mapfiles/dd-start.png"));
+         advancedModel = null;
+        System.err.println(totem.getLat()+","+totem.getLongi()+","+newCenter);
+       return newCenter;
 
     }
 
+
+
+   //getter and setter
     public Integer filterUbica(Ubicacion u){
         ubicacion=u;
         ubica=u.getIdubicacion();
