@@ -6,6 +6,11 @@
                 template="/templates/logInTemplate.xhtml">
 
     <ui:define name="contenido">
+        <style type="text/css">
+            .ui-datalist {
+                background-color: #002400;
+            }
+        </style>
 
 
         <h:outputStylesheet>
@@ -13,13 +18,14 @@
                 background-color: #E52620;
             }
         </h:outputStylesheet>
+
           <h:form>
               <div class="login-header"></div>
             <div class="container">
 
                 <div class="row">
 
-                    <div class="row" id="cuadro-registro">
+                    <div class="row" id="cuadro-registro" style="margin-top: 10%;margin-left:5%;height: 30%;width: 90%">
 
 
                         <div class="col-md-6 col-md-offset-2" >
@@ -28,34 +34,69 @@
                             <ui:fragment rendered="#{mantenedorCampana.totemSelecionados != null }" >
                             <h3>!Se ha creado tu campaña!</h3>
                             <p>has subido tu publicidad exitosamente</p>
+                            <div class="row">
+                                <p:graphicImage url="ftp://54.172.118.246/#{mantenedorCampana.campana.contenido.path}" style="width:150px; height:200px ;"
+                                        styleClass="col-lg-1"/>
+                                <div class="col-lg-offset-2" style="width: 550px" >
+                                <h:panelGrid >
+                                    <h3>Campaña Nº : #{mantenedorCampana.campana.idcampana}</h3>
 
-                                <p:panelGrid columns="2">
-                                    <f:facet name="header">
-                                        <p:graphicImage url="ftp://54.172.118.246/#{mantenedorCampana.campana.contenido.path}" style="width:100px; height:200px ;" />
-                                    </f:facet>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="1">
+                                        <h4>Programacion</h4>
+                                    </h:panelGrid>
 
-                                    <h:outputText value="fecha Creacion:" />
-                                    <h:outputText value="#{mantenedorCampana.campana.fechaCreacion}" >
+                                    <h:panelGrid columns="3">
+                                    <h:outputLabel value="Fecha de Cracion: ">
+                                    <h:outputLabel value="#{mantenedorCampana.campana.fechaCreacion}">
                                         <f:convertDateTime pattern="dd/MM/yyyy" />
-                                    </h:outputText>
-
-                                    <h:outputText value="fecha inicio:" />
-                                    <h:outputText value="#{mantenedorCampana.campana.fechaInicio}" >
+                                    </h:outputLabel>
+                                    </h:outputLabel>
+                                    <h:outputLabel value=" Fecha Inicio :">
+                                    <h:outputLabel style="color: red" value="#{mantenedorCampana.campana.fechaInicio}">
                                         <f:convertDateTime pattern="dd/MM/yyyy" />
-                                    </h:outputText>
+                                    </h:outputLabel>
+                                </h:outputLabel>
+                                    <h:outputLabel value=" Fecha Termino :">
+                                        <h:outputLabel style="color: red" value="#{mantenedorCampana.campana.fechaFin}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputLabel>
+                                    </h:outputLabel>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="3" style="width: 300px">
+                                        <f:facet name="header">
+                                            <h4>Pasadas</h4>
+                                        </f:facet>
+                                        <h:outputLabel value="Total de Dias: ">
+                                            <h:outputLabel style="color: red" value="#{mantenedorCampana.dias}"/>
+                                        </h:outputLabel>
+                                        <h:outputLabel value="Pasadas Diarias: ">
+                                            <h:outputLabel style="color: red" value="#{mantenedorCampana.precio}"/>
+                                        </h:outputLabel>
+                                        <h:outputLabel value="Total Pasadas: ">
+                                            <h:outputLabel style="color: red" value="#{mantenedorCampana.pasadas}"/>
+                                        </h:outputLabel>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="2" style="width: 550px;margin-left: 11%">
+                                        <f:facet name="header">
+                                            <h4>Costos</h4>
+                                        </f:facet>
+                                        <h:outputLabel value="Valor por pasada: ">
+                                            <h:outputLabel style="color: red" value="$2"/>
+                                        </h:outputLabel>
+                                        <h:outputLabel value="Valor total ">
+                                            <h:outputLabel style="color: red" value="$#{mantenedorCampana.valor}"/>
+                                        </h:outputLabel>
 
-                                    <h:outputText value="fecha fin:" />
-                                    <h:outputText value="#{mantenedorCampana.campana.fechaFin}" >
-                                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                                    </h:outputText>
-
-                                    <h:outputText value="Pasadas:" />
-                                    <h:outputText value="#{mantenedorCampana.campana.pasadas}" />
-                                </p:panelGrid>
-                            <p:dataList value="#{mantenedorCampana.totemSelecionados}" var="car" type="ordered">
+                                    </h:panelGrid>
+                                </div>
+                            </div>
+                            <h:dataTable value="#{mantenedorCampana.totemSelecionados}" var="car" style="margin-left: 27%">
                                 <f:facet name="header">Tu anuncio se publicara En :</f:facet>
-                               Pantalla: #{car.noserie}-#{car.establecimiento.nombreEstablecimiento}
-                            </p:dataList>
+                                <h:column> Pantalla: </h:column>
+                                <h:column> #{car.noserie}-</h:column>
+                                <h:column>#{car.establecimiento.nombreEstablecimiento}</h:column>
+                            </h:dataTable>
                             </ui:fragment>
 
                             <ui:fragment rendered="#{mantenedorCampana.totemSelecionados == null }" >
@@ -84,7 +125,7 @@
                             </p:panelGrid>
                             </ui:fragment>
 
-                            <div class="row" style="margin-top: 20%">
+                            <div class="row" style="margin-top: 20%;margin-bottom: 10%">
 
                                 <p:commandButton value="Volver Inicio" styleClass="btn btn-interac" action="fin"></p:commandButton>
                                 <h:panelGrid styleClass="col-lg-3" columns="1" cellpadding="5">
