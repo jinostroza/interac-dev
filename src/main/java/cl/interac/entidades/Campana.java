@@ -42,7 +42,7 @@ import java.util.Set;
                               "INNER JOIN FETCH c.totemList tl " +
                               "INNER JOIN FETCH tl.establecimiento e  " +
                               "INNER JOIN FETCH e.usuario u " +
-                              " WHERE u.username=:username AND co.estado='validando'"
+                              " WHERE u.username=:username AND co.estado='Validando'"
 
                            ),
                 @NamedQuery(name="Campana.count",
@@ -51,7 +51,7 @@ import java.util.Set;
                                 "INNER JOIN  c.totemList tl " +
                                 "INNER JOIN  tl.establecimiento e " +
                                 "INNER JOIN  e.usuario u "+
-                                " WHERE u.username=:username AND co.estado='validando'"
+                                " WHERE u.username=:username AND co.estado='Validando'"
                 ),
 
                 @NamedQuery(name="Campana.findByTotem",
