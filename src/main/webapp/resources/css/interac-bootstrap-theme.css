@@ -269,6 +269,9 @@ tr.table-header{
 .btn-anunciante
 {
 	background-image: url("css/img/buttons/btn-anunciante.png");
+	background-size: cover;
+	background-repeat:no-repeat;
+	background-position: center center;
 }
 .btn-empresa
 {
@@ -276,7 +279,18 @@ tr.table-header{
 }
 .btn-perfil
 {
-	background-image: url("css/img/buttons/user-register-icon.png");
+	background-image: url("css/img/buttons/gears-01.png");
+	background-size: cover;
+	background-repeat:no-repeat;
+	background-position: center center;
+}
+.btn-notify
+{
+	border-radius: 40%;
+	height: 50px;
+	background-color:#E52721; !important;
+	color: white;
+	margin-left: 20%
 }
 #myInterac .dashbox:hover
 {
@@ -290,6 +304,22 @@ tr.table-header{
 	padding-bottom: 25px;
 	margin: 10px;
 	text-align: center;
+}
+.dashbox-notify
+{
+
+	padding-top: 25px;
+	padding-bottom: 25px;
+	margin: 10px;
+	text-align: center;
+	height: 80px;
+	width: 10%;
+	float: right;
+	background-color: transparent;
+	background-image: url("css/img/buttons/notify-01.png");
+	background-size: cover;
+	background-repeat:no-repeat;
+	background-position: center center;
 }
 .dashbox-header
 {

@@ -66,7 +66,7 @@ body {
 }
 
 .container {
-    width: 1060px;
+    width: 1366px;
     margin: 0 auto;
     min-height: 100%;
     height: auto !important;
@@ -85,7 +85,7 @@ body {
 /* Middle
 -----------------------------------------------------------------------------*/
 .content {
-    padding: 0 0 200px;
+    /*padding: 0 0 200px;*/
 }
 
 /* Footer

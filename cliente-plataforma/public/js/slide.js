@@ -19,7 +19,7 @@ var Slide = {};
                     video.find("source").first().attr("type", "video/" + mediaFiles[i].substr(mediaFiles[i].lastIndexOf(".") + 1, mediaFiles[i].length));
                     jQuery("div.center").append(video);
                 } else {
-                    var img = jQuery("<img style='width: 1060px;height: 1520px' ></img>");
+                    var img = jQuery("<img style='width: 1350px;height: 760px' ></img>");
                     img.attr("src", mediaFiles[i]);
                     img.css("display", display);
                     jQuery("div.content").append(img);
