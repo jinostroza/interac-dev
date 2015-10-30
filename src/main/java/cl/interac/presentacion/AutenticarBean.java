@@ -3,6 +3,7 @@ package cl.interac.presentacion;
 import cl.interac.security.LogInManager;
 import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.UserSession;
+import cl.interac.util.services.MailSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -22,9 +23,17 @@ public class AutenticarBean implements Serializable {
     UserSession userSession;
     @Autowired
     LogInManager logInManager;
+    @Autowired
+    MailSender mailSender;
+
 
     private String user;
     private String pass;
+
+    public void enviar(){
+        mailSender.send();
+        System.err.print("nooo");
+    }
 
     public void logIn() {
         try {

@@ -1,84 +1,48 @@
 package cl.interac.util.services;
 
+
 import cl.interac.util.components.Constantes;
+import org.codemonkey.simplejavamail.Email;
+import org.codemonkey.simplejavamail.Mailer;
+import org.codemonkey.simplejavamail.TransportStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
-import javax.mail.Transport;
 
-
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.internet.AddressException;
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
-
 /**
  * Created by pclucho on 27-10-2015.
  */
 @Component
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class MailSender {
-     private Properties properties;
-     @Autowired
-     private Constantes constantes;
 
-    public void send(String[] destinos, String asunto, String mensaje) {
-        if (properties == null) writeProperties();
-        Session session = Session.getDefaultInstance(properties);
-        MimeMessage message = new MimeMessage(session);
+    private Properties properties;
+    @Autowired
+    private Constantes constantes;
 
-        try {
-            message.setFrom(new InternetAddress(properties.get("mail.smtp.user").toString()));
-            InternetAddress[] toAddress = new InternetAddress[destinos.length];
+    public void send() {
 
-            // To get the array of addresses
-            for( int i = 0; i < destinos.length; i++ ) {
-                toAddress[i] = new InternetAddress(destinos[i]);
-            }
+        final Email email = new Email();
 
-            for( int i = 0; i < toAddress.length; i++) {
-                message.addRecipient(Message.RecipientType.TO, toAddress[i]);
-            }
+        email.setFromAddress("contacto", "contacto@interac.cl");
+        email.setSubject("ejemplo correo interosky");
+        email.addRecipient("colivares","claudiopololivares@gmail.com", Message.RecipientType.TO);
 
-            message.setSubject(asunto);
-            mensaje = mensaje.replaceAll("á", "&aacute;");
-            mensaje = mensaje.replaceAll("é", "&eacute;");
-            mensaje = mensaje.replaceAll("í", "&iacute;");
-            mensaje = mensaje.replaceAll("ó", "&oacute;");
-            mensaje = mensaje.replaceAll("ú", "&uacute;");
-            mensaje = mensaje.replaceAll("ñ", "&ntilde;");
-            mensaje = mensaje.replaceAll("\\n", "<br/>");
-            message.setContent(mensaje, "text/html");
-            Transport transport = session.getTransport("smtp");
-            transport.connect(
-                    properties.getProperty("mail.smtp.host").toString()
-                    , properties.get("mail.smtp.user").toString()
-                    , properties.get("mail.smtp.password").toString()
-            );
-            transport.sendMessage(message, message.getAllRecipients());
-            transport.close();
-        }
-        catch (AddressException ae) {
-            ae.printStackTrace();
-        }
-        catch (MessagingException me) {
-            me.printStackTrace();
-        }
-    }
+        email.setTextHTML("<img style='background-color:red;'  src='http://www.interac.cl/wp-content/themes/theme-interac/img/logo/interac-blanco.png'>" +
+                "<b>We should meet up!</b><img src='cid:wink2'>");
 
-    private void writeProperties() {
-        properties = new Properties();
-        properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.host", constantes.getServidorCorreo());
-        properties.put("mail.smtp.user", constantes.getCorreo());
-        properties.put("mail.smtp.password", constantes.getClaveCorreo());
-        properties.put("mail.smtp.port", constantes.getPuertoCorreo());
-        properties.put("mail.smtp.auth", "true");
+// embed images and include downloadable attachments
+
+
+        Mailer mailer = new Mailer("mx1.nixiweb.com",587,"contacto@interac.cl","interac2015",TransportStrategy.SMTP_TLS);
+        mailer.sendMail(email);
 
     }
-
 }
+
+
