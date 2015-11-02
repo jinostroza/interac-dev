@@ -61,6 +61,7 @@ import java.util.Set;
                                   "RIGHT JOIN FETCH e.usuario u " +
                                   "where u.username=:username "
                                    )
+                
         }
 )
 public class Campana implements Serializable {
