@@ -16,10 +16,14 @@ import org.springframework.stereotype.Component;
 public class Constantes implements Serializable {
     private String pathArchivos;
 
-    private String correo = "erlusho30@gmail.com";
-    private String claveCorreo = "ladeantes";
-    private String servidorCorreo = "smtp.gmail.com";
+    private String correo = "contacto@interac.cl";
+    private String claveCorreo = "interac2015";
+    private String servidorCorreo = "mx1.nixiweb.com";
     private Integer puertoCorreo = 587;
+    private String headerCorreo = "\"<img style='background-color:red;'" +
+                                "  src='http://www.interac.cl/wp-content/themes/theme-interac/img/logo/interac-blanco.png'>";
+
+
 
 
     public Constantes() {
@@ -70,5 +74,13 @@ public class Constantes implements Serializable {
 
     public void setPuertoCorreo(Integer puertoCorreo) {
         this.puertoCorreo = puertoCorreo;
+    }
+
+    public String getHeaderCorreo() {
+        return headerCorreo;
+    }
+
+    public void setHeaderCorreo(String headerCorreo) {
+        this.headerCorreo = headerCorreo;
     }
 }

@@ -7,6 +7,7 @@ import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.PropertyReader;
 import cl.interac.util.components.UserSession;
 import cl.interac.util.services.FileUploader;
+import cl.interac.util.services.MailSender;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.data.FilterEvent;
 import org.primefaces.event.map.OverlaySelectEvent;
@@ -74,6 +75,8 @@ public class MantenedorCampana implements Serializable {
     private String tipot="";
     private Long contarCampanas;
 
+    @Autowired
+    private MailSender mailSender;
 
     @Autowired
     private LogicaCategoria logicaCategoria;
@@ -182,12 +185,23 @@ public class MantenedorCampana implements Serializable {
          return "subir";
     }
 
-    public String guardar() {
+    public String guardar(Totem[] t) {
         System.out.println("llego");
         try {
+            totemSelecionados = t ;
             campana.setContenido(contenido);
             System.err.print(contenido.getIdcontenido());
             campana.setTotemList(Arrays.asList(totemSelecionados));
+            String[] destinos = new String[totemSelecionados.length];
+            for(int i =0;i > totemSelecionados.length;i++){
+                destinos[i] = totem.getEstablecimiento().getUsuario().getCorreo();
+            }
+
+
+
+            mailSender.send(destinos,"","");
+
+
             campana.setFechaCreacion(Date.from(Instant.now()));
             logicaCampana.guardarCampana(campana);
             FacesUtil.mostrarMensajeInformativo("operacion exitosa","se ha creado tu campaña");

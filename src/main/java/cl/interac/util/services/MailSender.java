@@ -11,6 +11,7 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
 import javax.mail.*;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
@@ -25,24 +26,29 @@ public class MailSender {
     @Autowired
     private Constantes constantes;
 
-    public void send() {
+    public void send(String[] destinos,String asunto,String mensaje) {
 
         final Email email = new Email();
 
-        email.setFromAddress("contacto", "contacto@interac.cl");
-        email.setSubject("ejemplo correo interosky");
-        email.addRecipient("colivares","claudiopololivares@gmail.com", Message.RecipientType.TO);
+       try {
 
-        email.setTextHTML("<img style='background-color:red;'  src='http://www.interac.cl/wp-content/themes/theme-interac/img/logo/interac-blanco.png'>" +
-                "<b>We should meet up!</b><img src='cid:wink2'>");
+           for (int i = 0; i < destinos.length; i++) {
+               email.addRecipient(destinos[i], destinos[i], Message.RecipientType.TO);
+           }
+           email.setFromAddress("contacto", "contacto@interac.cl");
+           email.setSubject(asunto);
+           email.addHeader("X-Priority", 2);
+           email.setTextHTML(mensaje);
 
-// embed images and include downloadable attachments
+           Mailer mailer = new Mailer("mx1.nixiweb.com", 587, "contacto@interac.cl", "interac2015", TransportStrategy.SMTP_TLS);
+           mailer.sendMail(email);
 
-
-        Mailer mailer = new Mailer("mx1.nixiweb.com",587,"contacto@interac.cl","interac2015",TransportStrategy.SMTP_TLS);
-        mailer.sendMail(email);
-
+       }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
+
 
 

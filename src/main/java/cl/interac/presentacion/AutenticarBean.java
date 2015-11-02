@@ -30,10 +30,6 @@ public class AutenticarBean implements Serializable {
     private String user;
     private String pass;
 
-    public void enviar(){
-        mailSender.send();
-        System.err.print("nooo");
-    }
 
     public void logIn() {
         try {
