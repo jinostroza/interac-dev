@@ -1,8 +1,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:p="http://primefaces.org/ui"
-                >
+                xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+        >
 
     <f:view>
     <div class="header">
@@ -12,7 +12,7 @@
             <p:outputPanel styleClass="user-menu pull-right" style="padding-right: 30px">
             <ui:fragment rendered="#{userSession.estaAutentificado() }">
 
-                    <p:commandButton  styleClass="button_ btn-perfil"  style="height: 80px;background-color: transparent;color: white" value="#{userSession.usuario.username}" action="#{facesUtil.redirigir('/plataforma/panelDeControl')}" />
+                    <p:commandButton  styleClass="btn-perfil"  style="height: 80px;background-color:#E52721;color: white" value="#{userSession.usuario.username}" action="#{facesUtil.redirigir('/plataforma/panelDeControl')}" />
 
             </ui:fragment>
             </p:outputPanel>

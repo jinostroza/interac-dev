@@ -189,6 +189,7 @@ public class MantenedorCampana implements Serializable {
             System.err.print(contenido.getIdcontenido());
             campana.setTotemList(Arrays.asList(totemSelecionados));
             campana.setFechaCreacion(Date.from(Instant.now()));
+            campana.setPasadas(pasadas);
             logicaCampana.guardarCampana(campana);
             FacesUtil.mostrarMensajeInformativo("operacion exitosa","se ha creado tu campaña");
         }catch (Exception e){
@@ -263,14 +264,19 @@ public class MantenedorCampana implements Serializable {
         advancedModel.addOverlay(new Marker(new LatLng(totem.getLat(),totem.getLongi()),totem.getEstablecimiento().getNombreEstablecimiento()
           , "http://www.google.com/mapfiles/dd-start.png"));
          advancedModel = null;
-        System.err.println(totem.getLat()+","+totem.getLongi()+","+newCenter);
+        System.err.println(totem.getLat() + "," + totem.getLongi() + "," + newCenter);
        return newCenter;
 
     }
 
 
+    public void diasPasadas(){
 
-   //getter and setter
+        pasadas=precio*(dias.intValue()+1);
+        System.err.println(pasadas);
+
+
+    }
     public Integer filterUbica(Ubicacion u){
         ubicacion=u;
         ubica=u.getIdubicacion();
@@ -283,13 +289,7 @@ public class MantenedorCampana implements Serializable {
         System.err.println("ID" + tipot);
         return tipot;
     }
-    public void diasPasadas(){
 
-        pasadas=precio*(dias.intValue()+1);
-        System.err.println(pasadas);
-
-
-    }
 
 
     //getter and setter
