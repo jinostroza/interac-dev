@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/default.xhtml">
+<ui:define name="contenido">
+    <h1>Totems por activar</h1>
+    <h:form>
+        <p:dataTable id="dtTotems" var="totems" value="#{mantenedorTotems.totemPorUsuario}">
+            <f:facet name="header">Hola mundo</f:facet>
+            <p:column style="width:30px;" >
+                <p:rowToggler />
+            </p:column>
+            <p:column headerText="Establecimiento">
+                <h:outputText value="#{totems.establecimiento.nombreEstablecimiento}" />
+            </p:column>
+            <p:column headerText="Ubicacion">
+                <h:outputText value="#{totems.establecimiento.ubicacion.descubicacion}" />
+            </p:column>
+            <p:column headerText="N° serie">
+                <h:outputText value="#{totems.noserie}" />
+            </p:column>
+            <p:column headerText="Tipo Totem">
+                <h:outputText value="#{totems.tipototem.destipo}" />
+            </p:column>
+            <p:column>
+                <!-- Aqui va un formulario para editar el totem, no un dialog para agregar un nuevo totem -->
+                <p:commandButton value="Editar" onclick="PF('dialogAgregar').show();" />
+                <p:dialog widgetVar="dialogAgregar" header="Edicion de Totem" modal="true" height="500" width="600"></p:dialog>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</ui:define>
+</ui:composition>

@@ -21,7 +21,7 @@ import org.primefaces.model.map.Marker;
  * Created by Joaco on 24-04-2015.
  */
 @Component
-@Scope("view")
+@Scope("flow")
 public class MantenedorTotems implements Serializable {
 
     @Autowired
@@ -32,7 +32,10 @@ public class MantenedorTotems implements Serializable {
     private LogicaEstablecimiento logicaEstablecimiento;
     @Autowired
     private LogicaTipototem logicaTipototem;
-
+    @Autowired
+    private LogicaTotem logicaTotemConUsuario;
+    @Autowired
+    private UserSession userSession;
 
     private MapModel simpleModel;
     private Marker marker;
@@ -45,6 +48,7 @@ public class MantenedorTotems implements Serializable {
     private Totem totem;
     private Establecimiento establecimiento;
     private Tipototem tipototem;
+    private List<Totem> totemPorUsuario;
 
 
 
@@ -53,8 +57,9 @@ public class MantenedorTotems implements Serializable {
         totems = logicaTotem.obtenerConRelacion();
         establecimientoList = logicaEstablecimiento.obtenerTodos();
         tipototems = logicaTipototem.obtenerTodos();
-        totem = new Totem();
+        totemPorUsuario = logicaTotemConUsuario.obtenerPorUsuario(userSession.getUsuario().getUsername());
 
+        totem = new Totem();
     }
 
 
@@ -157,8 +162,20 @@ public class MantenedorTotems implements Serializable {
     public void setTipototem(Tipototem tipototem) {
         this.tipototem = tipototem;
     }
+
+    public List<Totem> getTotemPorUsuario() {
+        return totemPorUsuario;
+    }
+
+    public void setTotemPorUsuario(List<Totem> totemPorUsuario) {
+        this.totemPorUsuario = totemPorUsuario;
+    }
+
+    public UserSession getUserSession() {
+        return userSession;
+    }
+
+    public void setUserSession(UserSession userSession) {
+        this.userSession = userSession;
+    }
 }
-
-
-
-
