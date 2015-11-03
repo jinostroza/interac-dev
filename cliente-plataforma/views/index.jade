@@ -8,14 +8,14 @@ html
         script(src='public/js/slide.js')
         script(src='public/js/clock.js')
         script(src='public/js/dashbox.js')
-        //script(src='public/js/idle.js')
+        script(src='public/js/idle.js')
     body
         iframe(class="overlay", style="display:none")
         div(class="container")
             div(class="header")
                 div(class="clock")
                 div(class="twitter")
-                    a.twitter-timeline(aria-haspopup="true" data-target="https://twitter.com/ingenieriapucv" data-widget-id='495754794292633600', data-chrome='noheader nofooter noborders ', data-tweet-limit='6', data-link-color='#FFFFFF', data-border-color='#FFFFFF', lang='EN', data-theme='dark', height='200', width='520', data-screen-name='INGENIERIAPUCV', data-show-replies='false', data-aria-polite='assertive') Tweets por el @INGENIERIAPUCV
+                    a.twitter-timeline(aria-haspopup="true" data-target="https://twitter.com/ingenieriapucv" data-widget-id='495754794292633600', data-chrome='noheader nofooter noborders ', data-tweet-limit='6', data-link-color='#333333', data-border-color='#FFFFFF', lang='EN', data-theme='light', height='200', width='520', data-screen-name='INGENIERIAPUCV', data-show-replies='false', data-aria-polite='assertive') Tweets por el @INGENIERIAPUCV
             #content.content(style="padding: 0px")
             div(class="dashbox")
                 button(class="escuela")
@@ -23,6 +23,7 @@ html
                 button(class="maker")
         script(type='text/javascript').
             jQuery(document).ready(function () {
+                // twitter
                 !function (d, s, id) {
                     var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
                     if (!d.getElementById(id)) {
@@ -32,8 +33,26 @@ html
                         fjs.parentNode.insertBefore(js, fjs);
                     }
                 }(document, "script", "twitter-wjs");
+
+                // analytics
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r;
+                    i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+                    a = s.createElement(o),
+                            m = s.getElementsByTagName(o)[0];
+                    a.async = 1;
+                    a.src = g;
+                    m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+                ga('create', 'UA-69484091-2',{'cookiedomain':'none'} );
+                ga('send', 'pageview');
+
+                // custom
+              
                 Slide.start();
                 Clock.start();
                 DashBox.start();
+                CheckIdleTime.start();
             });
-

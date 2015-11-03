@@ -71,14 +71,14 @@ body {
     min-height: 100%;
     height: auto !important;
     height: 20%;
-    background-color: #333333;
+    background-color: #FFFFFF;
 }
 /* Header
 -----------------------------------------------------------------------------*/
 .header {
     height: 150px;
     width: 800px;
-    background-color: #333333;
+    background-color: #FFFFFF;
 
 }
 
@@ -103,7 +103,7 @@ body {
     height: 230px;
     width: 1060px;
     text-align: center;
-    background-color: #333333;
+    background-color: #FFFFFF;
     margin-left: auto;
     margin-right: auto;
 }
