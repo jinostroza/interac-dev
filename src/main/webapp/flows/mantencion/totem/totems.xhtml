@@ -6,8 +6,7 @@
     <h3 style="margin-top:0">Mantenedor Totems</h3>
     <h:panelGrid id="totemPG" columns="2" cellpadding="10">
         <br/>
-        <p:dataTable id="totemsDT" var="totm" value="#{mantenedorTotems.totems}"
-                       >
+        <p:dataTable id="totemsDT" var="totm" value="#{mantenedorTotems.totems}">
 
             <p:column headerText="N°Serie" filterBy="#{totm.noserie}">
                 <h:outputText value="#{totm.noserie}" />
