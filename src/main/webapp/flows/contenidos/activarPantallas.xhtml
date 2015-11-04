@@ -6,51 +6,50 @@
                 template="/templates/default.xhtml">
 <ui:define name="contenido">
     <h1>Totems por activar</h1>
-    <h:form>
-        <p:dataTable id="dtTotems" var="totems" value="#{mantenedorTotems.totems}">
+
+        <p:dataTable  var="totes" value="#{mantenedorTotems.totems}">
             <f:facet name="header">Hola mundo</f:facet>
-            <p:column style="width:30px;" >
-                <p:rowToggler />
-            </p:column>
             <p:column headerText="Establecimiento">
-                <h:outputText value="#{totems.establecimiento.nombreEstablecimiento}" />
+                <h:outputText value="#{totes.establecimiento.nombreEstablecimiento}" />
             </p:column>
             <p:column headerText="Ubicacion">
-                <h:outputText value="#{totems.establecimiento.ubicacion.idubicacion}" />
+                <h:outputText value="#{totes.establecimiento.ubicacion.idubicacion}" />
             </p:column>
             <p:column headerText="N° serie">
-                <h:outputText value="#{totems.noserie}" />
+                <h:outputText value="#{totes.noserie}" />
             </p:column>
             <p:column headerText="Tipo Totem">
-                <h:outputText value="#{totems.tipototem.destipo}" />
+                <h:outputText value="#{totes.tipototem.destipo}" />
             </p:column>
             <p:column>
-                <p:commandButton value="Editar" onclick="PF('dialogEditar').show();" />
-                <p:dialog widgetVar="dialogEditar" header="Edita un Totem" modal="true" height="500" width="600">
+                <h:commandButton id="editBtnTotem" styleClass="form-control" value="editar"  type="button"/>
+                <p:overlayPanel id="editPanel" for="editBtnTotem" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
                     <div class="row">
-                        <p:outputLabel value="Establecimiento" />
-                        <p:selectOneMenu value="#{totems.establecimiento}" converter="entityConverter">
+                        <h:outputLabel value="Establecimiento" />
+                        <h:selectOneMenu value="#{totes.establecimiento}"
+                                         converter="entityConverter">
                             <f:selectItem noSelectedOption="true" itemLabel="Seleccione ubicacion" />
-                            <f:selectItems value="#{mantenedorTotems.establecimientoList}" var="localEdit" itemLabel="#{localEdit.nombreEstablecimiento}" itemValue="#{localEdit}" />
-                        </p:selectOneMenu>
+                            <f:selectItems value="#{mantenedorTotems.establecimientoList}" var="localEdit" itemLabel="#{localEdit.nombreEstablecimiento}"  />
+                        </h:selectOneMenu>
                     </div>
                     <div class="row">
-                        <p:outputLabel value="N° de Serie" />
-                        <p:inputText styleClass="form-control" value="#{totems.noserie}" />
+                        <h:outputLabel value="N° de Serie" />
+                        <h:inputText styleClass="form-control" value="#{totes.noserie}" />
                     </div>
                     <div class="push"></div>
                     <div class="row">
                         <p:button value="Aceptar" />
                         <p:button value="Limpiar" />
                     </div>
-                </p:dialog>
+                </p:overlayPanel>
             </p:column>
         </p:dataTable>
         <p:commandButton value="Agregar" onclick="PF('dialogAgregar').show();" />
         <p:dialog widgetVar="dialogAgregar" header="Agrega un Totem" modal="true" height="500" width="600">
             <div class="row">
                 <p:outputLabel value="Establecimiento" />
-                <p:selectOneMenu value="#{totems.establecimiento}" converter="entityConverter">
+                <p:selectOneMenu value="#{mantenedorTotems.establecimiento}"
+                                 converter="entityConverter">
                     <f:selectItem noSelectedOption="true" itemLabel="Seleccione ubicacion" />
                     <f:selectItems value="#{mantenedorTotems.establecimientoList}" var="localEdit" itemLabel="#{localEdit.nombreEstablecimiento}" />
                 </p:selectOneMenu>
@@ -65,6 +64,7 @@
                 <p:button value="Limpiar" />
             </div>
         </p:dialog>
-    </h:form>
+
+
 </ui:define>
 </ui:composition>

@@ -18,9 +18,9 @@ html
                     a.twitter-timeline(aria-haspopup="true" data-target="https://twitter.com/ingenieriapucv" data-widget-id='495754794292633600', data-chrome='noheader nofooter noborders ', data-tweet-limit='6', data-link-color='#333333', data-border-color='#FFFFFF', lang='EN', data-theme='light', height='200', width='520', data-screen-name='INGENIERIAPUCV', data-show-replies='false', data-aria-polite='assertive') Tweets por el @INGENIERIAPUCV
             #content.content(style="padding: 0px")
             div(class="dashbox")
-                button(class="escuela")
-                button(class="flickr")
-                button(class="maker")
+                button(class="escuela" onclick="_gaq.push(['_trackEvent', 'escuela', 'clicked'])")
+                button(class="flickr" onclick="_gaq.push(['_trackEvent', 'flickr', 'clicked'])")
+                button(class="maker" onclick="_gaq.push(['_trackEvent', 'maker', 'clicked'])")
         script(type='text/javascript').
             jQuery(document).ready(function () {
                 // twitter
