@@ -1,6 +1,7 @@
 package cl.interac.util.services;
 
 
+import cl.interac.entidades.Totem;
 import cl.interac.util.components.Constantes;
 import org.codemonkey.simplejavamail.Email;
 import org.codemonkey.simplejavamail.Mailer;
@@ -29,25 +30,23 @@ public class MailSender {
     public void send(String[] destinos,String asunto,String mensaje) {
 
         final Email email = new Email();
-
        try {
 
-           for (int i = 0; i < destinos.length; i++) {
-               email.addRecipient(destinos[i], destinos[i], Message.RecipientType.TO);
+           for (int i = 0 ; i <destinos.length;i++ ) {
+               email.addRecipient("HueHueHue", destinos[i], Message.RecipientType.CC);
            }
            email.setFromAddress("contacto", "contacto@interac.cl");
-           email.setSubject(asunto);
-           email.addHeader("X-Priority", 2);
+           email.setSubject(asunto);        ;
            email.setTextHTML(mensaje);
-
            Mailer mailer = new Mailer("mx1.nixiweb.com", 587, "contacto@interac.cl", "interac2015", TransportStrategy.SMTP_TLS);
            mailer.sendMail(email);
+           System.err.print(destinos);
 
-       }
-        catch (Exception e){
+       }catch (Exception e){
             e.printStackTrace();
         }
     }
+
 }
 
 

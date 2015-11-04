@@ -2,12 +2,12 @@ package cl.interac.presentacion.campana;
 
 import cl.interac.entidades.*;
 import cl.interac.negocio.*;
-import cl.interac.util.components.EmailUtils;
-import cl.interac.util.components.FacesUtil;
-import cl.interac.util.components.PropertyReader;
-import cl.interac.util.components.UserSession;
+import cl.interac.util.components.*;
 import cl.interac.util.services.FileUploader;
 import cl.interac.util.services.MailSender;
+import com.sun.xml.internal.ws.api.message.ExceptionHasMessage;
+import org.apache.poi.ss.formula.functions.Replace;
+import org.hibernate.jdbc.Expectation;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.data.FilterEvent;
 import org.primefaces.event.map.OverlaySelectEvent;
@@ -54,6 +54,7 @@ public class MantenedorCampana implements Serializable {
     private List<Usuario> usuarios;
     private Totem totem;
     private Totem[] totemSelecionados;
+    private List<Totem> selecionados;
     private List<Totem> totemList;
     private List<Totem> totemsConrelacion;
     private List<Totem> totemCampana;
@@ -77,7 +78,8 @@ public class MantenedorCampana implements Serializable {
 
     @Autowired
     private MailSender mailSender;
-
+    @Autowired
+    private Constantes contantes;
     @Autowired
     private LogicaCategoria logicaCategoria;
     @Autowired
@@ -117,7 +119,6 @@ public class MantenedorCampana implements Serializable {
         campanaList= logicaCampana.obtenerLasCampanasDeLosTotems(userSession.getUsuario().getUsername());
         totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
-
     }
 
     public void subir(FileUploadEvent fue) {
@@ -185,31 +186,44 @@ public class MantenedorCampana implements Serializable {
          return "subir";
     }
 
-    public String guardar(Totem[] t) {
-        System.out.println("llego");
-        try {
-            totemSelecionados = t ;
+    public void  guardar() {
+
+
             campana.setContenido(contenido);
             System.err.print(contenido.getIdcontenido());
             campana.setTotemList(Arrays.asList(totemSelecionados));
-            String[] destinos = new String[totemSelecionados.length];
-            for(int i =0;i > totemSelecionados.length;i++){
-                destinos[i] = totem.getEstablecimiento().getUsuario().getCorreo();
-            }
-
-
-
-            mailSender.send(destinos,"","");
-
-
             campana.setFechaCreacion(Date.from(Instant.now()));
             logicaCampana.guardarCampana(campana);
-            FacesUtil.mostrarMensajeInformativo("operacion exitosa","se ha creado tu campaña");
-        }catch (Exception e){
-            FacesUtil.mostrarMensajeInformativo("operacion no exitosa","ocurrio Algo");
-        }
-        return "end1";
+          SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+          String html = new String(contantes.getHeaderCorreo());
+
+
+          html = html.replaceAll("\\$fechainicio", sdf.format(campana.getFechaInicio()));
+          html = html.replaceAll("\\$fechafin", sdf.format(campana.getFechaFin()));
+          html = html.replaceAll("\\$cantPant", String.valueOf(totemSelecionados.length));
+          html = html.replaceAll("\\$precio", String.valueOf(campana.getPasadas()));
+          html = html.replaceAll("\\$dias", dateDiffValue);
+          html = html.replaceAll("\\$precio", String.valueOf(precio));
+          html = html.replaceAll("\\$total", String.valueOf(valor));
+
+          String alertas = new String(contantes.getAlertas()) ;
+          alertas= alertas.replaceAll("\\$fecha",sdf.format(campana.getFechaFin())+"-hasta-"+sdf.format(campana.getFechaFin()));
+          alertas= alertas.replaceAll("\\$pasadas",String.valueOf(campana.getPasadas()));
+          for(int i=0 ; i > totemSelecionados.length ;i++ ) {
+              alertas = alertas.replaceAll("\\$pantallas", totemSelecionados[i].getNoserie() + "en" + totemSelecionados[i].getEstablecimiento().getNombreEstablecimiento());
+          }
+
+          String[] destinos = new String[totemSelecionados.length];
+               destinos[0] = userSession.getUsuario().getCorreo();
+          for (int i = 1; i > totemSelecionados.length; i++) {
+              destinos[i] = totemSelecionados[i].getEstablecimiento().getUsuario().getCorreo();
+              mailSender.send(destinos, "replica Anuncio", html);
+              System.err.print(totemSelecionados[i].getEstablecimiento().getUsuario().getCorreo());
+          }
+
+            FacesUtil.mostrarMensajeInformativo("operacion exitosa", "se ha creado tu campaña");
     }
+
 
     public void eliminarFichero(Contenido conte){
         try {
@@ -220,6 +234,7 @@ public class MantenedorCampana implements Serializable {
             FacesUtil.mostrarMensajeInformativo("Operación Fallida","Algo Ocurrio");
         }
     }
+
     public String ver(int t){
         System.err.println("Totem:" + t);
         logicaCampana.obtenerPorIdConTotems(t);
@@ -281,9 +296,6 @@ public class MantenedorCampana implements Serializable {
        return newCenter;
 
     }
-
-
-
    //getter and setter
     public Integer filterUbica(Ubicacion u){
         ubicacion=u;
