@@ -44,6 +44,15 @@
                         <h:outputLabel value="N° de Serie" />
                         <h:inputText styleClass="form-control" value="#{totes.noserie}" />
                     </div>
+                    <div class="row">
+                        <h:outputLabel value="Tipo de Totem" />
+                        <h:selectOneMenu value="#{totes.tipototem}"
+                                         converter="entityConverter">
+                            <f:selectItem noSelectedOption="true" itemLabel="Seleccione Establecimiento" />
+                            <!-- Aqui falta apuntar a los tipos de Totem -->
+                            <f:selectItems value="#{mantenedorTotems.tipototem}" var="local" itemLabel="#{local.idubicacion}"  />
+                        </h:selectOneMenu>
+                    </div>
                     <div class="push"></div>
                     <div class="row">
                         <p:button value="Aceptar" />
@@ -55,16 +64,33 @@
         <p:commandButton value="Agregar" onclick="PF('dialogAgregar').show();" />
         <p:dialog widgetVar="dialogAgregar" header="Agrega un Totem" modal="true" height="500" width="600">
             <div class="row">
-                <p:outputLabel value="Establecimiento" />
-                <p:selectOneMenu value="#{mantenedorTotems.establecimiento}"
+                <h:outputLabel value="Establecimiento" />
+                <h:selectOneMenu value="#{totes.establecimiento}"
                                  converter="entityConverter">
-                    <f:selectItem noSelectedOption="true" itemLabel="Seleccione ubicacion" />
-                    <f:selectItems value="#{mantenedorTotems.establecimientoList}" var="localEdit" itemLabel="#{localEdit.nombreEstablecimiento}" />
-                </p:selectOneMenu>
+                    <f:selectItem noSelectedOption="true" itemLabel="Seleccione Establecimiento" />
+                    <f:selectItems value="#{mantenedorTotems.establecimientoList}" var="localEdit" itemLabel="#{localEdit.nombreEstablecimiento}"  />
+                </h:selectOneMenu>
             </div>
             <div class="row">
-                <p:outputLabel value="N° de Serie" />
-                <p:inputText />
+                <h:outputLabel value="Ubicacion" />
+                <h:selectOneMenu value="#{totes.establecimiento.ubicacion}"
+                                 converter="entityConverter">
+                    <f:selectItem noSelectedOption="true" itemLabel="Seleccione Establecimiento" />
+                    <f:selectItems value="#{mantenedorTotems.ubicaciones}" var="local" itemLabel="#{local.descubicacion}"  />
+                </h:selectOneMenu>
+            </div>
+            <div class="row">
+                <h:outputLabel value="N° de Serie" />
+                <h:inputText styleClass="form-control" value="#{totes.noserie}" />
+            </div>
+            <div class="row">
+                <h:outputLabel value="Tipo de Totem" />
+                <h:selectOneMenu value="#{totes.tipototem}"
+                                 converter="entityConverter">
+                    <f:selectItem noSelectedOption="true" itemLabel="Seleccione Establecimiento" />
+                    <!-- Aqui falta apuntar a los tipos de Totem -->
+                    <f:selectItems value="#{mantenedorTotems.tipototem}" var="local" itemLabel="#{local.idubicacion}"  />
+                </h:selectOneMenu>
             </div>
             <div class="push"></div>
             <div class="row">

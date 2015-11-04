@@ -56,6 +56,7 @@ public class MantenedorTotems implements Serializable {
 
 
 
+
     @PostConstruct
     public void inicio() {
         totems = logicaTotem.obtenerConRelacion();
