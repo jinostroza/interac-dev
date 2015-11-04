@@ -1,6 +1,7 @@
 package cl.interac.presentacion;
 
 import cl.interac.security.LogInManager;
+import cl.interac.util.components.Constantes;
 import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.UserSession;
 import cl.interac.util.services.MailSender;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 
 /**
  * @author colivares
@@ -25,10 +27,13 @@ public class AutenticarBean implements Serializable {
     LogInManager logInManager;
     @Autowired
     MailSender mailSender;
+    @Autowired
+    Constantes constantes;
 
 
     private String user;
     private String pass;
+
 
 
     public void logIn() {
