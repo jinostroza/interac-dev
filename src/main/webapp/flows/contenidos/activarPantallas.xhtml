@@ -7,13 +7,13 @@
     <ui:define name="contenido">
         <h1>Totems por activar</h1>
 
-        <p:dataTable  var="totes" value="#{mantenedorTotems.totems}">
+        <p:dataTable  var="totes" value="#{mantenedorTotems.totemPorUsuario}">
             <f:facet name="header">Hola mundo</f:facet>
             <p:column headerText="Establecimiento">
                 <h:outputText value="#{totes.establecimiento.nombreEstablecimiento}" />
             </p:column>
             <p:column headerText="Ubicacion">
-                <h:outputText value="#{totes.establecimiento.ubicacion.idubicacion}" />
+                <h:outputText value="#{totes.establecimiento.ubicacion.descubicacion}" />
             </p:column>
             <p:column headerText="N° serie">
                 <h:outputText value="#{totes.noserie}" />
@@ -28,8 +28,16 @@
                         <h:outputLabel value="Establecimiento" />
                         <h:selectOneMenu value="#{totes.establecimiento}"
                                          converter="entityConverter">
-                            <f:selectItem noSelectedOption="true" itemLabel="Seleccione ubicacion" />
+                            <f:selectItem noSelectedOption="true" itemLabel="Seleccione Establecimiento" />
                             <f:selectItems value="#{mantenedorTotems.establecimientoList}" var="localEdit" itemLabel="#{localEdit.nombreEstablecimiento}"  />
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="row">
+                        <h:outputLabel value="Ubicacion" />
+                        <h:selectOneMenu value="#{totes.establecimiento.ubicacion}"
+                                         converter="entityConverter">
+                            <f:selectItem noSelectedOption="true" itemLabel="Seleccione Establecimiento" />
+                            <f:selectItems value="#{mantenedorTotems.ubicaciones}" var="local" itemLabel="#{local.descubicacion}"  />
                         </h:selectOneMenu>
                     </div>
                     <div class="row">

@@ -36,6 +36,8 @@ public class MantenedorTotems implements Serializable {
     private LogicaTotem logicaTotemConUsuario;
     @Autowired
     private UserSession userSession;
+    @Autowired
+    private LogicaUbicacion logicaUbicacion;
 
     private MapModel simpleModel;
     private Marker marker;
@@ -43,12 +45,14 @@ public class MantenedorTotems implements Serializable {
     private List<Totem> totems;
     private List<Tipototem> tipototems;
     private List<Totem> totemConFiltro;
+    private List<Ubicacion> ubicaciones;
     private List<Establecimiento> establecimientoList;
     private List<Establecimiento> establecimientoConfiltro;
     private Totem totem;
     private Establecimiento establecimiento;
     private Tipototem tipototem;
     private List<Totem> totemPorUsuario;
+    private Ubicacion ubicacion;
 
 
 
@@ -58,7 +62,7 @@ public class MantenedorTotems implements Serializable {
         establecimientoList = logicaEstablecimiento.obtenerTodos();
         tipototems = logicaTipototem.obtenerTodos();
         totemPorUsuario = logicaTotemConUsuario.obtenerPorUsuario(userSession.getUsuario().getUsername());
-
+        ubicaciones = logicaUbicacion.obtenerTodas();
         totem = new Totem();
     }
 
@@ -177,5 +181,21 @@ public class MantenedorTotems implements Serializable {
 
     public void setUserSession(UserSession userSession) {
         this.userSession = userSession;
+    }
+
+    public Ubicacion getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public List<Ubicacion> getUbicaciones() {
+        return ubicaciones;
+    }
+
+    public void setUbicaciones(List<Ubicacion> ubicaciones) {
+        this.ubicaciones = ubicaciones;
     }
 }
