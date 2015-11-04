@@ -20,7 +20,7 @@
 
                     <div class="row">
                         <div class="col-lg-6">
-                            <h2>Programar campaña</h2>
+                            <h2>Planificar campaña</h2>
                         </div>
                         <div class="nav-submenu col-lg-6">
                             <ul>
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                 </header>
-                <h3>Seleccionar Pantallas</h3>
+
                 <div class="row">
                     <div class="col-lg-3"></div>
                     <div class="col-lg-6">
@@ -72,9 +72,7 @@
 
                     <p:dataTable  id="datapantallas" widgetVar="DTpantallas" styleClass="col-lg-8 " value="#{mantenedorCampana.totemsConrelacion}"
                                   paginator="true" var="totem" rows="5" selection="#{mantenedorCampana.totemSelecionados}" rowKey="#{totem}" filteredValue="#{mantenedorCampana.totemList}">
-                        <f:facet name="header">
-                            Interac Plays
-                        </f:facet>
+
                         <p:column selectionMode="multiple"  style="width:30px;text-align:center"/>
                         <p:column headerText="Busqueda..">
                             <p:graphicImage style="width: 80px;height: 120px"

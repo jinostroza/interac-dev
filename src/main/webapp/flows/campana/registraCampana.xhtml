@@ -14,7 +14,13 @@
                             <div class="col-lg-6 col-lg-offset-3">
                                 <h2>Planifica tu Campaña en 3 simples Pasos</h2>
                             </div>
-
+                            <ui:fragment
+                                    rendered="#{userSession.tienePermiso('CLIENTE')
+                                      or userSession.tienePermiso('ADMINISTRADOR')}">
+                            <p:commandLink styleClass="dashbox-notify" action="#{facesUtil.redirigir('/plataforma/cliente')}" >
+                            <p:outputLabel styleClass="btn-notify blink" value="#{mantenedorCampana.contarCampanas}"/>
+                            </p:commandLink>
+                            </ui:fragment>
                         </div>
                     </header>
                     <div class="row">
@@ -27,7 +33,7 @@
                                     rendered="#{userSession.tienePermiso('CLIENTE')
                                       or userSession.tienePermiso('ADMINISTRADOR')}">
                                 <p:commandLink styleClass="col-lg-3 col-md-3 "
-                                               style="padding-left: -300px;margin-left: -100px" action="#{facesUtil.redirigir('/plataforma/cliente')}">
+                                               style="padding-left: -300px;margin-left: -100px" action="#{facesUtil.redirigir('/plataforma/contenidos')}">
                                     <div class="dashbox">
                                         <h:outputLabel value="Activar Pantallas"
                                                    style="font-weight: bold;font-size: 18px;"/>

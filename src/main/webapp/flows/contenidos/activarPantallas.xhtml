@@ -1,0 +1,70 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/default.xhtml">
+<ui:define name="contenido">
+    <h1>Totems por activar</h1>
+
+        <p:dataTable  var="totes" value="#{mantenedorTotems.totems}">
+            <f:facet name="header">Hola mundo</f:facet>
+            <p:column headerText="Establecimiento">
+                <h:outputText value="#{totes.establecimiento.nombreEstablecimiento}" />
+            </p:column>
+            <p:column headerText="Ubicacion">
+                <h:outputText value="#{totes.establecimiento.ubicacion.idubicacion}" />
+            </p:column>
+            <p:column headerText="N° serie">
+                <h:outputText value="#{totes.noserie}" />
+            </p:column>
+            <p:column headerText="Tipo Totem">
+                <h:outputText value="#{totes.tipototem.destipo}" />
+            </p:column>
+            <p:column>
+                <h:commandButton id="editBtnTotem" styleClass="form-control" value="editar"  type="button"/>
+                <p:overlayPanel id="editPanel" for="editBtnTotem" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
+                    <div class="row">
+                        <h:outputLabel value="Establecimiento" />
+                        <h:selectOneMenu value="#{totes.establecimiento}"
+                                         converter="entityConverter">
+                            <f:selectItem noSelectedOption="true" itemLabel="Seleccione ubicacion" />
+                            <f:selectItems value="#{mantenedorTotems.establecimientoList}" var="localEdit" itemLabel="#{localEdit.nombreEstablecimiento}"  />
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="row">
+                        <h:outputLabel value="N° de Serie" />
+                        <h:inputText styleClass="form-control" value="#{totes.noserie}" />
+                    </div>
+                    <div class="push"></div>
+                    <div class="row">
+                        <p:button value="Aceptar" />
+                        <p:button value="Limpiar" />
+                    </div>
+                </p:overlayPanel>
+            </p:column>
+        </p:dataTable>
+        <p:commandButton value="Agregar" onclick="PF('dialogAgregar').show();" />
+        <p:dialog widgetVar="dialogAgregar" header="Agrega un Totem" modal="true" height="500" width="600">
+            <div class="row">
+                <p:outputLabel value="Establecimiento" />
+                <p:selectOneMenu value="#{mantenedorTotems.establecimiento}"
+                                 converter="entityConverter">
+                    <f:selectItem noSelectedOption="true" itemLabel="Seleccione ubicacion" />
+                    <f:selectItems value="#{mantenedorTotems.establecimientoList}" var="localEdit" itemLabel="#{localEdit.nombreEstablecimiento}" />
+                </p:selectOneMenu>
+            </div>
+            <div class="row">
+                <p:outputLabel value="N° de Serie" />
+                <p:inputText />
+            </div>
+            <div class="push"></div>
+            <div class="row">
+                <p:button value="Aceptar" />
+                <p:button value="Limpiar" />
+            </div>
+        </p:dialog>
+
+
+</ui:define>
+</ui:composition>

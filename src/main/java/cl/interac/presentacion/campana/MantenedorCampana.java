@@ -2,12 +2,12 @@ package cl.interac.presentacion.campana;
 
 import cl.interac.entidades.*;
 import cl.interac.negocio.*;
-import cl.interac.util.components.*;
+import cl.interac.util.components.EmailUtils;
+import cl.interac.util.components.FacesUtil;
+import cl.interac.util.components.PropertyReader;
+import cl.interac.util.components.UserSession;
 import cl.interac.util.services.FileUploader;
 import cl.interac.util.services.MailSender;
-import com.sun.xml.internal.ws.api.message.ExceptionHasMessage;
-import org.apache.poi.ss.formula.functions.Replace;
-import org.hibernate.jdbc.Expectation;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.data.FilterEvent;
 import org.primefaces.event.map.OverlaySelectEvent;
@@ -54,7 +54,6 @@ public class MantenedorCampana implements Serializable {
     private List<Usuario> usuarios;
     private Totem totem;
     private Totem[] totemSelecionados;
-    private List<Totem> selecionados;
     private List<Totem> totemList;
     private List<Totem> totemsConrelacion;
     private List<Totem> totemCampana;
@@ -78,8 +77,7 @@ public class MantenedorCampana implements Serializable {
 
     @Autowired
     private MailSender mailSender;
-    @Autowired
-    private Constantes contantes;
+
     @Autowired
     private LogicaCategoria logicaCategoria;
     @Autowired
@@ -119,6 +117,7 @@ public class MantenedorCampana implements Serializable {
         campanaList= logicaCampana.obtenerLasCampanasDeLosTotems(userSession.getUsuario().getUsername());
         totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
+
     }
 
     public void subir(FileUploadEvent fue) {
@@ -296,6 +295,9 @@ public class MantenedorCampana implements Serializable {
        return newCenter;
 
     }
+
+
+
    //getter and setter
     public Integer filterUbica(Ubicacion u){
         ubicacion=u;
