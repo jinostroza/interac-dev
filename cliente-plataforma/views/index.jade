@@ -14,13 +14,13 @@ html
         div(class="container")
             div(class="header")
                 div(class="clock")
-                div(class="twitter")
+                div(class="twitter" id="twitter")
                     a.twitter-timeline(aria-haspopup="true" data-target="https://twitter.com/ingenieriapucv" data-widget-id='495754794292633600', data-chrome='noheader nofooter noborders ', data-tweet-limit='6', data-link-color='#333333', data-border-color='#FFFFFF', lang='EN', data-theme='light', height='200', width='520', data-screen-name='INGENIERIAPUCV', data-show-replies='false', data-aria-polite='assertive') Tweets por el @INGENIERIAPUCV
             #content.content(style="padding: 0px")
             div(class="dashbox")
-                button(class="escuela" onclick="_gaq.push(['_trackEvent', 'escuela', 'clicked'])")
-                button(class="flickr" onclick="_gaq.push(['_trackEvent', 'flickr', 'clicked'])")
-                button(class="maker" onclick="_gaq.push(['_trackEvent', 'maker', 'clicked'])")
+                button(class="escuela" id="escuela")
+                button(class="flickr" id="flickr")
+                button(class="maker" id="maker")
         script(type='text/javascript').
             jQuery(document).ready(function () {
                 // twitter
@@ -50,9 +50,22 @@ html
                 ga('send', 'pageview');
 
                 // custom
+                $('#escuela').on('click', function () {
+                    ga('send', 'event', 'btnescuela', 'click', 'nav-buttons');
+                });
+                $('#flickr').on('click', function () {
+                    ga('send', 'event', 'btnflickr', 'click', 'nav-buttons');
+                });
+                $('#maker').on('click', function () {
+                    ga('send', 'event', 'btnmaker', 'click', 'nav-buttons');
+                });
+                $('#twitter').on('click', function () {
+                    ga('send', 'event', 'divtwitter', 'click', 'nav-buttons');
+                });
+
               
                 Slide.start();
                 Clock.start();
                 DashBox.start();
-                CheckIdleTime.start();
+
             });
