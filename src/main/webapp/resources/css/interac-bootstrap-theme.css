@@ -723,3 +723,12 @@ div.login-logo{
 	background-image: url('css/img/buttons/promo-del-dia1-22.png');
 	margin:auto;
 }
+
+/* Niveleo de las columnas */
+.rowx{
+	overflow: hidden;
+}
+[class*="col-"]{
+	margin-bottom: -99999px;
+	padding-bottom: 99999px;
+}
