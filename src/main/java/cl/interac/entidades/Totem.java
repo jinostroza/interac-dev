@@ -51,9 +51,13 @@ public class Totem implements Serializable {
     private String noserie;
     private Double lat;
     private Double longi;
+    private String orientacion;
+    private String marca;
+    private String modelo;
+    private String pulgadas;
 
     // relaciones
-   private List<Campana> campanaList;
+    private List<Campana> campanaList;
     private Establecimiento establecimiento;
     private Tipototem tipototem;
 
