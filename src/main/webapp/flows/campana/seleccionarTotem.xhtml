@@ -103,15 +103,15 @@
                         </p:column>
                         <p:column>
 
-                            <p:commandButton process="@form" update="gmap" onclick="PF('dlg2').show();"
-                                             actionListener="#{mantenedorCampana.location(totem)}" icon="ui-icon-pin-s" value="ver" />
+                            <p:commandButton id="mapa1" type="button"  actionListener="#{mantenedorCampana.location(totem)}" icon="ui-icon-pin-s" value="ver" />
 
-                            <p:dialog id="mapa" header="Ubicacion de Pantalla" widgetVar="dlg2" modal="true" height="500" width="600">
+                            <p:overlayPanel id="mapa" for="mapa1" header="Ubicacion de Pantalla" hideEffect="fade" dynamic="true" style="width:600px">
                                 <p:gmap id="gmap"  center="#{totem.lat},#{totem.longi}"  zoom="20"
                                         type="HYBRID"  model="#{mantenedorCampana.advancedModel}"
                                         style="width:580px;height:420px">
                                 </p:gmap>
-                            </p:dialog>
+                            </p:overlayPanel>
+
 
                         </p:column>
 

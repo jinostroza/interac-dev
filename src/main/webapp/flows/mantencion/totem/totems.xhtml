@@ -35,10 +35,7 @@
                                      value="#{totm.noserie}"/>
                         <h:outputLabel value="Tipo"/>
 
-
-
-
-                        <h:selectOneMenu class="form-control" value="#{totm.establecimiento}"
+                       <h:selectOneMenu class="form-control" value="#{totm.establecimiento}"
                                          converter="entityConverter">
                             <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
                             <f:selectItems value="#{mantenedorTotems.establecimientoList}" var="localEdit"
