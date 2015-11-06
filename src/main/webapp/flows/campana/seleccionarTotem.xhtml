@@ -42,15 +42,16 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <h4>Fechas</h4>
+                        <h:panelGrid columns="2" >
                         <h:outputLabel for="inicio" value="Inicio Campaña:" />
-                        <p:calendar styleClass="form-control" id="inicio" locale="es" pattern="dd/MM/yyyy"
+                        <p:calendar  id="inicio" locale="es" pattern="dd/MM/yyyy"
                                     value="#{mantenedorCampana.campana.fechaInicio}" mindate="c1.today()" widgetVar="c1" required="true" requiredMessage="Debe indicar fecha de Inicio" >
                             <p:ajax event="dateSelect" update="inline"/>
                             <p:ajax event="change" update="inline"/>
                             <p:ajax event="dateSelect" listener="#{mantenedorCampana.dateDiff}" update="dias" />
                         </p:calendar>
                         <h:outputLabel for="fin" value="Fin Campaña:" />
-                        <p:calendar styleClass="form-control" id="fin"  locale="es" pattern="dd/MM/yyyy"
+                        <p:calendar  id="fin"  locale="es" pattern="dd/MM/yyyy"
                                     value="#{mantenedorCampana.campana.fechaFin}" mindate="c2.today()" widgetVar="c2" required="true" requiredMessage="Debe indicar la fecha de Termino" >
                             <p:ajax event="dateSelect" update="inline"/>
                             <p:ajax event="change" update="inline"/>
@@ -68,6 +69,7 @@
 
                         </p:spinner>
                         <p:tooltip for="ajaxSpinner" value="Seleccione la cantidad de pasadas diarias " trackMouse="true" ></p:tooltip>
+                        </h:panelGrid>
                     </div>
 
                     <p:dataTable  id="datapantallas" widgetVar="DTpantallas" styleClass="col-lg-8 " value="#{mantenedorCampana.totemsConrelacion}"
