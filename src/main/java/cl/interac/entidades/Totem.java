@@ -93,7 +93,7 @@ public class Totem implements Serializable {
         this.campanaList = campanaList;
     }
 
-    @Basic
+   /* @Basic
     @Column
     public String getOrientacion() { return orientacion; }
 
@@ -115,7 +115,7 @@ public class Totem implements Serializable {
     @Column
     public String getPulgadas() { return pulgadas; }
 
-    public void setPulgadas(String pulgadas) { this.pulgadas = pulgadas; }
+    public void setPulgadas(String pulgadas) { this.pulgadas = pulgadas; }*/
 
     @Basic
     @Column(name = "latitud")

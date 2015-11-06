@@ -28,7 +28,7 @@ public class MailSender {
 
         final Email email = new Email();
        try {
-           for(int i=0;i > destinos.length; i++ ) {
+           for(int i=0;i < destinos.length; i++ ) {
                email.addRecipient("HueHueHue", destinos[i], Message.RecipientType.TO);
            }
            email.setFromAddress("contacto", "contacto@interac.cl");

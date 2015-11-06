@@ -175,16 +175,57 @@ public class Constantes implements Serializable {
             "    </tr>\n" +
             "    <tr>\n" +
             "        <td>Pantallas</td>\n" +
-            "        <td>$pantallas</td>\n" +
+            "        <td colspan=\"2\">\n" +
+            "            <ul>\n" +
+            "              <li>$pantallas</li>\n" +
+            "                          \n" +
+            "            </ul>\n" +
+            "        </td>\n" +
+            "\n" +
             "    </tr>\n" +
             "    <tr>\n" +
             "        <td>Pasadas</td>\n" +
             "        <td>$pasada</td>\n" +
             "    </tr>\n" +
-            "\n" +
-            "</table> " +
-            "</body>" ;
+            "</table>" +
+            "</body>" +
+            "</html" ;
 
+      private String aprobar="<!DOCTYPE html>" +
+              "<html>\n" +
+              "\" +\n" +
+              "            \"<head>\\n\" +\n" +
+              "            \"    <title></title>\\n\" +\n" +
+              "            \"     <style type=\\\"text/css\\\">\\n\" +\n" +
+              "            \"      body{\\n\" +\n" +
+              "            \"        background:#dddddd;\\n\" +\n" +
+              "            \"      }\\n\" +\n" +
+              "            \"\\n\" +\n" +
+              "            \"      #header{\\n\" +\n" +
+              "            \"        width:70%;\\n\" +\n" +
+              "            \"        height:300px ;\\n\" +\n" +
+              "            \"        background-color:red; \\n\" +\n" +
+              "            \"        }\\n\" +\n" +
+              "            \"\\n\" +\n" +
+              "            \"      \\n\" +\n" +
+              "            \"      h1{\\n\" +\n" +
+              "            \"        color:white;\\n\" +\n" +
+              "            \"        font:150% Arial ;\\n\" +\n" +
+              "            \"      }\\n\" +\n" +
+              "            \"\\n\" +\n" +
+              "            \"     </style>\\n\" +\n" +
+              "            \"    \\n\" +\n" +
+              "            \" <meta http-equiv=\\\"Content-Type\\\" content=\\\"text/html; charset=utf-8\\\">\\n\" +\n" +
+              "            \"\\n\" +\n" +
+              "            \"</head>\\n\" +\n" +
+              "            \"<body >\\n\" +\n" +
+              "            \"    <div id=\\\"hearder\\\" style='background-color:red;'>\\n\" +\n" +
+              "            \"        <img style='background-color:red;' \\n\" +\n" +
+              "            \"         src='http://www.interac.cl/wp-content/themes/theme-interac/img/logo/interac-blanco.png'>\\n\" +\n" +
+              "            \"         <h1>$mensaje</h1>\\n\" +\n" +
+              "            \"    </div>" +
+              "                </body> " +
+              "                </html> ";
 
 
 
@@ -252,5 +293,13 @@ public class Constantes implements Serializable {
 
     public void setAlertas(String alertas) {
         this.alertas = alertas;
+    }
+
+    public String getAprobar() {
+        return aprobar;
+    }
+
+    public void setAprobar(String aprobar) {
+        this.aprobar = aprobar;
     }
 }
