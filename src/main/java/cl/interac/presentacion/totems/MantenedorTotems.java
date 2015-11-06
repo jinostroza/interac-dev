@@ -54,9 +54,6 @@ public class MantenedorTotems implements Serializable {
     private List<Totem> totemPorUsuario;
     private Ubicacion ubicacion;
 
-
-
-
     @PostConstruct
     public void inicio() {
         totems = logicaTotem.obtenerConRelacion();

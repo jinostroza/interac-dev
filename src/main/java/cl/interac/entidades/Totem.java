@@ -26,7 +26,7 @@ import java.util.Set;
                                     "LEFT JOIN FETCH t.establecimiento e " +
                                     "LEFT JOIN FETCH e.ubicacion ub " +
                                     "LEFT JOIN FETCH e.usuario u " +
-                                     "LEFT JOIN FETCH t.tipototem " +
+                                    "LEFT JOIN FETCH t.tipototem " +
                                     "where u.username=:username"),
 
                 @NamedQuery(name="Totem.findByIdWithTotem",
@@ -92,6 +92,30 @@ public class Totem implements Serializable {
     public void setCampanaList(List<Campana> campanaList) {
         this.campanaList = campanaList;
     }
+
+    @Basic
+    @Column
+    public String getOrientacion() { return orientacion; }
+
+    public void setOrientacion(String orientacion) { this.orientacion = orientacion; }
+
+    @Basic
+    @Column
+    public String getMarca() { return marca; }
+
+    public void setMarca(String marca) { this.marca = marca; }
+
+    @Basic
+    @Column
+    public String getModelo() { return modelo; }
+
+    public void setModelo(String modelo) { this.modelo = modelo; }
+
+    @Basic
+    @Column
+    public String getPulgadas() { return pulgadas; }
+
+    public void setPulgadas(String pulgadas) { this.pulgadas = pulgadas; }
 
     @Basic
     @Column(name = "latitud")

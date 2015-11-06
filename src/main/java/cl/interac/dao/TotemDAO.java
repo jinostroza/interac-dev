@@ -42,7 +42,6 @@ public class TotemDAO {
         }catch (Exception e){
             return null;
         }
-
     }
 
     public List<Totem> obtenerConRelacion(){
@@ -51,6 +50,5 @@ public class TotemDAO {
 
     public List<Totem> obtenerConUsuario(String username){
         return em.createNamedQuery("Totem.findbyUsuario").setParameter("username",username).getResultList();
-
     }
 }
