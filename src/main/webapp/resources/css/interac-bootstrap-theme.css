@@ -724,11 +724,4 @@ div.login-logo{
 	margin:auto;
 }
 
-/* Niveleo de las columnas */
-.rowx{
-	overflow: hidden;
-}
-[class*="col-"]{
-	margin-bottom: -99999px;
-	padding-bottom: 99999px;
-}
+
