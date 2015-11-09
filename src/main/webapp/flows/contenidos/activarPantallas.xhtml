@@ -21,6 +21,7 @@
             <p:column headerText="Tipo Totem">
                 <h:outputText value="#{totes.tipototem.destipo}" />
             </p:column>
+            <!-- Editar Totem -->
             <p:column>
                 <h:commandButton id="editBtnTotem" styleClass="form-control" value="editar"  type="button"/>
                 <p:overlayPanel id="editPanel"  for="editBtnTotem" appendToBody="true" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
@@ -54,6 +55,7 @@
                 </p:overlayPanel>
             </p:column>
         </p:dataTable>
+        <!-- Agregar totem -->
         <p:commandButton id="nuevoBtnTotem" value="Agrega"  type="button"/>
         <p:overlayPanel id="agregapanelTotem" for="nuevoBtnTotem" hideEffect="fade" dynamic="true" style="width:600px">
             <h:form id="form1">
@@ -61,8 +63,10 @@
                 <h:outputLabel value="N°Serie"/>
                 <h:inputText  styleClass="form-control"
                               value="#{mantenedorTotems.totem.noserie}"/>
+                <h:outputLabel value="Pulgadas" />
+                <h:inputText styleClass="form-control"
+                             value="#{mantenedorTotem.totem.pulgadas}" />
                 <h:outputLabel value="Tipo"/>
-
                 <h:selectOneMenu class="form-control" value="#{mantenedorTotems.tipototem}"
                                  converter="entityConverter">
                     <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione tipo Totem --"/>
@@ -70,8 +74,8 @@
                                    itemLabel="#{totemPL.destipo}" itemValue="#{totemPL}"  />
                 </h:selectOneMenu>
                 <h:outputLabel value="Establecimiento"/>
-
-                <h:selectOneMenu id="menuEst" class="form-control" value="#{mantenedorTotems.establecimiento}"
+                <h:selectOneMenu id="menuEst" class="form-control"
+                                 value="#{mantenedorTotems.establecimiento}"
                                  converter="entityConverter">
                     <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione establecimiento --"/>
                     <f:selectItems value="#{mantenedorTotems.establecimientoList}" var="ErLugar"

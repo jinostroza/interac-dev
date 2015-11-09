@@ -2,9 +2,8 @@ package cl.interac.entidades;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
 
 /**
  * Created by Jorge on 25-04-15.
@@ -60,6 +59,7 @@ public class Totem implements Serializable {
     private List<Campana> campanaList;
     private Establecimiento establecimiento;
     private Tipototem tipototem;
+    private Marcapantalla marcaPantalla;
 
 
     @Id
@@ -93,29 +93,29 @@ public class Totem implements Serializable {
         this.campanaList = campanaList;
     }
 
-   /* @Basic
-    @Column
+    @Basic
+    @Column(name = "orientacion")
     public String getOrientacion() { return orientacion; }
 
     public void setOrientacion(String orientacion) { this.orientacion = orientacion; }
 
     @Basic
-    @Column
+    @Column(name = "marca")
     public String getMarca() { return marca; }
 
     public void setMarca(String marca) { this.marca = marca; }
 
     @Basic
-    @Column
+    @Column(name = "modelo")
     public String getModelo() { return modelo; }
 
     public void setModelo(String modelo) { this.modelo = modelo; }
 
     @Basic
-    @Column
+    @Column(name = "pulgadas")
     public String getPulgadas() { return pulgadas; }
 
-    public void setPulgadas(String pulgadas) { this.pulgadas = pulgadas; }*/
+    public void setPulgadas(String pulgadas) { this.pulgadas = pulgadas; }
 
     @Basic
     @Column(name = "latitud")
@@ -168,6 +168,14 @@ public class Totem implements Serializable {
         this.establecimiento = establecimiento;
     }
 
+    @JoinColumn(name = "marca",referencedColumnName = "idmarca")
+    @ManyToOne(fetch = FetchType.LAZY)
+    public Marcapantalla getMarcaPantalla(){
+        return marcaPantalla;
+    }
+
+    public void setMarcaPantalla(Marcapantalla marcaPantalla) { this.marcaPantalla = marcaPantalla; }
+
 
 
     @Override
@@ -192,4 +200,6 @@ public class Totem implements Serializable {
                 "idtotem=" + idtotem +
                 '}';
     }
+
+
 }
