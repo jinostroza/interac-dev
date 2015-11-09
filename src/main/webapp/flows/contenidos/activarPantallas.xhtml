@@ -6,7 +6,6 @@
                 template="/templates/default.xhtml">
     <ui:define name="contenido">
         <h1>Totems por activar</h1>
-
         <p:dataTable id="dttotems" var="totes" value="#{mantenedorTotems.totemPorUsuario}" paginator="true" rows="6">
             <f:facet name="header">Hola mundo</f:facet>
             <p:column headerText="Establecimiento">
@@ -14,6 +13,12 @@
             </p:column>
             <p:column headerText="Ubicacion">
                 <h:outputText value="#{totes.establecimiento.ubicacion.descubicacion}" />
+            </p:column>
+            <p:column headerText="Pulgadas">
+                <h:outputText value="#{totes.pulgadas}" />
+            </p:column>
+            <p:column headerText="Orientacion">
+                <h:outputText value="#{totes.orientacion}" />
             </p:column>
             <p:column headerText="N° serie">
                 <h:outputText value="#{totes.noserie}" />
@@ -60,12 +65,30 @@
         <p:overlayPanel id="agregapanelTotem" for="nuevoBtnTotem" hideEffect="fade" dynamic="true" style="width:600px">
             <h:form id="form1">
             <p:outputPanel>
+                <h:outputLabel value="Marca Pantalla"/>
+                <h:selectOneMenu class="form-control" value="#{mantenedorTotems.totem.marcaPantalla}"
+                                 converter="entityConverter">
+                    <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Marca de su pantalla --"/>
+                    <f:selectItems value="#{mantenedorTotems.marcaPantallas}" var="marcaPantalla"
+                                   itemLabel="#{marcaPantalla.nombre}" itemValue="#{marcaPantalla}"  />
+                </h:selectOneMenu>
                 <h:outputLabel value="N°Serie"/>
                 <h:inputText  styleClass="form-control"
                               value="#{mantenedorTotems.totem.noserie}"/>
-                <h:outputLabel value="Pulgadas" />
-                <h:inputText styleClass="form-control"
-                             value="#{mantenedorTotem.totem.pulgadas}" />
+                <h:outputLabel value="Orientacion"/>
+                    <h:selectOneMenu class="form-control" value="#{mantenedorTotems.totem.orientacion}">
+                        <f:selectItem noSelectionOption="true"  itemLabel="-- Seleccione orientacion --" />
+                        <f:selectItem itemValue="Horizontal" itemLabel="Horizontal" />
+                        <f:selectItem itemValue="Vertical" itemLabel="Vertical" />
+                    </h:selectOneMenu>
+                <h:outputLabel value="Dimension"/>
+                <h:selectOneMenu class="form-control" value="#{mantenedorTotems.totem.pulgadas}">
+                    <f:selectItem noSelectionOption="true"  itemLabel="-- Seleccione dimensión (en pulgadas) --" />
+                    <f:selectItem itemValue="32" itemLabel="32" />
+                    <f:selectItem itemValue="40" itemLabel="40" />
+                    <f:selectItem itemValue="42" itemLabel="42" />
+                    <f:selectItem itemValue="55" itemLabel="55" />
+                </h:selectOneMenu>
                 <h:outputLabel value="Tipo"/>
                 <h:selectOneMenu class="form-control" value="#{mantenedorTotems.tipototem}"
                                  converter="entityConverter">
@@ -88,7 +111,5 @@
             </p:outputPanel>
             </h:form>
         </p:overlayPanel>
-
-
     </ui:define>
 </ui:composition>

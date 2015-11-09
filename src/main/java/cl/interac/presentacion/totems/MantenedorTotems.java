@@ -38,6 +38,8 @@ public class MantenedorTotems implements Serializable {
     private UserSession userSession;
     @Autowired
     private LogicaUbicacion logicaUbicacion;
+    @Autowired
+    private LogicaMarcapantalla logicaMarcaPantalla;
 
     private MapModel simpleModel;
     private Marker marker;
@@ -53,6 +55,7 @@ public class MantenedorTotems implements Serializable {
     private Tipototem tipototem;
     private List<Totem> totemPorUsuario;
     private Ubicacion ubicacion;
+    private List<Marcapantalla> marcaPantallas;
 
     @PostConstruct
     public void inicio() {
@@ -61,10 +64,9 @@ public class MantenedorTotems implements Serializable {
         tipototems = logicaTipototem.obtenerTodos();
         totemPorUsuario = logicaTotemConUsuario.obtenerPorUsuario(userSession.getUsuario().getUsername());
         ubicaciones = logicaUbicacion.obtenerTodas();
+        marcaPantallas = logicaMarcaPantalla.obtenerTodos();
         totem = new Totem();
     }
-
-
 
     // logica vista
     public void agregarTotem() {
@@ -75,7 +77,6 @@ public class MantenedorTotems implements Serializable {
         System.err.println("totem e: " + totem.getEstablecimiento());
         logicaTotem.guardar(totem);
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el Totem [" + totem.getNoserie() + "]");
-
     }
 
     public void editarTotem(Totem t){
@@ -85,8 +86,6 @@ public class MantenedorTotems implements Serializable {
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha Lobeznisado el Totem [" + totem.getNoserie() + "]");
 
     }
-
-
 
     public void eliminarTotem(Totem totem) {
         logicaTotem.eliminarTotem(totem);
@@ -195,5 +194,13 @@ public class MantenedorTotems implements Serializable {
 
     public void setUbicaciones(List<Ubicacion> ubicaciones) {
         this.ubicaciones = ubicaciones;
+    }
+
+    public List<Marcapantalla> getMarcaPantallas() {
+        return marcaPantallas;
+    }
+
+    public void setMarcaPantallas(List<Marcapantalla> marcaPantallas) {
+        this.marcaPantallas = marcaPantallas;
     }
 }

@@ -8,6 +8,11 @@ import java.util.*;
  * Created by PPablo on 09-11-2015.
  */
 @Entity
+@NamedQueries(
+        {
+            @NamedQuery( name="Marcapantalla.findAll", query="SELECT mp from Marcapantalla mp")
+        }
+)
 
 public class Marcapantalla implements Serializable {
     private Integer idmarca;
