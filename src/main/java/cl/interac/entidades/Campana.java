@@ -23,6 +23,11 @@ import java.util.Set;
                         "INNER JOIN FETCH co.usuario u " +
                         "WHERE u.username=:username "),
 
+                @NamedQuery(name="Campana.findByUsuarioAprobado",query = "SELECT c FROM Campana c " +
+                        "INNER JOIN FETCH c.contenido co " +
+                        "INNER JOIN FETCH co.usuario u " +
+                        "WHERE u.username=:username AND co.estado=''"),
+
                 @NamedQuery(
                         name = "Campana.findByIdWithTotems",
                         query = "SELECT c FROM Campana c INNER JOIN FETCH c.totemList WHERE c.id = :id"

@@ -8,19 +8,20 @@ import java.util.*;
  * Created by PPablo on 09-11-2015.
  */
 @Entity
-@Table(name = "marcapantalla", schema = "public", catalog = "interac-dev")
+
 public class Marcapantalla implements Serializable {
-    private int idmarca;
+    private Integer idmarca;
     private String nombre;
     private List<Totem> totem;
 
     @Id
-    @Column(name = "idmarca")
-    public int getIdmarca() {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idmarca" , nullable = false, insertable = true, updatable = true)
+    public Integer getIdmarca() {
         return idmarca;
     }
 
-    public void setIdmarca(int idmarca) {
+    public void setIdmarca(Integer idmarca) {
         this.idmarca = idmarca;
     }
 
@@ -35,10 +36,13 @@ public class Marcapantalla implements Serializable {
     }
 
     @OneToMany(mappedBy = "marcaPantalla")
-    public List<Totem> getTotem() { return totem; }
-    public void setTotem(List<Totem> totem) { this.totem = totem; }
+    public List<Totem> getTotem() {
+        return totem;
+    }
 
-
+    public void setTotem(List<Totem> totem) {
+        this.totem = totem;
+    }
 
 
     @Override
@@ -46,18 +50,14 @@ public class Marcapantalla implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Marcapantalla that = (Marcapantalla) o;
+       Marcapantalla marcapantalla = (Marcapantalla) o;
 
-        if (idmarca != that.idmarca) return false;
-        if (nombre != null ? !nombre.equals(that.nombre) : that.nombre != null) return false;
-
-        return true;
+        if (this.getIdmarca() == null || marcapantalla.getIdmarca() == null) return false;
+        else return this.getIdmarca().intValue() == marcapantalla.getIdmarca().intValue();
     }
 
     @Override
     public int hashCode() {
-        int result = idmarca;
-        result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
-        return result;
+        return idmarca != null ? 31 * idmarca.hashCode() : 0;
     }
 }

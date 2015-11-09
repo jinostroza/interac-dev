@@ -51,7 +51,6 @@ public class Totem implements Serializable {
     private Double lat;
     private Double longi;
     private String orientacion;
-    private String marca;
     private String modelo;
     private String pulgadas;
 
@@ -99,11 +98,6 @@ public class Totem implements Serializable {
 
     public void setOrientacion(String orientacion) { this.orientacion = orientacion; }
 
-    @Basic
-    @Column(name = "marca")
-    public String getMarca() { return marca; }
-
-    public void setMarca(String marca) { this.marca = marca; }
 
     @Basic
     @Column(name = "modelo")
@@ -168,8 +162,8 @@ public class Totem implements Serializable {
         this.establecimiento = establecimiento;
     }
 
-    @JoinColumn(name = "marca",referencedColumnName = "idmarca")
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "marca",referencedColumnName = "idmarca",nullable = false)
     public Marcapantalla getMarcaPantalla(){
         return marcaPantalla;
     }

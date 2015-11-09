@@ -38,7 +38,7 @@
                                         <h:outputLabel value="Activar Pantallas"
                                                    style="font-weight: bold;font-size: 18px;"/>
                                         <div class="button_ crear-campana"></div>
-                                        <p>#{mantenedorCampana.contarCampanas} campañas por validar</p>
+                                        <p>Agrega aqui la informacion de tus pantallas</p>
                                     </div>
                                 </p:commandLink>
                             </ui:fragment>
@@ -136,7 +136,7 @@
                     <p:dataTable var="camton" rows="5" paginator="true"
                                  styleClass="col-lg-10 col-lg-offset-5"
                                  style="margin-left: 10%;text-align-all: center;"
-                                 value="#{mantenedorCampana.campanas}">
+                                 value="#{mantenedorCampana.campanas}" >
 
                         <f:facet name="header">
                             Mis Campañas

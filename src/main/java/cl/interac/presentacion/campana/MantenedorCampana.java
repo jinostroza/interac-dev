@@ -184,17 +184,15 @@ public class MantenedorCampana implements Serializable {
          return "subir";
     }
 
-    public void  guardar(Totem[] t) {
+    public void  guardar() {
 
 
-           /* campana.setContenido(contenido);
+            campana.setContenido(contenido);
             System.err.print(contenido.getIdcontenido());
             campana.setTotemList(Arrays.asList(totemSelecionados));
             campana.setFechaCreacion(Date.from(Instant.now()));
-            logicaCampana.guardarCampana(campana);*/
-
-
-      /*  SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            logicaCampana.guardarCampana(campana);
+          SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
           String html = new String(constantes.getHeaderCorreo());
 
 
@@ -211,17 +209,17 @@ public class MantenedorCampana implements Serializable {
           alertas= alertas.replaceAll("\\$pasadas",String.valueOf(campana.getPasadas()));
           for(int i=0 ; i > totemSelecionados.length ;i++ ) {
               alertas = alertas.replaceAll("\\$pantallas", totemSelecionados[i].getNoserie() + "en" + totemSelecionados[i].getEstablecimiento().getNombreEstablecimiento());
-          }*/
+          }
 
-        String[] destinos = new String[totemSelecionados.length];
-        for(int i = 0;i > totemSelecionados.length;i++ ){
-            destinos[i] = totemSelecionados[i].getEstablecimiento().getUsuario().getCorreo();
-             System.err.print(destinos[i]);
-        }
-        /* mailSender.send(destinos,"HUEHUE","huehuehue");*/
+          String[] destinos = new String[totemSelecionados.length];
+               destinos[0] = userSession.getUsuario().getCorreo();
+          for (int i = 1; i > totemSelecionados.length; i++) {
+              destinos[i] = totemSelecionados[i].getEstablecimiento().getUsuario().getCorreo();
+              mailSender.send(destinos, "replica Anuncio", html);
+              System.err.print(totemSelecionados[i].getEstablecimiento().getUsuario().getCorreo());
+          }
 
-           FacesUtil.mostrarMensajeInformativo("operacion exitosa",  "se ha creado tu campaña");
-
+            FacesUtil.mostrarMensajeInformativo("operacion exitosa", "se ha creado tu campaña");
     }
 
 

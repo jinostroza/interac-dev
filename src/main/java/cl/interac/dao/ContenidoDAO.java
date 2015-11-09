@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.StoredProcedureQuery;
+import java.util.Date;
 import java.util.List;
 /**
  * Created by joaco on 17/08/2015.
@@ -28,8 +30,6 @@ public class ContenidoDAO {
         em.remove(contenidos);
 
     }
-
-
 
     public List<Contenido> obtenContenido(String user){
         return em.createNamedQuery("Contenido.findByUsuario").setParameter("user",user).getResultList();
