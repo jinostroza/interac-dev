@@ -54,12 +54,16 @@ public class MantenedorCampana implements Serializable {
     private List<Totem> totemList;
     private List<Totem> totemsConrelacion;
     private List<Totem> totemCampana;
+    private List<Totem> totemsPorEstablecimiento;
+    private Long contarTotem;
     private Contenido contenido;
     private List<Contenido> contenidos;
     private List<Categoria> categoriaList;
     private Categoria categoria;
     private Establecimiento establecimiento;
     private List<Establecimiento> establecimientoList;
+    private List<Establecimiento> establecimientos;
+    private Establecimiento establecimientoseleccionado;
     private Ubicacion ubicacion;
     private List<Ubicacion> ubicacionList;
     private MapModel advancedModel;
@@ -107,6 +111,7 @@ public class MantenedorCampana implements Serializable {
         usuarios = logicaUsuario.obtenerTodos();
         categoriaList = logicaCategoria.obtenerTodos();
         establecimientoList=logicaEstablecimiento.obtenerTodos();
+        establecimientos=logicaEstablecimiento.obbtenerPorTotem();
         ubicacionList=logicaUbicacion.obtenerTodas();
         tipototemList=logicaTipototem.obtenerTodos();
         totemsConrelacion = logicaTotem.obtenerConRelacion();
@@ -237,6 +242,17 @@ public class MantenedorCampana implements Serializable {
         System.err.println("Totem:" + t);
         logicaCampana.obtenerPorIdConTotems(t);
         return "ver";
+    }
+    public Long numeroTotem(Integer numTotem){
+
+        contarTotem=logicaTotem.obtenerPorNumero(numTotem);
+        return contarTotem;
+
+
+    }
+    public List<Totem> totemsEST(Integer idestablecimiento) {
+        totemsPorEstablecimiento=logicaTotem.obtenerPorestablecimiento(idestablecimiento);
+        return totemsPorEstablecimiento;
     }
 
     public void calculator(){
@@ -584,6 +600,38 @@ public class MantenedorCampana implements Serializable {
 
     public void setValor(Integer valor) {
         this.valor = valor;
+    }
+
+    public List<Establecimiento> getEstablecimientos() {
+        return establecimientos;
+    }
+
+    public void setEstablecimientos(List<Establecimiento> establecimientos) {
+        this.establecimientos = establecimientos;
+    }
+
+    public Establecimiento getEstablecimientoseleccionado() {
+        return establecimientoseleccionado;
+    }
+
+    public void setEstablecimientoseleccionado(Establecimiento establecimientoseleccionado) {
+        this.establecimientoseleccionado = establecimientoseleccionado;
+    }
+
+    public Long getContarTotem() {
+        return contarTotem;
+    }
+
+    public void setContarTotem(Long contarTotem) {
+        this.contarTotem = contarTotem;
+    }
+
+    public List<Totem> getTotemsPorEstablecimiento() {
+        return totemsPorEstablecimiento;
+    }
+
+    public void setTotemsPorEstablecimiento(List<Totem> totemsPorEstablecimiento) {
+        this.totemsPorEstablecimiento = totemsPorEstablecimiento;
     }
 }
 

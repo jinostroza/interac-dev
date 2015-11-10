@@ -27,6 +27,11 @@ import java.util.List;
                                 "WHERE u.username=:username "),
 
 
+        @NamedQuery(name= "establecimiento.findtotem",
+                query="SELECT e FROM Establecimiento e " +
+                        "INNER JOIN FETCH e.ubicacion ub "  )
+
+
 })
 
 public class Establecimiento implements Serializable {
