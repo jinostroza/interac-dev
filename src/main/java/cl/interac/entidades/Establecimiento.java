@@ -30,7 +30,8 @@ import java.util.List;
 
         @NamedQuery(name= "establecimiento.findtotem",
                 query="SELECT e FROM Establecimiento e " +
-                        "INNER JOIN FETCH e.ubicacion ub "  )
+                        "INNER JOIN FETCH e.ubicacion ub " +
+                        "INNER JOIN FETCH e.categoria ca ")
 
 
 })

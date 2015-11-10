@@ -40,9 +40,9 @@
                     <div class="col-lg-3"></div>
                 </div>
 
-                    <div class="col-lg-12">
+                    <div class="row">
                         <h4>Fechas</h4>
-                        <h:panelGrid columns="2" >
+                        <div class="col-lg-offset-2">
                         <h:outputLabel for="inicio" value="Inicio Campaña:" />
                         <p:calendar  id="inicio" locale="es" pattern="dd/MM/yyyy"
                                     value="#{mantenedorCampana.campana.fechaInicio}" mindate="c1.today()" widgetVar="c1" required="true" requiredMessage="Debe indicar fecha de Inicio" >
@@ -50,6 +50,7 @@
                             <p:ajax event="change" update="inline"/>
                             <p:ajax event="dateSelect" listener="#{mantenedorCampana.dateDiff}" update="dias" />
                         </p:calendar>
+                            <span></span>
                         <h:outputLabel for="fin" value="Fin Campaña:" />
                         <p:calendar  id="fin"  locale="es" pattern="dd/MM/yyyy"
                                     value="#{mantenedorCampana.campana.fechaFin}" mindate="c2.today()" widgetVar="c2" required="true" requiredMessage="Debe indicar la fecha de Termino" >
@@ -59,18 +60,24 @@
                         </p:calendar>
                         <p:tooltip for="inicio" value="Indique la fecha de comienzo para su campaña" trackMouse="true" ></p:tooltip>
                         <p:tooltip for="fin" value="Indique la fecha de termino para su campaña" trackMouse="true" ></p:tooltip>
+                        </div>
+                    </div>
                         <br></br>
+                    <div class="col-lg-offset-4">
                         <p:calendar id="inline" locale="es" mindate="#{mantenedorCampana.campana.fechaInicio}" maxdate="#{mantenedorCampana.campana.fechaFin}" mode="inline"/>
                         <br></br>
-                        <h5>Pasadas al día</h5>
+                    </div>
+                    <div class="col-lg-offset-4">
+                        <h4>Pasadas al día</h4>
                         <p:spinner id="ajaxSpinner" min="0" max="2880" stepFactor="360" value="#{mantenedorCampana.precio}" required="true" requiredMessage="Seleccione numero de pasadas diarias">
                             <p:ajax update="out"  event="change" listener="#{mantenedorCampana.calculator}" />
                             <p:ajax update="pasadas"  event="change" listener="#{mantenedorCampana.diasPasadas}"/>
 
                         </p:spinner>
                         <p:tooltip for="ajaxSpinner" value="Seleccione la cantidad de pasadas diarias " trackMouse="true" ></p:tooltip>
-                        </h:panelGrid>
                     </div>
+                    <br></br>
+
 
                     <p:dataTable  id="datapantallas" widgetVar="DTpantallas" styleClass="col-lg-12 " value="#{mantenedorCampana.establecimientos}"
                                   paginator="true" var="place" rows="5" selection="#{mantenedorCampana.establecimientoseleccionado}" selectionMode="single" rowKey="#{place.idEstablecimiento}" >
@@ -81,9 +88,7 @@
 
                         <p:column headerText="Busqueda..">
 
-                            <p:graphicImage style="width: 80px;height: 120px"
-
-                                            value="http://g01.a.alicdn.com/kf/HTB1UZdtIXXXXXcSXpXXq6xXFXXXH/42-inch-TFT-LED-industrial-FULL-HD-vertical-screen-floor-stand-memory-card-advertising-player.jpg"/>
+                            <p:graphicImage style="width: 80px;height: 120px" value="#{place.urlImagen}"/>
 
                         </p:column>
 
@@ -99,6 +104,9 @@
 
                             </f:facet>
                             <h4>Ciudad : <small>#{place.ubicacion.descubicacion}</small></h4>
+                        </p:column>
+                        <p:column >
+                            <h4>Categoria : <small>#{place.categoria.desccategoria}</small></h4>
                         </p:column>
                         <p:column>
                             <h4>Totems : <small>#{mantenedorCampana.numeroTotem(place.idEstablecimiento)}</small></h4>
@@ -151,7 +159,7 @@
 
 
 
-            <div class="row datos-campania" style="margin-left: 1%"><h3>Detalles de planificación</h3>
+            <div class="row datos-campania" style="margin-left: 1%"><h3>Detalles de planificación por Pantalla</h3>
                 <div class="col-lg-4">
                     <span class="datos-campania-titulo">Total dias</span>
                     <h:outputLabel id="dias" styleClass="datos-campania-texto">
@@ -180,7 +188,7 @@
 
 
             <div class="row"><!--regisCamp-->
-                <div class="col-lg-12" style="margin-left: 75%;margin-bottom: 2%">
+                <div class="col-lg-offset-8" style="margin-bottom: 2%">
                     <p:commandButton  value="Volver"  styleClass="btn btn-interac" action="#{mantenedorCampana.guardar()}" immediate="true" />
                     <span/>
 
