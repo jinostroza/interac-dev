@@ -49,6 +49,12 @@ public class TotemDAO {
     }
 
     public List<Totem> obtenerConUsuario(String username){
-        return em.createNamedQuery("Totem.findbyUsuario").setParameter("username",username).getResultList();
+        return em.createNamedQuery("Totem.findbyUsuario").setParameter("username", username).getResultList();
+    }
+    public long obtenerNumero(Integer establecimiento){
+        return (Long) em.createNamedQuery("Totem.count").setParameter("establecimiento",establecimiento).getSingleResult();
+    }
+    public List<Totem> obtenerPorEstablecimiento(Integer establecimiento){
+        return em.createNamedQuery("Totem.findByEstablecimiento").setParameter("establecimiento", establecimiento).getResultList();
     }
 }

@@ -55,6 +55,16 @@ public class LogicaTotem {
     public List<Totem> obtenerDeCampana(String user){return totemDAO.obtenerConCampana(user);}
 
 
+    @Transactional(readOnly = true)
+    public long obtenerPorNumero(Integer establecimiento){
+        return totemDAO.obtenerNumero(establecimiento);
+    }
+    @Transactional(readOnly = true)
+    public  List<Totem> obtenerPorestablecimiento(Integer establecimiento){
+        return totemDAO.obtenerPorEstablecimiento(establecimiento);
+    }
+
+
 }
 
 

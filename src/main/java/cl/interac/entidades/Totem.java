@@ -36,6 +36,16 @@ import java.util.*;
                                   "Left join fetch e.usuario u " +
                                   "WHERE u.username=:username "
                 ),
+                @NamedQuery(name="Totem.count",
+                        query="SELECT COUNT (t.idtotem) FROM Totem t "+
+                                "INNER JOIN  t.establecimiento e " +
+                                " WHERE e.idEstablecimiento=:establecimiento"
+                ),
+                @NamedQuery(name="Totem.findByEstablecimiento",
+                        query="SELECT  t FROM Totem t " +
+                                "LEFT JOIN FETCH t.establecimiento e " +
+                                "WHERE e.idEstablecimiento=:establecimiento"
+                ),
 
                 @NamedQuery(name = "Totem.findTotemAndTodaLaWea",
                             query="SELECT t FROM Totem t " +
