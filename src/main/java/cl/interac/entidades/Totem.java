@@ -26,7 +26,8 @@ import java.util.*;
                                     "LEFT JOIN FETCH e.ubicacion ub " +
                                     "LEFT JOIN FETCH e.usuario u " +
                                     "LEFT JOIN FETCH t.tipototem " +
-                                    "where u.username=:username"),
+                                    "LEFT JOIN FETCH t.marcaPantalla " +
+                                    "WHERE u.username=:username"),
 
                 @NamedQuery(name="Totem.findByIdWithTotem",
                             query="SELECT DISTINCT t FROM Totem t " +
