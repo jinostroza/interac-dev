@@ -92,7 +92,7 @@ public class Totem implements Serializable {
     public void setCampanaList(List<Campana> campanaList) {
         this.campanaList = campanaList;
     }
-
+/*
     @Basic
     @Column(name = "orientacion")
     public String getOrientacion() { return orientacion; }
@@ -109,7 +109,7 @@ public class Totem implements Serializable {
     @Basic
     @Column(name = "pulgadas")
     public String getPulgadas() { return pulgadas; }
-
+*/
     public void setPulgadas(String pulgadas) { this.pulgadas = pulgadas; }
 
     @Basic
@@ -164,7 +164,7 @@ public class Totem implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "marca",referencedColumnName = "idmarca",nullable = false)
+    @JoinColumn(name = "idmarca",referencedColumnName = "idmarca",nullable = false)
     public Marcapantalla getMarcaPantalla(){
         return marcaPantalla;
     }

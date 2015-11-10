@@ -151,7 +151,7 @@ public class MantenedorCampana implements Serializable {
             // error ql wn, estabamos mandando nul pq el path se seteaba antes de la instancia,silovi
 
             contenido.setUsuario(userSession.getUsuario());
-            contenido.setEstado("Validando");
+
             logicaContenido.guardar(contenido);
 
 
@@ -165,7 +165,7 @@ public class MantenedorCampana implements Serializable {
     public String editarContenido(Contenido c) {
         contenido = c;
         contenido.setCategoria(categoria);
-        System.err.println("Estado:"+ contenido.getEstado());
+
         logicaContenido.guardar(contenido);
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el Contenido [" + contenido.getIdcontenido() + "]");
 
