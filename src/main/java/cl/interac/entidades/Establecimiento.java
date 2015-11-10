@@ -2,6 +2,7 @@ package cl.interac.entidades;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.List;
 
 /**
@@ -36,13 +37,21 @@ public class Establecimiento implements Serializable {
     private String fono;
     private Double lat;
     private Double longi;
+    private String valorMensual;
+    private Time horaInicio;
+    private Time horaTermino;
+    private String slots;
+    private String numeroPantallas;
+    private String urlImagen;
+
+
 
 
     // Relaciones
     private Usuario usuario;
     private List<Totem> totem;
     private Ubicacion ubicacion;
-
+    private Categoria categoria;
 
     @JoinColumn(name = "idusuario", referencedColumnName = "idusuario")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -87,7 +96,7 @@ public class Establecimiento implements Serializable {
     }
 
     @Basic
-    @Column
+    @Column(name = "direccion")
     public String getDireccion() {
         return direccion;
     }
@@ -97,7 +106,7 @@ public class Establecimiento implements Serializable {
     }
 
     @Basic
-    @Column
+    @Column(name = "fono")
     public String getFono() {
         return fono;
     }
@@ -125,6 +134,48 @@ public class Establecimiento implements Serializable {
     public void setLongi(Double longi) {
         this.longi = longi;
     }
+
+    @Basic
+    @Column(name = "valormensual")
+    public String getValorMensual() { return valorMensual; }
+
+    public void setValorMensual(String valorMensual) { this.valorMensual = valorMensual; }
+
+    @Basic
+    @Column(name = "horainicio")
+    public Time getHoraInicio() { return horaInicio; }
+
+    public void setHoraInicio(Time horaInicio) { this.horaInicio = horaInicio; }
+
+    @Basic
+    @Column(name = "horatermino")
+    public Time getHoraTermino() { return horaTermino; }
+
+    public void setHoraTermino(Time horaTermino) { this.horaTermino = horaTermino; }
+
+    @Basic
+    @Column(name = "slots")
+    public String getSlots() { return slots; }
+
+    public void setSlots(String slots) { this.slots = slots; }
+
+    @Basic
+    @Column(name = "numeropantallas")
+    public String getNumeroPantallas() { return numeroPantallas; }
+
+    public void setNumeroPantallas(String numeroPantallas) { this.numeroPantallas = numeroPantallas; }
+
+    @Basic
+    @Column(name ="urlImagen")
+    public String getUrlImagen() { return urlImagen; }
+
+    public void setUrlImagen(String urlImagen) { this.urlImagen = urlImagen; }
+
+    @JoinColumn(name = "fk_rubro", referencedColumnName = "idcategoria")
+    @ManyToOne(fetch = FetchType.LAZY)
+    public Categoria getCategoria() { return categoria; }
+
+    public void setCategoria(Categoria categoria) { this.categoria = categoria; }
 
     @JoinColumn(name = "idubicacion", referencedColumnName = "idubicacion")
     @ManyToOne(fetch = FetchType.LAZY)
