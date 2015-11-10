@@ -23,6 +23,10 @@ public class LogicaEstablecimiento {
     public List<Establecimiento> obtenerTodos() {
         return establecimientoDAO.obtenerTodos();
     }
+    @Transactional(readOnly = true)
+    public List<Establecimiento> obbtenerPorTotem() {
+        return establecimientoDAO.obtenerPorTotem();
+    }
 
     @Transactional(readOnly = false)
     public void guardar(Establecimiento e) {

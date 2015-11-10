@@ -19,8 +19,10 @@ public class EstablecimientoDAO {
     public List<Establecimiento> obtenerTodos() {
         return em.createNamedQuery("establecimiento.findAll").getResultList();
     }
-
-    public void guardar(Establecimiento es) {
+    public List<Establecimiento> obtenerPorTotem() {
+        return em.createNamedQuery("establecimiento.findtotem").getResultList();
+    }
+        public void guardar(Establecimiento es) {
         if (es.getIdEstablecimiento() == null) em.persist(es);
         else em.merge(es);
     }
