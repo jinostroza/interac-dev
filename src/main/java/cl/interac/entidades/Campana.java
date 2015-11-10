@@ -26,7 +26,7 @@ import java.util.Set;
                 @NamedQuery(name="Campana.findByUsuarioAprobado",query = "SELECT c FROM Campana c " +
                         "INNER JOIN FETCH c.contenido co " +
                         "INNER JOIN FETCH co.usuario u " +
-                        "WHERE u.username=:username AND co.estado=''"),
+                        "WHERE u.username=:username AND c.estado='Aprovado'"),
 
                 @NamedQuery(
                         name = "Campana.findByIdWithTotems",
@@ -47,7 +47,7 @@ import java.util.Set;
                               "INNER JOIN FETCH c.totemList tl " +
                               "INNER JOIN FETCH tl.establecimiento e  " +
                               "INNER JOIN FETCH e.usuario u " +
-                              " WHERE u.username=:username AND co.estado='Validando'"
+                              " WHERE u.username=:username AND c.estado='Esperando Validando'"
 
                            ),
                 @NamedQuery(name="Campana.count",
@@ -56,7 +56,7 @@ import java.util.Set;
                                 "INNER JOIN  c.totemList tl " +
                                 "INNER JOIN  tl.establecimiento e " +
                                 "INNER JOIN  e.usuario u "+
-                                " WHERE u.username=:username AND co.estado='Validando'"
+                                " WHERE u.username=:username AND c.estado='Esperando Validando'"
                 ),
 
                 @NamedQuery(name="Campana.findByTotem",
@@ -76,6 +76,7 @@ public class Campana implements Serializable {
     private Date fechaInicio;
     private Integer pasadas;
     private String nombrecampana;
+    private String estado;
 
 
     // relaciones
@@ -150,6 +151,16 @@ public class Campana implements Serializable {
 
     public void setContenido(Contenido contenido) {
         this.contenido = contenido;
+    }
+
+    @Basic
+    @Column(name= "estado")
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     @ManyToMany(fetch = FetchType.LAZY)

@@ -40,7 +40,7 @@ public class Contenido implements Serializable{
     private Integer idcontenido;
     private String path;
     private String nombrecont;
-    private String estado;
+
 
     //relaciones
     private Usuario usuario;
@@ -99,15 +99,6 @@ public class Contenido implements Serializable{
         this.path = path;
     }
 
-    @Basic
-    @Column(name= "estado",length = 50,nullable =false,insertable=true ,updatable = true ,columnDefinition = "validando" )
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
 
 
     @Basic
