@@ -14,11 +14,8 @@
             <p:column headerText="Ubicacion">
                 <h:outputText value="#{totes.establecimiento.ubicacion.descubicacion}" />
             </p:column>
-            <p:column headerText="Pulgadas">
-                <h:outputText value="#{totes.pulgadas}" />
-            </p:column>
-            <p:column headerText="Orientacion">
-                <h:outputText value="#{totes.orientacion}" />
+            <p:column headerText="Marca">
+                <h:outputText value="#{totes.marcaPantalla.nombre}" />
             </p:column>
             <p:column headerText="N° serie">
                 <h:outputText value="#{totes.noserie}" />
@@ -26,30 +23,62 @@
             <p:column headerText="Tipo Totem">
                 <h:outputText value="#{totes.tipototem.destipo}" />
             </p:column>
+            <p:column headerText="Pulgadas">
+                <h:outputText value="#{totes.pulgadas}" />
+            </p:column>
+            <p:column headerText="Orientacion">
+                <h:outputText value="#{totes.orientacion}" />
+            </p:column>
             <!-- Editar Totem -->
             <p:column>
-                <h:commandButton id="editBtnTotem" styleClass="form-control" value="editar"  type="button"/>
+                <h:commandButton id="editBtnTotem" styleClass="form-control" value="Editar"  type="button"/>
                 <p:overlayPanel id="editPanel"  for="editBtnTotem" appendToBody="true" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
                     <div class="row">
                         <h:outputLabel value="Establecimiento" />
-                        <h:selectOneMenu value="#{totes.establecimiento}"
+                        <h:selectOneMenu class="form-control" value="#{totes.establecimiento}"
                                          converter="entityConverter">
                             <f:selectItem noSelectedOption="true" itemLabel="Seleccione Establecimiento" />
                             <f:selectItems value="#{mantenedorTotems.establecimientoList}" var="localEdit" itemLabel="#{localEdit.nombreEstablecimiento}"  />
                         </h:selectOneMenu>
                     </div>
-
+                    <div class="row">
+                        <h:outputLabel value="Marca Pantalla"/>
+                        <h:selectOneMenu class="form-control" value="#{totes.marcaPantalla}"
+                                         converter="entityConverter">
+                            <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Marca de su pantalla --"/>
+                            <f:selectItems value="#{mantenedorTotems.marcaPantallas}" var="marcaPantalla"
+                                           itemLabel="#{marcaPantalla.nombre}" itemValue="#{marcaPantalla}"  />
+                        </h:selectOneMenu>
+                    </div>
                     <div class="row">
                         <h:outputLabel value="N° de Serie" />
                         <h:inputText styleClass="form-control" value="#{totes.noserie}" />
                     </div>
                     <div class="row">
                         <h:outputLabel value="Tipo de Totem" />
-                        <h:selectOneMenu value="#{totes.tipototem}"
+                        <h:selectOneMenu class="form-control" value="#{totes.tipototem}"
                                          converter="entityConverter">
                             <f:selectItem noSelectedOption="true" itemLabel="Seleccione Establecimiento" />
                             <!-- Aqui falta apuntar a los tipos de Totem -->
                             <f:selectItems value="#{mantenedorTotems.tipototems}" var="tipot" itemLabel="#{tipot.destipo}"  />
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="row">
+                        <h:outputLabel value="Dimension"/>
+                        <h:selectOneMenu class="form-control" value="#{totes.pulgadas}">
+                            <f:selectItem noSelectionOption="true"  itemLabel="-- Seleccione dimensión (en pulgadas) --" />
+                            <f:selectItem itemValue="32" itemLabel="32" />
+                            <f:selectItem itemValue="40" itemLabel="40" />
+                            <f:selectItem itemValue="42" itemLabel="42" />
+                            <f:selectItem itemValue="55" itemLabel="55" />
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="row">
+                        <h:outputLabel value="Orientacion"/>
+                        <h:selectOneMenu class="form-control" value="#{totes.orientacion}">
+                            <f:selectItem noSelectionOption="true"  itemLabel="-- Seleccione orientacion --" />
+                            <f:selectItem itemValue="Horizontal" itemLabel="Horizontal" />
+                            <f:selectItem itemValue="Vertical" itemLabel="Vertical" />
                         </h:selectOneMenu>
                     </div>
                     <div class="push"></div>
@@ -61,10 +90,18 @@
             </p:column>
         </p:dataTable>
         <!-- Agregar totem -->
-        <p:commandButton id="nuevoBtnTotem" value="Agrega"  type="button"/>
+        <p:commandButton id="nuevoBtnTotem" value="Agregar"  type="button"/>
         <p:overlayPanel id="agregapanelTotem" for="nuevoBtnTotem" hideEffect="fade" dynamic="true" style="width:600px">
             <h:form id="form1">
             <p:outputPanel>
+                <h:outputLabel value="Establecimiento"/>
+                <h:selectOneMenu id="menuEst" class="form-control"
+                                 value="#{mantenedorTotems.establecimiento}"
+                                 converter="entityConverter">
+                    <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione establecimiento --"/>
+                    <f:selectItems value="#{mantenedorTotems.establecimientoList}" var="ErLugar"
+                                   itemLabel="#{ErLugar.nombreEstablecimiento}" itemValue="#{ErLugar}" />
+                </h:selectOneMenu>
                 <h:outputLabel value="Marca Pantalla"/>
                 <h:selectOneMenu class="form-control" value="#{mantenedorTotems.totem.marcaPantalla}"
                                  converter="entityConverter">
@@ -96,18 +133,7 @@
                     <f:selectItems value="#{mantenedorTotems.tipototems}" var="totemPL"
                                    itemLabel="#{totemPL.destipo}" itemValue="#{totemPL}"  />
                 </h:selectOneMenu>
-                <h:outputLabel value="Establecimiento"/>
-                <h:selectOneMenu id="menuEst" class="form-control"
-                                 value="#{mantenedorTotems.establecimiento}"
-                                 converter="entityConverter">
-                    <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione establecimiento --"/>
-                    <f:selectItems value="#{mantenedorTotems.establecimientoList}" var="ErLugar"
-                                   itemLabel="#{ErLugar.nombreEstablecimiento}" itemValue="#{ErLugar}" />
-
-                </h:selectOneMenu>
-
-                <p:commandButton id="addBtnTotem" for="agregapanelTotem"  value="Agrega"
-                                 action="#{mantenedorTotems.agregarTotem}" update="form1"/>
+                <p:commandButton id="addBtnTotem" for="agregapanelTotem"  value="Agrega" action="#{mantenedorTotems.agregarTotem}" update="form1"/>
             </p:outputPanel>
             </h:form>
         </p:overlayPanel>
