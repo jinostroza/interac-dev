@@ -82,6 +82,7 @@
                     <p:dataTable  id="datapantallas" widgetVar="DTpantallas" styleClass="col-lg-12 " value="#{mantenedorCampana.establecimientos}"
                                   paginator="true" var="place" rows="5" selection="#{mantenedorCampana.establecimientoseleccionado}" selectionMode="single" rowKey="#{place.idEstablecimiento}" >
 
+
                         <p:column style="width:30px">
                             <p:rowToggler />
                         </p:column>
@@ -126,9 +127,9 @@
                         </p:column>
                         <p:rowExpansion>
 
-                                <p:dataScroller value="#{mantenedorCampana.totemsEST(place.idEstablecimiento)}" var="totes" chunkSize="10"  >
-                                    <p:panelGrid columns="3" style="width: 70%" >
-                                        <p:selectBooleanCheckbox value="#{true}" disabled="#{true}"/>
+                                <p:dataScroller id="totems" value="#{mantenedorCampana.totemsEST(place.idEstablecimiento)}" var="totes" chunkSize="10"  >
+                                    <p:panelGrid columns="2" style="width: 70%" >
+
                                         <p:graphicImage style="width: 80px;height: 120px"
 
                                                         value="http://g01.a.alicdn.com/kf/HTB1UZdtIXXXXXcSXpXXq6xXFXXXH/42-inch-TFT-LED-industrial-FULL-HD-vertical-screen-floor-stand-memory-card-advertising-player.jpg"/>

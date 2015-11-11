@@ -194,7 +194,7 @@ public class MantenedorCampana implements Serializable {
 
             campana.setContenido(contenido);
             System.err.print(contenido.getIdcontenido());
-            campana.setTotemList(Arrays.asList(totemSelecionados));
+            campana.setTotemList(totemsPorEstablecimiento);
             campana.setFechaCreacion(Date.from(Instant.now()));
             logicaCampana.guardarCampana(campana);
           SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
