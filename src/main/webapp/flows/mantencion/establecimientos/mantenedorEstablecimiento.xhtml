@@ -13,24 +13,25 @@
             <p:column headerText="nombre" filterBy="#{local.nombreEstablecimiento}">
                 <h:outputText value="#{local.nombreEstablecimiento}" />
             </p:column>
-
             <p:column headerText="direccion" filterBy="#{local.direccion}">
                 <h:outputText value="#{local.direccion}" />
             </p:column>
-
             <p:column headerText="fono">
                 <h:outputText value="#{local.fono}" />
             </p:column>
             <p:column headerText="ubicacion" filterBy="#{local.ubicacion.descubicacion}" filterMatchMode="contains">
                 <h:outputText value="#{local.ubicacion.descubicacion}" />
             </p:column>
+            <p:column headerText="categoria" filterBy="#{local.categoria.desccategoria}" filterMatchMode="contains">
+                <h:outputText value="#{local.categoria.desccategoria}" />
+            </p:column>
             <p:column>
                 <h:commandButton value="eliminar" styleClass="form-control" action="#{mantenedorEstablecimiento.eliminar(local)}"/>
             </p:column>
-
             <p:column>
                 <h:commandButton id="modifica" value="Modificar" update="establecimientos" styleClass="form-control" type="button">
-                <p:overlayPanel id="editPanel" for="modifica" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
+                    <!-- Editar -->
+                    <p:overlayPanel id="editPanel" for="modifica" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
                     <p:outputPanel>
                         <h:outputLabel value="Nombre"/>
                         <h:inputText styleClass="form-control"
@@ -55,6 +56,7 @@
             </p:column>
         </p:dataTable>
     </h:panelGrid>
+    <!-- Agregar -->
     <p:commandButton id="nuevoBtn" value="Agrega"   type="button">
     <p:overlayPanel id="agregapanel" for="nuevoBtn" showEvent="click" hideEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
         <p:outputPanel>
@@ -72,12 +74,28 @@
                 <f:selectItems value="#{mantenedorEstablecimiento.ubicaciones}" var="ubica"
                                itemLabel="#{ubica.descubicacion}"/>
             </h:selectOneMenu>
+            <h:outputLabel value="Categoria"/>
+            <h:selectOneMenu class="form-control" value="#{mantenedorCategoria.categoria}"
+                             converter="entityConverter">
+                <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
+                <f:selectItems value="#{mantenedorCategoria.categorias}" var="cat"
+                               itemLabel="#{cat.desccategoria}" />
+            </h:selectOneMenu>
             <h:outputLabel value="Latitud"/>
             <h:inputText  required="true" requiredMessage="Ingrese Latitud" styleClass="form-control"
                           value="#{mantenedorEstablecimiento.establecimiento.lat}"/>
             <h:outputLabel value="Longitud"/>
             <h:inputText  required="true" requiredMessage="Ingrese Longitud" styleClass="form-control"
                           value="#{mantenedorEstablecimiento.establecimiento.longi}"/>
+            <h:outputLabel value="Hora Inicio" />
+            <h:outputLabel value="Hora Termino" />
+            <h:outputLabel value="Slots (espacios para publicidad de terceros)" />
+            <h:inputText  required="true" styleClass="form-control"
+                          value="#{mantenedorEstablecimiento.establecimiento.slots}"/>
+            <h:outputLabel value="Numero de pantallas" />
+            <h:inputText  required="true" styleClass="form-control"
+                          value="#{mantenedorEstablecimiento.establecimiento.numeroPantallas}"/>
+            <h:outputLabel value="Imagen" />
             <br/>
             <p:commandButton id="addBtn" for="agregapanel" value="Agrega" update="establecimientoPG"
                              action="#{mantenedorEstablecimiento.agregarEstablecimiento()}"/>

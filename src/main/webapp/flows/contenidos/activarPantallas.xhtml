@@ -6,6 +6,7 @@
                 template="/templates/default.xhtml">
     <ui:define name="contenido">
         <h1>Totems por activar</h1>
+        <p:outputLabel value="#{mantenedorTotems.obtenerFecha(1, 2016)}" />
         <p:dataTable id="dttotems" var="totes" value="#{mantenedorTotems.totemPorUsuario}" paginator="true" rows="6">
             <f:facet name="header">Hola mundo</f:facet>
             <p:column headerText="Establecimiento">
@@ -59,7 +60,6 @@
                         <h:selectOneMenu class="form-control" value="#{totes.tipototem}"
                                          converter="entityConverter">
                             <f:selectItem noSelectedOption="true" itemLabel="Seleccione Establecimiento" />
-                            <!-- Aqui falta apuntar a los tipos de Totem -->
                             <f:selectItems value="#{mantenedorTotems.tipototems}" var="tipot" itemLabel="#{tipot.destipo}"  />
                         </h:selectOneMenu>
                     </div>
@@ -83,7 +83,7 @@
                     </div>
                     <div class="push"></div>
                     <div class="row">
-                        <p:button value="Aceptar" />
+                        <p:button value="Editar" for="editPanel" action="#{mantenedorTotems.editarTotem(totes)}" update="form1" />
                         <p:button value="Limpiar" />
                     </div>
                 </p:overlayPanel>

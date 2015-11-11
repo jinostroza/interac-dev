@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
@@ -51,6 +52,7 @@ public class MantenedorTotems implements Serializable {
     private List<Establecimiento> establecimientoList;
     private List<Establecimiento> establecimientoConfiltro;
     private Totem totem;
+    private Marcapantalla marcapantalla;
     private Establecimiento establecimiento;
     private Tipototem tipototem;
     private List<Totem> totemPorUsuario;
@@ -81,16 +83,30 @@ public class MantenedorTotems implements Serializable {
 
     public void editarTotem(Totem t){
         totem = t;
+        totem.setMarcaPantalla(marcapantalla);
+        totem.setEstablecimiento(establecimiento);
+        totem.setTipototem(tipototem);
         logicaTotem.guardar(totem);
         totems = logicaTotem.obtenerConRelacion();
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha Lobeznisado el Totem [" + totem.getNoserie() + "]");
-
     }
 
     public void eliminarTotem(Totem totem) {
         logicaTotem.eliminarTotem(totem);
     }
-    //get and set
+
+
+    // Función que permite el retorno del ultimo día de un mes X
+    public Integer obtenerFecha(Integer month, Integer year){
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.YEAR, year);
+
+        return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+    }
+
+    //Getters y Setters
 
     public List<Totem> getTotemConFiltro() {
         return totemConFiltro;
@@ -202,5 +218,13 @@ public class MantenedorTotems implements Serializable {
 
     public void setMarcaPantallas(List<Marcapantalla> marcaPantallas) {
         this.marcaPantallas = marcaPantallas;
+    }
+
+    public Marcapantalla getMarcapantalla() {
+        return marcapantalla;
+    }
+
+    public void setMarcapantalla(Marcapantalla marcapantalla) {
+        this.marcapantalla = marcapantalla;
     }
 }
