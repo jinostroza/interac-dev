@@ -153,10 +153,7 @@ public class MantenedorCampana implements Serializable {
                 // por ende le pasamos la fecha con hora minuto y segundo + formato rescatado anteriormente
                 nombreArchivo = sdf.format(new Date()) + nombreArchivo;
                 contenido.setPath(nombreArchivo);
-                contenido.setUsuario(userSession.getUsuario());
-                contenido.setEstado("Esperando Validacion");
 
-                logicaContenido.guardar(contenido);
                 Files.copy(Paths.get(pathTemporal), Paths.get("/home/ec2-user/media/" + totem + "/" + nombreArchivo));
 
 
