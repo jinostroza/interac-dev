@@ -154,12 +154,13 @@ public class Campana implements Serializable {
     }
 
     @Basic
-    @Column(name= "estado")
+    @Column(name= "estado" ,nullable = false )
     public String getEstado() {
         return estado;
     }
 
     public void setEstado(String estado) {
+
         this.estado = estado;
     }
 
