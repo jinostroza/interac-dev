@@ -83,9 +83,9 @@ public class MantenedorTotems implements Serializable {
 
     public void editarTotem(Totem t){
         totem = t;
-        totem.setMarcaPantalla(marcapantalla);
-        totem.setEstablecimiento(establecimiento);
-        totem.setTipototem(tipototem);
+        totem.setEstablecimiento(totem.getEstablecimiento());
+        totem.setMarcaPantalla(totem.getMarcaPantalla());
+        totem.setTipototem(totem.getTipototem());
         logicaTotem.guardar(totem);
         totems = logicaTotem.obtenerConRelacion();
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha Lobeznisado el Totem [" + totem.getNoserie() + "]");

@@ -176,6 +176,7 @@ public class Totem implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "marca",referencedColumnName = "idmarca",nullable = false)
     public Marcapantalla getMarcaPantalla(){
+
         return marcaPantalla;
     }
 

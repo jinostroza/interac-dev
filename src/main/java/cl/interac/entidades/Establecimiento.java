@@ -19,6 +19,11 @@ import java.util.List;
                         "inner join fetch e.ubicacion " +
                         "INNER JOIN FETCH e.categoria"),
 
+        @NamedQuery(name = "establecimiento.findEstablecimientoByUser",
+                query = "SELECT e FROM Establecimiento e " +
+                        "INNER JOIN FETCH e.usuario u "+
+                        "WHERE u.username=:username "),
+
         @NamedQuery(name = "establecimiento.findIdestablecimiento",
                 query = "SELECT e from Establecimiento e where e.idEstablecimiento = :estable"),
         @NamedQuery(name= "establecimiento.findbyUser",
