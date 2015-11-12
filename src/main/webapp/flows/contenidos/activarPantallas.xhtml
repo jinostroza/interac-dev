@@ -33,7 +33,9 @@
             <!-- Editar Totem -->
             <p:column>
                 <h:commandButton id="editBtnTotem" styleClass="form-control" value="Editar"  type="button"/>
-                <p:overlayPanel id="editPanel"  for="editBtnTotem" appendToBody="true" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
+                <p:overlayPanel id="editPanel"  for="editBtnTotem" appendToBody="true" showEvent="click" hideEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
+                    <h:form id="form2">
+                        <h:outputLabel value="#{totes.idtotem}"/>
                     <div class="row">
                         <h:outputLabel value="Establecimiento" />
                         <h:selectOneMenu class="form-control" value="#{totes.establecimiento}"
@@ -83,9 +85,10 @@
                     </div>
                     <div class="push"></div>
                     <div class="row">
-                        <p:button value="Editar" for="editPanel" action="#{mantenedorTotems.editarTotem(totes)}" update="form1" />
+                        <p:button value="Editar" for="editPanel" action="#{mantenedorTotems.editarTotem(totes, totes.marcaPantalla)}" update="form2" />
                         <p:button value="Limpiar" />
                     </div>
+                    </h:form>
                 </p:overlayPanel>
             </p:column>
         </p:dataTable>

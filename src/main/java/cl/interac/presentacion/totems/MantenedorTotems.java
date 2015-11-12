@@ -81,10 +81,11 @@ public class MantenedorTotems implements Serializable {
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el Totem [" + totem.getNoserie() + "]");
     }
 
-    public void editarTotem(Totem t){
+    public void editarTotem(Totem t, Marcapantalla mp){
         totem = t;
+        marcapantalla = mp;
         totem.setMarcaPantalla(marcapantalla);
-        totem.setEstablecimiento(establecimiento);
+        totem.setEstablecimiento(totem.getEstablecimiento());
         totem.setTipototem(tipototem);
         logicaTotem.guardar(totem);
         totems = logicaTotem.obtenerConRelacion();
