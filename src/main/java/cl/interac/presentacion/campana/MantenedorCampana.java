@@ -143,7 +143,7 @@ public class MantenedorCampana implements Serializable {
 
             else if ("produccion".equals(ambiente)) {
                 // si es producción estamos obligado a usar el ftp
-                String totem = "demoPublicidad"; // por ahora, después se suponeque cambia
+                String nomEstablecimiento = "demoPublicidad"; // por ahora, después se suponeque cambia
 
                 // obtenemos el formato del archivo buscando el último .
                 String nombreArchivo = pathTemporal.substring(pathTemporal.lastIndexOf('.'));
@@ -155,9 +155,8 @@ public class MantenedorCampana implements Serializable {
                 nombreArchivo = sdf.format(new Date()) + nombreArchivo;
                 contenido.setPath(nombreArchivo);
                 contenido.setUsuario(userSession.getUsuario());
-                String pathdestino = "/home/ec2-user/media/" + totem + "/" + nombreArchivo;
 
-                Files.copy(Paths.get(pathTemporal), Paths.get("/home/ec2-user/media/" + totem + "/" + nombreArchivo));
+                Files.copy(Paths.get(pathTemporal), Paths.get("/home/ec2-user/media/" + nomEstablecimiento + "/" + nombreArchivo));
 
 
             }
