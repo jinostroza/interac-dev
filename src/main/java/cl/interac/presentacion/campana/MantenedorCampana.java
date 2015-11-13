@@ -15,7 +15,6 @@ import org.primefaces.model.map.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.util.FileCopyUtils;
 
 import java.io.Serializable;
 import java.nio.file.Files;
@@ -77,8 +76,6 @@ public class MantenedorCampana implements Serializable {
     private String tipot="";
     private Long contarCampanas;
 
-
-
     @Autowired
     private MailSender mailSender;
     @Autowired
@@ -138,35 +135,24 @@ public class MantenedorCampana implements Serializable {
             String ambiente = propertyReader.get("ambiente");
 
             if ("desarrollo".equals(ambiente))
-                // dentro del server siempre podra subir, no importa si es wintendo o linux
+
                 contenido.setPath(pathTemporal);
-
             else if ("produccion".equals(ambiente)) {
-                // si es producción estamos obligado a usar el ftp
-                String totem = "demoPublicidad"; // por ahora, después se suponeque cambia
+                String carpetaPrincipal = "interac";
 
-                // obtenemos el formato del archivo buscando el último .
                 String nombreArchivo = pathTemporal.substring(pathTemporal.lastIndexOf('.'));
 
-                // debemos asegurarnos que el nombre será unico para que no pise otra cosa en el FTP
+
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd.hhmmss");
 
-                // por ende le pasamos la fecha con hora minuto y segundo + formato rescatado anteriormente
                 nombreArchivo = sdf.format(new Date()) + nombreArchivo;
+                Files.copy(Paths.get(pathTemporal), Paths.get("/home/ec2-user/media/"+carpetaPrincipal+"/"+ nombreArchivo));
                 contenido.setPath(nombreArchivo);
-                contenido.setUsuario(userSession.getUsuario());
-                String pathdestino = "/home/ec2-user/media/" + totem + "/" + nombreArchivo;
-
-                Files.copy(Paths.get(pathTemporal), Paths.get("/home/ec2-user/media/" + totem + "/" + nombreArchivo));
-
-
             }
 
-            // error ql wn, estabamos mandando nul pq el path se seteaba antes de la instancia,silovi
 
 
             contenido.setUsuario(userSession.getUsuario());
-            contenido.setEstado("Esperando Validacion");
 
             logicaContenido.guardar(contenido);
 
@@ -181,6 +167,7 @@ public class MantenedorCampana implements Serializable {
     public String editarContenido(Contenido c) {
         contenido = c;
         contenido.setCategoria(categoria);
+
         logicaContenido.guardar(contenido);
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el Contenido [" + contenido.getIdcontenido() + "]");
 
@@ -206,7 +193,6 @@ public class MantenedorCampana implements Serializable {
             System.err.print(contenido.getIdcontenido());
             campana.setTotemList(totemsPorEstablecimiento);
             campana.setFechaCreacion(Date.from(Instant.now()));
-            campana.setEstado("Esperando Validacion");
             logicaCampana.guardarCampana(campana);
           SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
           String html = new String(constantes.getHeaderCorreo());
@@ -644,7 +630,6 @@ public class MantenedorCampana implements Serializable {
     public void setTotemsPorEstablecimiento(List<Totem> totemsPorEstablecimiento) {
         this.totemsPorEstablecimiento = totemsPorEstablecimiento;
     }
-
 }
 
 
