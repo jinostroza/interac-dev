@@ -15,6 +15,7 @@ import org.primefaces.model.map.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.util.FileCopyUtils;
 
 import java.io.Serializable;
 import java.nio.file.Files;
@@ -76,6 +77,8 @@ public class MantenedorCampana implements Serializable {
     private String tipot="";
     private Long contarCampanas;
 
+
+
     @Autowired
     private MailSender mailSender;
     @Autowired
@@ -135,6 +138,8 @@ public class MantenedorCampana implements Serializable {
             String ambiente = propertyReader.get("ambiente");
 
             if ("desarrollo".equals(ambiente))
+                // dentro del server siempre podra subir, no importa si es wintendo o linux
+                contenido.setPath(pathTemporal);
 
                 contenido.setPath(pathTemporal);
             else if ("produccion".equals(ambiente)) {
@@ -193,6 +198,7 @@ public class MantenedorCampana implements Serializable {
             System.err.print(contenido.getIdcontenido());
             campana.setTotemList(totemsPorEstablecimiento);
             campana.setFechaCreacion(Date.from(Instant.now()));
+            campana.setEstado("Esperando Validacion");
             logicaCampana.guardarCampana(campana);
           SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
           String html = new String(constantes.getHeaderCorreo());
@@ -630,6 +636,7 @@ public class MantenedorCampana implements Serializable {
     public void setTotemsPorEstablecimiento(List<Totem> totemsPorEstablecimiento) {
         this.totemsPorEstablecimiento = totemsPorEstablecimiento;
     }
+
 }
 
 

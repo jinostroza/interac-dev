@@ -26,7 +26,7 @@ import java.util.Set;
                 @NamedQuery(name="Campana.findByUsuarioAprobado",query = "SELECT c FROM Campana c " +
                         "INNER JOIN FETCH c.contenido co " +
                         "INNER JOIN FETCH co.usuario u " +
-                        "WHERE u.username=:username AND c.estado='Aprovado'"),
+                        "WHERE u.username=:username AND c.estado='Aprobado'"),
 
                 @NamedQuery(
                         name = "Campana.findByIdWithTotems",
@@ -44,19 +44,16 @@ import java.util.Set;
                 @NamedQuery(name="Campana.findByEstado",
                         query="SELECT c FROM Campana c "+
                               "INNER JOIN FETCH c.contenido co " +
-                              "INNER JOIN FETCH c.totemList tl " +
-                              "INNER JOIN FETCH tl.establecimiento e  " +
-                              "INNER JOIN FETCH e.usuario u " +
-                              " WHERE u.username=:username AND c.estado='Esperando Validando'"
+                              "INNER JOIN  c.establecimiento e " +
+                              "INNER JOIN e.usuario u " +
+                              " WHERE u.username=:username AND c.estado='Esperando Validacion'"
 
                            ),
                 @NamedQuery(name="Campana.count",
                         query="SELECT COUNT (c.idcampana) FROM Campana c "+
-                                "INNER JOIN  c.contenido co " +
-                                "INNER JOIN  c.totemList tl " +
-                                "INNER JOIN  tl.establecimiento e " +
-                                "INNER JOIN  e.usuario u "+
-                                " WHERE u.username=:username AND c.estado='Esperando Validando'"
+                                "INNER JOIN  c.establecimiento e " +
+                                "INNER JOIN e.usuario u " +
+                                " WHERE u.username=:username AND c.estado='Esperando Validacion'"
                 ),
 
                 @NamedQuery(name="Campana.findByTotem",
@@ -82,6 +79,7 @@ public class Campana implements Serializable {
     // relaciones
     private Contenido contenido;
     private List<Totem> totemList;
+    private Establecimiento establecimiento;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -162,6 +160,16 @@ public class Campana implements Serializable {
     public void setEstado(String estado) {
 
         this.estado = estado;
+    }
+    @JoinColumn(name="idestablecimiento",referencedColumnName = "idestablecimiento")
+    @ManyToOne(fetch=FetchType.LAZY)
+
+    public Establecimiento getEstablecimiento() {
+        return establecimiento;
+    }
+
+    public void setEstablecimiento(Establecimiento establecimiento) {
+        this.establecimiento = establecimiento;
     }
 
     @ManyToMany(fetch = FetchType.LAZY)
