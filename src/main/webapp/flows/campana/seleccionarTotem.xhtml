@@ -194,7 +194,9 @@
                     <p:commandButton  value="Volver"  styleClass="btn btn-interac"  immediate="true" />
                     <span/>
 
-                    <p:commandButton value="Siguente"  styleClass="btn btn-interac" action="end1" actionListener="#{mantenedorCampana.guardar}" />
+                    <p:commandButton value="Siguente"  styleClass="btn btn-interac" action="end1" >
+                        <p:ajax event="click" listener="#{mantenedorCampana.guardar}"></p:ajax>
+                    </p:commandButton>
                 </div>
 
             </div>

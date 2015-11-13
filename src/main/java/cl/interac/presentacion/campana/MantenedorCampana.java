@@ -15,6 +15,7 @@ import org.primefaces.model.map.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.util.FileCopyUtils;
 
 import java.io.Serializable;
 import java.nio.file.Files;
@@ -142,7 +143,7 @@ public class MantenedorCampana implements Serializable {
 
             else if ("produccion".equals(ambiente)) {
                 // si es producción estamos obligado a usar el ftp
-                String totem = "colivares"; // por ahora, después se suponeque cambia
+                String totem = "demoPublicidad"; // por ahora, después se suponeque cambia
 
                 // obtenemos el formato del archivo buscando el último .
                 String nombreArchivo = pathTemporal.substring(pathTemporal.lastIndexOf('.'));
@@ -153,6 +154,8 @@ public class MantenedorCampana implements Serializable {
                 // por ende le pasamos la fecha con hora minuto y segundo + formato rescatado anteriormente
                 nombreArchivo = sdf.format(new Date()) + nombreArchivo;
                 contenido.setPath(nombreArchivo);
+                contenido.setUsuario(userSession.getUsuario());
+                String pathdestino = "/home/ec2-user/media/" + totem + "/" + nombreArchivo;
 
                 Files.copy(Paths.get(pathTemporal), Paths.get("/home/ec2-user/media/" + totem + "/" + nombreArchivo));
 
