@@ -137,12 +137,12 @@ public class MantenedorCampana implements Serializable {
 
             String ambiente = propertyReader.get("ambiente");
 
-            if ("desarrollo".equals(ambiente))
+            if ("desarrollo".equals(ambiente)) {
                 // dentro del server siempre podra subir, no importa si es wintendo o linux
                 contenido.setPath(pathTemporal);
 
                 contenido.setPath(pathTemporal);
-            else if ("produccion".equals(ambiente)) {
+            }else if ("produccion".equals(ambiente)) {
                 String carpetaPrincipal = "interac";
 
                 String nombreArchivo = pathTemporal.substring(pathTemporal.lastIndexOf('.'));
