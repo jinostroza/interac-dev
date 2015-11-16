@@ -47,7 +47,7 @@
                                         <p:fileUpload style="width: 450px;"  mode="advanced"
                                                       previewWidth="430" update="messages" label="Seleccionar contenido" uploadLabel="Subir"
                                                       fileUploadListener="#{mantenedorCampana.subir}" cancelLabel="Cancelar" widgetVar="myFileUpload"
-                                                      onstart="PF('myFileUpload').disableButton(PF('myFileUpload').chooseButton)" auto="false"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                                                      onstart="PF('myFileUpload').disableButton(PF('myFileUpload').chooseButton)" required="true" auto="false"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 
                                         <p:growl id="messages" showDetail="true" />
                                     </div>

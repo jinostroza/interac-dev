@@ -77,40 +77,40 @@ public class MantenedorCliente implements Serializable {
         campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
     }
 
-    public void proandoLaWea(Contenido c){
-        contenido = c ;
-        FacesUtil.mostrarMensajeError("smokeweb every day", contenido.getPath());
-    }
-    public void aprobar(Campana c){
+    public void aprobar(Campana ca,Contenido c){
         try {
-            campana = c ;
-            String aprobado = "Aprobado";
+            campana = ca ;
+            contenido = c;
+            String aprobado = "aprobado";
+            contenido.setEstado(aprobado);
             campana.setEstado(aprobado);
-            logicaCampana.guardarCampana(campana);
-            Files.copy(Paths.get(campana.getContenido().getPath()), Paths.get("/home/ec2-user/media/demoPublicidad/"+campana.getContenido().getPath()));
-            String[] destinos = new String[2];
-            destinos[0] = campana.getContenido().getUsuario().getCorreo();
-            destinos[1] = "fernando_06@live.cl";
-            mailSender.send(destinos,"una prueba","esta Lista la API");
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha aprobado campaña  [" + campana.getContenido().getNombrecont() + "]");
-
+            logicaContenido.guardar(contenido);
+            String nombreArchivo = contenido.getPath().substring(contenido.getPath().lastIndexOf('.'));
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd.hhmmss");
+            nombreArchivo = sdf.format(new Date()) + nombreArchivo;
+            String carpetaDestino = "demoPublicidad";
+            Files.copy(Paths.get(contenido.getPath()), Paths.get("/home/ec2-user/media/" + carpetaDestino + "/" + nombreArchivo));
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha aprobado campaña  [" +campana.getContenido().getNombrecont() + "]");
         }catch (Exception e){
             FacesUtil.mostrarMensajeError("Operación Fallida", "algo ocurrio");
         }
 
-
+        String[] destinos = new String[2];
+        destinos[0] = "jchacon@interac.cl";
+        destinos[1] = "fernando_06@live.cl";
+        mailSender.send(destinos,"una prueba","esta Lista la API");
 
         campanaEnEspera.clear();
-        //campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
+        campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado campaña  [" + campana.getContenido().getNombrecont() + "]");
     }
 
-    public void rechazar(Campana c){
+    public void rechazar(Contenido c){
         try {
-            campana= c ;
+            contenido= c ;
             String rechazado = "rechazado";
-            setCampana(campana);
-            logicaCampana.guardarCampana(campana);
+            campana.getContenido().setEstado(rechazado);
+            logicaContenido.guardar(contenido);
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado campaña  [" + campana.getContenido().getNombrecont() + "]");
 
         }catch (Exception e){
@@ -123,7 +123,7 @@ public class MantenedorCliente implements Serializable {
 
 
         campanaEnEspera.clear();
-       // campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
+        campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado campaña  [" + campana.getContenido().getNombrecont() + "]");
     }
 
