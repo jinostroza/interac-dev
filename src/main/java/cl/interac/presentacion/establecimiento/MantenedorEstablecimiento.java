@@ -1,10 +1,7 @@
 package cl.interac.presentacion.establecimiento;
 
 import cl.interac.entidades.*;
-import cl.interac.negocio.LogicaEstablecimiento;
-import cl.interac.negocio.LogicaTotem;
-import cl.interac.negocio.LogicaUbicacion;
-import cl.interac.negocio.LogicaUsuario;
+import cl.interac.negocio.*;
 import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +24,12 @@ public class MantenedorEstablecimiento implements Serializable {
     private List<Totem> totems;
     private List<Ubicacion> ubicaciones;
     private List<Usuario> usuario;
+    private List<Categoria> categorias;
 
     private int idestable;
     private Establecimiento establecimiento;
     private Ubicacion ubicacion;
+    private Categoria categoria;
 
     @Autowired
     private LogicaEstablecimiento logicaEstablecimiento;
@@ -42,12 +41,15 @@ public class MantenedorEstablecimiento implements Serializable {
     private LogicaUbicacion logicaUbicacion;
     @Autowired
     private LogicaTotem logicaTotem;
+    @Autowired
+    private LogicaCategoria logicaCategoria;
 
 
     @PostConstruct
     public void inicio() {
         establecimientoList = logicaEstablecimiento.obtenerConRelacion();
         ubicaciones = logicaUbicacion.obtenerTodas();
+        categorias = logicaCategoria.obtenerTodos();
         establecimiento = new Establecimiento();
     }
 
@@ -58,6 +60,7 @@ public class MantenedorEstablecimiento implements Serializable {
     public void agregarEstablecimiento() {
         establecimiento.setUsuario(userSession.getUsuario());
         establecimiento.setUbicacion(ubicacion);
+        establecimiento.setCategoria(categoria);
         logicaEstablecimiento.guardar(establecimiento);
         establecimientoList = logicaEstablecimiento.obtenerConRelacion();
 
@@ -134,6 +137,22 @@ public class MantenedorEstablecimiento implements Serializable {
 
     public void setIdestable(int idestable) {
         this.idestable = idestable;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
     }
 }
 

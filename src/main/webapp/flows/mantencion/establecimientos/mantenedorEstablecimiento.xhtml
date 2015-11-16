@@ -79,11 +79,11 @@
                                itemLabel="#{ubica.descubicacion}"/>
             </h:selectOneMenu>
             <h:outputLabel value="Categoria"/>
-            <h:selectOneMenu class="form-control" value="#{mantenedorCategoria.categoria}"
+            <h:selectOneMenu class="form-control" value="#{mantenedorEstablecimiento.categoria}"
                              converter="entityConverter">
                 <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
-                <f:selectItems value="#{mantenedorCategoria.categorias}" var="cat"
-                               itemLabel="#{cat.desccategoria}" />
+                <f:selectItems value="#{mantenedorEstablecimiento.categorias}" var="cat"
+                               itemLabel="#{cat.desccategoria}"  />
             </h:selectOneMenu>
             <h:outputLabel value="Latitud"/>
             <h:inputText  required="true" requiredMessage="Ingrese Latitud" styleClass="form-control"
