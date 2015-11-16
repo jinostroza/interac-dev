@@ -77,16 +77,19 @@ public class MantenedorCliente implements Serializable {
         campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
     }
 
-    public void aprobar(Contenido c){
+    public void aprobar(Campana ca,Contenido c){
         try {
-            contenido = c ;
+            campana = ca ;
+            contenido = c;
             String aprobado = "aprobado";
             contenido.setEstado(aprobado);
+            campana.setEstado(aprobado);
             logicaContenido.guardar(contenido);
             String nombreArchivo = contenido.getPath().substring(contenido.getPath().lastIndexOf('.'));
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd.hhmmss");
             nombreArchivo = sdf.format(new Date()) + nombreArchivo;
-            Files.copy(Paths.get(contenido.getPath()), Paths.get("/home/ec2-user/media/" + totem.getEstablecimiento().getUsuario().getUsername() + "/" + nombreArchivo));
+            String carpetaDestino = "demoPublicidad";
+            Files.copy(Paths.get(contenido.getPath()), Paths.get("/home/ec2-user/media/" + carpetaDestino + "/" + nombreArchivo));
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha aprobado campaña  [" +campana.getContenido().getNombrecont() + "]");
         }catch (Exception e){
             FacesUtil.mostrarMensajeError("Operación Fallida", "algo ocurrio");

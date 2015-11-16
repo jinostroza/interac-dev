@@ -137,27 +137,35 @@ public class MantenedorCampana implements Serializable {
 
             String ambiente = propertyReader.get("ambiente");
 
-            if ("desarrollo".equals(ambiente)) {
+            if ("desarrollo".equals(ambiente))
                 // dentro del server siempre podra subir, no importa si es wintendo o linux
                 contenido.setPath(pathTemporal);
 
-                contenido.setPath(pathTemporal);
-            }else if ("produccion".equals(ambiente)) {
-                String carpetaPrincipal = "interac";
+            else if ("produccion".equals(ambiente)) {
+                // si es producción estamos obligado a usar el ftp
+                String nomEstablecimiento = "demoPublicidad"; // por ahora, después se suponeque cambia
 
+                // obtenemos el formato del archivo buscando el último .
                 String nombreArchivo = pathTemporal.substring(pathTemporal.lastIndexOf('.'));
 
-
+                // debemos asegurarnos que el nombre será unico para que no pise otra cosa en el FTP
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd.hhmmss");
 
+                // por ende le pasamos la fecha con hora minuto y segundo + formato rescatado anteriormente
                 nombreArchivo = sdf.format(new Date()) + nombreArchivo;
-                Files.copy(Paths.get(pathTemporal), Paths.get("/home/ec2-user/media/"+carpetaPrincipal+"/"+ nombreArchivo));
                 contenido.setPath(nombreArchivo);
+                contenido.setUsuario(userSession.getUsuario());
+
+                Files.copy(Paths.get(pathTemporal), Paths.get("/home/ec2-user/media/" + nomEstablecimiento + "/" + nombreArchivo));
+
+
             }
 
+            // error ql wn, estabamos mandando nul pq el path se seteaba antes de la instancia,silovi
 
 
             contenido.setUsuario(userSession.getUsuario());
+            contenido.setEstado("Esperando Validacion");
 
             logicaContenido.guardar(contenido);
 
@@ -172,7 +180,6 @@ public class MantenedorCampana implements Serializable {
     public String editarContenido(Contenido c) {
         contenido = c;
         contenido.setCategoria(categoria);
-
         logicaContenido.guardar(contenido);
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el Contenido [" + contenido.getIdcontenido() + "]");
 

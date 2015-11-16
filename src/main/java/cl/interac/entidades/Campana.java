@@ -14,16 +14,16 @@ import java.util.Set;
 @NamedQueries(
         {
                 @NamedQuery(name = "Campana.findAll", query = "SELECT c FROM Campana c "),
-                @NamedQuery(name ="Campana.findBycontenido",
-                           query="SELECT c FROM Campana c  " +
-                                   "INNER JOIN FETCH c.contenido co " ),
+                @NamedQuery(name = "Campana.findBycontenido",
+                        query = "SELECT c FROM Campana c  " +
+                                "INNER JOIN FETCH c.contenido co "),
 
-                @NamedQuery(name="Campana.findByUsuario",query = "SELECT c FROM Campana c " +
+                @NamedQuery(name = "Campana.findByUsuario", query = "SELECT c FROM Campana c " +
                         "INNER JOIN FETCH c.contenido co " +
                         "INNER JOIN FETCH co.usuario u " +
                         "WHERE u.username=:username "),
 
-                @NamedQuery(name="Campana.findByUsuarioAprobado",query = "SELECT c FROM Campana c " +
+                @NamedQuery(name = "Campana.findByUsuarioAprobado", query = "SELECT c FROM Campana c " +
                         "INNER JOIN FETCH c.contenido co " +
                         "INNER JOIN FETCH co.usuario u " +
                         "WHERE u.username=:username AND c.estado='Aprobado'"),
@@ -34,36 +34,36 @@ import java.util.Set;
                 ),
 
                 @NamedQuery(
-                        name="Campana.findByTotemsAndCampana",
-                        query="SELECT c FROM Campana c " +
-                              "INNER JOIN FETCH c.totemList t " +
-                              "INNER JOIN FETCH t.establecimiento e " +
-                              "WHERE c.id=:id"
+                        name = "Campana.findByTotemsAndCampana",
+                        query = "SELECT c FROM Campana c " +
+                                "INNER JOIN FETCH c.totemList t " +
+                                "INNER JOIN FETCH t.establecimiento e " +
+                                "WHERE c.id=:id"
                 ),
 
-                @NamedQuery(name="Campana.findByEstado",
-                        query="SELECT c FROM Campana c "+
-                              "INNER JOIN FETCH c.contenido co " +
-                              "INNER JOIN  c.establecimiento e " +
-                              "INNER JOIN e.usuario u " +
-                              " WHERE u.username=:username AND c.estado='Esperando Validacion'"
+                @NamedQuery(name = "Campana.findByEstado",
+                        query = "SELECT c FROM Campana c " +
+                                "INNER JOIN FETCH c.contenido co " +
+                                "INNER JOIN  c.establecimiento e " +
+                                "INNER JOIN e.usuario u " +
+                                " WHERE u.username=:username AND c.estado='Esperando Validacion'"
 
-                           ),
-                @NamedQuery(name="Campana.count",
-                        query="SELECT COUNT (c.idcampana) FROM Campana c "+
+                ),
+                @NamedQuery(name = "Campana.count",
+                        query = "SELECT COUNT (c.idcampana) FROM Campana c " +
                                 "INNER JOIN  c.establecimiento e " +
                                 "INNER JOIN e.usuario u " +
                                 " WHERE u.username=:username AND c.estado='Esperando Validacion'"
                 ),
 
-                @NamedQuery(name="Campana.findByTotem",
-                            query="SELECT c FROM Campana c " +
-                                  "RIGHT JOIN FETCH c.totemList tl "+
-                                  "RIGHT JOIN FETCH tl.establecimiento e " +
-                                  "RIGHT JOIN FETCH e.usuario u " +
-                                  "where u.username=:username "
-                                   )
-                
+                @NamedQuery(name = "Campana.findByTotem",
+                        query = "SELECT c FROM Campana c " +
+                                "RIGHT JOIN FETCH c.totemList tl " +
+                                "RIGHT JOIN FETCH tl.establecimiento e " +
+                                "RIGHT JOIN FETCH e.usuario u " +
+                                "where u.username=:username "
+                )
+
         }
 )
 public class Campana implements Serializable {
@@ -111,6 +111,7 @@ public class Campana implements Serializable {
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
+
     @Temporal(TemporalType.DATE)
     @Column(name = "fechainicio")
     public Date getFechaInicio() {
@@ -120,6 +121,7 @@ public class Campana implements Serializable {
     public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
+
     @Basic
     @Column(name = "pasadas")
     public Integer getPasadas() {
@@ -131,7 +133,7 @@ public class Campana implements Serializable {
     }
 
     @Basic
-    @Column(name="nombrecampana")
+    @Column(name = "nombrecampana")
     public String getNombrecampana() {
         return nombrecampana;
     }
@@ -141,8 +143,8 @@ public class Campana implements Serializable {
     }
 
 
-    @JoinColumn(name="idcontenido",referencedColumnName = "idcontenido")
-    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "idcontenido", referencedColumnName = "idcontenido")
+    @ManyToOne(fetch = FetchType.LAZY)
     public Contenido getContenido() {
         return contenido;
     }
@@ -152,7 +154,7 @@ public class Campana implements Serializable {
     }
 
     @Basic
-    @Column(name= "estado" ,nullable = false )
+    @Column(name = "estado", nullable = false)
     public String getEstado() {
         return estado;
     }
@@ -161,8 +163,9 @@ public class Campana implements Serializable {
 
         this.estado = estado;
     }
-    @JoinColumn(name="idestablecimiento",referencedColumnName = "idestablecimiento")
-    @ManyToOne(fetch=FetchType.LAZY)
+
+    @JoinColumn(name = "idestablecimiento", referencedColumnName = "idestablecimiento")
+    @ManyToOne(fetch = FetchType.LAZY)
 
     public Establecimiento getEstablecimiento() {
         return establecimiento;
@@ -179,7 +182,7 @@ public class Campana implements Serializable {
                     @JoinColumn(name = "idtotem", referencedColumnName = "idtotem")
             },
             joinColumns = {
-                    @JoinColumn(name = "idcampana" , referencedColumnName = "idcampana")
+                    @JoinColumn(name = "idcampana", referencedColumnName = "idcampana")
             }
     )
     public List<Totem> getTotemList() {

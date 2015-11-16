@@ -35,15 +35,15 @@
                  <h:outputText value="#{car.pasadas}" />
              </p:column>
              <p:column headerText="estado">
-                 <h:outputText value="#{car.contenido.estado}" />
+                 <h:outputText value="#{car.estado}" />
              </p:column>
              <p:column>
                <p:commandButton value="aprobar" process="@form" update="champa"
-                                action="#{mantenedorCliente.aprobar(car.contenido)}"  />
+                                action="#{mantenedorCliente.aprobar(car)}"  />
              </p:column>
              <p:column>
                  <p:commandButton value="rechazar" process="@form"
-                                  action="#{mantenedorCliente.rechazar(car.contenido)}" update="champa" />
+                                  action="#{mantenedorCliente.rechazar(car)}" update="champa" />
              </p:column>
 
              <p:rowExpansion>

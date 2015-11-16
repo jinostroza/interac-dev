@@ -79,8 +79,8 @@
                     <br></br>
 
 
-                    <p:dataTable  id="datapantallas" widgetVar="DTpantallas" styleClass="col-lg-12 " value="#{mantenedorCampana.totemList}"
-                                  paginator="true" var="place" rows="5" selection="#{mantenedorCampana.totemSelecionados}" selectionMode="multiple" rowKey="#{place}" >
+                    <p:dataTable  id="datapantallas" widgetVar="DTpantallas" styleClass="col-lg-12 " value="#{mantenedorCampana.establecimientos}"
+                                  paginator="true" var="place" rows="5" selection="#{mantenedorCampana.establecimientoseleccionado}" selectionMode="single" rowKey="#{place.idEstablecimiento}" >
 
 
                         <p:column style="width:30px">

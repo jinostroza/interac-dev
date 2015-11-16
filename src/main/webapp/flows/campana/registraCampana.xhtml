@@ -17,9 +17,11 @@
                             <ui:fragment
                                     rendered="#{userSession.tienePermiso('CLIENTE')
                                       or userSession.tienePermiso('ADMINISTRADOR')}">
-                            <p:commandLink styleClass="dashbox-notify" action="#{facesUtil.redirigir('/plataforma/cliente')}" >
-                            <p:outputLabel styleClass="btn-notify blink" value="#{mantenedorCampana.contarCampanas}"/>
-                            </p:commandLink>
+                                <p:commandLink styleClass="dashbox-notify"
+                                               action="#{facesUtil.redirigir('/plataforma/cliente')}">
+                                    <p:outputLabel styleClass="btn-notify blink"
+                                                   value="#{mantenedorCampana.contarCampanas}"/>
+                                </p:commandLink>
                             </ui:fragment>
                         </div>
                     </header>
@@ -33,10 +35,12 @@
                                     rendered="#{userSession.tienePermiso('CLIENTE')
                                       or userSession.tienePermiso('ADMINISTRADOR')}">
                                 <p:commandLink styleClass="col-lg-3 col-md-3 "
-                                               style="padding-left: -300px;margin-left: -100px" action="#{facesUtil.redirigir('/plataforma/contenidos')}">
+                                               style="padding-left: -300px;margin-left: -100px"
+                                               action="#{facesUtil.redirigir('/plataforma/contenidos')}">
                                     <div class="dashbox">
                                         <h:outputLabel value="Activar Pantallas"
-                                                   style="font-weight: bold;font-size: 18px;"/>
+                                                       style="font-weight: bold;font-size: 18px;"/>
+
                                         <div class="button_ crear-campana"></div>
                                         <p>Agrega aqui la informacion de tus pantallas</p>
                                     </div>
@@ -45,7 +49,7 @@
                             <h:commandLink styleClass="col-lg-3 col-md-3  " action="crear">
                                 <div class="dashbox">
                                     <h:outputLabel style="font-weight: bold;font-size: 18px;"
-                                                   value="Crear Anuncio" />
+                                                   value="Crear Anuncio"/>
 
                                     <div class="button_ subir-imagen"></div>
                                     <p> Sube un nuevo anuncio a nuestra plataforma </p>
@@ -53,12 +57,14 @@
                             </h:commandLink>
                             <h:commandLink styleClass="col-lg-3 col-md-3 " action="vercon">
                                 <div class="dashbox">
-                                    <h:outputLabel value="Programar Campaña" style="font-weight: bold;font-size: 18px;"/>
+                                    <h:outputLabel value="Programar Campaña"
+                                                   style="font-weight: bold;font-size: 18px;"/>
+
                                     <div class="button_ planificar-campana"></div>
                                     <p> Elige cuando y donde quieres publicitar </p>
                                 </div>
                             </h:commandLink>
-                            <h:commandLink class="col-lg-3 col-md-3 " action="micampana" >
+                            <h:commandLink class="col-lg-3 col-md-3 " action="micampana">
                                 <div class="dashbox">
                                     <h:outputLabel value="Pagar" style="font-weight: bold;font-size: 18px;"/>
 
@@ -66,6 +72,7 @@
                                     <p> Confirma y paga tu Campaña aqui!</p>
                                 </div>
                             </h:commandLink>
+
                             <div class="clearfix visible-xs-block"></div>
                         </div>
                     </div>
@@ -94,27 +101,34 @@
                             <f:facet name="header">
                                 Selecione Pantalla Para Desplegar Campañas
                             </f:facet>
-                            <p:column style="width:30px;" >
-                                <p:rowToggler />
+                            <p:column style="width:30px;">
+                                <p:rowToggler/>
                             </p:column>
-                            <p:column headerText="NO° serie" >
-                                <h:outputText value="#{car.idtotem}" />
+                            <p:column headerText="NO° serie">
+                                <h:outputText value="#{car.idtotem}"/>
                             </p:column>
                             <p:column headerText="Estalecimiento">
-                                <h:outputText value="#{car.establecimiento.nombreEstablecimiento}" />
+                                <h:outputText value="#{car.establecimiento.nombreEstablecimiento}"/>
                             </p:column>
 
                             <p:rowExpansion>
                                 <p:panelGrid columns="4">
-                                    <p:dataList  var="qwer" value="#{car.campanaList}" rows="12">
+                                    <p:dataList var="qwer" value="#{car.campanaList}" rows="12">
                                         <p:commandLink styleClass="row">
 
-                                            <p:graphicImage styleClass="col-lg-4"  style="width: 80px;height: 120px" value="http://g01.a.alicdn.com/kf/HTB1UZdtIXXXXXcSXpXXq6xXFXXXH/42-inch-TFT-LED-industrial-FULL-HD-vertical-screen-floor-stand-memory-card-advertising-player.jpg"></p:graphicImage>
-                                            <h4 class="col-lg-2">#{qwer.fechaInicio}  <small>Comienza</small> </h4>
+                                            <p:graphicImage styleClass="col-lg-4" style="width: 80px;height: 120px"
+                                                            value="http://g01.a.alicdn.com/kf/HTB1UZdtIXXXXXcSXpXXq6xXFXXXH/42-inch-TFT-LED-industrial-FULL-HD-vertical-screen-floor-stand-memory-card-advertising-player.jpg"></p:graphicImage>
+                                            <h4 class="col-lg-2">#{qwer.fechaInicio}
+                                                <small>Comienza</small>
+                                            </h4>
 
 
-                                            <h4 class="col-lg-2">#{qwer.fechaFin} <small >Termina</small> </h4>
-                                            <h4 class="col-lg-2">#{qwer.pasadas}    <small>Pasadas</small></h4>
+                                            <h4 class="col-lg-2">#{qwer.fechaFin}
+                                                <small>Termina</small>
+                                            </h4>
+                                            <h4 class="col-lg-2">#{qwer.pasadas}
+                                                <small>Pasadas</small>
+                                            </h4>
                                             <h4 class="col-lg-2">#{qwer.contenido.idcontenido}</h4>
 
                                         </p:commandLink>
@@ -126,6 +140,7 @@
                     </ui:fragment>
                 </div>
                 <br/>
+
                 <div class="ui-grid-row">
                     <div class="col-lg-4">
                         <h3 align="center" style="align-items: flex-start">Estado de tus Campañas</h3>
@@ -136,17 +151,18 @@
                     <p:dataTable var="camton" rows="5" paginator="true"
                                  styleClass="col-lg-10 col-lg-offset-5"
                                  style="margin-left: 10%;text-align-all: center;"
-                                 value="#{mantenedorCampana.campanas}" >
+                                 value="#{mantenedorCampana.campanas}">
 
                         <f:facet name="header">
                             Mis Campañas
                         </f:facet>
 
                         <p:column styleClass="col-lg-2" headerText="nombre">
-                            <h:graphicImage value="ftp://54.172.118.246/#{camton.contenido.path}" style="width:100px; height:200px ;" />
+                            <h:graphicImage value="ftp://54.172.118.246/#{camton.contenido.path}"
+                                            style="width:100px; height:200px ;"/>
                         </p:column>
                         <p:column styleClass="col-lg-2" headerText="estado">
-                            <h:outputText value="#{camton.estado}" />
+                            <h:outputText value="#{camton.estado}"/>
                         </p:column>
                         <p:column styleClass="col-lg-2" headerText="fecha">
                             <h:outputText value="#{camton.fechaCreacion}"/>
