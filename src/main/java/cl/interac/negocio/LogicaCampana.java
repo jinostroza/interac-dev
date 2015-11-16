@@ -64,7 +64,7 @@ public class LogicaCampana {
         return campanaDAO.obtenerLasCampanasDelosTotems(user);
     }
 
-    @Transactional(readOnly = true)
+   @Transactional(readOnly = true)
     public List<Campana> obtenerPorEstado(String user) {
         return campanaDAO.obtenerPorEstado(user);
     }

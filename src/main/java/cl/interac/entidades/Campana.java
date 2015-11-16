@@ -44,16 +44,16 @@ import java.util.Set;
                 @NamedQuery(name="Campana.findByEstado",
                         query="SELECT c FROM Campana c "+
                               "INNER JOIN FETCH c.contenido co " +
-                              "INNER JOIN  c.establecimiento e " +
-                              "INNER JOIN e.usuario u " +
-                              " WHERE u.username=:username AND c.estado='Esperando Validacion'"
+                              "INNER JOIN FETCH c.establecimiento e " +
+                              "INNER JOIN FETCH e.usuario u " +
+                              " WHERE u.username=:username AND c.estado='Esperando Aprobacion'"
 
                            ),
                 @NamedQuery(name="Campana.count",
                         query="SELECT COUNT (c.idcampana) FROM Campana c "+
                                 "INNER JOIN  c.establecimiento e " +
                                 "INNER JOIN e.usuario u " +
-                                " WHERE u.username=:username AND c.estado='Esperando Validacion'"
+                                " WHERE u.username=:username AND c.estado='Esperando Aprobacion'"
                 ),
 
                 @NamedQuery(name="Campana.findByTotem",
@@ -161,7 +161,7 @@ public class Campana implements Serializable {
 
         this.estado = estado;
     }
-    @JoinColumn(name="idestablecimiento",referencedColumnName = "idestablecimiento")
+    @JoinColumn(name="establecimiento",referencedColumnName = "idestablecimiento")
     @ManyToOne(fetch=FetchType.LAZY)
 
     public Establecimiento getEstablecimiento() {

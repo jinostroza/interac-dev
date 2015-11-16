@@ -64,6 +64,7 @@ public class Establecimiento implements Serializable {
     private List<Totem> totem;
     private Ubicacion ubicacion;
     private Categoria categoria;
+    private List<Campana> campanaList;
 
     @JoinColumn(name = "idusuario", referencedColumnName = "idusuario")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -74,6 +75,18 @@ public class Establecimiento implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+
+
+    @OneToMany(mappedBy = "establecimiento")
+    public List<Campana> getCampanaList() {
+        return campanaList;
+    }
+
+    public void setCampanaList(List<Campana> campanaList) {
+        this.campanaList = campanaList;
+    }
+
 
 
     @OneToMany(mappedBy = "establecimiento")

@@ -34,9 +34,7 @@
              <p:column headerText="Pasadas">
                  <h:outputText value="#{car.pasadas}" />
              </p:column>
-             <p:column headerText="estado">
-                 <h:outputText value="#{car.contenido.estado}" />
-             </p:column>
+
              <p:column>
                <p:commandButton value="aprobar" process="@form" update="champa"
                                 action="#{mantenedorCliente.aprobar(car.contenido)}"  />
@@ -45,19 +43,13 @@
                  <p:commandButton value="rechazar" process="@form"
                                   action="#{mantenedorCliente.rechazar(car.contenido)}" update="champa" />
              </p:column>
+             <p:column>
+                 <p:commandButton value="boton que no hace nada" action="#{mantenedorCliente.proandoLaWea(car.contenido)}" />
+             </p:column>
 
-             <p:rowExpansion>
-                 <p:panelGrid>
-                     <p:dataList var="qwer" value="#{car.totemList}">
-                         <p:outputLabel>
-                             <h:outputText value="#{qwer.noserie}" />
 
-                         </p:outputLabel>
-                     </p:dataList>
-
-                 </p:panelGrid>
-             </p:rowExpansion>
          </p:dataTable>
+
          <div class="push"></div>
      </h:form>
     </ui:define>
