@@ -67,13 +67,13 @@ public class CampanaDAO {
         }
 
     }
-    /*public List<Campana> obtenerPorEstado(String user){
+    public List<Campana> obtenerPorEstado(String user){
         return em.createNamedQuery("Campana.findByEstado").setParameter("username",user).getResultList();
 
     }
 
     public long obtenerNumeroNuevas(String user){
         return (Long) em.createNamedQuery("Campana.count").setParameter("username",user).getSingleResult();
-    }*/
+    }
 
 }

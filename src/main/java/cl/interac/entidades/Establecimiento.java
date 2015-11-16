@@ -50,11 +50,11 @@ public class Establecimiento implements Serializable {
     private String fono;
     private Double lat;
     private Double longi;
-    private String valorMensual;
+    private Integer valorMensual;
     private Date horaInicio;
     private Date horaTermino;
-    private String slots;
-    private String numeroPantallas;
+    private Integer slots;
+    private Integer numeroPantallas;
     private String urlImagen;
 
     // Relaciones
@@ -147,9 +147,9 @@ public class Establecimiento implements Serializable {
 
     @Basic
     @Column(name = "valormensual")
-    public String getValorMensual() { return valorMensual; }
+    public Integer getValorMensual() { return valorMensual; }
 
-    public void setValorMensual(String valorMensual) { this.valorMensual = valorMensual; }
+    public void setValorMensual(Integer valorMensual) { this.valorMensual = valorMensual; }
 
     @Basic
     @Column(name = "horainicio")
@@ -165,15 +165,15 @@ public class Establecimiento implements Serializable {
 
     @Basic
     @Column(name = "slots")
-    public String getSlots() { return slots; }
+    public Integer getSlots() { return slots; }
 
-    public void setSlots(String slots) { this.slots = slots; }
+    public void setSlots(Integer slots) { this.slots = slots; }
 
     @Basic
     @Column(name = "numeropantallas")
-    public String getNumeroPantallas() { return numeroPantallas; }
+    public Integer getNumeroPantallas() { return numeroPantallas; }
 
-    public void setNumeroPantallas(String numeroPantallas) { this.numeroPantallas = numeroPantallas; }
+    public void setNumeroPantallas(Integer numeroPantallas) { this.numeroPantallas = numeroPantallas; }
 
     @Basic
     @Column(name ="urlImagen")
