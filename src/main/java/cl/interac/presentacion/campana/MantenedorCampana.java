@@ -48,7 +48,6 @@ public class MantenedorCampana implements Serializable {
     private Integer valor;
     private Long dias;
     private String retor;
-    private String end1;
     private List<Usuario> usuarios;
     private Totem totem;
     private Totem[] totemSelecionados;
@@ -124,13 +123,12 @@ public class MantenedorCampana implements Serializable {
         campanaList= logicaCampana.obtenerLasCampanasDeLosTotems(userSession.getUsuario().getUsername());
         totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
+        contenido = new Contenido();
+
 
     }
 
     public void subir(FileUploadEvent fue) {
-
-
-        contenido = new Contenido();
 
         try {
             String pathTemporal = fileUploader.subir(fue,"/contenido");
@@ -198,10 +196,9 @@ public class MantenedorCampana implements Serializable {
          return "subir";
     }
 
-    public void  guardar() {
-
-
+    public String  guardar() {
             campana.setContenido(contenido);
+            campana.setEstablecimiento(establecimientoseleccionado);
             System.err.print(contenido.getIdcontenido());
             campana.setTotemList(totemsPorEstablecimiento);
             campana.setFechaCreacion(Date.from(Instant.now()));
@@ -235,6 +232,7 @@ public class MantenedorCampana implements Serializable {
           }
 
             FacesUtil.mostrarMensajeInformativo("operacion exitosa", "se ha creado tu campaña");
+        return "end1";
     }
 
 
