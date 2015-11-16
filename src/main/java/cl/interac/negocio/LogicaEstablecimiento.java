@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * Created by Pedro Pablo on 20-05-2015.
  */
+
 @Service
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class LogicaEstablecimiento {

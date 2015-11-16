@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.List;
+import java.util.Date;
 
 /**
  * Created by Pedro Pablo on 20-05-2015.
@@ -26,13 +27,13 @@ import java.util.List;
 
         @NamedQuery(name = "establecimiento.findIdestablecimiento",
                 query = "SELECT e from Establecimiento e where e.idEstablecimiento = :estable"),
+
         @NamedQuery(name= "establecimiento.findbyUser",
                         query="SELECT e FROM Establecimiento e " +
                                 "INNER JOIN FETCH e.ubicacion ub " +
                                 "INNER JOIN FETCH e.usuario u " +
                                 "INNER JOIN FETCH e.totem t " +
                                 "WHERE u.username=:username "),
-
 
         @NamedQuery(name= "establecimiento.findtotem",
                 query="SELECT e FROM Establecimiento e " +
@@ -50,14 +51,11 @@ public class Establecimiento implements Serializable {
     private Double lat;
     private Double longi;
     private String valorMensual;
-    private Time horaInicio;
-    private Time horaTermino;
+    private Date horaInicio;
+    private Date horaTermino;
     private String slots;
     private String numeroPantallas;
     private String urlImagen;
-
-
-
 
     // Relaciones
     private Usuario usuario;
@@ -155,15 +153,15 @@ public class Establecimiento implements Serializable {
 
     @Basic
     @Column(name = "horainicio")
-    public Time getHoraInicio() { return horaInicio; }
+    public Date getHoraInicio() { return horaInicio; }
 
-    public void setHoraInicio(Time horaInicio) { this.horaInicio = horaInicio; }
+    public void setHoraInicio(Date horaInicio) { this.horaInicio = horaInicio; }
 
     @Basic
     @Column(name = "horatermino")
-    public Time getHoraTermino() { return horaTermino; }
+    public Date getHoraTermino() { return horaTermino; }
 
-    public void setHoraTermino(Time horaTermino) { this.horaTermino = horaTermino; }
+    public void setHoraTermino(Date horaTermino) { this.horaTermino = horaTermino; }
 
     @Basic
     @Column(name = "slots")
