@@ -110,7 +110,7 @@ public class MantenedorCampana implements Serializable {
 
 
     public void inicio() {
-        //contarCampanas = logicaCampana.obtenerPorNumero(userSession.getUsuario().getUsername());
+        contarCampanas = logicaCampana.obtenerPorNumero(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
         categoriaList = logicaCategoria.obtenerTodos();
         establecimientoList=logicaEstablecimiento.obtenerTodos();
@@ -157,13 +157,16 @@ public class MantenedorCampana implements Serializable {
             contenido.setUsuario(userSession.getUsuario());
             logicaContenido.guardar(contenido);
 
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Su imagen a sido subida ");
+            FacesUtil.mostrarMensajeInformativo("Operacion Exitosa", "Su imagen a sido subida ");
             fileUploadCount = fileUploadCount + 1;
 
         } catch (Exception e) {
             return;
         }
     }
+
+
+
     public String editarContenido(Contenido c) {
         contenido = c;
         contenido.setCategoria(categoria);
@@ -172,6 +175,16 @@ public class MantenedorCampana implements Serializable {
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el Contenido [" + contenido.getIdcontenido() + "]");
 
       return irCrear(c);
+
+    }
+    public String subepucv(Contenido c) {
+        contenido = c;
+        contenido.setCategoria(categoria);
+
+        logicaContenido.guardar(contenido);
+        FacesUtil.mostrarMensajeInformativo("Operacion Exitosa", "Se ha Creado el Contenido [" + contenido.getIdcontenido() + "]");
+
+        return "end2";
 
     }
 
@@ -194,31 +207,7 @@ public class MantenedorCampana implements Serializable {
             campana.setFechaCreacion(Date.from(Instant.now()));
             logicaCampana.guardarCampana(campana);
           SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-          String html = new String(constantes.getHeaderCorreo());
 
-
-          html = html.replaceAll("\\$fechainicio", sdf.format(campana.getFechaInicio()));
-          html = html.replaceAll("\\$fechafin", sdf.format(campana.getFechaFin()));
-          html = html.replaceAll("\\$cantPant", String.valueOf(totemSelecionados.length));
-          html = html.replaceAll("\\$precio", String.valueOf(campana.getPasadas()));
-          html = html.replaceAll("\\$dias", dateDiffValue);
-          html = html.replaceAll("\\$precio", String.valueOf(precio));
-          html = html.replaceAll("\\$total", String.valueOf(valor));
-
-          String alertas = new String(constantes.getAlertas()) ;
-          alertas= alertas.replaceAll("\\$fecha",sdf.format(campana.getFechaFin())+"-hasta-"+sdf.format(campana.getFechaFin()));
-          alertas= alertas.replaceAll("\\$pasadas",String.valueOf(campana.getPasadas()));
-          for(int i=0 ; i > totemSelecionados.length ;i++ ) {
-              alertas = alertas.replaceAll("\\$pantallas", totemSelecionados[i].getNoserie() + "en" + totemSelecionados[i].getEstablecimiento().getNombreEstablecimiento());
-          }
-
-          String[] destinos = new String[totemSelecionados.length];
-               destinos[0] = userSession.getUsuario().getCorreo();
-          for (int i = 1; i > totemSelecionados.length; i++) {
-              destinos[i] = totemSelecionados[i].getEstablecimiento().getUsuario().getCorreo();
-              mailSender.send(destinos, "replica Anuncio", html);
-              System.err.print(totemSelecionados[i].getEstablecimiento().getUsuario().getCorreo());
-          }
 
             FacesUtil.mostrarMensajeInformativo("operacion exitosa", "se ha creado tu campaña");
     }
@@ -226,9 +215,19 @@ public class MantenedorCampana implements Serializable {
 
     public void eliminarFichero(Contenido conte){
         try {
-            logicaContenido.eliminarContenido(conte);
-            Files.delete(Paths.get("/home/ec2-user/media/colivares/" + conte.getPath()));
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha borrado la imagen");
+            String ambiente = propertyReader.get("ambiente");
+
+
+            if ("desarrollo".equals(ambiente)) {
+                // dentro del server siempre podra subir, no importa si es wintendo o linux
+                logicaContenido.eliminarContenido(conte);
+                FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha borrado la imagen");
+            }else if ("produccion".equals(ambiente)) {
+                logicaContenido.eliminarContenido(conte);
+                Files.delete(Paths.get("/home/ec2-user/media/colivares/" + conte.getPath()));
+                FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha borrado la imagen}");
+            }
+
         }catch (Exception e){
             FacesUtil.mostrarMensajeInformativo("Operación Fallida","Algo Ocurrio");
         }

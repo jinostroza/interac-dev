@@ -103,6 +103,7 @@ public class Contenido implements Serializable{
 
 
 
+
     @Basic
    @Column(name="nombrecont", insertable=true ,updatable = true , length = 50)
     public String getNombrecont() {
