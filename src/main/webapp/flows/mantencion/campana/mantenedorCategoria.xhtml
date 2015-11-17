@@ -8,13 +8,10 @@
     <h:panelGrid id="categoriasPG" columns="2" cellpadding="10">
         <br/>
         <p:dataTable id="categorias" var="localCT"
-                     value="#{mantenedorCategoria.categorias}"
-                     filteredValue="#{mantenedorCategoria.categoria.desccategoria}">
+                     value="#{mantenedorCategoria.categorias}">
             <p:column headerText="ID" filterBy="#{localCT.idcategoria}">
                 <h:outputText value="#{localCT.idcategoria}" />
             </p:column>
-
-
             <p:column headerText="Descripcion" filterBy="#{localCT.desccategoria}">
                 <h:outputText value="#{localCT.desccategoria}" />
             </p:column>
