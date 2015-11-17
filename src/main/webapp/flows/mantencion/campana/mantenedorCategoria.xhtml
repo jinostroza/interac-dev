@@ -14,19 +14,19 @@
                 <h:outputText value="#{localCT.idcategoria}" />
             </p:column>
 
+
             <p:column headerText="Descripcion" filterBy="#{localCT.desccategoria}">
                 <h:outputText value="#{localCT.desccategoria}" />
             </p:column>
-
             <p:column>
                 <h:commandButton value="eliminar" styleClass="form-control" action="#{mantenedorCategoria.eliminar(localCT)}"/>
             </p:column>
-
             <p:column>
                 <h:commandButton id="modificaCT" value="Modificar" update="categorias" styleClass="form-control" type="button">
                     <p:overlayPanel id="editPanelCT" for="modificaCT" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
                         <p:outputPanel>
-                            <h:outputLabel value="ID :  / #{localCT.idcategoria}"/>
+                            <h:outputLabel value="ID: #{localCT.idcategoria}"/>
+                            <br/>
                             <h:outputLabel value="Descripcion"/>
                             <h:inputText styleClass="form-control" value="#{localCT.desccategoria}" />
                             <br/>
