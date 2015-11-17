@@ -32,7 +32,7 @@
                 <h:commandButton id="modifica" value="Modificar" update="establecimientos" styleClass="form-control" type="button">
                     <!-- Editar -->
                     <p:overlayPanel id="editPanel" for="modifica" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
-                    <p:outputPanel>W
+                    <p:outputPanel>
                         <h:outputLabel value="Nombre"/>
                         <h:inputText styleClass="form-control"
                                      value="#{local.nombreEstablecimiento}"/>
@@ -48,9 +48,12 @@
                                            itemLabel="#{ubica.descubicacion}"/>
                         </h:selectOneMenu>
                         <h:outputLabel value="Hora apertura" />
-                        <p:calendar value="#{mantenedorEstablecimiento.establecimiento.horaInicio}" pattern="HH:mm" timeOnly="true" />
+                        <br />
+                        <p:calendar value="#{local.horaInicio}" pattern="HH:mm" timeOnly="true" />
+                        <br />
                         <h:outputLabel value="Hora Cierre" />
-                        <p:calendar value="#{mantenedorEstablecimiento.establecimiento.horaTermino}" pattern="HH:mm" timeOnly="true" />
+                        <br />
+                        <p:calendar value="#{local.horaTermino}" pattern="HH:mm" timeOnly="true" />
                         <br/>
                         <p:commandButton id="editBTN" for="editPanel" value="Editar" update="establecimientos"
                                          action="#{mantenedorEstablecimiento.editarEstablecimiento(local)}"/>
@@ -91,10 +94,10 @@
             <h:outputLabel value="Longitud"/>
             <h:inputText  required="true" requiredMessage="Ingrese Longitud" styleClass="form-control"
                           value="#{mantenedorEstablecimiento.establecimiento.longi}"/>
-            <h:outputLabel value="Hora apertura" />
-            <p:calendar value="#{mantenedorEstablecimiento.establecimiento.horaInicio}" pattern="HH:mm" timeOnly="true" />
-            <h:outputLabel value="Hora Cierre" />
-            <p:calendar value="#{mantenedorEstablecimiento.establecimiento.horaTermino}" pattern="HH:mm" timeOnly="true" />
+            <h:outputLabel value="Hora Inicio" />
+            <p:calendar required="true" requiredMessage="Ingrese nueva hora de inicio" value="#{mantenedorEstablecimiento.establecimiento.horaInicio}" pattern="HH:mm" timeOnly="true" />
+            <h:outputLabel value="Hora Termino" />
+            <p:calendar required="true" requiredMessage="Ingrese nueva hora de termino" value="#{mantenedorEstablecimiento.establecimiento.horaTermino}" pattern="HH:mm" timeOnly="true" />
             <h:outputLabel value="Slots (espacios para publicidad de terceros)" />
             <h:inputText  required="true" styleClass="form-control"
                           value="#{mantenedorEstablecimiento.establecimiento.slots}"/>
