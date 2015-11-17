@@ -39,11 +39,11 @@
              </p:column>
              <p:column>
                <p:commandButton value="aprobar" process="@form" update="champa"
-                                action="#{mantenedorCliente.aprobar(car.contenido)}"  />
+                                action="#{mantenedorCliente.aprobar(car,car.contenido)}"  />
              </p:column>
              <p:column>
                  <p:commandButton value="rechazar" process="@form"
-                                  action="#{mantenedorCliente.rechazar(car.contenido)}" update="champa" />
+                                  action="#{mantenedorCliente.rechazar(car,car.contenido)}" update="champa" />
              </p:column>
 
              <p:rowExpansion>

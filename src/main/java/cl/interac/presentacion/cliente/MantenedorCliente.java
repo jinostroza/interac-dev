@@ -81,16 +81,12 @@ public class MantenedorCliente implements Serializable {
         try {
             campana = ca ;
             contenido = c;
-            String aprobado = "aprobado";
+            String aprobado = "Aprobado";
             contenido.setEstado(aprobado);
-            campana.setEstado(aprobado);
             logicaContenido.guardar(contenido);
-            String nombreArchivo = contenido.getPath().substring(contenido.getPath().lastIndexOf('.'));
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd.hhmmss");
-            nombreArchivo = sdf.format(new Date()) + nombreArchivo;
             String carpetaDestino = "demoPublicidad";
-            Files.copy(Paths.get(contenido.getPath()), Paths.get("/home/ec2-user/media/" + carpetaDestino + "/" + nombreArchivo));
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha aprobado campaña  [" +campana.getContenido().getNombrecont() + "]");
+            Files.copy(Paths.get("home/ec2-user/media/interac/"+contenido.getPath()), Paths.get("/home/ec2-user/media/" + carpetaDestino + "/" + contenido.getPath()));
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha aprobado campaña  [" + campana.getContenido().getNombrecont() + "]");
         }catch (Exception e){
             FacesUtil.mostrarMensajeError("Operación Fallida", "algo ocurrio");
         }
@@ -105,11 +101,12 @@ public class MantenedorCliente implements Serializable {
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado campaña  [" + campana.getContenido().getNombrecont() + "]");
     }
 
-    public void rechazar(Contenido c){
+    public void rechazar(Campana ca , Contenido c){
         try {
-            contenido= c ;
+            campana = ca;
+            contenido = c ;
             String rechazado = "rechazado";
-            campana.getContenido().setEstado(rechazado);
+            contenido.setEstado(rechazado);
             logicaContenido.guardar(contenido);
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado campaña  [" + campana.getContenido().getNombrecont() + "]");
 

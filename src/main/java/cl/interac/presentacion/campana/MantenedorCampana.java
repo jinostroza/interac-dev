@@ -6,7 +6,7 @@ import cl.interac.util.components.*;
 import cl.interac.util.services.FileUploader;
 import cl.interac.util.services.MailSender;
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.event.data.FilterEvent;
+
 import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
@@ -141,7 +141,6 @@ public class MantenedorCampana implements Serializable {
                 // dentro del server siempre podra subir, no importa si es wintendo o linux
                 contenido.setPath(pathTemporal);
 
-                contenido.setPath(pathTemporal);
             }else if ("produccion".equals(ambiente)) {
                 String carpetaPrincipal = "interac";
 
@@ -155,12 +154,8 @@ public class MantenedorCampana implements Serializable {
                 contenido.setPath(nombreArchivo);
             }
 
-
-
             contenido.setUsuario(userSession.getUsuario());
-
             logicaContenido.guardar(contenido);
-
 
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Su imagen a sido subida ");
             fileUploadCount = fileUploadCount + 1;
@@ -192,7 +187,6 @@ public class MantenedorCampana implements Serializable {
     }
 
     public void  guardar() {
-
 
             campana.setContenido(contenido);
             System.err.print(contenido.getIdcontenido());
