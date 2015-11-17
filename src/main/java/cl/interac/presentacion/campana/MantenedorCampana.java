@@ -110,7 +110,7 @@ public class MantenedorCampana implements Serializable {
 
 
     public void inicio() {
-        contarCampanas = logicaCampana.obtenerPorNumero(userSession.getUsuario().getUsername());
+        //contarCampanas = logicaCampana.obtenerPorNumero(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
         categoriaList = logicaCategoria.obtenerTodos();
         establecimientoList=logicaEstablecimiento.obtenerTodos();
