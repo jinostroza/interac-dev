@@ -5,27 +5,28 @@
                 xmlns:p="http://primefaces.org/ui">
     <h3 style="margin-top:0">Mantenedor Totems</h3>
     <h:panelGrid id="totemPG">
-        <p:dataTable id="dttotems"  var="totes" value="#{mantenedorTotems.totemPorUsuario}" paginator="true" rows="6">
+        <br/>
+        <p:dataTable id="dttotems"  var="totes" value="#{mantenedorTotems.totems}" paginator="true" rows="6">
             <f:facet name="header">Hola mundo</f:facet>
-            <p:column headerText="Establecimiento">
+            <p:column headerText="Establecimiento" filterBy="#{totes.establecimiento.nombreEstablecimiento}">
                 <h:outputText value="#{totes.establecimiento.nombreEstablecimiento}" />
             </p:column>
-            <p:column headerText="Ubicacion">
+            <p:column headerText="Ubicacion" filterBy="#{totes.establecimiento.ubicacion.descubicacion}">
                 <h:outputText value="#{totes.establecimiento.ubicacion.descubicacion}" />
             </p:column>
-            <p:column headerText="Marca">
+            <p:column headerText="Marca" filterBy="#{totes.marcaPantalla.nombre}">
                 <h:outputText value="#{totes.marcaPantalla.nombre}" />
             </p:column>
-            <p:column headerText="N° serie">
+            <p:column headerText="N° serie" filterBy="#{totes.noserie}">
                 <h:outputText value="#{totes.noserie}" />
             </p:column>
-            <p:column headerText="Tipo Totem">
+            <p:column headerText="Tipo Totem" filterBy="#{totes.tipototem.destipo}">
                 <h:outputText value="#{totes.tipototem.destipo}" />
             </p:column>
-            <p:column headerText="Pulgadas">
+            <p:column headerText="Pulgadas" filterBy="#{totes.pulgadas}">
                 <h:outputText value="#{totes.pulgadas}" />
             </p:column>
-            <p:column headerText="Orientacion">
+            <p:column headerText="Orientacion" filterBy="#{totes.orientacion}">
                 <h:outputText value="#{totes.orientacion}" />
             </p:column>
             <!-- Editar Totem -->
