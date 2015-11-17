@@ -3,21 +3,19 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
-
-
     <h3>Perfiles</h3>
     <h:form>
         <p:dataTable id="usuarios" value="#{mantenedorUsuarios.usuarios}" filteredValue="#{mantenedorUsuarios.usuariosFiltro}" var="usuario">
             <p:column headerText="Usuario" filterBy="#{usuario.username}">
                 #{usuario.username}
             </p:column>
-            <p:column >
+            <p:column headerText="Email" filterBy="#{usuario.correo}">
                 #{usuario.correo}
             </p:column>
             <p:column headerText="rol" filterBy="#{usuario.rol.namerol}">
                 #{usuario.rol.namerol}
             </p:column>
-            <p:column >
+            <p:column>
                 <h:commandButton icon="ui-icon-key" styleClass="form-control" value="volver" action="#{facesUtil.redirigir('/plataforma/campana')}"/>
             </p:column>
             <p:column>
@@ -55,12 +53,12 @@
         <h:commandButton id="aggUsuario" value="agregar"  styleClass="form-control" type="button">
             <p:overlayPanel id="agregPanel" for="aggUsuario" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
                 <p:outputPanel>
-                    <h:outputLabel value="usuario"/>
+                    <h:outputLabel value="Usuario"/>
                     <h:inputText styleClass="form-control"
                                  value="#{mantenedorUsuarios.usuario.username}"/>
+                    <h:outputLabel value="Clave" />
                     <h:inputText styleClass="form-control"
                             value="#{mantenedorUsuarios.usuario.password}"/>
-
                     <h:outputLabel value="Rol"/>
                     <h:selectOneMenu class="form-control" value="#{mantenedorUsuarios.usuario.rol}"
                                      converter="entityConverter">
@@ -74,8 +72,5 @@
                 </p:outputPanel>
             </p:overlayPanel>
         </h:commandButton>
-
-
     </h:form>
-
         </ui:composition>

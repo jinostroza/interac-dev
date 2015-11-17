@@ -227,4 +227,6 @@ public class MantenedorTotems implements Serializable {
     public void setMarcapantalla(Marcapantalla marcapantalla) {
         this.marcapantalla = marcapantalla;
     }
+
+
 }
