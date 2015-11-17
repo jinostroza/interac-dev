@@ -37,6 +37,7 @@
 
     <view-state id="vercontenido">
         <transition on="subir" to="seleccionarTotem"></transition>
+        <transition on="fin" to="campanapasos"/>
     </view-state>
 
     <view-state id="campanaConfirmada">

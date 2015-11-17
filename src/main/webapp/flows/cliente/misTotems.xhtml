@@ -16,11 +16,10 @@
              <f:facet name="header">
                  Tiene #{mantenedorCliente.numeroCampanas} Campañas por validar.
              </f:facet>
-             <p:column style="width:30px;" >
-                <p:rowToggler />
-             </p:column>
+
+
              <p:column headerText="Imagen">
-                 <p:graphicImage url="#{car.contenido.path}" />
+                 <p:graphicImage url="img/colivares/#{car.contenido.path}" />
              </p:column>
              <p:column headerText="Contenido">
                  <h:outputText value="#{car.contenido.nombrecont}" />
@@ -44,17 +43,7 @@
                                   action="#{mantenedorCliente.rechazar(car,car.contenido)}" update="champa" />
              </p:column>
 
-             <p:rowExpansion>
-                 <p:panelGrid>
-                     <p:dataList var="qwer" value="#{car.totemList}">
-                         <p:outputLabel>
-                             <h:outputText value="#{qwer.noserie}" />
 
-                         </p:outputLabel>
-                     </p:dataList>
-
-                 </p:panelGrid>
-             </p:rowExpansion>
          </p:dataTable>
          <div class="push"></div>
      </h:form>

@@ -83,7 +83,6 @@ public class MantenedorCampana implements Serializable {
     private MailSender mailSender;
     @Autowired
     private Constantes constantes;
-
     @Autowired
     private LogicaCategoria logicaCategoria;
     @Autowired
@@ -110,7 +109,7 @@ public class MantenedorCampana implements Serializable {
 
 
     public void inicio() {
-        //contarCampanas = logicaCampana.obtenerPorNumero(userSession.getUsuario().getUsername());
+        contarCampanas = logicaCampana.obtenerPorNumero(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
         categoriaList = logicaCategoria.obtenerTodos();
         establecimientoList=logicaEstablecimiento.obtenerTodos();
@@ -145,10 +144,7 @@ public class MantenedorCampana implements Serializable {
                 String carpetaPrincipal = "interac";
 
                 String nombreArchivo = pathTemporal.substring(pathTemporal.lastIndexOf('.'));
-
-
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd.hhmmss");
-
                 nombreArchivo = sdf.format(new Date()) + nombreArchivo;
                 Files.copy(Paths.get(pathTemporal), Paths.get("/home/ec2-user/media/"+carpetaPrincipal+"/"+ nombreArchivo));
                 contenido.setPath(nombreArchivo);
@@ -186,41 +182,31 @@ public class MantenedorCampana implements Serializable {
          return "subir";
     }
 
-    public void  guardar() {
+    public String  guardar() {
 
+        try {
             campana.setContenido(contenido);
-            System.err.print(contenido.getIdcontenido());
-            campana.setTotemList(totemsPorEstablecimiento);
+            campana.setEstado("Esperando Aprobacion");
+            campana.setEstablecimiento(establecimientoseleccionado);
             campana.setFechaCreacion(Date.from(Instant.now()));
             logicaCampana.guardarCampana(campana);
-          SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-          String html = new String(constantes.getHeaderCorreo());
+            Files.copy(Paths.get("/home/ec2-user/media/interac/" + contenido.getPath()),
+                    Paths.get("home/ec2-user/media/demoPublicidad/ContenidoNoAprobado/"+contenido.getPath()));
+              SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+              String html = new String(constantes.getHeaderCorreo());
+              String[] destinos = new String[1];
+            destinos[0] = establecimiento.getUsuario().getCorreo();
+            destinos[1] = "fernando_06@live.cl";
 
 
-          html = html.replaceAll("\\$fechainicio", sdf.format(campana.getFechaInicio()));
-          html = html.replaceAll("\\$fechafin", sdf.format(campana.getFechaFin()));
-          html = html.replaceAll("\\$cantPant", String.valueOf(totemSelecionados.length));
-          html = html.replaceAll("\\$precio", String.valueOf(campana.getPasadas()));
-          html = html.replaceAll("\\$dias", dateDiffValue);
-          html = html.replaceAll("\\$precio", String.valueOf(precio));
-          html = html.replaceAll("\\$total", String.valueOf(valor));
+           System.err.print(campana);
+            mailSender.send(destinos,"A llegado una nueva wea",html);
 
-          String alertas = new String(constantes.getAlertas()) ;
-          alertas= alertas.replaceAll("\\$fecha",sdf.format(campana.getFechaFin())+"-hasta-"+sdf.format(campana.getFechaFin()));
-          alertas= alertas.replaceAll("\\$pasadas",String.valueOf(campana.getPasadas()));
-          for(int i=0 ; i > totemSelecionados.length ;i++ ) {
-              alertas = alertas.replaceAll("\\$pantallas", totemSelecionados[i].getNoserie() + "en" + totemSelecionados[i].getEstablecimiento().getNombreEstablecimiento());
-          }
-
-          String[] destinos = new String[totemSelecionados.length];
-               destinos[0] = userSession.getUsuario().getCorreo();
-          for (int i = 1; i > totemSelecionados.length; i++) {
-              destinos[i] = totemSelecionados[i].getEstablecimiento().getUsuario().getCorreo();
-              mailSender.send(destinos, "replica Anuncio", html);
-              System.err.print(totemSelecionados[i].getEstablecimiento().getUsuario().getCorreo());
-          }
-
+        }catch (Exception e){
+            e.getStackTrace();
+        }
             FacesUtil.mostrarMensajeInformativo("operacion exitosa", "se ha creado tu campaña");
+        return "end1";
     }
 
 
