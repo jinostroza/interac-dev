@@ -34,9 +34,7 @@
              <p:column headerText="Pasadas">
                  <h:outputText value="#{car.pasadas}" />
              </p:column>
-             <p:column headerText="estado">
-                 <h:outputText value="#{car.contenido.estado}" />
-             </p:column>
+
              <p:column>
                <p:commandButton value="aprobar" process="@form" update="champa"
                                 action="#{mantenedorCliente.aprobar(car,car.contenido)}"  />

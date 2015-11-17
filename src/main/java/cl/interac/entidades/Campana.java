@@ -44,16 +44,17 @@ import java.util.Set;
                 @NamedQuery(name = "Campana.findByEstado",
                         query = "SELECT c FROM Campana c " +
                                 "INNER JOIN FETCH c.contenido co " +
-                                "INNER JOIN  c.establecimiento e " +
-                                "INNER JOIN e.usuario u " +
-                                " WHERE u.username=:username AND c.estado='Esperando Validacion'"
+                                "INNER JOIN Fetch c.establecimiento e " +
+                                "INNER JOIN Fetch e.usuario u " +
+                                " WHERE u.username=:username AND c.estado='Esperando Aprobacion'"
+
 
                 ),
                 @NamedQuery(name = "Campana.count",
                         query = "SELECT COUNT (c.idcampana) FROM Campana c " +
                                 "INNER JOIN  c.establecimiento e " +
                                 "INNER JOIN e.usuario u " +
-                                " WHERE u.username=:username AND c.estado='Esperando Validacion'"
+                                " WHERE u.username=:username AND c.estado='Esperando Aprobacion'"
                 ),
 
                 @NamedQuery(name = "Campana.findByTotem",

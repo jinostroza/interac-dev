@@ -5,6 +5,7 @@ import cl.interac.entidades.Usuario;
 import cl.interac.negocio.LogicaUsuario;
 import cl.interac.presentacion.campana.MantenedorCampana;
 import cl.interac.util.components.FacesUtil;
+import cl.interac.util.services.MailSender;
 import org.hibernate.cfg.beanvalidation.GroupsPerOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -20,6 +21,8 @@ import java.io.Serializable;
 public class RegistrarBean implements Serializable {
     @Autowired
     private LogicaUsuario logicaUsuario;
+    @Autowired
+    private MailSender mailSender;
 
     private Usuario usuario;
     private Rol rol;
@@ -35,6 +38,9 @@ public class RegistrarBean implements Serializable {
     public String signUp() {
 
         System.err.println("LLEGO A REGISTRAR");
+        String[] emaildelwea = new String[0];
+        emaildelwea[0] = usuario.getCorreo();
+        mailSender.send(emaildelwea,"Bienvenido a Interac","");
         logicaUsuario.guardar(usuario);
 
        return next1();

@@ -82,7 +82,7 @@ public class MantenedorCliente implements Serializable {
             campana = ca ;
             contenido = c;
             String aprobado = "Aprobado";
-            contenido.setEstado(aprobado);
+            campana.setEstado(aprobado);
             logicaContenido.guardar(contenido);
             String carpetaDestino = "demoPublicidad";
             Files.copy(Paths.get("home/ec2-user/media/interac/"+contenido.getPath()), Paths.get("/home/ec2-user/media/" + carpetaDestino + "/" + contenido.getPath()));
@@ -105,8 +105,8 @@ public class MantenedorCliente implements Serializable {
         try {
             campana = ca;
             contenido = c ;
-            String rechazado = "rechazado";
-            contenido.setEstado(rechazado);
+            String rechazado = "Rechazado";
+            campana.setEstado(rechazado);
             logicaContenido.guardar(contenido);
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado campaña  [" + campana.getContenido().getNombrecont() + "]");
 
@@ -114,7 +114,7 @@ public class MantenedorCliente implements Serializable {
             FacesUtil.mostrarMensajeError("Operación Fallida","algo ocurrio");
         }
         String[] destinos = new String[2];
-        destinos[0] = "jchacon@interac.cl";
+        destinos[0] = contenido.getUsuario().getCorreo();
         destinos[1] = "fernando_06@live.cl";
         mailSender.send(destinos,"una prueba","esta Lista la API");
 
