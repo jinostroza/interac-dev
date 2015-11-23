@@ -11,7 +11,6 @@ var DashBox = {
     var winTwitter;
     var srcWatcher = function(button) {
 
-
         switch ($(button).attr("class")) {
             case "escuela":
                winEscuela=window.open("http://ingenieria.ucv.cl/conocenos/conocenos_unidadesacademicas.html","Escuela Ingenieria","width=1060,height=1900,resizable,toolbar,scrollbar,status")
