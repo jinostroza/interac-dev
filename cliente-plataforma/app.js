@@ -5,6 +5,7 @@ var GoogleAnalytics = require('ga');
 var App = Express();
 var Sincronizador = require("./sincronizador.js");
 var Path = require("path");
+var Twitter = require("twitter-node-client");
 
 // variables
 var serverPort = 3000
