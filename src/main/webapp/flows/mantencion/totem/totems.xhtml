@@ -90,7 +90,7 @@
         </p:dataTable>
         <!-- Agregar totem -->
         <p:commandButton id="nuevoBtnTotem" value="Agregar"  type="button"/>
-        <p:overlayPanel id="agregapanelTotem" for="nuevoBtnTotem" hideEffect="fade" dynamic="true" style="width:600px">
+        <p:overlayPanel id="agregapanelTotem" for="nuevoBtnTotem" showEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
             <h:form id="form1">
                 <p:outputPanel>
                     <h:outputLabel value="Establecimiento"/>
@@ -132,7 +132,7 @@
                         <f:selectItems value="#{mantenedorTotems.tipototems}" var="totemPL"
                                        itemLabel="#{totemPL.destipo}" itemValue="#{totemPL}"  />
                     </h:selectOneMenu>
-                    <p:commandButton id="addBtnTotem" for="agregapanelTotem"  value="Agrega" action="#{mantenedorTotems.agregarTotem}" update="form1"/>
+                    <p:commandButton id="addBtnTotem" for="agregapanelTotem"  value="Agregar" action="#{mantenedorTotems.agregarTotem()}"/>
                 </p:outputPanel>
             </h:form>
         </p:overlayPanel>
