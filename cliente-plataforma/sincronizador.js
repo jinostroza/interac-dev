@@ -1,4 +1,4 @@
-// libs
+﻿// libs
 var FtpClient = require('ftp');
 var FileSystem = require('fs');
 var Path = require('path');
@@ -8,8 +8,8 @@ function Sincronizador() {
     this.server = "54.172.118.246";
     // this.server = "localhost";
     this.port = 21;
-    this.user = "demoPublicidad";
-    this.pass = "demo";
+    this.user = "colivares";
+    this.pass = "colivares";
     this.remoteData = "./";
     this.localData = __dirname + "/public/media/";
     this.firstTime = true;

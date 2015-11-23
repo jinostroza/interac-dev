@@ -66,7 +66,7 @@ body {
 }
 
 .container {
-    width: 1060px;
+    width: 1366px;
     margin: 0 auto;
     min-height: 100%;
     height: auto !important;
@@ -77,9 +77,10 @@ body {
 -----------------------------------------------------------------------------*/
 .header {
     height: 150px;
-    width: 800px;
+    -width: 800px;
+    width: 75%;
     background-color: #FFFFFF;
-
+    padding: 20px;
 }
 
 /* Middle
@@ -179,4 +180,80 @@ body {
 
 }
 
+/* Just for looks */
+#twitter {
+    background: #fafafa;
+    border: 1px solid #eaeaea;
+    padding: 5px 15px;
+    border-radius: 5px;
+    overflow: hidden;
+    font: 1.5rem/1.6 Arial, sans-serif;
+    color: #333;
+}
 
+/* Remove padding, margin, bullets and
+ make sure it's only one line */
+#twitter ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    white-space: nowrap;
+    float: left; /* This makes the ul the full width of the children */
+}
+
+/* Tweets on one line, separated */
+#twitter ul li {
+    display: inline-block;
+    margin: 0 20px 0 0;
+}
+
+#twitter ul li p {
+    margin: 0;
+}
+
+/* Hide some stuff we don't want */
+#twitter ul li div.user,
+#twitter ul li p.timePosted,
+#twitter ul li p.interact {
+    display: none;
+}
+
+/* Scroll it (thanks: http://stackoverflow.com/questions/21233033/css3-marquee-effect) */
+#twitter ul {
+    padding-left: 110%;  /* show the marquee just outside the paragraph */
+    -webkit-animation: marquee 60s linear infinite;
+}
+
+#twitter ul:hover {
+    -webkit-animation-play-state: paused;
+}
+
+/* Make it move */
+@-webkit-keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+#pucv{
+  background-image: url("img/logo-pucv.png");
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin: 0 10px;
+  width: 175px;
+  height: 80px;
+  float: right;
+}
+
+#ingenieria{
+  background-image: url("img/logo-ingenieria.png");
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin: 0 10px;
+  width: 175px;
+  height: 80px;
+  float: right;
+}
