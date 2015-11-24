@@ -103,7 +103,7 @@ public class MantenedorTotems implements Serializable {
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.YEAR, year);
 
-        return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+        return calendar.getActualMaximum(Calendar.DATE);
     }
 
     //Getters y Setters

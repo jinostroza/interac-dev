@@ -14,7 +14,7 @@
             }
         </style>
 
-        <h:form style="width: 100%">
+        <h:form id="form" style="width: 100%">
             <div class="container contenedor" id="myInterac">
                 <header>
 
@@ -40,118 +40,195 @@
                     <div class="col-lg-3"></div>
                 </div>
 
-                    <div class="row">
-                        <h4>Fechas</h4>
-                        <div class="col-lg-offset-2">
-                        <h:outputLabel for="inicio" value="Inicio Campaña:" />
-                        <p:calendar  id="inicio" locale="es" pattern="dd/MM/yyyy"
-                                    value="#{mantenedorCampana.campana.fechaInicio}" mindate="c1.today()" widgetVar="c1" required="true" requiredMessage="Debe indicar fecha de Inicio" >
-                            <p:ajax event="dateSelect" update="inline"/>
-                            <p:ajax event="change" update="inline"/>
-                            <p:ajax event="dateSelect" listener="#{mantenedorCampana.dateDiff}" update="dias" />
-                        </p:calendar>
-                            <span></span>
-                        <h:outputLabel for="fin" value="Fin Campaña:" />
-                        <p:calendar  id="fin"  locale="es" pattern="dd/MM/yyyy"
-                                    value="#{mantenedorCampana.campana.fechaFin}" mindate="c2.today()" widgetVar="c2" required="true" requiredMessage="Debe indicar la fecha de Termino" >
-                            <p:ajax event="dateSelect" update="inline"/>
-                            <p:ajax event="change" update="inline"/>
-                            <p:ajax event="dateSelect" listener="#{mantenedorCampana.dateDiff}" update="dias"/>
-                        </p:calendar>
-                        <p:tooltip for="inicio" value="Indique la fecha de comienzo para su campaña" trackMouse="true" ></p:tooltip>
-                        <p:tooltip for="fin" value="Indique la fecha de termino para su campaña" trackMouse="true" ></p:tooltip>
-                        </div>
-                    </div>
-                        <br></br>
-                    <div class="col-lg-offset-4">
-                        <p:calendar id="inline" locale="es" mindate="#{mantenedorCampana.campana.fechaInicio}" maxdate="#{mantenedorCampana.campana.fechaFin}" mode="inline"/>
-                        <br></br>
-                    </div>
-                    <div class="col-lg-offset-4">
-                        <h4>Pasadas al día</h4>
-                        <p:spinner id="ajaxSpinner" min="0" max="2880" stepFactor="360" value="#{mantenedorCampana.precio}" required="true" requiredMessage="Seleccione numero de pasadas diarias">
-                            <p:ajax update="out"  event="change" listener="#{mantenedorCampana.calculator}" />
-                            <p:ajax update="pasadas"  event="change" listener="#{mantenedorCampana.diasPasadas}"/>
+                <div class="row">
+                    <h4>Fechas</h4>
 
-                        </p:spinner>
-                        <p:tooltip for="ajaxSpinner" value="Seleccione la cantidad de pasadas diarias " trackMouse="true" ></p:tooltip>
-                    </div>
-                    <br></br>
+                    <div class="col-lg-8">
+                        <h:panelGrid columns="8" cellpadding="10" cellspacing="5">
 
+                            <h:panelGrid columns="1" cellpadding="10">
+                                <h:outputLabel for="meslst" value="Inicio Campaña:"/>
+                                <h:selectOneMenu id="meslst"
+                                                 styleClass="form-control" style="width:125px"
+                                                 value="#{mantenedorCampana.mes}"
+                                                 converter="entityConverter">
+                                    <f:selectItem itemLabel="Mes" noSelectionOption="true"/>
+                                    <f:selectItems value="#{mantenedorCampana.mesesList}" var="mes1"
+                                                   itemLabel="#{mes1.mes}" itemValue="#{mes1}"/>
+                                    <p:ajax event="change" listener="#{mantenedorCampana.dateStart}"></p:ajax>
 
-                    <p:dataTable  id="datapantallas"  styleClass="col-lg-12 " var="place" value="#{mantenedorCampana.establecimientos}"
-                                  paginator="true"  rows="5" selection="#{mantenedorCampana.establecimientoseleccionado}"  selectionMode="single" rowKey="#{place.idEstablecimiento}" >
-
-
-                        <p:column headerText="Busqueda..">
-
-                            <p:graphicImage style="width: 80px;height: 120px" value="#{place.urlImagen}"/>
-
-                        </p:column>
-
-                        <p:column id="Establecimiento" filterBy="#{place.nombreEstablecimiento}" filterMatchMode="contains" filterStyleClass="form-control"  >
-                            <h4>Establecimiento: <small>#{place.nombreEstablecimiento}</small></h4>
-                        </p:column>
-                        <p:column id="ubicacion" filterBy="#{place.ubicacion.descubicacion}" filterMatchMode="contains" >
-                            <f:facet name="filter" >
-                                <h:selectOneMenu styleClass="form-control" onchange="PF('DTpantallas').filter()">
-                                    <f:selectItem  itemLabel="Ubicacion" itemValue="#{null}" noSelectionOption="true"/>
-                                    <f:selectItems value="#{mantenedorCampana.ubicacionList}" var="ubica" itemLabel="#{ubica.descubicacion}" itemValue="#{ubica.descubicacion}"/>
                                 </h:selectOneMenu>
+                            </h:panelGrid>
+                            <h:panelGrid columns="1">
+                                <p:outputLabel for="yearini" value="Año:"/>
+                                <h:selectOneMenu id="yearini" styleClass="form-control"
+                                                 value="#{mantenedorCampana.yearvalue}" style="width:120px">
+                                    <f:selectItem itemLabel="Año" noSelectionOption="true"/>
+                                    <f:selectItem itemLabel="2015" itemValue="#{2015}"/>
+                                    <f:selectItem itemLabel="2016" itemValue="#{2016}"/>
+                                    <f:selectItem itemLabel="2017" itemValue="#{2017}"/>
+                                    <f:selectItem itemLabel="2018" itemValue="#{2018}"/>
+                                    <p:ajax event="change" listener="#{mantenedorCampana.dateStart}"></p:ajax>
+                                </h:selectOneMenu>
+                            </h:panelGrid>
 
-                            </f:facet>
-                            <h4>Ciudad : <small>#{place.ubicacion.descubicacion}</small></h4>
-                        </p:column>
-                        <p:column >
-                            <h4>Categoria : <small>#{place.categoria.desccategoria}</small></h4>
-                        </p:column>
-                        <p:column>
-                            <h4>Totems : <small>#{mantenedorCampana.numeroTotem(place.idEstablecimiento)}</small></h4>
-                        </p:column>
-                        <p:column>
+                            <span></span>
+                            <h:panelGrid columns="1" cellpadding="10">
+                                <h:outputLabel for="meslstfin" value="Termino Campaña:"/>
+                                <h:selectOneMenu id="meslstfin" styleClass="form-control" style="width:125px"
+                                                 value="#{mantenedorCampana.mes}"
+                                                 converter="entityConverter">
+                                    <f:selectItem itemLabel="Mes" noSelectionOption="true"/>
+                                    <f:selectItems value="#{mantenedorCampana.mesesList}" var="mes1"
+                                                   itemLabel="#{mes1.mes}" itemValue="#{mes1}"/>
+                                    <p:ajax event="change" listener="#{mantenedorCampana.dateEnd}"></p:ajax>
 
-                            <p:commandButton id="descripcion" type="button"  icon="ui-icon-pin-s" value="ver" />
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+                            <h:panelGrid columns="1">
+                                <p:outputLabel for="yearfin" value="Año:"/>
+                                <h:selectOneMenu id="yearfin" styleClass="form-control"
+                                                 value="#{mantenedorCampana.yearvalue}" style="width:120px">
+                                    <f:selectItem itemLabel="Año" noSelectionOption="true"/>
+                                    <f:selectItem itemLabel="2015" itemValue="#{2015}"/>
+                                    <f:selectItem itemLabel="2016" itemValue="#{2016}"/>
+                                    <f:selectItem itemLabel="2017" itemValue="#{2017}"/>
+                                    <f:selectItem itemLabel="2018" itemValue="#{2018}"/>
+                                    <p:ajax event="change" listener="#{mantenedorCampana.dateEnd}"></p:ajax>
+                                </h:selectOneMenu>
+                            </h:panelGrid>
 
-                            <p:overlayPanel id="mapa" for="descripcion" header="Ubicacion de Pantalla" hideEffect="fade" dynamic="true" style="width:600px">
-                                <p:gmap id="gmap"  center="#{place.lat},#{place.longi}"  zoom="20"
-                                        type="HYBRID"  model="#{mantenedorCampana.advancedModel}"
-                                        style="width:580px;height:420px">
-                                </p:gmap>
-                            </p:overlayPanel>
+                        </h:panelGrid>
+
+                    </div>
+                </div>
+                <br></br>
+
+                <div class="col-lg-offset-4">
+                    <p:calendar id="inline" locale="es" mindate="#{mantenedorCampana.campana.fechaInicio}"
+                                maxdate="#{mantenedorCampana.campana.fechaFin}" mode="inline"/>
+                    <br></br>
+                </div>
+                <div class="col-lg-offset-4">
+                    <h4>Pasadas al día</h4>
+                    <p:spinner id="ajaxSpinner" min="0" max="2880" stepFactor="360" value="#{mantenedorCampana.precio}"
+                               required="true" requiredMessage="Seleccione numero de pasadas diarias">
+                        <p:ajax update="out" event="change" listener="#{mantenedorCampana.calculator}"/>
+                        <p:ajax update="pasadas" event="change" listener="#{mantenedorCampana.diasPasadas}"/>
+
+                    </p:spinner>
+                    <p:tooltip for="ajaxSpinner" value="Seleccione la cantidad de pasadas diarias "
+                               trackMouse="true"></p:tooltip>
+                </div>
+                <br></br>
 
 
-                        </p:column>
+                <p:dataTable id="datapantallas" styleClass="col-lg-12 " var="place"
+                             value="#{mantenedorCampana.establecimientos}"
+                             paginator="true" rows="5" selection="#{mantenedorCampana.establecimientoseleccionado}"
+                             selectionMode="single" rowKey="#{place.idEstablecimiento}">
 
-                    </p:dataTable>
+                    <p:ajax event="rowSelect" listener="#{mantenedorCampana.dateDiff}" update=":form:dias"/>
+                    <p:ajax event="rowSelect" listener="#{mantenedorCampana.diasPasadas}" update=":form:pasadas" />
+                    <p:ajax event="rowSelect" listener="#{mantenedorCampana.calculator}" update=":form:out" />
+                    <p:column headerText="Busqueda..">
+
+                        <p:graphicImage style="width: 80px;height: 120px" value="#{place.urlImagen}"/>
+
+                    </p:column>
+
+                    <p:column id="Establecimiento" filterBy="#{place.nombreEstablecimiento}" filterMatchMode="contains"
+                              filterStyleClass="form-control">
+                        <h4>Establecimiento:
+                            <small>#{place.nombreEstablecimiento}</small>
+                        </h4>
+                    </p:column>
+                    <p:column id="ubicacion" filterBy="#{place.ubicacion.descubicacion}" filterMatchMode="contains">
+                        <f:facet name="filter">
+                            <h:selectOneMenu styleClass="form-control" onchange="PF('DTpantallas').filter()">
+                                <f:selectItem itemLabel="Ubicacion" itemValue="#{null}" noSelectionOption="true"/>
+                                <f:selectItems value="#{mantenedorCampana.ubicacionList}" var="ubica"
+                                               itemLabel="#{ubica.descubicacion}" itemValue="#{ubica.descubicacion}"/>
+                            </h:selectOneMenu>
+
+                        </f:facet>
+                        <h4>Ciudad :
+                            <small>#{place.ubicacion.descubicacion}</small>
+                        </h4>
+                    </p:column>
+                    <p:column>
+                        <h4>Categoria :
+                            <small>#{place.categoria.desccategoria}</small>
+                        </h4>
+                    </p:column>
+                    <p:column>
+                        <h4>Totems :
+                            <small>#{mantenedorCampana.numeroTotem(place.idEstablecimiento)}</small>
+                        </h4>
+                    </p:column>
+                    <p:column>
+
+                        <p:commandButton id="descripcion" type="button" icon="ui-icon-pin-s" value="ver"/>
+
+                        <p:overlayPanel id="mapa" for="descripcion" header="Ubicacion de Pantalla" hideEffect="fade"
+                                        dynamic="true" style="width:600px">
+                            <p:gmap id="gmap" center="#{place.lat},#{place.longi}" zoom="20"
+                                    type="HYBRID" model="#{mantenedorCampana.advancedModel}"
+                                    style="width:300px;height:200px">
+                            </p:gmap>
+                            <h:panelGrid columns="2">
+                                <h:outputText value="Horario:"/>
+                                <h:outputText value="#{place.horaInicio}-#{place.horaTermino}">
+                                    <f:convertDateTime pattern="HH:mm"/>
+                                </h:outputText>
+
+
+                                <h:outputText value="Direccion"/>
+                                <h:outputText value="#{place.direccion}"/>
+
+                                <h:outputText value="Telefono:"/>
+                                <h:outputText value="#{place.fono}"/>
+
+                                <h:outputText value="Valor"/>
+                                <h:outputText value="$#{place.valorMensual}"/>
+                            </h:panelGrid>
+
+
+                        </p:overlayPanel>
+
+
+                    </p:column>
+
+                </p:dataTable>
 
 
             </div>
             <br></br>
 
 
-
             <div class="row datos-campania" style="margin-left: 1%"><h3>Detalles de planificación por Pantalla</h3>
+
                 <div class="col-lg-4">
                     <span class="datos-campania-titulo">Total dias</span>
                     <h:outputLabel id="dias" styleClass="datos-campania-texto">
 
-                        <h:outputText  value="#{mantenedorCampana.dateDiffValue}" />
+                        <h:outputText value="#{mantenedorCampana.dateDiffValue}"/>
 
                     </h:outputLabel>
                 </div>
                 <div class="col-lg-4">
                     <span class="datos-campania-titulo">Total de Pasadas</span>
                     <h:outputLabel id="pasadas" styleClass="datos-campania-texto">
-                        <h:outputText value="" />
-                        <h:outputText value="#{mantenedorCampana.pasadas}" />
+                        <h:outputText value=""/>
+                        <h:outputText value="#{mantenedorCampana.pasadas}"/>
 
                     </h:outputLabel>
                 </div>
-                <div  class="col-lg-4 pagar-campania">
+                <div class="col-lg-4 pagar-campania">
                     <span class="datos-campania-titulo">Costo de pasadas</span>
                     <h:outputLabel id="out" styleClass="datos-campania-texto">
-                        <h:outputText value="$" />
-                        <h:outputText value="#{mantenedorCampana.valor}" />
+                        <h:outputText value="$"/>
+                        <h:outputText value="#{mantenedorCampana.valor}"/>
 
                     </h:outputLabel>
                 </div>
@@ -160,10 +237,11 @@
 
             <div class="row"><!--regisCamp-->
                 <div class="col-lg-offset-8" style="margin-bottom: 2%">
-                    <p:commandButton  value="Volver"  styleClass="btn btn-interac"  immediate="true" />
+                    <p:commandButton value="Volver" styleClass="btn btn-interac" immediate="true"/>
                     <span/>
 
-                    <p:commandButton value="Siguente"  styleClass="btn btn-interac" action="#{mantenedorCampana.guardar}">
+                    <p:commandButton value="Siguente" styleClass="btn btn-interac"
+                                     action="#{mantenedorCampana.guardar}">
 
                     </p:commandButton>
                 </div>

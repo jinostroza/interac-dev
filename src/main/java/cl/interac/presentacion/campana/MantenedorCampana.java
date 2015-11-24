@@ -15,17 +15,13 @@ import org.primefaces.model.map.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.util.FileCopyUtils;
 
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.time.*;
+import java.util.*;
 
 /**
  * Created by luis on 25-04-2015.
@@ -43,13 +39,15 @@ public class MantenedorCampana implements Serializable {
     private List<Tipototem> tipototemList;
     private Tipototem tipototem;
     private Campana campana;
-    private Integer precio;
+    private Integer precio = 360;
     private Integer pasadas;
     private Integer valor;
     private Long dias;
     private String retor;
     private String end1;
     private List<Usuario> usuarios;
+    private List<Meses> mesesList;
+    private Meses mes;
     private Totem totem;
     private Totem[] totemSelecionados;
     private List<Totem> totemList;
@@ -76,6 +74,9 @@ public class MantenedorCampana implements Serializable {
     private Integer ubica;
     private String tipot="";
     private Long contarCampanas;
+    private Integer yearvalue;
+    private Date date;
+    private boolean chkfecha ;
 
 
 
@@ -96,6 +97,8 @@ public class MantenedorCampana implements Serializable {
     private UserSession userSession;
     @Autowired
     private LogicaContenido logicaContenido;
+    @Autowired
+    private LogicaMeses logicaMeses;
     @Autowired
     private PropertyReader propertyReader;
     @Autowired
@@ -124,6 +127,8 @@ public class MantenedorCampana implements Serializable {
         campanaList= logicaCampana.obtenerLasCampanasDeLosTotems(userSession.getUsuario().getUsername());
         totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
+        mesesList = logicaMeses.obtenerTodos();
+
 
     }
 
@@ -142,7 +147,7 @@ public class MantenedorCampana implements Serializable {
                 contenido.setPath(pathTemporal);
 
             }else if ("produccion".equals(ambiente)) {
-                String carpetaPrincipal = "interac";
+                String carpetaPrincipal = "colivares";
 
                 String nombreArchivo = pathTemporal.substring(pathTemporal.lastIndexOf('.'));
 
@@ -245,6 +250,62 @@ public class MantenedorCampana implements Serializable {
 
 
     }
+    public void dateStart () {
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        Integer month = localDate.getMonthValue();
+        Integer year = localDate.getYear();
+        System.err.println(mes.getIdmes());
+        if (month.equals(mes.getIdmes()) && (year.equals(yearvalue))) {
+            System.err.println(mes.getIdmes());
+            System.err.println(yearvalue);
+            System.err.println(localDate.getDayOfMonth());
+            campana.setFechaInicio(date.from(Instant.now()));
+        }else if ((mes.getIdmes()< month) && (year.equals(yearvalue))){
+            FacesUtil.mostrarMensajeInformativo("Error fecha", "no puede elegir una fecha ya pasada");
+        }else if ((mes.getIdmes()>= month) && (yearvalue!=null)){
+            campana.setFechaInicio(getDateStart(mes.getIdmes(),yearvalue));
+        }
+    }
+    public void dateEnd (){
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        Integer month = localDate.getMonthValue();
+        Integer year = localDate.getYear();
+        System.err.println(mes.getIdmes());
+        if (month.equals(mes.getIdmes()) && (year.equals(yearvalue))){
+            System.err.println(mes.getIdmes());
+            System.err.println(yearvalue);
+            System.err.println(localDate.getDayOfMonth());
+            campana.setFechaFin(getDateEnd(mes.getIdmes(), yearvalue));
+        }else if ((mes.getIdmes()<month) && (year.equals(yearvalue))){
+            FacesUtil.mostrarMensajeInformativo("Operación Fallida","No puede programar una fecha anterior a la actual");
+        }else if ((mes.getIdmes()>= month) && (yearvalue!=null)){
+            campana.setFechaFin(getDateEnd(mes.getIdmes(),yearvalue));
+        }
+            }
+    // Función que permite el retorno del ultimo día de un mes X
+   public Date getDateEnd(Integer m, Integer y) {
+        Calendar calendar = Calendar.getInstance();
+        // passing month-1 because 0-->jan, 1-->feb... 11-->dec
+        calendar.set(y, m - 1, 1);
+       calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DATE));
+        Date date = calendar.getTime();
+       System.err.println(date);
+        return date;
+    }
+    public Date getDateStart(Integer m, Integer y) {
+        Calendar calendar = Calendar.getInstance();
+        // passing month-1 because 0-->jan, 1-->feb... 11-->dec
+        calendar.set(y, m - 1, 1);
+        calendar.set(Calendar.DATE, calendar.getActualMinimum(Calendar.DATE));
+        Date date = calendar.getTime();
+        System.err.println(date);
+        return date;
+    }
+
+
+
     public List<Totem> totemsEST(Integer idestablecimiento) {
         totemsPorEstablecimiento=logicaTotem.obtenerPorestablecimiento(idestablecimiento);
         return totemsPorEstablecimiento;
@@ -629,6 +690,45 @@ public class MantenedorCampana implements Serializable {
         this.totemsPorEstablecimiento = totemsPorEstablecimiento;
     }
 
+    public List<Meses> getMesesList() {
+        return mesesList;
+    }
+
+    public void setMesesList(List<Meses> mesesList) {
+        this.mesesList = mesesList;
+            }
+
+    public Meses getMes() {
+        return mes;
+    }
+
+    public void setMes(Meses mes) {
+        this.mes = mes;
+    }
+
+    public Integer getYearvalue() {
+        return yearvalue;
+    }
+
+    public void setYearvalue(Integer yearvalue) {
+        this.yearvalue = yearvalue;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public boolean isChkfecha() {
+        return chkfecha;
+    }
+
+    public void setChkfecha(boolean chkfecha) {
+        this.chkfecha = chkfecha;
+    }
 }
 
 
