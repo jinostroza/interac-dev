@@ -24,8 +24,7 @@ public class LogicaContenido {
     @Transactional(readOnly = true)
     public List<Contenido> obtenerConRelacion(){return contenidoDAO.obtenerTodos();}
     @Transactional(readOnly = true)
-    public List<Contenido> obtenerConUsuarios(){return contenidoDAO.obtenerTodos();}
-
+    public List<Contenido> obtenerConUsuarios(){return contenidoDAO.obtenerConUsuarios();}
     @Transactional(readOnly = false)
     public void guardar(Contenido c) {
         contenidoDAO.guardar(c);
