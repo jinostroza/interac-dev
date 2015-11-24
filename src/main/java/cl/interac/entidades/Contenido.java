@@ -13,15 +13,23 @@ import java.util.List;
 @Entity
 @DynamicInsert
 @NamedQueries({
-        @NamedQuery(name = "Contenido.findAll", query = "select c from Contenido c"),
-        @NamedQuery(name = "Contenido.findWith", query = "select c from Contenido c,Usuario u "+" where c.usuario.idUsuario=u.idUsuario "),
+        @NamedQuery(name = "Contenido.findAll",
+                query = "select c from Contenido c"),
+        @NamedQuery(name = "Contenido.findAllWithUsuario",
+                query = "SELECT c FROM Contenido c, " +
+                        "Usuario u "),
+
+        @NamedQuery(name = "Contenido.findWith",
+                query = "SELECT c FROM Contenido c, " +
+                        "Usuario u "+
+                        "where c.usuario.idUsuario = u.idUsuario "),
 
         @NamedQuery(name="Contenido.findByUsuario",
                 query="SELECT c FROM Contenido c " +
                         "inner join fetch c.categoria " +
                         "inner join fetch c.usuario u " +
-                         " where u.username=:user "
-        ),
+                        "where u.username=:user"),
+
         @NamedQuery(name="Contenido.findByCategoriaAndUser",
                     query="SELECT c FROM Contenido c " +
                             "left join fetch c.categoria"),

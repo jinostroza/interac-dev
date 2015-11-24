@@ -58,8 +58,6 @@ public class MantenedorContenido implements Serializable {
     private List<Contenido> contenidosall;
     private int fileUploadCount;
 
-
-
     @Autowired
     private LogicaContenido logicaContenido;
     @Autowired
