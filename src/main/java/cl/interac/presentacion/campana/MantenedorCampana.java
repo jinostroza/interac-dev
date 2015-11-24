@@ -147,7 +147,7 @@ public class MantenedorCampana implements Serializable {
                 contenido.setPath(pathTemporal);
 
             }else if ("produccion".equals(ambiente)) {
-                String carpetaPrincipal = "colivares";
+                String carpetaPrincipal = "demo2";
 
                 String nombreArchivo = pathTemporal.substring(pathTemporal.lastIndexOf('.'));
 
@@ -209,7 +209,11 @@ public class MantenedorCampana implements Serializable {
             campana.setContenido(contenido);
             System.err.print(contenido.getIdcontenido());
             campana.setTotemList(totemsPorEstablecimiento);
+            campana.setEstado("Esperando Aprobacion");
             campana.setFechaCreacion(Date.from(Instant.now()));
+            campana.setEstablecimiento(establecimientoseleccionado);
+            campana.setPasadas(pasadas);
+            campana.setNombrecampana(contenido.getNombrecont());
             logicaCampana.guardarCampana(campana);
           SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
