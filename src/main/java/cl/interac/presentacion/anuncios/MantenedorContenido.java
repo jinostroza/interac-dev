@@ -53,9 +53,10 @@ public class MantenedorContenido implements Serializable {
     private List<Contenido> contenidoList;
     private List<Categoria> categorias;
     private Categoria categoria;
-    private List<Contenido> selecContenidos;
+    private List<Contenido> selectContenidos;
     private Categoria selecContenido;
     private List<Contenido> contenidosall;
+    private List<Contenido> contenidoWithUser;
     private int fileUploadCount;
 
     @Autowired
@@ -93,19 +94,15 @@ public class MantenedorContenido implements Serializable {
         categorias = logicaCategoria.obtenerTodos();
         contenidoList = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
         contenidosall = logicaContenido.obtenerTodos();
-
+        contenidoWithUser = logicaContenido.obtenerConUsuarios();
     }
-
     public void subir(FileUploadEvent fue) {
 
         operacion = TipoOperacion.INSERTAR;
         contenido = new Contenido();
-
         try {
             String pathTemporal = fileUploader.subir(fue,"/contenido");
-
             String ambiente = propertyReader.get("ambiente");
-
             if ("desarrollo".equals(ambiente))
                 // dentro del server siempre podra subir, no importa si es wintendo o linux
                 contenido.setPath(pathTemporal);
@@ -145,8 +142,6 @@ public class MantenedorContenido implements Serializable {
 
         logicaContenido.guardar(contenido);
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el Contenido [" + contenido.getIdcontenido() + "]");
-
-
     }
 
 
@@ -226,12 +221,12 @@ public class MantenedorContenido implements Serializable {
         this.categoria = categoria;
     }
 
-    public List<Contenido> getSelecContenidos() {
-        return selecContenidos;
+    public List<Contenido> getSelectContenidos() {
+        return selectContenidos;
     }
 
-    public void setSelecContenidos(List<Contenido> selecContenidos) {
-        this.selecContenidos = selecContenidos;
+    public void setSelectContenidos(List<Contenido> selectContenidos) {
+        this.selectContenidos = selectContenidos;
     }
 
     public Categoria getSelecContenido() {
@@ -257,5 +252,11 @@ public class MantenedorContenido implements Serializable {
         this.contenidosall = contenidosall;
     }
 
+    public List<Contenido> getContenidoWithUser() {
+        return contenidoWithUser;
+    }
 
+    public void setContenidoWithUser(List<Contenido> contenidoWithUser) {
+        this.contenidoWithUser = contenidoWithUser;
+    }
 }

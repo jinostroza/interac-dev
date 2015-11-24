@@ -6,7 +6,7 @@
 
     <h3>Contenidos</h3>
     <h:form>
-                <p:dataTable id="usuarios" value="#{mantenedorContenido.contenidosall}" var="cont">
+                <p:dataTable id="usuarios" value="#{mantenedorContenido.contenidoWithUser}" var="cont">
 
                     <p:column headerText="Imagen">
                         <h:graphicImage value="ftp://54.172.118.246/#{cont.path}"/>
@@ -14,8 +14,8 @@
                     <p:column headerText="Nombre archivo" >
                         #{cont.path}
                     </p:column>
-                    <p:column headerText="Usuario" filterBy="#{cont.usuario.idUsuario}">
-                        #{cont.usuario.idUsuario}
+                    <p:column headerText="Usuario" filterBy="#{cont.usuario.username}">
+                        #{cont.usuario.username}
                     </p:column>
                     <p:column >
                         <h:commandButton icon="ui-icon-key" styleClass="form-control" value="Eliminar" action="#{facesUtil.redirigir('/inicio.jsf')}"/>

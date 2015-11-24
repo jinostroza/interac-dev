@@ -15,9 +15,10 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = "Contenido.findAll",
                 query = "select c from Contenido c"),
+
         @NamedQuery(name = "Contenido.findAllWithUsuario",
-                query = "SELECT c FROM Contenido c, " +
-                        "Usuario u "),
+                query = "SELECT c FROM Contenido c " +
+                        "INNER JOIN FETCH c.usuario u "),
 
         @NamedQuery(name = "Contenido.findWith",
                 query = "SELECT c FROM Contenido c, " +
@@ -49,8 +50,6 @@ public class Contenido implements Serializable{
     private String path;
     private String nombrecont;
     private String estado;
-
-
 
     //relaciones
     private Usuario usuario;
