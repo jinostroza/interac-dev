@@ -6,7 +6,7 @@
     <h3 style="margin-top:0">Mantenedor Totems</h3>
     <h:panelGrid id="totemPG">
         <br/>
-        <p:dataTable id="dttotems"  var="totes" value="#{mantenedorTotems.totems}" paginator="true" rows="6">
+ ,         <p:dataTable id="dttotems"  var="totes" value="#{mantenedorTotems.totems}" paginator="true" rows="6">
             <f:facet name="header">Hola mundo</f:facet>
             <p:column headerText="Establecimiento" filterBy="#{totes.establecimiento.nombreEstablecimiento}">
                 <h:outputText value="#{totes.establecimiento.nombreEstablecimiento}" />
@@ -91,7 +91,6 @@
         <!-- Agregar totem -->
         <p:commandButton id="nuevoBtnTotem" value="Agregar"  type="button"/>
         <p:overlayPanel id="agregapanelTotem" for="nuevoBtnTotem" showEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
-            <h:form id="form1">
                 <p:outputPanel>
                     <h:outputLabel value="Establecimiento"/>
                     <h:selectOneMenu id="menuEst" class="form-control"
@@ -132,9 +131,8 @@
                         <f:selectItems value="#{mantenedorTotems.tipototems}" var="totemPL"
                                        itemLabel="#{totemPL.destipo}" itemValue="#{totemPL}"  />
                     </h:selectOneMenu>
-                    <p:commandButton id="addBtnTotem" for="agregapanelTotem"  value="Agregar" action="#{mantenedorTotems.agregarTotem()}"/>
+                    <p:commandButton id="addBtnTotem" for="agregapanelTotem"  value="Agregar" actionListener="#{mantenedorTotems.agregarTotem}"  />
                 </p:outputPanel>
-            </h:form>
         </p:overlayPanel>
     </h:panelGrid>
 </ui:composition>

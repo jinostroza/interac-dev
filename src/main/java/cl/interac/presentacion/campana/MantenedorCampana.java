@@ -129,8 +129,6 @@ public class MantenedorCampana implements Serializable {
         totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
         mesesList = logicaMeses.obtenerTodos();
-
-
     }
 
     public void subir(FileUploadEvent fue) {
@@ -206,9 +204,8 @@ public class MantenedorCampana implements Serializable {
     }
 
     public void  guardar() {
-
-            campana.setContenido(contenido);
-            System.err.print(contenido.getIdcontenido());
+        campana.setContenido(contenido);
+        System.err.print(contenido.getIdcontenido());
             campana.setTotemList(totemsPorEstablecimiento);
             campana.setEstado("Esperando Aprobacion");
             campana.setFechaCreacion(Date.from(Instant.now()));
@@ -216,7 +213,7 @@ public class MantenedorCampana implements Serializable {
             campana.setPasadas(pasadas);
             campana.setNombrecampana(contenido.getNombrecont());
             logicaCampana.guardarCampana(campana);
-          SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
 
             FacesUtil.mostrarMensajeInformativo("operacion exitosa", "se ha creado tu campaña");

@@ -73,6 +73,7 @@ public class MantenedorTotems implements Serializable {
     // logica vista
     public void agregarTotem() {
         totem.setEstablecimiento(establecimiento);
+        totem.setMarcaPantalla((marcapantalla));
         totem.setLat(establecimiento.getLat());
         totem.setLongi(establecimiento.getLongi());
         totem.setTipototem(tipototem);
