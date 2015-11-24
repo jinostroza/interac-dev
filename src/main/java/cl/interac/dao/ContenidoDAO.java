@@ -18,17 +18,17 @@ public class ContenidoDAO {
     private EntityManager em;
 
     public List<Contenido> obtenerTodos(){ return em.createNamedQuery("Contenido.findAll").getResultList();}
-
+    public List<Contenido> obtenerConUsuarios() { return em.createNamedQuery("Contenido.findAllWithUsuario").getResultList();}
     public List<Contenido> obtenerConRelacion(){ return em.createNamedQuery("Contenido.findWith").getResultList();}
+
     public void  guardar(Contenido c){
         if(c.getIdcontenido() == null )  em.persist(c);
         else em.merge(c);
-
     }
+
     public void eliminar(Contenido c){
         Contenido contenidos = em.find(Contenido.class,c.getIdcontenido());
         em.remove(contenidos);
-
     }
 
     public List<Contenido> obtenContenido(String user){
