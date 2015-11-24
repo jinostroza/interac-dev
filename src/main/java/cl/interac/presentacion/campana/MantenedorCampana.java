@@ -75,6 +75,7 @@ public class MantenedorCampana implements Serializable {
     private String tipot="";
     private Long contarCampanas;
     private Integer yearvalue;
+    private Integer yearvalueend;
     private Date date;
     private boolean chkfecha ;
 
@@ -277,15 +278,15 @@ public class MantenedorCampana implements Serializable {
         Integer month = localDate.getMonthValue();
         Integer year = localDate.getYear();
         System.err.println(mes.getIdmes());
-        if (month.equals(mes.getIdmes()) && (year.equals(yearvalue))){
+        if (month.equals(mes.getIdmes()) && (year.equals(yearvalueend))){
             System.err.println(mes.getIdmes());
-            System.err.println(yearvalue);
+            System.err.println(yearvalueend);
             System.err.println(localDate.getDayOfMonth());
-            campana.setFechaFin(getDateEnd(mes.getIdmes(), yearvalue));
-        }else if ((mes.getIdmes()<month) && (year.equals(yearvalue))){
+            campana.setFechaFin(getDateEnd(mes.getIdmes(), yearvalueend));
+        }else if ((mes.getIdmes()<month) && (year.equals(yearvalueend))){
             FacesUtil.mostrarMensajeInformativo("Operación Fallida","No puede programar una fecha anterior a la actual");
-        }else if ((mes.getIdmes()>= month) && (yearvalue!=null)){
-            campana.setFechaFin(getDateEnd(mes.getIdmes(),yearvalue));
+        }else if ((mes.getIdmes()>= month) && (yearvalueend!=null)){
+            campana.setFechaFin(getDateEnd(mes.getIdmes(),yearvalueend));
         }
             }
     // Función que permite el retorno del ultimo día de un mes X
@@ -716,6 +717,14 @@ public class MantenedorCampana implements Serializable {
 
     public void setYearvalue(Integer yearvalue) {
         this.yearvalue = yearvalue;
+    }
+
+    public Integer getYearvalueend() {
+        return yearvalueend;
+    }
+
+    public void setYearvalueend(Integer yearvalueend) {
+        this.yearvalueend = yearvalueend;
     }
 
     public Date getDate() {
