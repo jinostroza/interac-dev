@@ -14,6 +14,7 @@ import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -34,6 +35,7 @@ public class MantenedorCampana implements Serializable {
     // manejo manual
 
     private List<Campana> campanas;
+    private List<Campana> campanasvencidas;
     private List<Campana> campanaList;
     private List<Totem> totems;
     private List<Tipototem> tipototemList;
@@ -115,6 +117,7 @@ public class MantenedorCampana implements Serializable {
 
     public void inicio() {
         contarCampanas = logicaCampana.obtenerPorNumero(userSession.getUsuario().getUsername());
+        campanasvencidas = logicaCampana.obtenerPorFecha(Date.from(Instant.now()));
         usuarios = logicaUsuario.obtenerTodos();
         categoriaList = logicaCategoria.obtenerTodos();
         establecimientoList=logicaEstablecimiento.obtenerTodos();
@@ -219,7 +222,35 @@ public class MantenedorCampana implements Serializable {
             FacesUtil.mostrarMensajeInformativo("operacion exitosa", "se ha creado tu campaña");
     }
 
+    @Scheduled(cron="*/5 * * * * ?")
+    public void eliminarFicheroProgramado(){
 
+        try {
+            String ambiente = propertyReader.get("ambiente");
+            Contenido co;
+            if ("desarrollo".equals(ambiente)) {
+                // dentro del server siempre podra subir, no importa si es wintendo o linux
+                for (Campana ca : campanasvencidas){
+                    System.err.println(ca.getContenido().getIdcontenido());
+                    co=ca.getContenido();
+                    logicaCampana.eliminarCampana(ca);
+                    logicaContenido.eliminarContenido(co);
+                }
+
+            }
+            else if ("produccion".equals(ambiente)) {
+                for (Campana ca : campanasvencidas){
+                logicaContenido.eliminarContenido(ca.getContenido());
+                    logicaCampana.eliminarCampana(ca);
+                Files.delete(Paths.get("/home/ec2-user/media/colivares/" + ca.getContenido().getPath()));
+                FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha borrado la imagen " + ca.getContenido().getIdcontenido());
+                }
+            }
+
+        }catch (Exception e){
+            FacesUtil.mostrarMensajeInformativo("Operación Fallida","Algo Ocurrio");
+        }
+    }
     public void eliminarFichero(Contenido conte){
         try {
             String ambiente = propertyReader.get("ambiente");
@@ -238,6 +269,11 @@ public class MantenedorCampana implements Serializable {
         }catch (Exception e){
             FacesUtil.mostrarMensajeInformativo("Operación Fallida","Algo Ocurrio");
         }
+    }
+    @Scheduled(cron="*/5 * * * * ?")
+    public void demoServiceMethod()
+    {
+        System.out.println("Method executed at every 5 seconds. Current time is :: "+ new Date());
     }
 
     public String ver(int t){
@@ -305,6 +341,7 @@ public class MantenedorCampana implements Serializable {
         System.err.println(date);
         return date;
     }
+
 
 
 
@@ -738,6 +775,14 @@ public class MantenedorCampana implements Serializable {
 
     public void setChkfecha(boolean chkfecha) {
         this.chkfecha = chkfecha;
+    }
+
+    public List<Campana> getCampanasvencidas() {
+        return campanasvencidas;
+    }
+
+    public void setCampanasvencidas(List<Campana> campanasvencidas) {
+        this.campanasvencidas = campanasvencidas;
     }
 }
 

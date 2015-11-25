@@ -1,6 +1,12 @@
 package cl.interac.entidades;
 
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.CascadeType;
+
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
@@ -55,6 +61,11 @@ import java.util.Set;
                                 "INNER JOIN  c.establecimiento e " +
                                 "INNER JOIN e.usuario u " +
                                 " WHERE u.username=:username AND c.estado='Esperando Aprobacion'"
+                ),
+                @NamedQuery(name = "Campana.findByDate",
+                        query = "SELECT c  FROM Campana c " +
+                                "INNER JOIN  c.contenido co " +
+                                " WHERE c.fechaFin<:fechavencida"
                 ),
 
                 @NamedQuery(name = "Campana.findByTotem",
@@ -145,7 +156,8 @@ public class Campana implements Serializable {
 
 
     @JoinColumn(name = "idcontenido", referencedColumnName = "idcontenido")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @Cascade(CascadeType.DELETE)
     public Contenido getContenido() {
         return contenido;
     }
@@ -166,7 +178,7 @@ public class Campana implements Serializable {
     }
 
     @JoinColumn(name = "idestablecimiento", referencedColumnName = "idestablecimiento")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
 
     public Establecimiento getEstablecimiento() {
         return establecimiento;

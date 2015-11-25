@@ -14,6 +14,7 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -67,6 +68,10 @@ public class LogicaCampana {
    @Transactional(readOnly = true)
     public List<Campana> obtenerPorEstado(String user) {
         return campanaDAO.obtenerPorEstado(user);
+    }
+    @Transactional(readOnly = true)
+    public List<Campana> obtenerPorFecha(Date fechavencida) {
+        return campanaDAO.obtenerPorFecha(fechavencida);
     }
 
     @Transactional(readOnly = true)
