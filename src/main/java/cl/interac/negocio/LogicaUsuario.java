@@ -26,8 +26,6 @@ public class LogicaUsuario {
     @Autowired
     private UsuarioDAO usuarioDAO;
 
-
-
     @Transactional(readOnly = false)
     public void guardar(Usuario usuario) {
         usuarioDAO.guardar(usuario);

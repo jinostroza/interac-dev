@@ -15,9 +15,6 @@
                 #{usuario.rol.namerol}
             </p:column>
             <p:column>
-                <h:commandButton icon="ui-icon-key" styleClass="form-control" value="volver" action="#{facesUtil.redirigir('/plataforma/campana')}"/>
-            </p:column>
-            <p:column>
                 <h:commandButton id="modifica" value="Modificar"  styleClass="form-control" type="button">
                     <p:overlayPanel id="editPanel" for="modifica" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
                         <p:outputPanel>
@@ -27,6 +24,9 @@
                             <h:outputLabel value="Clave" />
                             <h:inputText styleClass="form-control"
                                            value="#{usuario.password}" />
+                            <h:outputLabel value="E-Mail" />
+                            <h:inputText styleClass="form-control"
+                                         value="#{usuario.correo}" />
                             <h:outputLabel value="Rol"/>
                             <h:selectOneMenu class="form-control" value="#{mantenedorUsuarios.rol}"
                                              converter="entityConverter">
@@ -51,6 +51,9 @@
                     <h:outputLabel value="Clave" />
                     <h:inputText styleClass="form-control" requiredMessage="Ingrese clave"
                             value="#{mantenedorUsuarios.usuario.password}"/>
+                    <h:outputLabel value="E-mail" />
+                    <h:inputText styleClass="form-control" requiredMessage="Ingrese e-mail"
+                                 value="#{mantenedorUsuarios.usuario.correo}"/>
                     <h:outputLabel value="Rol"/>
                     <h:selectOneMenu class="form-control" value="#{mantenedorUsuarios.usuario.rol}"
                                      converter="entityConverter" requiredMessage="Ingrese rol">
