@@ -7,7 +7,7 @@
     <h:panelGrid id="totemPG">
         <br/>
  ,         <p:dataTable id="dttotems"  var="totes" value="#{mantenedorTotems.totems}" paginator="true" rows="6">
-            <f:facet name="header">Hola mundo</f:facet>
+            <f:facet name="header">Totems</f:facet>
             <p:column headerText="Establecimiento" filterBy="#{totes.establecimiento.nombreEstablecimiento}">
                 <h:outputText value="#{totes.establecimiento.nombreEstablecimiento}" />
             </p:column>
@@ -31,9 +31,8 @@
             </p:column>
             <!-- Editar Totem -->
             <p:column>
-                <h:commandButton id="editBtnTotem" styleClass="form-control" value="Editar"  type="button"/>
+                <h:commandButton id="editBtnTotem" styleClass="form-control" value="Editar"  type="button">
                 <p:overlayPanel id="editPanel"  for="editBtnTotem" appendToBody="true" showEvent="click" hideEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
-                    <h:form id="form2">
                         <h:outputLabel value="#{totes.idtotem}"/>
                         <div class="row">
                             <h:outputLabel value="Establecimiento" />
@@ -77,15 +76,12 @@
                                 <f:selectItem itemValue="Vertical" itemLabel="Vertical" />
                             </h:selectOneMenu>
                         </div>
-                        <div class="push"></div>
                         <div class="row">
-                            <p:commandButton value="Editar" for="editPanel" action="#{mantenedorTotems.editarTotem(totes)}" update="form2">
-                                <p:ajax  />
-                            </p:commandButton>
+                            <p:commandButton value="Editar" for="editPanel" action="#{mantenedorTotems.editarTotem(totes)}" />
                             <p:commandButton value="Limpiar" />
                         </div>
-                    </h:form>
-                </p:overlayPanel>
+                    </p:overlayPanel>
+                </h:commandButton>
             </p:column>
         </p:dataTable>
         <!-- Agregar totem -->
@@ -101,7 +97,7 @@
                                        itemLabel="#{ErLugar.nombreEstablecimiento}" itemValue="#{ErLugar}" />
                     </h:selectOneMenu>
                     <h:outputLabel value="Marca Pantalla"/>
-                    <h:selectOneMenu class="form-control" value="#{mantenedorTotems.totem.marcaPantalla}"
+                    <h:selectOneMenu class="form-control" value="#{mantenedorTotems.marcapantalla}"
                                      converter="entityConverter">
                         <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Marca de su pantalla --"/>
                         <f:selectItems value="#{mantenedorTotems.marcaPantallas}" var="marcaPantalla"
@@ -131,7 +127,7 @@
                         <f:selectItems value="#{mantenedorTotems.tipototems}" var="totemPL"
                                        itemLabel="#{totemPL.destipo}" itemValue="#{totemPL}"  />
                     </h:selectOneMenu>
-                    <p:commandButton id="addBtnTotem" for="agregapanelTotem"  value="Agregar" actionListener="#{mantenedorTotems.agregarTotem}"  />
+                    <p:commandButton id="addBtnTotem" for="agregapanelTotem"  value="Agregar" action="#{mantenedorTotems.agregarTotem}"  />
                 </p:outputPanel>
         </p:overlayPanel>
     </h:panelGrid>
