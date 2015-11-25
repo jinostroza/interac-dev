@@ -216,7 +216,7 @@ body {
 /* Scroll it (thanks: http://stackoverflow.com/questions/21233033/css3-marquee-effect) */
 #twitter ul {
     padding-left: 110%;  /* show the marquee just outside the paragraph */
-    -webkit-animation: marquee 60s linear infinite;
+    -webkit-animation: marquee 90s linear infinite;
 }
 
 #twitter ul:hover {
