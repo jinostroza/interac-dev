@@ -22,7 +22,6 @@ public class UsuarioDAO {
 
     public void guardar(Usuario u) {
         if (u.getIdUsuario() == null) {
-
             em.persist(u);
         } else em.merge(u);
     }

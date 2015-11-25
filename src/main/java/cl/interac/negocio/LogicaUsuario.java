@@ -64,7 +64,7 @@ public class LogicaUsuario {
     @Transactional(readOnly = false)
     public void editarPerfil(String usuario,String correo, String empresa){
         usuarioDAO.editarPerfil(usuario,correo,empresa);
-        }
+    }
     @Transactional(readOnly = true)
     public List<Usuario> obtenerMisContenidos(){
         return usuarioDAO.obtenerMisContenidos();
