@@ -2,6 +2,7 @@ package cl.interac.presentacion.campana;
 
 import cl.interac.entidades.*;
 import cl.interac.negocio.*;
+import cl.interac.scheduled.CronService;
 import cl.interac.util.components.*;
 import cl.interac.util.services.FileUploader;
 import cl.interac.util.services.MailSender;
@@ -85,11 +86,11 @@ public class MantenedorCampana implements Serializable {
 
 
 
+
     @Autowired
     private MailSender mailSender;
     @Autowired
     private Constantes constantes;
-
     @Autowired
     private LogicaCategoria logicaCategoria;
     @Autowired
@@ -134,6 +135,7 @@ public class MantenedorCampana implements Serializable {
         totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
         mesesList = logicaMeses.obtenerTodos();
+
     }
 
     public void subir(FileUploadEvent fue) {
@@ -224,32 +226,7 @@ public class MantenedorCampana implements Serializable {
             FacesUtil.mostrarMensajeInformativo("operacion exitosa", "se ha creado tu campaña");
     }
 
-    @Scheduled(fixedDelay = 5000)
-    public void eliminarFicheroProgramado(){
-
-        try {
-            String ambiente = propertyReader.get("ambiente");
-
-            if ("desarrollo".equals(ambiente)) {
-                // dentro del server siempre podra subir, no importa si es wintendo o linux
-                for (Campana ca : campanasvencidas){
-                    System.err.println(ca.getContenido().getIdcontenido());
-                    logicaCampana.eliminarCampana(ca);
-                }
-
-            }
-            else if ("produccion".equals(ambiente)) {
-                for (Campana ca : campanasvencidas){
-                    Files.delete(Paths.get("/home/ec2-user/media/colivares/" + ca.getContenido().getPath()));
-                    logicaCampana.eliminarCampana(ca);
-                }
-            }
-
-        }catch (Exception e){
-            FacesUtil.mostrarMensajeInformativo("Operación Fallida","Algo Ocurrio");
-        }
-    }
-    public void eliminarFichero(Contenido conte){
+       public void eliminarFichero(Contenido conte){
         try {
             String ambiente = propertyReader.get("ambiente");
 

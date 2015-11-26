@@ -1,15 +1,11 @@
 package cl.interac.scheduled;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.*;
-import cl.interac.entidades.*;
-import cl.interac.negocio.*;
+
+import cl.interac.dao.CampanaDAO;
 import cl.interac.util.components.*;
 import cl.interac.entidades.Campana;
 import cl.interac.negocio.LogicaCampana;
@@ -17,6 +13,7 @@ import cl.interac.util.components.FacesUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
 
 /**
  * Created by Joaco on 25/11/2015.
@@ -26,14 +23,15 @@ public class CronService {
 
     private List<Campana> campanasvencidas;
 
+    private CampanaDAO campanaDAO;
+
     @Autowired
     private LogicaCampana logicaCampana;
     @Autowired
     private PropertyReader propertyReader;
 
 
-
-    @Scheduled(fixedDelay = 5000)
+    @Scheduled(cron="0 50 15 * * ?")
     public void eliminarFicheroProgramado(){
         campanasvencidas = logicaCampana.obtenerPorFecha(Date.from(Instant.now()));
 
@@ -59,5 +57,6 @@ public class CronService {
             FacesUtil.mostrarMensajeInformativo("Operación Fallida", "Algo Ocurrio");
         }
     }
+
 
 }
