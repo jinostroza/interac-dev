@@ -92,8 +92,12 @@ public class MantenedorTotems implements Serializable {
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha Lobeznisado el Totem [" + totem.getNoserie() + "]");
     }
 
-    public void eliminarTotem(Totem totem) {
+    /*public void eliminarTotem(Totem totem) {
         logicaTotem.eliminarTotem(totem);
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha sobornado el Totem [" + totem.getNoserie() + "]");
+    }*/
+    public void eliminarTotem(Totem totem) {
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha sobornado el Totem [" + totem.getNoserie() + "]");
     }
 
 

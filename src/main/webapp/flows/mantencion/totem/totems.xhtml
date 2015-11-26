@@ -29,6 +29,17 @@
             <p:column headerText="Orientacion" filterBy="#{totes.orientacion}">
                 <h:outputText value="#{totes.orientacion}" />
             </p:column>
+            <!-- Eliminar Totem -->
+            <p:column>
+                <p:commandButton id="eliminarTotem" value="Eliminar" styleClass="form-control" type="button">
+                    <p:confirm header="Por favor confirme" message="Desea eliminar el totem?" icon="ui-icon-alert" />
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p>#{totes.idtotem}</p>
+                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" action="#{mantenedorTotems.eliminarTotem(totes)}" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </p:commandButton>
+            </p:column>
             <!-- Editar Totem -->
             <p:column>
                 <h:commandButton id="editBtnTotem" styleClass="form-control" value="Editar"  type="button">

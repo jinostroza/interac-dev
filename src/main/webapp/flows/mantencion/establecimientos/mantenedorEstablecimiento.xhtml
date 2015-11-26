@@ -28,9 +28,19 @@
             <p:column>
                 <h:commandButton value="eliminar" styleClass="form-control" action="#{mantenedorEstablecimiento.eliminar(local)}"/>
             </p:column>
+            <!-- Eliminar -->
+            <p:column>
+                <p:commandButton id="eliminarEstablecimiento" update="establecimientos" value="Eliminar" styleClass="form-control" type="button">
+                    <p:confirm header="Por favor confirme" message="Desea eliminar el establecimiento?" icon="ui-icon-alert" />
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" action="#{mantenedorEstablecimiento.eliminar(local)}" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </p:commandButton>
+            </p:column>
+            <!-- Editar -->
             <p:column>
                 <h:commandButton id="modifica" value="Modificar" update="establecimientos" styleClass="form-control" type="button">
-                    <!-- Editar -->
                     <p:overlayPanel id="editPanel" for="modifica" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
                     <p:outputPanel>
                         <h:outputLabel value="Nombre"/>

@@ -15,9 +15,17 @@
             <p:column headerText="Descripcion" filterBy="#{localCT.desccategoria}">
                 <h:outputText value="#{localCT.desccategoria}" />
             </p:column>
+            <!-- Eliminar -->
             <p:column>
-                <h:commandButton value="eliminar" styleClass="form-control" action="#{mantenedorCategoria.eliminar(localCT)}"/>
+                <p:commandButton id="eliminarTotem" update="categorias" value="Eliminar" styleClass="form-control" type="button">
+                    <p:confirm header="Por favor confirme" message="Desea eliminar la categoria?" icon="ui-icon-alert" />
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" action="#{mantenedorCategoria.eliminar(localCT)}" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </p:commandButton>
             </p:column>
+            <!-- Editar -->
             <p:column>
                 <h:commandButton id="modificaCT" value="Modificar" update="categorias" styleClass="form-control" type="button">
                     <p:overlayPanel id="editPanelCT" for="modificaCT" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
@@ -35,6 +43,7 @@
             </p:column>
         </p:dataTable>
     </h:panelGrid>
+    <!-- Agregar -->
     <p:commandButton id="nuevoBtnCT" value="Agrega"   type="button">
         <p:overlayPanel id="agregapanelCT" for="nuevoBtnCT" showEvent="click" hideEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
             <p:outputPanel>

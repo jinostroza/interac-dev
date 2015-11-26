@@ -32,12 +32,12 @@ public class MantenedorCategoria implements Serializable
 
     public void eliminar(Categoria categoria){
         logicaCategoria.eliminar(categoria);
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha eliminado la Categoria [" + categoria.getDesccategoria() + "]");
     }
 
     public void agregaCategoria() {
         logicaCategoria.guardar(categoria);
         categorias = logicaCategoria.obtenerTodos();
-
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado la Categoria [" + categoria.getDesccategoria() + "]");
     }
 
@@ -45,7 +45,6 @@ public class MantenedorCategoria implements Serializable
         categoria = c;
         logicaCategoria.guardar(categoria);
         categorias = logicaCategoria.obtenerTodos();
-
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la Categoria [" + categoria.getDesccategoria() + "]");
     }
 
