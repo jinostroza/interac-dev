@@ -19,6 +19,7 @@ public class EstablecimientoDAO {
     public List<Establecimiento> obtenerTodos() {
         return em.createNamedQuery("establecimiento.findAll").getResultList();
     }
+
     public List<Establecimiento> obtenerPorTotem() {
         return em.createNamedQuery("establecimiento.findtotem").getResultList();
     }
@@ -36,13 +37,15 @@ public class EstablecimientoDAO {
         return em.createNamedQuery("estabecimiento.findAllByusuario").getResultList();
     }
 
-
     public List<Establecimiento> obtenerPorUsuario(String usuario){
      return em.createNamedQuery("Campana.findByUsuario").setParameter("username",usuario).getResultList();
     }
+
     public Establecimiento obtenerPorId(Integer id) {
         return em.find(Establecimiento.class, id);
     }
 
-
+    public List<Establecimiento> obtenerPorEstado(){
+        return em.createNamedQuery("establecimiento.findByEstado").getResultList();
+    }
 }

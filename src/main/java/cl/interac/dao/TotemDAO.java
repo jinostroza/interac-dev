@@ -57,4 +57,7 @@ public class TotemDAO {
     public List<Totem> obtenerPorEstablecimiento(Integer establecimiento){
         return em.createNamedQuery("Totem.findByEstablecimiento").setParameter("establecimiento", establecimiento).getResultList();
     }
+    public List<Totem> obtenerPorEstado(){
+        return em.createNamedQuery("Totem.findByEstado").getResultList();
+    }
 }

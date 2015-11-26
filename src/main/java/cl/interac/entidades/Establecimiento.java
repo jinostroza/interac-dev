@@ -14,6 +14,7 @@ import java.util.Date;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "establecimiento.findAll", query = "select e from Establecimiento e"),
+
         @NamedQuery(name = "estabecimiento.findAllByusuario",
                 query = "select e from Establecimiento e " +
                         "inner join fetch e.usuario " +
@@ -29,18 +30,20 @@ import java.util.Date;
                 query = "SELECT e from Establecimiento e where e.idEstablecimiento = :estable"),
 
         @NamedQuery(name= "establecimiento.findbyUser",
-                        query="SELECT e FROM Establecimiento e " +
-                                "INNER JOIN FETCH e.ubicacion ub " +
-                                "INNER JOIN FETCH e.usuario u " +
-                                "INNER JOIN FETCH e.totem t " +
-                                "WHERE u.username=:username "),
-
-        @NamedQuery(name= "establecimiento.findtotem",
-                query="SELECT e FROM Establecimiento e " +
+                query = "SELECT e FROM Establecimiento e " +
                         "INNER JOIN FETCH e.ubicacion ub " +
-                        "INNER JOIN FETCH e.categoria ca ")
+                        "INNER JOIN FETCH e.usuario u " +
+                        "INNER JOIN FETCH e.totem t " +
+                        "WHERE u.username=:username "),
 
+        @NamedQuery(name = "establecimiento.findtotem",
+                query = "SELECT e FROM Establecimiento e " +
+                        "INNER JOIN FETCH e.ubicacion ub " +
+                        "INNER JOIN FETCH e.categoria ca "),
 
+        @NamedQuery(name = "establecimiento.findByEstado",
+                query = "SELECT e FROM Establecimiento e " +
+                        "WHERE e.estado = :estado")
 })
 
 public class Establecimiento implements Serializable {
@@ -56,6 +59,7 @@ public class Establecimiento implements Serializable {
     private Integer slots;
     private Integer numeroPantallas;
     private String urlImagen;
+    private String estado;
 
     // Relaciones
     private Usuario usuario;
@@ -80,18 +84,14 @@ public class Establecimiento implements Serializable {
     public List<Campana> getCampanaList() {
         return campanaList;
     }
-
     public void setCampanaList(List<Campana> campanaList) {
         this.campanaList = campanaList;
     }
-
-
 
     @OneToMany(mappedBy = "establecimiento")
     public List<Totem> getTotem() {
         return totem;
     }
-
     public void setTotem(List<Totem> totem) {
         this.totem = totem;
     }
@@ -102,7 +102,6 @@ public class Establecimiento implements Serializable {
     public Integer getIdEstablecimiento() {
         return idEstablecimiento;
     }
-
     public void setIdEstablecimiento(Integer idEstablecimiento) {
         this.idEstablecimiento = idEstablecimiento;
     }
@@ -113,7 +112,6 @@ public class Establecimiento implements Serializable {
     public String getNombreEstablecimiento() {
         return nombreEstablecimiento;
     }
-
     public void setNombreEstablecimiento(String nombreEstablecimiento) {
         this.nombreEstablecimiento = nombreEstablecimiento;
     }
@@ -123,7 +121,6 @@ public class Establecimiento implements Serializable {
     public String getDireccion() {
         return direccion;
     }
-
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
@@ -133,7 +130,6 @@ public class Establecimiento implements Serializable {
     public String getFono() {
         return fono;
     }
-
     public void setFono(String fono) {
         this.fono = fono;
     }
@@ -143,7 +139,6 @@ public class Establecimiento implements Serializable {
     public Double getLat() {
         return lat;
     }
-
     public void setLat(Double lat) {
         this.lat = lat;
     }
@@ -153,7 +148,6 @@ public class Establecimiento implements Serializable {
     public Double getLongi() {
         return longi;
     }
-
     public void setLongi(Double longi) {
         this.longi = longi;
     }
@@ -161,43 +155,41 @@ public class Establecimiento implements Serializable {
     @Basic
     @Column(name = "valormensual")
     public Integer getValorMensual() { return valorMensual; }
-
     public void setValorMensual(Integer valorMensual) { this.valorMensual = valorMensual; }
 
     @Basic
     @Column(name = "horainicio")
     public Date getHoraInicio() { return horaInicio; }
-
     public void setHoraInicio(Date horaInicio) { this.horaInicio = horaInicio; }
 
     @Basic
     @Column(name = "horatermino")
     public Date getHoraTermino() { return horaTermino; }
-
     public void setHoraTermino(Date horaTermino) { this.horaTermino = horaTermino; }
 
     @Basic
     @Column(name = "slots")
     public Integer getSlots() { return slots; }
-
     public void setSlots(Integer slots) { this.slots = slots; }
 
     @Basic
     @Column(name = "numeropantallas")
     public Integer getNumeroPantallas() { return numeroPantallas; }
-
     public void setNumeroPantallas(Integer numeroPantallas) { this.numeroPantallas = numeroPantallas; }
 
     @Basic
     @Column(name ="urlImagen")
     public String getUrlImagen() { return urlImagen; }
-
     public void setUrlImagen(String urlImagen) { this.urlImagen = urlImagen; }
+
+    @Basic
+    @Column(name= "estado")
+    public String getEstado() { return estado; }
+    public void setEstado(String estado) { this.estado = estado; }
 
     @JoinColumn(name = "fk_rubro", referencedColumnName = "idcategoria")
     @ManyToOne(fetch = FetchType.LAZY)
     public Categoria getCategoria() { return categoria; }
-
     public void setCategoria(Categoria categoria) { this.categoria = categoria; }
 
     @JoinColumn(name = "idubicacion", referencedColumnName = "idubicacion")
@@ -205,7 +197,6 @@ public class Establecimiento implements Serializable {
     public Ubicacion getUbicacion() {
         return ubicacion;
     }
-
     public void setUbicacion(Ubicacion ubicacion) {
         this.ubicacion = ubicacion;
     }

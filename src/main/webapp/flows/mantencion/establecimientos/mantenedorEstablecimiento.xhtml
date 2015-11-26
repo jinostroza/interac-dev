@@ -25,16 +25,16 @@
             <p:column headerText="Categoria" filterBy="#{local.categoria.desccategoria}" filterMatchMode="contains">
                 <h:outputText value="#{local.categoria.desccategoria}" />
             </p:column>
-            <p:column>
-                <h:commandButton value="eliminar" styleClass="form-control" action="#{mantenedorEstablecimiento.eliminar(local)}"/>
+            <p:column headerText="Estado" filterBy="#{local.estado}" filterMatchMode="contains">
+                <h:outputText value="#{local.estado}" />
             </p:column>
             <!-- Eliminar -->
             <p:column>
                 <p:commandButton id="eliminarEstablecimiento" update="establecimientos" value="Eliminar" styleClass="form-control" type="button">
                     <p:confirm header="Por favor confirme" message="Desea eliminar el establecimiento?" icon="ui-icon-alert" />
                     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" action="#{mantenedorEstablecimiento.eliminar(local)}" />
-                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        <p:commandButton value="Si" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" action="#{mantenedorEstablecimiento.eliminar(local)}" />
+                        <p:commandButton value="No" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                     </p:confirmDialog>
                 </p:commandButton>
             </p:column>
@@ -65,6 +65,11 @@
                         <br />
                         <p:calendar value="#{local.horaTermino}" pattern="HH:mm" timeOnly="true" />
                         <br/>
+                        <h:outputLabel value="Dimension"/>
+                        <h:selectOneMenu class="form-control" value="#{local.estado}">
+                            <f:selectItem itemValue="Activado" itemLabel="Activado" />
+                            <f:selectItem itemValue="Desactivado" itemLabel="Desactivado" />
+                        </h:selectOneMenu>
                         <p:commandButton id="editBTN" for="editPanel" value="Editar" update="establecimientos"
                                          action="#{mantenedorEstablecimiento.editarEstablecimiento(local)}"/>
                     </p:outputPanel>
@@ -115,6 +120,11 @@
             <h:outputLabel value="Numero de pantallas" />
             <h:inputText  required="true" styleClass="form-control"
                           value="#{mantenedorEstablecimiento.establecimiento.numeroPantallas}"/>
+            <h:outputLabel value="Dimension"/>
+            <h:selectOneMenu required="true" class="form-control" value="#{mantenedorEstablecimiento.establecimiento.estado}">
+                <f:selectItem itemValue="Activado" itemLabel="Activado" />
+                <f:selectItem itemValue="Desactivado" itemLabel="Desactivado" />
+            </h:selectOneMenu>
             <h:outputLabel value="Imagen" />
             <br/>
             <p:commandButton id="addBtn" for="agregapanel" value="Agrega" update="establecimientoPG"
