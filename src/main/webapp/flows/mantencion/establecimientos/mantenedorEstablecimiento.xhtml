@@ -65,7 +65,7 @@
                         <br />
                         <p:calendar value="#{local.horaTermino}" pattern="HH:mm" timeOnly="true" />
                         <br/>
-                        <h:outputLabel value="Dimension"/>
+                        <h:outputLabel value="Estado"/>
                         <h:selectOneMenu class="form-control" value="#{local.estado}">
                             <f:selectItem itemValue="Activado" itemLabel="Activado" />
                             <f:selectItem itemValue="Desactivado" itemLabel="Desactivado" />
@@ -120,8 +120,9 @@
             <h:outputLabel value="Numero de pantallas" />
             <h:inputText  required="true" styleClass="form-control"
                           value="#{mantenedorEstablecimiento.establecimiento.numeroPantallas}"/>
-            <h:outputLabel value="Dimension"/>
-            <h:selectOneMenu required="true" class="form-control" value="#{mantenedorEstablecimiento.establecimiento.estado}">
+            <h:outputLabel value="Estado"/>
+            <h:selectOneMenu class="form-control" value="#{mantenedorEstablecimiento.establecimiento.estado}">
+                <f:selectItem noSelectionOption="true"  itemLabel="-- Seleccione estado del totem --" />
                 <f:selectItem itemValue="Activado" itemLabel="Activado" />
                 <f:selectItem itemValue="Desactivado" itemLabel="Desactivado" />
             </h:selectOneMenu>
