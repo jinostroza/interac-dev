@@ -81,6 +81,8 @@ public class MantenedorCampana implements Serializable {
     private Long contarCampanas;
     private Integer yearvalue;
     private Integer yearvalueend;
+    private Integer mesIni;
+    private Integer mesFin;
     private Date date;
     private boolean chkfecha ;
 
@@ -269,7 +271,8 @@ public class MantenedorCampana implements Serializable {
         Integer month = localDate.getMonthValue();
         Integer year = localDate.getYear();
         System.err.println(mes.getIdmes());
-        if (month.equals(mes.getIdmes()) && (year.equals(yearvalue))) {
+        mesIni=mes.getIdmes();
+        if (month.equals(mesIni) && (year.equals(yearvalue))) {
             System.err.println(mes.getIdmes());
             System.err.println(yearvalue);
             System.err.println(localDate.getDayOfMonth());
@@ -286,7 +289,8 @@ public class MantenedorCampana implements Serializable {
         Integer month = localDate.getMonthValue();
         Integer year = localDate.getYear();
         System.err.println(mes.getIdmes());
-        if (month.equals(mes.getIdmes()) && (year.equals(yearvalueend))){
+        mesFin = mes.getIdmes();
+        if (month.equals(mesFin) && (year.equals(yearvalueend))){
             System.err.println(mes.getIdmes());
             System.err.println(yearvalueend);
             System.err.println(localDate.getDayOfMonth());
@@ -758,6 +762,22 @@ public class MantenedorCampana implements Serializable {
 
     public void setCampanasvencidas(List<Campana> campanasvencidas) {
         this.campanasvencidas = campanasvencidas;
+    }
+
+    public Integer getMesIni() {
+        return mesIni;
+    }
+
+    public void setMesIni(Integer mesIni) {
+        this.mesIni = mesIni;
+    }
+
+    public Integer getMesFin() {
+        return mesFin;
+    }
+
+    public void setMesFin(Integer mesFin) {
+        this.mesFin = mesFin;
     }
 }
 

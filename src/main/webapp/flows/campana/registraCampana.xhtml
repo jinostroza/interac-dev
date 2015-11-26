@@ -101,12 +101,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <ui:fragment
-                        rendered="#{userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR')}">
-                    <h3 align="center" style="align-items: flex-start">Estado de tus Pantallas</h3>
-                </ui:fragment>
-            </div>
+
             <div class="input-group col-lg-3 col-lg-offset-8" style="margin-right: 20%">
                  <span class="input-group-btn" style="align-self: center">
 
@@ -117,51 +112,7 @@
             <br/>
 
             <div class="ui-grid-row">
-                <ui:fragment
-                        rendered="#{userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') }">
-                    <p:dataTable var="car" value="#{mantenedorCampana.totemCampana}" rows="5" paginator="true"
-                                 styleClass="col-lg-10 col-lg-offset-5"
-                                 style="margin-left: 10%;text-align-all: center;">
-                        <f:facet name="header">
-                            Selecione Pantalla Para Desplegar Campañas
-                        </f:facet>
-                        <p:column style="width:30px;">
-                            <p:rowToggler/>
-                        </p:column>
-                        <p:column headerText="NO° serie">
-                            <h:outputText value="#{car.idtotem}"/>
-                        </p:column>
-                        <p:column headerText="Estalecimiento">
-                            <h:outputText value="#{car.establecimiento.nombreEstablecimiento}"/>
-                        </p:column>
 
-                        <p:rowExpansion>
-                            <p:panelGrid columns="4">
-                                <p:dataList var="qwer" value="#{car.campanaList}" rows="12">
-                                    <p:commandLink styleClass="row">
-
-                                        <p:graphicImage styleClass="col-lg-4" style="width: 80px;height: 120px"
-                                                        value="http://g01.a.alicdn.com/kf/HTB1UZdtIXXXXXcSXpXXq6xXFXXXH/42-inch-TFT-LED-industrial-FULL-HD-vertical-screen-floor-stand-memory-card-advertising-player.jpg"></p:graphicImage>
-                                        <h4 class="col-lg-2">#{qwer.fechaInicio}
-                                            <small>Comienza</small>
-                                        </h4>
-
-
-                                        <h4 class="col-lg-2">#{qwer.fechaFin}
-                                            <small>Termina</small>
-                                        </h4>
-                                        <h4 class="col-lg-2">#{qwer.pasadas}
-                                            <small>Pasadas</small>
-                                        </h4>
-                                        <h4 class="col-lg-2">#{qwer.contenido.idcontenido}</h4>
-
-                                    </p:commandLink>
-                                </p:dataList>
-
-                            </p:panelGrid>
-                        </p:rowExpansion>
-                    </p:dataTable>
-                </ui:fragment>
                 <ui:fragment
                         rendered="#{userSession.tienePermiso('PUCV')}">
                     <p:dataTable id="dtcontenido" var="cont" value="#{mantenedorCampana.contenidos}" rows="5" paginator="true"

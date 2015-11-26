@@ -94,7 +94,8 @@
                                     <f:selectItem itemLabel="2016" itemValue="#{2016}"/>
                                     <f:selectItem itemLabel="2017" itemValue="#{2017}"/>
                                     <f:selectItem itemLabel="2018" itemValue="#{2018}"/>
-                                    <p:ajax event="change" listener="#{mantenedorCampana.dateEnd}"></p:ajax>
+                                    <p:ajax event="change" listener="#{mantenedorCampana.dateEnd}" update="inline"></p:ajax>
+
                                 </h:selectOneMenu>
                             </h:panelGrid>
 
