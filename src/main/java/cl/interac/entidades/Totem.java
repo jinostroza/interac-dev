@@ -52,10 +52,11 @@ import java.util.*;
                 @NamedQuery(name = "Totem.findTotemAndTodaLaWea",
                             query="SELECT t FROM Totem t " +
                                   "LEFT JOIN FETCH  t.campanaList cs " +
-                                  "LEFT JOIN FETCH t.establecimiento " )
+                                  "LEFT JOIN FETCH t.establecimiento " ),
 
-
-
+                @NamedQuery(name = "Totem.findByEstado",
+                    query = "SELECT t FROM Totem t "+
+                            "WHERE t.estado = :estado")
         }
 )
 public class Totem implements Serializable {
@@ -66,6 +67,7 @@ public class Totem implements Serializable {
     private String orientacion;
     private String modelo;
     private String pulgadas;
+    private String estado;
 
     // relaciones
     private List<Campana> campanaList;
@@ -146,13 +148,16 @@ public class Totem implements Serializable {
 
     @Basic
     @Column(name = "Noserie")
-    public String getNoserie() {
-        return noserie;
-    }
+    public String getNoserie() { return noserie; }
 
     public void setNoserie(String noserie) {
         this.noserie = noserie;
     }
+
+    @Basic
+    @Column(name = "estado")
+    public String getEstado() { return estado; }
+    public void setEstado(String estado) { this.estado = estado; }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idtipo", referencedColumnName = "idtipo", nullable = false)
