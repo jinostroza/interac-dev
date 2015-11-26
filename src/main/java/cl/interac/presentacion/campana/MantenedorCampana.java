@@ -14,7 +14,9 @@ import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.support.CronSequenceGenerator;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -222,28 +224,24 @@ public class MantenedorCampana implements Serializable {
             FacesUtil.mostrarMensajeInformativo("operacion exitosa", "se ha creado tu campaña");
     }
 
-    @Scheduled(cron="*/5 * * * * ?")
+    @Scheduled(fixedDelay = 5000)
     public void eliminarFicheroProgramado(){
 
         try {
             String ambiente = propertyReader.get("ambiente");
-            Contenido co;
+
             if ("desarrollo".equals(ambiente)) {
                 // dentro del server siempre podra subir, no importa si es wintendo o linux
                 for (Campana ca : campanasvencidas){
                     System.err.println(ca.getContenido().getIdcontenido());
-                    co=ca.getContenido();
                     logicaCampana.eliminarCampana(ca);
-                    logicaContenido.eliminarContenido(co);
                 }
 
             }
             else if ("produccion".equals(ambiente)) {
                 for (Campana ca : campanasvencidas){
-                logicaContenido.eliminarContenido(ca.getContenido());
+                    Files.delete(Paths.get("/home/ec2-user/media/colivares/" + ca.getContenido().getPath()));
                     logicaCampana.eliminarCampana(ca);
-                Files.delete(Paths.get("/home/ec2-user/media/colivares/" + ca.getContenido().getPath()));
-                FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha borrado la imagen " + ca.getContenido().getIdcontenido());
                 }
             }
 
