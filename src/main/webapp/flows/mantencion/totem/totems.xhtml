@@ -8,26 +8,29 @@
         <br/>
         <p:dataTable id="dttotems"  var="totes" value="#{mantenedorTotems.totems}" paginator="true" rows="6">
             <f:facet name="header">Totems</f:facet>
-            <p:column headerText="Establecimiento" filterBy="#{totes.establecimiento.nombreEstablecimiento}">
+            <p:column headerText="Establecimiento" filterMatchMode="contains" filterBy="#{totes.establecimiento.nombreEstablecimiento}">
                 <h:outputText value="#{totes.establecimiento.nombreEstablecimiento}" />
             </p:column>
-            <p:column headerText="Ubicacion" filterBy="#{totes.establecimiento.ubicacion.descubicacion}">
+            <p:column headerText="Ubicacion" filterMatchMode="contains" filterBy="#{totes.establecimiento.ubicacion.descubicacion}">
                 <h:outputText value="#{totes.establecimiento.ubicacion.descubicacion}" />
             </p:column>
-            <p:column headerText="Marca" filterBy="#{totes.marcaPantalla.nombre}">
+            <p:column headerText="Marca" filterMatchMode="contains" filterBy="#{totes.marcaPantalla.nombre}">
                 <h:outputText value="#{totes.marcaPantalla.nombre}" />
             </p:column>
-            <p:column headerText="N° serie" filterBy="#{totes.noserie}">
+            <p:column headerText="N° serie" filterMatchMode="contains" filterBy="#{totes.noserie}">
                 <h:outputText value="#{totes.noserie}" />
             </p:column>
-            <p:column headerText="Tipo Totem" filterBy="#{totes.tipototem.destipo}">
+            <p:column headerText="Tipo Totem" filterMatchMode="contains" filterBy="#{totes.tipototem.destipo}">
                 <h:outputText value="#{totes.tipototem.destipo}" />
             </p:column>
-            <p:column headerText="Pulgadas" filterBy="#{totes.pulgadas}">
+            <p:column headerText="Pulgadas" filterMatchMode="contains" filterBy="#{totes.pulgadas}">
                 <h:outputText value="#{totes.pulgadas}" />
             </p:column>
-            <p:column headerText="Orientacion" filterBy="#{totes.orientacion}">
+            <p:column headerText="Orientacion" filterMatchMode="contains" filterBy="#{totes.orientacion}">
                 <h:outputText value="#{totes.orientacion}" />
+            </p:column>
+            <p:column headerText="Estado" filterMatchMode="contains" filterBy="#{totes.estado}">
+                <h:outputText value="#{totes.estado}" />
             </p:column>
             <!-- Eliminar Totem -->
             <p:column>
@@ -88,6 +91,13 @@
                                 <f:selectItem itemValue="Vertical" itemLabel="Vertical" />
                             </h:selectOneMenu>
                         </div>
+                    <div class="row">
+                        <h:outputLabel value="Estado"/>
+                        <h:selectOneMenu class="form-control" value="#{totes.estado}">
+                            <f:selectItem itemValue="Activado" itemLabel="Activado" />
+                            <f:selectItem itemValue="Desactivado" itemLabel="Desactivado" />
+                        </h:selectOneMenu>
+                    </div>
                         <div class="row">
                             <p:commandButton value="Editar" for="editPanel" action="#{mantenedorTotems.editarTotem(totes)}" />
                             <p:commandButton value="Limpiar" />
@@ -131,6 +141,12 @@
                         <f:selectItem itemValue="40" itemLabel="40" />
                         <f:selectItem itemValue="42" itemLabel="42" />
                         <f:selectItem itemValue="55" itemLabel="55" />
+                    </h:selectOneMenu>
+                    <h:outputLabel value="Estado"/>
+                    <h:selectOneMenu class="form-control" value="#{mantenedorTotems.totem.estado}">
+                        <f:selectItem noSelectionOption="true"  itemLabel="-- Seleccione estado del totem --" />
+                        <f:selectItem itemValue="Activado" itemLabel="Activado" />
+                        <f:selectItem itemValue="Desactivado" itemLabel="Desactivado" />
                     </h:selectOneMenu>
                     <h:outputLabel value="Tipo"/>
                     <h:selectOneMenu class="form-control" value="#{mantenedorTotems.tipototem}"
