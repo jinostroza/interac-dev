@@ -213,17 +213,33 @@ public class MantenedorCampana implements Serializable {
     }
 
     public void  guardar() {
+        //perisitencia
         campana.setContenido(contenido);
         System.err.print(contenido.getIdcontenido());
-            campana.setTotemList(totemsPorEstablecimiento);
+
             campana.setEstado("Esperando Aprobacion");
             campana.setFechaCreacion(Date.from(Instant.now()));
             campana.setEstablecimiento(establecimientoseleccionado);
             campana.setPasadas(pasadas);
             campana.setNombrecampana(contenido.getNombrecont());
             logicaCampana.guardarCampana(campana);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        //cuerpo del mensaje
+         String mensajeLocal = new String(constantes.getAlertas());
+         String mensajeAnunciante = new String(constantes.getHeaderCorreo());
+        mensajeAnunciante = mensajeAnunciante.replaceAll("\\$Id",String.valueOf(campana.getIdcampana()));
+        mensajeAnunciante = mensajeAnunciante.replaceAll("\\$establecimiento",establecimientoseleccionado.getNombreEstablecimiento());
+        mensajeAnunciante = mensajeAnunciante.replaceAll("\\$numerodePantallas",String.valueOf(establecimientoseleccionado.getNumeroPantallas()));
+        mensajeAnunciante = mensajeAnunciante.replaceAll("\\$valormensual",String.valueOf(valor));
+        mensajeAnunciante = mensajeAnunciante.replaceAll("\\$total",String.valueOf(valor));
 
+   //correo
+       SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+         String[] replicas = new String[0];
+         String[] alertas = new String[0];
+        alertas[0] = establecimientoseleccionado.getUsuario().getCorreo();
+        replicas[0] = userSession.getUsuario().getCorreo();
+        mailSender.send(replicas,"Interac",mensajeAnunciante);
+        mailSender.send(replicas,"Interac",mensajeLocal);
 
             FacesUtil.mostrarMensajeInformativo("operacion exitosa", "se ha creado tu campaña");
     }
