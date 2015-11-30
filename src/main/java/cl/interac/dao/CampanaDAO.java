@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.NamedQueries;
 import javax.persistence.PersistenceContext;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -69,6 +70,10 @@ public class CampanaDAO {
     }
     public List<Campana> obtenerPorEstado(String user){
         return em.createNamedQuery("Campana.findByEstado").setParameter("username",user).getResultList();
+
+    }
+    public List<Campana> obtenerPorFecha(Date fechavencida){
+        return em.createNamedQuery("Campana.findByDate").setParameter("fechavencida",fechavencida).getResultList();
 
     }
 

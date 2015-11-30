@@ -2,6 +2,7 @@ package cl.interac.presentacion.campana;
 
 import cl.interac.entidades.*;
 import cl.interac.negocio.*;
+import cl.interac.scheduled.CronService;
 import cl.interac.util.components.*;
 import cl.interac.util.services.FileUploader;
 import cl.interac.util.services.MailSender;
@@ -14,18 +15,17 @@ import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.support.CronSequenceGenerator;
 import org.springframework.stereotype.Component;
-import org.springframework.util.FileCopyUtils;
 
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.time.*;
+import java.util.*;
 
 /**
  * Created by luis on 25-04-2015.
@@ -38,18 +38,21 @@ public class MantenedorCampana implements Serializable {
     // manejo manual
 
     private List<Campana> campanas;
+    private List<Campana> campanasvencidas;
     private List<Campana> campanaList;
     private List<Totem> totems;
     private List<Tipototem> tipototemList;
     private Tipototem tipototem;
     private Campana campana;
-    private Integer precio;
+    private Integer precio = 360;
     private Integer pasadas;
     private Integer valor;
     private Long dias;
     private String retor;
     private String end1;
     private List<Usuario> usuarios;
+    private List<Meses> mesesList;
+    private Meses mes;
     private Totem totem;
     private Totem[] totemSelecionados;
     private List<Totem> totemList;
@@ -76,6 +79,13 @@ public class MantenedorCampana implements Serializable {
     private Integer ubica;
     private String tipot="";
     private Long contarCampanas;
+    private Integer yearvalue;
+    private Integer yearvalueend;
+    private Integer mesIni;
+    private Integer mesFin;
+    private Date date;
+    private boolean chkfecha ;
+
 
 
 
@@ -96,6 +106,8 @@ public class MantenedorCampana implements Serializable {
     @Autowired
     private LogicaContenido logicaContenido;
     @Autowired
+    private LogicaMeses logicaMeses;
+    @Autowired
     private PropertyReader propertyReader;
     @Autowired
     private FileUploader fileUploader;
@@ -110,6 +122,7 @@ public class MantenedorCampana implements Serializable {
 
     public void inicio() {
         contarCampanas = logicaCampana.obtenerPorNumero(userSession.getUsuario().getUsername());
+        campanasvencidas = logicaCampana.obtenerPorFecha(Date.from(Instant.now()));
         usuarios = logicaUsuario.obtenerTodos();
         categoriaList = logicaCategoria.obtenerTodos();
         establecimientoList=logicaEstablecimiento.obtenerTodos();
@@ -123,6 +136,7 @@ public class MantenedorCampana implements Serializable {
         campanaList= logicaCampana.obtenerLasCampanasDeLosTotems(userSession.getUsuario().getUsername());
         totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
+        mesesList = logicaMeses.obtenerTodos();
 
     }
 
@@ -141,10 +155,13 @@ public class MantenedorCampana implements Serializable {
                 contenido.setPath(pathTemporal);
 
             }else if ("produccion".equals(ambiente)) {
-                String carpetaPrincipal = "interac";
+                String carpetaPrincipal = "demo2";
 
                 String nombreArchivo = pathTemporal.substring(pathTemporal.lastIndexOf('.'));
+
+
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd.hhmmss");
+
                 nombreArchivo = sdf.format(new Date()) + nombreArchivo;
                 Files.copy(Paths.get(pathTemporal), Paths.get("/home/ec2-user/media/"+carpetaPrincipal+"/"+ nombreArchivo));
                 contenido.setPath(nombreArchivo);
@@ -153,13 +170,16 @@ public class MantenedorCampana implements Serializable {
             contenido.setUsuario(userSession.getUsuario());
             logicaContenido.guardar(contenido);
 
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Su imagen a sido subida ");
+            FacesUtil.mostrarMensajeInformativo("Operacion Exitosa", "Su imagen a sido subida ");
             fileUploadCount = fileUploadCount + 1;
 
         } catch (Exception e) {
             return;
         }
     }
+
+
+
     public String editarContenido(Contenido c) {
         contenido = c;
         contenido.setCategoria(categoria);
@@ -168,6 +188,16 @@ public class MantenedorCampana implements Serializable {
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el Contenido [" + contenido.getIdcontenido() + "]");
 
       return irCrear(c);
+
+    }
+    public String subepucv(Contenido c) {
+        contenido = c;
+        contenido.setCategoria(categoria);
+
+        logicaContenido.guardar(contenido);
+        FacesUtil.mostrarMensajeInformativo("Operacion Exitosa", "Se ha Creado el Contenido [" + contenido.getIdcontenido() + "]");
+
+        return "end2";
 
     }
 
@@ -182,42 +212,45 @@ public class MantenedorCampana implements Serializable {
          return "subir";
     }
 
-    public String  guardar() {
-
-        try {
-            campana.setContenido(contenido);
+    public void  guardar() {
+        campana.setContenido(contenido);
+        System.err.print(contenido.getIdcontenido());
+            campana.setTotemList(totemsPorEstablecimiento);
             campana.setEstado("Esperando Aprobacion");
-            campana.setEstablecimiento(establecimientoseleccionado);
             campana.setFechaCreacion(Date.from(Instant.now()));
+            campana.setEstablecimiento(establecimientoseleccionado);
+            campana.setPasadas(pasadas);
+            campana.setNombrecampana(contenido.getNombrecont());
             logicaCampana.guardarCampana(campana);
-            Files.copy(Paths.get("/home/ec2-user/media/interac/" + contenido.getPath()),
-                    Paths.get("home/ec2-user/media/demoPublicidad/ContenidoNoAprobado/"+contenido.getPath()));
-              SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-              String html = new String(constantes.getHeaderCorreo());
-              String[] destinos = new String[1];
-            destinos[0] = establecimiento.getUsuario().getCorreo();
-            destinos[1] = "fernando_06@live.cl";
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
 
-           System.err.print(campana);
-            mailSender.send(destinos,"A llegado una nueva wea",html);
-
-        }catch (Exception e){
-            e.getStackTrace();
-        }
             FacesUtil.mostrarMensajeInformativo("operacion exitosa", "se ha creado tu campaña");
-        return "end1";
     }
 
-
-    public void eliminarFichero(Contenido conte){
+       public void eliminarFichero(Contenido conte){
         try {
-            logicaContenido.eliminarContenido(conte);
-            Files.delete(Paths.get("/home/ec2-user/media/colivares/" + conte.getPath()));
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha borrado la imagen");
+            String ambiente = propertyReader.get("ambiente");
+
+
+            if ("desarrollo".equals(ambiente)) {
+                // dentro del server siempre podra subir, no importa si es wintendo o linux
+                logicaContenido.eliminarContenido(conte);
+                FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha borrado la imagen");
+            }else if ("produccion".equals(ambiente)) {
+                logicaContenido.eliminarContenido(conte);
+                Files.delete(Paths.get("/home/ec2-user/media/colivares/" + conte.getPath()));
+                FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha borrado la imagen}");
+            }
+
         }catch (Exception e){
             FacesUtil.mostrarMensajeInformativo("Operación Fallida","Algo Ocurrio");
         }
+    }
+    @Scheduled(cron="*/5 * * * * ?")
+    public void demoServiceMethod()
+    {
+        System.out.println("Method executed at every 5 seconds. Current time is :: "+ new Date());
     }
 
     public String ver(int t){
@@ -232,6 +265,65 @@ public class MantenedorCampana implements Serializable {
 
 
     }
+    public void dateStart () {
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        Integer month = localDate.getMonthValue();
+        Integer year = localDate.getYear();
+        System.err.println(mes.getIdmes());
+        mesIni=mes.getIdmes();
+        if (month.equals(mesIni) && (year.equals(yearvalue))) {
+            System.err.println(mes.getIdmes());
+            System.err.println(yearvalue);
+            System.err.println(localDate.getDayOfMonth());
+            campana.setFechaInicio(date.from(Instant.now()));
+        }else if ((mes.getIdmes()< month) && (year.equals(yearvalue))){
+            FacesUtil.mostrarMensajeInformativo("Error fecha", "no puede elegir una fecha ya pasada");
+        }else if ((mes.getIdmes()>= month) && (yearvalue!=null)){
+            campana.setFechaInicio(getDateStart(mes.getIdmes(),yearvalue));
+        }
+    }
+    public void dateEnd (){
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        Integer month = localDate.getMonthValue();
+        Integer year = localDate.getYear();
+        System.err.println(mes.getIdmes());
+        mesFin = mes.getIdmes();
+        if (month.equals(mesFin) && (year.equals(yearvalueend))){
+            System.err.println(mes.getIdmes());
+            System.err.println(yearvalueend);
+            System.err.println(localDate.getDayOfMonth());
+            campana.setFechaFin(getDateEnd(mes.getIdmes(), yearvalueend));
+        }else if ((mes.getIdmes()<month) && (year.equals(yearvalueend))){
+            FacesUtil.mostrarMensajeInformativo("Operación Fallida","No puede programar una fecha anterior a la actual");
+        }else if ((mes.getIdmes()>= month) && (yearvalueend!=null)){
+            campana.setFechaFin(getDateEnd(mes.getIdmes(),yearvalueend));
+        }
+            }
+    // Función que permite el retorno del ultimo día de un mes X
+   public Date getDateEnd(Integer m, Integer y) {
+        Calendar calendar = Calendar.getInstance();
+        // passing month-1 because 0-->jan, 1-->feb... 11-->dec
+        calendar.set(y, m - 1, 1);
+       calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DATE));
+        Date date = calendar.getTime();
+       System.err.println(date);
+        return date;
+    }
+    public Date getDateStart(Integer m, Integer y) {
+        Calendar calendar = Calendar.getInstance();
+        // passing month-1 because 0-->jan, 1-->feb... 11-->dec
+        calendar.set(y, m - 1, 1);
+        calendar.set(Calendar.DATE, calendar.getActualMinimum(Calendar.DATE));
+        Date date = calendar.getTime();
+        System.err.println(date);
+        return date;
+    }
+
+
+
+
     public List<Totem> totemsEST(Integer idestablecimiento) {
         totemsPorEstablecimiento=logicaTotem.obtenerPorestablecimiento(idestablecimiento);
         return totemsPorEstablecimiento;
@@ -616,6 +708,77 @@ public class MantenedorCampana implements Serializable {
         this.totemsPorEstablecimiento = totemsPorEstablecimiento;
     }
 
+    public List<Meses> getMesesList() {
+        return mesesList;
+    }
+
+    public void setMesesList(List<Meses> mesesList) {
+        this.mesesList = mesesList;
+            }
+
+    public Meses getMes() {
+        return mes;
+    }
+
+    public void setMes(Meses mes) {
+        this.mes = mes;
+    }
+
+    public Integer getYearvalue() {
+        return yearvalue;
+    }
+
+    public void setYearvalue(Integer yearvalue) {
+        this.yearvalue = yearvalue;
+    }
+
+    public Integer getYearvalueend() {
+        return yearvalueend;
+    }
+
+    public void setYearvalueend(Integer yearvalueend) {
+        this.yearvalueend = yearvalueend;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public boolean isChkfecha() {
+        return chkfecha;
+    }
+
+    public void setChkfecha(boolean chkfecha) {
+        this.chkfecha = chkfecha;
+    }
+
+    public List<Campana> getCampanasvencidas() {
+        return campanasvencidas;
+    }
+
+    public void setCampanasvencidas(List<Campana> campanasvencidas) {
+        this.campanasvencidas = campanasvencidas;
+    }
+
+    public Integer getMesIni() {
+        return mesIni;
+    }
+
+    public void setMesIni(Integer mesIni) {
+        this.mesIni = mesIni;
+    }
+
+    public Integer getMesFin() {
+        return mesFin;
+    }
+
+    public void setMesFin(Integer mesFin) {
+        this.mesFin = mesFin;
+    }
 }
 
 

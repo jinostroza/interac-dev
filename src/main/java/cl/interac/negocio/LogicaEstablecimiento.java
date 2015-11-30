@@ -24,9 +24,28 @@ public class LogicaEstablecimiento {
     public List<Establecimiento> obtenerTodos() {
         return establecimientoDAO.obtenerTodos();
     }
+
     @Transactional(readOnly = true)
     public List<Establecimiento> obbtenerPorTotem() {
         return establecimientoDAO.obtenerPorTotem();
+    }
+
+    @Transactional(readOnly = true)
+    public Establecimiento obtenerPorId(Integer id) {
+        return establecimientoDAO.obtenerPorId(id);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Establecimiento> obtenerConRelacion() {
+        return establecimientoDAO.obtenerConRelacion();
+    }
+
+    @Transactional(readOnly = true)
+    public List<Establecimiento> obtenerPorEstado() { return establecimientoDAO.obtenerPorEstado(); }
+
+    @Transactional(readOnly = true)
+    public List<Establecimiento> obtenerPorUsuario(String username) {
+        return establecimientoDAO.obtenerPorUsuario(username);
     }
 
     @Transactional(readOnly = false)
@@ -39,18 +58,4 @@ public class LogicaEstablecimiento {
         establecimientoDAO.eliminar(e);
     }
 
-    @Transactional(readOnly = true)
-    public List<Establecimiento> obtenerPorUsuario(String username) {
-        return establecimientoDAO.obtenerPorUsuario(username);
-    }
-
-    @Transactional(readOnly = true)
-    public Establecimiento obtenerPorId(Integer id) {
-        return establecimientoDAO.obtenerPorId(id);
-    }
-
-    @Transactional(readOnly = true)
-    public List<Establecimiento> obtenerConRelacion() {
-        return establecimientoDAO.obtenerConRelacion();
-    }
 }

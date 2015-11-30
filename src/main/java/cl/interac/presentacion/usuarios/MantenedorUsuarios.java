@@ -41,14 +41,16 @@ public class MantenedorUsuarios implements Serializable {
         usuario = new Usuario();
     }
 
-
-
     public void guardarUsuario() {
         usuario.setRol(rol);
         logicaUsuario.guardar(usuario);
         FacesUtil.mostrarMensajeInformativo("el usuario", "[" + usuario.getUsername() + "] ha sido registrado con exito");
     }
 
+    public void editarUsuario (Usuario u){
+        usuario = u;
+        logicaUsuario.guardar(usuario);
+    }
 
     // getter and settter
 

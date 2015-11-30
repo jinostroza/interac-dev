@@ -25,12 +25,22 @@
             <p:column headerText="Categoria" filterBy="#{local.categoria.desccategoria}" filterMatchMode="contains">
                 <h:outputText value="#{local.categoria.desccategoria}" />
             </p:column>
-            <p:column>
-                <h:commandButton value="eliminar" styleClass="form-control" action="#{mantenedorEstablecimiento.eliminar(local)}"/>
+            <p:column headerText="Estado" filterBy="#{local.estado}" filterMatchMode="contains">
+                <h:outputText value="#{local.estado}" />
             </p:column>
+            <!-- Eliminar -->
+            <p:column>
+                <p:commandButton id="eliminarEstablecimiento" update="establecimientos" value="Eliminar" styleClass="form-control" type="button">
+                    <p:confirm header="Por favor confirme" message="Desea eliminar el establecimiento?" icon="ui-icon-alert" />
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Si" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" action="#{mantenedorEstablecimiento.eliminar(local)}" />
+                        <p:commandButton value="No" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </p:commandButton>
+            </p:column>
+            <!-- Editar -->
             <p:column>
                 <h:commandButton id="modifica" value="Modificar" update="establecimientos" styleClass="form-control" type="button">
-                    <!-- Editar -->
                     <p:overlayPanel id="editPanel" for="modifica" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
                     <p:outputPanel>
                         <h:outputLabel value="Nombre"/>
@@ -55,6 +65,11 @@
                         <br />
                         <p:calendar value="#{local.horaTermino}" pattern="HH:mm" timeOnly="true" />
                         <br/>
+                        <h:outputLabel value="Estado"/>
+                        <h:selectOneMenu class="form-control" value="#{local.estado}">
+                            <f:selectItem itemValue="Activado" itemLabel="Activado" />
+                            <f:selectItem itemValue="Desactivado" itemLabel="Desactivado" />
+                        </h:selectOneMenu>
                         <p:commandButton id="editBTN" for="editPanel" value="Editar" update="establecimientos"
                                          action="#{mantenedorEstablecimiento.editarEstablecimiento(local)}"/>
                     </p:outputPanel>
@@ -63,6 +78,7 @@
             </p:column>
         </p:dataTable>
     </h:panelGrid>
+
     <!-- Agregar -->
     <p:commandButton id="nuevoBtn" value="Agrega"   type="button">
     <p:overlayPanel id="agregapanel" for="nuevoBtn" showEvent="click" hideEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
@@ -104,6 +120,12 @@
             <h:outputLabel value="Numero de pantallas" />
             <h:inputText  required="true" styleClass="form-control"
                           value="#{mantenedorEstablecimiento.establecimiento.numeroPantallas}"/>
+            <h:outputLabel value="Estado"/>
+            <h:selectOneMenu class="form-control" value="#{mantenedorEstablecimiento.establecimiento.estado}">
+                <f:selectItem noSelectionOption="true"  itemLabel="-- Seleccione estado del totem --" />
+                <f:selectItem itemValue="Activado" itemLabel="Activado" />
+                <f:selectItem itemValue="Desactivado" itemLabel="Desactivado" />
+            </h:selectOneMenu>
             <h:outputLabel value="Imagen" />
             <br/>
             <p:commandButton id="addBtn" for="agregapanel" value="Agrega" update="establecimientoPG"

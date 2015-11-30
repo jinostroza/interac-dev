@@ -4,7 +4,6 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
     <h3>Perfiles</h3>
-    <h:form>
         <p:dataTable id="usuarios" value="#{mantenedorUsuarios.usuarios}" filteredValue="#{mantenedorUsuarios.usuariosFiltro}" var="usuario">
             <p:column headerText="Usuario" filterBy="#{usuario.username}">
                 #{usuario.username}
@@ -15,9 +14,17 @@
             <p:column headerText="rol" filterBy="#{usuario.rol.namerol}">
                 #{usuario.rol.namerol}
             </p:column>
+            <!-- Eliminar -->
             <p:column>
-                <h:commandButton icon="ui-icon-key" styleClass="form-control" value="volver" action="#{facesUtil.redirigir('/plataforma/campana')}"/>
+                <p:commandButton id="eliminarPerfil" update="perfiles" value="Eliminar" styleClass="form-control" type="button">
+                    <p:confirm header="Por favor confirme" message="Desea eliminar este perfil?" icon="ui-icon-alert" />
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Si" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                        <p:commandButton value="No" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </p:commandButton>
             </p:column>
+            <!-- Editar -->
             <p:column>
                 <h:commandButton id="modifica" value="Modificar"  styleClass="form-control" type="button">
                     <p:overlayPanel id="editPanel" for="modifica" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
@@ -25,52 +32,49 @@
                             <h:outputLabel value="nombre de usuario"/>
                             <h:inputText styleClass="form-control"
                                          value="#{usuario.username}"/>
-
-                            <h:outputLabel value="Correo"/>
+                            <h:outputLabel value="Clave" />
+                            <h:inputText styleClass="form-control"
+                                           value="#{usuario.password}" />
+                            <h:outputLabel value="E-Mail" />
                             <h:inputText styleClass="form-control"
                                          value="#{usuario.correo}" />
-
-                            <h:inputText value="contraseña"/>
-                            <h:outputLabel value="#{usuario.password}" />
-
                             <h:outputLabel value="Rol"/>
                             <h:selectOneMenu class="form-control" value="#{mantenedorUsuarios.rol}"
                                              converter="entityConverter">
-                                <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
+                                <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Rol --"/>
                                 <f:selectItems value="#{mantenedorUsuarios.roles}" var="erRol"
                                                itemLabel="#{erRol.namerol}"/>
                             </h:selectOneMenu>
                             <br/>
-
+                            <p:commandButton id="edtPerfil" for="editPanel" value="Editar" action="#{mantenedorUsuarios.editarUsuario(usuario)}"/>
                         </p:outputPanel>
                     </p:overlayPanel>
                 </h:commandButton>
-
             </p:column>
-
         </p:dataTable>
-
+        <!-- Agregar -->
         <h:commandButton id="aggUsuario" value="agregar"  styleClass="form-control" type="button">
             <p:overlayPanel id="agregPanel" for="aggUsuario" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
                 <p:outputPanel>
                     <h:outputLabel value="Usuario"/>
-                    <h:inputText styleClass="form-control"
+                    <h:inputText styleClass="form-control" requiredMessage="Ingrese nombre de usuario"
                                  value="#{mantenedorUsuarios.usuario.username}"/>
                     <h:outputLabel value="Clave" />
-                    <h:inputText styleClass="form-control"
+                    <h:inputText styleClass="form-control" requiredMessage="Ingrese clave"
                             value="#{mantenedorUsuarios.usuario.password}"/>
+                    <h:outputLabel value="E-mail" />
+                    <h:inputText styleClass="form-control" requiredMessage="Ingrese e-mail"
+                                 value="#{mantenedorUsuarios.usuario.correo}"/>
                     <h:outputLabel value="Rol"/>
                     <h:selectOneMenu class="form-control" value="#{mantenedorUsuarios.usuario.rol}"
-                                     converter="entityConverter">
+                                     converter="entityConverter" requiredMessage="Ingrese rol">
                         <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Rol --"/>
                         <f:selectItems value="#{mantenedorUsuarios.roles}" var="perfi"
                                        itemLabel="#{perfi.namerol}"/>
                     </h:selectOneMenu>
                     <br/>
-                    <p:commandButton id="aggBTN" for="aggUsuario" value="guardar"
-                                     action="#{mantenedorUsuarios.guardarUsuario()}"/>
+                    <p:commandButton id="aggBTN" for="aggUsuario" value="Guardar" action="#{mantenedorUsuarios.guardarUsuario}"/>
                 </p:outputPanel>
             </p:overlayPanel>
         </h:commandButton>
-    </h:form>
         </ui:composition>

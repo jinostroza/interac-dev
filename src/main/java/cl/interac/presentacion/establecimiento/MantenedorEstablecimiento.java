@@ -55,6 +55,7 @@ public class MantenedorEstablecimiento implements Serializable {
 
     public void eliminar(Establecimiento establecimiento){
         logicaEstablecimiento.eliminar(establecimiento);
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha eliminado el establecimiento [" + establecimiento.getNombreEstablecimiento() + "]");
     }
 
     public void agregarEstablecimiento() {
@@ -63,7 +64,6 @@ public class MantenedorEstablecimiento implements Serializable {
         establecimiento.setCategoria(categoria);
         logicaEstablecimiento.guardar(establecimiento);
         establecimientoList = logicaEstablecimiento.obtenerConRelacion();
-
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el establecimiento [" + establecimiento.getNombreEstablecimiento() + "]");
     }
 

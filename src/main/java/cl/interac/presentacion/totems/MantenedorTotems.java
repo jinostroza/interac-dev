@@ -73,6 +73,7 @@ public class MantenedorTotems implements Serializable {
     // logica vista
     public void agregarTotem() {
         totem.setEstablecimiento(establecimiento);
+        totem.setMarcaPantalla((marcapantalla));
         totem.setLat(establecimiento.getLat());
         totem.setLongi(establecimiento.getLongi());
         totem.setTipototem(tipototem);
@@ -93,17 +94,7 @@ public class MantenedorTotems implements Serializable {
 
     public void eliminarTotem(Totem totem) {
         logicaTotem.eliminarTotem(totem);
-    }
-
-
-    // Función que permite el retorno del ultimo día de un mes X
-    public Integer obtenerFecha(Integer month, Integer year){
-        Calendar calendar = Calendar.getInstance();
-
-        calendar.set(Calendar.MONTH, month);
-        calendar.set(Calendar.YEAR, year);
-
-        return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha sobornado el Totem [" + totem.getNoserie() + "]");
     }
 
     //Getters y Setters
