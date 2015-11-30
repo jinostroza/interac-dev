@@ -78,9 +78,9 @@ body {
 .header {
     height: 150px;
     -width: 800px;
-    width: 75%;
+    width: 76.5%;
     background-color: #FFFFFF;
-    padding: 20px;
+    padding: 20px 10px;
 }
 
 /* Middle
@@ -175,15 +175,25 @@ body {
     background-color: black;
 }
 
-/* Just for looks */
+/* TWITTER */
+
+/* Id Twitter */
+#id-twitter-pucv{
+  font: 1.6 Arial, sans-serif;
+  font-size: 250%;
+  padding:0;
+}
+
+/* Barra Twitter */
 #twitter {
     background: #fafafa;
     border: 1px solid #eaeaea;
-    padding: 5px 15px;
+    padding: 5px 12px;
     border-radius: 5px;
     overflow: hidden;
     font: 1.5rem/1.6 Arial, sans-serif;
     color: #333;
+    margin: 15px 0;
 }
 
 /* Remove padding, margin, bullets and
@@ -223,7 +233,7 @@ body {
     -webkit-animation-play-state: paused;
 }
 
-/* Make it move */
+/* Animación */
 @-webkit-keyframes marquee {
     0%   { transform: translateX(0); }
     100% { transform: translateX(-100%); }
@@ -251,4 +261,17 @@ body {
   width: 175px;
   height: 80px;
   float: right;
+}
+
+#twitter-logo{
+  background-image: url("img/twitter-80x80.png");
+  background-size: 50px 50px;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  display: block;
+  float: left;
+  margin: 15px 0;
+  margin-right: 5px;
+  padding:0;
 }
