@@ -6,9 +6,7 @@ html
     link(rel='stylesheet', type='text/css', href='public/css/clock.css')
     script(src='public/js/jquery-2.1.4.min.js')
     script(src='public/js/slide.js')
-    script(src='public/js/clock.js')
     script(src='public/js/dashbox.js')
-    script(src='public/js/idle.js')
     script(src='public/js/twitterFetcher_min.js')
   body
     iframe.overlay(style='display:none')
@@ -20,24 +18,49 @@ html
         #twitter-logo
         #twitter.twitter(href='https://twitter.com/ingenieriapucv') Cargando Tweets
       #content.content(style='padding: 0px')
-      .dashbox
-        button.escuela
-        button.flickr
-        button.maker
+      div(class="dashbox")
+        button(class="escuela" id="escuela")
+        button(class="flickr" id="flickr")
+        button(class="maker" id="maker")
     script(type='text/javascript').
       jQuery(document).ready(function () {
       });
       var LatestTweets = {
-      init: function () {
-      twitterFetcher.fetch({
-      id: '669595905230807043',
-      domId: 'twitter',
-      maxTweets: 5,
+        init: function () {
+          twitterFetcher.fetch({
+            id: '669595905230807043',
+            domId: 'twitter',
+            maxTweets: 5
+          });
+          // analytics
+        (function (i, s, o, g, r, a, m) {
+          i['GoogleAnalyticsObject'] = r;
+          i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+          }, i[r].l = 1 * new Date();
+          a = s.createElement(o),
+                  m = s.getElementsByTagName(o)[0];
+          a.async = 1;
+          a.src = g;
+          m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+      ga('create', 'UA-69484091-2', {'cookiedomain': 'none'});
+      ga('send', 'pageview');
+      // custom
+      $('#escuela').on('click', function () {
+        ga('send', 'event', 'btnescuela', 'click', 'nav-buttons');
+      });
+      $('#flickr').on('click', function () {
+        ga('send', 'event', 'btnflickr', 'click', 'nav-buttons');
+      });
+      $('#maker').on('click', function () {
+        ga('send', 'event', 'btnmaker', 'click', 'nav-buttons');
+      });
+      $('#twitter').on('click', function () {
+        ga('send', 'event', 'divtwitter', 'click', 'nav-buttons');
       });
       }
       }
-      // custom
       Slide.start();
-      Clock.start();
       DashBox.start();
       LatestTweets.init();
