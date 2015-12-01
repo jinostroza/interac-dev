@@ -85,7 +85,8 @@ public class MantenedorCliente implements Serializable {
             campana.setEstado(aprobado);
             logicaContenido.guardar(contenido);
             String carpetaDestino = "demoPublicidad";
-            Files.copy(Paths.get("home/ec2-user/media/interac/"+contenido.getPath()), Paths.get("/home/ec2-user/media/" + carpetaDestino + "/" + contenido.getPath()));
+            Files.copy(Paths.get("home/ec2-user/media/demoPublicidad/ContenidoNoAprobado/"+contenido.getPath()),
+                       Paths.get("/home/ec2-user/media/" + carpetaDestino + "/" + contenido.getPath()));
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha aprobado campaña  [" + campana.getContenido().getNombrecont() + "]");
         }catch (Exception e){
             FacesUtil.mostrarMensajeError("Operación Fallida", "algo ocurrio");
@@ -97,7 +98,7 @@ public class MantenedorCliente implements Serializable {
         mailSender.send(destinos,"una prueba","esta Lista la API");
 
         campanaEnEspera.clear();
-        //campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
+        campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado campaña  [" + campana.getContenido().getNombrecont() + "]");
     }
 
@@ -120,7 +121,7 @@ public class MantenedorCliente implements Serializable {
 
 
         campanaEnEspera.clear();
-        //campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
+        campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado campaña  [" + campana.getContenido().getNombrecont() + "]");
     }
 

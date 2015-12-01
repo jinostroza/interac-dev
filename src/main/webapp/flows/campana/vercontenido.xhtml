@@ -3,7 +3,6 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:div="http://www.springframework.org/tags/form"
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
@@ -22,7 +21,7 @@
                     </f:facet>
 
                     <p:column  styleClass="col-lg-3" headerText="Imagenes">
-                        <h:graphicImage value="ftp://54.172.118.246/#{cont.path}" style="width:100px; height:200px ;"/>
+                        <h:graphicImage value="/img/interac#{cont.path}" style="width:100px; height:200px ;"/>
                     </p:column>
                     <p:column styleClass="col-lg-2" headerText="nombre">
                         <h:outputText value="#{cont.nombrecont}" />
@@ -35,7 +34,7 @@
                         <p:commandButton icon="ui-icon-pin-s" action="#{mantenedorCampana.irCrear(cont)}" value="Seleccionar" title="View" >
                         </p:commandButton>
                     </p:column>
-                    <p:column styleClass="col-lg-3" style="text-align: center;margin-right: 2px">
+                    <p:column styleClass="col-lg-3" style="text-align: center; margin-right: 2px">
                         <p:commandButton icon="ui-icon-trash" action="#{mantenedorCampana.eliminarFichero(cont)}" value="Eliminar" title="View">
 
                         </p:commandButton>
@@ -45,7 +44,7 @@
             </div>
             <br/>
             <div class="col-lg-12" style="margin-left: 90%;margin-bottom: 2%">
-            <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
+            <h:commandButton ajax="false" styleClass="btn btn-interac" action="fin"
                               value="Volver" immediate="true"/>
             </div>
             <br/>
