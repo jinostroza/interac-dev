@@ -2,7 +2,6 @@ package cl.interac.dao;
 
 import cl.interac.entidades.Establecimiento;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -47,5 +46,9 @@ public class EstablecimientoDAO {
 
     public List<Establecimiento> obtenerPorEstado(){
         return em.createNamedQuery("establecimiento.findByEstado").getResultList();
+    }
+
+    public List<Establecimiento> obtenerPorEmpresa(){
+        return em.createNamedQuery("establecimiento.findByEmpresa").getResultList();
     }
 }

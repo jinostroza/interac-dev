@@ -49,14 +49,12 @@ public class Categoria implements Serializable {
     public List<Contenido> getContenidos() {
         return contenidos;
     }
-
     public void setContenidos(List<Contenido> contenidos) {
         this.contenidos = contenidos;
     }
 
     @OneToMany(mappedBy="categoria")
     public List<Establecimiento> getEstablecimientos() { return establecimientos; }
-
     public void setEstablecimientos(List<Establecimiento> establecimientos) { this.establecimientos = establecimientos; }
 
     @Override

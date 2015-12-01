@@ -10,6 +10,9 @@
         <p:dataTable id="establecimientos" var="local" widgetVar="dtEstablecimientos"
                      value="#{mantenedorEstablecimiento.establecimientoList}"
                      filteredValue="#{mantenedorEstablecimiento.establecimientoConfiltro}">
+            <p:column headerText="Imagen">
+                <h:graphicImage value="#{local.urlImagen}"/>
+            </p:column>
             <p:column headerText="Nombre" filterBy="#{local.nombreEstablecimiento}">
                 <h:outputText value="#{local.nombreEstablecimiento}" />
             </p:column>
@@ -25,7 +28,16 @@
             <p:column headerText="Categoria" filterBy="#{local.categoria.desccategoria}" filterMatchMode="contains">
                 <h:outputText value="#{local.categoria.desccategoria}" />
             </p:column>
-            <p:column headerText="Estado" filterBy="#{local.estado}" filterMatchMode="contains">
+            <p:column headerText="Pantalas" filterBy="#{local.numeroPantallas}" filterMatchMode="contains">
+                <h:outputText value="#{local.numeroPantallas}" />
+            </p:column>
+            <p:column headerText="Slots" filterBy="#{local.slots}" filterMatchMode="contains">
+                <h:outputText value="#{local.slots}" />
+            </p:column>
+            <p:column headerText="Valor mes" filterBy="#{local.valorMensual}" filterMatchMode="contains">
+                <h:outputText value="#{local.valorMensual}" />
+            </p:column>
+            <p:column headerText="Estado" filterBy="#{local.estado}" filterMatchMode="startsWith">
                 <h:outputText value="#{local.estado}" />
             </p:column>
             <!-- Eliminar -->
@@ -58,13 +70,15 @@
                                            itemLabel="#{ubica.descubicacion}"/>
                         </h:selectOneMenu>
                         <h:outputLabel value="Hora apertura" />
-                        <br />
                         <p:calendar value="#{local.horaInicio}" pattern="HH:mm" timeOnly="true" />
-                        <br />
                         <h:outputLabel value="Hora Cierre" />
-                        <br />
                         <p:calendar value="#{local.horaTermino}" pattern="HH:mm" timeOnly="true" />
-                        <br/>
+                        <h:outputLabel value="Slots" />
+                        <h:inputText styleClass="form-control" value="#{local.slots}"/>                                     value="#{mantenedorEstablecimiento.establecimiento.slots}"/>
+                        <h:outputLabel value="Numero de pantallas" />
+                        <h:inputText styleClass="form-control" value="#{local.numeroPantallas}"/>
+                        <h:outputLabel value="Valor Mes" />
+                        <h:inputText styleClass="form-control" value="#{local.valorMensual}"/>
                         <h:outputLabel value="Estado"/>
                         <h:selectOneMenu class="form-control" value="#{local.estado}">
                             <f:selectItem itemValue="Activado" itemLabel="Activado" />
@@ -78,7 +92,6 @@
             </p:column>
         </p:dataTable>
     </h:panelGrid>
-
     <!-- Agregar -->
     <p:commandButton id="nuevoBtn" value="Agrega"   type="button">
     <p:overlayPanel id="agregapanel" for="nuevoBtn" showEvent="click" hideEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
@@ -95,7 +108,7 @@
                              converter="entityConverter">
                 <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
                 <f:selectItems value="#{mantenedorEstablecimiento.ubicaciones}" var="ubica"
-                               itemLabel="#{ubica.descubicacion}"/>
+                               itemLabel="#{ubica.descubicacion}"/>|
             </h:selectOneMenu>
             <h:outputLabel value="Categoria"/>
             <h:selectOneMenu class="form-control" value="#{mantenedorEstablecimiento.categoria}"
@@ -133,5 +146,4 @@
         </p:outputPanel>
     </p:overlayPanel>
     </p:commandButton>
-
 </ui:composition>

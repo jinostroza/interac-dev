@@ -30,6 +30,7 @@ public class MantenedorEstablecimiento implements Serializable {
     private Establecimiento establecimiento;
     private Ubicacion ubicacion;
     private Categoria categoria;
+    private Empresa empresa;
 
     @Autowired
     private LogicaEstablecimiento logicaEstablecimiento;
@@ -43,7 +44,6 @@ public class MantenedorEstablecimiento implements Serializable {
     private LogicaTotem logicaTotem;
     @Autowired
     private LogicaCategoria logicaCategoria;
-
 
     @PostConstruct
     public void inicio() {
@@ -62,6 +62,7 @@ public class MantenedorEstablecimiento implements Serializable {
         establecimiento.setUsuario(userSession.getUsuario());
         establecimiento.setUbicacion(ubicacion);
         establecimiento.setCategoria(categoria);
+        establecimiento.setEmpresa(empresa);
         logicaEstablecimiento.guardar(establecimiento);
         establecimientoList = logicaEstablecimiento.obtenerConRelacion();
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el establecimiento [" + establecimiento.getNombreEstablecimiento() + "]");
@@ -78,7 +79,6 @@ public class MantenedorEstablecimiento implements Serializable {
     public List<Totem> getTotems() {
         return totems;
     }
-
     public void setTotems(List<Totem> totems) {
         this.totems = totems;
     }
@@ -86,7 +86,6 @@ public class MantenedorEstablecimiento implements Serializable {
     public List<Ubicacion> getUbicaciones() {
         return ubicaciones;
     }
-
     public void setUbicaciones(List<Ubicacion> ubicaciones) {
         this.ubicaciones = ubicaciones;
     }
@@ -94,7 +93,6 @@ public class MantenedorEstablecimiento implements Serializable {
     public List<Usuario> getUsuario() {
         return usuario;
     }
-
     public void setUsuario(List<Usuario> usuario) {
         this.usuario = usuario;
     }
@@ -102,7 +100,6 @@ public class MantenedorEstablecimiento implements Serializable {
     public Ubicacion getUbicacion() {
         return ubicacion;
     }
-
     public void setUbicacion(Ubicacion ubicacion) {
         this.ubicacion = ubicacion;
     }
@@ -110,7 +107,6 @@ public class MantenedorEstablecimiento implements Serializable {
     public Establecimiento getEstablecimiento() {
         return establecimiento;
     }
-
     public void setEstablecimiento(Establecimiento establecimiento) {
         this.establecimiento = establecimiento;
     }
@@ -118,7 +114,6 @@ public class MantenedorEstablecimiento implements Serializable {
     public List<Establecimiento> getEstablecimientoList() {
         return establecimientoList;
     }
-
     public void setEstablecimientoList(List<Establecimiento> establecimientoList) {
         this.establecimientoList = establecimientoList;
     }
@@ -126,7 +121,6 @@ public class MantenedorEstablecimiento implements Serializable {
     public List<Establecimiento> getEstablecimientoConfiltro() {
         return establecimientoConfiltro;
     }
-
     public void setEstablecimientoConfiltro(List<Establecimiento> establecimientoConfiltro) {
         this.establecimientoConfiltro = establecimientoConfiltro;
     }
@@ -134,7 +128,6 @@ public class MantenedorEstablecimiento implements Serializable {
     public int getIdestable() {
         return idestable;
     }
-
     public void setIdestable(int idestable) {
         this.idestable = idestable;
     }
@@ -142,7 +135,6 @@ public class MantenedorEstablecimiento implements Serializable {
     public Categoria getCategoria() {
         return categoria;
     }
-
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
@@ -150,9 +142,11 @@ public class MantenedorEstablecimiento implements Serializable {
     public List<Categoria> getCategorias() {
         return categorias;
     }
-
     public void setCategorias(List<Categoria> categorias) {
         this.categorias = categorias;
     }
+
+    public Empresa getEmpresa() { return empresa; }
+    public void setEmpresa(Empresa empresa) { this.empresa = empresa; }
 }
 
