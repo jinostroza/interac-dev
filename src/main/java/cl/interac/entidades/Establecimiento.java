@@ -44,6 +44,10 @@ import java.util.Date;
         @NamedQuery(name = "establecimiento.findByEstado",
                 query = "SELECT e FROM Establecimiento e " +
                         "WHERE e.estado = :estado")
+
+
+
+
 })
 
 public class Establecimiento implements Serializable {

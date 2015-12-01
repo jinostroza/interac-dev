@@ -80,19 +80,20 @@
                                         <h:outputLabel value="Valor total ">
                                             <h:outputLabel style="color: red" value="$#{mantenedorCampana.valor}"/>
                                         </h:outputLabel>
+                                        <h:outputLabel value="Tu anuncio se publicara En : ">
+                                            <p:graphicImage style="width: 80px;height: 120px" value="#{place.urlImagen}"/>
+                                            <h:outputLabel  value="#{mantenedorCampana.establecimientoseleccionado.nombreEstablecimiento}">
+                                                <small>#{mantenedorCampana.establecimientoseleccionado.direccion}/#{mantenedorCampana.establecimientoseleccionado.ubicacion.descubicacion}</small>
+                                            </h:outputLabel>
+                                        </h:outputLabel>
 
                                     </h:panelGrid>
                                 </div>
                             </div>
-                            <h:dataTable value="#{mantenedorCampana.totemSelecionados}" var="car" style="margin-left: 27%">
-                                <f:facet name="header">Tu anuncio se publicara En :</f:facet>
-                                <h:column> Pantalla: </h:column>
-                                <h:column> #{car.noserie}-</h:column>
-                                <h:column>#{car.establecimiento.nombreEstablecimiento}</h:column>
-                            </h:dataTable>
+
                             </ui:fragment>
 
-                            <ui:fragment rendered="#{mantenedorCampana.totemSelecionados == null }" >
+                            <ui:fragment rendered="#{mantenedorCampana.totemSelecionados != null }" >
                             <p:panelGrid columns="2">
                                 <f:facet name="header">
                                     <p:graphicImage url="ftp://54.172.118.246/#{mantenedorCampana.campana.contenido.path}" style="width:100px; height:200px ;" />

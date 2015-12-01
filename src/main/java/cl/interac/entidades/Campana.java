@@ -62,6 +62,11 @@ import java.util.Set;
                                 "INNER JOIN e.usuario u " +
                                 " WHERE u.username=:username AND c.estado='Esperando Aprobacion'"
                 ),
+                @NamedQuery(name = "Campana.countEstablecimiento",
+                        query = "SELECT COUNT (c.idcampana) FROM Campana c " +
+                                "INNER JOIN  c.establecimiento e " +
+                                "WHERE e.idEstablecimiento=:establecimiento AND c.estado='Aprobado'"
+                ),
                 @NamedQuery(name = "Campana.findByDate",
                         query = "SELECT c  FROM Campana c " +
                                 "INNER JOIN  c.contenido co " +

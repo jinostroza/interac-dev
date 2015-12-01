@@ -80,5 +80,8 @@ public class CampanaDAO {
     public long obtenerNumeroNuevas(String user){
         return (Long) em.createNamedQuery("Campana.count").setParameter("username",user).getSingleResult();
     }
+    public long obtenerPorEstablecimeinto(Integer establecimiento){
+        return (Long) em.createNamedQuery("Campana.countEstablecimiento").setParameter("establecimiento",establecimiento).getSingleResult();
+    }
 
 }

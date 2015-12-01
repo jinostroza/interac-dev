@@ -59,11 +59,11 @@
                         </h:selectOneMenu>
                         <h:outputLabel value="Hora apertura" />
                         <br />
-                        <p:calendar value="#{local.horaInicio}" pattern="HH:mm" timeOnly="true" />
+                        <p:calendar value="#{local.horaInicio}" pattern="HH:mm"  timeZone="America/Santiago"/>
                         <br />
                         <h:outputLabel value="Hora Cierre" />
                         <br />
-                        <p:calendar value="#{local.horaTermino}" pattern="HH:mm" timeOnly="true" />
+                        <p:calendar value="#{local.horaTermino}" pattern="HH:mm"  timeZone="America/Santiago"/>
                         <br/>
                         <h:outputLabel value="Estado"/>
                         <h:selectOneMenu class="form-control" value="#{local.estado}">
@@ -111,9 +111,9 @@
             <h:inputText  required="true" requiredMessage="Ingrese Longitud" styleClass="form-control"
                           value="#{mantenedorEstablecimiento.establecimiento.longi}"/>
             <h:outputLabel value="Hora Inicio" />
-            <p:calendar required="true" requiredMessage="Ingrese nueva hora de inicio" value="#{mantenedorEstablecimiento.establecimiento.horaInicio}" pattern="HH:mm" timeOnly="true" />
+            <p:calendar required="true" requiredMessage="Ingrese nueva hora de inicio" value="#{mantenedorEstablecimiento.establecimiento.horaInicio}" pattern="HH:mm" timeOnly="true" timeZone="America/Santiago"/>
             <h:outputLabel value="Hora Termino" />
-            <p:calendar required="true" requiredMessage="Ingrese nueva hora de termino" value="#{mantenedorEstablecimiento.establecimiento.horaTermino}" pattern="HH:mm" timeOnly="true" />
+            <p:calendar required="true" requiredMessage="Ingrese nueva hora de termino" value="#{mantenedorEstablecimiento.establecimiento.horaTermino}" pattern="HH:mm" timeOnly="true" timeZone="America/Santiago" />
             <h:outputLabel value="Slots (espacios para publicidad de terceros)" />
             <h:inputText  required="true" styleClass="form-control"
                           value="#{mantenedorEstablecimiento.establecimiento.slots}"/>

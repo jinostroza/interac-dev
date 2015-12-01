@@ -23,24 +23,24 @@
 
         </div>
 
-                <h:form style="margin-left: 20%">
+                <h:form  style="margin-left: 20%">
 
                             <div  class="row">
                                 <div class="col-lg-5 col-lg-offset-3">
                                 <label>Nombre</label>
-                                <h:inputText id="anun" label="anun" value="#{mantenedorCampana.contenido.nombrecont}" styleClass="form-control" required="true" requiredMessage="Ingrese un Nombre para su Anuncio" />
+                                <p:inputText id="anun" label="anun" value="#{mantenedorCampana.contenido.nombrecont}" styleClass="form-control" required="true" requiredMessage="Ingrese un Nombre para su Anuncio" />
                                     <p:watermark for="anun" value="Ingrese un Nombre para su Anuncio" id="watermark" />
                                     <p:tooltip id="toolTipTrack" for="anun" value="Dale un Nombre a tu anuncio" trackMouse="true" />
                                 <br></br>
                                 <br></br>
                                 <label>Categoría</label>
 
-                                <h:selectOneMenu id="onem" class="form-control" value="#{mantenedorCampana.categoria}"
+                                <p:selectOneMenu id="onem" class="form-control" value="#{mantenedorCampana.categoria}"
                                                   converter="entityConverter" required="true" requiredMessage="Debe Seleccionar una Categoria">
                                     <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione categoria --"/>
                                     <f:selectItems value="#{mantenedorCampana.categoriaList}" var="categor"
                                                    itemLabel="#{categor.desccategoria}" itemValue="#{categor}"/>
-                                </h:selectOneMenu>
+                                </p:selectOneMenu>
                                     <p:tooltip id="tooltipmenu" for="onem" value="Selecciona la categoria de tu anuncio" trackMouse="true" />
                                 <br></br>
                                     <div id="cuadro-imagen" style="padding-right: 100px" >
@@ -55,18 +55,18 @@
                                 </div>
                             </div>
                                 <div class="col-lg-12" style="margin-left: 60%">
-                                <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
+                                <p:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
                                                  actionListener="#{mantenedorCampana.eliminarFichero(mantenedorCampana.contenido)}" value="Volver" immediate="true"/>
                                     <span>   </span>
                                     <ui:fragment
                                             rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR')}">
-                                    <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{mantenedorCampana.editarContenido(mantenedorCampana.contenido)}"
-                                                     value="Siguiente" />
+                                    <p:commandButton  styleClass="btn btn-interac" action="#{mantenedorCampana.editarContenido(mantenedorCampana.contenido)}"
+                                                     value="Siguiente" update="messages" />
                                     </ui:fragment>
                                     <ui:fragment
                                             rendered="#{userSession.tienePermiso('PUCV')}">
-                                    <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{mantenedorCampana.subepucv(mantenedorCampana.contenido)}"
-                                                     value="Siguiente" />
+                                    <p:commandButton styleClass="btn btn-interac" action="#{mantenedorCampana.subepucv(mantenedorCampana.contenido)}"
+                                                     value="Siguiente" update="messages" />
                                     </ui:fragment>
 
                                 </div>
