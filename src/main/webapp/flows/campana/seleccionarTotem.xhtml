@@ -32,96 +32,52 @@
                     </div>
                 </header>
 
-                <div class="row">
-                    <div class="col-lg-3"></div>
-                    <div class="col-lg-6">
 
-                    </div>
-                    <div class="col-lg-3"></div>
-                </div>
 
                 <div class="row">
-                    <h4>Fechas</h4>
 
-                    <div class="col-lg-8">
-                        <h:panelGrid columns="8" cellpadding="10" cellspacing="5">
+                    <div class="col-lg-6"></div>
+                    <p:panelGrid columns="4" layout="grid" style="width: 40%" >
+                        <h:outputLabel for="inicio" value="Inicio Campaña:" />
+                        <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
+                        <p:calendar  id="inicio" locale="es" pattern="dd/MM/yyyy"
+                                     value="#{mantenedorCampana.campana.fechaInicio}" mindate="c1.today()" widgetVar="c1" required="true" requiredMessage="Debe indicar fecha de Inicio" >
+                            <p:ajax event="dateSelect" update="inline"/>
+                            <p:ajax event="change" update="inline"/>
+                            <p:ajax event="dateSelect" listener="#{mantenedorCampana.dateDiff}" update="dias" />
+                        </p:calendar>
+                        <span></span>
+                        <h:outputLabel for="fin" value="Fin Campaña:" />
+                        <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
+                        <p:calendar  id="fin"  locale="es" pattern="dd/MM/yyyy"
+                                     value="#{mantenedorCampana.campana.fechaFin}" mindate="c2.today()" widgetVar="c2" required="true" requiredMessage="Debe indicar la fecha de Termino" >
+                            <p:ajax event="dateSelect" update="inline"/>
+                            <p:ajax event="change" update="inline"/>
+                            <p:ajax event="dateSelect" listener="#{mantenedorCampana.dateDiff}" update="dias"/>
+                        </p:calendar>
+                        <p:tooltip for="inicio" value="Indique la fecha de comienzo para su campaña" trackMouse="true" ></p:tooltip>
+                        <p:tooltip for="fin" value="Indique la fecha de termino para su campaña" trackMouse="true" ></p:tooltip>
+                    </p:panelGrid>
 
-                            <h:panelGrid columns="1" cellpadding="10">
-                                <h:outputLabel for="meslst" value="Inicio Campaña:"/>
-                                <h:selectOneMenu id="meslst"
-                                                 styleClass="form-control" style="width:125px"
-                                                 value="#{mantenedorCampana.mes}"
-                                                 converter="entityConverter">
-                                    <f:selectItem itemLabel="Mes" noSelectionOption="true"/>
-                                    <f:selectItems value="#{mantenedorCampana.mesesList}" var="mes1"
-                                                   itemLabel="#{mes1.mes}" itemValue="#{mes1}"/>
-                                    <p:ajax event="change" listener="#{mantenedorCampana.dateStart}"></p:ajax>
-
-                                </h:selectOneMenu>
-                            </h:panelGrid>
-                            <h:panelGrid columns="1">
-                                <p:outputLabel for="yearini" value="Año:"/>
-                                <h:selectOneMenu id="yearini" styleClass="form-control"
-                                                 value="#{mantenedorCampana.yearvalue}" style="width:120px">
-                                    <f:selectItem itemLabel="Año" noSelectionOption="true"/>
-                                    <f:selectItem itemLabel="2015" itemValue="#{2015}"/>
-                                    <f:selectItem itemLabel="2016" itemValue="#{2016}"/>
-                                    <f:selectItem itemLabel="2017" itemValue="#{2017}"/>
-                                    <f:selectItem itemLabel="2018" itemValue="#{2018}"/>
-                                    <p:ajax event="change" listener="#{mantenedorCampana.dateStart}"></p:ajax>
-                                </h:selectOneMenu>
-                            </h:panelGrid>
-
-                            <span></span>
-                            <h:panelGrid columns="1" cellpadding="10">
-                                <h:outputLabel for="meslstfin" value="Termino Campaña:"/>
-                                <h:selectOneMenu id="meslstfin" styleClass="form-control" style="width:125px"
-                                                 value="#{mantenedorCampana.mes}"
-                                                 converter="entityConverter">
-                                    <f:selectItem itemLabel="Mes" noSelectionOption="true"/>
-                                    <f:selectItems value="#{mantenedorCampana.mesesList}" var="mes1"
-                                                   itemLabel="#{mes1.mes}" itemValue="#{mes1}"/>
-                                    <p:ajax event="change" listener="#{mantenedorCampana.dateEnd}"></p:ajax>
-
-                                </h:selectOneMenu>
-                            </h:panelGrid>
-                            <h:panelGrid columns="1">
-                                <p:outputLabel for="yearfin" value="Año:"/>
-                                <h:selectOneMenu id="yearfin" styleClass="form-control"
-                                                 value="#{mantenedorCampana.yearvalueend}" style="width:120px">
-                                    <f:selectItem itemLabel="Año" noSelectionOption="true"/>
-                                    <f:selectItem itemLabel="2015" itemValue="#{2015}"/>
-                                    <f:selectItem itemLabel="2016" itemValue="#{2016}"/>
-                                    <f:selectItem itemLabel="2017" itemValue="#{2017}"/>
-                                    <f:selectItem itemLabel="2018" itemValue="#{2018}"/>
-                                    <p:ajax event="change" listener="#{mantenedorCampana.dateEnd}" update="inline"></p:ajax>
-
-                                </h:selectOneMenu>
-                            </h:panelGrid>
-
-                        </h:panelGrid>
+                    <div class="col-lg-4" style="float: right;width: 40%">
+                        <p:calendar id="inline" locale="es" mindate="#{mantenedorCampana.campana.fechaInicio}"
+                                    maxdate="#{mantenedorCampana.campana.fechaFin}" mode="inline"/>
+                        <br></br>
 
                     </div>
-                </div>
-                <br></br>
 
-                <div class="col-lg-offset-4">
-                    <p:calendar id="inline" locale="es" mindate="#{mantenedorCampana.campana.fechaInicio}"
-                                maxdate="#{mantenedorCampana.campana.fechaFin}" mode="inline"/>
+                </div>
+
+
+
+
                     <br></br>
-                </div>
-                <div class="col-lg-offset-4">
-                    <h4>Pasadas al día</h4>
-                    <p:spinner id="ajaxSpinner" min="0" max="2880" stepFactor="360" value="#{mantenedorCampana.precio}"
-                               required="true" requiredMessage="Seleccione numero de pasadas diarias">
-                        <p:ajax update="out" event="change" listener="#{mantenedorCampana.calculator}"/>
-                        <p:ajax update="pasadas" event="change" listener="#{mantenedorCampana.diasPasadas}"/>
 
-                    </p:spinner>
-                    <p:tooltip for="ajaxSpinner" value="Seleccione la cantidad de pasadas diarias "
-                               trackMouse="true"></p:tooltip>
-                </div>
-                <br></br>
+
+
+
+
+
 
 
                 <p:dataTable id="datapantallas" styleClass="col-lg-12 " var="place"
@@ -163,8 +119,14 @@
                         </h4>
                     </p:column>
                     <p:column>
-                        <h4>Totems :
-                            <small>#{mantenedorCampana.numeroTotem(place.idEstablecimiento)}</small>
+                    <h4>Totems :
+                        <small>#{mantenedorCampana.numeroTotem(place.idEstablecimiento)}</small>
+                    </h4>
+                </p:column>
+                    <p:column>
+                        <h4>Espacios Disponibles :
+                            <small>#{place.slots - mantenedorCampana.numeroCampanas(place.idEstablecimiento)}</small>
+                            <small>#{place.estado}</small>
                         </h4>
                     </p:column>
                     <p:column>
@@ -177,22 +139,31 @@
                                     type="HYBRID" model="#{mantenedorCampana.advancedModel}"
                                     style="width:300px;height:200px">
                             </p:gmap>
-                            <h:panelGrid columns="2">
-                                <h:outputText value="Horario:"/>
-                                <h:outputText value="#{place.horaInicio}-#{place.horaTermino}">
-                                    <f:convertDateTime pattern="HH:mm"/>
+                            <p:panelGrid columns="3" layout="grid" >
+                                <h:outputLabel value="Horario Inicio:"/>
+                                <h:outputText styleClass="fa fa-fw fa-clock-o"  style="float: right;color: red"/>
+                                <h:outputText value="#{place.horaInicio}">
+                                <f:convertDateTime pattern="HH:mm" timeZone="America/Santiago" timeStyle="short"/>
+                                </h:outputText>
+                                <h:outputLabel value="Horario Termino:"/>
+                                <h:outputText styleClass="fa fa-fw fa-clock-o" style="float: right;color: red"/>
+                                <h:outputText value="#{place.horaTermino}">
+                                    <f:convertDateTime pattern="HH:mm" timeZone="America/Santiago" timeStyle="short"/>
                                 </h:outputText>
 
 
-                                <h:outputText value="Direccion"/>
+                                <h:outputLabel value="Direccion"/>
+                                <h:outputText styleClass="fa fa-fw fa-map-marker"  style="float: right;color: red"/>
                                 <h:outputText value="#{place.direccion}"/>
 
-                                <h:outputText value="Telefono:"/>
-                                <h:outputText value="#{place.fono}"/>
+                                <h:outputLabel value="Telefono:" />
+                                <h:outputText styleClass="fa fa-fw fa-phone"  style="float: right;color: red"/>
+                                <h:outputText value="#{place.fono}" />
 
-                                <h:outputText value="Valor"/>
-                                <h:outputText value="$#{place.valorMensual}"/>
-                            </h:panelGrid>
+                                <h:outputLabel value="Valor"/>
+                                <h:outputText styleClass="fa fa-fw fa-money"  style="float: right;color: red"/>
+                                <h:outputText value="#{place.valorMensual}"/>
+                            </p:panelGrid>
 
 
                         </p:overlayPanel>
@@ -238,11 +209,11 @@
 
             <div class="row"><!--regisCamp-->
                 <div class="col-lg-offset-8" style="margin-bottom: 2%">
-                    <p:commandButton value="Volver" styleClass="btn btn-interac" immediate="true"/>
+                    <p:commandButton value="Volver" styleClass="btn btn-interac" immediate="true" action="#{facesUtil.redirigir('/plataforma/campana')}"/>
                     <span/>
 
                     <p:commandButton value="Siguente" styleClass="btn btn-interac"
-                                     action="end1" actionListener="#{mantenedorCampana.guardar}">
+                                     action="end1" actionListener="#{mantenedorCampana.guardar}" update="messages">
 
                     </p:commandButton>
                 </div>
@@ -250,6 +221,7 @@
             </div>
 
             <br></br>
+            <p:growl id="messages" showDetail="true" />
 
 
         </h:form>

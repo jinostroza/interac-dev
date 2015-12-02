@@ -78,6 +78,10 @@ public class LogicaCampana {
     public long obtenerPorNumero(String user){
         return campanaDAO.obtenerNumeroNuevas(user);
     }
+    @Transactional(readOnly = true)
+    public long obtenerPorEstablecimiento(Integer establecimiento){
+        return campanaDAO.obtenerPorEstablecimeinto(establecimiento);
+    }
 
 
 

@@ -13,10 +13,10 @@ import java.util.Date;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "establecimiento.findAll", query = "SELECT e FROM Establecimiento e"),
+        @NamedQuery(name = "establecimiento.findAll", query = "select e from Establecimiento e"),
 
         @NamedQuery(name = "estabecimiento.findAllByusuario",
-                query = "SELECT e FROM Establecimiento e " +
+                query = "select e from Establecimiento e " +
                         "inner join fetch e.usuario " +
                         "inner join fetch e.ubicacion " +
                         "INNER JOIN FETCH e.categoria"),
@@ -43,12 +43,11 @@ import java.util.Date;
 
         @NamedQuery(name = "establecimiento.findByEstado",
                 query = "SELECT e FROM Establecimiento e " +
-                        "WHERE e.estado = :estado"),
+                        "WHERE e.estado = :estado")
 
-        @NamedQuery(name = "establecimiento.findByEmpresa",
-                query = "SELECT e FROM Establecimiento e "+
-                        "INNER JOIN FETCH e.empresa emp "+
-                        "WHERE emp.idEmpresa=:empresa ")
+
+
+
 })
 
 public class Establecimiento implements Serializable {
@@ -72,16 +71,18 @@ public class Establecimiento implements Serializable {
     private Ubicacion ubicacion;
     private Categoria categoria;
     private List<Campana> campanaList;
-    private Empresa empresa;
 
     @JoinColumn(name = "idusuario", referencedColumnName = "idusuario")
     @ManyToOne(fetch = FetchType.LAZY)
     public Usuario getUsuario() {
         return usuario;
     }
+
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+
 
     @OneToMany(mappedBy = "establecimiento")
     public List<Campana> getCampanaList() {
@@ -92,7 +93,9 @@ public class Establecimiento implements Serializable {
     }
 
     @OneToMany(mappedBy = "establecimiento")
-    public List<Totem> getTotem() { return totem; }
+    public List<Totem> getTotem() {
+        return totem;
+    }
     public void setTotem(List<Totem> totem) {
         this.totem = totem;
     }
@@ -202,10 +205,6 @@ public class Establecimiento implements Serializable {
         this.ubicacion = ubicacion;
     }
 
-    @JoinColumn(name = "idempresa", referencedColumnName = "idempresa")
-    @ManyToOne(fetch = FetchType.LAZY)
-    public Empresa getEmpresa() { return empresa; }
-    public void setEmpresa(Empresa empresa) { this.empresa = empresa; }
 
     @Override
     public boolean equals(Object o) {

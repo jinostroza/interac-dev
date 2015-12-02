@@ -60,6 +60,7 @@ public class MantenedorCampana implements Serializable {
     private List<Totem> totemCampana;
     private List<Totem> totemsPorEstablecimiento;
     private Long contarTotem;
+    private Long contarCampana;
     private Contenido contenido;
     private List<Contenido> contenidos;
     private List<Categoria> categoriaList;
@@ -263,11 +264,6 @@ public class MantenedorCampana implements Serializable {
             FacesUtil.mostrarMensajeInformativo("Operación Fallida","Algo Ocurrio");
         }
     }
-    @Scheduled(cron="*/5 * * * * ?")
-    public void demoServiceMethod()
-    {
-        System.out.println("Method executed at every 5 seconds. Current time is :: "+ new Date());
-    }
 
     public String ver(int t){
         System.err.println("Totem:" + t);
@@ -278,8 +274,13 @@ public class MantenedorCampana implements Serializable {
 
         contarTotem=logicaTotem.obtenerPorNumero(numTotem);
         return contarTotem;
+    }
+    public Long numeroCampanas(Integer numCampana){
+
+        contarCampana=logicaCampana.obtenerPorEstablecimiento(numCampana);
 
 
+        return contarCampana;
     }
     public void dateStart () {
         Date date = new Date();
@@ -293,10 +294,13 @@ public class MantenedorCampana implements Serializable {
             System.err.println(yearvalue);
             System.err.println(localDate.getDayOfMonth());
             campana.setFechaInicio(date.from(Instant.now()));
-        }else if ((mes.getIdmes()< month) && (year.equals(yearvalue))){
-            FacesUtil.mostrarMensajeInformativo("Error fecha", "no puede elegir una fecha ya pasada");
-        }else if ((mes.getIdmes()>= month) && (yearvalue!=null)){
-            campana.setFechaInicio(getDateStart(mes.getIdmes(),yearvalue));
+        }else if ((mesIni < month) && (year.equals(yearvalue))){
+            FacesUtil.mostrarMensajeError("Error fecha", "no puede elegir una fecha ya pasada");
+        }
+        else if ((mesIni < month) && (year>yearvalue)){
+            campana.setFechaInicio(getDateStart(mesIni, yearvalue));
+        }else if ((mesIni>= month) && (yearvalue!=null)){
+            campana.setFechaInicio(getDateStart(mesIni, yearvalue));
         }
     }
     public void dateEnd (){
@@ -307,14 +311,16 @@ public class MantenedorCampana implements Serializable {
         System.err.println(mes.getIdmes());
         mesFin = mes.getIdmes();
         if (month.equals(mesFin) && (year.equals(yearvalueend))){
-            System.err.println(mes.getIdmes());
+            System.err.println(mesFin);
             System.err.println(yearvalueend);
             System.err.println(localDate.getDayOfMonth());
-            campana.setFechaFin(getDateEnd(mes.getIdmes(), yearvalueend));
-        }else if ((mes.getIdmes()<month) && (year.equals(yearvalueend))){
+            campana.setFechaFin(getDateEnd(mesFin, yearvalueend));
+        }else if ((mesFin<month) && (year.equals(yearvalueend))){
             FacesUtil.mostrarMensajeInformativo("Operación Fallida","No puede programar una fecha anterior a la actual");
-        }else if ((mes.getIdmes()>= month) && (yearvalueend!=null)){
-            campana.setFechaFin(getDateEnd(mes.getIdmes(),yearvalueend));
+        }else if ((mesFin<month) && (year>yearvalueend)){
+            campana.setFechaFin(getDateEnd(mesFin,yearvalueend));
+        }else if ((mesFin>= month) && (yearvalueend!=null)){
+            campana.setFechaFin(getDateEnd(mesFin,yearvalueend));
         }
             }
     // Función que permite el retorno del ultimo día de un mes X
@@ -722,6 +728,14 @@ public class MantenedorCampana implements Serializable {
 
     public void setTotemsPorEstablecimiento(List<Totem> totemsPorEstablecimiento) {
         this.totemsPorEstablecimiento = totemsPorEstablecimiento;
+    }
+
+    public Long getContarCampana() {
+        return contarCampana;
+    }
+
+    public void setContarCampana(Long contarCampana) {
+        this.contarCampana = contarCampana;
     }
 
     public List<Meses> getMesesList() {
