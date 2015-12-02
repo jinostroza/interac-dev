@@ -29,13 +29,18 @@ public class MantenedorEmpresa implements Serializable {
     @Autowired
     private LogicaEmpresa logicaEmpresa;
 
-    @Autowired
-    private LogicaEstablecimiento logicaEstablecimiento;
-
     @PostConstruct
     public void inicio(){
         empresas = logicaEmpresa.obtenerTodos();
         empresa = new Empresa();
+    }
+
+    public List<Empresa> getEmpresas(){
+        return empresas;
+    }
+
+    public void setEmpresas(List<Empresa> empresas){
+        this.empresas = empresas;
     }
 
 }
