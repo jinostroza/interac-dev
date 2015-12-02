@@ -23,19 +23,23 @@ public class UsuarioDAO {
     public void guardar(Usuario u) {
         if (u.getIdUsuario() == null) {
             em.persist(u);
-        } else em.merge(u);
+        }
+        else em.merge(u);
+    }
+
+    public void eliminar(Usuario u){
+        Usuario usuario = em.find(Usuario.class, u.getIdUsuario());
+        em.remove(usuario);
     }
 
     public List<Usuario> obtenerTodos() {
         return em.createNamedQuery("Usuario.findAll").getResultList();
     }
 
-
     public Usuario obtenerPorUsuarioContrasenna(String user, String password) {
         Query q = em.createNamedQuery("Usuario.findByUserAndPassword");
         q.setParameter("username", user);
         q.setParameter("password", password);
-
 
         try {
             return (Usuario) q.getSingleResult();
@@ -52,10 +56,8 @@ public class UsuarioDAO {
             return (Usuario) q.getSingleResult();
         } catch (Exception e) {
             return null;
-
         }
     }
-
 
     public void cambiarClave(String usuario, String clave) {
         Usuario u = (Usuario) em.createNamedQuery("Usuario.findByUser")
@@ -65,14 +67,11 @@ public class UsuarioDAO {
         em.merge(u);
     }
 
-    public void editarPerfil(String usuario, String correo, String empresa) {
+    public void editarPerfil(String usuario, String correo) {
         Usuario u = (Usuario) em.createNamedQuery("Usuario.findByUser")
                 .setParameter("username", usuario).getSingleResult();
         u.setCorreo(correo);
-        u.setEmpresa(empresa);
         em.merge(u);
-
-
     }
 
     public Rol obtenerRol(Usuario usuario) {
@@ -90,6 +89,10 @@ public class UsuarioDAO {
         return em.createNamedQuery("Usuario.findWithRelationship").getResultList();
     }
 
+    public List<Usuario> obtenerPorEmpresa(){
+        return em.createNamedQuery("Usuario.findByEmpresa").getResultList();
+    }
+
     public UsuarioDto obtenerUsuario(String usuario, String password) {
         UsuarioDto u = null;
         try {
@@ -103,12 +106,5 @@ public class UsuarioDAO {
         } catch (Exception e) {
         }
         return u;
-
-
     }
-
-
-
-
-
 }

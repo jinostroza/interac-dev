@@ -44,11 +44,12 @@ import java.util.Date;
 
         @NamedQuery(name = "establecimiento.findByEstado",
                 query = "SELECT e FROM Establecimiento e " +
-                        "WHERE e.estado = :estado")
+                        "WHERE e.estado = :estado"),
 
-
-
-
+        @NamedQuery(name = "establecimiento.findByEmpresa",
+                query = "SELECT e FROM Establecimiento e "+
+                        "INNER JOIN FETCH e.empresa emp "+
+                        "WHERE emp.idEmpresa = :empresa ")
 })
 
 public class Establecimiento implements Serializable {
@@ -72,18 +73,16 @@ public class Establecimiento implements Serializable {
     private Ubicacion ubicacion;
     private Categoria categoria;
     private List<Campana> campanaList;
+    private Empresa empresa;
 
     @JoinColumn(name = "idusuario", referencedColumnName = "idusuario")
     @ManyToOne(fetch = FetchType.LAZY)
     public Usuario getUsuario() {
         return usuario;
     }
-
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
-
 
     @OneToMany(mappedBy = "establecimiento")
     public List<Campana> getCampanaList() {
@@ -110,7 +109,6 @@ public class Establecimiento implements Serializable {
     public void setIdEstablecimiento(Integer idEstablecimiento) {
         this.idEstablecimiento = idEstablecimiento;
     }
-
 
     @Basic
     @Column(name = "desestablecimiento",insertable = true,length = 200)
@@ -204,6 +202,15 @@ public class Establecimiento implements Serializable {
     }
     public void setUbicacion(Ubicacion ubicacion) {
         this.ubicacion = ubicacion;
+    }
+
+    @JoinColumn(name = "empresa", referencedColumnName = "idempresa")
+    @ManyToOne(fetch = FetchType.LAZY)
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 
 

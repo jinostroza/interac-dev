@@ -8,10 +8,10 @@ import java.util.List;
  * Created by jiu on 24-04-15.
  */
 @Entity
-//@Table(name="Usuario")
 @NamedQueries(
         {
                 @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u "),
+
                 @NamedQuery(
                         name = "Usuario.findByUserAndPassword",
                         query = "SELECT u FROM Usuario u WHERE u.username = :username and u.password = :password"
@@ -20,7 +20,6 @@ import java.util.List;
                         name = "Usuario.findByUser",
                         query = "SELECT u FROM Usuario u WHERE u.username = :username"
                 ),
-
 
                 @NamedQuery(
                         name="Usuario.findByCorreo",
@@ -34,8 +33,12 @@ import java.util.List;
                        name="Usuario.findWithRelationship",
                         query="SELECT u FROM Usuario u " +
                                 "LEFT JOIN FETCH u.rol " +
-                                "LEFT JOIN FETCH u.contenido "
-                )
+                                "LEFT JOIN FETCH u.contenido "),
+
+                @NamedQuery(name = "usuario.findByEmpresa",
+                        query = "SELECT u FROM Usuario u "+
+                                "INNER JOIN FETCH u.empresa emp "+
+                                "WHERE emp.idEmpresa=:empresa ")
         }
 )
 public class Usuario implements Serializable {
@@ -43,12 +46,12 @@ public class Usuario implements Serializable {
     private String username;
     private String password;
     private String correo;
-    private String empresa;
 
-    // relaciones
-
+    // Relaciones
     private Rol rol;
     private List<Contenido> contenido;
+    private List<Establecimiento> establecimiento;
+    private Empresa empresa;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -76,7 +79,6 @@ public class Usuario implements Serializable {
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -86,39 +88,27 @@ public class Usuario implements Serializable {
     public String getCorreo() {
         return correo;
     }
-
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-
-    @Basic
-    @Column(name = "empresa", nullable = true, insertable = true, updatable = true, length = 45)
-    public String getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(String empresa) {
-        this.empresa = empresa;
-    }
-
-
-
 
     @OneToMany(mappedBy="usuario")
     public List<Contenido> getContenido() {
         return contenido;
     }
-
     public void setContenido(List<Contenido> contenido) {
         this.contenido = contenido;
     }
 
-   @JoinColumn(name = "idrol",referencedColumnName = "id_rol",nullable = false , columnDefinition ="4" )
+    @OneToMany(mappedBy="usuario")
+    public List<Establecimiento> getEstablecimiento() { return establecimiento; }
+    public void setEstablecimiento ( List<Establecimiento> establecimiento ) { this.establecimiento = establecimiento; }
+
+    @JoinColumn(name = "idrol",referencedColumnName = "id_rol",nullable = false , columnDefinition ="4" )
     @ManyToOne(fetch = FetchType.LAZY)
     public Rol getRol() {
         return rol;
     }
-
     public void setRol(Rol rol) {
         if (rol == null) {
             rol = new Rol();
@@ -126,6 +116,14 @@ public class Usuario implements Serializable {
         }
         this.rol=rol;
     }
+
+    @JoinColumn(name = "empresa", referencedColumnName = "idempresa")
+    @ManyToOne(fetch = FetchType.LAZY)
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+    public void setEmpresa(Empresa empresa) { this.empresa = empresa; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

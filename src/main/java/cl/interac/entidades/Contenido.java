@@ -39,12 +39,8 @@ import java.util.List;
                     query="SELECT c FROM Contenido c " +
                           "LEFT JOIN FETCH c.campanaList ca "
                            )
-
-
-
-
-
 })
+
 public class Contenido implements Serializable{
     private Integer idcontenido;
     private String path;

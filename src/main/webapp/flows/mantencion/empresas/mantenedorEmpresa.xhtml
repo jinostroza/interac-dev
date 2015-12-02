@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h3 style="margin-top:0">Mantenedor Empresas</h3>
+    <h:panelGrid id="empresasGrid" columns="2" cellpadding="10">
+        <br/>
+        <p:dataTable id="empresas" var="local" widgetVar="dtEmpresas" value="#{mantenedorEmpresa.empresas}">
+            <p:column headerText="Nombre" filterBy="#{local.nombreEmpresa}">
+                <h:outputText value="#{local.nombreEmpresa}" />
+            </p:column>
+            <p:column headerText="Razon social" filterBy="#{local.razonSocial}">
+                <h:outputText value="#{local.razonSocial}" />
+            </p:column>
+            <p:column headerText="RUT" filterBy="#{local.rut}">
+                <h:outputText value="#{local.rut}" />
+            </p:column>
+            <p:column headerText="Dirección" filterBy="#{local.direccion}">
+                <h:outputText value="#{local.direccion}" />
+            </p:column>
+            <p:column headerText="Telefono" filterBy="#{local.telefono}">
+                <h:outputText value="#{local.telefono}" />
+            </p:column>
+            <!-- Eliminar -->
+            <p:column>
+                <p:commandButton id="eliminarEmpresa" update="empresas" value="Eliminar">
+                        <p:confirm header="Por favor confirme" message="Desea eliminar la empresa?" icon="ui-icon-alert" />
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                            <p:commandButton value="Si" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" action="#{mantenedorEmpresa.eliminar(local)}" />
+                            <p:commandButton value="No" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
+                </p:commandButton>
+            </p:column>
+            <!-- Editar -->
+            <p:column>
+            </p:column>
+        </p:dataTable>
+    </h:panelGrid>
+    <p:commandButton id="agregarEmpresa" value="Agregar" type="button">
+        <p:overlayPanel id="agregarEmpresaPanel" for="agregarEmpresa" showEvent="click" hideEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
+            <h:outputLabel value="Nombre"/>
+            <h:inputText required="true" requiredMessage="Inserte nombre" styleClass="form-control" value="#{mantenedorEmpresa.empresa.nombreEmpresa}"/>
+            <h:outputLabel value="Razon social"/>
+            <h:inputText required="true" requiredMessage="Inserte razon social" styleClass="form-control" value="#{mantenedorEmpresa.empresa.razonSocial}"/>
+            <h:outputLabel value="RUT"/>
+            <h:inputText required="true" requiredMessage="Inserte rut" styleClass="form-control" value="#{mantenedorEmpresa.empresa.rut}"/>
+            <h:outputLabel value="Direccion"/>
+            <h:inputText required="true" requiredMessage="Inserte direccion" styleClass="form-control" value="#{mantenedorEmpresa.empresa.direccion}"/>
+            <h:outputLabel value="Telefono"/>
+            <h:inputText required="true" requiredMessage="Inserte telefono" styleClass="form-control" value="#{mantenedorEmpresa.empresa.telefono}"/>
+            <p:commandButton id="btnAgregarEmpresa" for="agregarEmpresaPanel" value="Agregar" update="empresas"
+                             action="#{mantenedorEmpresa.agregarEmpresa()}"/>
+        </p:overlayPanel>
+    </p:commandButton>
+</ui:composition>

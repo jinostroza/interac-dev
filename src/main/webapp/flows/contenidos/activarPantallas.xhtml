@@ -6,7 +6,6 @@
                 template="/templates/default.xhtml">
     <ui:define name="contenido">
         <h1>Totems por activar</h1>
-        <p:outputLabel value="#{mantenedorTotems.obtenerFecha(1, 2016)}" />
         <p:dataTable id="dttotems"  var="totes" value="#{mantenedorTotems.totemPorUsuario}" paginator="true" rows="6">
             <f:facet name="header">Hola mundo</f:facet>
             <p:column headerText="Establecimiento">

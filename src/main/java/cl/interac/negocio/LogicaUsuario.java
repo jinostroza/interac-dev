@@ -27,8 +27,11 @@ public class LogicaUsuario {
     private UsuarioDAO usuarioDAO;
 
     @Transactional(readOnly = false)
-    public void guardar(Usuario usuario) {
-        usuarioDAO.guardar(usuario);
+    public void guardar(Usuario usuario) { usuarioDAO.guardar(usuario); }
+
+    @Transactional(readOnly = false)
+    public void eliminar(Usuario usuario) {
+        usuarioDAO.eliminar(usuario);
     }
 
     @Transactional(readOnly = true)
@@ -61,7 +64,7 @@ public class LogicaUsuario {
 
     @Transactional(readOnly = false)
     public void editarPerfil(String usuario,String correo, String empresa){
-        usuarioDAO.editarPerfil(usuario,correo,empresa);
+        usuarioDAO.editarPerfil(usuario,correo);
     }
     @Transactional(readOnly = true)
     public List<Usuario> obtenerMisContenidos(){
