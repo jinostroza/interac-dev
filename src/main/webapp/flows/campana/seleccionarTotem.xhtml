@@ -33,11 +33,12 @@
                 </header>
 
 
-
+                <br></br>
+                <br></br>
                 <div class="row">
 
-                    <div class="col-lg-6"></div>
-                    <p:panelGrid columns="4" layout="grid" style="width: 40%" >
+                    <div class="col-lg-4">
+                    <p:panelGrid columns="4"  >
                         <h:outputLabel for="inicio" value="Inicio Campaña:" />
                         <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
                         <p:calendar  id="inicio" locale="es" pattern="dd/MM/yyyy"
@@ -58,13 +59,16 @@
                         <p:tooltip for="inicio" value="Indique la fecha de comienzo para su campaña" trackMouse="true" ></p:tooltip>
                         <p:tooltip for="fin" value="Indique la fecha de termino para su campaña" trackMouse="true" ></p:tooltip>
                     </p:panelGrid>
-
-                    <div class="col-lg-4" style="float: right;width: 40%">
+                     </div>
+                    <div class="col-lg-offset-5">
                         <p:calendar id="inline" locale="es" mindate="#{mantenedorCampana.campana.fechaInicio}"
                                     maxdate="#{mantenedorCampana.campana.fechaFin}" mode="inline"/>
+                    </div>
+
+
                         <br></br>
 
-                    </div>
+
 
                 </div>
 

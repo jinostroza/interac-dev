@@ -31,7 +31,7 @@ public class CronService {
     private PropertyReader propertyReader;
 
 
-    @Scheduled(cron="0 50 15 * * ?")
+    @Scheduled(cron="0 0 9  * * ?")
     public void eliminarFicheroProgramado(){
         campanasvencidas = logicaCampana.obtenerPorFecha(Date.from(Instant.now()));
 

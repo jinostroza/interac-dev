@@ -156,7 +156,7 @@ public class MantenedorCampana implements Serializable {
                 contenido.setPath(pathTemporal);
 
             }else if ("produccion".equals(ambiente)) {
-                String carpetaPrincipal = "demo2";
+                String carpetaPrincipal = "interac";
 
                 String nombreArchivo = pathTemporal.substring(pathTemporal.lastIndexOf('.'));
 
@@ -164,8 +164,9 @@ public class MantenedorCampana implements Serializable {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd.hhmmss");
 
                 nombreArchivo = sdf.format(new Date()) + nombreArchivo;
-                Files.copy(Paths.get(pathTemporal), Paths.get("/home/ec2-user/media/"+carpetaPrincipal+"/"+ nombreArchivo));
                 contenido.setPath(nombreArchivo);
+                Files.copy(Paths.get(pathTemporal), Paths.get("/home/ec2-user/media/" + carpetaPrincipal+"/"+ nombreArchivo));
+
             }
 
             contenido.setUsuario(userSession.getUsuario());
@@ -235,12 +236,13 @@ public class MantenedorCampana implements Serializable {
 
    //correo
        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-         String[] replicas = new String[0];
-         String[] alertas = new String[0];
-        alertas[0] = establecimientoseleccionado.getUsuario().getCorreo();
-        replicas[0] = userSession.getUsuario().getCorreo();
-        mailSender.send(replicas,"Interac",mensajeAnunciante);
+        String[] replicas = {establecimientoseleccionado.getUsuario().getCorreo()};
+        String[] alertas = {"joacoch@hotmail.cl",userSession.getUsuario().getCorreo()};
+
+
+        mailSender.send(alertas,"Interac",mensajeAnunciante);
         mailSender.send(replicas,"Interac",mensajeLocal);
+
 
             FacesUtil.mostrarMensajeInformativo("operacion exitosa", "se ha creado tu campaña");
     }

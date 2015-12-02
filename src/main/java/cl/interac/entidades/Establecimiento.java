@@ -39,6 +39,7 @@ import java.util.Date;
         @NamedQuery(name = "establecimiento.findtotem",
                 query = "SELECT e FROM Establecimiento e " +
                         "INNER JOIN FETCH e.ubicacion ub " +
+                        "INNER JOIN FETCH e.usuario u " +
                         "INNER JOIN FETCH e.categoria ca "),
 
         @NamedQuery(name = "establecimiento.findByEstado",
