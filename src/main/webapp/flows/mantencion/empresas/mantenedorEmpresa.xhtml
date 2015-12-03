@@ -35,10 +35,26 @@
             </p:column>
             <!-- Editar -->
             <p:column>
+                <p:commandButton id="editarEmpresa" value="Modificar" update="empresas">
+                <p:overlayPanel id="editarEmpresaPanel" for="editarEmpresa" showEvent="click" hideEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
+                    <h:outputLabel value="Nombre"/>
+                    <h:inputText required="true" requiredMessage="Inserte nombre" styleClass="form-control" value="#{local.nombreEmpresa}"/>
+                    <h:outputLabel value="Razon social"/>
+                    <h:inputText required="true" requiredMessage="Inserte razon social" styleClass="form-control" value="#{local.razonSocial}"/>
+                    <h:outputLabel value="RUT"/>
+                    <h:inputText required="true" requiredMessage="Inserte rut" styleClass="form-control" value="#{local.rut}"/>
+                    <h:outputLabel value="Direccion"/>
+                    <h:inputText required="true" requiredMessage="Inserte direccion" styleClass="form-control" value="#{local.direccion}"/>
+                    <h:outputLabel value="Telefono"/>
+                    <h:inputText required="true" requiredMessage="Inserte telefono" styleClass="form-control" value="#{local.telefono}"/>
+                    <p:commandButton id="btnEditarEmpresa" for="editarEmpresaPanel" value="Editar" update="empresas"
+                                     action="#{mantenedorEmpresa.editarEmpresa(local)}"/>
+                </p:overlayPanel>
+                </p:commandButton>
             </p:column>
         </p:dataTable>
     </h:panelGrid>
-    <p:commandButton id="agregarEmpresa" value="Agregar" type="button">
+    <p:commandButton id="agregarEmpresa" value="Agregar" type="button" update="empresas">
         <p:overlayPanel id="agregarEmpresaPanel" for="agregarEmpresa" showEvent="click" hideEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
             <h:outputLabel value="Nombre"/>
             <h:inputText required="true" requiredMessage="Inserte nombre" styleClass="form-control" value="#{mantenedorEmpresa.empresa.nombreEmpresa}"/>
@@ -50,7 +66,7 @@
             <h:inputText required="true" requiredMessage="Inserte direccion" styleClass="form-control" value="#{mantenedorEmpresa.empresa.direccion}"/>
             <h:outputLabel value="Telefono"/>
             <h:inputText required="true" requiredMessage="Inserte telefono" styleClass="form-control" value="#{mantenedorEmpresa.empresa.telefono}"/>
-            <p:commandButton id="btnAgregarEmpresa" for="agregarEmpresaPanel" value="Agregar" update="empresas"
+            <p:commandButton id="btnAgregarEmpresa" for="agregarEmpresaPanel" value="Agregar" update="empresasGrid"
                              action="#{mantenedorEmpresa.agregarEmpresa()}"/>
         </p:overlayPanel>
     </p:commandButton>

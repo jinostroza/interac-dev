@@ -43,9 +43,12 @@ public class MantenedorEmpresa implements Serializable {
     public void eliminar(Empresa empresa){
         logicaEmpresa.eliminar(empresa);
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha eliminado la empresa [" + empresa.getNombreEmpresa() + "]");
-}
+    }
 
-
+    public void editarEmpresa(Empresa empresa){
+        logicaEmpresa.guardar(empresa);
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado la empresa [" + empresa.getNombreEmpresa() + "]");
+    }
 
     public Empresa getEmpresa() { return empresa; }
     public void setEmpresa(Empresa empresa) { this.empresa = empresa; }
