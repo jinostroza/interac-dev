@@ -20,212 +20,971 @@ public class Constantes implements Serializable {
     private String claveCorreo = "interac2015";
     private String servidorCorreo = "mx1.nixiweb.com";
     private Integer puertoCorreo = 587;
-    private String headerCorreo = "<!DOCTYPE html>\n" +
+
+
+    private String headerCorreo = "<!doctype html>\n" +
             "<html>\n" +
             "<head>\n" +
-            "    <title></title>\n" +
-            "     <style type=\"text/css\">\n" +
-            "      body{\n" +
-            "        background:#dddddd;\n" +
-            "      }\n" +
+            "<meta name=\"viewport\" content=\"width=device-width\">\n" +
+            "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n" +
+            "<title>Really Simple HTML Email Template</title>\n" +
+            "<style>\n" +
+            "/* -------------------------------------\n" +
+            "    GLOBAL\n" +
+            "------------------------------------- */\n" +
+            "* {\n" +
+            "  font-family: \"Helvetica Neue\", \"Helvetica\", Helvetica, Arial, sans-serif;\n" +
+            "  font-size: 100%;\n" +
+            "  line-height: 1.6em;\n" +
+            "  margin: 0;\n" +
+            "  padding: 0;\n" +
+            "}\n" +
+            "img {\n" +
+            "  max-width: 600px;\n" +
+            "  width: 100%;\n" +
+            "}\n" +
+            "body {\n" +
+            "  -webkit-font-smoothing: antialiased;\n" +
+            "  height: 100%;\n" +
+            "  -webkit-text-size-adjust: none;\n" +
+            "  width: 100% !important;\n" +
+            "}\n" +
+            "/* -------------------------------------\n" +
+            "    ELEMENTS\n" +
+            "------------------------------------- */\n" +
+            "a {\n" +
+            "  color: #348eda;\n" +
+            "}\n" +
+            ".btn-primary {\n" +
+            "  Margin-bottom: 10px;\n" +
+            "  width: auto !important;\n" +
+            "}\n" +
+            ".btn-primary td {\n" +
+            "  background-color: #E52721; \n" +
+            "  border-radius: 25px;\n" +
+            "  font-family: \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", sans-serif; \n" +
+            "  font-size: 14px; \n" +
+            "  text-align: center;\n" +
+            "  vertical-align: top; \n" +
+            "}\n" +
+            ".btn-primary td a {\n" +
+            "  background-color: #348eda;\n" +
+            "  border: solid 1px #348eda;\n" +
+            "  border-radius: 25px;\n" +
+            "  border-width: 10px 20px;\n" +
+            "  display: inline-block;\n" +
+            "  color: #ffffff;\n" +
+            "  cursor: pointer;\n" +
+            "  font-weight: bold;\n" +
+            "  line-height: 2;\n" +
+            "  text-decoration: none;\n" +
+            "}\n" +
+            ".last {\n" +
+            "  margin-bottom: 0;\n" +
+            "}\n" +
+            ".first {\n" +
+            "  margin-top: 0;\n" +
+            "}\n" +
+            ".padding {\n" +
+            "  padding: 10px 0;\n" +
+            "}\n" +
+            "/* -------------------------------------\n" +
+            "    BODY\n" +
+            "------------------------------------- */\n" +
+            "table.body-wrap {\n" +
+            "  padding: 20px;\n" +
+            "  width: 100%;\n" +
+            "}\n" +
+            "table.body-wrap .container {\n" +
+            "  border: 1px solid #f0f0f0;\n" +
+            "}\n" +
+            "/* -------------------------------------\n" +
+            "    FOOTER\n" +
+            "------------------------------------- */\n" +
+            "table.footer-wrap {\n" +
+            "  clear: both !important;\n" +
+            "  width: 100%;  \n" +
+            "}\n" +
+            ".footer-wrap .container p {\n" +
+            "  color: #666666;\n" +
+            "  font-size: 12px;\n" +
+            "  \n" +
+            "}\n" +
+            "table.footer-wrap a {\n" +
+            "  color: #999999;\n" +
+            "}\n" +
+            "/* -------------------------------------\n" +
+            "    TYPOGRAPHY\n" +
+            "------------------------------------- */\n" +
+            "h1, \n" +
+            "h2, \n" +
+            "h3 {\n" +
+            "  color: #111111;\n" +
+            "  font-family: \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", sans-serif;\n" +
+            "  font-weight: 200;\n" +
+            "  line-height: 1.2em;\n" +
+            "  margin: 40px 0 10px;\n" +
+            "}\n" +
+            "h1 {\n" +
+            "  font-size: 36px;\n" +
+            "}\n" +
+            "h2 {\n" +
+            "  font-size: 28px;\n" +
+            "}\n" +
+            "h3 {\n" +
+            "  font-size: 22px;\n" +
+            "}\n" +
+            "p, \n" +
+            "ul, \n" +
+            "ol {\n" +
+            "  font-size: 14px;\n" +
+            "  font-weight: normal;\n" +
+            "  margin-bottom: 10px;\n" +
+            "}\n" +
+            "ul li, \n" +
+            "ol li {\n" +
+            "  margin-left: 5px;\n" +
+            "  list-style-position: inside;\n" +
+            "}\n" +
+            "/* ---------------------------------------------------\n" +
+            "    RESPONSIVENESS\n" +
+            "------------------------------------------------------ */\n" +
+            "/* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */\n" +
+            ".container {\n" +
+            "  clear: both !important;\n" +
+            "  display: block !important;\n" +
+            "  Margin: 0 auto !important;\n" +
+            "  max-width: 600px !important;\n" +
+            "}\n" +
+            "/* Set the padding on the td rather than the div for Outlook compatibility */\n" +
+            ".body-wrap .container {\n" +
+            "  padding: 20px;\n" +
+            "}\n" +
+            "/* This should also be a block element, so that it will fill 100% of the .container */\n" +
+            ".content {\n" +
+            "  display: block;\n" +
+            "  margin: 0 auto;\n" +
+            "  max-width: 600px;\n" +
+            "}\n" +
+            "/* Let's make sure tables in the content area are 100% wide */\n" +
+            ".content table {\n" +
+            "  width: 100%;\n" +
+            "}\n" +
+            "</style>\n" +
+            "</head>\n" +
             "\n" +
-            "      #header{\n" +
-            "        width:70%;\n" +
-            "        height:300px ;\n" +
-            "        background-color:red; \n" +
-            "        }\n" +
-            "       #banner{\n" +
-            "        background-color:white;\n" +
-            "        margin-left:100px; \n" +
-            "        font: Arial;\n" +
-            "        font-size:18pt;\n" +
-            "       } \n" +
-            "      #tabla {\n" +
-            "        border: solid 1px;\n" +
-            "        background-color: #f4f4f4;\n" +
-            "        font: Arial;\n" +
-            "      }\n" +
-            "     \n" +
-            "       tr td{\n" +
-            "        border: solid 1px;\n" +
-            "         font-family:Arial;\n" +
+            "<body bgcolor=\"#f6f6f6\">\n" +
             "\n" +
-            "      }\n" +
-            "      h1{\n" +
-            "        color:white;\n" +
-            "        font:150% Arial ;\n" +
-            "      }\n" +
+            "<!-- body -->\n" +
+            "<table class=\"body-wrap\" bgcolor=\"#f6f6f6\">\n" +
+            "  <tr>\n" +
+            "    <td></td>\n" +
+            "    <td class=\"container\" bgcolor=\"#FFFFFF\">\n" +
             "\n" +
-            "     </style>\n" +
-            "    \n" +
-            " <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n" +
+            "      <!-- content -->\n" +
+            "      <div class=\"content\">\n" +
+            "      <table>\n" +
+            "        <tr>\n" +
+            "          <td>\n" +
             "\n" +
-            "</head>\n"+
-            "<body >\n"+
-            "    <div id=\"hearder\" style='background-color:red;'>\n" +
-            "        <img style='background-color:red;' \n" +
-            "         src='http://www.interac.cl/wp-content/themes/theme-interac/img/logo/interac-blanco.png'>\n" +
-            "         <h1>RESUMEN EJEMPLO</h1>\n" +
-            "    </div> \n"+
-            "\n" +
-            "    <table id=\"tabla\" width=\"60%\"   height=\"500px\">\n" +
-            "       <tr >\n" +
-            "          <td colspan=\"3px\">\n" +
-            "             <h2>Descripcion de su Campaña</h2>\n" +
+            "          \n" +
+            "         \n" +
+            "            <h1>Se ha subido Tu campaña</h1>\n" +
+            "            <p>Una vez subida tu campaña debes esperar la aprobación del Esablecimiento</p>\n" +
+            "           \n" +
+            "            <!-- button -->\n" +
+            "            <table class=\"btn-primary\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n" +
+            "              <tr>\n" +
+            "                <td>\n" +
+            "                  <img src=\"http://www.interac.cl/wp-content/themes/theme-interac/img/logo/interac-blanco.png\"/>\n" +
+            "                </td>\n" +
+            "              </tr>\n" +
+            "            </table>\n" +
+            "            <!-- /button -->\n" +
+            "            <table class=\"body-wrap\">\n" +
+            "               <tr>\n"  +
+            "                   <td>\n " +
+            "                    <h3>ID</h3>\n" +
+            "                 </td>\n        +" +
+            "                 <td>\n" +
+            "                    <h3>Establecimiento</h3>\n" +
+            "                 </td>\n" +
+            "                  <td>\n" +
+            "                      <h3>Nº Pantallas</h3>\n" +
+            "                  </td>  \n" +
+            "                  <td>\n" +
+            "                     <p>Valor Mesual</p>\n" +
+            "                   </td>\n" +
+            "                  <td>\n" +
+            "                     <h3>Valor de Campaña</h3>\n" +
+            "                  </td>\n" +
+            "               </tr>\n" +
+            "               <tr>\n" +
+            "                  <td>" +
+            "                    <p>$id</p>" +
+            "                 </td>\n "+
+            "                <td>\n" +
+            "                  <p>$establecimiento</p>\n" +
+            "                </td>\n" +
+            "                <td>\n" +
+            "                  <p>$numerodePantallas</p>\n" +
+            "                </td>\n" +
+            "                <td>\n        " +
+            "                   <p>$valormensual</p>\n    " +
+            "                </td>\n"+
+            "                <td>\n" +
+            "                  <p>$valordecampañas</p>\n" +
+            "                </td>\n" +
+            "               </tr>\n" +
+            "               \n" +
+            "            \n" +
+            "            </table>\n" +
+            "          \n" +
             "          </td>\n" +
-            "       </tr>\n" +
-            "       \n" +
-            "         <tr>\n" +
-            "             <td>Rango de campaña</td>\n" +
-            "             <td>Desde:$fechainicio - hasta:$fechafin  Total de dias : </td> \n" +
-            "             <td>$dias</td>                        \n" +
             "        </tr>\n" +
-            "        <tr>\n" +
-            "             <td>Pasadas</td> \n" +
-            "             <td>Pasadas Por Dias</td>\n" +
-            "             <td>$pasadas</td>      \n" +
-            "\n" +
-            "        </tr> \n" +
-            "        <tr >\n" +
-            "            <td >Pantallas</td>                     \n" +
-            "             <td>Numero de pantallas</td>                        \n" +
-            "            <td >$cantPant</td>\n" +
-            "        </tr>\n" +
-            "        \n" +
-            "        <tr>\n" +
-            "            <td>Precio</td>\n" +
-            "            <td>precio por pasada</td>\n" +
-            "            <td>$$precio</td>\n" +
-            "        </tr>  \n" +
-            "\n" +
-            "        <tr>\n" +
-            "            <td>      </td>\n" +
-            "            <td>Total</td>  \n" +
-            "\n" +
-            "            <td>$$total</td>\n" +
-            "        </tr>\n" +
-            "\n" +
-            "       \n" +
-            "\n" +
+            "      </table>\n" +
+            "      </div>\n" +
+            "      <!-- /content -->\n" +
+            "      \n" +
+            "    </td>\n" +
+            "    <td></td>\n" +
+            "  </tr>\n" +
             "</table>\n" +
-            "      <a width=\"300px\" height=\"300px\" >\n" +
-            "      <img src=\"http://logovector.net/wp-content/uploads/2011/05/270184-webpay-logo.jpg\"/>\n" +
-            "      </a> \n" +
-            "   \n" +
+            "<!-- /body -->\n" +
+            "\n" +
+            "<!-- footer -->\n" +
+            "<table class=\"footer-wrap\">\n" +
+            "  <tr>\n" +
+            "    <td></td>\n" +
+            "    <td class=\"container\">\n" +
+            "      \n" +
+            "      <!-- content -->\n" +
+            "      <div class=\"content\">\n" +
+            "        <table>\n" +
+            "          <tr>\n" +
+            "            <td align=\"center\">\n" +
+            "              \n" +
+            "      <p>Telefono (56-32) 227 41 51</p>\n" +
+            "      <p>contacto@interac.cl Brasil con Freire 2147, Facultad de Ingeniería PUCV, Valparaíso - Chile</p>\n" +
+            "            </td>\n" +
+            "          </tr>\n" +
+            "        </table>\n" +
+            "      </div>\n" +
+            "      <!-- /content -->\n" +
+            "      \n" +
+            "    </td>\n" +
+            "    <td></td>\n" +
+            "  </tr>\n" +
+            "</table>\n" +
+            "<!-- /footer -->\n" +
+            "\n" +
             "</body>\n" +
             "</html>";
 
 
 
 
-    private String alertas="<!DOCTYPE html>\n" +
+    private String alertas="<!doctype html>\n" +
             "<html>\n" +
             "<head>\n" +
-            "    <title></title>\n" +
-            "     <style type=\"text/css\">\n" +
-            "      body{\n" +
-            "        background:#dddddd;\n" +
-            "      }\n" +
-            "\n" +
-            "      #header{\n" +
-            "        width:70%;\n" +
-            "        height:300px ;\n" +
-            "        background-color:red; \n" +
-            "        }\n" +
-            "       #banner{\n" +
-            "        background-color:white;\n" +
-            "        margin-left:100px; \n" +
-            "        font: Arial;\n" +
-            "        font-size:18pt;\n" +
-            "       } \n" +
-            "      #tabla {\n" +
-            "        border: solid 1px;\n" +
-            "        background-color: #f4f4f4;\n" +
-            "        font: Arial;\n" +
-            "      }\n" +
-            "     \n" +
-            "       tr td{\n" +
-            "        border: solid 1px;\n" +
-            "         font-family:Arial;\n" +
-            "\n" +
-            "      }\n" +
-            "      h1{\n" +
-            "        color:white;\n" +
-            "        font:150% Arial ;\n" +
-            "      }\n" +
-            "\n" +
-            "     </style>\n" +
-            "    \n" +
-            " <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n" +
-            "\n" +
+            "<meta name=\"viewport\" content=\"width=device-width\">\n" +
+            "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n" +
+            "<title>Really Simple HTML Email Template</title>\n" +
+            "<style>\n" +
+            "/* -------------------------------------\n" +
+            "    GLOBAL\n" +
+            "------------------------------------- */\n" +
+            "* {\n" +
+            "  font-family: \"Helvetica Neue\", \"Helvetica\", Helvetica, Arial, sans-serif;\n" +
+            "  font-size: 100%;\n" +
+            "  line-height: 1.6em;\n" +
+            "  margin: 0;\n" +
+            "  padding: 0;\n" +
+            "}\n" +
+            "img {\n" +
+            "  max-width: 600px;\n" +
+            "  width: 100%;\n" +
+            "}\n" +
+            "body {\n" +
+            "  -webkit-font-smoothing: antialiased;\n" +
+            "  height: 100%;\n" +
+            "  -webkit-text-size-adjust: none;\n" +
+            "  width: 100% !important;\n" +
+            "}\n" +
+            "/* -------------------------------------\n" +
+            "    ELEMENTS\n" +
+            "------------------------------------- */\n" +
+            "a {\n" +
+            "  color: #348eda;\n" +
+            "}\n" +
+            ".btn-primary {\n" +
+            "  Margin-bottom: 10px;\n" +
+            "  width: auto !important;\n" +
+            "}\n" +
+            ".btn-primary td {\n" +
+            "  background-color: #E52721; \n" +
+            "  border-radius: 25px;\n" +
+            "  font-family: \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", sans-serif; \n" +
+            "  font-size: 14px; \n" +
+            "  text-align: center;\n" +
+            "  vertical-align: top; \n" +
+            "}\n" +
+            ".btn-primary td a {\n" +
+            "  background-color: #348eda;\n" +
+            "  border: solid 1px #348eda;\n" +
+            "  border-radius: 25px;\n" +
+            "  border-width: 10px 20px;\n" +
+            "  display: inline-block;\n" +
+            "  color: #ffffff;\n" +
+            "  cursor: pointer;\n" +
+            "  font-weight: bold;\n" +
+            "  line-height: 2;\n" +
+            "  text-decoration: none;\n" +
+            "}\n" +
+            ".last {\n" +
+            "  margin-bottom: 0;\n" +
+            "}\n" +
+            ".first {\n" +
+            "  margin-top: 0;\n" +
+            "}\n" +
+            ".padding {\n" +
+            "  padding: 10px 0;\n" +
+            "}\n" +
+            "/* -------------------------------------\n" +
+            "    BODY\n" +
+            "------------------------------------- */\n" +
+            "table.body-wrap {\n" +
+            "  padding: 20px;\n" +
+            "  width: 100%;\n" +
+            "}\n" +
+            "table.body-wrap .container {\n" +
+            "  border: 1px solid #f0f0f0;\n" +
+            "}\n" +
+            "/* -------------------------------------\n" +
+            "    FOOTER\n" +
+            "------------------------------------- */\n" +
+            "table.footer-wrap {\n" +
+            "  clear: both !important;\n" +
+            "  width: 100%;  \n" +
+            "}\n" +
+            ".footer-wrap .container p {\n" +
+            "  color: #666666;\n" +
+            "  font-size: 12px;\n" +
+            "  \n" +
+            "}\n" +
+            "table.footer-wrap a {\n" +
+            "  color: #999999;\n" +
+            "}\n" +
+            "/* -------------------------------------\n" +
+            "    TYPOGRAPHY\n" +
+            "------------------------------------- */\n" +
+            "h1, \n" +
+            "h2, \n" +
+            "h3 {\n" +
+            "  color: #111111;\n" +
+            "  font-family: \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", sans-serif;\n" +
+            "  font-weight: 200;\n" +
+            "  line-height: 1.2em;\n" +
+            "  margin: 40px 0 10px;\n" +
+            "}\n" +
+            "h1 {\n" +
+            "  font-size: 36px;\n" +
+            "}\n" +
+            "h2 {\n" +
+            "  font-size: 28px;\n" +
+            "}\n" +
+            "h3 {\n" +
+            "  font-size: 22px;\n" +
+            "}\n" +
+            "p, \n" +
+            "ul, \n" +
+            "ol {\n" +
+            "  font-size: 14px;\n" +
+            "  font-weight: normal;\n" +
+            "  margin-bottom: 10px;\n" +
+            "}\n" +
+            "ul li, \n" +
+            "ol li {\n" +
+            "  margin-left: 5px;\n" +
+            "  list-style-position: inside;\n" +
+            "}\n" +
+            "/* ---------------------------------------------------\n" +
+            "    RESPONSIVENESS\n" +
+            "------------------------------------------------------ */\n" +
+            "/* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */\n" +
+            ".container {\n" +
+            "  clear: both !important;\n" +
+            "  display: block !important;\n" +
+            "  Margin: 0 auto !important;\n" +
+            "  max-width: 600px !important;\n" +
+            "}\n" +
+            "/* Set the padding on the td rather than the div for Outlook compatibility */\n" +
+            ".body-wrap .container {\n" +
+            "  padding: 20px;\n" +
+            "}\n" +
+            "/* This should also be a block element, so that it will fill 100% of the .container */\n" +
+            ".content {\n" +
+            "  display: block;\n" +
+            "  margin: 0 auto;\n" +
+            "  max-width: 600px;\n" +
+            "}\n" +
+            "/* Let's make sure tables in the content area are 100% wide */\n" +
+            ".content table {\n" +
+            "  width: 100%;\n" +
+            "}\n" +
+            "</style>\n" +
             "</head>\n" +
-            "<body >\n" +
-            "    <div id=\"hearder\" style='background-color:red;'>\n" +
-            "        <img style='background-color:red;' \n" +
-            "         src='http://www.interac.cl/wp-content/themes/theme-interac/img/logo/interac-blanco.png'>\n" +
-            "         <h1>RESUMEN EJEMPLO</h1>\n" +
-            "    </div>" +
-            "<table width=\"500px\" height=\"250px\" background-color=\"#e7e7e7\" >\n" +
-            "    <tr>\n" +
-            "        <th colspan=\"2\">Detalles<th>\n" +
-            "    </tr>\n" +
-            "    <tr>\n" +
-            "        <td>Fecha</td>\n" +
-            "        <td>$fecha</td>        \n" +
-            "    </tr>\n" +
-            "    <tr>\n" +
-            "        <td>Pantallas</td>\n" +
-            "        <td colspan=\"2\">\n" +
-            "            <ul>\n" +
-            "              <li>$pantallas</li>\n" +
-            "                          \n" +
-            "            </ul>\n" +
-            "        </td>\n" +
             "\n" +
-            "    </tr>\n" +
-            "    <tr>\n" +
-            "        <td>Pasadas</td>\n" +
-            "        <td>$pasada</td>\n" +
-            "    </tr>\n" +
-            "</table>" +
-            "</body>" +
-            "</html" ;
+            "<body bgcolor=\"#f6f6f6\">\n" +
+            "\n" +
+            "<!-- body -->\n" +
+            "<table class=\"body-wrap\" bgcolor=\"#f6f6f6\">\n" +
+            "  <tr>\n" +
+            "    <td></td>\n" +
+            "    <td class=\"container\" bgcolor=\"#FFFFFF\">\n" +
+            "\n" +
+            "      <!-- content -->\n" +
+            "      <div class=\"content\">\n" +
+            "      <table>\n" +
+            "        <tr>\n" +
+            "          <td>\n" +
+            "\n" +
+            "          \n" +
+            "         \n" +
+            "            <h1>Tienes una Campaña Pendiente</h1>\n" +
+            "            <p>Un Anunciante quiere publicar en tu Establecimiento</p>\n" +
+            "           \n" +
+            "            <!-- button -->\n" +
+            "            <table class=\"btn-primary\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n" +
+            "              <tr>\n" +
+            "                <td>\n" +
+            "                  <img src=\"http://www.interac.cl/wp-content/themes/theme-interac/img/logo/interac-blanco.png\"/>\n" +
+            "  \n" +
+            "                </td>\n" +
+            "              </tr>\n" +
+            "            </table>\n" +
+            "            <!-- /button -->\n" +
+            "            \n" +
+            "              <p>Telefono (56-32) 227 41 51</p>\n" +
+            "      <p>contacto@interac.cl Brasil con Freire 2147, Facultad de Ingeniería PUCV, Valparaíso - Chile</p>\n" +
+            "          </td>\n" +
+            "        </tr>\n" +
+            "      </table>\n" +
+            "      </div>\n" +
+            "      <!-- /content -->\n" +
+            "      \n" +
+            "    </td>\n" +
+            "    <td></td>\n" +
+            "  </tr>\n" +
+            "</table>\n" +
+            "<!-- /body -->\n" +
+            "\n" +
+            "<!-- footer -->\n" +
+            "<table class=\"footer-wrap\">\n" +
+            "  <tr>\n" +
+            "    <td></td>\n" +
+            "    <td class=\"container\">\n" +
+            "      \n" +
+            "      <!-- content -->\n" +
+            "      <div class=\"content\">\n" +
+            "        <table>\n" +
+            "          <tr>\n" +
+            "            <td align=\"center\">\n" +
+            "   \n" +
+            "            </td>\n" +
+            "          </tr>\n" +
+            "        </table>\n" +
+            "      </div>\n" +
+            "      <!-- /content -->\n" +
+            "      \n" +
+            "    </td>\n" +
+            "    <td></td>\n" +
+            "  </tr>\n" +
+            "</table>\n" +
+            "<!-- /footer -->\n" +
+            "\n" +
+            "</body>\n" +
+            "</html>" ;
 
-      private String aprobar="<!DOCTYPE html>" +
+      private String aprobar="<!doctype html>\n" +
               "<html>\n" +
-              "\" +\n" +
-              "            \"<head>\\n\" +\n" +
-              "            \"    <title></title>\\n\" +\n" +
-              "            \"     <style type=\\\"text/css\\\">\\n\" +\n" +
-              "            \"      body{\\n\" +\n" +
-              "            \"        background:#dddddd;\\n\" +\n" +
-              "            \"      }\\n\" +\n" +
-              "            \"\\n\" +\n" +
-              "            \"      #header{\\n\" +\n" +
-              "            \"        width:70%;\\n\" +\n" +
-              "            \"        height:300px ;\\n\" +\n" +
-              "            \"        background-color:red; \\n\" +\n" +
-              "            \"        }\\n\" +\n" +
-              "            \"\\n\" +\n" +
-              "            \"      \\n\" +\n" +
-              "            \"      h1{\\n\" +\n" +
-              "            \"        color:white;\\n\" +\n" +
-              "            \"        font:150% Arial ;\\n\" +\n" +
-              "            \"      }\\n\" +\n" +
-              "            \"\\n\" +\n" +
-              "            \"     </style>\\n\" +\n" +
-              "            \"    \\n\" +\n" +
-              "            \" <meta http-equiv=\\\"Content-Type\\\" content=\\\"text/html; charset=utf-8\\\">\\n\" +\n" +
-              "            \"\\n\" +\n" +
-              "            \"</head>\\n\" +\n" +
-              "            \"<body >\\n\" +\n" +
-              "            \"    <div id=\\\"hearder\\\" style='background-color:red;'>\\n\" +\n" +
-              "            \"        <img style='background-color:red;' \\n\" +\n" +
-              "            \"         src='http://www.interac.cl/wp-content/themes/theme-interac/img/logo/interac-blanco.png'>\\n\" +\n" +
-              "            \"         <h1>$mensaje</h1>\\n\" +\n" +
-              "            \"    </div>" +
-              "                </body> " +
-              "                </html> ";
+              "<head>\n" +
+              "<meta name=\"viewport\" content=\"width=device-width\">\n" +
+              "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n" +
+              "<title>Really Simple HTML Email Template</title>\n" +
+              "<style>\n" +
+              "/* -------------------------------------\n" +
+              "    GLOBAL\n" +
+              "------------------------------------- */\n" +
+              "* {\n" +
+              "  font-family: \"Helvetica Neue\", \"Helvetica\", Helvetica, Arial, sans-serif;\n" +
+              "  font-size: 100%;\n" +
+              "  line-height: 1.6em;\n" +
+              "  margin: 0;\n" +
+              "  padding: 0;\n" +
+              "}\n" +
+              "img {\n" +
+              "  max-width: 600px;\n" +
+              "  width: 100%;\n" +
+              "}\n" +
+              "body {\n" +
+              "  -webkit-font-smoothing: antialiased;\n" +
+              "  height: 100%;\n" +
+              "  -webkit-text-size-adjust: none;\n" +
+              "  width: 100% !important;\n" +
+              "}\n" +
+              "/* -------------------------------------\n" +
+              "    ELEMENTS\n" +
+              "------------------------------------- */\n" +
+              "a {\n" +
+              "  color: #348eda;\n" +
+              "}\n" +
+              ".btn-primary {\n" +
+              "  Margin-bottom: 10px;\n" +
+              "  width: auto !important;\n" +
+              "}\n" +
+              ".btn-primary td {\n" +
+              "  background-color: #E52721; \n" +
+              "  border-radius: 25px;\n" +
+              "  font-family: \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", sans-serif; \n" +
+              "  font-size: 14px; \n" +
+              "  text-align: center;\n" +
+              "  vertical-align: top; \n" +
+              "}\n" +
+              ".btn-primary td a {\n" +
+              "  background-color: #348eda;\n" +
+              "  border: solid 1px #348eda;\n" +
+              "  border-radius: 25px;\n" +
+              "  border-width: 10px 20px;\n" +
+              "  display: inline-block;\n" +
+              "  color: #ffffff;\n" +
+              "  cursor: pointer;\n" +
+              "  font-weight: bold;\n" +
+              "  line-height: 2;\n" +
+              "  text-decoration: none;\n" +
+              "}\n" +
+              ".last {\n" +
+              "  margin-bottom: 0;\n" +
+              "}\n" +
+              ".first {\n" +
+              "  margin-top: 0;\n" +
+              "}\n" +
+              ".padding {\n" +
+              "  padding: 10px 0;\n" +
+              "}\n" +
+              "/* -------------------------------------\n" +
+              "    BODY\n" +
+              "------------------------------------- */\n" +
+              "table.body-wrap {\n" +
+              "  padding: 20px;\n" +
+              "  width: 100%;\n" +
+              "}\n" +
+              "table.body-wrap .container {\n" +
+              "  border: 1px solid #f0f0f0;\n" +
+              "}\n" +
+              "/* -------------------------------------\n" +
+              "    FOOTER\n" +
+              "------------------------------------- */\n" +
+              "table.footer-wrap {\n" +
+              "  clear: both !important;\n" +
+              "  width: 100%;  \n" +
+              "}\n" +
+              ".footer-wrap .container p {\n" +
+              "  color: #666666;\n" +
+              "  font-size: 12px;\n" +
+              "  \n" +
+              "}\n" +
+              "table.footer-wrap a {\n" +
+              "  color: #999999;\n" +
+              "}\n" +
+              "/* -------------------------------------\n" +
+              "    TYPOGRAPHY\n" +
+              "------------------------------------- */\n" +
+              "h1, \n" +
+              "h2, \n" +
+              "h3 {\n" +
+              "  color: #111111;\n" +
+              "  font-family: \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", sans-serif;\n" +
+              "  font-weight: 200;\n" +
+              "  line-height: 1.2em;\n" +
+              "  margin: 40px 0 10px;\n" +
+              "}\n" +
+              "h1 {\n" +
+              "  font-size: 36px;\n" +
+              "}\n" +
+              "h2 {\n" +
+              "  font-size: 28px;\n" +
+              "}\n" +
+              "h3 {\n" +
+              "  font-size: 22px;\n" +
+              "}\n" +
+              "p, \n" +
+              "ul, \n" +
+              "ol {\n" +
+              "  font-size: 14px;\n" +
+              "  font-weight: normal;\n" +
+              "  margin-bottom: 10px;\n" +
+              "}\n" +
+              "ul li, \n" +
+              "ol li {\n" +
+              "  margin-left: 5px;\n" +
+              "  list-style-position: inside;\n" +
+              "}\n" +
+              "/* ---------------------------------------------------\n" +
+              "    RESPONSIVENESS\n" +
+              "------------------------------------------------------ */\n" +
+              "/* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */\n" +
+              ".container {\n" +
+              "  clear: both !important;\n" +
+              "  display: block !important;\n" +
+              "  Margin: 0 auto !important;\n" +
+              "  max-width: 600px !important;\n" +
+              "}\n" +
+              "/* Set the padding on the td rather than the div for Outlook compatibility */\n" +
+              ".body-wrap .container {\n" +
+              "  padding: 20px;\n" +
+              "}\n" +
+              "/* This should also be a block element, so that it will fill 100% of the .container */\n" +
+              ".content {\n" +
+              "  display: block;\n" +
+              "  margin: 0 auto;\n" +
+              "  max-width: 600px;\n" +
+              "}\n" +
+              "/* Let's make sure tables in the content area are 100% wide */\n" +
+              ".content table {\n" +
+              "  width: 100%;\n" +
+              "}\n" +
+              "</style>\n" +
+              "</head>\n" +
+              "\n" +
+              "<body bgcolor=\"#f6f6f6\">\n" +
+              "\n" +
+              "<!-- body -->\n" +
+              "<table class=\"body-wrap\" bgcolor=\"#f6f6f6\">\n" +
+              "  <tr>\n" +
+              "    <td></td>\n" +
+              "    <td class=\"container\" bgcolor=\"#FFFFFF\">\n" +
+              "\n" +
+              "      <!-- content -->\n" +
+              "      <div class=\"content\">\n" +
+              "      <table>\n" +
+              "        <tr>\n" +
+              "          <td>\n" +
+              "\n" +
+              "          \n" +
+              "         \n" +
+              "            <h1>Se ha aprobado tu campaña</h1>\n" +
+              "            <p>se aprobo tu contenido para ser publicitado</p>\n" +
+              "           \n" +
+              "            <!-- button -->\n" +
+              "            <table class=\"btn-primary\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n" +
+              "              <tr>\n" +
+              "                <td>\n" +
+              "                  <img src=\"http://www.interac.cl/wp-content/themes/theme-interac/img/logo/interac-blanco.png\"/>\n" +
+              "                </td>\n" +
+              "              </tr>\n" +
+              "            </table>\n" +
+              "            <!-- /button -->\n" +
+              "            <table class=\"body-wrap\">\n" +
+              "               <tr>\n" +
+              "                <td>\n" +
+              "                   <h3>ID</h3>\n" +
+              "                </td>\n" +
+              "                 <td>\n" +
+              "                    <h3>Establecimiento</h3>\n" +
+              "                 </td>\n" +
+              "                  <td>\n" +
+              "                      <h3>Nº Pantallas</h3>\n" +
+              "                  </td>  \n" +
+              "                  <td>" +
+              "                    <h3>Valor Mesual</h3>" +
+              "                  </td>" +
+              "                  <td>\n" +
+              "                     <h3>Valor de Campaña</h3>\n" +
+              "                  </td>\n" +
+              "               </tr>\n" +
+              "               <tr>\n" +
+              "                <td>\n" +
+              "                  <p>$id</p>\n" +
+              "                </td> \n" +
+              "                <td>\n" +
+              "                  <p>$establecimiento</p>\n" +
+              "                </td>\n" +
+              "                <td>\n" +
+              "                  <p>$numerodePantallas</p>\n" +
+              "                </td>\n" +
+              "                  <td>" +
+              "                    <p>$mensualvalor</p>" +
+              "                  </td>" +
+              "                <td>\n" +
+              "                  <p>$valordecampanas</p>\n" +
+              "                </td>\n" +
+              "               </tr>\n" +
+              "               \n" +
+              "            \n" +
+              "            </table>\n" +
+              "          \n" +
+              "          </td>\n" +
+              "        </tr>\n" +
+              "      </table>\n" +
+              "      </div>\n" +
+              "      <!-- /content -->\n" +
+              "      \n" +
+              "    </td>\n" +
+              "    <td></td>\n" +
+              "  </tr>\n" +
+              "</table>\n" +
+              "<!-- /body -->\n" +
+              "\n" +
+              "<!-- footer -->\n" +
+              "<table class=\"footer-wrap\">\n" +
+              "  <tr>\n" +
+              "    <td></td>\n" +
+              "    <td class=\"container\">\n" +
+              "      \n" +
+              "      <!-- content -->\n" +
+              "      <div class=\"content\">\n" +
+              "        <table>\n" +
+              "          <tr>\n" +
+              "            <td align=\"center\">\n" +
+              "              \n" +
+              "      <p>Telefono (56-32) 227 41 51</p>\n" +
+              "      <p>contacto@interac.cl Brasil con Freire 2147, Facultad de Ingeniería PUCV, Valparaíso - Chile</p>\n" +
+              "            </td>\n" +
+              "          </tr>\n" +
+              "        </table>\n" +
+              "      </div>\n" +
+              "      <!-- /content -->\n" +
+              "      \n" +
+              "    </td>\n" +
+              "    <td></td>\n" +
+              "  </tr>\n" +
+              "</table>\n" +
+              "<!-- /footer -->\n" +
+              "\n" +
+              "</body>\n" +
+              "</html> ";
+
+    private String registro="<!doctype html>\n" +
+            "<html>\n" +
+            "<head>\n" +
+            "<meta name=\"viewport\" content=\"width=device-width\">\n" +
+            "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n" +
+            "<title>Really Simple HTML Email Template</title>\n" +
+            "<style>\n" +
+            "/* -------------------------------------\n" +
+            "    GLOBAL\n" +
+            "------------------------------------- */\n" +
+            "* {\n" +
+            "  font-family: \"Helvetica Neue\", \"Helvetica\", Helvetica, Arial, sans-serif;\n" +
+            "  font-size: 100%;\n" +
+            "  line-height: 1.6em;\n" +
+            "  margin: 0;\n" +
+            "  padding: 0;\n" +
+            "}\n" +
+            "img {\n" +
+            "  max-width: 600px;\n" +
+            "  width: 100%;\n" +
+            "}\n" +
+            "body {\n" +
+            "  -webkit-font-smoothing: antialiased;\n" +
+            "  height: 100%;\n" +
+            "  -webkit-text-size-adjust: none;\n" +
+            "  width: 100% !important;\n" +
+            "}\n" +
+            "/* -------------------------------------\n" +
+            "    ELEMENTS\n" +
+            "------------------------------------- */\n" +
+            "a {\n" +
+            "  color: #348eda;\n" +
+            "}\n" +
+            ".btn-primary {\n" +
+            "  Margin-bottom: 10px;\n" +
+            "  width: auto !important;\n" +
+            "}\n" +
+            ".btn-primary td {\n" +
+            "  background-color: #E52721; \n" +
+            "  border-radius: 25px;\n" +
+            "  font-family: \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", sans-serif; \n" +
+            "  font-size: 14px; \n" +
+            "  text-align: center;\n" +
+            "  vertical-align: top; \n" +
+            "}\n" +
+            ".btn-primary td a {\n" +
+            "  background-color: #348eda;\n" +
+            "  border: solid 1px #348eda;\n" +
+            "  border-radius: 25px;\n" +
+            "  border-width: 10px 20px;\n" +
+            "  display: inline-block;\n" +
+            "  color: #ffffff;\n" +
+            "  cursor: pointer;\n" +
+            "  font-weight: bold;\n" +
+            "  line-height: 2;\n" +
+            "  text-decoration: none;\n" +
+            "}\n" +
+            ".last {\n" +
+            "  margin-bottom: 0;\n" +
+            "}\n" +
+            ".first {\n" +
+            "  margin-top: 0;\n" +
+            "}\n" +
+            ".padding {\n" +
+            "  padding: 10px 0;\n" +
+            "}\n" +
+            "/* -------------------------------------\n" +
+            "    BODY\n" +
+            "------------------------------------- */\n" +
+            "table.body-wrap {\n" +
+            "  padding: 20px;\n" +
+            "  width: 100%;\n" +
+            "}\n" +
+            "table.body-wrap .container {\n" +
+            "  border: 1px solid #f0f0f0;\n" +
+            "}\n" +
+            "/* -------------------------------------\n" +
+            "    FOOTER\n" +
+            "------------------------------------- */\n" +
+            "table.footer-wrap {\n" +
+            "  clear: both !important;\n" +
+            "  width: 100%;  \n" +
+            "}\n" +
+            ".footer-wrap .container p {\n" +
+            "  color: #666666;\n" +
+            "  font-size: 12px;\n" +
+            "  \n" +
+            "}\n" +
+            "table.footer-wrap a {\n" +
+            "  color: #999999;\n" +
+            "}\n" +
+            "/* -------------------------------------\n" +
+            "    TYPOGRAPHY\n" +
+            "------------------------------------- */\n" +
+            "h1, \n" +
+            "h2, \n" +
+            "h3 {\n" +
+            "  color: #111111;\n" +
+            "  font-family: \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", sans-serif;\n" +
+            "  font-weight: 200;\n" +
+            "  line-height: 1.2em;\n" +
+            "  margin: 40px 0 10px;\n" +
+            "}\n" +
+            "h1 {\n" +
+            "  font-size: 36px;\n" +
+            "}\n" +
+            "h2 {\n" +
+            "  font-size: 28px;\n" +
+            "}\n" +
+            "h3 {\n" +
+            "  font-size: 22px;\n" +
+            "}\n" +
+            "p, \n" +
+            "ul, \n" +
+            "ol {\n" +
+            "  font-size: 14px;\n" +
+            "  font-weight: normal;\n" +
+            "  margin-bottom: 10px;\n" +
+            "}\n" +
+            "ul li, \n" +
+            "ol li {\n" +
+            "  margin-left: 5px;\n" +
+            "  list-style-position: inside;\n" +
+            "}\n" +
+            "/* ---------------------------------------------------\n" +
+            "    RESPONSIVENESS\n" +
+            "------------------------------------------------------ */\n" +
+            "/* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */\n" +
+            ".container {\n" +
+            "  clear: both !important;\n" +
+            "  display: block !important;\n" +
+            "  Margin: 0 auto !important;\n" +
+            "  max-width: 600px !important;\n" +
+            "}\n" +
+            "/* Set the padding on the td rather than the div for Outlook compatibility */\n" +
+            ".body-wrap .container {\n" +
+            "  padding: 20px;\n" +
+            "}\n" +
+            "/* This should also be a block element, so that it will fill 100% of the .container */\n" +
+            ".content {\n" +
+            "  display: block;\n" +
+            "  margin: 0 auto;\n" +
+            "  max-width: 600px;\n" +
+            "}\n" +
+            "/* Let's make sure tables in the content area are 100% wide */\n" +
+            ".content table {\n" +
+            "  width: 100%;\n" +
+            "}\n" +
+            "</style>\n" +
+            "</head>\n" +
+            "\n" +
+            "<body bgcolor=\"#f6f6f6\">\n" +
+            "\n" +
+            "<!-- body -->\n" +
+            "<table class=\"body-wrap\" bgcolor=\"#f6f6f6\">\n" +
+            "  <tr>\n" +
+            "    <td></td>\n" +
+            "    <td class=\"container\" bgcolor=\"#FFFFFF\">\n" +
+            "\n" +
+            "      <!-- content -->\n" +
+            "      <div class=\"content\">\n" +
+            "      <table>\n" +
+            "        <tr>\n" +
+            "          <td>\n" +
+            "\n" +
+            "          \n" +
+            "         \n" +
+            "            <h1>Bienvenido a Interac</h1>\n" +
+            "            \n" +
+            "           \n" +
+            "            <!-- button -->\n" +
+            "            <table class=\"btn-primary\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n" +
+            "              <tr>\n" +
+            "                <td>\n" +
+            "                  <img src=\"http://www.interac.cl/wp-content/themes/theme-interac/img/logo/interac-blanco.png\"/>\n" +
+            "                </td>\n" +
+            "              </tr>\n" +
+            "            </table>\n" +
+            "            <!-- /button -->\n" +
+            "            <p>verifica tu correo haciendo click aqui ---><a href=\"$url\">Interac</a></p> \n" +
+            "          </td>\n" +
+            "        </tr>\n" +
+            "      </table>\n" +
+            "      </div>\n" +
+            "      <!-- /content -->\n" +
+            "      \n" +
+            "    </td>\n" +
+            "    <td></td>\n" +
+            "  </tr>\n" +
+            "</table>\n" +
+            "<!-- /body -->\n" +
+            "\n" +
+            "<!-- footer -->\n" +
+            "<table class=\"footer-wrap\">\n" +
+            "  <tr>\n" +
+            "    <td></td>\n" +
+            "    <td class=\"container\">\n" +
+            "      \n" +
+            "      <!-- content -->\n" +
+            "      <div class=\"content\">\n" +
+            "        <table>\n" +
+            "          <tr>\n" +
+            "            <td align=\"center\">\n" +
+            "              \n" +
+            "      <p>Telefono (56-32) 227 41 51</p>\n" +
+            "      <p>contacto@interac.cl Brasil con Freire 2147, Facultad de Ingeniería PUCV, Valparaíso - Chile</p>\n" +
+            "            </td>\n" +
+            "          </tr>\n" +
+            "        </table>\n" +
+            "      </div>\n" +
+            "      <!-- /content -->\n" +
+            "      \n" +
+            "    </td>\n" +
+            "    <td></td>\n" +
+            "  </tr>\n" +
+            "</table>\n" +
+            "<!-- /footer -->\n" +
+            "\n" +
+            "</body>\n" +
+            "</html>";
 
 
 
@@ -301,5 +1060,13 @@ public class Constantes implements Serializable {
 
     public void setAprobar(String aprobar) {
         this.aprobar = aprobar;
+    }
+
+    public String getRegistro() {
+        return registro;
+    }
+
+    public void setRegistro(String registro) {
+        this.registro = registro;
     }
 }
