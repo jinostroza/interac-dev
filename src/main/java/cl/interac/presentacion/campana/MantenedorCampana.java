@@ -228,18 +228,20 @@ public class MantenedorCampana implements Serializable {
         //cuerpo del mensaje
          String mensajeLocal = new String(constantes.getAlertas());
          String mensajeAnunciante = new String(constantes.getHeaderCorreo());
-        mensajeAnunciante = mensajeAnunciante.replaceAll("\\$Id",String.valueOf(campana.getIdcampana()));
-        mensajeAnunciante = mensajeAnunciante.replaceAll("\\$establecimiento",establecimientoseleccionado.getNombreEstablecimiento());
-        mensajeAnunciante = mensajeAnunciante.replaceAll("\\$numerodePantallas",String.valueOf(establecimientoseleccionado.getNumeroPantallas()));
-        mensajeAnunciante = mensajeAnunciante.replaceAll("\\$valormensual",String.valueOf(valor));
-        mensajeAnunciante = mensajeAnunciante.replaceAll("\\$total",String.valueOf(valor));
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$Id",String.valueOf(campana.getIdcampana()));
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento",establecimientoseleccionado.getNombreEstablecimiento());
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$numerodePantallas",String.valueOf(establecimientoseleccionado.getNumeroPantallas()));
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valormensual",String.valueOf(valor));
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$total",String.valueOf(valor));
 
    //correo
        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        String[] replicas = {establecimientoseleccionado.getUsuario().getCorreo()};
-        String[] alertas = {"joacoch@hotmail.cl",userSession.getUsuario().getCorreo()};
+        String[] replicas = new String[1];
+        String[] alertas = new String[2];
 
-
+        replicas[0]=establecimientoseleccionado.getUsuario().getCorreo();
+        alertas[0]="joacoch@hotmail.cl";
+        alertas[1]=userSession.getUsuario().getCorreo();
         mailSender.send(alertas,"Interac",mensajeAnunciante);
         mailSender.send(replicas,"Interac",mensajeLocal);
 

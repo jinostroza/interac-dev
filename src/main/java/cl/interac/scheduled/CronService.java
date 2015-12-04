@@ -31,7 +31,7 @@ public class CronService {
     private PropertyReader propertyReader;
 
 
-    @Scheduled(cron="0 0 9  * * ?")
+    @Scheduled(cron="*/60 * *  * * ?")
     public void eliminarFicheroProgramado(){
         campanasvencidas = logicaCampana.obtenerPorFecha(Date.from(Instant.now()));
 
@@ -48,7 +48,7 @@ public class CronService {
             }
             else if ("produccion".equals(ambiente)) {
                 for (Campana ca : campanasvencidas){
-                    Files.delete(Paths.get("/home/ec2-user/media/colivares/" + ca.getContenido().getPath()));
+                    Files.delete(Paths.get("/home/ec2-user/media/demoPublicidad/" + ca.getContenido().getPath()));
                     logicaCampana.eliminarCampana(ca);
                 }
             }

@@ -144,29 +144,29 @@
                                     style="width:300px;height:200px">
                             </p:gmap>
                             <p:panelGrid columns="3" layout="grid" >
-                                <h:outputLabel value="Horario Inicio:"/>
+                                <h:outputLabel value="Horario Apertura:"/>
                                 <h:outputText styleClass="fa fa-fw fa-clock-o"  style="float: right;color: red"/>
                                 <h:outputText value="#{place.horaInicio}">
                                 <f:convertDateTime pattern="HH:mm" timeZone="America/Santiago" timeStyle="short"/>
                                 </h:outputText>
-                                <h:outputLabel value="Horario Termino:"/>
+                                <h:outputLabel value="Horario Cierre:"/>
                                 <h:outputText styleClass="fa fa-fw fa-clock-o" style="float: right;color: red"/>
                                 <h:outputText value="#{place.horaTermino}">
                                     <f:convertDateTime pattern="HH:mm" timeZone="America/Santiago" timeStyle="short"/>
                                 </h:outputText>
 
 
-                                <h:outputLabel value="Direccion"/>
+                                <h:outputLabel value="Direcciòn:"/>
                                 <h:outputText styleClass="fa fa-fw fa-map-marker"  style="float: right;color: red"/>
                                 <h:outputText value="#{place.direccion}"/>
 
-                                <h:outputLabel value="Telefono:" />
+                                <h:outputLabel value="Telèfono:" />
                                 <h:outputText styleClass="fa fa-fw fa-phone"  style="float: right;color: red"/>
                                 <h:outputText value="#{place.fono}" />
 
-                                <h:outputLabel value="Valor"/>
+                                <h:outputLabel value="Valor por Pasada"/>
                                 <h:outputText styleClass="fa fa-fw fa-money"  style="float: right;color: red"/>
-                                <h:outputText value="#{place.valorMensual}"/>
+                                <h:outputText value="$#{place.valorMensual}"/>
                             </p:panelGrid>
 
 

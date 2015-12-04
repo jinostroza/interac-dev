@@ -28,7 +28,7 @@
                             <h3>!Se ha creado tu campaña!</h3>
                             <p>has subido tu publicidad exitosamente</p>
                             <div class="row">
-                                <p:graphicImage url="ftp://54.172.118.246/#{mantenedorCampana.campana.contenido.path}" style="width:150px; height:200px ;"
+                                <p:graphicImage url="imagenes/interac/#{mantenedorCampana.campana.contenido.path}" style="width:150px; height:200px ;"
                                         styleClass="col-lg-1"/>
                                 <div class="col-lg-offset-2" style="width: 550px" >
                                 <h:panelGrid >
@@ -81,7 +81,7 @@
                                             <h:outputLabel style="color: red" value="$#{mantenedorCampana.valor}"/>
                                         </h:outputLabel>
                                         <h:outputLabel value="Tu anuncio se publicara En : ">
-                                            <p:graphicImage style="width: 80px;height: 120px" value="#{place.urlImagen}"/>
+                                            <h:graphicImage style="width: 80px;height: 120px" value="#{mantenedorCampana.establecimientoseleccionado.urlImagen}"/>
                                             <h:outputLabel  value="#{mantenedorCampana.establecimientoseleccionado.nombreEstablecimiento}">
                                                 <small>#{mantenedorCampana.establecimientoseleccionado.direccion}/#{mantenedorCampana.establecimientoseleccionado.ubicacion.descubicacion}</small>
                                             </h:outputLabel>
@@ -96,7 +96,7 @@
                             <ui:fragment rendered="#{mantenedorCampana.totemSelecionados != null }" >
                             <p:panelGrid columns="2">
                                 <f:facet name="header">
-                                    <p:graphicImage url="ftp://54.172.118.246/#{mantenedorCampana.campana.contenido.path}" style="width:100px; height:200px ;" />
+                                    <h:graphicImage url="ftp://54.172.118.246/#{mantenedorCampana.campana.contenido.path}" style="width:100px; height:200px ;" />
                                 </f:facet>
 
                                 <h:outputText value="fecha Creacion:" />
