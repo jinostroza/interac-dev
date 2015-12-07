@@ -54,7 +54,7 @@ tr.table-header{
 	text-decoration: none;
 	color: #111;
 }
-.header span{
+.header {
 	display: block;
 	clear: both;
 	width: 100%;
@@ -724,4 +724,9 @@ div.login-logo{
 	margin:auto;
 }
 
-
+.btn-activar-pantallas{
+	background-color: #E52721;
+	background-size: cover;
+	background-repeat:no-repeat;
+	background-position: center center;
+}

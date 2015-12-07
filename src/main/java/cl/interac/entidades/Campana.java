@@ -162,7 +162,6 @@ public class Campana implements Serializable {
 
     @JoinColumn(name = "idcontenido", referencedColumnName = "idcontenido")
     @ManyToOne
-    @Cascade(CascadeType.DELETE)
     public Contenido getContenido() {
         return contenido;
     }

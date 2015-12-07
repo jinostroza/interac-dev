@@ -5,7 +5,6 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 template="/templates/default.xhtml">
     <ui:define name="contenido">
-
         <h:form>
             <div class="container" id="myInterac">
                 <header>
@@ -13,7 +12,7 @@
                         <div class="col-lg-6 col-lg-offset-3">
                             <ui:fragment
                                     rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') }">
-                                <h2>Planifica tu Campaña en 3 simples Pasos</h2>
+                                <h2>Planifica tu Anuncio en 3 simples Pasos</h2>
                             </ui:fragment>
                             <ui:fragment
                                     rendered="#{userSession.tienePermiso('PUCV')}">
@@ -33,25 +32,8 @@
                 </header>
                 <div class="row">
                     <div class="col-lg-12">
-
                     </div>
-
                     <div class="row" style="padding-left: 200px">
-                        <ui:fragment
-                                rendered="#{userSession.tienePermiso('CLIENTE')
-                                      or userSession.tienePermiso('ADMINISTRADOR')}">
-                            <p:commandLink styleClass="col-lg-3 col-md-3 "
-                                           style="padding-left: -300px;margin-left: -100px"
-                                           action="#{facesUtil.redirigir('/plataforma/contenidos')}">
-                                <div class="dashbox">
-                                    <h:outputLabel value="Activar Pantallas"
-                                                   style="font-weight: bold;font-size: 18px;"/>
-
-                                    <div class="button_ crear-campana"></div>
-                                    <p>Agrega aqui la informacion de tus pantallas</p>
-                                </div>
-                            </p:commandLink>
-                        </ui:fragment>
                         <ui:fragment
                                 rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') }">
                             <h:commandLink styleClass="col-lg-3 col-md-3  " action="crear">
@@ -66,7 +48,7 @@
 
                             <h:commandLink styleClass="col-lg-3 col-md-3 " action="vercon">
                                 <div class="dashbox">
-                                    <h:outputLabel value="Programar Campaña"
+                                    <h:outputLabel value="Programar Anuncio"
                                                    style="font-weight: bold;font-size: 18px;"/>
 
                                     <div class="button_ planificar-campana"></div>
@@ -79,7 +61,7 @@
                                     <h:outputLabel value="Pagar" style="font-weight: bold;font-size: 18px;"/>
 
                                     <div class="button_ pagar"></div>
-                                    <p> Confirma y paga tu Campaña aqui!</p>
+                                    <p> Confirma y paga tu Anuncio aqui!</p>
                                 </div>
                             </h:commandLink>
                         </ui:fragment>
@@ -123,7 +105,7 @@
                         </f:facet>
                         <p:column>
                             <p:graphicImage styleClass="col-lg-4" style="width: 80px;height: 120px"
-                                            value="/imagenes/?file=#{cont.path}"></p:graphicImage>
+                                            value="http://g01.a.alicdn.com/kf/HTB1UZdtIXXXXXcSXpXXq6xXFXXXH/42-inch-TFT-LED-industrial-FULL-HD-vertical-screen-floor-stand-memory-card-advertising-player.jpg"></p:graphicImage>
                         </p:column>
                         <p:column headerText="Identificador">
                             <h:outputText value="#{cont.idcontenido}"/>
@@ -152,7 +134,7 @@
                     rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') }">
                 <div class="ui-grid-row">
                     <div class="col-lg-4">
-                        <h3 align="center" style="align-items: flex-start">Estado de tus Campañas</h3>
+                        <h3 align="center" style="align-items: flex-start">Estado de tus Anuncios</h3>
                     </div>
                 </div>
 
@@ -163,12 +145,11 @@
                                  value="#{mantenedorCampana.campanas}">
 
                         <f:facet name="header">
-                            Mis Campañas
+                            Mis Anuncios
                         </f:facet>
 
                         <p:column styleClass="col-lg-2" headerText="nombre">
-                            <h:graphicImage value="http://54.172.118.246:9595/interac-dev/imagenes/?path=/home/ec2-user/colivares/&#38;file#{camton.contenido.path}"
-                                            style="width:100px; height:200px ;"/>
+                            <h:graphicImage url="ftp://54.172.118.246/#{camton.contenido.path}" style="width:100px; height:200px ;"/>
                         </p:column>
                         <p:column styleClass="col-lg-2" headerText="estado">
                             <h:outputText value="#{camton.estado}"/>
@@ -191,8 +172,6 @@
             <br/>
             <p:spacer> </p:spacer>
             <br/>
-
         </h:form>
-
     </ui:define>
 </ui:composition>

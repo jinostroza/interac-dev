@@ -20,7 +20,7 @@
 
                     <div class="row">
                         <div class="col-lg-6">
-                            <h2>Planificar campaña</h2>
+                            <h2>Planificar anuncio</h2>
                         </div>
                         <div class="nav-submenu col-lg-6">
                             <ul>
@@ -39,7 +39,7 @@
 
                     <div class="col-lg-4">
                     <p:panelGrid columns="4"  >
-                        <h:outputLabel for="inicio" value="Inicio Campaña:" />
+                        <h:outputLabel for="inicio" value="Inicio Anuncio:" />
                         <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
                         <p:calendar  id="inicio" locale="es" pattern="dd/MM/yyyy"
                                      value="#{mantenedorCampana.campana.fechaInicio}" mindate="c1.today()" widgetVar="c1" required="true" requiredMessage="Debe indicar fecha de Inicio" >
@@ -48,7 +48,7 @@
                             <p:ajax event="dateSelect" listener="#{mantenedorCampana.dateDiff}" update="dias" />
                         </p:calendar>
                         <span></span>
-                        <h:outputLabel for="fin" value="Fin Campaña:" />
+                        <h:outputLabel for="fin" value="Fin Anuncio:" />
                         <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
                         <p:calendar  id="fin"  locale="es" pattern="dd/MM/yyyy"
                                      value="#{mantenedorCampana.campana.fechaFin}" mindate="c2.today()" widgetVar="c2" required="true" requiredMessage="Debe indicar la fecha de Termino" >
@@ -56,34 +56,17 @@
                             <p:ajax event="change" update="inline"/>
                             <p:ajax event="dateSelect" listener="#{mantenedorCampana.dateDiff}" update="dias"/>
                         </p:calendar>
-                        <p:tooltip for="inicio" value="Indique la fecha de comienzo para su campaña" trackMouse="true" ></p:tooltip>
-                        <p:tooltip for="fin" value="Indique la fecha de termino para su campaña" trackMouse="true" ></p:tooltip>
+                        <p:tooltip for="inicio" value="Indique la fecha de comienzo para su anuncio" trackMouse="true" ></p:tooltip>
+                        <p:tooltip for="fin" value="Indique la fecha de termino para su anuncio" trackMouse="true" ></p:tooltip>
                     </p:panelGrid>
                      </div>
                     <div class="col-lg-offset-5">
                         <p:calendar id="inline" locale="es" mindate="#{mantenedorCampana.campana.fechaInicio}"
                                     maxdate="#{mantenedorCampana.campana.fechaFin}" mode="inline"/>
                     </div>
-
-
                         <br></br>
-
-
-
                 </div>
-
-
-
-
                     <br></br>
-
-
-
-
-
-
-
-
                 <p:dataTable id="datapantallas" styleClass="col-lg-12 " var="place"
                              value="#{mantenedorCampana.establecimientos}"
                              paginator="true" rows="5" selection="#{mantenedorCampana.establecimientoseleccionado}"
@@ -144,29 +127,29 @@
                                     style="width:300px;height:200px">
                             </p:gmap>
                             <p:panelGrid columns="3" layout="grid" >
-                                <h:outputLabel value="Horario Inicio:"/>
+                                <h:outputLabel value="Horario Apertura:"/>
                                 <h:outputText styleClass="fa fa-fw fa-clock-o"  style="float: right;color: red"/>
                                 <h:outputText value="#{place.horaInicio}">
                                 <f:convertDateTime pattern="HH:mm" timeZone="America/Santiago" timeStyle="short"/>
                                 </h:outputText>
-                                <h:outputLabel value="Horario Termino:"/>
+                                <h:outputLabel value="Horario Cierre:"/>
                                 <h:outputText styleClass="fa fa-fw fa-clock-o" style="float: right;color: red"/>
                                 <h:outputText value="#{place.horaTermino}">
                                     <f:convertDateTime pattern="HH:mm" timeZone="America/Santiago" timeStyle="short"/>
                                 </h:outputText>
 
 
-                                <h:outputLabel value="Direccion"/>
+                                <h:outputLabel value="Direcciòn:"/>
                                 <h:outputText styleClass="fa fa-fw fa-map-marker"  style="float: right;color: red"/>
                                 <h:outputText value="#{place.direccion}"/>
 
-                                <h:outputLabel value="Telefono:" />
+                                <h:outputLabel value="Telèfono:" />
                                 <h:outputText styleClass="fa fa-fw fa-phone"  style="float: right;color: red"/>
                                 <h:outputText value="#{place.fono}" />
 
-                                <h:outputLabel value="Valor"/>
+                                <h:outputLabel value="Valor por Pasada"/>
                                 <h:outputText styleClass="fa fa-fw fa-money"  style="float: right;color: red"/>
-                                <h:outputText value="#{place.valorMensual}"/>
+                                <h:outputText value="$#{place.valorMensual}"/>
                             </p:panelGrid>
 
 

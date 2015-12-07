@@ -19,6 +19,9 @@
             <p:column headerText="Telefono" filterBy="#{local.fono}">
                 <h:outputText value="#{local.fono}" />
             </p:column>
+            <p:column headerText="Empresa" filterBy="#{local.empresa.nombreEmpresa}" filterMatchMode="contains">
+                <h:outputText value="" />
+            </p:column>
             <p:column headerText="Ubicacion" filterBy="#{local.ubicacion.descubicacion}" filterMatchMode="contains">
                 <h:outputText value="#{local.ubicacion.descubicacion}" />
             </p:column>
@@ -90,6 +93,13 @@
             <h:inputText  required="true" requiredMessage="Ingrese direccion" styleClass="form-control"  value="#{mantenedorEstablecimiento.establecimiento.direccion}"/>
             <h:outputLabel value="Fono"/>
             <h:inputText  required="true" requiredMessage="Ingrese telefono" styleClass="form-control"  value="#{mantenedorEstablecimiento.establecimiento.fono}"/>
+            <h:outputLabel value="Empresa"/>
+            <h:selectOneMenu class="form-control" value="#{mantenedorEstablecimiento.empresa}"
+                             converter="entityConverter">
+                <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione empresa asociada --"/>
+                <f:selectItems value="#{mantenedorEmpresa.empresas}" var="empresa"
+                               itemLabel="#{empresa.nombreEmpresa}"  />
+            </h:selectOneMenu>
             <h:outputLabel value="Ubicacion"/>
             <h:selectOneMenu class="form-control" value="#{mantenedorEstablecimiento.ubicacion}"
                              converter="entityConverter">

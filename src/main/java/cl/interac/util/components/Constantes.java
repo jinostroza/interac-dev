@@ -189,8 +189,8 @@ public class Constantes implements Serializable {
             "\n" +
             "          \n" +
             "         \n" +
-            "            <h1>Se ha subido Tu campaña</h1>\n" +
-            "            <p>Una vez subida tu campaña debes esperar la aprobación del Esablecimiento</p>\n" +
+            "            <h1>Se ha subido Tu campa&ntilde;a</h1>\n" +
+            "            <p>Una vez subida tu campa&ntilde;a debes esperar la aprobaci&oacute;n del Esablecimiento</p>\n" +
             "           \n" +
             "            <!-- button -->\n" +
             "            <table class=\"btn-primary\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n" +
@@ -205,18 +205,18 @@ public class Constantes implements Serializable {
             "               <tr>\n"  +
             "                   <td>\n " +
             "                    <h3>ID</h3>\n" +
-            "                 </td>\n        +" +
+            "                 </td>\n" +
             "                 <td>\n" +
             "                    <h3>Establecimiento</h3>\n" +
             "                 </td>\n" +
             "                  <td>\n" +
-            "                      <h3>Nº Pantallas</h3>\n" +
+            "                      <h3>Nro Pantallas</h3>\n" +
             "                  </td>  \n" +
             "                  <td>\n" +
-            "                     <p>Valor Mesual</p>\n" +
+            "                     <p>Valor Mensual</p>\n" +
             "                   </td>\n" +
             "                  <td>\n" +
-            "                     <h3>Valor de Campaña</h3>\n" +
+            "                     <h3>Valor de Campa&ntilde;a</h3>\n" +
             "                  </td>\n" +
             "               </tr>\n" +
             "               <tr>\n" +
@@ -233,7 +233,7 @@ public class Constantes implements Serializable {
             "                   <p>$valormensual</p>\n    " +
             "                </td>\n"+
             "                <td>\n" +
-            "                  <p>$valordecampañas</p>\n" +
+            "                  <p>$valordecampanas</p>\n" +
             "                </td>\n" +
             "               </tr>\n" +
             "               \n" +
@@ -451,7 +451,7 @@ public class Constantes implements Serializable {
             "\n" +
             "          \n" +
             "         \n" +
-            "            <h1>Tienes una Campaña Pendiente</h1>\n" +
+            "            <h1>Tienes una Campa&ntilde;a Pendiente</h1>\n" +
             "            <p>Un Anunciante quiere publicar en tu Establecimiento</p>\n" +
             "           \n" +
             "            <!-- button -->\n" +
@@ -673,7 +673,7 @@ public class Constantes implements Serializable {
               "\n" +
               "          \n" +
               "         \n" +
-              "            <h1>Se ha aprobado tu campaña</h1>\n" +
+              "            <h1>Se ha aprobado tu campa&ntilde;a</h1>\n" +
               "            <p>se aprobo tu contenido para ser publicitado</p>\n" +
               "           \n" +
               "            <!-- button -->\n" +
@@ -694,13 +694,13 @@ public class Constantes implements Serializable {
               "                    <h3>Establecimiento</h3>\n" +
               "                 </td>\n" +
               "                  <td>\n" +
-              "                      <h3>Nº Pantallas</h3>\n" +
+              "                      <h3>Nro Pantallas</h3>\n" +
               "                  </td>  \n" +
               "                  <td>" +
               "                    <h3>Valor Mesual</h3>" +
               "                  </td>" +
               "                  <td>\n" +
-              "                     <h3>Valor de Campaña</h3>\n" +
+              "                     <h3>Valor de Campa&ntilde;a</h3>\n" +
               "                  </td>\n" +
               "               </tr>\n" +
               "               <tr>\n" +

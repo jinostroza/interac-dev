@@ -8,7 +8,7 @@
 
     <ui:define name="contenido">
         <header>
-            <h2>Mis campanas</h2>
+            <h2>Mis Anuncios</h2>
         </header>
         <h:form>
             <div class="ui-grid-row">
@@ -16,9 +16,7 @@
                              styleClass="col-lg-10 col-lg-offset-5"
                              style="margin-left: 10%;text-align-all: center;"
                              value="#{mantenedorCampana.campanas}">
-                    <f:facet name="header">
-                        Mis Campañas
-                    </f:facet>
+                    <f:facet name="header">Mis Anuncios</f:facet>
                     <p:column styleClass="col-lg-2" headerText="nombre">
                         <h:outputText value="#{camton.contenido.path}"/>
                     </p:column>
