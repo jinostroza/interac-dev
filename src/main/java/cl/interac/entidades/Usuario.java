@@ -16,6 +16,11 @@ import java.util.List;
                         name = "Usuario.findByUserAndPassword",
                         query = "SELECT u FROM Usuario u WHERE u.username = :username and u.password = :password"
                 ),
+
+                @NamedQuery(
+                  name="Usuario.findUsuarioAndContrasenna",
+                        query="SELECT u FROM Usuario u Where u.username =:username and u.password=:password "
+                ),
                 @NamedQuery(
                         name = "Usuario.findByUser",
                         query = "SELECT u FROM Usuario u WHERE u.username = :username"
@@ -39,6 +44,7 @@ import java.util.List;
                         query = "SELECT u FROM Usuario u "+
                                 "INNER JOIN FETCH u.empresa emp "+
                                 "WHERE emp.idEmpresa=:empresa ")
+
         }
 )
 public class Usuario implements Serializable {
@@ -75,7 +81,7 @@ public class Usuario implements Serializable {
     }
 
     @Basic
-    @Column(name = "password", nullable = true, insertable = true, updatable = true, length = 45)
+    @Column(name = "password", nullable = true, insertable = true, updatable = true)
     public String getPassword() {
         return password;
     }

@@ -70,7 +70,7 @@
                 <p:dataTable id="datapantallas" styleClass="col-lg-12 " var="place"
                              value="#{mantenedorCampana.establecimientos}"
                              paginator="true" rows="5" selection="#{mantenedorCampana.establecimientoseleccionado}"
-                             selectionMode="single" rowKey="#{place.idEstablecimiento}">
+                             selectionMode="single" rowKey="#{mantenedorCampana.idEstablecimiento}">
 
                     <p:ajax event="rowSelect" listener="#{mantenedorCampana.dateDiff}" update=":form:dias"/>
                     <p:ajax event="rowSelect" listener="#{mantenedorCampana.diasPasadas}" update=":form:pasadas" />

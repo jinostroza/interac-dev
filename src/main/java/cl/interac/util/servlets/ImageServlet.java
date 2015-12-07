@@ -33,35 +33,17 @@ public class ImageServlet extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         PropertyReader pr = new PropertyReader();
-        pathImagenes = pr.get("pathImagenes");
+        pathImagenes = pr.get("pathLocal");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Get requested image by path info.
         String requestedImage = request.getPathInfo();
-        try {
 
-            // Get image file.
-            String path = request.getParameter("path");
-            String file = request.getParameter("file");
+        System.err.println("LLEGO CON "+requestedImage);
 
-            BufferedInputStream in = new BufferedInputStream(new FileInputStream(path + file));
-
-            // Get image contents.
-            byte[] bytes = new byte[in.available()];
-
-            in.read(bytes);
-            in.close();
-
-            // Write image contents to response.
-            response.getOutputStream().write(bytes);
-
-        } catch (IOException e) {
-
-            e.printStackTrace();
-
-        }
+        // Check if file name is actually supplied to the request URI.
 
         // Check if file name is actually supplied to the request URI.
         if (requestedImage == null) {
