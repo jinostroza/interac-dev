@@ -5,7 +5,6 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 template="/templates/default.xhtml">
     <ui:define name="contenido">
-
         <h:form>
             <div class="container" id="myInterac">
                 <header>
@@ -35,21 +34,6 @@
                     <div class="col-lg-12">
                     </div>
                     <div class="row" style="padding-left: 200px">
-                        <ui:fragment
-                                rendered="#{userSession.tienePermiso('CLIENTE')
-                                      or userSession.tienePermiso('ADMINISTRADOR')}">
-                            <p:commandLink styleClass="col-lg-3 col-md-3 "
-                                           style="padding-left: -300px;margin-left: -100px"
-                                           action="#{facesUtil.redirigir('/plataforma/contenidos')}">
-                                <div class="dashbox">
-                                    <h:outputLabel value="Activar Pantallas"
-                                                   style="font-weight: bold;font-size: 18px;"/>
-
-                                    <div class="button_ crear-campana"></div>
-                                    <p>Agrega aqui la informacion de tus pantallas</p>
-                                </div>
-                            </p:commandLink>
-                        </ui:fragment>
                         <ui:fragment
                                 rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') }">
                             <h:commandLink styleClass="col-lg-3 col-md-3  " action="crear">
