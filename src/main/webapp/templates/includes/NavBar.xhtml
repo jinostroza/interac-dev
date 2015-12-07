@@ -32,7 +32,7 @@
 
             <ui:fragment rendered="#{!userSession.estaAutentificado()}">
                 <li>
-                    <p:commandLink value="Registrar" action="#{facesUtil.redirigir('/plataforma/registro')}"/>
+                    <p:commandLink value="Registrar" action="#{facesUtil.redirigir('registrar.jsf')}"/>
                 </li>
             </ui:fragment>
 

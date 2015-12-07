@@ -123,7 +123,7 @@
                         </f:facet>
                         <p:column>
                             <p:graphicImage styleClass="col-lg-4" style="width: 80px;height: 120px"
-                                            value="http://g01.a.alicdn.com/kf/HTB1UZdtIXXXXXcSXpXXq6xXFXXXH/42-inch-TFT-LED-industrial-FULL-HD-vertical-screen-floor-stand-memory-card-advertising-player.jpg"></p:graphicImage>
+                                            value="/imagenes/?file=#{cont.path}"></p:graphicImage>
                         </p:column>
                         <p:column headerText="Identificador">
                             <h:outputText value="#{cont.idcontenido}"/>
@@ -167,7 +167,7 @@
                         </f:facet>
 
                         <p:column styleClass="col-lg-2" headerText="nombre">
-                            <h:graphicImage value="ftp://54.172.118.246/#{camton.contenido.path}"
+                            <h:graphicImage value="http://54.172.118.246:9595/interac-dev/imagenes/?path=/home/ec2-user/colivares/&#38;file#{camton.contenido.path}"
                                             style="width:100px; height:200px ;"/>
                         </p:column>
                         <p:column styleClass="col-lg-2" headerText="estado">

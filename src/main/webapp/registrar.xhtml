@@ -1,0 +1,69 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/logInTemplate.xhtml">
+
+<ui:define name="contenido">
+
+    <title>Registro</title>
+    <div class="login-header">
+        <div class="login-logo"></div>
+    </div>
+    <h:outputStylesheet>
+        body {
+            background-color: #E52620;
+        }
+
+        .espacioplz{
+            margin:10px 0px 10px 0px ;
+        }
+    </h:outputStylesheet>
+
+
+                    <h:form prependId="false">
+                        <div class="container">
+                        <div class="col-md-10" id="cuadro-registro">
+
+                        <p:panelGrid prependId="false" styleClass="ui-grid ui-grid-responsive ">
+
+
+                            <p:outputPanel styleClass="ui-grid-row">
+                                <h4>Completa con tus datos</h4>
+                                <p:inputText styleClass="ui-grid-col-8 espacioplz form-control" required="true"
+                                             value="#{registrarBean.usuario.nombres}" placeholder="Nombres"/>
+
+                                <p:inputText styleClass="ui-grid-col-8 espacioplz form-control" required="true"
+                                         value="#{registrarBean.usuario.apellidos}" placeholder="Apellidos"/>
+
+
+                                <p:inputText styleClass="ui-grid-col-8 espacioplz form-control" required="true" value="#{registrarBean.usuario.nombres}"
+                                            placeholder="Nombre de Usuario"/>
+
+                                <p:inputText type="email" styleClass="ui-grid-col-8 espacioplz form-control"
+                                             required="true" value="#{registrarBean.elcorreowey}" placeholder="Correo"/>
+
+                                <p:password styleClass="ui-grid-col-8 espacioplz form-control" required="true" value="#{registrarBean.pass}"
+                                            placeholder="Contraseña"/>
+
+                                <p:password styleClass="ui-grid-col-8 espacioplz form-control" required="true" value="#{registrarBean.claveConfirmada}"
+                                            placeholder="Confirmar Contraseña"/>
+
+                                <p:commandButton ajax="false" value="Registrar"
+                                                 styleClass="btn btn-interac espacioplz  ui-grid-col-5 form-control" action="#{registrarBean.signUp}"/>
+
+                            </p:outputPanel>
+                        </p:panelGrid>
+                        </div>
+                        </div>
+
+
+                    </h:form>
+
+
+
+
+    <ui:include src="/templates/includes/Footer.xhtml"/>
+</ui:define>
+</ui:composition>

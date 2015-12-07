@@ -56,7 +56,7 @@ public class LogInManager implements AuthenticationProvider, Serializable {
     // que reciba un usuario y retorne una lista de roles
 
     private List<GrantedAuthority> getAcceso(Usuario usuario) {
-        String user = "weed";
+
 
         List<GrantedAuthority> listaRoles = new ArrayList<GrantedAuthority>();
         List<Usuario> roles = null;
