@@ -187,7 +187,7 @@ public class MantenedorCampana implements Serializable {
         contenido.setCategoria(categoria);
 
         logicaContenido.guardar(contenido);
-        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el Contenido [" + contenido.getIdcontenido() + "]");
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el contenido [" + contenido.getIdcontenido() + "]");
 
       return irCrear(c);
 
@@ -197,7 +197,7 @@ public class MantenedorCampana implements Serializable {
         contenido.setCategoria(categoria);
 
         logicaContenido.guardar(contenido);
-        FacesUtil.mostrarMensajeInformativo("Operacion Exitosa", "Se ha Creado el Contenido [" + contenido.getIdcontenido() + "]");
+        FacesUtil.mostrarMensajeInformativo("Operacion Exitosa", "Se hacreado el contenido [" + contenido.getIdcontenido() + "]");
 
         return "end2";
 
@@ -246,7 +246,7 @@ public class MantenedorCampana implements Serializable {
         mailSender.send(replicas,"Interac",mensajeLocal);
 
 
-            FacesUtil.mostrarMensajeInformativo("operacion exitosa", "se ha creado tu campaña");
+            FacesUtil.mostrarMensajeInformativo("Operacion exitosa", "se ha creado tu anuncio");
     }
 
        public void eliminarFichero(Contenido conte){
@@ -814,13 +814,3 @@ public class MantenedorCampana implements Serializable {
         this.mesFin = mesFin;
     }
 }
-
-
-
-
-
-
-
-
-
-

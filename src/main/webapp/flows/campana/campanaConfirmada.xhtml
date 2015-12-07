@@ -15,24 +15,20 @@
           <h:form>
               <div class="login-header"></div>
             <div class="container">
-
                 <div class="row">
-
                     <div class="row" id="cuadro-registro" style="margin-top: 10%;margin-left:5%;height: 30%;width: 90%">
-
-
                         <div class="col-md-6 col-md-offset-2" >
                             <br/>
                             <br/>
                             <ui:fragment rendered="#{mantenedorCampana.establecimientoseleccionado != null }" >
-                            <h3>!Se ha creado tu campaña!</h3>
-                            <p>has subido tu publicidad exitosamente</p>
+                            <h3>!Se ha creado tu anuncio!</h3>
+                            <p>Has subido tu publicidad exitosamente</p>
                             <div class="row">
                                 <p:graphicImage url="imagenes/interac/#{mantenedorCampana.campana.contenido.path}" style="width:150px; height:200px ;"
                                         styleClass="col-lg-1"/>
                                 <div class="col-lg-offset-2" style="width: 550px" >
                                 <h:panelGrid >
-                                    <h3>Campaña Nº : #{mantenedorCampana.campana.idcampana}</h3>
+                                    <h3>Anuncio Nº : #{mantenedorCampana.campana.idcampana}</h3>
 
                                     </h:panelGrid>
                                     <h:panelGrid columns="1">
@@ -139,7 +135,6 @@
           </div>
             <div class="push">
             </div>
-
         </h:form>
         <ui:include src="/templates/includes/Footer.xhtml"/>
     </ui:define>

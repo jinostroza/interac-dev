@@ -13,7 +13,7 @@
                         <div class="col-lg-6 col-lg-offset-3">
                             <ui:fragment
                                     rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') }">
-                                <h2>Planifica tu Campaña en 3 simples Pasos</h2>
+                                <h2>Planifica tu Anuncio en 3 simples Pasos</h2>
                             </ui:fragment>
                             <ui:fragment
                                     rendered="#{userSession.tienePermiso('PUCV')}">
@@ -33,9 +33,7 @@
                 </header>
                 <div class="row">
                     <div class="col-lg-12">
-
                     </div>
-
                     <div class="row" style="padding-left: 200px">
                         <ui:fragment
                                 rendered="#{userSession.tienePermiso('CLIENTE')
@@ -66,7 +64,7 @@
 
                             <h:commandLink styleClass="col-lg-3 col-md-3 " action="vercon">
                                 <div class="dashbox">
-                                    <h:outputLabel value="Programar Campaña"
+                                    <h:outputLabel value="Programar Anuncio"
                                                    style="font-weight: bold;font-size: 18px;"/>
 
                                     <div class="button_ planificar-campana"></div>
@@ -79,7 +77,7 @@
                                     <h:outputLabel value="Pagar" style="font-weight: bold;font-size: 18px;"/>
 
                                     <div class="button_ pagar"></div>
-                                    <p> Confirma y paga tu Campaña aqui!</p>
+                                    <p> Confirma y paga tu Anuncio aqui!</p>
                                 </div>
                             </h:commandLink>
                         </ui:fragment>
@@ -152,7 +150,7 @@
                     rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') }">
                 <div class="ui-grid-row">
                     <div class="col-lg-4">
-                        <h3 align="center" style="align-items: flex-start">Estado de tus Campañas</h3>
+                        <h3 align="center" style="align-items: flex-start">Estado de tus Anuncios</h3>
                     </div>
                 </div>
 
@@ -163,7 +161,7 @@
                                  value="#{mantenedorCampana.campanas}">
 
                         <f:facet name="header">
-                            Mis Campañas
+                            Mis Anuncios
                         </f:facet>
 
                         <p:column styleClass="col-lg-2" headerText="nombre">
@@ -190,8 +188,6 @@
             <br/>
             <p:spacer> </p:spacer>
             <br/>
-
         </h:form>
-
     </ui:define>
 </ui:composition>

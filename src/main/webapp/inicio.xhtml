@@ -39,7 +39,7 @@
                         <ui:fragment rendered="#{!userSession.estaAutentificado()}">
                         <h:commandLink  styleClass="col-lg-4" action="#{facesUtil.redirigir('logIn.jsf')}" >
                             <div class="dashbox">
-                                <h:outputLabel value="Crear campaña" styleClass="dashbox-header"/>
+                                <h:outputLabel value="Crear anuncio" styleClass="dashbox-header"/>
                                 <div class="button_ crear-campana"></div>
                                 <p> Escoge aqui uno de los anuncios ya creados </p>
                             </div>
@@ -48,7 +48,7 @@
                         <ui:fragment rendered="#{userSession.estaAutentificado()}">
                         <h:commandLink  styleClass="col-lg-4"  action="#{facesUtil.redirigir('plataforma/campana')}">
                             <div class="dashbox">
-                                <h:outputLabel value="Crear campaña" styleClass="dashbox-header"/>
+                                <h:outputLabel value="Crear anuncio" styleClass="dashbox-header"/>
                                 <div class="button_ crear-campana"></div>
                                 <p> Escoge aqui uno de los anuncios ya creados </p>
                             </div>

@@ -97,7 +97,7 @@ public class MantenedorCliente implements Serializable {
         logicaContenido.guardar(contenido);
         campanaEnEspera.clear();
         campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
-        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha aprobado campaña  [" + campana.getContenido().getNombrecont() + "]");
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha aprobado el anuncio  [" + campana.getContenido().getNombrecont() + "]");
     }
 
     public void rechazar(Campana ca , Contenido c){
@@ -107,7 +107,7 @@ public class MantenedorCliente implements Serializable {
             String rechazado = "Rechazado";
             campana.setEstado(rechazado);
             logicaContenido.guardar(contenido);
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado campaña  [" + campana.getContenido().getNombrecont() + "]");
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado el anuncio  [" + campana.getContenido().getNombrecont() + "]");
 
         }catch (Exception e){
             FacesUtil.mostrarMensajeError("Operación Fallida","algo ocurrio");
@@ -120,7 +120,7 @@ public class MantenedorCliente implements Serializable {
 
         campanaEnEspera.clear();
         campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
-        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado campaña  [" + campana.getContenido().getNombrecont() + "]");
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado el anuncio  [" + campana.getContenido().getNombrecont() + "]");
     }
 
 

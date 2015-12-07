@@ -57,6 +57,4 @@ public class CronService {
             FacesUtil.mostrarMensajeInformativo("Operación Fallida", "Algo Ocurrio");
         }
     }
-
-
 }
