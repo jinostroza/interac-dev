@@ -22,6 +22,7 @@ tr.table-header{
 /* Cabecera */
 .header{
 	margin-bottom:0;
+	border-bottom: 2px solid #E52721;
 }
 .header .header-top{
 	background-color:#E52721;

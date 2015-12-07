@@ -133,19 +133,13 @@
             <ui:fragment
                     rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') }">
                 <div class="ui-grid-row">
-                    <div class="col-lg-4">
-                        <h3 align="center" style="align-items: flex-start">Estado de tus Anuncios</h3>
-                    </div>
-                </div>
-
-                <div class="ui-grid-row">
                     <p:dataTable var="camton" rows="5" paginator="true"
                                  styleClass="col-lg-10 col-lg-offset-5"
                                  style="margin-left: 10%;text-align-all: center;"
                                  value="#{mantenedorCampana.campanas}">
 
                         <f:facet name="header">
-                            Mis Anuncios
+                            <h3>Estado de tus Anuncios</h3>
                         </f:facet>
 
                         <p:column styleClass="col-lg-2" headerText="nombre">
