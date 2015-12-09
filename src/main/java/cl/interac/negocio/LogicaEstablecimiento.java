@@ -59,5 +59,4 @@ public class LogicaEstablecimiento {
     public void eliminar(Establecimiento e) {
         establecimientoDAO.eliminar(e);
     }
-
 }

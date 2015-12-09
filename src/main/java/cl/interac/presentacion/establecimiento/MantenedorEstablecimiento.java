@@ -18,7 +18,7 @@ import java.util.List;
 @Component
 @Scope("view")
 public class MantenedorEstablecimiento implements Serializable {
-    //manejo manual
+    //Manejo Manual
     private List<Establecimiento> establecimientoList;
     private List<Establecimiento> establecimientoConfiltro;
     private List<Totem> totems;
@@ -45,12 +45,15 @@ public class MantenedorEstablecimiento implements Serializable {
     private LogicaTotem logicaTotem;
     @Autowired
     private LogicaCategoria logicaCategoria;
+    @Autowired
+    private LogicaEmpresa logicaEmpresa;
 
     @PostConstruct
     public void inicio() {
         establecimientoList = logicaEstablecimiento.obtenerConRelacion();
         ubicaciones = logicaUbicacion.obtenerTodas();
         categorias = logicaCategoria.obtenerTodos();
+        empresas = logicaEmpresa.obtenerTodos();
         establecimiento = new Establecimiento();
     }
 
@@ -150,7 +153,9 @@ public class MantenedorEstablecimiento implements Serializable {
     public Empresa getEmpresa() { return empresa; }
     public void setEmpresa(Empresa empresa) { this.empresa = empresa; }
 
-    public List<Empresa> getEmpresas() { return empresas; }
+    public List<Empresa> getEmpresas() {
+        return empresas;
+    }
     public void setEmpresas(List<Empresa> empresas) { this.empresas = empresas; }
 }
 

@@ -20,7 +20,7 @@
                 <h:outputText value="#{local.fono}" />
             </p:column>
             <p:column headerText="Empresa" filterBy="#{local.empresa.nombreEmpresa}" filterMatchMode="contains">
-                <h:outputText value="" />
+                <h:outputText value="#{local.empresa.nombreEmpresa}" />
             </p:column>
             <p:column headerText="Ubicacion" filterBy="#{local.ubicacion.descubicacion}" filterMatchMode="contains">
                 <h:outputText value="#{local.ubicacion.descubicacion}" />
@@ -53,10 +53,15 @@
                         <h:inputText styleClass="form-control" value="#{local.direccion}" />
                         <h:outputLabel value="Fono"/>
                         <h:inputText styleClass="form-control" value="#{local.fono}"/>
+                        <h:outputLabel value="Empresa"/>
+                        <h:selectOneMenu class="form-control" value="#{local.empresa}"
+                                         converter="entityConverter">
+                            <f:selectItems value="#{mantenedorEstablecimiento.empresas}" var="empresa"
+                                           itemLabel="#{empresa.nombreEmpresa}"  />
+                        </h:selectOneMenu>
                         <h:outputLabel value="Ubicacion"/>
                         <h:selectOneMenu class="form-control" value="#{local.ubicacion}"
                                          converter="entityConverter">
-                            <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
                             <f:selectItems value="#{mantenedorEstablecimiento.ubicaciones}" var="ubica"
                                            itemLabel="#{ubica.descubicacion}"/>
                         </h:selectOneMenu>
@@ -97,8 +102,8 @@
             <h:selectOneMenu class="form-control" value="#{mantenedorEstablecimiento.empresa}"
                              converter="entityConverter">
                 <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione empresa asociada --"/>
-                <f:selectItems value="#{mantenedorEmpresa.empresas}" var="empresa"
-                               itemLabel="#{empresa.nombreEmpresa}"  />
+                <f:selectItems value="#{mantenedorEstablecimiento.empresas}" var="empresa"
+                               itemLabel="#{empresa.nombreEmpresa}"/>
             </h:selectOneMenu>
             <h:outputLabel value="Ubicacion"/>
             <h:selectOneMenu class="form-control" value="#{mantenedorEstablecimiento.ubicacion}"

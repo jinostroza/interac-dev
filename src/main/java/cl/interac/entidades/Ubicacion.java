@@ -27,39 +27,32 @@ public class Ubicacion implements Serializable {
     // relaciones
     private List<Establecimiento> establecimientoList;
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idubicacion")
     public Integer getIdubicacion() {
         return idubicacion;
     }
-
     public void setIdubicacion(Integer idubicacion) {
         this.idubicacion = idubicacion;
     }
-
 
     @Basic
     @Column(name = "descubicacion")
     public String getDescubicacion() {
         return descubicacion;
     }
-
     public void setDescubicacion(String descubicacion) {
         this.descubicacion = descubicacion;
     }
-
 
     @OneToMany(mappedBy = "ubicacion")
     public List<Establecimiento> getEstablecimientoList() {
         return establecimientoList;
     }
-
     public void setEstablecimientoList(List<Establecimiento> establecimientoList) {
         this.establecimientoList = establecimientoList;
     }
-
 
     @Override
     public boolean equals(Object o) {

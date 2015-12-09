@@ -21,9 +21,6 @@ import java.util.List;
 public class MantenedorEmpresa implements Serializable {
 
     private List<Empresa> empresas;
-    private List<Establecimiento> establecimientoList;
-    private List<Establecimiento> establecimientoConfiltro;
-
     private Empresa empresa;
 
     @Autowired

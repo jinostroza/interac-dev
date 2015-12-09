@@ -28,7 +28,7 @@ public class Empresa implements Serializable {
     public void setIdEmpresa(Integer idEmpresa) { this.idEmpresa = idEmpresa; }
 
     @Basic
-    @Column(name="nombre")
+    @Column(name="nombre", insertable = true, length = 200)
     public String getNombreEmpresa() { return nombreEmpresa; }
     public void setNombreEmpresa(String nombreEmpresa) {
         this.nombreEmpresa = nombreEmpresa;
@@ -54,4 +54,16 @@ public class Empresa implements Serializable {
     public String getTelefono() { return telefono; }
     public void setTelefono(String telefono) { this.telefono = telefono; }
 
+    @Override
+    public int hashCode() {
+        return idEmpresa != null ? 31 * idEmpresa.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Empresa" +
+                "{" +
+                "idEmpresa =" + idEmpresa +
+                '}';
+    }
 }

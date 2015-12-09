@@ -19,7 +19,8 @@ import java.util.Date;
                 query = "select e from Establecimiento e " +
                         "inner join fetch e.usuario " +
                         "inner join fetch e.ubicacion " +
-                        "INNER JOIN FETCH e.categoria"),
+                        "INNER JOIN FETCH e.categoria " +
+                        "INNER JOIN FETCH e.empresa"),
 
         @NamedQuery(name = "establecimiento.findEstablecimientoByUser",
                 query = "SELECT e FROM Establecimiento e " +

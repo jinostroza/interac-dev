@@ -139,25 +139,25 @@
                                  value="#{mantenedorCampana.campanas}">
 
                         <f:facet name="header">
-                            <h3>Estado de tus Anuncios</h3>
+                            <h3 style="margin:0;padding:0;font-weight:bold;">Estado de tus Anuncios</h3>
                         </f:facet>
 
-                        <p:column styleClass="col-lg-2" headerText="nombre">
+                        <p:column styleClass="col-lg-2" headerText="Nombre">
                             <h:graphicImage url="ftp://54.172.118.246/#{camton.contenido.path}" style="width:100px; height:200px ;"/>
                         </p:column>
-                        <p:column styleClass="col-lg-2" headerText="estado">
+                        <p:column styleClass="col-lg-2" headerText="Estado">
                             <h:outputText value="#{camton.estado}"/>
                         </p:column>
-                        <p:column styleClass="col-lg-2" headerText="fecha">
+                        <p:column styleClass="col-lg-2" headerText="Fecha">
                             <h:outputText value="#{camton.fechaCreacion}"/>
                         </p:column>
-                        <p:column styleClass="col-lg-2" headerText="pasadas">
+                        <p:column styleClass="col-lg-2" headerText="Pasadas">
                             <h:outputText value="#{camton.pasadas}"/>
                         </p:column>
-                        <p:column styleClass="col-lg-2" headerText="fecha inicio">
+                        <p:column styleClass="col-lg-2" headerText="Fecha inicio">
                             <h:outputText value="#{camton.fechaInicio}"/>
                         </p:column>
-                        <p:column styleClass="col-lg-2" headerText="fecha fin">
+                        <p:column styleClass="col-lg-2" headerText="Fecha fin">
                             <h:outputText value="#{camton.fechaFin}"/>
                         </p:column>
                     </p:dataTable>

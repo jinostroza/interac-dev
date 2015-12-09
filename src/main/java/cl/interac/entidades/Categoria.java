@@ -29,7 +29,6 @@ public class Categoria implements Serializable {
     public Integer getIdcategoria() {
         return idcategoria;
     }
-
     public void setIdcategoria(Integer idcategoria) {
         this.idcategoria = idcategoria;
     }
@@ -39,7 +38,6 @@ public class Categoria implements Serializable {
     public String getDesccategoria() {
         return desccategoria;
     }
-
     public void setDesccategoria(String desccategoria) {
         this.desccategoria = desccategoria;
     }
