@@ -4,17 +4,17 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
     <h3 style="margin-top:0">Mantenedor Establecimientos</h3>
-
     <h:panelGrid id="establecimientoPG" columns="2" cellpadding="10">
         <br/>
         <p:dataTable id="establecimientos" var="local" widgetVar="dtEstablecimientos"
                      value="#{mantenedorEstablecimiento.establecimientoList}"
-                     filteredValue="#{mantenedorEstablecimiento.establecimientoConfiltro}">
+                     filteredValue="#{mantenedorEstablecimiento.establecimientoConfiltro}"
+                     paginator="true" rows="6">
             <p:column headerText="Nombre" filterBy="#{local.nombreEstablecimiento}">
-                <h:outputText value="#{local.nombreEstablecimiento}" />
+                <h:outputText value="#{local.nombreEstablecimiento}"/>
             </p:column>
             <p:column headerText="Direccion" filterBy="#{local.direccion}">
-                <h:outputText value="#{local.direccion}" />
+                <h:outputText value="#{local.direccion}"/>
             </p:column>
             <p:column headerText="Telefono" filterBy="#{local.fono}">
                 <h:outputText value="#{local.fono}" />
@@ -56,8 +56,8 @@
                         <h:outputLabel value="Empresa"/>
                         <h:selectOneMenu class="form-control" value="#{local.empresa}"
                                          converter="entityConverter">
-                            <f:selectItems value="#{mantenedorEstablecimiento.empresas}" var="empresa"
-                                           itemLabel="#{empresa.nombreEmpresa}"  />
+                            <f:selectItems value="#{mantenedorEstablecimiento.empresas}" var="emp"
+                                           itemLabel="#{emp.nombreEmpresa}"/>
                         </h:selectOneMenu>
                         <h:outputLabel value="Ubicacion"/>
                         <h:selectOneMenu class="form-control" value="#{local.ubicacion}"

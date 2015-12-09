@@ -28,7 +28,7 @@ public class Empresa implements Serializable {
     public void setIdEmpresa(Integer idEmpresa) { this.idEmpresa = idEmpresa; }
 
     @Basic
-    @Column(name="nombre", insertable = true, length = 200)
+    @Column(name="nombre")
     public String getNombreEmpresa() { return nombreEmpresa; }
     public void setNombreEmpresa(String nombreEmpresa) {
         this.nombreEmpresa = nombreEmpresa;
