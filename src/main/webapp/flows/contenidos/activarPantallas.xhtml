@@ -5,9 +5,8 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/templates/default.xhtml">
     <ui:define name="contenido">
-        <h1>Totems por activar</h1>
+        <h1 style="margin-top:0">Totems por activar</h1>
         <p:dataTable id="dttotems"  var="totes" value="#{mantenedorTotems.totemPorUsuario}" paginator="true" rows="6">
-            <f:facet name="header">Hola mundo</f:facet>
             <p:column headerText="Establecimiento">
                 <h:outputText value="#{totes.establecimiento.nombreEstablecimiento}" />
             </p:column>
