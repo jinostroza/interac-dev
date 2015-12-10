@@ -4,6 +4,8 @@ import cl.interac.entidades.*;
 import cl.interac.negocio.*;
 import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.UserSession;
+import cl.interac.util.services.FileUploader;
+import org.primefaces.event.FileUploadEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -41,6 +43,9 @@ public class MantenedorTotems implements Serializable {
     private LogicaUbicacion logicaUbicacion;
     @Autowired
     private LogicaMarcapantalla logicaMarcaPantalla;
+    @Autowired
+    private FileUploader fileUploader;
+    private int fileUploadCount;
 
     private MapModel simpleModel;
     private Marker marker;
@@ -97,12 +102,15 @@ public class MantenedorTotems implements Serializable {
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha sobornado el Totem [" + totem.getNoserie() + "]");
     }
 
+    public void subir(FileUploadEvent fue){
+
+    }
+
     //Getters y Setters
 
     public List<Totem> getTotemConFiltro() {
         return totemConFiltro;
     }
-
     public void setTotemConFiltro(List<Totem> totemConFiltro) {
         this.totemConFiltro = totemConFiltro;
     }
@@ -110,7 +118,6 @@ public class MantenedorTotems implements Serializable {
     public List<Totem> getTotems() {
         return totems;
     }
-
     public void setTotems(List<Totem> totems) {
         this.totems = totems;
     }
@@ -118,7 +125,6 @@ public class MantenedorTotems implements Serializable {
     public Totem getTotem() {
         return totem;
     }
-
     public void setTotem(Totem totem) {
         this.totem = totem;
     }
@@ -126,7 +132,6 @@ public class MantenedorTotems implements Serializable {
     public Establecimiento getEstablecimiento() {
         return establecimiento;
     }
-
     public void setEstablecimiento(Establecimiento establecimiento) {
         this.establecimiento = establecimiento;
     }
@@ -134,7 +139,6 @@ public class MantenedorTotems implements Serializable {
     public List<Establecimiento> getEstablecimientoList() {
         return establecimientoList;
     }
-
     public void setEstablecimientoList(List<Establecimiento> establecimientoList) {
         this.establecimientoList = establecimientoList;
     }
@@ -142,7 +146,6 @@ public class MantenedorTotems implements Serializable {
     public List<Establecimiento> getEstablecimientoConfiltro() {
         return establecimientoConfiltro;
     }
-
     public void setEstablecimientoConfiltro(List<Establecimiento> establecimientoConfiltro) {
         this.establecimientoConfiltro = establecimientoConfiltro;
     }
@@ -150,7 +153,6 @@ public class MantenedorTotems implements Serializable {
     public Marker getMarker() {
         return marker;
     }
-
     public void setMarker(Marker marker) {
         this.marker = marker;
     }
@@ -158,7 +160,6 @@ public class MantenedorTotems implements Serializable {
     public List<Tipototem> getTipototems() {
         return tipototems;
     }
-
     public void setTipototems(List<Tipototem> tipototems) {
         this.tipototems = tipototems;
     }
@@ -166,7 +167,6 @@ public class MantenedorTotems implements Serializable {
     public Tipototem getTipototem() {
         return tipototem;
     }
-
     public void setTipototem(Tipototem tipototem) {
         this.tipototem = tipototem;
     }
@@ -174,7 +174,6 @@ public class MantenedorTotems implements Serializable {
     public List<Totem> getTotemPorUsuario() {
         return totemPorUsuario;
     }
-
     public void setTotemPorUsuario(List<Totem> totemPorUsuario) {
         this.totemPorUsuario = totemPorUsuario;
     }
@@ -182,7 +181,6 @@ public class MantenedorTotems implements Serializable {
     public UserSession getUserSession() {
         return userSession;
     }
-
     public void setUserSession(UserSession userSession) {
         this.userSession = userSession;
     }
@@ -190,7 +188,6 @@ public class MantenedorTotems implements Serializable {
     public Ubicacion getUbicacion() {
         return ubicacion;
     }
-
     public void setUbicacion(Ubicacion ubicacion) {
         this.ubicacion = ubicacion;
     }
@@ -198,7 +195,6 @@ public class MantenedorTotems implements Serializable {
     public List<Ubicacion> getUbicaciones() {
         return ubicaciones;
     }
-
     public void setUbicaciones(List<Ubicacion> ubicaciones) {
         this.ubicaciones = ubicaciones;
     }
@@ -206,7 +202,6 @@ public class MantenedorTotems implements Serializable {
     public List<Marcapantalla> getMarcaPantallas() {
         return marcaPantallas;
     }
-
     public void setMarcaPantallas(List<Marcapantalla> marcaPantallas) {
         this.marcaPantallas = marcaPantallas;
     }
@@ -214,10 +209,8 @@ public class MantenedorTotems implements Serializable {
     public Marcapantalla getMarcapantalla() {
         return marcapantalla;
     }
-
     public void setMarcapantalla(Marcapantalla marcapantalla) {
         this.marcapantalla = marcapantalla;
     }
-
 
 }

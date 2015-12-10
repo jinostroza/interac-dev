@@ -65,6 +65,7 @@ public class Totem implements Serializable {
     private String modelo;
     private String pulgadas;
     private String estado;
+    private String imagen;
 
     // relaciones
     private List<Campana> campanaList;
@@ -156,12 +157,16 @@ public class Totem implements Serializable {
     public String getEstado() { return estado; }
     public void setEstado(String estado) { this.estado = estado; }
 
+    @Basic
+    @Column(name = "imagen")
+    public String getImagen() { return imagen; }
+    public void setImagen(String imagen) { this.imagen = imagen; }
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idtipo", referencedColumnName = "idtipo", nullable = false)
     public Tipototem getTipototem() {
         return tipototem;
     }
-
     public void setTipototem(Tipototem tipototem) {
         this.tipototem = tipototem;
     }
@@ -172,18 +177,13 @@ public class Totem implements Serializable {
     public Establecimiento getEstablecimiento() {
         return establecimiento;
     }
-
     public void setEstablecimiento(Establecimiento establecimiento) {
         this.establecimiento = establecimiento;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "marca",referencedColumnName = "idmarca",nullable = false)
-    public Marcapantalla getMarcaPantalla(){
-
-        return marcaPantalla;
-    }
-
+    public Marcapantalla getMarcaPantalla(){ return marcaPantalla; }
     public void setMarcaPantalla(Marcapantalla marcaPantalla) { this.marcaPantalla = marcaPantalla; }
 
 
