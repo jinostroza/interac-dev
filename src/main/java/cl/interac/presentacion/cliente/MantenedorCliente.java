@@ -2,6 +2,7 @@ package cl.interac.presentacion.cliente;
 
 import cl.interac.entidades.*;
 import cl.interac.negocio.*;
+import cl.interac.util.components.Constantes;
 import cl.interac.util.components.EmailUtils;
 import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.UserSession;
@@ -67,6 +68,8 @@ public class MantenedorCliente implements Serializable {
     private MailSender mailSender;
     @Autowired
     private LogicaUsuario logicaUsuario;
+    @Autowired
+    private Constantes constantes;
 
     // inicio y Logica de vista
 
@@ -83,17 +86,28 @@ public class MantenedorCliente implements Serializable {
             contenido = c;
             String aprobado = "Aprobado";
             campana.setEstado(aprobado);
-            String carpetaDestino = "demoPublicidad";
+            String carpetaDestino = campana.getEstablecimiento().getCarpetaFtp();
             Files.copy(Paths.get("/home/ec2-user/media/interac/" + contenido.getPath()),
                     Paths.get("/home/ec2-user/media/" + carpetaDestino + "/" + contenido.getPath()));
         }catch (Exception e){
             FacesUtil.mostrarMensajeError("Operación Fallida", "algo ocurrio");
         }
 
-        String[] destinos = new String[2];
-        destinos[0] = "jchacon@interac.cl";
-        destinos[1] = "fernando_06@live.cl";
-        mailSender.send(destinos,"una prueba","esta Lista la API");
+        String[] destinos = new String[3];
+        destinos[0] = userSession.getUsuario().getCorreo();
+        destinos[1] = "contacto@interac.cl";
+        destinos[2] = campana.getContenido().getUsuario().getCorreo();
+        //cuerpo del mensaje
+        String mensajeAnunciante = new String(constantes.getAprobar());
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$Id",String.valueOf(campana.getIdcampana()));
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento",campana.getEstablecimiento().getNombreEstablecimiento());
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$numerodePantallas",String.valueOf(campana.getEstablecimiento().getNumeroPantallas()));
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valormensual",String.valueOf(campana.getEstablecimiento().getValorMensual()));
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$total", String.valueOf(9999999));
+
+
+        mailSender.send(destinos,"Interac",mensajeAnunciante);
+
         logicaContenido.guardar(contenido);
         campanaEnEspera.clear();
         campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());

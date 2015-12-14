@@ -55,6 +55,16 @@ public class Empresa implements Serializable {
     public void setTelefono(String telefono) { this.telefono = telefono; }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Empresa empresa = (Empresa) o;
+
+        if (this.getIdEmpresa() == null || empresa.getIdEmpresa() == null) return false;
+        else return this.getIdEmpresa().intValue() == empresa.getIdEmpresa().intValue();
+    }
+    @Override
     public int hashCode() {
         return idEmpresa != null ? 31 * idEmpresa.hashCode() : 0;
     }

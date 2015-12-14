@@ -149,7 +149,7 @@ public class MantenedorContenido implements Serializable {
 
         try {
             logicaContenido.eliminarContenido(conte);
-            Files.delete(Paths.get("/home/ec2-user/media/colivares/" + conte.getPath()));
+            Files.delete(Paths.get("/home/ec2-user/media/interac/" + conte.getPath()));
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha borrado la imagen");
 
         }catch (Exception e){

@@ -59,7 +59,7 @@ tr.table-header{
 	display: block;
 	clear: both;
 	width: 100%;
-	border-bottom: 2px solid #E52721;
+	border-bottom: 2px solid #E52721 !important;
 }
 .container header{
 	margin-top:5px;

@@ -33,7 +33,7 @@ public class ImageServlet extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         PropertyReader pr = new PropertyReader();
-        pathImagenes = pr.get("pathLocal");
+        pathImagenes = pr.get("pathImagenes");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

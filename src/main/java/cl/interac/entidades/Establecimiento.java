@@ -17,10 +17,10 @@ import java.util.Date;
 
         @NamedQuery(name = "estabecimiento.findAllByusuario",
                 query = "select e from Establecimiento e " +
-                        "inner join fetch e.usuario " +
-                        "inner join fetch e.ubicacion " +
-                        "INNER JOIN FETCH e.categoria " +
-                        "INNER JOIN FETCH e.empresa"),
+                        "inner join fetch e.usuario u " +
+                        "inner join fetch e.ubicacion ub " +
+                        "INNER JOIN FETCH e.categoria c " +
+                        "INNER JOIN FETCH e.empresa em"),
 
         @NamedQuery(name = "establecimiento.findEstablecimientoByUser",
                 query = "SELECT e FROM Establecimiento e " +
@@ -67,6 +67,7 @@ public class Establecimiento implements Serializable {
     private Integer numeroPantallas;
     private String urlImagen;
     private String estado;
+    private String carpetaFtp;
 
     // Relaciones
     private Usuario usuario;
@@ -190,6 +191,15 @@ public class Establecimiento implements Serializable {
     @Column(name= "estado")
     public String getEstado() { return estado; }
     public void setEstado(String estado) { this.estado = estado; }
+    @Basic
+    @Column(name = "carpetaftp")
+    public String getCarpetaFtp() {
+        return carpetaFtp;
+    }
+
+    public void setCarpetaFtp(String carpetaFtp) {
+        this.carpetaFtp = carpetaFtp;
+    }
 
     @JoinColumn(name = "fk_rubro", referencedColumnName = "idcategoria")
     @ManyToOne(fetch = FetchType.LAZY)

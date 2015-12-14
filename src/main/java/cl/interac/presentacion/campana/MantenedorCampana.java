@@ -2,7 +2,6 @@ package cl.interac.presentacion.campana;
 
 import cl.interac.entidades.*;
 import cl.interac.negocio.*;
-import cl.interac.scheduled.CronService;
 import cl.interac.util.components.*;
 import cl.interac.util.services.FileUploader;
 import cl.interac.util.services.MailSender;
@@ -240,7 +239,7 @@ public class MantenedorCampana implements Serializable {
         String[] alertas = new String[2];
 
         replicas[0]=establecimientoseleccionado.getUsuario().getCorreo();
-        alertas[0]="joacoch@hotmail.cl";
+        alertas[0]="contacto@interac.cl";
         alertas[1]=userSession.getUsuario().getCorreo();
         mailSender.send(alertas,"Interac",mensajeAnunciante);
         mailSender.send(replicas,"Interac",mensajeLocal);
@@ -260,7 +259,7 @@ public class MantenedorCampana implements Serializable {
                 FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha borrado la imagen");
             }else if ("produccion".equals(ambiente)) {
                 logicaContenido.eliminarContenido(conte);
-                Files.delete(Paths.get("/home/ec2-user/media/colivares/" + conte.getPath()));
+                Files.delete(Paths.get("/home/ec2-user/media/interac/" + conte.getPath()));
                 FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha borrado la imagen}");
             }
 

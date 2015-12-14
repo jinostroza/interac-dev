@@ -73,8 +73,8 @@
                                         <h:outputLabel value="Valor por pasada: ">
                                             <h:outputLabel style="color: red" value="$2"/>
                                         </h:outputLabel>
-                                        <h:outputLabel value="Valor total ">
-                                            <h:outputLabel style="color: red" value="$#{mantenedorCampana.valor}"/>
+                                        <h:outputLabel value="Valor total " style="font-size: x-large">
+                                            <h:outputLabel style="color: red;font-size: x-large" value="$#{mantenedorCampana.valor}"/>
                                         </h:outputLabel>
                                         <h:outputLabel value="Tu anuncio se publicara En : ">
                                             <h:graphicImage style="width: 80px;height: 120px" value="#{mantenedorCampana.establecimientoseleccionado.urlImagen}"/>
@@ -92,7 +92,7 @@
                             <ui:fragment rendered="#{mantenedorCampana.totemSelecionados != null }" >
                             <p:panelGrid columns="2">
                                 <f:facet name="header">
-                                    <h:graphicImage url="ftp://54.172.118.246/#{mantenedorCampana.campana.contenido.path}" style="width:100px; height:200px ;" />
+                                    <h:graphicImage url="/imagenes/interac/#{mantenedorCampana.campana.contenido.path}" style="width:100px; height:200px ;" />
                                 </f:facet>
 
                                 <h:outputText value="fecha Creacion:" />

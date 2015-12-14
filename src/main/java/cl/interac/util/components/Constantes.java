@@ -697,7 +697,7 @@ public class Constantes implements Serializable {
               "                      <h3>Nro Pantallas</h3>\n" +
               "                  </td>  \n" +
               "                  <td>" +
-              "                    <h3>Valor Mesual</h3>" +
+              "                    <h3>Valor Mensual</h3>" +
               "                  </td>" +
               "                  <td>\n" +
               "                     <h3>Valor de Campa&ntilde;a</h3>\n" +

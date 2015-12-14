@@ -35,12 +35,12 @@
                                 <br></br>
                                 <label>Categoría</label>
 
-                                <p:selectOneMenu id="onem" class="form-control" value="#{mantenedorCampana.categoria}"
+                                <h:selectOneMenu id="onem" class="form-control" value="#{mantenedorCampana.categoria}"
                                                   converter="entityConverter" required="true" requiredMessage="Debe Seleccionar una Categoria">
                                     <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione categoria --"/>
                                     <f:selectItems value="#{mantenedorCampana.categoriaList}" var="categor"
                                                    itemLabel="#{categor.desccategoria}" itemValue="#{categor}"/>
-                                </p:selectOneMenu>
+                                </h:selectOneMenu>
                                     <p:tooltip id="tooltipmenu" for="onem" value="Selecciona la categoria de tu anuncio" trackMouse="true" />
                                 <br></br>
                                     <div id="cuadro-imagen" style="padding-right: 100px" >

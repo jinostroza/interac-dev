@@ -23,7 +23,7 @@ public class CronService {
 
     private List<Campana> campanasvencidas;
 
-    private CampanaDAO campanaDAO;
+
 
     @Autowired
     private LogicaCampana logicaCampana;

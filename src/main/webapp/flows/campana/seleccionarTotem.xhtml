@@ -43,8 +43,7 @@
                         <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
                         <p:calendar  id="inicio" locale="es" pattern="dd/MM/yyyy"
                                      value="#{mantenedorCampana.campana.fechaInicio}" mindate="c1.today()" widgetVar="c1" required="true" requiredMessage="Debe indicar fecha de Inicio" >
-                            <p:ajax event="dateSelect" update="inline"/>
-                            <p:ajax event="change" update="inline"/>
+
                             <p:ajax event="dateSelect" listener="#{mantenedorCampana.dateDiff}" update="dias" />
                         </p:calendar>
                         <span></span>
@@ -52,25 +51,21 @@
                         <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
                         <p:calendar  id="fin"  locale="es" pattern="dd/MM/yyyy"
                                      value="#{mantenedorCampana.campana.fechaFin}" mindate="c2.today()" widgetVar="c2" required="true" requiredMessage="Debe indicar la fecha de Termino" >
-                            <p:ajax event="dateSelect" update="inline"/>
-                            <p:ajax event="change" update="inline"/>
+
                             <p:ajax event="dateSelect" listener="#{mantenedorCampana.dateDiff}" update="dias"/>
                         </p:calendar>
                         <p:tooltip for="inicio" value="Indique la fecha de comienzo para su anuncio" trackMouse="true" ></p:tooltip>
                         <p:tooltip for="fin" value="Indique la fecha de termino para su anuncio" trackMouse="true" ></p:tooltip>
                     </p:panelGrid>
                      </div>
-                    <div class="col-lg-offset-5">
-                        <p:calendar id="inline" locale="es" mindate="#{mantenedorCampana.campana.fechaInicio}"
-                                    maxdate="#{mantenedorCampana.campana.fechaFin}" mode="inline"/>
-                    </div>
+
                         <br></br>
                 </div>
                     <br></br>
                 <p:dataTable id="datapantallas" styleClass="col-lg-12 " var="place"
                              value="#{mantenedorCampana.establecimientos}"
                              paginator="true" rows="5" selection="#{mantenedorCampana.establecimientoseleccionado}"
-                             selectionMode="single" rowKey="#{mantenedorCampana.idEstablecimiento}">
+                             selectionMode="single" rowKey="#{place}">
 
                     <p:ajax event="rowSelect" listener="#{mantenedorCampana.dateDiff}" update=":form:dias"/>
                     <p:ajax event="rowSelect" listener="#{mantenedorCampana.diasPasadas}" update=":form:pasadas" />
