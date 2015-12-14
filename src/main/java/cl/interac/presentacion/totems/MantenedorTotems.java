@@ -3,17 +3,27 @@ package cl.interac.presentacion.totems;
 import cl.interac.entidades.*;
 import cl.interac.negocio.*;
 import cl.interac.util.components.FacesUtil;
+import cl.interac.util.components.PropertyReader;
 import cl.interac.util.components.UserSession;
 import cl.interac.util.services.FileUploader;
 import org.primefaces.event.FileUploadEvent;
+import cl.interac.scheduled.CronService;
+import cl.interac.util.components.*;
+import cl.interac.util.services.MailSender;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
@@ -37,6 +47,8 @@ public class MantenedorTotems implements Serializable {
     private LogicaTipototem logicaTipototem;
     @Autowired
     private LogicaTotem logicaTotemConUsuario;
+    @Autowired
+    private PropertyReader propertyReader;
     @Autowired
     private UserSession userSession;
     @Autowired
@@ -63,6 +75,7 @@ public class MantenedorTotems implements Serializable {
     private List<Totem> totemPorUsuario;
     private Ubicacion ubicacion;
     private List<Marcapantalla> marcaPantallas;
+    private Date date;
 
     @PostConstruct
     public void inicio() {
@@ -75,17 +88,79 @@ public class MantenedorTotems implements Serializable {
         totem = new Totem();
     }
 
-    // logica vista
-    public void agregarTotem() {
+    // Logica Vista
+    public void agregarTotem(FileUploadEvent fue){
+        try {
+            String pathTemporal = fileUploader.subir(fue, "/jiu");
+            String ambiente = propertyReader.get("ambiente");
+
+            if ("desarrollo".equals(ambiente)) {
+                // dentro del server siempre podra subir, no importa si es wintendo o linux
+                totem.setImagen(pathTemporal);
+            } else if ("produccion".equals(ambiente)) {
+                String carpetaPrincipal = "jiu";
+                String nombreArchivo = pathTemporal.substring(pathTemporal.lastIndexOf('.'));
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd.hhmmss");
+                nombreArchivo = sdf.format(new Date()) + nombreArchivo;
+                totem.setImagen(nombreArchivo);
+                Files.copy(Paths.get(pathTemporal), Paths.get("/home/ec2-user/media/" + carpetaPrincipal + "/" + nombreArchivo));
+            }
+
+            totem.setImagen(pathTemporal);
+            totem.setEstablecimiento(establecimiento);
+            totem.setMarcaPantalla((marcapantalla));
+            totem.setLat(establecimiento.getLat());
+            totem.setLongi(establecimiento.getLongi());
+            totem.setTipototem(tipototem);
+            System.err.println("totem e: " + totem.getEstablecimiento());
+            logicaTotem.guardar(totem);
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el Totem [" + totem.getNoserie() + "]");
+
+            fileUploadCount = fileUploadCount + 1;
+
+        } catch (IOException e) {
+            return;
+        }
+    }
+
+    /* public void agregarTotem() {
+
         totem.setEstablecimiento(establecimiento);
         totem.setMarcaPantalla((marcapantalla));
         totem.setLat(establecimiento.getLat());
         totem.setLongi(establecimiento.getLongi());
         totem.setTipototem(tipototem);
         System.err.println("totem e: " + totem.getEstablecimiento());
+
         logicaTotem.guardar(totem);
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha creado el Totem [" + totem.getNoserie() + "]");
     }
+
+    public void subirImagen(FileUploadEvent fue){
+
+        try {
+            String pathTemporal = fileUploader.subir(fue, "/jiu");
+            String ambiente = propertyReader.get("ambiente");
+
+            if ("desarrollo".equals(ambiente)) {
+                // dentro del server siempre podra subir, no importa si es wintendo o linux
+                totem.setImagen(pathTemporal);
+            } else if ("produccion".equals(ambiente)) {
+                String carpetaPrincipal = "jiu";
+                String nombreArchivo = pathTemporal.substring(pathTemporal.lastIndexOf('.'));
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd.hhmmss");
+                nombreArchivo = sdf.format(new Date()) + nombreArchivo;
+                totem.setImagen(nombreArchivo);
+                Files.copy(Paths.get(pathTemporal), Paths.get("/home/ec2-user/media/" + carpetaPrincipal + "/" + nombreArchivo));
+            }
+
+            totem.setImagen(pathTemporal);
+            fileUploadCount = fileUploadCount + 1;
+
+        } catch (IOException e) {
+            return;
+        }
+    } */
 
     public void editarTotem(Totem t){
         totem = t;
@@ -100,10 +175,6 @@ public class MantenedorTotems implements Serializable {
     public void eliminarTotem(Totem totem) {
         logicaTotem.eliminarTotem(totem);
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha sobornado el Totem [" + totem.getNoserie() + "]");
-    }
-
-    public void subir(FileUploadEvent fue){
-
     }
 
     //Getters y Setters
@@ -141,6 +212,7 @@ public class MantenedorTotems implements Serializable {
     }
     public void setEstablecimientoList(List<Establecimiento> establecimientoList) {
         this.establecimientoList = establecimientoList;
+
     }
 
     public List<Establecimiento> getEstablecimientoConfiltro() {

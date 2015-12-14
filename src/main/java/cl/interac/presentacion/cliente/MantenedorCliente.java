@@ -51,6 +51,10 @@ public class MantenedorCliente implements Serializable {
     private List<Campana> traerNuevaCampana;
     private Totem[] totems;
 
+    //Variables
+    private String rechazarSelectOneMenu;
+    private String rechazarInputTextArea;
+
     //autowired
     @Autowired
     private LogicaCampana logicaCampana;
@@ -128,9 +132,8 @@ public class MantenedorCliente implements Serializable {
         }
         String[] destinos = new String[2];
         destinos[0] = contenido.getUsuario().getCorreo();
-        destinos[1] = "fernando_06@live.cl";
-        mailSender.send(destinos,"una prueba","esta Lista la API");
-
+        destinos[1] = "pe.pastene@gmail.com";
+        mailSender.send(destinos, rechazarSelectOneMenu, rechazarInputTextArea);
 
         campanaEnEspera.clear();
         campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
@@ -232,5 +235,17 @@ public class MantenedorCliente implements Serializable {
 
     public void setEstablecimientoList(List<Establecimiento> establecimientoList) {
         this.establecimientoList = establecimientoList;
+    }
+
+    public String getRechazarSelectOneMenu() { return rechazarSelectOneMenu; }
+
+    public void setRechazarSelectOneMenu(String rechazarSelectOneMenu) {
+        this.rechazarSelectOneMenu = rechazarSelectOneMenu;
+    }
+
+    public String getRechazarInputTextArea() { return rechazarInputTextArea; }
+
+    public void setRechazarInputTextArea(String rechazarInputTextArea) {
+        this.rechazarInputTextArea = rechazarInputTextArea;
     }
 }

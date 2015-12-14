@@ -132,7 +132,11 @@
                                    itemLabel="#{totemPL.destipo}" itemValue="#{totemPL}"  />
                 </h:selectOneMenu>
                 <br></br>
-                <p:fileUpload value="#{mantenedorTotems.subir}" label="Subir imagen" mode="simple" skinSimple="true" required="true"/>
+                <p:fileUpload
+                              label="Subir imagen" cancelLabel="Cancelar"
+                              mode="simple" skinSimple="true" required="true"
+                              widgetVar="myFileUpload" auto="false"
+                              onstart="PF('myFileUpload').disableButton(PF('myFileUpload').chooseButton)" update="form1" for="agregapanelTotem" />
                 <br></br>
                 <p:commandButton id="addBtnTotem" for="agregapanelTotem"  value="Agrega" action="#{mantenedorTotems.agregarTotem}" update="form1"/>
             </p:outputPanel>

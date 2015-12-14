@@ -35,7 +35,6 @@ import java.util.*;
 public class MantenedorCampana implements Serializable {
 
     // manejo manual
-
     private List<Campana> campanas;
     private List<Campana> campanasvencidas;
     private List<Campana> campanaList;
@@ -137,11 +136,9 @@ public class MantenedorCampana implements Serializable {
         totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
         mesesList = logicaMeses.obtenerTodos();
-
     }
 
     public void subir(FileUploadEvent fue) {
-
 
         contenido = new Contenido();
 
@@ -159,13 +156,11 @@ public class MantenedorCampana implements Serializable {
 
                 String nombreArchivo = pathTemporal.substring(pathTemporal.lastIndexOf('.'));
 
-
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd.hhmmss");
 
                 nombreArchivo = sdf.format(new Date()) + nombreArchivo;
                 contenido.setPath(nombreArchivo);
                 Files.copy(Paths.get(pathTemporal), Paths.get("/home/ec2-user/media/" + carpetaPrincipal+"/"+ nombreArchivo));
-
             }
 
             contenido.setUsuario(userSession.getUsuario());
@@ -178,8 +173,6 @@ public class MantenedorCampana implements Serializable {
             return;
         }
     }
-
-
 
     public String editarContenido(Contenido c) {
         contenido = c;

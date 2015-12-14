@@ -153,9 +153,7 @@ public class MantenedorEstablecimiento implements Serializable {
     public Empresa getEmpresa() { return empresa; }
     public void setEmpresa(Empresa empresa) { this.empresa = empresa; }
 
-    public List<Empresa> getEmpresas() {
-        return empresas;
-    }
+    public List<Empresa> getEmpresas() { return empresas; }
     public void setEmpresas(List<Empresa> empresas) { this.empresas = empresas; }
 }
 

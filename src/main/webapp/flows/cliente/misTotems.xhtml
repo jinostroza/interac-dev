@@ -16,8 +16,6 @@
              <f:facet name="header">
                  Tiene #{mantenedorCliente.numeroCampanas} Anuncios por validar.
              </f:facet>
-
-
              <p:column headerText="Imagen">
                  <p:graphicImage value="/imagenes/interac/#{car.contenido.path}" style="width:100px; height:200px ;" />
              </p:column>
@@ -33,17 +31,28 @@
              <p:column headerText="Pasadas">
                  <h:outputText value="#{car.pasadas}" />
              </p:column>
-
              <p:column>
                <p:commandButton value="aprobar" process="@form" update="champa"
                                 action="#{mantenedorCliente.aprobar(car,car.contenido)}"  />
              </p:column>
              <p:column>
-                 <p:commandButton value="rechazar" process="@form"
-                                  action="#{mantenedorCliente.rechazar(car,car.contenido)}" update="champa" />
+                 <!-- Rechazar -->
+                 <p:commandButton id="btnRechazar" value="rechazar" process="@form">
+                     <p:overlayPanel for="btnRechazar">
+                         <p:outputLabel value="¿Por que motivo rechaza este anuncio?"/>
+                         <h:selectOneMenu value="#{mantenedorCliente.rechazarSelectOneMenu}" class="form-control">
+                             <f:selectItem itemValue="Contenido sexista y/o inapropiado" ItemLabel="Contenido sexista y/o inapropiado"/>
+                             <f:selectItem itemValue="No sigue la linea de mi negocio" ItemLabel="No sigue la linea de mi negocio"/>
+                             <f:selectItem itemValue="Siento que no tendrá impacto" ItemLabel="Siento que no tendrá impacto"/>
+                        </h:selectOneMenu>
+                         <p:outputLabel value="Observaciones" />
+                         <h:inputTextarea value="#{mantenedorCliente.rechazarInputTextArea}" rows="10" cols="50" />
+                         <br/>
+                         <p:overlayPanel value="Haga click en enviar para notificar al cliente de su desición"/>
+                         <p:commandButton value="Enviar" action="#{mantenedorCliente.rechazar(car, car.contenido)}"/>
+                     </p:overlayPanel>
+                 </p:commandButton>
              </p:column>
-
-
          </p:dataTable>
          <div class="push"></div>
      </h:form>
