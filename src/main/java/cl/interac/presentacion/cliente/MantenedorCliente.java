@@ -135,7 +135,7 @@ public class MantenedorCliente implements Serializable {
         String[] destinos = new String[3];
         destinos[0] = userSession.getUsuario().getCorreo();
         destinos[1] = "pe.pastene@gmail.com";
-        destinos[2] = campana.getContenido().getUsuario().getCorreo();
+        destinos[2] = contenido.getUsuario().getCorreo();
 
         //Cuerpo del mensaje
         String mensajeAnunciante = new String(constantes.getRechazar());
@@ -144,7 +144,7 @@ public class MantenedorCliente implements Serializable {
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$razonRechazo",rechazarSelectOneMenu);
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$comentarios",rechazarInputTextArea);
 
-        mailSender.send(destinos, rechazarSelectOneMenu, rechazarInputTextArea);
+        mailSender.send(destinos, "interac " + rechazarSelectOneMenu, mensajeAnunciante);
 
         campanaEnEspera.clear();
         campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
