@@ -101,7 +101,8 @@ public class MantenedorCliente implements Serializable {
         destinos[0] = userSession.getUsuario().getCorreo();
         destinos[1] = "contacto@interac.cl";
         destinos[2] = campana.getContenido().getUsuario().getCorreo();
-        //cuerpo del mensaje
+
+        //Cuerpo del mensaje
         String mensajeAnunciante = new String(constantes.getAprobar());
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$Id",String.valueOf(campana.getIdcampana()));
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento",campana.getEstablecimiento().getNombreEstablecimiento());
@@ -130,9 +131,19 @@ public class MantenedorCliente implements Serializable {
         }catch (Exception e){
             FacesUtil.mostrarMensajeError("Operación Fallida","algo ocurrio");
         }
-        String[] destinos = new String[2];
-        destinos[0] = contenido.getUsuario().getCorreo();
+
+        String[] destinos = new String[3];
+        destinos[0] = userSession.getUsuario().getCorreo();
         destinos[1] = "pe.pastene@gmail.com";
+        destinos[2] = campana.getContenido().getUsuario().getCorreo();
+
+        //Cuerpo del mensaje
+        String mensajeAnunciante = new String(constantes.getRechazar());
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$Id",String.valueOf(campana.getIdcampana()));
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento",campana.getEstablecimiento().getNombreEstablecimiento());
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$razonRechazo",rechazarSelectOneMenu);
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$comentarios",rechazarInputTextArea);
+
         mailSender.send(destinos, rechazarSelectOneMenu, rechazarInputTextArea);
 
         campanaEnEspera.clear();
