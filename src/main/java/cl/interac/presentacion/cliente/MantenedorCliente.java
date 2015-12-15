@@ -90,6 +90,7 @@ public class MantenedorCliente implements Serializable {
             contenido = c;
             String aprobado = "Aprobado";
             campana.setEstado(aprobado);
+            logicaCampana.guardarCampana(campana);
             String carpetaDestino = campana.getEstablecimiento().getCarpetaFtp();
             Files.copy(Paths.get("/home/ec2-user/media/interac/" + contenido.getPath()),
                     Paths.get("/home/ec2-user/media/" + carpetaDestino + "/" + contenido.getPath()));
@@ -125,7 +126,8 @@ public class MantenedorCliente implements Serializable {
             contenido = c ;
             String rechazado = "Rechazado";
             campana.setEstado(rechazado);
-            logicaContenido.guardar(contenido);
+            logicaCampana.guardarCampana(campana);
+
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado el anuncio  [" + campana.getContenido().getNombrecont() + "]");
 
         }catch (Exception e){
