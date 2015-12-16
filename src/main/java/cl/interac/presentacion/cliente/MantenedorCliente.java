@@ -108,7 +108,7 @@ public class MantenedorCliente implements Serializable {
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$Id",String.valueOf(campana.getIdcampana()));
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento",campana.getEstablecimiento().getNombreEstablecimiento());
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$numerodePantallas",String.valueOf(campana.getEstablecimiento().getNumeroPantallas()));
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valormensual",String.valueOf(campana.getEstablecimiento().getValorMensual()));
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valormensual",String.valueOf(campana.getEstablecimiento().getValor()));
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$total", String.valueOf(9999999));
 
 
@@ -141,10 +141,11 @@ public class MantenedorCliente implements Serializable {
 
         //Cuerpo del mensaje
         String mensajeAnunciante = new String(constantes.getRechazar());
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$Id",String.valueOf(campana.getIdcampana()));
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento",campana.getEstablecimiento().getNombreEstablecimiento());
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$id",String.valueOf(campana.getIdcampana()));
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento", campana.getEstablecimiento().getNombreEstablecimiento());
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$razonRechazo",rechazarSelectOneMenu);
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$comentarios",rechazarInputTextArea);
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valor",String.valueOf(campana.getEstablecimiento().getValor()));
 
         mailSender.send(destinos, "interac " + rechazarSelectOneMenu, mensajeAnunciante);
 
@@ -155,9 +156,8 @@ public class MantenedorCliente implements Serializable {
 
 
    // inicio y logica de vista
-//getter and setter
 
-
+    //Getter and Setter
     public Long getNumeroCampanas() {
         return numeroCampanas;
     }

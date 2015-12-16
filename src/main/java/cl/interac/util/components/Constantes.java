@@ -765,6 +765,7 @@ public class Constantes implements Serializable {
               "</body>\n" +
               "</html> ";
 
+        // Plantilla rechazar
         private String rechazar="<!doctype html>\n" +
                 "<html>\n" +
                 "<head>\n" +
@@ -958,6 +959,10 @@ public class Constantes implements Serializable {
                 "                  <td>" +
                 "                    <h3>Comentarios</h3>" +
                 "                  </td>" +
+                "                  </td>  \n" +
+                "                  <td>" +
+                "                    <h3>Valor campaña</h3>" +
+                "                  </td>" +
                 "               </tr>\n" +
                 "               <tr>\n" +
                 "                <td>\n" +
@@ -971,6 +976,9 @@ public class Constantes implements Serializable {
                 "                </td>\n" +
                 "                  <td>" +
                 "                    <p>$comentarios</p>" +
+                "                  </td>" +
+                "                  <td>" +
+                "                    <p>$valor</p>" +
                 "                  </td>" +
                 "               </tr>\n" +
                 "               \n" +

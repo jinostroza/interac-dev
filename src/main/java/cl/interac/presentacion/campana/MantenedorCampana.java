@@ -83,10 +83,8 @@ public class MantenedorCampana implements Serializable {
     private Integer mesIni;
     private Integer mesFin;
     private Date date;
-    private boolean chkfecha ;
-
-
-
+    private boolean chkfecha;
+    private int fileUploadCount;
 
     @Autowired
     private MailSender mailSender;
@@ -110,14 +108,12 @@ public class MantenedorCampana implements Serializable {
     private PropertyReader propertyReader;
     @Autowired
     private FileUploader fileUploader;
-    private int fileUploadCount;
     @Autowired
     private LogicaEstablecimiento logicaEstablecimiento;
     @Autowired
     private LogicaUbicacion logicaUbicacion;
     @Autowired
     private LogicaTipototem logicaTipototem;
-
 
     public void inicio() {
         contarCampanas = logicaCampana.obtenerPorNumero(userSession.getUsuario().getUsername());
@@ -274,10 +270,9 @@ public class MantenedorCampana implements Serializable {
     public Long numeroCampanas(Integer numCampana){
 
         contarCampana=logicaCampana.obtenerPorEstablecimiento(numCampana);
-
-
         return contarCampana;
     }
+
     public void dateStart () {
         Date date = new Date();
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -349,7 +344,8 @@ public class MantenedorCampana implements Serializable {
 
     public void calculator(){
 
-         valor= (precio * 2)*(dias.intValue()+1);
+        valor = (precio * establecimiento.getValor())*(dias.intValue()+1);
+        campana.setValor(valor);
     }
 
     public void dateDiff() {

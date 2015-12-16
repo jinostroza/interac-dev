@@ -60,7 +60,7 @@ public class Establecimiento implements Serializable {
     private String fono;
     private Double lat;
     private Double longi;
-    private Integer valorMensual;
+    private Integer valor;
     private Date horaInicio;
     private Date horaTermino;
     private Integer slots;
@@ -158,9 +158,9 @@ public class Establecimiento implements Serializable {
     }
 
     @Basic
-    @Column(name = "valormensual")
-    public Integer getValorMensual() { return valorMensual; }
-    public void setValorMensual(Integer valorMensual) { this.valorMensual = valorMensual; }
+    @Column(name = "valor")
+    public Integer getValor() { return valor; }
+    public void setValor(Integer valor) { this.valor = valor; }
 
     @Basic
     @Column(name = "horainicio")

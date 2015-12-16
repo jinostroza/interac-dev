@@ -53,8 +53,6 @@ import java.util.Set;
                                 "INNER JOIN Fetch c.establecimiento e " +
                                 "INNER JOIN Fetch e.usuario u " +
                                 " WHERE u.username=:username AND c.estado='Esperando Aprobacion'"
-
-
                 ),
                 @NamedQuery(name = "Campana.count",
                         query = "SELECT COUNT (c.idcampana) FROM Campana c " +
@@ -91,9 +89,9 @@ public class Campana implements Serializable {
     private Integer pasadas;
     private String nombrecampana;
     private String estado;
+    private Integer valor;
 
-
-    // relaciones
+    // Relaciones
     private Contenido contenido;
     private List<Totem> totemList;
     private Establecimiento establecimiento;
@@ -175,22 +173,21 @@ public class Campana implements Serializable {
     public String getEstado() {
         return estado;
     }
-
-    public void setEstado(String estado) {
-
-        this.estado = estado;
-    }
+    public void setEstado(String estado) { this.estado = estado; }
 
     @JoinColumn(name = "idestablecimiento", referencedColumnName = "idestablecimiento")
     @ManyToOne
-
     public Establecimiento getEstablecimiento() {
         return establecimiento;
     }
-
     public void setEstablecimiento(Establecimiento establecimiento) {
         this.establecimiento = establecimiento;
     }
+
+    @Basic
+    @Column(name = "valor")
+    public Integer getValor() { return valor; }
+    public void setValor(Integer valor) { this.valor = valor; }
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
