@@ -8,13 +8,12 @@
     <ui:define name="contenido">
      <h:form>
          <h1>Anuncios pendientes</h1>
-         <h3>Apruebe los anuncios pendientes </h3>
+         <h3>Apruebe los anuncios pendientes</h3>
          <br/>
-
-         <h5>Si un el anuncio le parece "inapropiado" para ser difundido en su pantalla haga click en Rechazar  </h5>
+         <h5>Si un el anuncio le parece "inapropiado" para ser difundido en su pantalla, haga click en 'Rechazar'</h5>
          <p:dataTable id="champa" dynamic="true" var="car" value="#{mantenedorCliente.campanaEnEspera}">
              <f:facet name="header">
-                 Tiene #{mantenedorCliente.numeroCampanas} Anuncios por validar.
+                 Tiene #{mantenedorCliente.numeroCampanas} Anuncios por validar
              </f:facet>
              <p:column headerText="Imagen">
                  <p:graphicImage value="/imagenes/interac/#{car.contenido.path}" style="width:100px; height:200px ;" />

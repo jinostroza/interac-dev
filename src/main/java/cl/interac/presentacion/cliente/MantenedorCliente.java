@@ -158,9 +158,7 @@ public class MantenedorCliente implements Serializable {
    // inicio y logica de vista
 
     //Getter and Setter
-    public Long getNumeroCampanas() {
-        return numeroCampanas;
-    }
+    public Long getNumeroCampanas() { return numeroCampanas; }
 
     public void setNumeroCampanas(Long numeroCampanas) {
         this.numeroCampanas = numeroCampanas;

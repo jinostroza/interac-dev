@@ -42,8 +42,7 @@ public class MantenedorCampana implements Serializable {
     private List<Tipototem> tipototemList;
     private Tipototem tipototem;
     private Campana campana;
-    private Integer precio = 360;
-    private Integer pasadas;
+    private Integer pasadas = 360;
     private Integer valor;
     private Long dias;
     private String retor;
@@ -334,22 +333,41 @@ public class MantenedorCampana implements Serializable {
         return date;
     }
 
+    //Funcion que obtiene en entero el rango de horas de un establecimiento
+    public Integer calcularHoras(){
+        Long tiempoInicial = establecimiento.getHoraInicio().getTime();
+        Long tiempoFinal = establecimiento.getHoraTermino().getTime();
 
+        Long resultado = tiempoFinal - tiempoInicial;
 
+        return resultado.intValue();
+    }
 
     public List<Totem> totemsEST(Integer idestablecimiento) {
         totemsPorEstablecimiento=logicaTotem.obtenerPorestablecimiento(idestablecimiento);
         return totemsPorEstablecimiento;
     }
 
+
+
+
+    //Funcion que retorna en entero la cantidad de pasadas segun
+    //la hora de apertura y cierre del establecimiento, ademas de los slots disponibles
+    public Integer calcularPasadas(){
+
+        Integer horas = calcularHoras();
+        Integer cantidadPasadas = ((horas * 3600) / (10 * establecimiento.getSlots()));
+
+        return cantidadPasadas;
+    }
+
     public void calculator(){
 
-        valor = ((pasadas + dias.intValue()) * establecimiento.getValor())*(dias.intValue()+1);
+        valor = (pasadas * establecimiento.getValor())*(dias.intValue()+1);
         campana.setValor(valor);
     }
 
     public void dateDiff() {
-
 
         if(campana.getFechaInicio()!=null && campana.getFechaFin()!=null)
         {
@@ -414,18 +432,8 @@ public class MantenedorCampana implements Serializable {
         System.err.println("ID" + tipot);
         return tipot;
     }
-    public void diasPasadas(){
 
-        pasadas=precio*(dias.intValue()+1);
-        System.err.println(pasadas);
-
-
-    }
-
-
-    //getter and setter
-
-
+    //Getter and Setter
     public Long getContarCampanas() {
         return contarCampanas;
     }
@@ -437,7 +445,6 @@ public class MantenedorCampana implements Serializable {
     public Marker getMarker() {
         return marker;
     }
-
 
     public String getNewCenter() {
         return newCenter;
@@ -493,14 +500,6 @@ public class MantenedorCampana implements Serializable {
 
     public void setAdvancedModel(MapModel advancedModel) {
         this.advancedModel = advancedModel;
-    }
-
-    public Integer getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(Integer precio) {
-        this.precio = precio;
     }
 
     public List<Totem> getTotemsConrelacion() {
@@ -670,9 +669,8 @@ public class MantenedorCampana implements Serializable {
         return dias;
     }
 
-    public Integer getPasadas() {
-        return pasadas;
-    }
+    public Integer getPasadas() { return pasadas; }
+
 
     public void setPasadas(Integer pasadas) {
         this.pasadas = pasadas;
