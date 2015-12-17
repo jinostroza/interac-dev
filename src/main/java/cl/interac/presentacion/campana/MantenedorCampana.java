@@ -344,7 +344,7 @@ public class MantenedorCampana implements Serializable {
 
     public void calculator(){
 
-        valor = (precio * establecimiento.getValor())*(dias.intValue()+1);
+        valor = ((pasadas + dias.intValue()) * establecimiento.getValor())*(dias.intValue()+1);
         campana.setValor(valor);
     }
 
