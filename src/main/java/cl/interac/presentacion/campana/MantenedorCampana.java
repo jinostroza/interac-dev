@@ -2,11 +2,13 @@ package cl.interac.presentacion.campana;
 
 import cl.interac.entidades.*;
 import cl.interac.negocio.*;
-import cl.interac.util.components.*;
+import cl.interac.util.components.Constantes;
+import cl.interac.util.components.FacesUtil;
+import cl.interac.util.components.PropertyReader;
+import cl.interac.util.components.UserSession;
 import cl.interac.util.services.FileUploader;
 import cl.interac.util.services.MailSender;
 import org.primefaces.event.FileUploadEvent;
-
 import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
@@ -14,17 +16,18 @@ import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.scheduling.support.CronSequenceGenerator;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.time.*;
-import java.util.*;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by luis on 25-04-2015.
@@ -42,7 +45,7 @@ public class MantenedorCampana implements Serializable {
     private List<Tipototem> tipototemList;
     private Tipototem tipototem;
     private Campana campana;
-    private Integer pasadas = 360;
+    private Integer pasadas;
     private Integer valor;
     private Long dias;
     private String retor;
@@ -211,6 +214,7 @@ public class MantenedorCampana implements Serializable {
             campana.setEstablecimiento(establecimientoseleccionado);
             campana.setPasadas(pasadas);
             campana.setNombrecampana(contenido.getNombrecont());
+            campana.setValor(valor);
             logicaCampana.guardarCampana(campana);
         //cuerpo del mensaje
          String mensajeLocal = new String(constantes.getAlertas());
@@ -362,9 +366,8 @@ public class MantenedorCampana implements Serializable {
     }
 
     public void calculator(){
-
+        pasadas=calcularPasadas();
         valor = (pasadas * establecimiento.getValor())*(dias.intValue()+1);
-        campana.setValor(valor);
     }
 
     public void dateDiff() {

@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Files;
@@ -87,6 +88,8 @@ public class MantenedorTotems implements Serializable {
         marcaPantallas = logicaMarcaPantalla.obtenerTodos();
         totem = new Totem();
     }
+
+
 
     // Logica Vista
     public void agregarTotem(FileUploadEvent fue){
