@@ -189,9 +189,7 @@ public class MantenedorTotems implements Serializable {
         this.totemConFiltro = totemConFiltro;
     }
 
-    public List<Totem> getTotems() {
-        return totems;
-    }
+    public List<Totem> getTotems() { return totems; }
     public void setTotems(List<Totem> totems) {
         this.totems = totems;
     }
@@ -210,9 +208,7 @@ public class MantenedorTotems implements Serializable {
         this.establecimiento = establecimiento;
     }
 
-    public List<Establecimiento> getEstablecimientoList() {
-        return establecimientoList;
-    }
+    public List<Establecimiento> getEstablecimientoList() { return establecimientoList; }
     public void setEstablecimientoList(List<Establecimiento> establecimientoList) {
         this.establecimientoList = establecimientoList;
 
@@ -274,9 +270,7 @@ public class MantenedorTotems implements Serializable {
         this.ubicaciones = ubicaciones;
     }
 
-    public List<Marcapantalla> getMarcaPantallas() {
-        return marcaPantallas;
-    }
+    public List<Marcapantalla> getMarcaPantallas() { return marcaPantallas; }
     public void setMarcaPantallas(List<Marcapantalla> marcaPantallas) {
         this.marcaPantallas = marcaPantallas;
     }

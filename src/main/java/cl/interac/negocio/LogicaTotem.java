@@ -32,9 +32,7 @@ public class LogicaTotem {
     }
 
     @Transactional(readOnly = false)
-    public void guardar(Totem t) {
-        totemDAO.guardar(t);
-    }
+    public void guardar(Totem t) { totemDAO.guardar(t); }
 
     @Transactional(readOnly = false)
     public void eliminarTotem(Totem t) {

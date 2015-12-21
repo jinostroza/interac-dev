@@ -317,7 +317,7 @@ public class MantenedorCampana implements Serializable {
             campana.setFechaFin(getDateEnd(mesFin,yearvalueend));
         }
             }
-    // Función que permite el retorno del ultimo día de un mes X
+   // Función que permite el retorno del ultimo día de un mes X
    public Date getDateEnd(Integer m, Integer y) {
         Calendar calendar = Calendar.getInstance();
         // passing month-1 because 0-->jan, 1-->feb... 11-->dec
@@ -352,9 +352,6 @@ public class MantenedorCampana implements Serializable {
         return totemsPorEstablecimiento;
     }
 
-
-
-
     //Funcion que retorna en entero la cantidad de pasadas segun
     //la hora de apertura y cierre del establecimiento, ademas de los slots disponibles
     public Integer calcularPasadas(){
@@ -366,7 +363,7 @@ public class MantenedorCampana implements Serializable {
     }
 
     public void calculator(){
-        pasadas=calcularPasadas();
+        pasadas = calcularPasadas();
         valor = (pasadas * establecimiento.getValor())*(dias.intValue()+1);
     }
 

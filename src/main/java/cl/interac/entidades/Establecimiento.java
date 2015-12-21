@@ -114,9 +114,8 @@ public class Establecimiento implements Serializable {
 
     @Basic
     @Column(name = "desestablecimiento",insertable = true,length = 200)
-    public String getNombreEstablecimiento() {
-        return nombreEstablecimiento;
-    }
+    public String getNombreEstablecimiento() { return nombreEstablecimiento; }
+
     public void setNombreEstablecimiento(String nombreEstablecimiento) {
         this.nombreEstablecimiento = nombreEstablecimiento;
     }

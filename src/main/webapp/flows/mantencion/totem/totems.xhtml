@@ -51,9 +51,9 @@
                         <h:outputLabel value="#{totes.idtotem}"/>
                         <div class="row">
                             <h:outputLabel value="Establecimiento" />
-                            <h:selectOneMenu class="form-control" value="#{totes.establecimiento}"
-                                             converter="entityConverter">
-                                <f:selectItems value="#{mantenedorTotems.establecimientoList}" var="localEdit" itemLabel="#{localEdit.nombreEstablecimiento}"  />
+                            <h:selectOneMenu class="form-control" value="#{totes.establecimiento}" converter="entityConverter">
+                                <f:selectItems value="#{mantenedorTotems.establecimientoList}" var="establecimiento"
+                                               itemLabel="#{establecimiento.nombreEstablecimiento}" />
                             </h:selectOneMenu>
                         </div>
                         <div class="row">
@@ -61,7 +61,7 @@
                             <h:selectOneMenu class="form-control" value="#{totes.marcaPantalla}"
                                              converter="entityConverter">
                                 <f:selectItems value="#{mantenedorTotems.marcaPantallas}" var="marcaPantalla"
-                                               itemLabel="#{marcaPantalla.nombre}" itemValue="#{marcaPantalla}"  />
+                                               itemLabel="#{marcaPantalla.nombre}" />
                             </h:selectOneMenu>
                         </div>
                         <div class="row">
@@ -72,8 +72,8 @@
                             <h:outputLabel value="Tipo de Totem" />
                             <h:selectOneMenu class="form-control" value="#{totes.tipototem}"
                                              converter="entityConverter">
-                                <f:selectItems value="#{mantenedorTotems.tipototems}" var="tipot"
-                                               itemLabel="#{tipot.destipo}" itemValue="#{tipototem}" />
+                                <f:selectItems value="#{mantenedorTotems.tipototems}" var="tipoTotem"
+                                               itemLabel="#{tipoTotem.destipo}" />
                             </h:selectOneMenu>
                         </div>
                         <div class="row">
@@ -99,10 +99,11 @@
                             <f:selectItem itemValue="Desactivado" itemLabel="Desactivado" />
                         </h:selectOneMenu>
                     </div>
-                        <div class="row">
-                            <p:commandButton value="Editar" for="editPanel" action="#{mantenedorTotems.editarTotem(totes)}" />
-                            <p:commandButton value="Limpiar" />
-                        </div>
+                    <br/>
+                    <div class="row">
+                        <p:commandButton id="btnEditar" value="Editar" for="editPanel" action="#{mantenedorTotems.editarTotem(totes)}" />
+                        <p:commandButton value="Limpiar" />
+                    </div>
                     </p:overlayPanel>
                 </h:commandButton>
             </p:column>
