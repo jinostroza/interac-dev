@@ -18,6 +18,7 @@ import java.util.List;
 @Component
 @Scope("view")
 public class MantenedorEstablecimiento implements Serializable {
+
     //Manejo Manual
     private List<Establecimiento> establecimientoList;
     private List<Establecimiento> establecimientoConfiltro;

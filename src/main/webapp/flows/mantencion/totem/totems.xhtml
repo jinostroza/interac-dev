@@ -53,7 +53,7 @@
                             <h:outputLabel value="Establecimiento" />
                             <h:selectOneMenu class="form-control" value="#{totes.establecimiento}" converter="entityConverter">
                                 <f:selectItems value="#{mantenedorTotems.establecimientoList}" var="establecimiento"
-                                               itemLabel="#{establecimiento.nombreEstablecimiento}" />
+                                               itemLabel="#{totes.establecimiento.nombreEstablecimiento}" />
                             </h:selectOneMenu>
                         </div>
                         <div class="row">
