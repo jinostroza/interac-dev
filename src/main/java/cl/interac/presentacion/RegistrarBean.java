@@ -27,8 +27,6 @@ public class RegistrarBean implements Serializable {
     private Usuario usuario;
     private Rol rol;
 
-
-
     // Spring nos instanciará el bean cuando cree el componente, pero antes debemos setear el usuario para poder usar
     // sus atributos en el jsf
     public RegistrarBean () {

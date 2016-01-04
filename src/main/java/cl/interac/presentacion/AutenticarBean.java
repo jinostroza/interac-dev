@@ -14,6 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 /**
  * @author colivares
  */
@@ -30,16 +34,13 @@ public class AutenticarBean implements Serializable {
     @Autowired
     Constantes constantes;
 
-
     private String user;
     private String pass;
-
-
 
     public void logIn() {
         try {
             HttpServletRequest request = FacesUtil.obtenerHttpServletRequest();
-            request.login(user, pass);
+            request.login(user, md5(pass));
             FacesUtil.redirigir("/plataforma/campana");
 
         } catch (ServletException ex) {
@@ -47,9 +48,30 @@ public class AutenticarBean implements Serializable {
         }
     }
 
-    public String getUser() {
-        return user;
+    public static String md5(String input){
+
+        String md5 = null; //La variable esta vacia
+        if(null == input){ //Si es nulo el input, la funcion retornara null
+            return null;
+        }
+
+        try{
+            //Create MessageDigest object for MD5
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+
+            //Update input string in message digest
+            digest.update(input.getBytes(), 0, input.length());
+
+            //Converts message digest value in base 16 (hex)
+            md5 = new BigInteger(1, digest.digest()).toString(16);
+        }
+        catch(NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return md5;
     }
+
+    public String getUser() { return user; }
 
     public void setUser(String user) {
         this.user = user;
