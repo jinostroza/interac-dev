@@ -17,32 +17,27 @@
                     <h:outputText value="#{userSession.usuario.correo}"/>
                     <h:outputLabel value="empresa :" />
                     <h:outputText value="#{userSession.usuario.empresa}"/>
-
                     <h:commandButton icon="ui-icon-pencil" value="Cambiar" styleClass="btn-interac" action="#{mantenedorPerfil.irCambiarClave()}"/>
                 </h:panelGrid>
             </p:panel>
 
-
-            <p:panel header="CambiarPerfil" styleClass="row">
+            <p:panel header="Cambiar Perfil" styleClass="row">
                 <h:panelGrid columns="2" styleClass="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 form-group " cellpadding="5px" >
                     <h:outputLabel value="Usuario :"/>
-                       <h:outputLabel  value="#{userSession.usuario.username}"/>
+                    <h:outputLabel  value="#{userSession.usuario.username}"/>
                     <h:outputLabel value="Correo  :"/>
-                       <p:inputText type="email"  placeholder="Email" styleClass="form-control"  value="#{mantenedorPerfil.usuario.correo}"/>
+                    <p:inputText type="email"  placeholder="Email" styleClass="form-control"  value="#{mantenedorPerfil.usuario.correo}"/>
                     <h:outputLabel value="Empresa :"/>
-                       <p:inputText placeholder="Empresa" styleClass="form-control" value="#{mantenedorPerfil.usuario.empresa}"/>
-
+                    <p:inputText placeholder="Empresa" styleClass="form-control" value="#{mantenedorPerfil.usuario.empresa}"/>
 
                     <h:outputLabel for="iNueva" value="Contraseña Nueva :"/>
-                        <h:inputSecret id="iNueva"  value="#{mantenedorPerfil.claveNueva}" styleClass="form-control"
+                    <h:inputSecret id="iNueva"  value="#{mantenedorPerfil.claveNueva}" styleClass="form-control"
                                        required="true" requiredMessage="Debes especificar la contraseña nueva"/>
-
                     <h:outputLabel for="iConfirmar" value="Repita la Nueva Contraseña :"/>
-                        <h:inputSecret id="iConfirmar" value="#{mantenedorPerfil.claveConfirmada}"
+                    <h:inputSecret id="iConfirmar" value="#{mantenedorPerfil.claveConfirmada}"
                                        styleClass="form-control" required="true" requiredMessage="Debes confirmar la nueva contraseña"/>
 
-
-                   <h:commandButton id="modifica" styleClass="btn-interac" value="Modificar" type="button">
+                    <h:commandButton id="modifica" styleClass="btn-interac" value="Modificar" type="button">
                         <p:overlayPanel id="editPanel" for="modifica" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
                             <h:inputSecret id="iActual" styleClass="form-control" value="#{mantenedorPerfil.claveActual}"/>
                             <h:commandButton value="guardar" styleClass="btn-interac"  action="#{mantenedorPerfil.cambiaPerfil()}"/>
