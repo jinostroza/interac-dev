@@ -204,21 +204,22 @@ public class MantenedorCampana implements Serializable {
          return "subir";
     }
 
-    public void  guardar() {
+    public void  guardar(){
         //perisitencia
         campana.setContenido(contenido);
         System.err.print(contenido.getIdcontenido());
 
-            campana.setEstado("Esperando Aprobacion");
-            campana.setFechaCreacion(Date.from(Instant.now()));
-            campana.setEstablecimiento(establecimientoseleccionado);
-            campana.setPasadas(pasadas);
-            campana.setNombrecampana(contenido.getNombrecont());
-            campana.setValor(valor);
-            logicaCampana.guardarCampana(campana);
+        campana.setEstado("Esperando Aprobacion");
+        campana.setFechaCreacion(Date.from(Instant.now()));
+        campana.setEstablecimiento(establecimientoseleccionado);
+        campana.setPasadas(pasadas);
+        campana.setNombrecampana(contenido.getNombrecont());
+        campana.setValor(valor);
+        logicaCampana.guardarCampana(campana);
+
         //cuerpo del mensaje
-         String mensajeLocal = new String(constantes.getAlertas());
-         String mensajeAnunciante = new String(constantes.getHeaderCorreo());
+        String mensajeLocal = new String(constantes.getAlertas());
+        String mensajeAnunciante = new String(constantes.getHeaderCorreo());
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$Id",String.valueOf(campana.getIdcampana()));
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento",establecimientoseleccionado.getNombreEstablecimiento());
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$numerodePantallas",String.valueOf(establecimientoseleccionado.getNumeroPantallas()));
