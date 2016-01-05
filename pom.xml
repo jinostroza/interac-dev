@@ -5,7 +5,7 @@
     <artifactId>interac</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>interac-dev</name>
+    <name>interac</name>
     <url>http://maven.apache.org</url>
     
     <properties>
@@ -232,6 +232,6 @@
     </dependencies>
   
     <build>
-        <finalName>interac-dev</finalName>
+        <finalName>interac</finalName>
     </build>
 </project>

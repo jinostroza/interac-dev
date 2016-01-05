@@ -1,9 +1,7 @@
 package cl.interac.dao;
 
-import cl.interac.entidades.Contenido;
 import cl.interac.entidades.Rol;
 import cl.interac.entidades.Usuario;
-import cl.interac.security.SHA512;
 import cl.interac.util.dto.UsuarioDto;
 import org.springframework.stereotype.Repository;
 
@@ -36,9 +34,9 @@ public class UsuarioDAO {
         return em.createNamedQuery("Usuario.findAll").getResultList();
     }
 
-    public Usuario obtenerPorUsuarioContrasenna(String user, String password) {
+    public Usuario obtenerPorUsuarioContrasenna(String correo, String password) {
         Query q = em.createNamedQuery("Usuario.findByUserAndPassword");
-        q.setParameter("username", user);
+        q.setParameter("correo", correo);
         q.setParameter("password", password);
 
         try {
@@ -48,10 +46,10 @@ public class UsuarioDAO {
         }
     }
 
-    public Usuario obtenerLogin(String usuario , String pass){
+    public Usuario obtenerLogin(String correo , String pass){
         try{
             return (Usuario) em.createNamedQuery("Usuario.findByUserAndPassword")
-                    .setParameter("username",usuario)
+                    .setParameter("correo",correo)
                     .setParameter("password",pass).getSingleResult();
            }catch (Exception e){
             return  null;
@@ -104,11 +102,15 @@ public class UsuarioDAO {
         return em.createNamedQuery("Usuario.findByEmpresa").getResultList();
     }
 
-    public UsuarioDto obtenerUsuario(String usuario, String password) {
+    public long verificarCorreo(String correo){
+        return (Long) em.createNamedQuery("Usuario.CountCorreo").setParameter("correo",correo).getSingleResult();
+    }
+
+    public UsuarioDto obtenerUsuario(String correo, String password) {
         UsuarioDto u = null;
         try {
             Usuario ue = (Usuario) em.createNamedQuery("Usuario.findByUserAndPassword")
-                    .setParameter("username", usuario)
+                    .setParameter("correo", correo)
                     .setParameter("password", password).getSingleResult();
             u = new UsuarioDto();
             u.setUsername(ue.getUsername());

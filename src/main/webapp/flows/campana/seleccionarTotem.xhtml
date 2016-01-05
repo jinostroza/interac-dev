@@ -68,8 +68,9 @@
                              selectionMode="single" rowKey="#{place}">
 
                     <p:ajax event="rowSelect" listener="#{mantenedorCampana.dateDiff}" update=":form:dias"/>
-                    <p:ajax event="rowSelect" listener="#{mantenedorCampana.diasPasadas}" update=":form:pasadas" />
                     <p:ajax event="rowSelect" listener="#{mantenedorCampana.calculator}" update=":form:out" />
+                    <p:ajax event="rowSelect" listener="#{mantenedorCampana.diasPasadas}" update=":form:pasadas" />
+
                     <p:column headerText="Busqueda..">
 
                         <p:graphicImage style="width: 80px;height: 120px" value="#{place.urlImagen}"/>
@@ -144,7 +145,7 @@
 
                                 <h:outputLabel value="Valor por Pasada"/>
                                 <h:outputText styleClass="fa fa-fw fa-money"  style="float: right;color: red"/>
-                                <h:outputText value="$#{place.valorMensual}"/>
+                                <h:outputText value="$#{place.valor}"/>
                             </p:panelGrid>
 
 
@@ -174,7 +175,7 @@
                     <span class="datos-campania-titulo">Total de Pasadas</span>
                     <h:outputLabel id="pasadas" styleClass="datos-campania-texto">
                         <h:outputText value=""/>
-                        <h:outputText value="#{mantenedorCampana.pasadas}"/>
+                        <h:outputText value="#{mantenedorCampana.pasadasTotales}"/>
 
                     </h:outputLabel>
                 </div>

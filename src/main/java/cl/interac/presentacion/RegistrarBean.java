@@ -3,10 +3,7 @@ package cl.interac.presentacion;
 import cl.interac.entidades.Rol;
 import cl.interac.entidades.Usuario;
 import cl.interac.negocio.LogicaUsuario;
-import cl.interac.presentacion.campana.MantenedorCampana;
-import cl.interac.util.components.FacesUtil;
 import cl.interac.util.services.MailSender;
-import org.hibernate.cfg.beanvalidation.GroupsPerOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -26,6 +23,7 @@ public class RegistrarBean implements Serializable {
 
     private Usuario usuario;
     private Rol rol;
+    private String pass;
 
     // Spring nos instanciará el bean cuando cree el componente, pero antes debemos setear el usuario para poder usar
     // sus atributos en el jsf
@@ -36,9 +34,7 @@ public class RegistrarBean implements Serializable {
     public String signUp() {
 
         System.err.println("LLEGO A REGISTRAR");
-        String[] emaildelwea = new String[0];
-        emaildelwea[0] = usuario.getCorreo();
-        mailSender.send(emaildelwea,"Bienvenido a Interac","");
+
         logicaUsuario.guardar(usuario);
 
        return next1();
@@ -60,5 +56,13 @@ public class RegistrarBean implements Serializable {
 
     public void setRol(Rol rol) {
         this.rol = rol;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 }

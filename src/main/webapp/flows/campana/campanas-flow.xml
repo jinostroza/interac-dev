@@ -37,7 +37,7 @@
     </view-state>
 
     <view-state id="vercontenido">
-        <transition on="subir" to="seleccionarTotem"></transition>
+        <transition on="fin" to="registraCampana"></transition>
 
     </view-state>
     <view-state id="contenidoConfirmado">

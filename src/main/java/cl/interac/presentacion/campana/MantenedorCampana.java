@@ -87,6 +87,7 @@ public class MantenedorCampana implements Serializable {
     private Date date;
     private boolean chkfecha;
     private int fileUploadCount;
+    private Integer pasadasTotales;
 
     @Autowired
     private MailSender mailSender;
@@ -177,7 +178,6 @@ public class MantenedorCampana implements Serializable {
         contenido.setCategoria(categoria);
 
         logicaContenido.guardar(contenido);
-        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha editado el contenido [" + contenido.getIdcontenido() + "]");
 
       return irCrear(c);
 
@@ -310,14 +310,14 @@ public class MantenedorCampana implements Serializable {
             System.err.println(localDate.getDayOfMonth());
             campana.setFechaFin(getDateEnd(mesFin, yearvalueend));
         }else if ((mesFin<month) && (year.equals(yearvalueend))){
-            FacesUtil.mostrarMensajeInformativo("Operación Fallida","No puede programar una fecha anterior a la actual");
+            FacesUtil.mostrarMensajeInformativo("Operación Fallida", "No puede programar una fecha anterior a la actual");
         }else if ((mesFin<month) && (year>yearvalueend)){
-            campana.setFechaFin(getDateEnd(mesFin,yearvalueend));
+            campana.setFechaFin(getDateEnd(mesFin, yearvalueend));
         }else if ((mesFin>= month) && (yearvalueend!=null)){
-            campana.setFechaFin(getDateEnd(mesFin,yearvalueend));
+            campana.setFechaFin(getDateEnd(mesFin, yearvalueend));
         }
             }
-   // Función que permite el retorno del ultimo día de un mes X
+    // Función que permite el retorno del ultimo día de un mes X
    public Date getDateEnd(Integer m, Integer y) {
         Calendar calendar = Calendar.getInstance();
         // passing month-1 because 0-->jan, 1-->feb... 11-->dec
@@ -339,10 +339,10 @@ public class MantenedorCampana implements Serializable {
 
     //Funcion que obtiene en entero el rango de horas de un establecimiento
     public Integer calcularHoras(){
-        Long tiempoInicial = establecimiento.getHoraInicio().getTime();
-        Long tiempoFinal = establecimiento.getHoraTermino().getTime();
+        Long tiempoInicial = establecimientoseleccionado.getHoraInicio().getTime()/3600000;
+        Long tiempoFinal = establecimientoseleccionado.getHoraTermino().getTime()/3600000;
 
-        Long resultado = tiempoFinal - tiempoInicial;
+        Long resultado = (tiempoFinal-3) - (tiempoInicial-3);
 
         return resultado.intValue();
     }
@@ -352,21 +352,32 @@ public class MantenedorCampana implements Serializable {
         return totemsPorEstablecimiento;
     }
 
-    //Funcion que retorna en entero la cantidad de pasadas segun
+
+   //Funcion que retorna en entero la cantidad de pasadas segun
     //la hora de apertura y cierre del establecimiento, ademas de los slots disponibles
     public Integer calcularPasadas(){
 
         Integer horas = calcularHoras();
-        Integer cantidadPasadas = ((horas * 3600) / (10 * establecimiento.getSlots()));
+        Integer cantidadPasadas = ((horas * 3600) / (10 * establecimientoseleccionado.getSlots()));
 
         return cantidadPasadas;
     }
 
     public void calculator(){
-        pasadas = calcularPasadas();
-        valor = (pasadas * establecimiento.getValor())*(dias.intValue()+1);
+        pasadas=calcularPasadas();
+        if (userSession.getUsuario().getIdUsuario().equals(establecimientoseleccionado.getUsuario().getIdUsuario())) {
+            valor = (pasadas * 0) * (dias.intValue() + 1);
+        }else {
+            valor = (pasadas * establecimientoseleccionado.getValor()) * (dias.intValue() + 1);
+        }
     }
+    public void diasPasadas(){
 
+        pasadasTotales=pasadas*(dias.intValue()+1);
+        System.err.println(pasadasTotales);
+
+
+    }
     public void dateDiff() {
 
         if(campana.getFechaInicio()!=null && campana.getFechaFin()!=null)
@@ -798,5 +809,13 @@ public class MantenedorCampana implements Serializable {
 
     public void setMesFin(Integer mesFin) {
         this.mesFin = mesFin;
+    }
+
+    public Integer getPasadasTotales() {
+        return pasadasTotales;
+    }
+
+    public void setPasadasTotales(Integer pasadasTotales) {
+        this.pasadasTotales = pasadasTotales;
     }
 }

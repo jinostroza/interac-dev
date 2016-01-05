@@ -12,13 +12,13 @@
             <p:panel header="Cambiar Clave de usuario">
             <h:panelGrid columns="3">
                 <h:outputLabel for="iActual" value="Contraseña Actual"/>:
-                <h:inputSecret id="iActual" value="#{MantenedorPerfil.claveActual}" styleClass="form-control"
+                <h:inputSecret id="iActual" value="#{mantenedorPerfil.claveActual}" styleClass="form-control"
                                required="true" requiredMessage="Debes especificar la contraseña actual"/>
                 <h:outputLabel for="iNueva" value="Contraseña Nueva"/>:
-                <h:inputSecret id="iNueva" value="#{MantenedorPerfil.claveNueva}" styleClass="form-control"
+                <h:inputSecret id="iNueva" value="#{mantenedorPerfil.claveNueva}" styleClass="form-control"
                                required="true" requiredMessage="Debes especificar la contraseña nueva"/>
                 <h:outputLabel for="iConfirmar" value="Repita la Nueva Contraseña"/>:
-                <h:inputSecret id="iConfirmar" value="#{MantenedorPerfil.claveConfirmada}"
+                <h:inputSecret id="iConfirmar" value="#{mantenedorPerfil.claveConfirmada}"
                                styleClass="form-control" required="true" requiredMessage="Debes confirmar la nueva contraseña"/>
             </h:panelGrid>
             </p:panel>

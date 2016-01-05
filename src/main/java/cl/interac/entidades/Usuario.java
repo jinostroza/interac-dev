@@ -14,7 +14,7 @@ import java.util.List;
 
                 @NamedQuery(
                         name = "Usuario.findByUserAndPassword",
-                        query = "SELECT u FROM Usuario u WHERE u.username = :username and u.password = :password"
+                        query = "SELECT u FROM Usuario u WHERE u.correo = :correo and u.password = :password"
                 ),
 
                 @NamedQuery(
@@ -35,6 +35,10 @@ import java.util.List;
                         query="SELECT u FROM Usuario u where u.empresa = :empresa"
                 ),
                 @NamedQuery(
+                        name="Usuario.CountCorreo",
+                        query="SELECT COUNT (u.correo) FROM Usuario u where u.correo = :correo"
+                ),
+                @NamedQuery(
                        name="Usuario.findWithRelationship",
                         query="SELECT u FROM Usuario u " +
                                 "LEFT JOIN FETCH u.rol " +
@@ -52,6 +56,8 @@ public class Usuario implements Serializable {
     private String username;
     private String password;
     private String correo;
+    private String nombres;
+    private String apellidos;
 
     // Relaciones
     private Rol rol;
@@ -96,6 +102,24 @@ public class Usuario implements Serializable {
     }
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+    @Basic
+    @Column(name = "nombre",nullable = true, insertable = true, updatable = true)
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+    @Basic
+    @Column(name = "apellido",nullable = true, insertable = true, updatable = true)
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     @OneToMany(mappedBy="usuario")

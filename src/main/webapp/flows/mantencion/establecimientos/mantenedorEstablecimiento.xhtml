@@ -8,8 +8,7 @@
         <br/>
         <p:dataTable id="establecimientos" var="local" widgetVar="dtEstablecimientos"
                      value="#{mantenedorEstablecimiento.establecimientoList}"
-                     filteredValue="#{mantenedorEstablecimiento.establecimientoConfiltro}"
-                     paginator="true" rows="6">
+                                          paginator="true" rows="5">
             <p:column headerText="Nombre" filterBy="#{local.nombreEstablecimiento}">
                 <h:outputText value="#{local.nombreEstablecimiento}"/>
             </p:column>

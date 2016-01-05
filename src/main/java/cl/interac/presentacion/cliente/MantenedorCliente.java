@@ -3,7 +3,6 @@ package cl.interac.presentacion.cliente;
 import cl.interac.entidades.*;
 import cl.interac.negocio.*;
 import cl.interac.util.components.Constantes;
-import cl.interac.util.components.EmailUtils;
 import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.UserSession;
 import cl.interac.util.services.MailSender;
@@ -11,17 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import java.io.File;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by pclucho on 28-09-15.
@@ -136,7 +128,7 @@ public class MantenedorCliente implements Serializable {
 
         String[] destinos = new String[3];
         destinos[0] = userSession.getUsuario().getCorreo();
-        destinos[1] = "pe.pastene@gmail.com";
+        destinos[1] = "contacto@interac.cl";
         destinos[2] = contenido.getUsuario().getCorreo();
 
         //Cuerpo del mensaje

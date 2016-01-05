@@ -2,9 +2,8 @@ package cl.interac.entidades;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Time;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Pedro Pablo on 20-05-2015.
@@ -20,7 +19,7 @@ import java.util.Date;
                         "inner join fetch e.usuario u " +
                         "inner join fetch e.ubicacion ub " +
                         "INNER JOIN FETCH e.categoria c " +
-                        "INNER JOIN FETCH e.empresa em"),
+                        "INNER JOIN FETCH e.empresa em "),
 
         @NamedQuery(name = "establecimiento.findEstablecimientoByUser",
                 query = "SELECT e FROM Establecimiento e " +
