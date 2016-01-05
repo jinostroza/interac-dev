@@ -18,6 +18,8 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import cl.interac.entidades.*;
+
 /**
  * @author colivares
  */
@@ -37,6 +39,9 @@ public class AutenticarBean implements Serializable {
     private String user;
     private String pass;
 
+    private Usuario usuario;
+
+
     public void logIn() {
         try {
             HttpServletRequest request = FacesUtil.obtenerHttpServletRequest();
@@ -46,6 +51,10 @@ public class AutenticarBean implements Serializable {
         } catch (ServletException ex) {
             FacesUtil.mostrarMensajeError(ex.getMessage(), null);
         }
+    }
+
+    public void recuperar(){
+        usuario.getCorreo();
     }
 
     public static String md5(String input){
