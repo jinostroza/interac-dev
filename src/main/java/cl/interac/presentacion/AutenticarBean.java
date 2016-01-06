@@ -53,8 +53,8 @@ public class AutenticarBean implements Serializable {
         }
     }
 
-    public void recuperar(){
-        usuario.getCorreo();
+    public void recuperar(String correo){
+        System.out.println(correo);
     }
 
     public static String md5(String input){

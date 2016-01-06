@@ -4,39 +4,37 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/templates/logInTemplate.xhtml">
 
-<ui:define name="contenido">
-    <h:outputStylesheet>
-        body {
-            background-color: #E52620;
-        }
-    </h:outputStylesheet>
+    <ui:define name="contenido">
+        <h:outputStylesheet>
+            body {
+                background-color: #E52620;
+            }
+        </h:outputStylesheet>
 
 
-    <div class="login-header">
-        <div class="login-logo"></div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div id="cuadro-login" class="col-md-4">
-                <h:form prependId="false">
-                    <div class="form-group">
-                        <h:inputText styleClass="form-control" id="loginEmail" placeholder="email" value="#{autenticarBean.user}"/>
-                    </div>
-
-                    <div class="form-group">
-                        <p:commandButton styleClass="btn btn-interac btn-block" value="Recuperar contraseña" action="#{autenticarBean.recuperar()}" ajax="false"/>
-                    </div>
-                    <p>Para recuperar su contraseña, ingrese su correo electronico y haga click en 'Recuperar'</p>
-                    <h:graphicImage value="imagenes/026rp1.jpg" />
-                </h:form>
-            </div>
-            <div class="col-md-4"></div>
+        <div class="login-header">
+            <div class="login-logo"></div>
         </div>
-        <div class="push"></div>
-    </div>
 
-    <ui:include src="templates/includes/Footer.xhtml"/>
-</ui:define>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div id="cuadro-login" class="col-md-4">
+                    <h:form prependId="false">
+                        <div class="form-group">
+                            <h:inputText required="true" styleClass="form-control" id="email" placeholder="email" value="#{autenticarBean.user}"/>
+                        </div>
+                        <div class="form-group">
+                            <p:commandButton styleClass="btn btn-interac btn-block" value="Recuperar contraseña" action="#{autenticarBean.recuperar(autenticarBean.user)}" ajax="false"/>
+                        </div>
+                        <p>Para recuperar su contraseña, ingrese su correo electronico y haga click en 'Recuperar'</p>
+                    </h:form>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+            <div class="push"></div>
+        </div>
+
+        <ui:include src="templates/includes/Footer.xhtml"/>
+    </ui:define>
 </ui:composition>
