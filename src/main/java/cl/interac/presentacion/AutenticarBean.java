@@ -1,5 +1,6 @@
 package cl.interac.presentacion;
 
+import cl.interac.entidades.Usuario;
 import cl.interac.security.LogInManager;
 import cl.interac.util.components.Constantes;
 import cl.interac.util.components.FacesUtil;
@@ -12,13 +13,9 @@ import org.springframework.stereotype.Component;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-import cl.interac.entidades.*;
 
 /**
  * @author colivares
@@ -53,8 +50,8 @@ public class AutenticarBean implements Serializable {
         }
     }
 
-    public void recuperar(String correo){
-        System.out.println(correo);
+    public void recuperar(String us){
+        System.out.println(" ss" + us);
     }
 
     public static String md5(String input){
@@ -92,5 +89,13 @@ public class AutenticarBean implements Serializable {
 
     public void setPass(String pass) {
         this.pass = pass;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

@@ -20,12 +20,12 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div id="cuadro-login" class="col-md-4">
-                    <h:form prependId="false">
+                    <h:form >
                         <div class="form-group">
-                            <h:inputText required="true" styleClass="form-control" id="email" placeholder="email" value="#{autenticarBean.user}"/>
+                            <p:inputText required="true" styleClass="form-control" id="email" placeholder="email" value="#{autenticarBean.user}" />
                         </div>
                         <div class="form-group">
-                            <p:commandButton styleClass="btn btn-interac btn-block" value="Recuperar contraseña" action="#{autenticarBean.recuperar(autenticarBean.user)}" ajax="false"/>
+                            <p:commandButton styleClass="btn btn-interac btn-block" value="Recuperar contraseña" action="next1" actionListener="#{autenticarBean.recuperar(autenticarBean.user)}" ajax="false"/>
                         </div>
                         <p>Para recuperar su contraseña, ingrese su correo electronico y haga click en 'Recuperar'</p>
                     </h:form>
@@ -35,6 +35,6 @@
             <div class="push"></div>
         </div>
 
-        <ui:include src="templates/includes/Footer.xhtml"/>
+        <ui:include src="../../templates/includes/Footer.xhtml"/>
     </ui:define>
 </ui:composition>

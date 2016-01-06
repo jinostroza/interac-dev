@@ -14,7 +14,7 @@ import java.io.Serializable;
  * Created by claudio on 24-04-15.
  */
 @Component
-@Scope("flow")
+@Scope("view")
 public class RegistrarBean implements Serializable {
     @Autowired
     private LogicaUsuario logicaUsuario;
@@ -39,6 +39,9 @@ public class RegistrarBean implements Serializable {
 
        return next1();
 
+    }
+    public void recuperar(String us){
+        System.out.println(" ss" + us);
     }
 
     public String next1(){ return "next1";}
