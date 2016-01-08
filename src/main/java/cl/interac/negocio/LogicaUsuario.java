@@ -61,10 +61,12 @@ public class LogicaUsuario {
     public void editarPerfil(String usuario,String correo, String empresa){
         usuarioDAO.editarPerfil(usuario,correo);
     }
+
     @Transactional(readOnly = true)
     public List<Usuario> obtenerMisContenidos(){
         return usuarioDAO.obtenerMisContenidos();
     }
+
     @Transactional(readOnly = true)
     public long verificarCorreo(String correo){
         return usuarioDAO.verificarCorreo(correo);

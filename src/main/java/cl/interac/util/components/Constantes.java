@@ -1306,6 +1306,7 @@ public class Constantes implements Serializable {
     public void setHeaderCorreo(String headerCorreo) {
         this.headerCorreo = headerCorreo;
     }
+
     public String getAlertas() {
         return alertas;
     }
@@ -1326,9 +1327,7 @@ public class Constantes implements Serializable {
 
     public void setRechazar(String rechazar) { this.rechazar = rechazar; }
 
-        public String getRegistro() {
-        return registro;
-    }
+    public String getRegistro() { return registro; }
 
     public void setRegistro(String registro) {
         this.registro = registro;

@@ -9,7 +9,6 @@
             <evaluate expression="mantenedorTotems.inicio()"/>
       </on-start>
       <view-state id="inicioAnunciante">
-
       </view-state>
 
       <view-state id="subirContenido">

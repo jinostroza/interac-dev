@@ -78,7 +78,7 @@ public class MantenedorCampana implements Serializable {
     private Marker marker;
     private String newCenter;
     private Integer ubica;
-    private String tipot="";
+    private String tipot;
     private Long contarCampanas;
     private Integer yearvalue;
     private Integer yearvalueend;
@@ -226,8 +226,8 @@ public class MantenedorCampana implements Serializable {
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valormensual",String.valueOf(valor));
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$total",String.valueOf(valor));
 
-   //correo
-       SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        //correo
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String[] replicas = new String[1];
         String[] alertas = new String[2];
 
@@ -237,8 +237,7 @@ public class MantenedorCampana implements Serializable {
         mailSender.send(alertas,"Interac",mensajeAnunciante);
         mailSender.send(replicas,"Interac",mensajeLocal);
 
-
-            FacesUtil.mostrarMensajeInformativo("Operacion exitosa", "se ha creado tu anuncio");
+        FacesUtil.mostrarMensajeInformativo("Operacion exitosa", "se ha creado tu anuncio");
     }
 
        public void eliminarFichero(Contenido conte){

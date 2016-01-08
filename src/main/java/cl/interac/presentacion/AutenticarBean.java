@@ -1,6 +1,7 @@
 package cl.interac.presentacion;
 
 import cl.interac.entidades.Usuario;
+import cl.interac.presentacion.usuarios.MantenedorPerfil;
 import cl.interac.security.LogInManager;
 import cl.interac.util.components.Constantes;
 import cl.interac.util.components.FacesUtil;
@@ -48,10 +49,6 @@ public class AutenticarBean implements Serializable {
         } catch (ServletException ex) {
             FacesUtil.mostrarMensajeError(ex.getMessage(), null);
         }
-    }
-
-    public void recuperar(String us){
-        System.out.println(" ss" + us);
     }
 
     public static String md5(String input){

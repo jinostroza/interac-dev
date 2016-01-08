@@ -5,6 +5,7 @@ import cl.interac.entidades.Usuario;
 import cl.interac.negocio.LogicaUsuario;
 import cl.interac.security.LogInManager;
 import cl.interac.security.SHA512;
+import cl.interac.util.components.Constantes;
 import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.UserSession;
 import cl.interac.util.pojo.Encriptador;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
+import cl.interac.util.services.MailSender;
 
 import javax.annotation.PostConstruct;
 import java.io.Serializable;
@@ -34,7 +36,10 @@ public class MantenedorPerfil implements Serializable {
     private UserSession userSession; // es un componente spring y de scope session, por ende hay que
     @Autowired
     LogInManager logInManager;
-
+    @Autowired
+    private Constantes constantes;
+    @Autowired
+    private MailSender mailSender;
 
     private String claveActual;
     private String claveNueva;
@@ -45,6 +50,7 @@ public class MantenedorPerfil implements Serializable {
     private String username;
     private Usuario usuario;
     private List<Usuario> usuarioList;
+    private Long retornoCorreos;
 
 
     public void inicio() {
@@ -95,8 +101,19 @@ public class MantenedorPerfil implements Serializable {
         return md5;
     }
 
-    //getter and setter
+    public void verificarCorreo(String correoEntrante){
+        retornoCorreos = logicaUsuario.verificarCorreo(correoEntrante);
+        System.out.println("Correo entrante: "+correoEntrante);
+        if (retornoCorreos >= 1){
+            System.out.println("Correo existe");
+        }
 
+        else{
+            System.out.println("Correo no existe");
+        }
+    }
+
+    //getter and setter
     public String irVerPerfil() {
         return "flowVerPerfil";
     }
