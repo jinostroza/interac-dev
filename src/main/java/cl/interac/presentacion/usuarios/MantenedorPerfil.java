@@ -4,24 +4,19 @@ import cl.interac.entidades.Rol;
 import cl.interac.entidades.Usuario;
 import cl.interac.negocio.LogicaUsuario;
 import cl.interac.security.LogInManager;
-import cl.interac.security.SHA512;
 import cl.interac.util.components.Constantes;
 import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.UserSession;
-import cl.interac.util.pojo.Encriptador;
-import cl.interac.util.pojo.Md5;
-import org.primefaces.model.UploadedFile;
+import cl.interac.util.services.MailSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
-import cl.interac.util.services.MailSender;
 
-import javax.annotation.PostConstruct;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -106,6 +101,23 @@ public class MantenedorPerfil implements Serializable {
         System.out.println("Correo entrante: "+correoEntrante);
         if (retornoCorreos >= 1){
             System.out.println("Correo existe");
+            //cuerpo del mensaje
+            String mensajeLocal = new String(constantes.getAlertas());
+            String mensajeAnunciante = new String(constantes.getHeaderCorreo());
+            mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$Id",String.valueOf(correoEntrante));
+
+
+            //correo
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            String[] replicas = new String[1];
+            String[] alertas = new String[1];
+
+            replicas[0]=correoEntrante;
+            alertas[0]="contacto@interac.cl";
+            mailSender.send(alertas,"Interac",mensajeAnunciante);
+            mailSender.send(replicas,"Interac",mensajeLocal);
+
+            FacesUtil.mostrarMensajeInformativo("Operacion exitosa", "Se ah enviado informacion de recuperacion a su correo");
         }
 
         else{
