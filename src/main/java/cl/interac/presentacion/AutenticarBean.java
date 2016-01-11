@@ -1,6 +1,7 @@
 package cl.interac.presentacion;
 
 import cl.interac.entidades.Usuario;
+import cl.interac.presentacion.usuarios.MantenedorPerfil;
 import cl.interac.security.LogInManager;
 import cl.interac.util.components.Constantes;
 import cl.interac.util.components.FacesUtil;
@@ -42,7 +43,7 @@ public class AutenticarBean implements Serializable {
     public void logIn() {
         try {
             HttpServletRequest request = FacesUtil.obtenerHttpServletRequest();
-            request.login(user,pass);
+            request.login(user, pass);
             FacesUtil.redirigir("/plataforma/campana");
 
         } catch (ServletException ex) {
