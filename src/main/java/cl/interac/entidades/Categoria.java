@@ -20,6 +20,8 @@ public class Categoria implements Serializable {
 
     // relaciones
    private List<Contenido> contenidos;
+   private List<Establecimiento> establecimientos;
+
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -27,7 +29,6 @@ public class Categoria implements Serializable {
     public Integer getIdcategoria() {
         return idcategoria;
     }
-
     public void setIdcategoria(Integer idcategoria) {
         this.idcategoria = idcategoria;
     }
@@ -37,7 +38,6 @@ public class Categoria implements Serializable {
     public String getDesccategoria() {
         return desccategoria;
     }
-
     public void setDesccategoria(String desccategoria) {
         this.desccategoria = desccategoria;
     }
@@ -47,10 +47,13 @@ public class Categoria implements Serializable {
     public List<Contenido> getContenidos() {
         return contenidos;
     }
-
     public void setContenidos(List<Contenido> contenidos) {
         this.contenidos = contenidos;
     }
+
+    @OneToMany(mappedBy="categoria")
+    public List<Establecimiento> getEstablecimientos() { return establecimientos; }
+    public void setEstablecimientos(List<Establecimiento> establecimientos) { this.establecimientos = establecimientos; }
 
     @Override
     public boolean equals(Object o) {

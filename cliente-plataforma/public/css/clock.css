@@ -1,11 +1,11 @@
 body {
-    background-color: #333333;
+    background-color: #FFFFFF;
 }
 
 .clock {
     font-size: 2em;
     font-family: impact;
-    color: #FFFFFF;
+    color: #0D0D0D;
     text-align: center;
     margin-top: 100px;
     margin-right: -200px;
@@ -13,5 +13,5 @@ body {
     height: 50px;
     float: right;
     position: relative;
-    background-color: #333333;
+    background-color: #FFFFFF;
 }

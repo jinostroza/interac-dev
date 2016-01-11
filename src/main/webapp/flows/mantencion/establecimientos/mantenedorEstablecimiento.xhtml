@@ -4,33 +4,46 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
     <h3 style="margin-top:0">Mantenedor Establecimientos</h3>
-
     <h:panelGrid id="establecimientoPG" columns="2" cellpadding="10">
         <br/>
         <p:dataTable id="establecimientos" var="local" widgetVar="dtEstablecimientos"
                      value="#{mantenedorEstablecimiento.establecimientoList}"
-                     filteredValue="#{mantenedorEstablecimiento.establecimientoConfiltro}">
-            <p:column headerText="nombre" filterBy="#{local.nombreEstablecimiento}">
-                <h:outputText value="#{local.nombreEstablecimiento}" />
+                                          paginator="true" rows="5">
+            <p:column headerText="Nombre" filterBy="#{local.nombreEstablecimiento}">
+                <h:outputText value="#{local.nombreEstablecimiento}"/>
             </p:column>
-
-            <p:column headerText="direccion" filterBy="#{local.direccion}">
-                <h:outputText value="#{local.direccion}" />
+            <p:column headerText="Direccion" filterBy="#{local.direccion}">
+                <h:outputText value="#{local.direccion}"/>
             </p:column>
-
-            <p:column headerText="fono">
+            <p:column headerText="Telefono" filterBy="#{local.fono}">
                 <h:outputText value="#{local.fono}" />
             </p:column>
-            <p:column headerText="ubicacion" filterBy="#{local.ubicacion.descubicacion}" filterMatchMode="contains">
+            <p:column headerText="Empresa" filterBy="#{local.empresa.nombreEmpresa}" filterMatchMode="contains">
+                <h:outputText value="#{local.empresa.nombreEmpresa}" />
+            </p:column>
+            <p:column headerText="Ubicacion" filterBy="#{local.ubicacion.descubicacion}" filterMatchMode="contains">
                 <h:outputText value="#{local.ubicacion.descubicacion}" />
             </p:column>
-            <p:column>
-                <h:commandButton value="eliminar" styleClass="form-control" action="#{mantenedorEstablecimiento.eliminar(local)}"/>
+            <p:column headerText="Categoria" filterBy="#{local.categoria.desccategoria}" filterMatchMode="contains">
+                <h:outputText value="#{local.categoria.desccategoria}" />
             </p:column>
-
+            <p:column headerText="Estado" filterBy="#{local.estado}" filterMatchMode="contains">
+                <h:outputText value="#{local.estado}" />
+            </p:column>
+            <!-- Eliminar -->
+            <p:column>
+                <p:commandButton id="eliminarEstablecimiento" update="establecimientos" value="Eliminar" styleClass="form-control" type="button">
+                    <p:confirm header="Por favor confirme" message="Desea eliminar el establecimiento?" icon="ui-icon-alert" />
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Si" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" action="#{mantenedorEstablecimiento.eliminar(local)}" />
+                        <p:commandButton value="No" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </p:commandButton>
+            </p:column>
+            <!-- Editar -->
             <p:column>
                 <h:commandButton id="modifica" value="Modificar" update="establecimientos" styleClass="form-control" type="button">
-                <p:overlayPanel id="editPanel" for="modifica" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
+                    <p:overlayPanel id="editPanel" for="modifica" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
                     <p:outputPanel>
                         <h:outputLabel value="Nombre"/>
                         <h:inputText styleClass="form-control"
@@ -39,14 +52,31 @@
                         <h:inputText styleClass="form-control" value="#{local.direccion}" />
                         <h:outputLabel value="Fono"/>
                         <h:inputText styleClass="form-control" value="#{local.fono}"/>
+                        <h:outputLabel value="Empresa"/>
+                        <h:selectOneMenu class="form-control" value="#{local.empresa}"
+                                         converter="entityConverter">
+                            <f:selectItems value="#{mantenedorEstablecimiento.empresas}" var="emp"
+                                           itemLabel="#{emp.nombreEmpresa}"/>
+                        </h:selectOneMenu>
                         <h:outputLabel value="Ubicacion"/>
                         <h:selectOneMenu class="form-control" value="#{local.ubicacion}"
                                          converter="entityConverter">
-                            <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
                             <f:selectItems value="#{mantenedorEstablecimiento.ubicaciones}" var="ubica"
                                            itemLabel="#{ubica.descubicacion}"/>
                         </h:selectOneMenu>
+                        <h:outputLabel value="Hora apertura" />
+                        <br />
+                        <p:calendar value="#{local.horaInicio}" pattern="HH:mm"  timeZone="America/Santiago"/>
+                        <br />
+                        <h:outputLabel value="Hora Cierre" />
+                        <br />
+                        <p:calendar value="#{local.horaTermino}" pattern="HH:mm"  timeZone="America/Santiago"/>
                         <br/>
+                        <h:outputLabel value="Estado"/>
+                        <h:selectOneMenu class="form-control" value="#{local.estado}">
+                            <f:selectItem itemValue="Activado" itemLabel="Activado" />
+                            <f:selectItem itemValue="Desactivado" itemLabel="Desactivado" />
+                        </h:selectOneMenu>
                         <p:commandButton id="editBTN" for="editPanel" value="Editar" update="establecimientos"
                                          action="#{mantenedorEstablecimiento.editarEstablecimiento(local)}"/>
                     </p:outputPanel>
@@ -55,16 +85,24 @@
             </p:column>
         </p:dataTable>
     </h:panelGrid>
-    <p:commandButton id="nuevoBtn" value="Agrega"   type="button">
+    <!-- Agregar -->
+    <p:commandButton id="nuevoBtn" value="Agregar" type="button">
     <p:overlayPanel id="agregapanel" for="nuevoBtn" showEvent="click" hideEvent="click" hideEffect="fade" dynamic="true" style="width:600px">
         <p:outputPanel>
             <h:outputLabel value="Nombre"/>
             <h:inputText  required="true" requiredMessage="Ingrese nombre" styleClass="form-control"
                          value="#{mantenedorEstablecimiento.establecimiento.nombreEstablecimiento}"/>
             <h:outputLabel value="Direccion"/>
-            <h:inputText  required="true" requiredMessage="Ingrese nombre" styleClass="form-control"  value="#{mantenedorEstablecimiento.establecimiento.direccion}"/>
+            <h:inputText  required="true" requiredMessage="Ingrese direccion" styleClass="form-control"  value="#{mantenedorEstablecimiento.establecimiento.direccion}"/>
             <h:outputLabel value="Fono"/>
-            <h:inputText  required="true" requiredMessage="Ingrese nombre" styleClass="form-control"  value="#{mantenedorEstablecimiento.establecimiento.fono}"/>
+            <h:inputText  required="true" requiredMessage="Ingrese telefono" styleClass="form-control"  value="#{mantenedorEstablecimiento.establecimiento.fono}"/>
+            <h:outputLabel value="Empresa"/>
+            <h:selectOneMenu class="form-control" value="#{mantenedorEstablecimiento.empresa}"
+                             converter="entityConverter">
+                <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione empresa asociada --"/>
+                <f:selectItems value="#{mantenedorEstablecimiento.empresas}" var="empresa"
+                               itemLabel="#{empresa.nombreEmpresa}"/>
+            </h:selectOneMenu>
             <h:outputLabel value="Ubicacion"/>
             <h:selectOneMenu class="form-control" value="#{mantenedorEstablecimiento.ubicacion}"
                              converter="entityConverter">
@@ -72,12 +110,36 @@
                 <f:selectItems value="#{mantenedorEstablecimiento.ubicaciones}" var="ubica"
                                itemLabel="#{ubica.descubicacion}"/>
             </h:selectOneMenu>
+            <h:outputLabel value="Categoria"/>
+            <h:selectOneMenu class="form-control" value="#{mantenedorEstablecimiento.categoria}"
+                             converter="entityConverter">
+                <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione ubicacion --"/>
+                <f:selectItems value="#{mantenedorEstablecimiento.categorias}" var="cat"
+                               itemLabel="#{cat.desccategoria}"  />
+            </h:selectOneMenu>
             <h:outputLabel value="Latitud"/>
             <h:inputText  required="true" requiredMessage="Ingrese Latitud" styleClass="form-control"
                           value="#{mantenedorEstablecimiento.establecimiento.lat}"/>
             <h:outputLabel value="Longitud"/>
             <h:inputText  required="true" requiredMessage="Ingrese Longitud" styleClass="form-control"
                           value="#{mantenedorEstablecimiento.establecimiento.longi}"/>
+            <h:outputLabel value="Hora Inicio" />
+            <p:calendar required="true" requiredMessage="Ingrese nueva hora de inicio" value="#{mantenedorEstablecimiento.establecimiento.horaInicio}" pattern="HH:mm" timeOnly="true" timeZone="America/Santiago"/>
+            <h:outputLabel value="Hora Termino" />
+            <p:calendar required="true" requiredMessage="Ingrese nueva hora de termino" value="#{mantenedorEstablecimiento.establecimiento.horaTermino}" pattern="HH:mm" timeOnly="true" timeZone="America/Santiago" />
+            <h:outputLabel value="Slots (espacios para publicidad de terceros)" />
+            <h:inputText  required="true" styleClass="form-control"
+                          value="#{mantenedorEstablecimiento.establecimiento.slots}"/>
+            <h:outputLabel value="Numero de pantallas" />
+            <h:inputText  required="true" styleClass="form-control"
+                          value="#{mantenedorEstablecimiento.establecimiento.numeroPantallas}"/>
+            <h:outputLabel value="Estado"/>
+            <h:selectOneMenu class="form-control" value="#{mantenedorEstablecimiento.establecimiento.estado}">
+                <f:selectItem noSelectionOption="true"  itemLabel="-- Seleccione estado del totem --" />
+                <f:selectItem itemValue="Activado" itemLabel="Activado" />
+                <f:selectItem itemValue="Desactivado" itemLabel="Desactivado" />
+            </h:selectOneMenu>
+            <h:outputLabel value="Imagen" />
             <br/>
             <p:commandButton id="addBtn" for="agregapanel" value="Agrega" update="establecimientoPG"
                              action="#{mantenedorEstablecimiento.agregarEstablecimiento()}"/>

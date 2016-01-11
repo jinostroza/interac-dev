@@ -222,6 +222,13 @@
             <version>${spring-version}</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>org.codemonkey.simplejavamail</groupId>
+            <artifactId>simple-java-mail</artifactId>
+            <version>2.4</version>
+        </dependency>
+
+
     </dependencies>
   
     <build>

@@ -1,6 +1,7 @@
 // librerías
 var Express = require("express");
 var BodyParser = require("body-parser");
+var GoogleAnalytics = require('ga');
 var App = Express();
 var Sincronizador = require("./sincronizador.js");
 var Path = require("path");

@@ -12,7 +12,7 @@
         <h:form>
             <h3>ADMINISTRACION</h3>
 
-            <p:dataTable var="cli" value="#{mantenedorCliente.totemList}"  cellpadding="5px"
+            <p:dataTable var="cli" value="#{mantenedorcliente.totemList}"  cellpadding="5px"
                          styleClass="ui-grid-col-12"
                          rows="10"
                          paginator="true"
@@ -37,7 +37,7 @@
                 <p:column style="width:32px;text-align: center">
                     <p:commandButton  icon="ui-icon-search" title="View">
                         <f:setPropertyActionListener value="#{cli}"
-                                                     target="#{mantenedorCliente.campana}" />
+                                                     target="#{mantenedorcliente.campana}" />
                     </p:commandButton>
                 </p:column>
 
@@ -74,11 +74,6 @@
                                      action="#{mantenedorTotems.agregarTotem}"/>
                 </p:outputPanel>
             </p:overlayPanel>
-
-
-
-
         </h:form>
-
     </ui:define>
 </ui:composition>

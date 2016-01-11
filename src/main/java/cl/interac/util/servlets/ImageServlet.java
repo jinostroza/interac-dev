@@ -1,16 +1,17 @@
 package cl.interac.util.servlets;
 
+import cl.interac.util.components.Constantes;
 import cl.interac.util.components.PropertyReader;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.Closeable;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.net.URLDecoder;
+import javax.imageio.ImageIO;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author colivares
  */
+@WebServlet("/images/*")
 public class ImageServlet extends HttpServlet {
 
     // Constants ----------------------------------------------------------------------------------
@@ -38,6 +40,10 @@ public class ImageServlet extends HttpServlet {
             throws ServletException, IOException {
         // Get requested image by path info.
         String requestedImage = request.getPathInfo();
+
+        System.err.println("LLEGO CON "+requestedImage);
+
+        // Check if file name is actually supplied to the request URI.
 
         // Check if file name is actually supplied to the request URI.
         if (requestedImage == null) {

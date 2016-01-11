@@ -22,6 +22,7 @@ tr.table-header{
 /* Cabecera */
 .header{
 	margin-bottom:0;
+	border-bottom: 2px solid #E52721;
 }
 .header .header-top{
 	background-color:#E52721;
@@ -54,11 +55,11 @@ tr.table-header{
 	text-decoration: none;
 	color: #111;
 }
-.header span{
+.header {
 	display: block;
 	clear: both;
 	width: 100%;
-	border-bottom: 2px solid #E52721;
+	border-bottom: 2px solid #E52721 !important;
 }
 .container header{
 	margin-top:5px;
@@ -269,6 +270,9 @@ tr.table-header{
 .btn-anunciante
 {
 	background-image: url("css/img/buttons/btn-anunciante.png");
+	background-size: cover;
+	background-repeat:no-repeat;
+	background-position: center center;
 }
 .btn-empresa
 {
@@ -276,7 +280,36 @@ tr.table-header{
 }
 .btn-perfil
 {
-	background-image: url("css/img/buttons/user-register-icon.png");
+	background-image: url("css/img/buttons/gears-01.png");
+	background-size: cover;
+	background-repeat:no-repeat;
+	background-position: center center;
+
+
+}
+.btn-notify
+{
+	border-radius: 50%;
+	height: 40px;
+	width: 40px;
+	background:#E52721 !important;
+	color: white;
+	float: right;
+	text-align: center;
+}
+.blink {
+	animation: blink 1s steps(5, start) infinite;
+	-webkit-animation: blink 1s steps(5, start) infinite;
+}
+@keyframes blink {
+	to {
+		visibility: hidden;
+	}
+}
+@-webkit-keyframes blink {
+	to {
+		visibility: hidden;
+	}
 }
 #myInterac .dashbox:hover
 {
@@ -285,10 +318,21 @@ tr.table-header{
 }
 .dashbox
 {
+	border-radius: 20%;
 	padding-top: 25px;
 	padding-bottom: 25px;
 	margin: 10px;
 	text-align: center;
+}
+.dashbox-notify
+{
+	height: 80px;
+	width: 80px;
+	float: right;
+	background-image: url("css/img/buttons/notify-01.png");
+	background-size: cover;
+	background-repeat:no-repeat;
+	background-position: center center;
 }
 .dashbox-header
 {
@@ -296,12 +340,12 @@ tr.table-header{
 	font-size: 18px;
 	color:white;
 }
-.dashbox-header:hover
+/*.dashbox-header:hover
 {
 	font-weight: bold;
 	font-size: 18px;
-	color:#ffffff;
-}
+	color:#000000;
+}*/
 .container
 {
 
@@ -679,4 +723,11 @@ div.login-logo{
 	height:427px;
 	background-image: url('css/img/buttons/promo-del-dia1-22.png');
 	margin:auto;
+}
+
+.btn-activar-pantallas{
+	background-color: #E52721;
+	background-size: cover;
+	background-repeat:no-repeat;
+	background-position: center center;
 }

@@ -5,6 +5,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Joaco on 17/08/2015.
@@ -12,21 +13,34 @@ import java.io.Serializable;
 @Entity
 @DynamicInsert
 @NamedQueries({
-        @NamedQuery(name = "Contenido.findAll", query = "select c from Contenido c"),
-        @NamedQuery(name = "Contenido.findWith", query = "select c from Contenido c,Usuario u "+" where c.usuario.idUsuario=u.idUsuario "),
+        @NamedQuery(name = "Contenido.findAll",
+                query = "select c from Contenido c"),
+
+        @NamedQuery(name = "Contenido.findAllWithUsuario",
+                query = "SELECT c FROM Contenido c " +
+                        "INNER JOIN FETCH c.usuario u "),
+
+        @NamedQuery(name = "Contenido.findWith",
+                query = "SELECT c FROM Contenido c, " +
+                        "Usuario u "+
+                        "where c.usuario.idUsuario = u.idUsuario "),
 
         @NamedQuery(name="Contenido.findByUsuario",
                 query="SELECT c FROM Contenido c " +
                         "inner join fetch c.categoria " +
                         "inner join fetch c.usuario u " +
-                         " where u.username=:user "
-        ),
+                        "where u.username=:user"),
+
         @NamedQuery(name="Contenido.findByCategoriaAndUser",
                     query="SELECT c FROM Contenido c " +
-                            "left join fetch c.categoria")
+                            "left join fetch c.categoria"),
 
-
+        @NamedQuery(name="Contenido.findByEstadoAndCampana",
+                    query="SELECT c FROM Contenido c " +
+                          "LEFT JOIN FETCH c.campanaList ca "
+                           )
 })
+
 public class Contenido implements Serializable{
     private Integer idcontenido;
     private String path;
@@ -36,6 +50,17 @@ public class Contenido implements Serializable{
     //relaciones
     private Usuario usuario;
     private Categoria categoria;
+    private List<Campana> campanaList;
+
+
+    @OneToMany(mappedBy = "contenido")
+    public List<Campana> getCampanaList() {
+        return campanaList;
+    }
+
+    public void setCampanaList(List<Campana> campanaList) {
+        this.campanaList = campanaList;
+    }
 
 
     @JoinColumn(name = "idusuario", referencedColumnName = "idusuario")
@@ -79,15 +104,7 @@ public class Contenido implements Serializable{
         this.path = path;
     }
 
-    @Basic
-    @Column(name= "estado",length = 50,nullable =false,insertable=true ,updatable = true  )
-    public String getEstado() {
-        return estado;
-    }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
 
 
     @Basic
@@ -99,8 +116,6 @@ public class Contenido implements Serializable{
     public void setNombrecont(String nombrecont) {
         this.nombrecont = nombrecont;
     }
-
-
 
     @Override
     public boolean equals(Object o) {

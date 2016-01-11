@@ -5,6 +5,7 @@
  */
 package cl.interac.dao;
 
+import cl.interac.entidades.Campana;
 import cl.interac.entidades.Totem;
 import org.springframework.stereotype.Repository;
 
@@ -27,7 +28,8 @@ public class TotemDAO {
 
     public void guardar(Totem t){
        if (t.getIdtotem()== null) em.persist(t);
-       else em.merge(t);
+       else
+           em.merge(t);
     }
 
     public void eliminarTotem(Totem t){
@@ -41,7 +43,6 @@ public class TotemDAO {
         }catch (Exception e){
             return null;
         }
-
     }
 
     public List<Totem> obtenerConRelacion(){
@@ -49,7 +50,17 @@ public class TotemDAO {
     }
 
     public List<Totem> obtenerConUsuario(String username){
-        return em.createNamedQuery("Totem.findbyUsuario").setParameter("username",username).getResultList();
+        return em.createNamedQuery("Totem.findbyUsuario").setParameter("username", username).getResultList();
+    }
 
+    public long obtenerNumero(Integer establecimiento){
+        return (Long) em.createNamedQuery("Totem.count").setParameter("establecimiento",establecimiento).getSingleResult();
+    }
+    public List<Totem> obtenerPorEstablecimiento(Integer establecimiento){
+        return em.createNamedQuery("Totem.findByEstablecimiento").setParameter("establecimiento", establecimiento).getResultList();
+    }
+
+    public List<Totem> obtenerPorEstado(){
+        return em.createNamedQuery("Totem.findByEstado").getResultList();
     }
 }

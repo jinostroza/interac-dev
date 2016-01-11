@@ -1,5 +1,6 @@
 package cl.interac.presentacion.usuarios;
 
+import cl.interac.entidades.Empresa;
 import cl.interac.entidades.Rol;
 import cl.interac.entidades.Usuario;
 import cl.interac.negocio.LogicaRol;
@@ -31,6 +32,7 @@ public class MantenedorUsuarios implements Serializable {
     private List<Usuario> usuarios;
     private List<Usuario> usuariosFiltro;
     private Usuario usuario;
+    private Empresa empresa;
 
     private UserSession userSession;
 
@@ -41,21 +43,27 @@ public class MantenedorUsuarios implements Serializable {
         usuario = new Usuario();
     }
 
-
-
     public void guardarUsuario() {
         usuario.setRol(rol);
+        usuario.setEmpresa(empresa);
         logicaUsuario.guardar(usuario);
         FacesUtil.mostrarMensajeInformativo("el usuario", "[" + usuario.getUsername() + "] ha sido registrado con exito");
     }
 
+    public void editarUsuario (Usuario u){
+        usuario = u;
+        logicaUsuario.guardar(usuario);
+    }
 
-    // getter and settter
+    public void eliminarUsuario(Usuario u){
+        usuario = u;
+        logicaUsuario.eliminar(usuario);
+    }
 
+    // Getter and Settter
     public List<Usuario> getUsuarios() {
         return usuarios;
     }
-
     public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
@@ -63,15 +71,11 @@ public class MantenedorUsuarios implements Serializable {
     public List<Usuario> getUsuariosFiltro() {
         return usuariosFiltro;
     }
-
     public void setUsuariosFiltro(List<Usuario> usuariosFiltro) {
         this.usuariosFiltro = usuariosFiltro;
     }
 
-    public List<Rol> getRoles() {
-        return roles;
-    }
-
+    public List<Rol> getRoles() { return roles; }
     public void setRoles(List<Rol> roles) {
         this.roles = roles;
     }
@@ -79,7 +83,6 @@ public class MantenedorUsuarios implements Serializable {
     public Usuario getUsuario() {
         return usuario;
     }
-
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
@@ -87,8 +90,10 @@ public class MantenedorUsuarios implements Serializable {
     public Rol getRol() {
         return rol;
     }
-
     public void setRol(Rol rol) {
         this.rol = rol;
     }
+
+    public Empresa getEmpresa() { return empresa; }
+    public void setEmpresa(Empresa empresa) { this.empresa = empresa; }
 }

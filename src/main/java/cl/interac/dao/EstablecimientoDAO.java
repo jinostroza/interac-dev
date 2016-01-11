@@ -2,7 +2,6 @@ package cl.interac.dao;
 
 import cl.interac.entidades.Establecimiento;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -20,7 +19,10 @@ public class EstablecimientoDAO {
         return em.createNamedQuery("establecimiento.findAll").getResultList();
     }
 
-    public void guardar(Establecimiento es) {
+    public List<Establecimiento> obtenerPorTotem() {
+        return em.createNamedQuery("establecimiento.findtotem").getResultList();
+    }
+        public void guardar(Establecimiento es) {
         if (es.getIdEstablecimiento() == null) em.persist(es);
         else em.merge(es);
     }
@@ -34,15 +36,19 @@ public class EstablecimientoDAO {
         return em.createNamedQuery("estabecimiento.findAllByusuario").getResultList();
     }
 
-
     public List<Establecimiento> obtenerPorUsuario(String usuario){
-     return em.createNamedQuery("Campana.findByUsuario").setParameter("username",usuario).getResultList();
+        return em.createNamedQuery("Campana.findByUsuario").setParameter("username",usuario).getResultList();
     }
+
     public Establecimiento obtenerPorId(Integer id) {
         return em.find(Establecimiento.class, id);
     }
 
+    public List<Establecimiento> obtenerPorEstado(){
+        return em.createNamedQuery("establecimiento.findByEstado").getResultList();
+    }
 
-
-
+    public List<Establecimiento> obtenerPorEmpresa(){
+        return em.createNamedQuery("establecimiento.findByEmpresa").getResultList();
+    }
 }

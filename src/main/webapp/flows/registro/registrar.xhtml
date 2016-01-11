@@ -23,30 +23,43 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-10" id="cuadro-registro">
                     <div class="btn-register_ paso-uno"></div>
-
+                    <div class="btn-register_ paso-dos"></div>
                     <div class="btn-register_ paso-tres"></div>
                     <div class="col-md-9 col-md-offset-1">
                         <h4>Completa con tus datos</h4>
                     </div>
                     <h:form prependId="false">
                         <div class="row">
-                            <div class="form-group col-md-5 col-md-offset-1">
-                                <p:inputText styleClass="form-control" required="true" value="#{registrarBean.usuario.username}"
-                                             id="registerName" placeholder="Nombre de Usuario"/>
+                            <div class="form-group col-md-4 ">
+                                <p:inputText styleClass="form-control" required="true" value="#{registrarBean.usuario.nombres}"
+                                             id="registerName" placeholder="Nombres"/>
                             </div>
-                            <div class="form-group col-md-5">
-                                <p:inputText type="email" styleClass="form-control" required="true" value="#{registrarBean.usuario.correo}"
-                                             id="registerEmail" placeholder="email"/>
+                            <div class="form-group col-md-4">
+                                <p:inputText styleClass="form-control" required="true" value="#{registrarBean.usuario.apellidos}"
+                                             id="registerLast" placeholder="Apellidos"/>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <p:inputText type="email" styleClass="form-control" required="true" requiredMessage="Por favor Ingresa tu Mail"
+                                             validatorMessage="Formato no valido" value="#{registrarBean.usuario.correo}"
+                                             id="registerEmail" placeholder="email">
+                                    <f:validateRegex
+                                            pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                </p:inputText>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="form-group col-md-5 col-md-offset-1">
+                            <div class="form-group col-md-4">
                                 <p:password styleClass="form-control" required="true"  value="#{registrarBean.usuario.password}"
                                             id="registerPassword" placeholder="contraseña"/>
-                            </div>
-                            <div class="form-group col-md-5">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <p:password styleClass="form-control" required="true"  value="#{registrarBean.pass}"
+                                                id="registerPassword2" placeholder="Confirmar contraseña"/>
+                                </div>
+                            <div class="form-group col-md-4">
                                 <p:inputText styleClass="form-control" required="true"
-                                             value="#{registrarBean.usuario.empresa}" placeholder="nombre"/>
+                                             value="#{registrarBean.usuario.username}" placeholder="Empresa"/>
                             </div>
                         </div>
                         <div class="row">
@@ -58,8 +71,7 @@
                                 <br />
                                 <br/>
                                 <br/>
-                                <p:commandLink ajax="false" value="Registrar"
-                                               styleClass="btn btn-default btn-block" action="#{registrarBean.signUp}"/>
+                                <p:commandButton ajax="false" value="Registrar" styleClass="btn btn-default btn-block" action="#{registrarBean.signUp}"/>
                             </div>
                         </div>
                     </h:form>

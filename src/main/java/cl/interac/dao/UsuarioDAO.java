@@ -1,9 +1,7 @@
 package cl.interac.dao;
 
-import cl.interac.entidades.Contenido;
 import cl.interac.entidades.Rol;
 import cl.interac.entidades.Usuario;
-import cl.interac.security.SHA512;
 import cl.interac.util.dto.UsuarioDto;
 import org.springframework.stereotype.Repository;
 
@@ -22,27 +20,41 @@ public class UsuarioDAO {
 
     public void guardar(Usuario u) {
         if (u.getIdUsuario() == null) {
-
             em.persist(u);
-        } else em.merge(u);
+        }
+        else em.merge(u);
+    }
+
+    public void eliminar(Usuario u){
+        Usuario usuario = em.find(Usuario.class, u.getIdUsuario());
+        em.remove(usuario);
     }
 
     public List<Usuario> obtenerTodos() {
         return em.createNamedQuery("Usuario.findAll").getResultList();
     }
 
-
-    public Usuario obtenerPorUsuarioContrasenna(String user, String password) {
+    public Usuario obtenerPorUsuarioContrasenna(String correo, String password) {
         Query q = em.createNamedQuery("Usuario.findByUserAndPassword");
-        q.setParameter("username", user);
+        q.setParameter("correo", correo);
         q.setParameter("password", password);
-
 
         try {
             return (Usuario) q.getSingleResult();
         } catch (Exception e) {
             return null;
         }
+    }
+
+    public Usuario obtenerLogin(String correo , String pass){
+        try{
+            return (Usuario) em.createNamedQuery("Usuario.findByUserAndPassword")
+                    .setParameter("correo",correo)
+                    .setParameter("password",pass).getSingleResult();
+           }catch (Exception e){
+            return  null;
+        }
+
     }
 
     public Usuario obtenerPorUsuario(String username) {
@@ -53,10 +65,8 @@ public class UsuarioDAO {
             return (Usuario) q.getSingleResult();
         } catch (Exception e) {
             return null;
-
         }
     }
-
 
     public void cambiarClave(String usuario, String clave) {
         Usuario u = (Usuario) em.createNamedQuery("Usuario.findByUser")
@@ -66,14 +76,11 @@ public class UsuarioDAO {
         em.merge(u);
     }
 
-    public void editarPerfil(String usuario, String correo, String empresa) {
+    public void editarPerfil(String usuario, String correo) {
         Usuario u = (Usuario) em.createNamedQuery("Usuario.findByUser")
                 .setParameter("username", usuario).getSingleResult();
         u.setCorreo(correo);
-        u.setEmpresa(empresa);
         em.merge(u);
-
-
     }
 
     public Rol obtenerRol(Usuario usuario) {
@@ -91,11 +98,19 @@ public class UsuarioDAO {
         return em.createNamedQuery("Usuario.findWithRelationship").getResultList();
     }
 
-    public UsuarioDto obtenerUsuario(String usuario, String password) {
+    public List<Usuario> obtenerPorEmpresa(){
+        return em.createNamedQuery("Usuario.findByEmpresa").getResultList();
+    }
+
+    public long verificarCorreo(String correo){
+        return (Long) em.createNamedQuery("Usuario.CountCorreo").setParameter("correo",correo).getSingleResult();
+    }
+
+    public UsuarioDto obtenerUsuario(String correo, String password) {
         UsuarioDto u = null;
         try {
             Usuario ue = (Usuario) em.createNamedQuery("Usuario.findByUserAndPassword")
-                    .setParameter("username", usuario)
+                    .setParameter("correo", correo)
                     .setParameter("password", password).getSingleResult();
             u = new UsuarioDto();
             u.setUsername(ue.getUsername());
@@ -104,12 +119,5 @@ public class UsuarioDAO {
         } catch (Exception e) {
         }
         return u;
-
-
     }
-
-
-
-
-
 }

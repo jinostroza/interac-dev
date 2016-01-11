@@ -11,10 +11,9 @@ var DashBox = {
     var winTwitter;
     var srcWatcher = function(button) {
 
-
         switch ($(button).attr("class")) {
             case "escuela":
-               winEscuela= window.open("http://ingenieria.ucv.cl/conocenos/conocenos_unidadesacademicas.html","Escuela Ingenieria","width=1060,height=1900,resizable,toolbar,scrollbar,status")
+               winEscuela=window.open("http://ingenieria.ucv.cl/conocenos/conocenos_unidadesacademicas.html","Escuela Ingenieria","width=1060,height=1900,resizable,toolbar,scrollbar,status")
                 break;
             case "flickr":
                winFlickr=window.open("https://www.flickr.com/photos/facultadingenieriapucv/albums","Flickr Escuela","width=1060,height=1900,resizable,scrollbar,status")
@@ -48,7 +47,6 @@ var DashBox = {
             srcWatcher.call(self, this);
         });
         $("div.twitter").click(function() {
-
             srcWatcher.call(self, this);
         });
     };

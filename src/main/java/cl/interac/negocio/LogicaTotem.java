@@ -7,6 +7,7 @@ package cl.interac.negocio;
 
 
 import cl.interac.dao.TotemDAO;
+import cl.interac.entidades.Campana;
 import cl.interac.entidades.Totem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -31,9 +32,7 @@ public class LogicaTotem {
     }
 
     @Transactional(readOnly = false)
-    public void guardar(Totem t) {
-        totemDAO.guardar(t);
-    }
+    public void guardar(Totem t) { totemDAO.guardar(t); }
 
     @Transactional(readOnly = false)
     public void eliminarTotem(Totem t) {
@@ -46,12 +45,29 @@ public class LogicaTotem {
     }
 
     @Transactional(readOnly = true)
+    public List<Totem> obtenerPorEstado() {
+        return totemDAO.obtenerPorEstado();
+    }
+
+
+    @Transactional(readOnly = true)
     public List<Totem> obtenerPorUsuario(String username){
         return totemDAO.obtenerConUsuario(username);
     }
 
     @Transactional(readOnly = true)
     public List<Totem> obtenerDeCampana(String user){return totemDAO.obtenerConCampana(user);}
+
+
+    @Transactional(readOnly = true)
+    public long obtenerPorNumero(Integer establecimiento){
+        return totemDAO.obtenerNumero(establecimiento);
+    }
+    @Transactional(readOnly = true)
+    public  List<Totem> obtenerPorestablecimiento(Integer establecimiento){
+        return totemDAO.obtenerPorEstablecimiento(establecimiento);
+    }
+
 
 }
 

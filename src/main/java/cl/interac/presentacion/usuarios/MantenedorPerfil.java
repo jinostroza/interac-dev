@@ -5,6 +5,7 @@ import cl.interac.entidades.Usuario;
 import cl.interac.negocio.LogicaUsuario;
 import cl.interac.security.LogInManager;
 import cl.interac.security.SHA512;
+import cl.interac.util.components.Constantes;
 import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.UserSession;
 import cl.interac.util.pojo.Encriptador;
@@ -14,9 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
+import cl.interac.util.services.MailSender;
 
 import javax.annotation.PostConstruct;
 import java.io.Serializable;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 /**
@@ -31,7 +36,10 @@ public class MantenedorPerfil implements Serializable {
     private UserSession userSession; // es un componente spring y de scope session, por ende hay que
     @Autowired
     LogInManager logInManager;
-
+    @Autowired
+    private Constantes constantes;
+    @Autowired
+    private MailSender mailSender;
 
     private String claveActual;
     private String claveNueva;
@@ -42,6 +50,7 @@ public class MantenedorPerfil implements Serializable {
     private String username;
     private Usuario usuario;
     private List<Usuario> usuarioList;
+    private Long retornoCorreos;
 
 
     public void inicio() {
@@ -51,12 +60,12 @@ public class MantenedorPerfil implements Serializable {
 
 
        public void cambiaPerfil() {
-
         if (!claveConfirmada.equals(claveNueva)) {
             FacesUtil.mostrarMensajeError("Operación fallida", "La nueva contraseña no coincide con lo confirmado");
             return;
-        }else{
-            logicaUsuario.cambiarClave(userSession.getUsuario().getUsername(), claveConfirmada);
+        }
+        else{
+            logicaUsuario.cambiarClave(userSession.getUsuario().getUsername(), md5(claveConfirmada));
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha cambiado correctamente la contraseña");
         }
 
@@ -69,10 +78,42 @@ public class MantenedorPerfil implements Serializable {
         FacesUtil.mostrarMensajeInformativo("Operación exitosa", "usuario [" + userSession.getUsuario().getUsername() + "] modificado");
     }
 
+    public static String md5(String input){
 
+        String md5 = null; //La variable esta vacia
+        if(null == input){ //Si es nulo el input, la funcion retornara null
+            return null;
+        }
+
+        try{
+            //Create MessageDigest object for MD5
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+
+            //Update input string in message digest
+            digest.update(input.getBytes(), 0, input.length());
+
+            //Converts message digest value in base 16 (hex)
+            md5 = new BigInteger(1, digest.digest()).toString(16);
+        }
+        catch(NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return md5;
+    }
+
+    public void verificarCorreo(String correoEntrante){
+        retornoCorreos = logicaUsuario.verificarCorreo(correoEntrante);
+        System.out.println("Correo entrante: "+correoEntrante);
+        if (retornoCorreos >= 1){
+            System.out.println("Correo existe");
+        }
+
+        else{
+            System.out.println("Correo no existe");
+        }
+    }
 
     //getter and setter
-
     public String irVerPerfil() {
         return "flowVerPerfil";
     }
@@ -137,9 +178,7 @@ public class MantenedorPerfil implements Serializable {
         this.claveNueva = claveNueva;
     }
 
-    public String getClaveConfirmada() {
-        return claveConfirmada;
-    }
+    public String getClaveConfirmada() { return claveConfirmada; }
 
     public void setClaveConfirmada(String claveConfirmada) {
         this.claveConfirmada = claveConfirmada;

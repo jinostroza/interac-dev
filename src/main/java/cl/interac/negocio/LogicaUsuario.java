@@ -1,21 +1,16 @@
 package cl.interac.negocio;
 
+import cl.interac.dao.UsuarioDAO;
 import cl.interac.entidades.Rol;
 import cl.interac.entidades.Usuario;
-import cl.interac.dao.UsuarioDAO;
 import cl.interac.util.dto.UsuarioDto;
-import java.util.List;
-
-
-import cl.interac.util.pojo.Encriptador;
-import cl.interac.util.pojo.Md5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.management.Query;
+import java.util.List;
 
 /**
  * Created by Jorge on 15-04-15.
@@ -26,11 +21,12 @@ public class LogicaUsuario {
     @Autowired
     private UsuarioDAO usuarioDAO;
 
-
+    @Transactional(readOnly = false)
+    public void guardar(Usuario usuario) { usuarioDAO.guardar(usuario); }
 
     @Transactional(readOnly = false)
-    public void guardar(Usuario usuario) {
-        usuarioDAO.guardar(usuario);
+    public void eliminar(Usuario usuario) {
+        usuarioDAO.eliminar(usuario);
     }
 
     @Transactional(readOnly = true)
@@ -63,11 +59,17 @@ public class LogicaUsuario {
 
     @Transactional(readOnly = false)
     public void editarPerfil(String usuario,String correo, String empresa){
-        usuarioDAO.editarPerfil(usuario,correo,empresa);
-        }
+        usuarioDAO.editarPerfil(usuario,correo);
+    }
+
     @Transactional(readOnly = true)
     public List<Usuario> obtenerMisContenidos(){
         return usuarioDAO.obtenerMisContenidos();
+    }
+
+    @Transactional(readOnly = true)
+    public long verificarCorreo(String correo){
+        return usuarioDAO.verificarCorreo(correo);
     }
 
     @Transactional(readOnly = true)

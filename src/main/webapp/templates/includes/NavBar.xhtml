@@ -13,7 +13,7 @@
         <ul>
 
 
-            <ui:fragment rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR')}">
+            <ui:fragment rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR')  or userSession.tienePermiso('PUCV')}">
             <li style="padding-right: 860px;margin-right: 213px">
                 <p:commandLink immediate="true" value="Inicio" action="#{facesUtil.redirigir('/plataforma/campana')}" />
             </li>
@@ -32,7 +32,7 @@
 
             <ui:fragment rendered="#{!userSession.estaAutentificado()}">
                 <li>
-                    <p:commandLink value="Registrar" action="#{facesUtil.redirigir('/plataforma/registro')}"/>
+                    <p:commandLink value="Registrar" action="#{facesUtil.redirigir('registrar.jsf')}"/>
                 </li>
             </ui:fragment>
 

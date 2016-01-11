@@ -20,9 +20,8 @@
                 </ul>
             </div>
         </div>
-
-
-                <h:form style="margin-left: 20%">
+        <h:outputText value="#{readerFile.printTextFileMethod}"></h:outputText>
+        <h:form style="margin-left: 20%">
                     <div id="cuadro-imagen" style="padding-right: 100px" >
                         <p:fileUpload style="width: 450px;"  mode="advanced"
                                       previewWidth="430" update="messages" label="Seleccionar contenido" uploadLabel="Subir"
@@ -65,10 +64,6 @@
                                 </div>
                                 <br></br>
                                 <br></br>
-
-
-
-                </h:form>
-
+        </h:form>
     </ui:define>
 </ui:composition>

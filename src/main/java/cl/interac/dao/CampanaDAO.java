@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.NamedQueries;
 import javax.persistence.PersistenceContext;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -50,7 +51,6 @@ public class CampanaDAO {
         return em.createNamedQuery("Campana.findByUsuario").setParameter("username", user).getResultList();
     }
 
-
     public Campana obtenerPorIdConTotems(Integer id) {
         try {
             return (Campana) em.createNamedQuery("Campana.findByIdWithTotems").setParameter("id", id).getSingleResult();
@@ -67,5 +67,20 @@ public class CampanaDAO {
         }
 
     }
+    public List<Campana> obtenerPorEstado(String user){
+        return em.createNamedQuery("Campana.findByEstado").setParameter("username",user).getResultList();
 
+    }
+    public List<Campana> obtenerPorFecha(Date fechavencida){
+        return em.createNamedQuery("Campana.findByDate").setParameter("fechavencida",fechavencida).getResultList();
+
+    }
+
+    public long obtenerNumeroNuevas(String user){
+        return (Long) em.createNamedQuery("Campana.count").setParameter("username",user).getSingleResult();
+    }
+
+    public long obtenerPorEstablecimeinto(Integer establecimiento){
+        return (Long) em.createNamedQuery("Campana.countEstablecimiento").setParameter("establecimiento",establecimiento).getSingleResult();
+    }
 }

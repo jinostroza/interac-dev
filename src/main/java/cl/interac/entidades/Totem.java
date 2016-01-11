@@ -2,9 +2,8 @@ package cl.interac.entidades;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
 
 /**
  * Created by Jorge on 25-04-15.
@@ -15,26 +14,46 @@ import java.util.Set;
                 @NamedQuery(name = "Totem.findAll", query = "SELECT t FROM Totem t "),
                 @NamedQuery(name = "Totem.findWithRelationship",
                         query = "SELECT t FROM Totem t " +
-                                "left join fetch t.establecimiento e "
-
-                               ),
+                                "LEFT JOIN FETCH t.tipototem " +
+                                "LEFT JOIN FETCH t.establecimiento e " +
+                                "LEFT JOIN FETCH e.usuario u " +
+                                "LEFT JOIN FETCH e.ubicacion ubi " +
+                                "LEFT JOIN FETCH t.marcaPantalla mp "),
                 @NamedQuery(name="Totem.findbyUsuario",
                             query="SELECT t FROM Totem t " +
                                     "LEFT JOIN FETCH t.establecimiento e " +
                                     "LEFT JOIN FETCH e.ubicacion ub " +
                                     "LEFT JOIN FETCH e.usuario u " +
-                                     "LEFT JOIN FETCH t.tipototem " +
-                                    "where u.username=:username"),
+                                    "LEFT JOIN FETCH t.tipototem " +
+                                    "LEFT JOIN FETCH t.marcaPantalla " +
+                                    "WHERE u.username=:username"),
+
                 @NamedQuery(name="Totem.findByIdWithTotem",
-                            query="SELECT t FROM Totem t " +
-                                  "LEFT JOIN FETCH t.campanaList cl " +
+                            query="SELECT DISTINCT t FROM Totem t " +
+                                  "LEFT JOIN FETCH t.campanaList cs " +
                                   "LEFT JOIN FETCH t.establecimiento e " +
                                   "Left join fetch e.usuario u " +
                                   "WHERE u.username=:username "
+                ),
+                @NamedQuery(name="Totem.count",
+                        query="SELECT COUNT (t.idtotem) FROM Totem t "+
+                                "INNER JOIN  t.establecimiento e " +
+                                " WHERE e.idEstablecimiento=:establecimiento"
+                ),
+                @NamedQuery(name="Totem.findByEstablecimiento",
+                        query="SELECT  t FROM Totem t " +
+                                "LEFT JOIN FETCH t.establecimiento e " +
+                                "WHERE e.idEstablecimiento=:establecimiento"
+                ),
 
+                @NamedQuery(name = "Totem.findTotemAndTodaLaWea",
+                            query="SELECT t FROM Totem t " +
+                                  "LEFT JOIN FETCH  t.campanaList cs " +
+                                  "LEFT JOIN FETCH t.establecimiento " ),
 
-                )
-
+                @NamedQuery(name = "Totem.findByEstado",
+                    query = "SELECT t FROM Totem t "+
+                            "WHERE t.estado = :estado")
         }
 )
 public class Totem implements Serializable {
@@ -42,11 +61,17 @@ public class Totem implements Serializable {
     private String noserie;
     private Double lat;
     private Double longi;
+    private String orientacion;
+    private String modelo;
+    private String pulgadas;
+    private String estado;
+    private String imagen;
 
     // relaciones
-   private List<Campana> campanaList;
+    private List<Campana> campanaList;
     private Establecimiento establecimiento;
     private Tipototem tipototem;
+    private Marcapantalla marcaPantalla;
 
 
     @Id
@@ -81,6 +106,25 @@ public class Totem implements Serializable {
     }
 
     @Basic
+    @Column(name = "orientacion")
+    public String getOrientacion() { return orientacion; }
+
+    public void setOrientacion(String orientacion) { this.orientacion = orientacion; }
+
+
+    @Basic
+    @Column(name = "modelo")
+    public String getModelo() { return modelo; }
+
+    public void setModelo(String modelo) { this.modelo = modelo; }
+
+    @Basic
+    @Column(name = "pulgadas")
+    public String getPulgadas() { return pulgadas; }
+
+    public void setPulgadas(String pulgadas) { this.pulgadas = pulgadas; }
+
+    @Basic
     @Column(name = "latitud")
     public Double getLat() {
         return lat;
@@ -102,20 +146,27 @@ public class Totem implements Serializable {
 
     @Basic
     @Column(name = "Noserie")
-    public String getNoserie() {
-        return noserie;
-    }
+    public String getNoserie() { return noserie; }
 
     public void setNoserie(String noserie) {
         this.noserie = noserie;
     }
+
+    @Basic
+    @Column(name = "estado")
+    public String getEstado() { return estado; }
+    public void setEstado(String estado) { this.estado = estado; }
+
+    @Basic
+    @Column(name = "imagen")
+    public String getImagen() { return imagen; }
+    public void setImagen(String imagen) { this.imagen = imagen; }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idtipo", referencedColumnName = "idtipo", nullable = false)
     public Tipototem getTipototem() {
         return tipototem;
     }
-
     public void setTipototem(Tipototem tipototem) {
         this.tipototem = tipototem;
     }
@@ -126,10 +177,14 @@ public class Totem implements Serializable {
     public Establecimiento getEstablecimiento() {
         return establecimiento;
     }
-
     public void setEstablecimiento(Establecimiento establecimiento) {
         this.establecimiento = establecimiento;
     }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "marca",referencedColumnName = "idmarca",nullable = false)
+    public Marcapantalla getMarcaPantalla(){ return marcaPantalla; }
+    public void setMarcaPantalla(Marcapantalla marcaPantalla) { this.marcaPantalla = marcaPantalla; }
 
 
 
@@ -155,4 +210,6 @@ public class Totem implements Serializable {
                 "idtotem=" + idtotem +
                 '}';
     }
+
+
 }

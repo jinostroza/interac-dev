@@ -5,128 +5,134 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 template="/templates/default.xhtml">
     <ui:define name="contenido">
-        <ui:fragment
-                rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR')}">
-
-
-            <h:form>
-                <div class="container" id="myInterac">
-                    <header>
-                        <div class="row">
-                            <div class="col-lg-6 col-lg-offset-3">
-                                <h2>Planifica tu Campaña en 3 simples Pasos</h2>
-                            </div>
-
-                        </div>
-                    </header>
+        <h:form>
+            <div class="container" id="myInterac">
+                <header>
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-6 col-lg-offset-3">
+                            <ui:fragment
+                                    rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') }">
+                                <h2>Planifica tu Anuncio en 3 simples Pasos</h2>
+                            </ui:fragment>
+                            <ui:fragment
+                                    rendered="#{userSession.tienePermiso('PUCV')}">
+                                <h2>Sube tu Contenido</h2>
+                            </ui:fragment>
 
                         </div>
-
-                        <div class="row" style="padding-left: 200px">
-                            <ui:fragment
-                                    rendered="#{userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR')}">
-                                <h:commandLink styleClass="col-lg-3 col-md-3 "
-                                               style="padding-left: -300px;margin-left: -100px" action="#{facesUtil.redirigir('/plataforma/cliente')}">
-                                    <div class="dashbox">
-                                        <h:outputLabel value="Activar Pantallas" styleClass="dashbox-header"/>
-
-                                        <div class="button_ crear-campana"></div>
-                                        <p> Activa tus propias pantallas publicitarias </p>
-                                    </div>
-                                </h:commandLink>
-                            </ui:fragment>
+                        <ui:fragment
+                                rendered="#{userSession.tienePermiso('CLIENTE')
+                                      or userSession.tienePermiso('ADMINISTRADOR')}">
+                            <p:commandLink styleClass="dashbox-notify"
+                                           action="#{facesUtil.redirigir('/plataforma/cliente')}">
+                                <p:outputLabel styleClass="btn-notify blink"
+                                               value="#{mantenedorCampana.contarCampanas}"/>
+                            </p:commandLink>
+                        </ui:fragment>
+                    </div>
+                </header>
+                <div class="row">
+                    <div class="col-lg-12">
+                    </div>
+                    <div class="row" style="padding-left: 200px">
+                        <ui:fragment
+                                rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') }">
                             <h:commandLink styleClass="col-lg-3 col-md-3  " action="crear">
                                 <div class="dashbox">
-                                    <h:outputLabel value="Crear Anuncio" styleClass="dashbox-header"/>
+                                    <h:outputLabel style="font-weight: bold;font-size: 18px;"
+                                                   value="Crear Anuncio"/>
 
                                     <div class="button_ subir-imagen"></div>
                                     <p> Sube un nuevo anuncio a nuestra plataforma </p>
                                 </div>
                             </h:commandLink>
+
                             <h:commandLink styleClass="col-lg-3 col-md-3 " action="vercon">
                                 <div class="dashbox">
-                                    <h:outputLabel value="Programar Campaña" styleClass="dashbox-header"/>
+                                    <h:outputLabel value="Programar Anuncio"
+                                                   style="font-weight: bold;font-size: 18px;"/>
 
                                     <div class="button_ planificar-campana"></div>
                                     <p> Elige cuando y donde quieres publicitar </p>
                                 </div>
                             </h:commandLink>
-                            <h:commandLink class="col-lg-3 col-md-3 " action="micampana" >
+
+                            <h:commandLink class="col-lg-3 col-md-3 " action="micampana">
                                 <div class="dashbox">
-                                    <h:outputLabel value="Pagar" styleClass="dashbox-header"/>
+                                    <h:outputLabel value="Pagar" style="font-weight: bold;font-size: 18px;"/>
 
                                     <div class="button_ pagar"></div>
-                                    <p> Confirma y paga tu Campaña aqui!</p>
+                                    <p> Confirma y paga tu Anuncio aqui!</p>
                                 </div>
                             </h:commandLink>
-                        </div>
+                        </ui:fragment>
+
+                        <div class="clearfix visible-xs-block"></div>
+                    </div>
+                    <div class="row">
+                    <ui:fragment rendered="#{userSession.tienePermiso('PUCV')}">
+                        <h:commandLink styleClass="col-lg-offset-2 col-md-5  " action="crear">
+                            <div class="dashbox">
+                                <h:outputLabel style="font-weight: bold;font-size: 18px;"
+                                               value="Crear Anuncio"/>
+
+                                <div class="button_ subir-imagen"></div>
+                                <p> Sube un nuevo anuncio a nuestra plataforma </p>
+                            </div>
+                        </h:commandLink>
+                    </ui:fragment>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <ui:fragment
-                            rendered="#{userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR')}">
-                        <h3 align="center" style="align-items: flex-start">Estado de tus Pantallas</h3>
-                    </ui:fragment>
-                </div>
-                <div class="input-group col-lg-3 col-lg-offset-8" style="margin-right: 20%">
+            </div>
+
+            <div class="input-group col-lg-3 col-lg-offset-8" style="margin-right: 20%">
                  <span class="input-group-btn" style="align-self: center">
 
       			</span>
 
-                </div>
-                <!-- /input-group -->
-                <br/>
+            </div>
+            <!-- /input-group -->
+            <br/>
 
-                <div class="ui-grid-row">
-                    <ui:fragment
-                            rendered="#{userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR')}">
-                        <p:dataTable var="car" value="#{mantenedorCampana.totemCampana}" rows="5" paginator="true"
-                                     styleClass="col-lg-10 col-lg-offset-5"
-                                     style="margin-left: 10%;text-align-all: center;">
-                            <f:facet name="header">
-                                Selecione Pantalla Para Desplegar Campañas
-                            </f:facet>
-                            <p:column style="width:30px;" >
-                                <p:rowToggler />
-                            </p:column>
-                            <p:column headerText="NO° serie" >
-                                <h:outputText value="#{car.idtotem}" />
-                            </p:column>
-                            <p:column headerText="Estalecimiento">
-                                <h:outputText value="#{car.establecimiento.nombreEstablecimiento}" />
-                            </p:column>
+            <div class="ui-grid-row">
 
-                            <p:rowExpansion>
-                                <p:panelGrid>
-                                    <p:dataList var="qwer" value="#{car.campanaList}">
+                <ui:fragment
+                        rendered="#{userSession.tienePermiso('PUCV')}">
+                    <p:dataTable id="dtcontenido" var="cont" value="#{mantenedorCampana.contenidos}" rows="5" paginator="true"
+                                 styleClass="col-lg-10 col-lg-offset-5"
+                                 style="margin-left: 10%;text-align-all: center;">
+                        <f:facet name="header">
+                            Contenidos Difundiendose
+                        </f:facet>
+                        <p:column>
+                            <p:graphicImage styleClass="col-lg-4" style="width: 80px;height: 120px"
+                                            value="http://g01.a.alicdn.com/kf/HTB1UZdtIXXXXXcSXpXXq6xXFXXXH/42-inch-TFT-LED-industrial-FULL-HD-vertical-screen-floor-stand-memory-card-advertising-player.jpg"></p:graphicImage>
+                        </p:column>
+                        <p:column headerText="Identificador">
+                            <h:outputText value="#{cont.idcontenido}"/>
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{cont.nombrecont}"/>
+                        </p:column>
+                        <p:column headerText="Categoria">
+                            <h:outputText value="#{cont.categoria.desccategoria}"/>
+                        </p:column>
+                        <p:column headerText="Archivo">
+                            <h:outputText value="#{cont.path}"/>
+                        </p:column>
+                        <p:column styleClass="col-lg-3" style="text-align: center;margin-right: 2px">
+                            <p:commandButton icon="ui-icon-trash" action="#{mantenedorCampana.eliminarFichero(cont)}" value="Eliminar" title="View">
+                                <p:ajax event="click" update="dtcontenido" ></p:ajax>
+                            </p:commandButton>
+                        </p:column>
 
-                                            <p:graphicImage style="width: 80px;height: 120px" value="http://g01.a.alicdn.com/kf/HTB1UZdtIXXXXXcSXpXXq6xXFXXXH/42-inch-TFT-LED-industrial-FULL-HD-vertical-screen-floor-stand-memory-card-advertising-player.jpg"></p:graphicImage>
-                                            <h4> #{qwer.fechaInicio} </h4>
-                                            <p>Fecha Inicio</p>
-                                            <h4>#{qwer.fechaFin}"</h4>
-                                            <p>Fecha Termino</p>
-                                            <h4>#{qwer.pasadas}</h4>
-                                            <p>nº Pasadas</p>
-                                        <p:commandButton value="activar"></p:commandButton>
 
-                                        <p:commandButton value="rechazar"></p:commandButton>
-
-                                    </p:dataList>
-
-                                </p:panelGrid>
-                            </p:rowExpansion>
-                        </p:dataTable>
-                    </ui:fragment>
-                </div>
-                <br/>
-                <div class="ui-grid-row">
-                <div class="col-lg-4">
-                    <h3 align="center" style="align-items: flex-start">Estado de tus Campañas</h3>
-                </div>
-                </div>
-
+                    </p:dataTable>
+                </ui:fragment>
+            </div>
+            <br/>
+            <ui:fragment
+                    rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') }">
                 <div class="ui-grid-row">
                     <p:dataTable var="camton" rows="5" paginator="true"
                                  styleClass="col-lg-10 col-lg-offset-5"
@@ -134,14 +140,14 @@
                                  value="#{mantenedorCampana.campanas}">
 
                         <f:facet name="header">
-                            Mis Campañas
+                            <h3>Estado de tus Anuncios</h3>
                         </f:facet>
 
                         <p:column styleClass="col-lg-2" headerText="nombre">
-                            <h:graphicImage value="ftp://54.172.118.246/#{camton.contenido.path}" style="width:100px; height:200px ;" />
+                            <h:graphicImage value="/imagenes/interac/#{camton.contenido.path}" style="width:100px; height:200px ;"/>
                         </p:column>
                         <p:column styleClass="col-lg-2" headerText="estado">
-                            <h:outputText value="#{camton.contenido.estado}" />
+                            <h:outputText value="#{camton.estado}"/>
                         </p:column>
                         <p:column styleClass="col-lg-2" headerText="fecha">
                             <h:outputText value="#{camton.fechaCreacion}"/>
@@ -155,17 +161,12 @@
                         <p:column styleClass="col-lg-2" headerText="fecha fin">
                             <h:outputText value="#{camton.fechaFin}"/>
                         </p:column>
-
                     </p:dataTable>
                 </div>
-
-
-                <br/>
-
-
-                <p:spacer> </p:spacer>
-                <br/>
-            </h:form>
-        </ui:fragment>
+            </ui:fragment>
+            <br/>
+            <p:spacer> </p:spacer>
+            <br/>
+        </h:form>
     </ui:define>
 </ui:composition>
