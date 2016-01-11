@@ -5,12 +5,10 @@
  */
 package cl.interac.dao;
 
-import cl.interac.entidades.*;
-import cl.interac.negocio.LogicaCampana;
+import cl.interac.entidades.Campana;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NamedQueries;
 import javax.persistence.PersistenceContext;
 import java.util.Date;
 import java.util.List;
@@ -73,6 +71,10 @@ public class CampanaDAO {
     }
     public List<Campana> obtenerPorFecha(Date fechavencida){
         return em.createNamedQuery("Campana.findByDate").setParameter("fechavencida",fechavencida).getResultList();
+
+    }
+    public List<Campana> obtenerPorContEstab(Integer id){
+        return em.createNamedQuery("Campana.findByEstablecimiento").setParameter("iduser",id).getResultList();
 
     }
 

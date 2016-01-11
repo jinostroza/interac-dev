@@ -93,74 +93,80 @@
             </div>
             <!-- /input-group -->
             <br/>
-
-            <div class="ui-grid-row">
-
-                <ui:fragment
-                        rendered="#{userSession.tienePermiso('PUCV')}">
-                    <p:dataTable id="dtcontenido" var="cont" value="#{mantenedorCampana.contenidos}" rows="5" paginator="true"
+            <br/>
+            <ui:fragment
+                    rendered="#{userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') }">
+                <div class="ui-grid-row">
+                    <p:dataTable var="camton" rows="5" paginator="true"
                                  styleClass="col-lg-10 col-lg-offset-5"
-                                 style="margin-left: 10%;text-align-all: center;">
+                                 style="margin-left: 10%;text-align-all: center;"
+                                 value="#{mantenedorCampana.contenidocampanas}">
+
                         <f:facet name="header">
-                            Contenidos Difundiendose
+                            <h3>Contenido en Mis Pantallas</h3>
                         </f:facet>
-                        <p:column>
-                            <p:graphicImage styleClass="col-lg-4" style="width: 80px;height: 120px"
-                                            value="http://g01.a.alicdn.com/kf/HTB1UZdtIXXXXXcSXpXXq6xXFXXXH/42-inch-TFT-LED-industrial-FULL-HD-vertical-screen-floor-stand-memory-card-advertising-player.jpg"></p:graphicImage>
-                        </p:column>
-                        <p:column headerText="Identificador">
-                            <h:outputText value="#{cont.idcontenido}"/>
-                        </p:column>
-                        <p:column headerText="Nombre">
-                            <h:outputText value="#{cont.nombrecont}"/>
-                        </p:column>
-                        <p:column headerText="Categoria">
-                            <h:outputText value="#{cont.categoria.desccategoria}"/>
-                        </p:column>
-                        <p:column headerText="Archivo">
-                            <h:outputText value="#{cont.path}"/>
-                        </p:column>
-                        <p:column styleClass="col-lg-3" style="text-align: center;margin-right: 2px">
-                            <p:commandButton icon="ui-icon-trash" action="#{mantenedorCampana.eliminarFichero(cont)}" value="Eliminar" title="View">
-                                <p:ajax event="click" update="dtcontenido" ></p:ajax>
-                            </p:commandButton>
-                        </p:column>
 
-
+                        <p:column styleClass="col-lg-2" headerText="">
+                            <h:graphicImage value="/imagenes/interac/#{camton.contenido.path}" style="width:100px; height:200px ;"/>
+                        </p:column>
+                        <p:column styleClass="col-lg-2" headerText="Estado">
+                            <h:outputText value="#{camton.estado}"/>
+                        </p:column>
+                        <p:column styleClass="col-lg-2" headerText="Creado">
+                            <h:outputText value="#{camton.fechaCreacion}"/>
+                        </p:column>
+                        <p:column styleClass="col-lg-2" headerText="Pasadas">
+                            <h:outputText value="#{camton.pasadas}"/>
+                        </p:column>
+                        <p:column styleClass="col-lg-2" headerText="Comienzo">
+                            <h:outputText value="#{camton.fechaInicio}"/>
+                        </p:column>
+                        <p:column styleClass="col-lg-2" headerText="Termino">
+                            <h:outputText value="#{camton.fechaFin}"/>
+                        </p:column>
+                        <p:column styleClass="col-lg-2" headerText="Lugar">
+                            <h:outputText value="#{camton.establecimiento.nombreEstablecimiento}"/>
+                        </p:column>
                     </p:dataTable>
-                </ui:fragment>
-            </div>
+                </div>
+            </ui:fragment>
+            <br/>
             <br/>
             <ui:fragment
                     rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') }">
                 <div class="ui-grid-row">
-                    <p:dataTable var="camton" rows="5" paginator="true"
+                    <p:dataTable id="champa" var="camton" rows="5" paginator="true"
                                  styleClass="col-lg-10 col-lg-offset-5"
                                  style="margin-left: 10%;text-align-all: center;"
                                  value="#{mantenedorCampana.campanas}">
 
                         <f:facet name="header">
-                            <h3>Estado de tus Anuncios</h3>
+                            <h3>Estado de Mis Anuncios</h3>
                         </f:facet>
 
-                        <p:column styleClass="col-lg-2" headerText="nombre">
+                        <p:column styleClass="col-lg-2" headerText="">
                             <h:graphicImage value="/imagenes/interac/#{camton.contenido.path}" style="width:100px; height:200px ;"/>
                         </p:column>
-                        <p:column styleClass="col-lg-2" headerText="estado">
+                        <p:column styleClass="col-lg-2" headerText="Estado">
                             <h:outputText value="#{camton.estado}"/>
                         </p:column>
-                        <p:column styleClass="col-lg-2" headerText="fecha">
+                        <p:column styleClass="col-lg-2" headerText="Creado">
                             <h:outputText value="#{camton.fechaCreacion}"/>
                         </p:column>
-                        <p:column styleClass="col-lg-2" headerText="pasadas">
+                        <p:column styleClass="col-lg-2" headerText="Pasadas">
                             <h:outputText value="#{camton.pasadas}"/>
                         </p:column>
-                        <p:column styleClass="col-lg-2" headerText="fecha inicio">
+                        <p:column styleClass="col-lg-2" headerText="Comienzo">
                             <h:outputText value="#{camton.fechaInicio}"/>
                         </p:column>
-                        <p:column styleClass="col-lg-2" headerText="fecha fin">
+                        <p:column styleClass="col-lg-2" headerText="Termino">
                             <h:outputText value="#{camton.fechaFin}"/>
                         </p:column>
+                        <p:column styleClass="col-lg-2" headerText="">
+                            <p:commandButton styleClass="btn btn-interac" value="Eliminar" action="#{mantenedorCampana.eliminarCampana(camton)}" process="@form" update="champa"></p:commandButton>
+                        </p:column>
+
+
                     </p:dataTable>
                 </div>
             </ui:fragment>

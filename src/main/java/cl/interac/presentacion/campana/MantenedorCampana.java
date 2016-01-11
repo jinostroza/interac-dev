@@ -39,6 +39,7 @@ public class MantenedorCampana implements Serializable {
 
     // manejo manual
     private List<Campana> campanas;
+    private List<Campana> contenidocampanas;
     private List<Campana> campanasvencidas;
     private List<Campana> campanaList;
     private List<Totem> totems;
@@ -120,6 +121,7 @@ public class MantenedorCampana implements Serializable {
 
     public void inicio() {
         contarCampanas = logicaCampana.obtenerPorNumero(userSession.getUsuario().getUsername());
+        contenidocampanas = logicaCampana.obtenerPorContenido(userSession.getUsuario().getIdUsuario());
         campanasvencidas = logicaCampana.obtenerPorFecha(Date.from(Instant.now()));
         usuarios = logicaUsuario.obtenerTodos();
         categoriaList = logicaCategoria.obtenerTodos();
@@ -257,6 +259,17 @@ public class MantenedorCampana implements Serializable {
 
         }catch (Exception e){
             FacesUtil.mostrarMensajeInformativo("Operación Fallida","Algo Ocurrio");
+        }
+    }
+    public void eliminarCampana(Campana campa){
+        try {
+
+                logicaCampana.eliminarCampana(campa);
+
+                FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha eliminado la Campaña}");
+
+        }catch (Exception e){
+            FacesUtil.mostrarMensajeError("Operación Fallida","Algo Ocurrio");
         }
     }
 
@@ -817,5 +830,13 @@ public class MantenedorCampana implements Serializable {
 
     public void setPasadasTotales(Integer pasadasTotales) {
         this.pasadasTotales = pasadasTotales;
+    }
+
+    public List<Campana> getContenidocampanas() {
+        return contenidocampanas;
+    }
+
+    public void setContenidocampanas(List<Campana> contenidocampanas) {
+        this.contenidocampanas = contenidocampanas;
     }
 }
