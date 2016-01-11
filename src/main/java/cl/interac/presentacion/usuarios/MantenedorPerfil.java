@@ -101,20 +101,16 @@ public class MantenedorPerfil implements Serializable {
         System.out.println("Correo entrante: "+correoEntrante);
         if (retornoCorreos >= 1){
             System.out.println("Correo existe");
+
             //cuerpo del mensaje
             String mensajeLocal = new String(constantes.getAlertas());
-            String mensajeAnunciante = new String(constantes.getHeaderCorreo());
-            mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$Id",String.valueOf(correoEntrante));
-
+            mensajeLocal = mensajeLocal.replaceFirst("\\$Id",String.valueOf(correoEntrante));
 
             //correo
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
             String[] replicas = new String[1];
-            String[] alertas = new String[1];
 
             replicas[0]=correoEntrante;
-            alertas[0]="contacto@interac.cl";
-            mailSender.send(alertas,"Interac",mensajeAnunciante);
             mailSender.send(replicas,"Interac",mensajeLocal);
 
             FacesUtil.mostrarMensajeInformativo("Operacion exitosa", "Se ah enviado informacion de recuperacion a su correo");
@@ -123,6 +119,10 @@ public class MantenedorPerfil implements Serializable {
         else{
             System.out.println("Correo no existe");
         }
+    }
+
+    public void correoRecuperacion(){
+
     }
 
     //getter and setter
