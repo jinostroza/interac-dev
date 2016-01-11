@@ -84,5 +84,8 @@ public class LogicaCampana {
    public long obtenerPorEstablecimiento(Integer establecimiento){
        return campanaDAO.obtenerPorEstablecimeinto(establecimiento);
    }
-
+    @Transactional(readOnly = true)
+    public List<Campana> obtenerPorContenido(Integer iduser){
+        return campanaDAO.obtenerPorContEstab(iduser);
+    }
 }

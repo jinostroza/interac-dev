@@ -35,8 +35,8 @@ public class UsuarioDAO {
     }
 
     public Usuario obtenerPorUsuarioContrasenna(String correo, String password) {
-        Query q = em.createNamedQuery("Usuario.findByUserAndPassword");
-        q.setParameter("correo", correo);
+        Query q = em.createNamedQuery("Usuario.findUsuarioAndContrasenna");
+        q.setParameter("username", correo);
         q.setParameter("password", password);
 
         try {

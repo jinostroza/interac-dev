@@ -1,17 +1,9 @@
 package cl.interac.entidades;
 
-import org.hibernate.annotations.*;
-import org.hibernate.annotations.CascadeType;
-
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Jorge on 25-04-15.
@@ -70,6 +62,11 @@ import java.util.Set;
                                 "INNER JOIN  c.contenido co " +
                                 " WHERE c.fechaFin<:fechavencida"
                 ),
+                @NamedQuery(name = "Campana.findByEstablecimiento", query = "SELECT c FROM Campana c " +
+                        "INNER JOIN FETCH c.contenido co " +
+                        "INNER JOIN FETCH co.usuario u " +
+                        "INNER JOIN FETCH c.establecimiento e " +
+                        "WHERE e.usuario.idUsuario=:iduser"),
 
                 @NamedQuery(name = "Campana.findByTotem",
                         query = "SELECT c FROM Campana c " +
