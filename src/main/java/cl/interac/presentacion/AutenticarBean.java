@@ -88,11 +88,8 @@ public class AutenticarBean implements Serializable {
         this.pass = pass;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
+    public Usuario getUsuario() { return usuario; }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+
 }

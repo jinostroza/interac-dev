@@ -39,6 +39,7 @@ public class MantenedorPerfil implements Serializable {
     private String claveActual;
     private String claveNueva;
     private String claveConfirmada;
+    private String codigo;
     private Rol rol;
     private String correo;
     private String empresa;
@@ -121,6 +122,10 @@ public class MantenedorPerfil implements Serializable {
         }
     }
 
+    public void verificarCodigo(String codigoEntrante){
+        //Aqui va toda la logica a verificar del usuario
+    }
+
     //getter and setter
     public String irVerPerfil() {
         return "flowVerPerfil";
@@ -198,5 +203,13 @@ public class MantenedorPerfil implements Serializable {
 
     public void setRol(Rol rol) {
         this.rol = rol;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 }

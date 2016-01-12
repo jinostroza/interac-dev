@@ -47,7 +47,11 @@ import java.util.List;
                 @NamedQuery(name = "usuario.findByEmpresa",
                         query = "SELECT u FROM Usuario u "+
                                 "INNER JOIN FETCH u.empresa emp "+
-                                "WHERE emp.idEmpresa=:empresa ")
+                                "WHERE emp.idEmpresa=:empresa "),
+
+                @NamedQuery(name = "Usuario.findByID",
+                        query = "SELECT u FROM Usuario u "+
+                                "WHERE u.idUsuario = :idUsuario")
 
         }
 )

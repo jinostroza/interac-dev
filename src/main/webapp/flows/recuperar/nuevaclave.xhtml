@@ -20,10 +20,16 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div id="cuadro-login" class="col-md-4">
-                    <h:form>
-                        <p>Ingrese el codigo que recibió en su correo electronico</p>
-                        <p:inputText required="true" styleClass="form-control" id="codigo" placeholder="Codigo" value="#{MantenedorPerfil.codigo}" />
-                        <p:commandButton styleClass="btn btn-interac btn-block" value="Verificar" action="siguiente" actionListener="#{MantenedorPerfil.verificarCodigo(codigo)}" />
+                    <h:form >
+                        <div class="form-group">
+                            <p:inputText styleClass="form-control" id="clave" placeholder="Nueva contraseña" />
+                        </div>
+                        <div class="form-group">
+                            <p:commandButton styleClass="btn btn-interac btn-block" value="Recuperar contraseña" action="next1" actionListener="#{mantenedorPerfil.verificarCorreo(autenticarBean.user)}" ajax="false"/>
+                            <br/>
+                            <p>Para recuperar su contraseña, ingrese su correo electronico y haga click en 'Recuperar'</p>
+                        </div>
+                        <p>Si ya tiene su codigo de recuperacion, ingrese al siguiente <span><p:commandLink value="enlace" action="ingresoCodigo"/></span></p>
                     </h:form>
                 </div>
                 <div class="col-md-4"></div>

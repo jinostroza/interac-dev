@@ -25,9 +25,7 @@ public class LogicaUsuario {
     public void guardar(Usuario usuario) { usuarioDAO.guardar(usuario); }
 
     @Transactional(readOnly = false)
-    public void eliminar(Usuario usuario) {
-        usuarioDAO.eliminar(usuario);
-    }
+    public void eliminar(Usuario usuario) { usuarioDAO.eliminar(usuario); }
 
     @Transactional(readOnly = true)
     public List<Usuario> obtenerTodos() {
@@ -40,10 +38,14 @@ public class LogicaUsuario {
     }
 
     @Transactional(readOnly = true)
+    public Usuario obtenerPorID(Integer id){
+        return usuarioDAO.obtenerPorId(id);
+    }
+
+    @Transactional(readOnly = true)
     public Usuario obtener(String username) {
         return usuarioDAO.obtenerPorUsuario(username);
     }
-
 
     @Transactional(readOnly = false)
     public void cambiarClave(String usuario, String clave) {

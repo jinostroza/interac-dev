@@ -46,6 +46,17 @@ public class UsuarioDAO {
         }
     }
 
+    public Usuario obtenerPorId(Integer id){
+        Query q = em.createNamedQuery("Usuario.findByID");
+        q.setParameter("idUsuario", id);
+        try{
+            return (Usuario) q.getSingleResult();
+        }
+        catch(Exception e){
+            return null;
+        }
+    }
+
     public Usuario obtenerLogin(String correo , String pass){
         try{
             return (Usuario) em.createNamedQuery("Usuario.findByUserAndPassword")
@@ -54,7 +65,6 @@ public class UsuarioDAO {
            }catch (Exception e){
             return  null;
         }
-
     }
 
     public Usuario obtenerPorUsuario(String username) {
