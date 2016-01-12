@@ -281,9 +281,6 @@ public class Constantes implements Serializable {
             "</body>\n" +
             "</html>";
 
-
-
-
     private String alertas="<!doctype html>\n" +
             "<html>\n" +
             "<head>\n" +
@@ -1246,9 +1243,6 @@ public class Constantes implements Serializable {
             "\n" +
             "</body>\n" +
             "</html>";
-
-
-
 
     public Constantes() {
         ProxyFactory pf = new ProxyFactory(this);
