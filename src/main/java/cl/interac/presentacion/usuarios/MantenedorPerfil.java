@@ -104,7 +104,7 @@ public class MantenedorPerfil implements Serializable {
 
             //cuerpo del mensaje
             String mensajeLocal = new String(constantes.getAlertas());
-            mensajeLocal = mensajeLocal.replaceFirst("\\$Id",String.valueOf(correoEntrante));
+            mensajeLocal = mensajeLocal.replaceFirst("\\$id",String.valueOf(correoEntrante));
 
             //correo
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -119,10 +119,6 @@ public class MantenedorPerfil implements Serializable {
         else{
             System.out.println("Correo no existe");
         }
-    }
-
-    public void correoRecuperacion(){
-
     }
 
     //getter and setter
