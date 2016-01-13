@@ -1,3 +1,4 @@
+
 package cl.interac.presentacion.usuarios;
 
 import cl.interac.entidades.Rol;
@@ -39,14 +40,15 @@ public class MantenedorPerfil implements Serializable {
     private String claveActual;
     private String claveNueva;
     private String claveConfirmada;
-    private String codigo;
     private Rol rol;
     private String correo;
     private String empresa;
     private String username;
     private Usuario usuario;
     private List<Usuario> usuarioList;
+
     private Long retornoCorreos;
+    private Usuario retornoUsuario;
 
 
     public void inicio() {
@@ -122,8 +124,10 @@ public class MantenedorPerfil implements Serializable {
         }
     }
 
-    public void verificarCodigo(String codigoEntrante){
+    public void verificarCodigo(Integer codigoEntrante){
         //Aqui va toda la logica a verificar del usuario
+        retornoUsuario = logicaUsuario.obtenerPorID(codigoEntrante);
+        System.out.println(retornoUsuario.getIdUsuario());
     }
 
     //getter and setter
@@ -205,11 +209,8 @@ public class MantenedorPerfil implements Serializable {
         this.rol = rol;
     }
 
-    public String getCodigo() {
-        return codigo;
-    }
+    public Usuario getRetornoUsuario() { return retornoUsuario; }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
+    public void setRetornoUsuario(Usuario retornoUsuario) { this.retornoUsuario = retornoUsuario; }
+
 }

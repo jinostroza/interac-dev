@@ -12,9 +12,8 @@
             <transition on="ingresoCodigo" to="recuperarclave"></transition>
       </view-state>
 
-      <view-state id="recuperarclave">
-            <transition on="siguiente" to="nuevaclave"></transition>
-      </view-state>
+      <view-state id="recuperarclave"></view-state>
+
       <view-state id="recuperarfin"></view-state>
       
 </flow>

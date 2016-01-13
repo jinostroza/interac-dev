@@ -51,7 +51,7 @@ import java.util.List;
 
                 @NamedQuery(name = "Usuario.findByID",
                         query = "SELECT u FROM Usuario u "+
-                                "WHERE u.idUsuario = :idUsuario")
+                                "WHERE u.idUsuario = :idusuario")
 
         }
 )

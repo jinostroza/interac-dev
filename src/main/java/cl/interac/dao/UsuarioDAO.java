@@ -48,7 +48,7 @@ public class UsuarioDAO {
 
     public Usuario obtenerPorId(Integer id){
         Query q = em.createNamedQuery("Usuario.findByID");
-        q.setParameter("idUsuario", id);
+        q.setParameter("idusuario", id);
         try{
             return (Usuario) q.getSingleResult();
         }

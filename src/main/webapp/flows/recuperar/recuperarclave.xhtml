@@ -23,7 +23,7 @@
                     <h:form>
                         <p>Ingrese el codigo que recibió en su correo electronico</p>
                         <p:inputText required="true" styleClass="form-control" id="codigo" placeholder="Codigo" value="#{MantenedorPerfil.codigo}" />
-                        <p:commandButton styleClass="btn btn-interac btn-block" value="Verificar" action="siguiente" actionListener="#{MantenedorPerfil.verificarCodigo(codigo)}" />
+                        <p:commandButton styleClass="btn btn-interac btn-block" value="Verificar" action="siguiente" actionListener="#{MantenedorPerfil.verificarCodigo(MantenedorPerfil.codigo)}" />
                     </h:form>
                 </div>
                 <div class="col-md-4"></div>
