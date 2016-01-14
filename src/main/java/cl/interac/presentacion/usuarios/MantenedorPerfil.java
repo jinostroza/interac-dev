@@ -48,6 +48,7 @@ public class MantenedorPerfil implements Serializable {
     private List<Usuario> usuarioList;
 
     private Long retornoCorreos;
+    private Integer idUsuario;
 
     public void inicio() {
         usuarioList = logicaUsuario.obtenerTodos();
@@ -102,8 +103,6 @@ public class MantenedorPerfil implements Serializable {
         if (retornoCorreos >= 1){
             System.out.println("Correo existe");
             usuario = logicaUsuario.obtenerPorCorreo(correoEntrante);
-            System.out.println("Usuario: "+usuario.getUsername());
-            System.out.println("Clave: "+usuario.getPassword());
             System.out.println("ID: "+usuario.getIdUsuario());
 
             /*
@@ -127,6 +126,10 @@ public class MantenedorPerfil implements Serializable {
         else{
             System.out.println("Correo no existe");
         }
+    }
+
+    public Usuario restablecerClave(){
+        return logicaUsuario.obtenerPorID(idUsuario);
     }
 
     //getter and setter
@@ -186,9 +189,7 @@ public class MantenedorPerfil implements Serializable {
         this.claveActual = claveActual;
     }
 
-    public String getClaveNueva() {
-        return claveNueva;
-    }
+    public String getClaveNueva() { return claveNueva; }
 
     public void setClaveNueva(String claveNueva) {
         this.claveNueva = claveNueva;
@@ -207,4 +208,8 @@ public class MantenedorPerfil implements Serializable {
     public void setRol(Rol rol) {
         this.rol = rol;
     }
+
+    public Integer getIdUsuario() { return idUsuario; }
+
+    public void setIdUsuario(Integer idUsuario) { this.idUsuario = idUsuario; }
 }

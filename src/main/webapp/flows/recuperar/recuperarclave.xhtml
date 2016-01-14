@@ -2,6 +2,7 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
                 template="/templates/logInTemplate.xhtml">
 
     <ui:define name="contenido">
@@ -11,6 +12,10 @@
             }
         </h:outputStylesheet>
 
+        <f:metadata>
+            <f:viewParam name="id" value="#{mantenedorPerfil.idUsuario}"/>
+            <f:event type="preRenderView" listener="#{mantenedorPerfil.restablecerClave}" />
+        </f:metadata>
 
         <div class="login-header">
             <div class="login-logo"></div>
@@ -20,9 +25,20 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div id="cuadro-login" class="col-md-4">
-                    <h:form>
-                        <p:inputText styleClass="form-control" id="clave" placeholder="Ingrese su nueva contraseña" />
-                        <p:inputText styleClass="form-control" id="claveRepetir" placeholder="Repita su nueva contraseña" />
+                    <h:form id="reestablecerClave">
+                        <p:panel header="reestablecer contraseña">
+                        <h:outputLabel for="clave" value="Ingrese contraseña nueva" />
+                        <h:inputSecret required="true" requiredMessage="Debe ingresar una nueva contraseña"
+                                       styleClass="form-control" id="clave" placeholder="Ingrese su nueva contraseña"
+                                       value="#{mantenedorPerfil.claveNueva}" />
+                        <h:outputLabel for="claveRepetir" value="Repita su nueva contraseña" />
+                        <h:inputSecret requered="true" requiredMessage="Debe confirmar la nueva contraseña"
+                                       styleClass="form-control" id="claveRepetir" placeholder="Repita su nueva contraseña"
+                                       value="#{mantenedorPerfil.claveConfirmada}" />
+                        </p:panel>
+                        <p:outputPanel styleClass="actionPanel">
+                            <p:commandButton action="#{MantenedorPerfil.cambiarClave()}" styleClass="btn-interac" icon="ui-icon-disk" value="Guardar"/>
+                        </p:outputPanel>
                     </h:form>
                 </div>
                 <div class="col-md-4"></div>

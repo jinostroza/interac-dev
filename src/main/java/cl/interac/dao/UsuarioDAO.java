@@ -88,7 +88,6 @@ public class UsuarioDAO {
     public void cambiarClave(String usuario, String clave) {
         Usuario u = (Usuario) em.createNamedQuery("Usuario.findByUser")
                 .setParameter("username", usuario).getSingleResult();
-
         u.setPassword(clave);
         em.merge(u);
     }
@@ -131,7 +130,6 @@ public class UsuarioDAO {
                     .setParameter("password", password).getSingleResult();
             u = new UsuarioDto();
             u.setUsername(ue.getUsername());
-
 
         } catch (Exception e) {
         }
