@@ -57,6 +57,13 @@ public class UsuarioDAO {
         }
     }
 
+    public Usuario obtenerPorCorreo(String correo){
+        Query q = em.createNamedQuery("Usuario.findByCorreo");
+        q.setParameter("correo", correo);
+        try{ return (Usuario) q.getSingleResult(); }
+        catch(Exception e){ return null; }
+    }
+
     public Usuario obtenerLogin(String correo , String pass){
         try{
             return (Usuario) em.createNamedQuery("Usuario.findByUserAndPassword")

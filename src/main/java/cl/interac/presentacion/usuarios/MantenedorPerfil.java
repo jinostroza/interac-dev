@@ -48,14 +48,11 @@ public class MantenedorPerfil implements Serializable {
     private List<Usuario> usuarioList;
 
     private Long retornoCorreos;
-    private Usuario retornoUsuario;
-
 
     public void inicio() {
         usuarioList = logicaUsuario.obtenerTodos();
         usuario = new Usuario();
     }
-
 
        public void cambiaPerfil() {
         if (!claveConfirmada.equals(claveNueva)) {
@@ -104,6 +101,12 @@ public class MantenedorPerfil implements Serializable {
         System.out.println("Correo entrante: "+correoEntrante);
         if (retornoCorreos >= 1){
             System.out.println("Correo existe");
+            usuario = logicaUsuario.obtenerPorCorreo(correoEntrante);
+            System.out.println("Usuario: "+usuario.getUsername());
+            System.out.println("Clave: "+usuario.getPassword());
+            System.out.println("ID: "+usuario.getIdUsuario());
+
+            /*
 
             //cuerpo del mensaje
             String mensajeLocal = new String(constantes.getAlertas());
@@ -117,17 +120,13 @@ public class MantenedorPerfil implements Serializable {
             mailSender.send(replicas,"Interac",mensajeLocal);
 
             FacesUtil.mostrarMensajeInformativo("Operacion exitosa", "Se ah enviado informacion de recuperacion a su correo");
+
+            */
         }
 
         else{
             System.out.println("Correo no existe");
         }
-    }
-
-    public void verificarCodigo(Integer codigoEntrante){
-        //Aqui va toda la logica a verificar del usuario
-        retornoUsuario = logicaUsuario.obtenerPorID(codigoEntrante);
-        System.out.println(retornoUsuario.getIdUsuario());
     }
 
     //getter and setter
@@ -208,9 +207,4 @@ public class MantenedorPerfil implements Serializable {
     public void setRol(Rol rol) {
         this.rol = rol;
     }
-
-    public Usuario getRetornoUsuario() { return retornoUsuario; }
-
-    public void setRetornoUsuario(Usuario retornoUsuario) { this.retornoUsuario = retornoUsuario; }
-
 }

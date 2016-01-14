@@ -75,6 +75,11 @@ public class LogicaUsuario {
     }
 
     @Transactional(readOnly = true)
+    public Usuario obtenerPorCorreo(String correo){
+        return usuarioDAO.obtenerPorCorreo(correo);
+    }
+
+    @Transactional(readOnly = true)
     public UsuarioDto logInExterno(String usuario, String password) {
         try {
             return usuarioDAO.obtenerUsuario(usuario,password);
