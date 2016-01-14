@@ -21,16 +21,14 @@
                 <div class="col-md-4"></div>
                 <div id="cuadro-login" class="col-md-4">
                     <h:form>
-                        <p>Ingrese el codigo que recibió en su correo electronico</p>
-                        <p:inputText required="true" styleClass="form-control" id="codigo" placeholder="Codigo" value="#{MantenedorPerfil.codigo}" />
-                        <p:commandButton styleClass="btn btn-interac btn-block" value="Verificar" action="siguiente" actionListener="#{MantenedorPerfil.verificarCodigo(MantenedorPerfil.codigo)}" />
+                        <p:inputText styleClass="form-control" id="clave" placeholder="Ingrese su nueva contraseña" />
+                        <p:inputText styleClass="form-control" id="claveRepetir" placeholder="Repita su nueva contraseña" />
                     </h:form>
                 </div>
                 <div class="col-md-4"></div>
             </div>
             <div class="push"></div>
         </div>
-
         <ui:include src="../../templates/includes/Footer.xhtml"/>
     </ui:define>
 </ui:composition>
