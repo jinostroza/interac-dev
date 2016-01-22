@@ -1,0 +1,30 @@
+﻿Compilación iniciada a las 28/12/2015 13:58:06.
+     1>Proyecto "E:\HVC-P_Omron (1)\HVC-P Omron\HVC-P_SampleCode_v1.0.0\HVC-P_SampleCode_v1.0.0\platform\vc10\register.vcxproj" en el nodo 2 (build destinos).
+     1>PrepareForBuild:
+         Creando directorio "../../bin/vc10/Debug/".
+       InitializeBuildStatus:
+         Se creará ".\Debug\register.unsuccessfulbuild" porque se especificó "AlwaysCreate".
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\src\uart /I..\..\src\HVCApi /ZI /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _VC80_UPGRADE=0x0600 /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /Gy- /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug\\" /Fd".\Debug\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt ..\..\src\bmp\bitmap.c ..\..\src\HVCApi\HVCApi.c ..\..\src\register_main\register_main.c ..\..\src\uart\uart.c
+         uart.c
+     1>e:\hvc-p_omron (1)\hvc-p omron\hvc-p_samplecode_v1.0.0\hvc-p_samplecode_v1.0.0\src\uart\uart.c(120): warning C4127: la expresión condicional es constante
+         register_main.c
+     1>e:\hvc-p_omron (1)\hvc-p omron\hvc-p_samplecode_v1.0.0\hvc-p_samplecode_v1.0.0\src\register_main\register_main.c(378): warning C4127: la expresión condicional es constante
+         HVCApi.c
+         bitmap.c
+         Generando código...
+       ManifestResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo".\Debug\register.exe.embed.manifest.res" .\Debug\register_manifest.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"../../bin/vc10/Debug/register.exe" /INCREMENTAL /NOLOGO /MANIFEST /ManifestFile:".\Debug\register.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\HVC-P_Omron (1)\HVC-P Omron\HVC-P_SampleCode_v1.0.0\HVC-P_SampleCode_v1.0.0\bin\vc10\Debug\register.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"../../bin/vc10/Debug/register.lib" /MACHINE:X86 .\Debug\register.exe.embed.manifest.res
+         .\Debug\bitmap.obj
+         .\Debug\HVCApi.obj
+         .\Debug\register_main.obj
+         .\Debug\uart.obj
+     1>LINK : fatal error LNK1123: error durante la conversión a COFF: archivo no válido o dañado
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Platforms\Win32\Microsoft.Cpp.Win32.Targets(268,5): error MSB6006: "link.exe" salió con el código 1123.
+     1>Compilación del proyecto terminada "E:\HVC-P_Omron (1)\HVC-P Omron\HVC-P_SampleCode_v1.0.0\HVC-P_SampleCode_v1.0.0\platform\vc10\register.vcxproj" (build destinos) -- ERROR.
+
+ERROR al compilar.
+
+Tiempo transcurrido 00:00:23.10

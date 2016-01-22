@@ -1,7 +1,6 @@
 package cl.interac.presentacion;
 
 import cl.interac.entidades.Usuario;
-import cl.interac.presentacion.usuarios.MantenedorPerfil;
 import cl.interac.security.LogInManager;
 import cl.interac.util.components.Constantes;
 import cl.interac.util.components.FacesUtil;

@@ -91,7 +91,7 @@ public class Usuario implements Serializable {
     }
 
     @Basic
-    @Column(name = "password", nullable = true, insertable = true, updatable = true)
+    @Column(name = "password", nullable = true, insertable = true, updatable = true,length = 45)
     public String getPassword() {
         return password;
     }

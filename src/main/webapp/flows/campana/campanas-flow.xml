@@ -24,7 +24,7 @@
 
     <view-state id="subirContenido">
         <transition on="subir" to="seleccionarTotem"></transition>
-        <transition on="end2" to="contenidoConfirmado"></transition>
+
     </view-state>
     <view-state id="misTotems">
 

@@ -1,0 +1,23 @@
+﻿Compilación iniciada a las 06/01/2016 13:29:21.
+     1>Proyecto "E:\HVC-P_Omron (1)\HVC-P Omron\HVC-P_SampleCode_v1.0.0\HVC-P_SampleCode_v1.0.0\platform\vc10\sample.vcxproj" en el nodo 2 (build destinos).
+     1>InitializeBuildStatus:
+         Se creará ".\Release\sample.unsuccessfulbuild" porque se especificó "AlwaysCreate".
+       ClCompile:
+         Todas las salidas están actualizadas.
+         Todas las salidas están actualizadas.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"../../bin/vc10/Release/sample.exe" /INCREMENTAL:NO /NOLOGO /MANIFEST /ManifestFile:".\Release\sample.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"E:\HVC-P_Omron (1)\HVC-P Omron\HVC-P_SampleCode_v1.0.0\HVC-P_SampleCode_v1.0.0\bin\vc10\Release\sample.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"../../bin/vc10/Release/sample.lib" /MACHINE:X86 .\Release\bitmap.obj
+         .\Release\HVCApi.obj
+         .\Release\main.obj
+         .\Release\uart.obj
+         sample.vcxproj -> E:\HVC-P_Omron (1)\HVC-P Omron\HVC-P_SampleCode_v1.0.0\HVC-P_SampleCode_v1.0.0\platform\vc10\../../bin/vc10/Release/sample.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"../../bin/vc10/Release/sample.exe;#1" /manifest .\Release\sample.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Se eliminará el archivo ".\Release\sample.unsuccessfulbuild".
+         Aplicando tarea Touch a ".\Release\sample.lastbuildstate".
+     1>Compilación del proyecto terminada "E:\HVC-P_Omron (1)\HVC-P Omron\HVC-P_SampleCode_v1.0.0\HVC-P_SampleCode_v1.0.0\platform\vc10\sample.vcxproj" (build destinos).
+
+Compilación correcta.
+
+Tiempo transcurrido 00:00:00.44

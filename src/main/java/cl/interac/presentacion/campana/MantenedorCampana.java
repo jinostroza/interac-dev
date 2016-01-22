@@ -184,16 +184,7 @@ public class MantenedorCampana implements Serializable {
       return irCrear(c);
 
     }
-    public String subepucv(Contenido c) {
-        contenido = c;
-        contenido.setCategoria(categoria);
 
-        logicaContenido.guardar(contenido);
-        FacesUtil.mostrarMensajeInformativo("Operacion Exitosa", "Se hacreado el contenido [" + contenido.getIdcontenido() + "]");
-
-        return "end2";
-
-    }
 
     public String irPagar(Campana ca ){
         campana = ca ;

@@ -57,16 +57,11 @@
                                 <p:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
                                                  actionListener="#{mantenedorCampana.eliminarFichero(mantenedorCampana.contenido)}" value="Volver" immediate="true"/>
                                     <span>   </span>
-                                    <ui:fragment
-                                            rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR')}">
+
                                     <p:commandButton  styleClass="btn btn-interac" action="#{mantenedorCampana.editarContenido(mantenedorCampana.contenido)}"
                                                      value="Siguiente" update="messages" />
-                                    </ui:fragment>
-                                    <ui:fragment
-                                            rendered="#{userSession.tienePermiso('PUCV')}">
-                                    <p:commandButton styleClass="btn btn-interac" action="#{mantenedorCampana.subepucv(mantenedorCampana.contenido)}"
-                                                     value="Siguiente" update="messages" />
-                                    </ui:fragment>
+
+
 
                                 </div>
                                 <br></br>
