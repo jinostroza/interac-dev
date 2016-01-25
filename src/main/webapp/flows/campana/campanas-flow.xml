@@ -24,6 +24,7 @@
 
     <view-state id="subirContenido">
         <transition on="subir" to="seleccionarTotem"></transition>
+        <transition on="crear" to="subirContenido"/>
 
     </view-state>
     <view-state id="misTotems">

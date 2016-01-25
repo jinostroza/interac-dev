@@ -173,6 +173,7 @@ public class MantenedorCampana implements Serializable {
         } catch (Exception e) {
             return;
         }
+
     }
 
     public String editarContenido(Contenido c) {
@@ -181,8 +182,16 @@ public class MantenedorCampana implements Serializable {
 
         logicaContenido.guardar(contenido);
 
-      return irCrear(c);
+        return irCrear(c);
 
+    }
+    public String editarCont(Contenido c) {
+        contenido = c;
+        contenido.setCategoria(categoria);
+
+        logicaContenido.guardar(contenido);
+
+    return "crear";
     }
 
 
@@ -194,7 +203,8 @@ public class MantenedorCampana implements Serializable {
      public String irCrear(Contenido c) {
          contenido = c;
          campana = new Campana();
-         return "subir";
+         contenidos = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
+         return "crear";
     }
 
     public void  guardar(){
