@@ -1,6 +1,8 @@
 package cl.interac.scheduled;
 
 import cl.interac.entidades.Campana;
+import cl.interac.entidades.Contenido;
+import cl.interac.entidades.Establecimiento;
 import cl.interac.negocio.LogicaCampana;
 import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.PropertyReader;
@@ -41,15 +43,21 @@ public class CronService {
             if ("desarrollo".equals(ambiente)) {
                 // dentro del server siempre podra subir, no importa si es wintendo o linux
                 for (Campana ca : campanasvencidas){
-                    System.err.println(ca.getContenido().getIdcontenido());
+                    System.err.println(ca.getIdcampana());
                     logicaCampana.eliminarCampana(ca);
                 }
 
             }
             else if ("produccion".equals(ambiente)) {
                 for (Campana ca : campanasvencidas){
-                    String carpetaDestino = ca.getEstablecimiento().getCarpetaFtp();
-                    Files.delete(Paths.get("/home/ec2-user/media/"+carpetaDestino+ "/" + ca.getContenido().getPath()));
+                    for(Establecimiento et : ca.getEstablecimientoList()) {
+                        String carpetaDestino = et.getCarpetaFtp();
+                        for(Contenido co : ca.getContenidoList() ){
+                            Files.delete(Paths.get("/home/ec2-user/media/" + carpetaDestino + "/" + co.getPath()));
+                        }
+                    }
+
+
                     logicaCampana.eliminarCampana(ca);
                 }
             }

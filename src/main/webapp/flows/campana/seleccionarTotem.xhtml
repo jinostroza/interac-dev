@@ -125,9 +125,10 @@
                     </div>
                     <p:dataTable id="datapantallas" styleClass="col-lg-8 " var="place"
                                  value="#{mantenedorCampana.filtrar}"
-                                 paginator="true" rows="5" selection="#{mantenedorCampana.establecimientoseleccionado}"
-                                 selectionMode="single" rowKey="#{place}">
+                                 paginator="true" rows="5" selection="#{mantenedorCampana.establecimientosLista}"
+                                  rowKey="#{place}">
 
+                        <p:column selectionMode="multiple" style="width:36px;text-align:center"/>
                         <p:column>
 
                             <p:graphicImage style="width: 80px;height: 120px" value="#{place.urlImagen}"/>
@@ -149,17 +150,7 @@
                                 <small>#{place.categoria.idcategoria}</small>
                             </h4>
                         </p:column>
-                        <p:column>
-                            <h4>Pantallas :
-                                <small>#{mantenedorCampana.numeroTotem(place.idEstablecimiento)}</small>
-                            </h4>
-                        </p:column>
-                        <p:column>
-                            <h4>Espacios Disponibles :
-                                <small>#{place.slots - mantenedorCampana.numeroCampanas(place.idEstablecimiento)}</small>
 
-                            </h4>
-                        </p:column>
                         <p:column>
 
                             <p:commandButton id="descripcion" type="button" icon="ui-icon-pin-s" value="ver"/>

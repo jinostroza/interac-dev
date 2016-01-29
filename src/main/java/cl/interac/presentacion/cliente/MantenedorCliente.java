@@ -75,16 +75,21 @@ public class MantenedorCliente implements Serializable {
         campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
     }
 
-    public void aprobar(Campana ca,Contenido c){
+    public void aprobar(Campana ca){
         try {
             campana = ca ;
-            contenido = c;
+
             String aprobado = "Aprobado";
             campana.setEstado(aprobado);
             logicaCampana.guardarCampana(campana);
-            String carpetaDestino = campana.getEstablecimiento().getCarpetaFtp();
-            Files.copy(Paths.get("/home/ec2-user/media/interac/" + contenido.getPath()),
-                    Paths.get("/home/ec2-user/media/" + carpetaDestino + "/" + contenido.getPath()));
+            for(Establecimiento et : ca.getEstablecimientoList()) {
+                String carpetaDestino = et.getCarpetaFtp();
+                for(Contenido co : ca.getContenidoList()) {
+
+                    Files.copy(Paths.get("/home/ec2-user/media/interac/" + co.getPath()),
+                            Paths.get("/home/ec2-user/media/" + carpetaDestino + "/" + co.getPath()));
+                }
+            }
         }catch (Exception e){
             FacesUtil.mostrarMensajeError("Operación Fallida", "algo ocurrio");
         }
@@ -92,14 +97,14 @@ public class MantenedorCliente implements Serializable {
         String[] destinos = new String[3];
         destinos[0] = userSession.getUsuario().getCorreo();
         destinos[1] = "contacto@interac.cl";
-        destinos[2] = campana.getContenido().getUsuario().getCorreo();
+
 
         //Cuerpo del mensaje
         String mensajeAnunciante = new String(constantes.getAprobar());
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$Id",String.valueOf(campana.getIdcampana()));
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento",campana.getEstablecimiento().getNombreEstablecimiento());
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$numerodePantallas",String.valueOf(campana.getEstablecimiento().getNumeroPantallas()));
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valormensual",String.valueOf(campana.getEstablecimiento().getValor()));
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento","prueba");
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$numerodePantallas","4");
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valormensual","4");
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$total", String.valueOf(9999999));
 
 
@@ -108,7 +113,7 @@ public class MantenedorCliente implements Serializable {
         logicaContenido.guardar(contenido);
         campanaEnEspera.clear();
         campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
-        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha aprobado el anuncio  [" + campana.getContenido().getNombrecont() + "]");
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha aprobado el Campaña  [" + campana.getNombrecampana() + "]");
     }
 
     public void rechazar(Campana ca , Contenido c){
@@ -119,7 +124,7 @@ public class MantenedorCliente implements Serializable {
             campana.setEstado(rechazado);
             logicaCampana.guardarCampana(campana);
 
-            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado el anuncio  [" + campana.getContenido().getNombrecont() + "]");
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado la Campaña  [" + campana.getNombrecampana() + "]");
 
         }catch (Exception e){
             FacesUtil.mostrarMensajeError("Operación Fallida","algo ocurrio");
@@ -128,21 +133,21 @@ public class MantenedorCliente implements Serializable {
         String[] destinos = new String[3];
         destinos[0] = userSession.getUsuario().getCorreo();
         destinos[1] = "contacto@interac.cl";
-        destinos[2] = contenido.getUsuario().getCorreo();
+        //destinos[2] = contenido.getUsuario().getCorreo();
 
         //Cuerpo del mensaje
         String mensajeAnunciante = new String(constantes.getRechazar());
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$id",String.valueOf(campana.getIdcampana()));
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento", campana.getEstablecimiento().getNombreEstablecimiento());
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento", "prueba");
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$razonRechazo",rechazarSelectOneMenu);
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$comentarios",rechazarInputTextArea);
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valor",String.valueOf(campana.getEstablecimiento().getValor()));
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valor","1");
 
         mailSender.send(destinos, "interac " + rechazarSelectOneMenu, mensajeAnunciante);
 
         campanaEnEspera.clear();
         campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
-        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado el anuncio  [" + campana.getContenido().getNombrecont() + "]");
+        FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado el anuncio  [" + campana.getNombrecampana() + "]");
     }
 
 

@@ -1,5 +1,8 @@
 package cl.interac.entidades;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -42,19 +45,18 @@ import java.util.List;
                 @NamedQuery(name = "Campana.findByEstado",
                         query = "SELECT c FROM Campana c " +
                                 "INNER JOIN FETCH c.contenidoList co " +
-                                "INNER JOIN Fetch c.establecimiento e " +
-                                "INNER JOIN Fetch e.usuario u " +
+                                "INNER JOIN Fetch co.usuario u " +
                                 " WHERE u.username=:username AND c.estado='Esperando Aprobacion'"
                 ),
                 @NamedQuery(name = "Campana.count",
                         query = "SELECT COUNT (c.idcampana) FROM Campana c " +
-                                "INNER JOIN  c.establecimiento e " +
+                                "INNER JOIN  c.establecimientoList e " +
                                 "INNER JOIN e.usuario u " +
                                 " WHERE u.username=:username AND c.estado='Esperando Aprobacion'"
                 ),
                 @NamedQuery(name = "Campana.countEstablecimiento",
                         query = "SELECT COUNT (c.idcampana) FROM Campana c " +
-                                "INNER JOIN  c.establecimiento e " +
+                                "INNER JOIN  c.establecimientoList e " +
                                 "WHERE e.idEstablecimiento=:establecimiento AND c.estado='Aprobado'"
                 ),
                 @NamedQuery(name = "Campana.findByDate",
@@ -65,8 +67,7 @@ import java.util.List;
                 @NamedQuery(name = "Campana.findByEstablecimiento", query = "SELECT c FROM Campana c " +
                         "INNER JOIN FETCH c.contenidoList co " +
                         "INNER JOIN FETCH co.usuario u " +
-                        "INNER JOIN FETCH c.establecimiento e " +
-                        "WHERE e.usuario.idUsuario=:iduser"),
+                        "WHERE co.usuario.idUsuario=:iduser"),
 
                 @NamedQuery(name = "Campana.findByTotem",
                         query = "SELECT c FROM Campana c " +
@@ -91,7 +92,8 @@ public class Campana implements Serializable {
     // Relaciones
      private List<Totem> totemList;
     private List<Contenido> contenidoList;
-    private Establecimiento establecimiento;
+
+    private List<Establecimiento> establecimientoList;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -154,9 +156,6 @@ public class Campana implements Serializable {
         this.nombrecampana = nombrecampana;
     }
 
-
-
-
     @Basic
     @Column(name = "estado", nullable = false)
     public String getEstado() {
@@ -164,15 +163,29 @@ public class Campana implements Serializable {
     }
     public void setEstado(String estado) { this.estado = estado; }
 
-    @JoinColumn(name = "idestablecimiento", referencedColumnName = "idestablecimiento")
-    @ManyToOne
-    public Establecimiento getEstablecimiento() {
-        return establecimiento;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SELECT)
+    @JoinTable(
+            name = "campestab",
+            inverseJoinColumns = {
+                    @JoinColumn(name = "idestablecimiento", referencedColumnName = "idestablecimiento")
+            },
+            joinColumns = {
+                    @JoinColumn(name = "idcampana", referencedColumnName = "idcampana")
+            }
+    )
+
+    public List<Establecimiento> getEstablecimientoList() {
+        return establecimientoList;
     }
-    public void setEstablecimiento(Establecimiento establecimiento) {
-        this.establecimiento = establecimiento;
+
+    public void setEstablecimientoList(List<Establecimiento> establecimientoList) {
+        this.establecimientoList = establecimientoList;
     }
-    @ManyToMany(fetch = FetchType.LAZY)
+
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SELECT)
     @JoinTable(
             name = "campaconte",
             inverseJoinColumns = {
@@ -196,7 +209,7 @@ public class Campana implements Serializable {
     public void setValor(Integer valor) { this.valor = valor; }
 
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "campatotem",
             inverseJoinColumns = {

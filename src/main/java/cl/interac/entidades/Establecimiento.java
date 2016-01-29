@@ -94,7 +94,7 @@ public class Establecimiento implements Serializable {
         this.usuario = usuario;
     }
 
-    @OneToMany(mappedBy = "establecimiento")
+    @ManyToMany(mappedBy = "establecimientoList")
     public List<Campana> getCampanaList() {
         return campanaList;
     }

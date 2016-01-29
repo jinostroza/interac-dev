@@ -1,7 +1,6 @@
 package cl.interac.entidades;
 
 import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -53,7 +52,8 @@ public class Contenido implements Serializable{
     private List<Campana> campanaList;
 
 
-    @OneToMany(mappedBy = "contenido")
+    @ManyToMany(mappedBy = "contenidoList")
+
     public List<Campana> getCampanaList() {
         return campanaList;
     }

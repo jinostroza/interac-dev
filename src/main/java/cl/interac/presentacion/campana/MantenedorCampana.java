@@ -25,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -69,6 +70,7 @@ public class MantenedorCampana implements Serializable {
     private List<Establecimiento> establecimientos;
     private List<Establecimiento> filtrar;
     private Establecimiento establecimientoseleccionado;
+    private Establecimiento[] establecimientosLista;
     private Ubicacion ubicacion;
     private List<Ubicacion> ubicacionList;
     private MapModel advancedModel;
@@ -211,15 +213,21 @@ public class MantenedorCampana implements Serializable {
 
     public void  guardar(){
         //perisitencia
-        campana.setContenido(contenido);
-        System.err.print(contenido.getIdcontenido());
+        campana.setContenidoList(Arrays.asList(contenidoslista));
 
         campana.setEstado("Esperando Aprobacion");
         campana.setFechaCreacion(Date.from(Instant.now()));
-        campana.setEstablecimiento(establecimientoseleccionado);
-        campana.setPasadas(pasadas);
-        campana.setNombrecampana(contenido.getNombrecont());
-        campana.setValor(valor);
+        campana.setEstablecimientoList(Arrays.asList(establecimientosLista));
+     //   campana.setPasadas(pasadas);
+        campana.setNombrecampana(Date.from(Instant.now()).toString());
+        //campana.setValor(valor);
+        String ambiente = propertyReader.get("ambiente");
+
+        if ("desarrollo".equals(ambiente)) {
+            // dentro del server siempre podra subir, no importa si es wintendo o linux
+            logicaCampana.guardarCampana(campana);
+
+        }else if ("produccion".equals(ambiente)) {
         logicaCampana.guardarCampana(campana);
 
         //cuerpo del mensaje
@@ -243,7 +251,7 @@ public class MantenedorCampana implements Serializable {
         mailSender.send(replicas,"Interac",mensajeLocal);
 
         FacesUtil.mostrarMensajeInformativo("Operacion exitosa", "se ha creado tu anuncio");
-    }
+    }}
 
        public void eliminarFichero(Contenido conte){
 
@@ -369,12 +377,12 @@ public class MantenedorCampana implements Serializable {
     }
     public String contenidosList(){
         campana = new Campana();
-        Integer count = contenidosSelecionados.size();
+        Integer count = contenidoslista.length;
         if (count.equals(0)){
             FacesUtil.mostrarMensajeError("Operación Fallida", "Debe seleccionar al menos 1 anuncio");
             return "crear";
         }else {
-            System.out.println(contenidosSelecionados.size());
+            System.out.println(contenidoslista.length);
             return "subir";
         }
     }
@@ -891,6 +899,14 @@ public class MantenedorCampana implements Serializable {
 
     public void setNomEmpresa(String nomEmpresa) {
         this.nomEmpresa = nomEmpresa;
+    }
+
+    public Establecimiento[] getEstablecimientosLista() {
+        return establecimientosLista;
+    }
+
+    public void setEstablecimientosLista(Establecimiento[] establecimientosLista) {
+        this.establecimientosLista = establecimientosLista;
     }
 
     public Contenido[] getContenidoslista() {

@@ -5,6 +5,13 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 template="/templates/default.xhtml">
     <ui:define name="contenido">
+        <style type="text/css">
+            .ui-button {
+                background: #454545 !important;
+                border: 1px solid #555 !important;
+                color: #EEE !important;
+            }
+        </style>
         <h:form>
             <div class="container" id="myInterac">
                 <header>
@@ -103,7 +110,11 @@
                         </f:facet>
 
                         <p:column styleClass="col-lg-2" headerText="">
-                            <h:graphicImage value="/imagenes/interac/#{camton.contenido.path}" style="width:100px; height:200px ;"/>
+                            <p:imageSwitch effect="fade" id="fac">
+                                <ui:repeat value="#{camton.contenidoList}" var="image" id="manuelSwitcherImages">
+                                    <p:graphicImage value="/imagenes/interac/#{image.path}" style="width:100px; height:200px ;"/>
+                                </ui:repeat>
+                            </p:imageSwitch>
                         </p:column>
                         <p:column styleClass="col-lg-2" headerText="Estado">
                             <h:outputText value="#{camton.estado}"/>
@@ -141,7 +152,12 @@
                         </f:facet>
 
                         <p:column styleClass="col-lg-2" headerText="">
-                            <h:graphicImage value="/imagenes/interac/#{camton.contenido.path}" style="width:100px; height:200px ;"/>
+                            <p:imageSwitch effect="fade" id="fadeEffect">
+                            <ui:repeat value="#{camton.contenidoList}" var="image" id="manuelSwitcherImages">
+                                <p:graphicImage value="/imagenes/interac/#{image.path}" style="width:100px; height:200px ;"/>
+                            </ui:repeat>
+                            </p:imageSwitch>
+
                         </p:column>
                         <p:column styleClass="col-lg-2" headerText="Estado">
                             <h:outputText value="#{camton.estado}"/>
@@ -159,7 +175,8 @@
                             <h:outputText value="#{camton.fechaFin}"/>
                         </p:column>
                         <p:column styleClass="col-lg-2" headerText="">
-                            <p:commandButton styleClass="btn btn-interac" value="Eliminar" action="#{mantenedorCampana.eliminarCampana(camton)}" process="@form" update="champa"></p:commandButton>
+
+                            <p:commandButton styleClass="btn btn-interac" icon="ui-icon-trash"  style="background-color: white !important;" action="#{mantenedorCampana.eliminarCampana(camton)}" process="@form" update="champa"></p:commandButton>
                         </p:column>
 
 
