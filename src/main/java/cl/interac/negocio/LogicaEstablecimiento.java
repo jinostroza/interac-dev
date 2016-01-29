@@ -1,13 +1,17 @@
 package cl.interac.negocio;
 
 import cl.interac.dao.EstablecimientoDAO;
+import cl.interac.entidades.Categoria;
+import cl.interac.entidades.Empresa;
 import cl.interac.entidades.Establecimiento;
-import java.util.List;
+import cl.interac.entidades.Ubicacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Created by Pedro Pablo on 20-05-2015.
@@ -48,6 +52,14 @@ public class LogicaEstablecimiento {
     @Transactional(readOnly = true)
     public List<Establecimiento> obtenerPorUsuario(String username) {
         return establecimientoDAO.obtenerPorUsuario(username);
+    }
+    @Transactional(readOnly = true)
+    public List<Establecimiento> filtrar(String orienta,String nombre,Integer empresa,Integer ubicacion,Integer rubro) {
+        return establecimientoDAO.filtrar(orienta, nombre, empresa, ubicacion, rubro);
+    }
+    @Transactional(readOnly = true)
+    public List<Establecimiento> obtenerFiltro(String orienta,String nombre,Empresa empresa,Ubicacion ubicacion,Categoria categoria) {
+        return establecimientoDAO.obtenerFiltro(orienta,nombre,empresa,ubicacion,categoria);
     }
 
     @Transactional(readOnly = false)

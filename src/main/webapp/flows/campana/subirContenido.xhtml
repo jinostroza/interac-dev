@@ -7,12 +7,12 @@
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
-        <style>
-            .ui-icon-trash{
-
-                background-color: white !important;
+        <style type="text/css">
+              .ui-button {
+                background: #454545 !important;
+                border: 1px solid #555 !important;
+                color: #EEE !important;
             }
-
         </style>
         <h:form class="container" id="crearAnuncio" enctype="multipart/form-data">
             <div class="row">
@@ -34,22 +34,58 @@
                 <div class="col-lg-4">
                     <h3 align="center" style="align-items: flex-start">Programar Mis Anuncios</h3>
                 </div>
-                <div class="col-lg-offset-9">
-                    <p:commandButton value="Crear Anuncio" type="button" styleClass="btn btn-interac"
-                                     onclick="PF('dlg2').show();"/>
-                </div>
-            </div>
-            <div class="ui-grid-row">
-                <h:panelGrid columns="1" width="100%">
-                    <p:dataTable id="basicDT" var="cont" rows="5" paginator="true"
-                                 styleClass="col-lg-10 col-lg-offset-5"
-                                 style="margin-left: 10%" value="#{mantenedorCampana.contenidos}">
 
+                <p:dialog header="Crea tu anuncio" widgetVar="dlg2" height="800" width="500" closable="false">
+
+                    <label>Nombre</label>
+                    <p:inputText id="anun" label="anun" value="#{mantenedorCampana.contenido.nombrecont}"
+                                 styleClass="form-control" required="true"
+                                 requiredMessage="Ingrese un Nombre para su Anuncio"/>
+                    <p:watermark for="anun" value="Ingrese un Nombre para su Anuncio" id="watermark"/>
+                    <p:tooltip id="toolTipTrack" for="anun" value="Dale un Nombre a tu anuncio" trackMouse="true"/>
+                    <br></br>
+                    <br></br>
+                    <label>Categoría</label>
+                    <h:selectOneMenu id="onem" class="form-control" value="#{mantenedorCampana.categoria}"
+                                     converter="entityConverter" required="true"
+                                     requiredMessage="Debe Seleccionar una Categoria">
+                        <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione categoria --"/>
+                        <f:selectItems value="#{mantenedorCampana.categoriaList}" var="categor"
+                                       itemLabel="#{categor.desccategoria}" itemValue="#{categor}"/>
+                    </h:selectOneMenu>
+                    <p:tooltip id="tooltipmenu" for="onem" value="Selecciona la categoria de tu anuncio" trackMouse="true"/>
+
+                    <br></br>
+
+                    <p:fileUpload style="width: 450px;" mode="advanced"
+                                  previewWidth="430" update="messages" label="Seleccionar contenido" uploadLabel="Subir"
+                                  fileUploadListener="#{mantenedorCampana.subir}" cancelLabel="Cancelar"
+                                  widgetVar="myFileUpload"
+                                  onstart="PF('myFileUpload').disableButton(PF('myFileUpload').chooseButton)"
+                                  required="true" auto="false" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+                    <p:growl id="messages" showDetail="true"/>
+                    <br></br>
+                    <p:commandButton action="#{mantenedorCampana.editarContenido(mantenedorCampana.contenido)}"
+                                     value="Confirmar" />
+                    <p:commandButton value="Cancelar"  onclick="PF('dlg2').hide();" action="#{mantenedorCampana.eliminarFichero(mantenedorCampana.contenido)}"/>
+                </p:dialog>
+            </div>
+               <div class="ui-grid-row">
+
+                   <p:dataTable id="basicDT" var="cont" rows="4" paginator="true"
+                                   value="#{mantenedorCampana.contenidos}" selection="#{mantenedorCampana.contenidosSelecionados}" rowKey="#{cont}">
+
+                       <f:facet name="header">
+                           <p:spacer width="900" height="40"> </p:spacer>
+                           <p:commandButton value="Crear Anuncio" type="button" styleClass="btn btn-interac"
+                                            onclick="PF('dlg2').show();"/>
+                       </f:facet>
+                       <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
 
                         <p:column styleClass="col-lg-3" headerText="Imagenes">
                             <h:graphicImage value="/imagenes/interac/#{cont.path}" style="width:50px; height:100px ;"/>
                         </p:column>
-                        <p:column styleClass="col-lg-2" headerText="nombre">
+                        <p:column styleClass="col-lg-2" headerText="nombre" >
                             <h:outputText value="#{cont.nombrecont}"/>
                         </p:column>
                         <p:column styleClass="col-lg-3" headerText="categoria">
@@ -57,65 +93,26 @@
                         </p:column>
 
                         <p:column styleClass="col-lg-3" style="text-align: center; margin-right: 2px">
-                            <p:commandButton icon="ui-icon-trash" style="background: white !important;border-color: #454545 !important;" action="#{mantenedorCampana.eliminarFichero(cont)}"
-                                              title="Eliminar">
+                            <p:commandButton icon="ui-icon-trash" action="#{mantenedorCampana.eliminarFichero(cont)}" styleClass="btn btn-interac" style="background-color: white !important;" immediate="true" update="basicDT"/>
 
-                            </p:commandButton>
                         </p:column>
+                       <f:facet name="footer">
+                           <p:commandButton  ajax="false" styleClass="btn btn-interac"
+                                             action="#{facesUtil.redirigir('/plataforma/campana')}"
+                                             actionListener="#{mantenedorCampana.eliminarFichero(mantenedorCampana.contenido)}"
+                                             value="Volver" immediate="true" />
+                           <p:spacer width="800" height="40"> </p:spacer>
+                           <p:commandButton process="basicDT" styleClass="btn btn-interac" value="Programar" action="#{mantenedorCampana.contenidosList}" />
+                       </f:facet>
 
                     </p:dataTable>
-                </h:panelGrid>
-            </div>
-            <p:dialog header="Crea tu anuncio" widgetVar="dlg2" modal="true" height="800" width="500">
-
-                <label>Nombre</label>
-                <p:inputText id="anun" label="anun" value="#{mantenedorCampana.contenido.nombrecont}"
-                             styleClass="form-control" required="true"
-                             requiredMessage="Ingrese un Nombre para su Anuncio"/>
-                <p:watermark for="anun" value="Ingrese un Nombre para su Anuncio" id="watermark"/>
-                <p:tooltip id="toolTipTrack" for="anun" value="Dale un Nombre a tu anuncio" trackMouse="true"/>
-                <br></br>
-                <br></br>
-                <label>Categoría</label>
-                <h:selectOneMenu id="onem" class="form-control" value="#{mantenedorCampana.categoria}"
-                                 converter="entityConverter" required="true"
-                                 requiredMessage="Debe Seleccionar una Categoria">
-                    <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione categoria --"/>
-                    <f:selectItems value="#{mantenedorCampana.categoriaList}" var="categor"
-                                   itemLabel="#{categor.desccategoria}" itemValue="#{categor}"/>
-                </h:selectOneMenu>
-                <p:tooltip id="tooltipmenu" for="onem" value="Selecciona la categoria de tu anuncio" trackMouse="true"/>
-
-                <br></br>
-
-                <p:fileUpload style="width: 450px;" mode="advanced"
-                              previewWidth="430" update="messages" label="Seleccionar contenido" uploadLabel="Subir"
-                              fileUploadListener="#{mantenedorCampana.subir}" cancelLabel="Cancelar"
-                              widgetVar="myFileUpload"
-                              onstart="PF('myFileUpload').disableButton(PF('myFileUpload').chooseButton)"
-                              required="true" auto="false" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
-                <p:growl id="messages" showDetail="true"/>
-                <br></br>
-                <p:commandButton style="background-color: #454545 !important;color: white !important;"
-                                 action="#{mantenedorCampana.editarContenido(mantenedorCampana.contenido)}"
-                                 value="Cerrar" update=":crearAnuncio:basicDT"/>
-            </p:dialog>
-
-            <div class="col-lg-offset-8">
-                <p:commandButton ajax="false" styleClass="btn btn-interac"
-                                 action="#{facesUtil.redirigir('/plataforma/campana')}"
-                                 actionListener="#{mantenedorCampana.eliminarFichero(mantenedorCampana.contenido)}"
-                                 value="Volver" immediate="true"/>
-                <span>   </span>
-
-                <p:commandButton styleClass="btn btn-interac"
-                                 action="#{mantenedorCampana.editarContenido(mantenedorCampana.contenido)}"
-                                 value="Siguiente" update="messages"/>
-
+                   <br></br>
+                   <br></br>
 
             </div>
-            <br></br>
-            <br></br>
+
+
+
         </h:form>
 
     </ui:define>

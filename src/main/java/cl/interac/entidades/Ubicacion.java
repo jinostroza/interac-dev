@@ -2,7 +2,6 @@ package cl.interac.entidades;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by Jorge on 25-04-15.
@@ -12,20 +11,20 @@ import java.util.List;
         @NamedQuery(
                 name = "Ubicacion.findAll",
                 query = "select u from Ubicacion u"
-        ),
-        @NamedQuery(
-                name = "Ubicacion.findAllWithRelationships",
-                query = "SELECT u from Ubicacion u " +
-                        "inner join fetch u.establecimientoList "
-
         )
+       // @NamedQuery(
+         //       name = "Ubicacion.findAllWithRelationships",
+           //     query = "SELECT u from Ubicacion u " +
+             //           "inner join fetch u.establecimientoList "
+
+        //)
 })
 public class Ubicacion implements Serializable {
     private Integer idubicacion;
     private String descubicacion;
 
     // relaciones
-    private List<Establecimiento> establecimientoList;
+    //private List<Establecimiento> establecimientoList;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,13 +45,13 @@ public class Ubicacion implements Serializable {
         this.descubicacion = descubicacion;
     }
 
-    @OneToMany(mappedBy = "ubicacion")
-    public List<Establecimiento> getEstablecimientoList() {
-        return establecimientoList;
-    }
-    public void setEstablecimientoList(List<Establecimiento> establecimientoList) {
-        this.establecimientoList = establecimientoList;
-    }
+    //@OneToMany(mappedBy = "ubicacion")
+    //public List<Establecimiento> getEstablecimientoList() {
+      //  return establecimientoList;
+    //}
+    //public void setEstablecimientoList(List<Establecimiento> establecimientoList) {
+      //  this.establecimientoList = establecimientoList;
+    //}
 
     @Override
     public boolean equals(Object o) {

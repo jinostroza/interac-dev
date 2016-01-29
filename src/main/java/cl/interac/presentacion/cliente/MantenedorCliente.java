@@ -72,7 +72,6 @@ public class MantenedorCliente implements Serializable {
     public void inicio(){
         numeroCampanas = logicaCampana.obtenerPorNumero(userSession.getUsuario().getUsername());
         totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
-        campanaList= logicaCampana.obtenerLasCampanasDeLosTotems(userSession.getUsuario().getUsername());
         campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
     }
 

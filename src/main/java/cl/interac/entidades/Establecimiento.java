@@ -46,6 +46,14 @@ import java.util.List;
                 query = "SELECT e FROM Establecimiento e " +
                         "WHERE e.estado = :estado"),
 
+        @NamedQuery(name = "establecimiento.findFilter",
+                query = "SELECT e FROM Establecimiento e " +
+                        "INNER JOIN FETCH e.ubicacion ub " +
+                        "INNER JOIN FETCH e.categoria c " +
+                        "INNER JOIN FETCH e.empresa em " +
+                        "WHERE e.empresa = :idempresa or e.categoria = :idcategoria or e.nombreEstablecimiento = :nombre " +
+                        "or e.ubicacion = :idubicacion or e.orientacion = :orientacion or e.estado = 'activo' "),
+
         @NamedQuery(name = "establecimiento.findByEmpresa",
                 query = "SELECT e FROM Establecimiento e "+
                         "INNER JOIN FETCH e.empresa emp "+
@@ -67,6 +75,7 @@ public class Establecimiento implements Serializable {
     private String urlImagen;
     private String estado;
     private String carpetaFtp;
+    private String orientacion;
 
     // Relaciones
     private Usuario usuario;
@@ -198,6 +207,11 @@ public class Establecimiento implements Serializable {
     public void setCarpetaFtp(String carpetaFtp) {
         this.carpetaFtp = carpetaFtp;
     }
+
+    @Basic
+    @Column(name= "orientacion")
+    public String getOrientacion() { return orientacion; }
+    public void setOrientacion(String orientacion) { this.orientacion = orientacion; }
 
     @JoinColumn(name = "fk_rubro", referencedColumnName = "idcategoria")
     @ManyToOne(fetch = FetchType.LAZY)

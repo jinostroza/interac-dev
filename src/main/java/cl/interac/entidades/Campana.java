@@ -14,15 +14,15 @@ import java.util.List;
                 @NamedQuery(name = "Campana.findAll", query = "SELECT c FROM Campana c "),
                 @NamedQuery(name ="Campana.findBycontenido",
                            query="SELECT c FROM Campana c  " +
-                                   "INNER JOIN FETCH c.contenido co " ),
+                                   "INNER JOIN FETCH c.contenidoList co " ),
 
                 @NamedQuery(name = "Campana.findByUsuario", query = "SELECT c FROM Campana c " +
-                        "INNER JOIN FETCH c.contenido co " +
+                        "INNER JOIN FETCH c.contenidoList co " +
                         "INNER JOIN FETCH co.usuario u " +
                         "WHERE u.username=:username "),
 
                 @NamedQuery(name = "Campana.findByUsuarioAprobado", query = "SELECT c FROM Campana c " +
-                        "INNER JOIN FETCH c.contenido co " +
+                        "INNER JOIN FETCH c.contenidoList co " +
                         "INNER JOIN FETCH co.usuario u " +
                         "WHERE u.username=:username AND c.estado='Aprobado'"),
 
@@ -41,7 +41,7 @@ import java.util.List;
 
                 @NamedQuery(name = "Campana.findByEstado",
                         query = "SELECT c FROM Campana c " +
-                                "INNER JOIN FETCH c.contenido co " +
+                                "INNER JOIN FETCH c.contenidoList co " +
                                 "INNER JOIN Fetch c.establecimiento e " +
                                 "INNER JOIN Fetch e.usuario u " +
                                 " WHERE u.username=:username AND c.estado='Esperando Aprobacion'"
@@ -59,11 +59,11 @@ import java.util.List;
                 ),
                 @NamedQuery(name = "Campana.findByDate",
                         query = "SELECT c  FROM Campana c " +
-                                "INNER JOIN  c.contenido co " +
+                                "INNER JOIN  c.contenidoList co " +
                                 " WHERE c.fechaFin<:fechavencida"
                 ),
                 @NamedQuery(name = "Campana.findByEstablecimiento", query = "SELECT c FROM Campana c " +
-                        "INNER JOIN FETCH c.contenido co " +
+                        "INNER JOIN FETCH c.contenidoList co " +
                         "INNER JOIN FETCH co.usuario u " +
                         "INNER JOIN FETCH c.establecimiento e " +
                         "WHERE e.usuario.idUsuario=:iduser"),
@@ -89,8 +89,8 @@ public class Campana implements Serializable {
     private Integer valor;
 
     // Relaciones
-    private Contenido contenido;
-    private List<Totem> totemList;
+     private List<Totem> totemList;
+    private List<Contenido> contenidoList;
     private Establecimiento establecimiento;
 
     @Id
@@ -155,15 +155,7 @@ public class Campana implements Serializable {
     }
 
 
-    @JoinColumn(name = "idcontenido", referencedColumnName = "idcontenido")
-    @ManyToOne
-    public Contenido getContenido() {
-        return contenido;
-    }
 
-    public void setContenido(Contenido contenido) {
-        this.contenido = contenido;
-    }
 
     @Basic
     @Column(name = "estado", nullable = false)
@@ -180,11 +172,29 @@ public class Campana implements Serializable {
     public void setEstablecimiento(Establecimiento establecimiento) {
         this.establecimiento = establecimiento;
     }
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "campaconte",
+            inverseJoinColumns = {
+                    @JoinColumn(name = "idcontenido", referencedColumnName = "idcontenido")
+            },
+            joinColumns = {
+                    @JoinColumn(name = "idcampana", referencedColumnName = "idcampana")
+            }
+    )
+    public List<Contenido> getContenidoList() {
+        return contenidoList;
+    }
+
+    public void setContenidoList(List<Contenido> contenidoList) {
+        this.contenidoList = contenidoList;
+    }
 
     @Basic
     @Column(name = "valor")
     public Integer getValor() { return valor; }
     public void setValor(Integer valor) { this.valor = valor; }
+
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -200,9 +210,11 @@ public class Campana implements Serializable {
         return totemList;
     }
 
+
     public void setTotemList(List<Totem> totemList) {
         this.totemList = totemList;
     }
+
 
     @Override
     public boolean equals(Object o) {

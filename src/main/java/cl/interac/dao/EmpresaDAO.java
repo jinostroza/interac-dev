@@ -2,9 +2,9 @@ package cl.interac.dao;
 
 import cl.interac.entidades.Empresa;
 import org.springframework.stereotype.Repository;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -16,6 +16,8 @@ public class EmpresaDAO {
     private EntityManager em;
 
     public List<Empresa> obtenerTodos(){ return em.createNamedQuery("empresa.findAll").getResultList(); }
+
+
 
     public void guardarEmpresa(Empresa emp){
         if(emp.getIdEmpresa() == null){

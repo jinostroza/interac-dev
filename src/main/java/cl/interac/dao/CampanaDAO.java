@@ -49,22 +49,6 @@ public class CampanaDAO {
         return em.createNamedQuery("Campana.findByUsuario").setParameter("username", user).getResultList();
     }
 
-    public Campana obtenerPorIdConTotems(Integer id) {
-        try {
-            return (Campana) em.createNamedQuery("Campana.findByIdWithTotems").setParameter("id", id).getSingleResult();
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    public List<Campana> obtenerLasCampanasDelosTotems(String user){
-        try{
-            return em.createNamedQuery("Campana.findByTotem").setParameter("username",user).getResultList();
-        }catch (Exception e){
-            return null;
-        }
-
-    }
     public List<Campana> obtenerPorEstado(String user){
         return em.createNamedQuery("Campana.findByEstado").setParameter("username",user).getResultList();
 

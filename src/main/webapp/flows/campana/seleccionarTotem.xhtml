@@ -14,7 +14,7 @@
             }
         </style>
 
-        <h:form id="form" style="width: 100%">
+        <h:form id="todo">
             <div class="container contenedor" id="myInterac">
                 <header>
 
@@ -35,164 +35,189 @@
 
                 <br></br>
                 <br></br>
+
                 <div class="row">
 
                     <div class="col-lg-4">
-                    <p:panelGrid columns="4"  >
-                        <h:outputLabel for="inicio" value="Inicio Anuncio:" />
-                        <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
-                        <p:calendar  id="inicio" locale="es" pattern="dd/MM/yyyy"
-                                     value="#{mantenedorCampana.campana.fechaInicio}" mindate="c1.today()" widgetVar="c1" required="true" requiredMessage="Debe indicar fecha de Inicio" >
 
-                            <p:ajax event="dateSelect" listener="#{mantenedorCampana.dateDiff}" update="dias" />
-                        </p:calendar>
-                        <span></span>
-                        <h:outputLabel for="fin" value="Fin Anuncio:" />
-                        <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
-                        <p:calendar  id="fin"  locale="es" pattern="dd/MM/yyyy"
-                                     value="#{mantenedorCampana.campana.fechaFin}" mindate="c2.today()" widgetVar="c2" required="true" requiredMessage="Debe indicar la fecha de Termino" >
-
-                            <p:ajax event="dateSelect" listener="#{mantenedorCampana.dateDiff}" update="dias"/>
-                        </p:calendar>
-                        <p:tooltip for="inicio" value="Indique la fecha de comienzo para su anuncio" trackMouse="true" ></p:tooltip>
-                        <p:tooltip for="fin" value="Indique la fecha de termino para su anuncio" trackMouse="true" ></p:tooltip>
-                    </p:panelGrid>
-                     </div>
-
-                        <br></br>
-                </div>
-                    <br></br>
-                <p:dataTable id="datapantallas" styleClass="col-lg-12 " var="place"
-                             value="#{mantenedorCampana.establecimientos}"
-                             paginator="true" rows="5" selection="#{mantenedorCampana.establecimientoseleccionado}"
-                             selectionMode="single" rowKey="#{place}">
-
-                    <p:ajax event="rowSelect" listener="#{mantenedorCampana.dateDiff}" update=":form:dias"/>
-                    <p:ajax event="rowSelect" listener="#{mantenedorCampana.calculator}" update=":form:out" />
-                    <p:ajax event="rowSelect" listener="#{mantenedorCampana.diasPasadas}" update=":form:pasadas" />
-
-                    <p:column headerText="Busqueda..">
-
-                        <p:graphicImage style="width: 80px;height: 120px" value="#{place.urlImagen}"/>
-
-                    </p:column>
-
-                    <p:column id="Establecimiento" filterBy="#{place.nombreEstablecimiento}" filterMatchMode="contains"
-                              filterStyleClass="form-control">
-                        <h4>Establecimiento:
-                            <small>#{place.nombreEstablecimiento}</small>
-                        </h4>
-                    </p:column>
-                    <p:column id="ubicacion" filterBy="#{place.ubicacion.descubicacion}" filterMatchMode="contains">
-                        <f:facet name="filter">
-                            <h:selectOneMenu styleClass="form-control" onchange="PF('DTpantallas').filter()">
-                                <f:selectItem itemLabel="Ubicacion" itemValue="#{null}" noSelectionOption="true"/>
-                                <f:selectItems value="#{mantenedorCampana.ubicacionList}" var="ubica"
-                                               itemLabel="#{ubica.descubicacion}" itemValue="#{ubica.descubicacion}"/>
-                            </h:selectOneMenu>
-
-                        </f:facet>
-                        <h4>Ciudad :
-                            <small>#{place.ubicacion.descubicacion}</small>
-                        </h4>
-                    </p:column>
-                    <p:column>
-                        <h4>Categoria :
-                            <small>#{place.categoria.desccategoria}</small>
-                        </h4>
-                    </p:column>
-                    <p:column>
-                    <h4>Totems :
-                        <small>#{mantenedorCampana.numeroTotem(place.idEstablecimiento)}</small>
-                    </h4>
-                </p:column>
-                    <p:column>
-                        <h4>Espacios Disponibles :
-                            <small>#{place.slots - mantenedorCampana.numeroCampanas(place.idEstablecimiento)}</small>
-                            <small>#{place.estado}</small>
-                        </h4>
-                    </p:column>
-                    <p:column>
-
-                        <p:commandButton id="descripcion" type="button" icon="ui-icon-pin-s" value="ver"/>
-
-                        <p:overlayPanel id="mapa" for="descripcion" header="Ubicacion de Pantalla" hideEffect="fade"
-                                        dynamic="true" style="width:600px">
-                            <p:gmap id="gmap" center="#{place.lat},#{place.longi}" zoom="20"
-                                    type="HYBRID" model="#{mantenedorCampana.advancedModel}"
-                                    style="width:300px;height:200px">
-                            </p:gmap>
-                            <p:panelGrid columns="3" layout="grid" >
-                                <h:outputLabel value="Horario Apertura:"/>
-                                <h:outputText styleClass="fa fa-fw fa-clock-o"  style="float: right;color: red"/>
-                                <h:outputText value="#{place.horaInicio}">
-                                <f:convertDateTime pattern="HH:mm" timeZone="America/Santiago" timeStyle="short"/>
-                                </h:outputText>
-                                <h:outputLabel value="Horario Cierre:"/>
-                                <h:outputText styleClass="fa fa-fw fa-clock-o" style="float: right;color: red"/>
-                                <h:outputText value="#{place.horaTermino}">
-                                    <f:convertDateTime pattern="HH:mm" timeZone="America/Santiago" timeStyle="short"/>
-                                </h:outputText>
+                            <p:panelGrid columns="4">
+                                <h:outputLabel for="inicio" value="Inicio Anuncio:"/>
+                                <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
+                                <p:calendar id="inicio" locale="es" pattern="dd/MM/yyyy"
+                                            value="#{mantenedorCampana.campana.fechaInicio}" mindate="c1.today()"
+                                            widgetVar="c1" requiredMessage="Debe indicar fecha de Inicio">
 
 
-                                <h:outputLabel value="Direcciòn:"/>
-                                <h:outputText styleClass="fa fa-fw fa-map-marker"  style="float: right;color: red"/>
-                                <h:outputText value="#{place.direccion}"/>
+                                </p:calendar>
+                                <span></span>
+                                <h:outputLabel for="fin" value="Fin Anuncio:"/>
+                                <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
+                                <p:calendar id="fin" locale="es" pattern="dd/MM/yyyy"
+                                            value="#{mantenedorCampana.campana.fechaFin}" mindate="c2.today()"
+                                            widgetVar="c2" requiredMessage="Debe indicar la fecha de Termino">
 
-                                <h:outputLabel value="Telèfono:" />
-                                <h:outputText styleClass="fa fa-fw fa-phone"  style="float: right;color: red"/>
-                                <h:outputText value="#{place.fono}" />
 
-                                <h:outputLabel value="Valor por Pasada"/>
-                                <h:outputText styleClass="fa fa-fw fa-money"  style="float: right;color: red"/>
-                                <h:outputText value="$#{place.valor}"/>
+                                </p:calendar>
+                                <p:tooltip for="inicio" value="Indique la fecha de comienzo para su anuncio"
+                                           trackMouse="true"></p:tooltip>
+                                <p:tooltip for="fin" value="Indique la fecha de termino para su anuncio"
+                                           trackMouse="true"></p:tooltip>
                             </p:panelGrid>
+                        <p:panel header="Filtros">
+                            <p:panelGrid columns="4" >
+                                <p:outputLabel value="Nombre "/>
+                                <h:outputText styleClass="fa fa-fw fa-building-o" style="float: right;color: red"/>
+                                <p:inputText value="#{mantenedorCampana.nomEmpresa}" style="width: 150px"/>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+
+                                <p:outputLabel value="Ubicacion "/>
+                                <h:outputText styleClass="fa fa-fw fa-map-marker" style="float: right;color: red"/>
+                                <h:selectOneMenu value="#{mantenedorCampana.ubicacion}" converter="entityConverter"
+                                                 style="width: 150px">
+                                    <f:selectItem itemLabel="Ubicacion" noSelectionOption="true"/>
+                                    <f:selectItems value="#{mantenedorCampana.ubicacionList}" var="ubica"
+                                                   itemLabel="#{ubica.descubicacion}" itemValue="#{ubica}"/>
+                                </h:selectOneMenu>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+
+                                <p:outputLabel value="Rubro "/>
+                                <h:outputText styleClass="fa fa-fw fa-list-alt" style="float: right;color: red"/>
+                                <h:selectOneMenu value="#{mantenedorCampana.categoria}" converter="entityConverter"
+                                                 style="width: 150px">
+                                    <f:selectItem itemLabel="Rubros"  noSelectionOption="true"/>
+                                    <f:selectItems value="#{mantenedorCampana.categoriaList}" var="cate"
+                                                   itemLabel="#{cate.desccategoria}" itemValue="#{cate}"/>
+                                </h:selectOneMenu>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <p:outputLabel value="Empresa "/>
+                                <h:outputText styleClass="fa fa-fw fa-suitcase" style="float: right;color: red"/>
+                                <h:selectOneMenu value="#{mantenedorCampana.empresa}" converter="entityConverter"
+                                                 style="width: 150px">
+                                    <f:selectItem itemLabel="Empresas" noSelectionOption="true"/>
+                                    <f:selectItems value="#{mantenedorCampana.empresaList}" var="empr"
+                                                   itemLabel="#{empr.nombreEmpresa}" itemValue="#{empr}"/>
+                                </h:selectOneMenu>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <p:outputLabel value="Orientacion Pantalla "/>
+                                <h:outputText styleClass="fa fa-fw fa-mobile" style="float: right;color: red"/>
+                                <h:selectOneMenu  value="#{mantenedorCampana.orienta}">
+                                    <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione --"/>
+                                    <f:selectItem itemValue="Horizontal" itemLabel="Horizontal"/>
+                                    <f:selectItem itemValue="Vertical" itemLabel="Vertical"/>
+                                </h:selectOneMenu>
+
+                            </p:panelGrid>
+                            <p:commandButton icon="fa fa-fw fa-search" value="Buscar" ajax="false"
+                                             action="#{mantenedorCampana.filtrarestablecimiento}"/>
+
+                        </p:panel>
+                    </div>
+                    <p:dataTable id="datapantallas" styleClass="col-lg-8 " var="place"
+                                 value="#{mantenedorCampana.filtrar}"
+                                 paginator="true" rows="5" selection="#{mantenedorCampana.establecimientoseleccionado}"
+                                 selectionMode="single" rowKey="#{place}">
+
+                        <p:column>
+
+                            <p:graphicImage style="width: 80px;height: 120px" value="#{place.urlImagen}"/>
+
+                        </p:column>
+
+                        <p:column id="Establecimiento">
+                            <h4>Establecimiento:
+                                <small>#{place.nombreEstablecimiento}</small>
+                            </h4>
+                        </p:column>
+                        <p:column id="ubicacion">
+                            <h4>Ciudad :
+                                <small>#{place.ubicacion.idubicacion}</small>
+                            </h4>
+                        </p:column>
+                        <p:column>
+                            <h4>Categoria :
+                                <small>#{place.categoria.idcategoria}</small>
+                            </h4>
+                        </p:column>
+                        <p:column>
+                            <h4>Pantallas :
+                                <small>#{mantenedorCampana.numeroTotem(place.idEstablecimiento)}</small>
+                            </h4>
+                        </p:column>
+                        <p:column>
+                            <h4>Espacios Disponibles :
+                                <small>#{place.slots - mantenedorCampana.numeroCampanas(place.idEstablecimiento)}</small>
+
+                            </h4>
+                        </p:column>
+                        <p:column>
+
+                            <p:commandButton id="descripcion" type="button" icon="ui-icon-pin-s" value="ver"/>
+
+                            <p:overlayPanel id="mapa" for="descripcion" header="Ubicacion de Pantalla" hideEffect="fade"
+                                            dynamic="true" style="width:600px">
+                                <p:gmap id="gmap" center="#{place.lat},#{place.longi}" zoom="20"
+                                        type="HYBRID" model="#{mantenedorCampana.advancedModel}"
+                                        style="width:300px;height:200px">
+                                </p:gmap>
+                                <p:panelGrid columns="3" layout="grid">
+                                    <h:outputLabel value="Horario Apertura:"/>
+                                    <h:outputText styleClass="fa fa-fw fa-clock-o" style="float: right;color: red"/>
+                                    <h:outputText value="#{place.horaInicio}">
+                                        <f:convertDateTime pattern="HH:mm" timeZone="America/Santiago"
+                                                           timeStyle="short"/>
+                                    </h:outputText>
+                                    <h:outputLabel value="Horario Cierre:"/>
+                                    <h:outputText styleClass="fa fa-fw fa-clock-o" style="float: right;color: red"/>
+                                    <h:outputText value="#{place.horaTermino}">
+                                        <f:convertDateTime pattern="HH:mm" timeZone="America/Santiago"
+                                                           timeStyle="short"/>
+                                    </h:outputText>
 
 
-                        </p:overlayPanel>
+                                    <h:outputLabel value="Direcciòn:"/>
+                                    <h:outputText styleClass="fa fa-fw fa-map-marker" style="float: right;color: red"/>
+                                    <h:outputText value="#{place.direccion}"/>
+
+                                    <h:outputLabel value="Telèfono:"/>
+                                    <h:outputText styleClass="fa fa-fw fa-phone" style="float: right;color: red"/>
+                                    <h:outputText value="#{place.fono}"/>
+
+                                    <h:outputLabel value="Valor por Pasada"/>
+                                    <h:outputText styleClass="fa fa-fw fa-money" style="float: right;color: red"/>
+                                    <h:outputText value="$#{place.valor}"/>
+                                </p:panelGrid>
 
 
-                    </p:column>
+                            </p:overlayPanel>
 
-                </p:dataTable>
+
+                        </p:column>
+
+                    </p:dataTable>
+
+                    <br></br>
+                </div>
+                <br></br>
 
 
             </div>
             <br></br>
 
-
-            <div class="row datos-campania" style="margin-left: 1%"><h3>Detalles de planificación por Pantalla</h3>
-
-                <div class="col-lg-4">
-                    <span class="datos-campania-titulo">Total dias</span>
-                    <h:outputLabel id="dias" styleClass="datos-campania-texto">
-
-                        <h:outputText value="#{mantenedorCampana.dateDiffValue}"/>
-
-                    </h:outputLabel>
-                </div>
-                <div class="col-lg-4">
-                    <span class="datos-campania-titulo">Total de Pasadas</span>
-                    <h:outputLabel id="pasadas" styleClass="datos-campania-texto">
-                        <h:outputText value=""/>
-                        <h:outputText value="#{mantenedorCampana.pasadasTotales}"/>
-
-                    </h:outputLabel>
-                </div>
-                <div class="col-lg-4 pagar-campania">
-                    <span class="datos-campania-titulo">Costo de pasadas</span>
-                    <h:outputLabel id="out" styleClass="datos-campania-texto">
-                        <h:outputText value="$"/>
-                        <h:outputText value="#{mantenedorCampana.valor}"/>
-
-                    </h:outputLabel>
-                </div>
-            </div>
-
-
             <div class="row"><!--regisCamp-->
                 <div class="col-lg-offset-8" style="margin-bottom: 2%">
-                    <p:commandButton value="Volver" styleClass="btn btn-interac" immediate="true" action="#{facesUtil.redirigir('/plataforma/campana')}"/>
+                    <p:commandButton value="Volver" styleClass="btn btn-interac" immediate="true"
+                                     action="#{facesUtil.redirigir('/plataforma/campana')}"/>
                     <span/>
 
                     <p:commandButton value="Siguente" styleClass="btn btn-interac"
@@ -204,8 +229,7 @@
             </div>
 
             <br></br>
-            <p:growl id="messages" showDetail="true" />
-
+            <p:growl id="messages" autoUpdate="true" showDetail="true"/>
 
         </h:form>
     </ui:define>

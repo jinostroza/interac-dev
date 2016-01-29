@@ -35,6 +35,7 @@
 
         <transition on="regisCamp" to="registraCampana"/>
         <transition on="end1" to="campanaConfirmada"/>
+        <transition on="filtrar" to="seleccionarTotem"></transition>
     </view-state>
 
     <view-state id="vercontenido">

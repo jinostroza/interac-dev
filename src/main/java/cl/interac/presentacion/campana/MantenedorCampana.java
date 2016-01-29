@@ -49,8 +49,6 @@ public class MantenedorCampana implements Serializable {
     private Integer pasadas;
     private Integer valor;
     private Long dias;
-    private String retor;
-    private String end1;
     private List<Usuario> usuarios;
     private List<Meses> mesesList;
     private Meses mes;
@@ -69,12 +67,14 @@ public class MantenedorCampana implements Serializable {
     private Establecimiento establecimiento;
     private List<Establecimiento> establecimientoList;
     private List<Establecimiento> establecimientos;
+    private List<Establecimiento> filtrar;
     private Establecimiento establecimientoseleccionado;
     private Ubicacion ubicacion;
     private List<Ubicacion> ubicacionList;
     private MapModel advancedModel;
     private Contenido contenidosSelecionado;
     private List<Contenido> contenidosSelecionados;
+    private Contenido[] contenidoslista;
     private String dateDiffValue;
     private Marker marker;
     private String newCenter;
@@ -89,6 +89,12 @@ public class MantenedorCampana implements Serializable {
     private boolean chkfecha;
     private int fileUploadCount;
     private Integer pasadasTotales;
+    private List<Empresa> empresaList;
+    private Empresa empresa;
+    private String nomEmpresa ;
+    private String orienta;
+
+
 
     @Autowired
     private MailSender mailSender;
@@ -99,6 +105,8 @@ public class MantenedorCampana implements Serializable {
     @Autowired
     private LogicaUsuario logicaUsuario;
     @Autowired
+    private LogicaEmpresa logicaEmpresa;
+    @Autowired
     private LogicaCampana logicaCampana;
     @Autowired
     private LogicaTotem logicaTotem;
@@ -106,8 +114,6 @@ public class MantenedorCampana implements Serializable {
     private UserSession userSession;
     @Autowired
     private LogicaContenido logicaContenido;
-    @Autowired
-    private LogicaMeses logicaMeses;
     @Autowired
     private PropertyReader propertyReader;
     @Autowired
@@ -127,16 +133,19 @@ public class MantenedorCampana implements Serializable {
         categoriaList = logicaCategoria.obtenerTodos();
         establecimientoList=logicaEstablecimiento.obtenerTodos();
         establecimientos=logicaEstablecimiento.obbtenerPorTotem();
+        filtrar=logicaEstablecimiento.obtenerFiltro(orienta, nomEmpresa, empresa, ubicacion, categoria);
         ubicacionList=logicaUbicacion.obtenerTodas();
         tipototemList=logicaTipototem.obtenerTodos();
         totemsConrelacion = logicaTotem.obtenerConRelacion();
         totems = logicaTotem.obtenerPorUsuario(userSession.getUsuario().getUsername());
         campanas = logicaCampana.obtenerPorUsuario(userSession.getUsuario().getUsername());
         contenidos = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
-        campanaList= logicaCampana.obtenerLasCampanasDeLosTotems(userSession.getUsuario().getUsername());
         totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
-        mesesList = logicaMeses.obtenerTodos();
+        empresaList = logicaEmpresa.obtenerTodos();
+
+
+
     }
 
     public void subir(FileUploadEvent fue) {
@@ -144,7 +153,7 @@ public class MantenedorCampana implements Serializable {
         contenido = new Contenido();
 
         try {
-            String pathTemporal = fileUploader.subir(fue,"/contenido");
+            String pathTemporal = fileUploader.subir(fue, "/contenido");
 
             String ambiente = propertyReader.get("ambiente");
 
@@ -181,20 +190,11 @@ public class MantenedorCampana implements Serializable {
         contenido.setCategoria(categoria);
 
         logicaContenido.guardar(contenido);
+        categoria=null;
 
         return irCrear(c);
 
     }
-    public String editarCont(Contenido c) {
-        contenido = c;
-        contenido.setCategoria(categoria);
-
-        logicaContenido.guardar(contenido);
-
-    return "crear";
-    }
-
-
     public String irPagar(Campana ca ){
         campana = ca ;
         return "paga";
@@ -202,9 +202,11 @@ public class MantenedorCampana implements Serializable {
 
      public String irCrear(Contenido c) {
          contenido = c;
-         campana = new Campana();
          contenidos = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
          return "crear";
+    }
+    public String irFiltrar(){
+        return "filtrar";
     }
 
     public void  guardar(){
@@ -244,6 +246,7 @@ public class MantenedorCampana implements Serializable {
     }
 
        public void eliminarFichero(Contenido conte){
+
         try {
             String ambiente = propertyReader.get("ambiente");
 
@@ -252,14 +255,17 @@ public class MantenedorCampana implements Serializable {
                 // dentro del server siempre podra subir, no importa si es wintendo o linux
                 logicaContenido.eliminarContenido(conte);
                 FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha borrado la imagen");
-            }else if ("produccion".equals(ambiente)) {
+                contenidos = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
+            }
+            else if ("produccion".equals(ambiente)) {
                 logicaContenido.eliminarContenido(conte);
                 Files.delete(Paths.get("/home/ec2-user/media/interac/" + conte.getPath()));
                 FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha borrado la imagen}");
+                contenidos = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
             }
 
         }catch (Exception e){
-            FacesUtil.mostrarMensajeInformativo("Operación Fallida","Algo Ocurrio");
+            FacesUtil.mostrarMensajeInformativo("Operación Fallida", "Algo Ocurrio");
         }
     }
     public void eliminarCampana(Campana campa){
@@ -270,13 +276,13 @@ public class MantenedorCampana implements Serializable {
                 FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha eliminado la Campaña}");
 
         }catch (Exception e){
-            FacesUtil.mostrarMensajeError("Operación Fallida","Algo Ocurrio");
+            FacesUtil.mostrarMensajeError("Operación Fallida", "Algo Ocurrio");
         }
     }
 
     public String ver(int t){
         System.err.println("Totem:" + t);
-        logicaCampana.obtenerPorIdConTotems(t);
+
         return "ver";
     }
     public Long numeroTotem(Integer numTotem){
@@ -289,6 +295,7 @@ public class MantenedorCampana implements Serializable {
         contarCampana=logicaCampana.obtenerPorEstablecimiento(numCampana);
         return contarCampana;
     }
+
 
     public void dateStart () {
         Date date = new Date();
@@ -359,6 +366,17 @@ public class MantenedorCampana implements Serializable {
         Long resultado = (tiempoFinal-3) - (tiempoInicial-3);
 
         return resultado.intValue();
+    }
+    public String contenidosList(){
+        campana = new Campana();
+        Integer count = contenidosSelecionados.size();
+        if (count.equals(0)){
+            FacesUtil.mostrarMensajeError("Operación Fallida", "Debe seleccionar al menos 1 anuncio");
+            return "crear";
+        }else {
+            System.out.println(contenidosSelecionados.size());
+            return "subir";
+        }
     }
 
     public List<Totem> totemsEST(Integer idestablecimiento) {
@@ -434,30 +452,31 @@ public class MantenedorCampana implements Serializable {
         totem = t;
         newCenter= totem.getLat()+","+totem.getLongi();
         advancedModel = new DefaultMapModel();
-        advancedModel.addOverlay(new Marker(new LatLng(totem.getLat(),totem.getLongi()),totem.getEstablecimiento().getNombreEstablecimiento()
-          , "http://www.google.com/mapfiles/dd-start.png"));
+        advancedModel.addOverlay(new Marker(new LatLng(totem.getLat(), totem.getLongi()), totem.getEstablecimiento().getNombreEstablecimiento()
+                , "http://www.google.com/mapfiles/dd-start.png"));
          advancedModel = null;
-        System.err.println(totem.getLat()+","+totem.getLongi()+","+newCenter);
+        System.err.println(totem.getLat() + "," + totem.getLongi() + "," + newCenter);
        return newCenter;
 
     }
+    public void filtrarestablecimiento(){
+        if (nomEmpresa.equals("")){
+            nomEmpresa=null;
 
+        }
+        if (orienta.equals("")){
+            orienta=null;
 
+        }
+        System.out.println("pasando");
+        System.out.println(orienta);
+        System.out.println(nomEmpresa);
+        System.out.println(empresa);
+        System.out.println(ubicacion);
+        System.out.println(categoria);
+        filtrar = logicaEstablecimiento.obtenerFiltro(orienta,nomEmpresa,empresa,ubicacion,categoria);
 
-   //getter and setter
-    public Integer filterUbica(Ubicacion u){
-        ubicacion=u;
-        ubica=u.getIdubicacion();
-        System.err.println("ID" + ubica);
-        return ubica;
     }
-    public String filterTipo(Tipototem tp){
-        tipototem=tp;
-        tipot=tp.getDestipo();
-        System.err.println("ID" + tipot);
-        return tipot;
-    }
-
     //Getter and Setter
     public Long getContarCampanas() {
         return contarCampanas;
@@ -825,12 +844,61 @@ public class MantenedorCampana implements Serializable {
         this.mesFin = mesFin;
     }
 
+    public List<Empresa> getEmpresaList() {
+        return empresaList;
+    }
+
+    public void setEmpresaList(List<Empresa> empresaList) {
+        this.empresaList = empresaList;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
     public Integer getPasadasTotales() {
         return pasadasTotales;
     }
 
     public void setPasadasTotales(Integer pasadasTotales) {
         this.pasadasTotales = pasadasTotales;
+    }
+
+    public List<Establecimiento> getFiltrar() {
+        return filtrar;
+    }
+
+    public void setFiltrar(List<Establecimiento> filtrar) {
+        this.filtrar = filtrar;
+    }
+
+    public String getOrienta() {
+        return orienta;
+    }
+
+    public void setOrienta(String orienta) {
+        this.orienta = orienta;
+    }
+
+    public String getNomEmpresa() {
+        return nomEmpresa;
+    }
+
+
+    public void setNomEmpresa(String nomEmpresa) {
+        this.nomEmpresa = nomEmpresa;
+    }
+
+    public Contenido[] getContenidoslista() {
+        return contenidoslista;
+    }
+
+    public void setContenidoslista(Contenido[] contenidoslista) {
+        this.contenidoslista = contenidoslista;
     }
 
     public List<Campana> getContenidocampanas() {

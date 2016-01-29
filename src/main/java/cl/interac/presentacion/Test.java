@@ -44,7 +44,7 @@ public class Test {
         Totem t = new Totem();
         t.setIdtotem(201);
         totems.add(t);
-        c.setTotemList(totems);
+
 
         logicaCampana.guardarCampana(c);
         return null;

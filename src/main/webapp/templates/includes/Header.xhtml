@@ -13,7 +13,7 @@
                     <h:commandButton styleClass="btn btn-interac" style="height: 40px; " value="Activar Pantallas" action="#{facesUtil.redirigir('/plataforma/contenidos')}"/>
                 </ui:fragment>
                 <ui:fragment rendered="#{userSession.estaAutentificado() }">
-                    <p:commandButton styleClass="btn-perfil" style="height: 80px; background-color:#E52721;color: white;" value="#{userSession.usuario.username}" action="#{facesUtil.redirigir('/plataforma/panelDeControl')}" />
+                    <h:commandButton styleClass="btn-perfil" style="height: 60px;width: 100px;background-color:#E52721;color: white;border-radius: 20%" value="#{userSession.usuario.username}" action="#{facesUtil.redirigir('/plataforma/panelDeControl')}" />
                 </ui:fragment>
             </p:outputPanel>
         </div>
