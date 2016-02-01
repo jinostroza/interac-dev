@@ -135,7 +135,7 @@ public class MantenedorCampana implements Serializable {
         categoriaList = logicaCategoria.obtenerTodos();
         establecimientoList=logicaEstablecimiento.obtenerTodos();
         establecimientos=logicaEstablecimiento.obbtenerPorTotem();
-        filtrar=logicaEstablecimiento.obtenerFiltro(orienta, nomEmpresa, empresa, ubicacion, categoria);
+        filtrar=logicaEstablecimiento.obtenerFiltro(orienta, empresa, ubicacion, categoria);
         ubicacionList=logicaUbicacion.obtenerTodas();
         tipototemList=logicaTipototem.obtenerTodos();
         totemsConrelacion = logicaTotem.obtenerConRelacion();
@@ -145,9 +145,6 @@ public class MantenedorCampana implements Serializable {
         totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
         empresaList = logicaEmpresa.obtenerTodos();
-
-
-
     }
 
     public void subir(FileUploadEvent fue) {
@@ -211,19 +208,32 @@ public class MantenedorCampana implements Serializable {
         return "filtrar";
     }
 
-    public void  guardar(){
-        //perisitencia
-        campana.setContenidoList(Arrays.asList(contenidoslista));
+    public String  guardar(){
 
-        campana.setEstado("Esperando Aprobacion");
-        campana.setFechaCreacion(Date.from(Instant.now()));
-        campana.setEstablecimientoList(Arrays.asList(establecimientosLista));
-     //   campana.setPasadas(pasadas);
-        campana.setNombrecampana(Date.from(Instant.now()).toString());
-        //campana.setValor(valor);
-        String ambiente = propertyReader.get("ambiente");
+        Integer count =establecimientosLista.length;
+        if (count.equals(0)){
+            FacesUtil.mostrarMensajeError("Error", "Debe seleccionar al menos un establecimiento");
+            return "subir";
+        }else if(campana.getFechaInicio().equals(null) || campana.getFechaFin().equals(null)){
+            FacesUtil.mostrarMensajeError("Error", "Debe seleccionar las fechas para su campaña");
+            return "subir";
 
-        if ("desarrollo".equals(ambiente)) {
+        } else {
+            System.out.println(contenidoslista.length);
+
+            //perisitencia
+
+
+            campana.setContenidoList(Arrays.asList(contenidoslista));
+
+            campana.setEstado("Esperando Aprobacion");
+            campana.setFechaCreacion(Date.from(Instant.now()));
+            campana.setEstablecimientoList(Arrays.asList(establecimientosLista));
+            //   campana.setPasadas(pasadas);
+            campana.setNombrecampana(Date.from(Instant.now()).toString());
+            //campana.setValor(valor);
+            String ambiente = propertyReader.get("ambiente");
+            if ("desarrollo".equals(ambiente)) {
             // dentro del server siempre podra subir, no importa si es wintendo o linux
             logicaCampana.guardarCampana(campana);
 
@@ -234,10 +244,10 @@ public class MantenedorCampana implements Serializable {
         String mensajeLocal = new String(constantes.getAlertas());
         String mensajeAnunciante = new String(constantes.getHeaderCorreo());
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$Id",String.valueOf(campana.getIdcampana()));
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento",establecimientoseleccionado.getNombreEstablecimiento());
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$numerodePantallas",String.valueOf(establecimientoseleccionado.getNumeroPantallas()));
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valormensual",String.valueOf(valor));
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$total",String.valueOf(valor));
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento","prueba");
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$numerodePantallas","4");
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valormensual",String.valueOf(2));
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$total",String.valueOf(2));
 
         //correo
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -251,7 +261,10 @@ public class MantenedorCampana implements Serializable {
         mailSender.send(replicas,"Interac",mensajeLocal);
 
         FacesUtil.mostrarMensajeInformativo("Operacion exitosa", "se ha creado tu anuncio");
-    }}
+    }
+            dateDiff();
+            return "end1";}
+    }
 
        public void eliminarFichero(Contenido conte){
 
@@ -367,9 +380,9 @@ public class MantenedorCampana implements Serializable {
     }
 
     //Funcion que obtiene en entero el rango de horas de un establecimiento
-    public Integer calcularHoras(){
-        Long tiempoInicial = establecimientoseleccionado.getHoraInicio().getTime()/3600000;
-        Long tiempoFinal = establecimientoseleccionado.getHoraTermino().getTime()/3600000;
+    public Integer calcularHoras(Establecimiento est){
+        Long tiempoInicial = est.getHoraInicio().getTime()/3600000;
+        Long tiempoFinal = est.getHoraTermino().getTime()/3600000;
 
         Long resultado = (tiempoFinal-3) - (tiempoInicial-3);
 
@@ -395,30 +408,34 @@ public class MantenedorCampana implements Serializable {
 
    //Funcion que retorna en entero la cantidad de pasadas segun
     //la hora de apertura y cierre del establecimiento, ademas de los slots disponibles
-    public Integer calcularPasadas(){
+    public Integer calcularPasadas(Establecimiento est){
 
-        Integer horas = calcularHoras();
-        Integer cantidadPasadas = ((horas * 3600) / (10 * establecimientoseleccionado.getSlots()));
+        Integer horas = calcularHoras(est);
+        Integer cantidadPasadas = ((horas * 3600) / (10 * est.getSlots()));
 
         return cantidadPasadas;
     }
 
-    public void calculator(){
-        pasadas=calcularPasadas();
-        if (userSession.getUsuario().getIdUsuario().equals(establecimientoseleccionado.getUsuario().getIdUsuario())) {
+    public Integer calculator(Establecimiento est){
+        pasadas=calcularPasadas(est);
+        if (userSession.getUsuario().getIdUsuario().equals(est.getUsuario().getIdUsuario())) {
             valor = (pasadas * 0) * (dias.intValue() + 1);
+        return valor;
         }else {
-            valor = (pasadas * establecimientoseleccionado.getValor()) * (dias.intValue() + 1);
+            valor = (pasadas * est.getValor()) * (dias.intValue() + 1);
+
+        return valor;
         }
     }
-    public void diasPasadas(){
+    public Integer diasPasadas(Establecimiento est){
+        pasadas=calcularPasadas(est);
 
         pasadasTotales=pasadas*(dias.intValue()+1);
-        System.err.println(pasadasTotales);
 
 
+    return pasadasTotales;
     }
-    public void dateDiff() {
+    public String dateDiff() {
 
         if(campana.getFechaInicio()!=null && campana.getFechaFin()!=null)
         {
@@ -449,7 +466,7 @@ public class MantenedorCampana implements Serializable {
                 e.printStackTrace();
             }
         }
-
+    return dateDiffValue;
     }
     public void onMarkerSelect(OverlaySelectEvent event) {
         marker = (Marker) event.getOverlay();
@@ -468,21 +485,18 @@ public class MantenedorCampana implements Serializable {
 
     }
     public void filtrarestablecimiento(){
-        if (nomEmpresa.equals("")){
-            nomEmpresa=null;
 
-        }
         if (orienta.equals("")){
             orienta=null;
 
         }
         System.out.println("pasando");
         System.out.println(orienta);
-        System.out.println(nomEmpresa);
+
         System.out.println(empresa);
         System.out.println(ubicacion);
         System.out.println(categoria);
-        filtrar = logicaEstablecimiento.obtenerFiltro(orienta,nomEmpresa,empresa,ubicacion,categoria);
+        filtrar = logicaEstablecimiento.obtenerFiltro(orienta,empresa,ubicacion,categoria);
 
     }
     //Getter and Setter

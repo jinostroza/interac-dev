@@ -58,7 +58,7 @@ public class EstablecimientoDAO {
     public List<Establecimiento> filtrar(String orienta,String nombre,Integer empresa,Integer ubicacion,Integer rubro){
         return em.createNamedQuery("establecimiento.findFilter").setParameter("orientacion", orienta).setParameter("nombre",nombre).setParameter("idempresa",empresa).setParameter("idubicacion",ubicacion).setParameter("idcategoria", rubro).getResultList();
     }
-    public List<Establecimiento> obtenerFiltro(String orienta,String nombre,Empresa empresa,Ubicacion ubicacion,Categoria categoria) {
+    public List<Establecimiento> obtenerFiltro(String orienta,Empresa empresa,Ubicacion ubicacion,Categoria categoria) {
         StringBuilder sb = new StringBuilder();
         sb.append("select ");
         sb.append("    e.* ");
@@ -69,9 +69,6 @@ public class EstablecimientoDAO {
         sb.append("where e.estado='Activado' " );
         if (orienta != null){
             sb.append("and e.orientacion=:orienta ");
-        }
-        if (nombre != null){
-            sb.append("and e.desestablecimiento=:nombre ");
         }
         if (empresa != null){
             sb.append("and e.empresa=:empresa ");
@@ -86,9 +83,6 @@ public class EstablecimientoDAO {
 
         if (orienta != null){
             q.setParameter("orienta", orienta);
-        }
-        if (nombre != null){
-            q.setParameter("nombre", nombre);
         }
         if (empresa != null){
             q.setParameter("empresa", empresa.getIdEmpresa());

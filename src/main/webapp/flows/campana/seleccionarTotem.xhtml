@@ -65,13 +65,6 @@
                             </p:panelGrid>
                         <p:panel header="Filtros">
                             <p:panelGrid columns="4" >
-                                <p:outputLabel value="Nombre "/>
-                                <h:outputText styleClass="fa fa-fw fa-building-o" style="float: right;color: red"/>
-                                <p:inputText value="#{mantenedorCampana.nomEmpresa}" style="width: 150px"/>
-                                <br></br>
-                                <br></br>
-                                <br></br>
-
                                 <p:outputLabel value="Ubicacion "/>
                                 <h:outputText styleClass="fa fa-fw fa-map-marker" style="float: right;color: red"/>
                                 <h:selectOneMenu value="#{mantenedorCampana.ubicacion}" converter="entityConverter"
@@ -212,7 +205,7 @@
                     <span/>
 
                     <p:commandButton value="Siguente" styleClass="btn btn-interac"
-                                     action="end1" actionListener="#{mantenedorCampana.guardar}" update="messages">
+                                     action="#{mantenedorCampana.guardar}"  update="messages">
 
                     </p:commandButton>
                 </div>

@@ -34,7 +34,9 @@
     <view-state id="seleccionarTotem">
 
         <transition on="regisCamp" to="registraCampana"/>
-        <transition on="end1" to="campanaConfirmada"/>
+        <transition on="end1" to="campanaConfirmada">
+
+        </transition>
         <transition on="filtrar" to="seleccionarTotem"></transition>
     </view-state>
 

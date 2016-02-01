@@ -110,7 +110,7 @@
                         </f:facet>
 
                         <p:column styleClass="col-lg-2" headerText="">
-                            <p:imageSwitch effect="fade" id="fac">
+                            <p:imageSwitch effect="shuffle" id="fac">
                                 <ui:repeat value="#{camton.contenidoList}" var="image" id="manuelSwitcherImages">
                                     <p:graphicImage value="/imagenes/interac/#{image.path}" style="width:100px; height:200px ;"/>
                                 </ui:repeat>
@@ -152,7 +152,7 @@
                         </f:facet>
 
                         <p:column styleClass="col-lg-2" headerText="">
-                            <p:imageSwitch effect="fade" id="fadeEffect">
+                            <p:imageSwitch effect="shuffle" id="fadeEffect">
                             <ui:repeat value="#{camton.contenidoList}" var="image" id="manuelSwitcherImages">
                                 <p:graphicImage value="/imagenes/interac/#{image.path}" style="width:100px; height:200px ;"/>
                             </ui:repeat>

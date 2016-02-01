@@ -6,133 +6,163 @@
                 template="/templates/logInTemplate.xhtml">
 
     <ui:define name="contenido">
-        <h:outputStylesheet>
+        <style>
             body {
                 background-color: #E52620;
             }
-        </h:outputStylesheet>
+        </style>
 
-          <h:form>
-              <div class="login-header"></div>
+        <h:form>
+            <div class="login-header"></div>
             <div class="container">
                 <div class="row">
                     <div class="row" id="cuadro-registro" style="margin-top: 10%;margin-left:5%;height: 30%;width: 90%">
-                        <div class="col-md-6 col-md-offset-2" >
+                        <div class="col-md-6 col-md-offset-2">
                             <br/>
                             <br/>
-                            <ui:fragment rendered="#{mantenedorCampana.establecimientoseleccionado != null }" >
-                            <h3>!Se ha creado tu anuncio!</h3>
-                            <p>Has subido tu publicidad exitosamente</p>
-                            <div class="row">
-                                <p:graphicImage url="imagenes/interac/#{mantenedorCampana.campana.contenido.path}" style="width:150px; height:200px ;"
-                                        styleClass="col-lg-1"/>
-                                <div class="col-lg-offset-2" style="width: 550px" >
-                                <h:panelGrid >
-                                    <h3>Anuncio Nº : #{mantenedorCampana.campana.idcampana}</h3>
+                            <ui:fragment rendered="#{mantenedorCampana.establecimientosLista != null }">
+                                <h3>!Se ha creado tu anuncio!</h3>
 
-                                    </h:panelGrid>
-                                    <h:panelGrid columns="1">
-                                        <h4>Programacion</h4>
-                                    </h:panelGrid>
+                                <p>Has subido tu publicidad exitosamente</p>
 
-                                    <h:panelGrid columns="3">
-                                    <h:outputLabel value="Fecha de Cracion: ">
-                                    <h:outputLabel value="#{mantenedorCampana.campana.fechaCreacion}">
-                                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                                    </h:outputLabel>
-                                    </h:outputLabel>
-                                    <h:outputLabel value=" Fecha Inicio :">
-                                    <h:outputLabel style="color: red" value="#{mantenedorCampana.campana.fechaInicio}">
-                                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                                    </h:outputLabel>
-                                </h:outputLabel>
-                                    <h:outputLabel value=" Fecha Termino :">
-                                        <h:outputLabel style="color: red" value="#{mantenedorCampana.campana.fechaFin}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy" />
-                                        </h:outputLabel>
-                                    </h:outputLabel>
-                                    </h:panelGrid>
-                                    <h:panelGrid columns="3" style="width: 300px">
-                                        <f:facet name="header">
-                                            <h4>Pasadas</h4>
-                                        </f:facet>
-                                        <h:outputLabel value="Total de Dias: ">
-                                            <h:outputLabel style="color: red" value="#{mantenedorCampana.dias+1}"/>
-                                        </h:outputLabel>
-                                        <h:outputLabel value="Pasadas Diarias: ">
-                                            <h:outputLabel style="color: red" value="#{mantenedorCampana.pasadas}"/>
-                                        </h:outputLabel>
-                                        <h:outputLabel value="Total Pasadas: ">
-                                            <h:outputLabel style="color: red" value="#{mantenedorCampana.pasadasTotales}"/>
-                                        </h:outputLabel>
-                                    </h:panelGrid>
-                                    <h:panelGrid columns="2" style="width: 550px;margin-left: 11%">
-                                        <f:facet name="header">
-                                            <h4>Costos</h4>
-                                        </f:facet>
-                                        <h:outputLabel value="Valor por pasada: ">
-                                            <h:outputLabel style="color: red" value="$2"/>
-                                        </h:outputLabel>
-                                        <h:outputLabel value="Valor total " style="font-size: x-large">
-                                            <h:outputLabel style="color: red;font-size: x-large" value="$#{mantenedorCampana.valor}"/>
-                                        </h:outputLabel>
-                                        <h:outputLabel value="Tu anuncio se publicara En : ">
-                                            <h:graphicImage style="width: 80px;height: 120px" value="#{mantenedorCampana.establecimientoseleccionado.urlImagen}"/>
-                                            <h:outputLabel  value="#{mantenedorCampana.establecimientoseleccionado.nombreEstablecimiento}">
-                                                <small>#{mantenedorCampana.establecimientoseleccionado.direccion}/#{mantenedorCampana.establecimientoseleccionado.ubicacion.descubicacion}</small>
+                                <div class="row">
+                                    <div class="col-lg-offset-2" style="width: 550px">
+                                        <h:panelGrid>
+                                            <h3>Campaña Nº : #{mantenedorCampana.campana.idcampana}</h3>
+
+                                        </h:panelGrid>
+                                        <h:panelGrid columns="1">
+                                            <h4>Resumen</h4>
+                                        </h:panelGrid>
+
+                                        <h:panelGrid columns="4">
+                                            <h:outputLabel value="Fecha de Cracion: ">
+                                                <h:outputLabel value="#{mantenedorCampana.campana.fechaCreacion}">
+                                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                </h:outputLabel>
                                             </h:outputLabel>
-                                        </h:outputLabel>
+                                            <h:outputLabel value=" Fecha Inicio :">
+                                                <h:outputLabel style="color: red"
+                                                               value="#{mantenedorCampana.campana.fechaInicio}">
+                                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                </h:outputLabel>
+                                            </h:outputLabel>
+                                            <h:outputLabel value=" Fecha Termino :">
+                                                <h:outputLabel style="color: red"
+                                                               value="#{mantenedorCampana.campana.fechaFin}">
+                                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                </h:outputLabel>
+                                            </h:outputLabel>
+                                            <h:outputLabel value="Total de Dias: ">
+                                                <h:outputLabel style="color: red"
+                                                               value="#{mantenedorCampana.dateDiffValue}"/>
+                                            </h:outputLabel>
+                                        </h:panelGrid>
+                                        <p:dataTable id="datapantallas" styleClass="col-lg-12 " var="est"
+                                                     value="#{mantenedorCampana.establecimientosLista}"
+                                                     paginator="true" rows="5"  rowKey="#{est}">
+                                                <f:facet name="header">
+                                                    Resumen por Establecimientos
+                                                </f:facet>
 
-                                    </h:panelGrid>
+
+                                                            <p:column>
+                                                            <h:outputText value="#{est.nombreEstablecimiento}" style="font-weight: bold"/>
+                                                            </p:column>
+
+                                                           <p:column headerText="Tiempo Funcionamiento">
+                                                            <h:outputText value="#{mantenedorCampana.calcularHoras(est)}" style="font-weight: bold"/>
+                                                            </p:column>
+                                                            <p:column headerText="Pasadas Diarias" >
+                                                            <h:outputText value="#{mantenedorCampana.calcularPasadas(est)}" style="font-weight: bold"/>
+                                                            </p:column>
+
+                                                            <p:column headerText="Pasadas Totales" >
+                                                            <h:outputText value="#{mantenedorCampana.diasPasadas(est)}" style="font-weight: bold"/>
+                                                            </p:column>
+                                                            <p:column headerText="Valor" >
+                                                            <h:outputText value="#{mantenedorCampana.calculator(est)}" style="font-weight: bold"/>
+                                                            </p:column>
+                                                </p:dataTable>
+
+
+                                        <h:panelGrid columns="2" style="width: 550px;margin-left: 11%">
+                                            <f:facet name="header">
+                                                <h4>Costos</h4>
+                                            </f:facet>
+                                            <h:outputLabel value="Valor por pasada: ">
+                                                <h:outputLabel style="color: red" value="$2"/>
+                                            </h:outputLabel>
+                                            <h:outputLabel value="Valor total " style="font-size: x-large">
+                                                <h:outputLabel style="color: red;font-size: x-large"
+                                                               value="$#{mantenedorCampana.valor}"/>
+                                            </h:outputLabel>
+                                            <h:outputLabel value="Tu anuncio se publicara En : ">
+                                                <p:imageSwitch effect="fade" id="fac">
+                                                    <ui:repeat value="#{mantenedorCampana.contenidoslista}" var="image"
+                                                               id="manuelSwitcherImages">
+                                                        <p:graphicImage value="/imagenes/interac/#{image.path}"
+                                                                        style="width:100px; height:200px ;"
+                                                                        styleClass="col-lg-1"/>
+                                                    </ui:repeat>
+                                                </p:imageSwitch>
+                                                <p:imageSwitch effect="fade" id="fa">
+                                                    <ui:repeat value="#{mantenedorCampana.establecimientosLista}"
+                                                               var="est" id="manuelSwitcher">
+                                                        <p:graphicImage value="#{est.urlImagen}"
+                                                                        style="width:300px; height:300px ;"
+                                                                        styleClass="col-lg-1"
+                                                                        title="#{est.nombreEstablecimiento}"
+                                                                        alt="#{est.nombreEstablecimiento}">
+
+                                                        </p:graphicImage>
+
+                                                    </ui:repeat>
+                                                </p:imageSwitch>
+                                                <p:imageSwitch effect="fade" id="f">
+                                                    <ui:repeat value="#{mantenedorCampana.establecimientosLista}"
+                                                               var="est" id="datos">
+                                                        <h3>#{est.nombreEstablecimiento}</h3>
+                                                    </ui:repeat>
+                                                </p:imageSwitch>
+                                                <br/>
+                                                <p:imageSwitch effect="fade" id="di">
+                                                    <ui:repeat value="#{mantenedorCampana.establecimientosLista}"
+                                                               var="est" id="direc">
+                                                        <small>#{est.direccion}/#{est.ubicacion.idubicacion}</small>
+
+                                                    </ui:repeat>
+                                                </p:imageSwitch>
+
+
+                                            </h:outputLabel>
+
+                                        </h:panelGrid>
+                                    </div>
                                 </div>
-                            </div>
-
-                            </ui:fragment>
-
-                            <ui:fragment rendered="#{mantenedorCampana.totemSelecionados != null }" >
-                            <p:panelGrid columns="2">
-                                <f:facet name="header">
-                                    <h:graphicImage url="/imagenes/interac/#{mantenedorCampana.campana.contenido.path}" style="width:100px; height:200px ;" />
-                                </f:facet>
-
-                                <h:outputText value="fecha Creacion:" />
-                                <h:outputText value="#{mantenedorCampana.campana.fechaCreacion}" >
-                                    <f:convertDateTime pattern="dd/MM/yyyy" />
-                                </h:outputText>
-
-                                <h:outputText value="fecha inicio:" />
-                                <h:outputText value="#{mantenedorCampana.campana.fechaInicio}" >
-                                    <f:convertDateTime pattern="dd/MM/yyyy" />
-                                </h:outputText>
-
-                                <h:outputText value="fecha fin:" />
-                                <h:outputText value="#{mantenedorCampana.campana.fechaFin}" >
-                                    <f:convertDateTime pattern="dd/MM/yyyy" />
-                                </h:outputText>
-
-                                <h:outputText value="Pasadas:" />
-                                <h:outputText value="#{mantenedorCampana.campana.pasadas}" />
-                            </p:panelGrid>
                             </ui:fragment>
 
                             <div class="row" style="margin-top: 20%;margin-bottom: 10%">
 
-                                <p:commandButton value="Volver Inicio" styleClass="btn btn-interac" action="fin"></p:commandButton>
+                                <p:commandButton value="Volver Inicio" styleClass="btn btn-interac" action="fin"
+                                                 immediate="true"></p:commandButton>
                                 <h:panelGrid styleClass="col-lg-3" columns="1" cellpadding="5">
 
-                                    <p:commandButton value="Pagar" type="button" styleClass="btn btn-interac" onclick="PF('dlg2').show();"  />
+                                    <p:commandButton value="Pagar" type="button" styleClass="btn btn-interac"
+                                                     onclick="PF('dlg2').show();"/>
                                 </h:panelGrid>
 
                                 <p:dialog header="Trabajos en Progreso" widgetVar="dlg2" modal="true" height="500">
-                                    <h:outputText value="Estamos Trabajando en la Integracion de :" />
-                                    <h:graphicImage url="http://www.biocartuning.cl/catalogo/img/p/591-1573-large.jpg"></h:graphicImage>
+                                    <h:outputText value="Estamos Trabajando en la Integracion de :"/>
+                                    <h:graphicImage
+                                            url="http://www.biocartuning.cl/catalogo/img/p/591-1573-large.jpg"></h:graphicImage>
                                 </p:dialog>
                             </div>
                         </div>
-                        <div class="btn-register_ confirma-campana col-lg-4 col-md-4 col-xs-4 " ></div>
+                        <div class="btn-register_ confirma-campana col-lg-4 col-md-4 col-xs-4 "></div>
                     </div>
                 </div>
-          </div>
+            </div>
             <div class="push">
             </div>
         </h:form>

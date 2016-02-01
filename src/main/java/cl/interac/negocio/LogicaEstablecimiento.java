@@ -58,8 +58,8 @@ public class LogicaEstablecimiento {
         return establecimientoDAO.filtrar(orienta, nombre, empresa, ubicacion, rubro);
     }
     @Transactional(readOnly = true)
-    public List<Establecimiento> obtenerFiltro(String orienta,String nombre,Empresa empresa,Ubicacion ubicacion,Categoria categoria) {
-        return establecimientoDAO.obtenerFiltro(orienta,nombre,empresa,ubicacion,categoria);
+    public List<Establecimiento> obtenerFiltro(String orienta,Empresa empresa,Ubicacion ubicacion,Categoria categoria) {
+        return establecimientoDAO.obtenerFiltro(orienta,empresa,ubicacion,categoria);
     }
 
     @Transactional(readOnly = false)
