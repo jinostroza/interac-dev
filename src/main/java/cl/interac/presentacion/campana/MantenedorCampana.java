@@ -89,6 +89,7 @@ public class MantenedorCampana implements Serializable {
     private Integer mesFin;
     private Date date;
     private boolean chkfecha;
+    private boolean orientacion;
     private int fileUploadCount;
     private Integer pasadasTotales;
     private List<Empresa> empresaList;
@@ -214,7 +215,8 @@ public class MantenedorCampana implements Serializable {
         if (count.equals(0)){
             FacesUtil.mostrarMensajeError("Error", "Debe seleccionar al menos un establecimiento");
             return "subir";
-        }else if(campana.getFechaInicio().equals(null) || campana.getFechaFin().equals(null)){
+        }
+        if(campana.getFechaInicio().equals(null) || campana.getFechaFin().equals(null)){
             FacesUtil.mostrarMensajeError("Error", "Debe seleccionar las fechas para su campaña");
             return "subir";
 
@@ -254,11 +256,11 @@ public class MantenedorCampana implements Serializable {
         String[] replicas = new String[1];
         String[] alertas = new String[2];
 
-        replicas[0]=establecimientoseleccionado.getUsuario().getCorreo();
+       // replicas[0]=establecimientoseleccionado.getUsuario().getCorreo();
         alertas[0]="contacto@interac.cl";
         alertas[1]=userSession.getUsuario().getCorreo();
         mailSender.send(alertas,"Interac",mensajeAnunciante);
-        mailSender.send(replicas,"Interac",mensajeLocal);
+       // mailSender.send(replicas,"Interac",mensajeLocal);
 
         FacesUtil.mostrarMensajeInformativo("Operacion exitosa", "se ha creado tu anuncio");
     }
@@ -482,6 +484,19 @@ public class MantenedorCampana implements Serializable {
          advancedModel = null;
         System.err.println(totem.getLat() + "," + totem.getLongi() + "," + newCenter);
        return newCenter;
+
+    }
+    public void addMessage() {
+        String summary = orientacion ? "Checked" : "Unchecked";
+        if (summary.equals("Checked")){
+            orienta="Vertical";
+            System.out.println(orienta);
+
+        }
+        if (summary.equals("Unchecked")){
+            orienta="Horizontal";
+            System.out.println(orienta);
+        }
 
     }
     public void filtrarestablecimiento(){
@@ -921,6 +936,14 @@ public class MantenedorCampana implements Serializable {
 
     public void setEstablecimientosLista(Establecimiento[] establecimientosLista) {
         this.establecimientosLista = establecimientosLista;
+    }
+
+    public boolean isOrientacion() {
+        return orientacion;
+    }
+
+    public void setOrientacion(boolean orientacion) {
+        this.orientacion = orientacion;
     }
 
     public Contenido[] getContenidoslista() {

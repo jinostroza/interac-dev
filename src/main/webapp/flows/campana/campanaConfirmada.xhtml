@@ -10,6 +10,7 @@
             body {
                 background-color: #E52620;
             }
+
         </style>
 
         <h:form>
@@ -87,17 +88,14 @@
 
 
                                         <h:panelGrid columns="2" style="width: 550px;margin-left: 11%">
-                                            <f:facet name="header">
-                                                <h4>Costos</h4>
-                                            </f:facet>
-                                            <h:outputLabel value="Valor por pasada: ">
-                                                <h:outputLabel style="color: red" value="$2"/>
-                                            </h:outputLabel>
+
                                             <h:outputLabel value="Valor total " style="font-size: x-large">
                                                 <h:outputLabel style="color: red;font-size: x-large"
                                                                value="$#{mantenedorCampana.valor}"/>
                                             </h:outputLabel>
-                                            <h:outputLabel value="Tu anuncio se publicara En : ">
+                                            </h:panelGrid>
+                                        <h:panelGrid columns="2">
+                                            <h:outputLabel value="Tu anuncio se publicara En : "/>
                                                 <p:imageSwitch effect="fade" id="fac">
                                                     <ui:repeat value="#{mantenedorCampana.contenidoslista}" var="image"
                                                                id="manuelSwitcherImages">
@@ -134,8 +132,6 @@
                                                     </ui:repeat>
                                                 </p:imageSwitch>
 
-
-                                            </h:outputLabel>
 
                                         </h:panelGrid>
                                     </div>

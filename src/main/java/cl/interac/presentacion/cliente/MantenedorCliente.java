@@ -116,10 +116,9 @@ public class MantenedorCliente implements Serializable {
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha aprobado el Campaña  [" + campana.getNombrecampana() + "]");
     }
 
-    public void rechazar(Campana ca , Contenido c){
+    public void rechazar(Campana ca){
         try {
             campana = ca;
-            contenido = c ;
             String rechazado = "Rechazado";
             campana.setEstado(rechazado);
             logicaCampana.guardarCampana(campana);

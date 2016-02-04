@@ -18,7 +18,11 @@
                              value="#{mantenedorCampana.campanas}">
                     <f:facet name="header">Mis Anuncios</f:facet>
                     <p:column styleClass="col-lg-2" headerText="nombre">
-                        <h:outputText value="#{camton.contenido.path}"/>
+                        <p:imageSwitch effect="shuffle" id="fadeEffect">
+                            <ui:repeat value="#{camton.contenidoList}" var="image" id="manuelSwitcherImages">
+                                <p:graphicImage value="/imagenes/interac/#{image.path}" style="width:100px; height:200px ;"/>
+                            </ui:repeat>
+                        </p:imageSwitch>
                     </p:column>
                     <p:column styleClass="col-lg-2" headerText="fecha">
                         <h:outputText value="#{camton.fechaCreacion}"/>
@@ -31,6 +35,9 @@
                     </p:column>
                     <p:column styleClass="col-lg-2" headerText="fecha fin">
                         <h:outputText value="#{camton.fechaFin}"/>
+                    </p:column>
+                    <p:column styleClass="col-lg-2" headerText="ID">
+                        <h:outputText value="#{camton.idcampana}"/>
                     </p:column>
                     <p:column styleClass="col-lg-2" >
                         <p:commandButton value="Ir a Pagar" action="#{mantenedorCampana.irPagar(camton)}" icon="fa fa-dollar"  />

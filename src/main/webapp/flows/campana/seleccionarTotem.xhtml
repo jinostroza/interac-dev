@@ -40,29 +40,7 @@
 
                     <div class="col-lg-4">
 
-                            <p:panelGrid columns="4">
-                                <h:outputLabel for="inicio" value="Inicio Anuncio:"/>
-                                <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
-                                <p:calendar id="inicio" locale="es" pattern="dd/MM/yyyy"
-                                            value="#{mantenedorCampana.campana.fechaInicio}" mindate="c1.today()"
-                                            widgetVar="c1" requiredMessage="Debe indicar fecha de Inicio">
 
-
-                                </p:calendar>
-                                <span></span>
-                                <h:outputLabel for="fin" value="Fin Anuncio:"/>
-                                <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
-                                <p:calendar id="fin" locale="es" pattern="dd/MM/yyyy"
-                                            value="#{mantenedorCampana.campana.fechaFin}" mindate="c2.today()"
-                                            widgetVar="c2" requiredMessage="Debe indicar la fecha de Termino">
-
-
-                                </p:calendar>
-                                <p:tooltip for="inicio" value="Indique la fecha de comienzo para su anuncio"
-                                           trackMouse="true"></p:tooltip>
-                                <p:tooltip for="fin" value="Indique la fecha de termino para su anuncio"
-                                           trackMouse="true"></p:tooltip>
-                            </p:panelGrid>
                         <p:panel header="Filtros">
                             <p:panelGrid columns="4" >
                                 <p:outputLabel value="Ubicacion "/>

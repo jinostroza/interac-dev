@@ -13,6 +13,10 @@
                 border: 1px solid #555 !important;
                 color: #EEE !important;
             }
+            .ui-inputswitch-handle {
+                background: #454545 !important;
+                color: #EEE !important;
+            }
         </style>
         <h:form class="container" id="crearAnuncio" enctype="multipart/form-data">
             <div class="row">
@@ -56,6 +60,13 @@
                     <p:tooltip id="tooltipmenu" for="onem" value="Selecciona la categoria de tu anuncio" trackMouse="true"/>
 
                     <br></br>
+                    <label>Seleccione Orientacion de la imagen</label>
+                    <br></br>
+                    <p:inputSwitch value="#{mantenedorCampana.orientacion}" onLabel="Vertical" offLabel="Horizontal"  >
+                        <p:ajax listener="#{mantenedorCampana.addMessage}"  />
+                    </p:inputSwitch>
+
+                    <br></br>
 
                     <p:fileUpload style="width: 450px;" mode="advanced"
                                   previewWidth="430" update="messages" label="Seleccionar contenido" uploadLabel="Subir"
@@ -68,6 +79,44 @@
                     <p:commandButton action="#{mantenedorCampana.editarContenido(mantenedorCampana.contenido)}"
                                      value="Confirmar" />
                     <p:commandButton value="Cancelar"  onclick="PF('dlg2').hide();" action="#{mantenedorCampana.eliminarFichero(mantenedorCampana.contenido)}"/>
+                </p:dialog>
+                <p:dialog header="Crear Campaña" widgetVar="dlgcampa" height="800" width="500" closable="false">
+                    <p:panelGrid columns="4">
+                        <label>Nombre</label>
+                        <p:inputText id="cmp" label="campaña" value="#{mantenedorCampana.campana.nombrecampana}"
+                                     styleClass="form-control" required="true"
+                                     requiredMessage="Ingrese un Nombre para su Anuncio"/>
+                        <p:watermark for="anun" value="Ingrese un Nombre para su Anuncio" id="watermarkcmp"/>
+                        <p:tooltip id="toolTipTrack1" for="cmp" value="Dale un Nombre a tu Campaña" trackMouse="true"/>
+                        <br></br>
+                        <br></br>
+                    <h:outputLabel for="inicio" value="Inicio Campaña:"/>
+                    <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
+                    <p:calendar id="inicio" locale="es" pattern="dd/MM/yyyy"
+                                value="#{mantenedorCampana.campana.fechaInicio}" mindate="c1.today()"
+                                widgetVar="c1" requiredMessage="Debe indicar fecha de Inicio">
+                        <p:ajax event=""
+
+
+                    </p:calendar>
+                    <span></span>
+                    <h:outputLabel for="fin" value="Fin Campaña:"/>
+                    <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
+                    <p:calendar id="fin" locale="es" pattern="dd/MM/yyyy"
+                                value="#{mantenedorCampana.campana.fechaFin}" mindate="c1"
+                                widgetVar="c2" requiredMessage="Debe indicar la fecha de Termino">
+
+
+                    </p:calendar>
+                    <p:tooltip for="inicio" value="Indique la fecha de comienzo para su anuncio"
+                               trackMouse="true"></p:tooltip>
+                    <p:tooltip for="fin" value="Indique la fecha de termino para su anuncio"
+                               trackMouse="true"></p:tooltip>
+                    </p:panelGrid>
+
+                    <p:commandButton action="#{mantenedorCampana.contenidosList}"
+                                     value="Confirmar" />
+                    <p:commandButton value="Cancelar"  onclick="PF('dlgcampa').hide();"/>
                 </p:dialog>
             </div>
                <div class="ui-grid-row">
@@ -102,7 +151,7 @@
                                              actionListener="#{mantenedorCampana.eliminarFichero(mantenedorCampana.contenido)}"
                                              value="Volver" immediate="true" />
                            <p:spacer width="800" height="40"> </p:spacer>
-                           <p:commandButton process="basicDT" styleClass="btn btn-interac" value="Programar" action="#{mantenedorCampana.contenidosList}" />
+                           <p:commandButton process="basicDT" styleClass="btn btn-interac" value="Crear Campaña"  onclick="PF('dlgcampa').show();"  />
                        </f:facet>
 
                     </p:dataTable>

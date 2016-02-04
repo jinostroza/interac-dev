@@ -44,8 +44,8 @@ import java.util.List;
 
                 @NamedQuery(name = "Campana.findByEstado",
                         query = "SELECT c FROM Campana c " +
-                                "INNER JOIN FETCH c.contenidoList co " +
-                                "INNER JOIN Fetch co.usuario u " +
+                                "INNER JOIN FETCH c.establecimientoList e " +
+                                "INNER JOIN Fetch e.usuario u " +
                                 " WHERE u.username=:username AND c.estado='Esperando Aprobacion'"
                 ),
                 @NamedQuery(name = "Campana.count",

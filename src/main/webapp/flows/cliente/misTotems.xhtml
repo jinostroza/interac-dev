@@ -11,15 +11,16 @@
          <h3>Apruebe los anuncios pendientes</h3>
          <br/>
          <h5>Si un el anuncio le parece "inapropiado" para ser difundido en su pantalla, haga click en 'Rechazar'</h5>
-         <p:dataTable id="champa" dynamic="true" var="car" value="#{mantenedorCliente.campanaEnEspera}">
+         <p:dataTable id="champa" dynamic="true" var="car" rows="5" paginator="true" value="#{mantenedorCliente.campanaEnEspera}">
              <f:facet name="header">
                  Tiene #{mantenedorCliente.numeroCampanas} Anuncios por validar
              </f:facet>
-             <p:column headerText="Imagen">
-                 <p:graphicImage value="/imagenes/interac/#{car.contenido.path}" style="width:100px; height:200px ;" />
-             </p:column>
-             <p:column headerText="Contenido">
-                 <h:outputText value="#{car.contenido.nombrecont}" />
+             <p:column >
+                 <p:imageSwitch effect="shuffle" id="fadeEffect">
+                     <ui:repeat value="#{car.contenidoList}" var="image" id="manuelSwitcherImages">
+                         <p:graphicImage value="/imagenes/interac/#{image.path}" style="width:100px; height:200px ;"/>
+                     </ui:repeat>
+                 </p:imageSwitch>
              </p:column>
              <p:column headerText="Fecha Inicio">
                  <h:outputText value="#{car.fechaInicio}" />
@@ -33,9 +34,12 @@
              <p:column headerText="Valor Pasadas">
                  <h:outputText value="#{car.valor}" />
              </p:column>
+             <p:column headerText="Valor Pasadas">
+                 <h:outputText value="#{car.idcampana}" />
+             </p:column>
              <p:column>
                <p:commandButton value="Aprobar" process="@form" update="champa"
-                                action="#{mantenedorCliente.aprobar(car,car.contenido)}"  />
+                                action="#{mantenedorCliente.aprobar(car)}"  />
              </p:column>
              <p:column>
                  <!-- Rechazar -->
@@ -50,7 +54,7 @@
                          <p:outputLabel value="Observaciones" />
                          <h:inputTextarea value="#{mantenedorCliente.rechazarInputTextArea}" rows="10" cols="50" />
                          <br/>
-                         <p:commandButton value="Enviar" action="#{mantenedorCliente.rechazar(car, car.contenido)}"/>
+                         <p:commandButton value="Enviar" action="#{mantenedorCliente.rechazar(car)}"/>
                      </p:overlayPanel>
                  </p:commandButton>
              </p:column>
