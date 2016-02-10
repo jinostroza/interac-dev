@@ -8,6 +8,7 @@ import cl.interac.util.components.PropertyReader;
 import cl.interac.util.components.UserSession;
 import cl.interac.util.services.FileUploader;
 import cl.interac.util.services.MailSender;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
@@ -96,6 +97,8 @@ public class MantenedorCampana implements Serializable {
     private Empresa empresa;
     private String nomEmpresa ;
     private String orienta;
+    private Date dateini;
+    private Date dateend;
 
 
 
@@ -396,10 +399,16 @@ public class MantenedorCampana implements Serializable {
         if (count.equals(0)){
             FacesUtil.mostrarMensajeError("Operación Fallida", "Debe seleccionar al menos 1 anuncio");
             return "crear";
-        }else {
+        }else if (!count.equals(0)){
             System.out.println(contenidoslista.length);
+           RequestContext.getCurrentInstance().execute("PF('dlgcampa').show();");
+
+
+        }
+        if(!dateini.equals(null)){
             return "subir";
         }
+        return "crear";
     }
 
     public List<Totem> totemsEST(Integer idestablecimiento) {
@@ -944,6 +953,22 @@ public class MantenedorCampana implements Serializable {
 
     public void setOrientacion(boolean orientacion) {
         this.orientacion = orientacion;
+    }
+
+    public Date getDateini() {
+        return dateini;
+    }
+
+    public void setDateini(Date dateini) {
+        this.dateini = dateini;
+    }
+
+    public Date getDateend() {
+        return dateend;
+    }
+
+    public void setDateend(Date dateend) {
+        this.dateend = dateend;
     }
 
     public Contenido[] getContenidoslista() {

@@ -10,46 +10,38 @@
         <h:form>
         <div class="container" id="myInterac">
             <header>
-                <h2>Sube tu publicidad en 4 sencilllos pasos</h2>
+                <h2>Planifica tu Campaña</h2>
             </header>
             <div class="row">
-                <h:commandLink class="col-lg-3" action="regisCamp">
-                    <div class="dashbox">
-                        <div class="number-seccion"><span class="number-circulo">1</span></div>
-                        <h:outputLabel value="Elegir Contenido" styleClass="dashbox-header"  />
-                        <div class="button_ elegir-contenido"></div>
-                        <p> Elige el contenido para<br/>mostrar en tu pantalla </p>
-                    </div>
-                </h:commandLink>
-                <h:commandLink class="col-lg-3">
-                    <div class="dashbox">
-                        <div class="number-seccion"><span class="number-circulo">2</span></div>
-                        <h:outputLabel value="Seleccionar Pantalla" styleClass="dashbox-header" />
-                        <div class="button_ seleccionar-pantallas"></div>
-                        <p> Escoge aqui uno de<br/>los anuncios ya creados </p>
-                    </div>
-                </h:commandLink>
-                <h:commandLink class="col-lg-3" >
-                    <div class="dashbox">
-                        <div class="number-seccion"><span class="number-circulo">3</span></div>
-                        <h:outputLabel value="Planificar anuncio" styleClass="dashbox-header" />
-                        <div class="button_ planificar-campana"></div>
-                        <p> Planifica según<br/>dias, semanas o meses </p>
-                    </div>
-                </h:commandLink>
-                <h:commandLink class="col-lg-3" >
-                    <div class="dashbox">
-                        <div class="number-seccion"><span class="number-circulo">4</span></div>
-                        <h:outputLabel value="Confirmar anuncio" styleClass="dashbox-header" />
-                        <div class="button_ pagar"></div>
-                        <p> Obten un resumen de tu anuncio para contratarla </p>
-                    </div>
-                </h:commandLink>
+                <h:outputLabel  value="Nombre Campaña:"/>
+                <h:outputText styleClass="fa fa-fw fa-bullhorn" style="float: right;color: red"/>
+                <p:inputText id="cmp" label="campaña" value="#{mantenedorCampana.campana.nombrecampana}"
+                             styleClass="form-control" required="true"
+                             requiredMessage="Ingrese un Nombre para su Campaña"/>
+
+                <p:tooltip id="toolTipTrack1" for="cmp" value="Dale un Nombre a tu Campaña" trackMouse="true"/>
+
+                <h:outputLabel for="inicio" value="Inicio Campaña:"/>
+                <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
+                <p:calendar id="inicio" locale="es" pattern="dd/MM/yyyy" required="true"
+                            value="#{mantenedorCampana.campana.fechaInicio}" mindate="c1.today()"
+                            widgetVar="c1" requiredMessage="Debe indicar fecha de Inicio" >
+                    <p:ajax event="dateSelect" update="fin"/>
+                </p:calendar>
+
+                <h:outputLabel for="fin" value="Fin Campaña:"/>
+                <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
+                <p:calendar id="fin" locale="es" pattern="dd/MM/yyyy" required="true"
+                            value="#{mantenedorCampana.campana.fechaFin}" mindate="c1"
+                            widgetVar="c2" requiredMessage="Debe indicar la fecha de Termino">
+
+                </p:calendar>
+
+                <p:commandButton action="#{mantenedorCampana.contenidosList}"
+                                 value="Confirmar" />
+                <p:spacer width="100" height="40"> </p:spacer>
+                <p:commandButton value="Volver"  />
             </div>
-            <br/>
-            <br/>
-            <p>Sigue estos simples pasos para crear tu anuncio publicitario en Interac. En caso de dudas o consultas sobre el sistema de pago, escribenos a <strong>contacto@interac.cl</strong> y te responderemos a la brevedad.</p>
-            <div class="push"></div>
         </div>
     </h:form>
     </ui:define>

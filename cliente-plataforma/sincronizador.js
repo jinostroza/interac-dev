@@ -5,7 +5,7 @@ var Path = require('path');
 
 function Sincronizador() {
     this.Ftp = new FtpClient();
-    this.server = "54.172.118.246";
+    this.server = "54.208.243.25";
     // this.server = "localhost";
     this.port = 21;
     this.user = "colivares";

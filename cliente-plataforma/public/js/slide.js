@@ -1,8 +1,8 @@
 var Slide = {};
 
 (function () {
-    var showTime = 10 * 1000; // 10 segundos
-    var syncTime = 60 * 1000; // 60 segundos
+    var showTime = 15 * 1000; // 10 segundos
+    var syncTime = 3600 * 1000; // 60 minutos
     var sliderTimerID = null;
     var syncTimerID = null;
 
@@ -12,14 +12,16 @@ var Slide = {};
             var mediaFiles = JSON.parse(data);
 
             for (var i = mediaFiles.length - 1, display = "block"; i >= 0; i--, display = "none") {
-                if (mediaFiles[i].endsWith(".mp4") || mediaFiles[i].endsWith(".ogg")) {
-                    var video = jQuery("<video controls='false' style='width: 1060px'><source></source></video>");
+                if (mediaFiles[i].endsWith(".mp4") || mediaFiles[i].endsWith(".mov")) {
+                    var video = jQuery("<video controls='false' style='width: 1060px;height: 1900px' ><source></source></video>");
                     video.css("display", display);
                     video.find("source").first().attr("src", mediaFiles[i]);
                     video.find("source").first().attr("type", "video/" + mediaFiles[i].substr(mediaFiles[i].lastIndexOf(".") + 1, mediaFiles[i].length));
-                    jQuery("div.center").append(video);
+                    var j = j + 1;
+                    video.find("source").first().attr("id", "video_"+j);
+                    jQuery("div.content").append(video);
                 } else {
-                    var img = jQuery("<img style='width: 1060px;height: 1520px' ></img>");
+                    var img = jQuery("<img style='width: 1050px;height: 1730px' ></img>");
                     img.attr("src", mediaFiles[i]);
                     img.css("display", display);
                     jQuery("div.content").append(img);
@@ -28,7 +30,7 @@ var Slide = {};
 
             sliderTimerID = setTimeout(self.change.bind(self), showTime);
             syncTimerID = setTimeout(self.checkNewData.bind(self), syncTime);
-        }); 
+        });
     };
 
     this.change = function () {
@@ -39,10 +41,20 @@ var Slide = {};
             jQuery(media[i]).hide();
             siguiente.show();
             if (siguiente.is("video")) {
+                var j = j + 1;
+                var d=document.querySelector('video_'+j).duration;
+                var minutes = parseInt(d , 10);
+                alert(minutes);
+
+                showTime = minutes * 1000;
+
                 siguiente.get(0).play();
             }
             break;
         }
+
+
+
         sliderTimerID = setTimeout(this.change.bind(this), showTime);
     };
 
