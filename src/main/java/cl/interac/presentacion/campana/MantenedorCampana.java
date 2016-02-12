@@ -8,7 +8,6 @@ import cl.interac.util.components.PropertyReader;
 import cl.interac.util.components.UserSession;
 import cl.interac.util.services.FileUploader;
 import cl.interac.util.services.MailSender;
-import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
@@ -393,22 +392,28 @@ public class MantenedorCampana implements Serializable {
 
         return resultado.intValue();
     }
-    public String contenidosList(){
+    public String creaCampana(){
         campana = new Campana();
         Integer count = contenidoslista.length;
         if (count.equals(0)){
             FacesUtil.mostrarMensajeError("Operación Fallida", "Debe seleccionar al menos 1 anuncio");
             return "crear";
-        }else if (!count.equals(0)){
+        }else {
             System.out.println(contenidoslista.length);
-           RequestContext.getCurrentInstance().execute("PF('dlgcampa').show();");
+            return "programar";
+        }
+
+    }
+    public String programaCampana(Campana c){
+        campana = c;
+        campana.setNombrecampana(campana.getNombrecampana());
+        campana.setFechaInicio(campana.getFechaInicio());
+        campana.setFechaFin(campana.getFechaFin());
+        campana.setEstado("Esperando Aprobacion");
+        logicaCampana.guardarCampana(campana);
 
 
-        }
-        if(!dateini.equals(null)){
-            return "subir";
-        }
-        return "crear";
+     return "subir";
     }
 
     public List<Totem> totemsEST(Integer idestablecimiento) {

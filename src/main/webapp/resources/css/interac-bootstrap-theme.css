@@ -113,13 +113,14 @@ tr.table-header{
 	background-color: green;
 }
 #cuadro-imagen{
-	border: 1px solid black;
-	height: 600px;
-	width: 450px;
-	background-image:  url("css/img/nota.png");
+
+	height: 550px;
+	width: 400px;
+	background-image:  url("css/img/Front.png");
 	background-repeat: no-repeat;
-	background-size: 100%;
+	background-size: 80%;
 	background-position-y: 80px;
+	z-index: -1;
 
 
 }

@@ -7,40 +7,84 @@
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
+        <style type="text/css">
+            .ui-button {
+                background: #454545 !important;
+                border: 1px solid #555 !important;
+                color: #EEE !important;
+            }
+            .ui-datepicker {
+                background: #333;
+                border: 1px solid #555;
+                color: #EEE;
+            }
+        </style>
         <h:form>
         <div class="container" id="myInterac">
             <header>
+                <div class="row">
+                <div class="col-lg-6">
                 <h2>Planifica tu Campaña</h2>
+                </div>
+                <div class="nav-submenu col-lg-6">
+                    <ul>
+                        <li><a>Creado</a></li>
+                        <li><a class="active">Planificando</a></li>
+                        <li><a>Confirmar</a></li>
+                    </ul>
+                </div>
+                </div>
             </header>
+
             <div class="row">
-                <h:outputLabel  value="Nombre Campaña:"/>
+                <p:panelGrid columns="3" styleClass="col-lg-5">
+                <h3>Nombre Campaña</h3>
+                    <p:spacer></p:spacer>
+                    <p:spacer></p:spacer>
                 <h:outputText styleClass="fa fa-fw fa-bullhorn" style="float: right;color: red"/>
                 <p:inputText id="cmp" label="campaña" value="#{mantenedorCampana.campana.nombrecampana}"
-                             styleClass="form-control" required="true"
+                              required="true" styleClass="form-control"
                              requiredMessage="Ingrese un Nombre para su Campaña"/>
 
                 <p:tooltip id="toolTipTrack1" for="cmp" value="Dale un Nombre a tu Campaña" trackMouse="true"/>
 
-                <h:outputLabel for="inicio" value="Inicio Campaña:"/>
+                <h3>Inicio Campaña</h3>
+                    <p:spacer></p:spacer>
+                    <p:spacer></p:spacer>
                 <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
                 <p:calendar id="inicio" locale="es" pattern="dd/MM/yyyy" required="true"
                             value="#{mantenedorCampana.campana.fechaInicio}" mindate="c1.today()"
-                            widgetVar="c1" requiredMessage="Debe indicar fecha de Inicio" >
+                            widgetVar="c1" requiredMessage="Debe indicar fecha de Inicio" style="width: 150px">
                     <p:ajax event="dateSelect" update="fin"/>
                 </p:calendar>
+                    <p:tooltip id="toolinicio" for="inicio" value="Selecciona Fecha de Inicio Campaña" trackMouse="true"/>
 
-                <h:outputLabel for="fin" value="Fin Campaña:"/>
+               <h3>Fin Campaña</h3>
+                    <p:spacer></p:spacer>
+                    <p:spacer></p:spacer>
                 <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
                 <p:calendar id="fin" locale="es" pattern="dd/MM/yyyy" required="true"
                             value="#{mantenedorCampana.campana.fechaFin}" mindate="c1"
-                            widgetVar="c2" requiredMessage="Debe indicar la fecha de Termino">
+                            widgetVar="c2" requiredMessage="Debe indicar la fecha de Termino" style="width: 150px">
 
                 </p:calendar>
+                    <p:tooltip id="toolfin" for="fin" value="Selecciona Fecha Termino Campaña" trackMouse="true"/>
+                </p:panelGrid>
 
-                <p:commandButton action="#{mantenedorCampana.contenidosList}"
-                                 value="Confirmar" />
-                <p:spacer width="100" height="40"> </p:spacer>
+
+                    <p:imageSwitch effect="shuffle" id="fac" styleClass="col-lg-offset-7">
+                    <ui:repeat value="#{mantenedorCampana.campana.contenidoList}" var="image" id="manuelSwitcherImages">
+                        <p:graphicImage value="/imagenes/interac/#{image.path}" style="width:100px; height:200px ;"/>
+                    </ui:repeat>
+                </p:imageSwitch>
+
+
+
                 <p:commandButton value="Volver"  />
+                <p:spacer width="300" height="40"> </p:spacer>
+                <p:commandButton action="#{mantenedorCampana.programaCampana(mantenedorCampana.campana)}"
+                                 value="Confirmar" />
+
             </div>
         </div>
     </h:form>

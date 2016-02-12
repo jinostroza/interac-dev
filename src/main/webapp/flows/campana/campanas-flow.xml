@@ -23,7 +23,7 @@
 
 
     <view-state id="subirContenido">
-        <transition on="subir" to="seleccionarTotem"></transition>
+        <transition on="programar" to="campanapasos"></transition>
         <transition on="crear" to="subirContenido"/>
 
     </view-state>
@@ -49,10 +49,14 @@
     </view-state>
 
     <view-state id="campanaConfirmada">
-       <transition on="fin" to="campanapasos"/>
+       <transition on="fin" to="inicioCliente"/>
     </view-state>
 
-    <end-state id="campanapasos">
+    <view-state id="campanapasos">
+        <transition on="subir" to="seleccionarTotem"></transition>
+
+    </view-state>
+    <end-state id="inicioCliente">
 
     </end-state>
 
