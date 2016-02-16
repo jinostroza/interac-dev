@@ -63,12 +63,14 @@ var Slide = {};
             }
             break;
         }
+        if(d.length <= 1) {
+            showTime = 10 * 1000; // 10 segundos
+            sliderTimerID = setTimeout(this.change.bind(this), showTime);
+        }
+        else{
+            sliderTimerID = setTimeout(this.change.bind(this), showTime);
+        }
 
-
-
-        sliderTimerID = setTimeout(this.change.bind(this), showTime);
-
-       
 
     };
 
