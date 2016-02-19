@@ -13,6 +13,12 @@
                 border: 1px solid #555 !important;
                 color: #EEE !important;
             }
+            .ui-state-hover{
+                background-color: #fff !important;
+                color: #454545 !important;
+                border-color: #454545 !important;
+                border-radius: 4px !important;
+            }
         </style>
         <h:form class="container" id="crearAnuncio" enctype="multipart/form-data">
             <div class="row">
@@ -62,7 +68,7 @@
                                   fileUploadListener="#{mantenedorCampana.subir}" cancelLabel="Cancelar"
                                   widgetVar="myFileUpload"
                                   onstart="PF('myFileUpload').disableButton(PF('myFileUpload').chooseButton)"
-                                  required="true" auto="false" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+                                  required="true" auto="false" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
                     <p:growl id="messages" showDetail="true"/>
                     <br></br>
                     <p:commandButton action="#{mantenedorCampana.editarContenido(mantenedorCampana.contenido)}"
@@ -93,8 +99,8 @@
                     </p:column>
 
                     <p:column styleClass="col-lg-3" style="text-align: center; margin-right: 2px">
-                        <p:commandButton icon="ui-icon-trash" action="#{mantenedorCampana.eliminarFichero(cont)}" styleClass="btn btn-interac" style="background-color: white !important;" immediate="true" update="basicDT"/>
-
+                        <p:commandButton icon="ui-icon-trash" action="#{mantenedorCampana.eliminarFichero(cont)}" styleClass="btn btn-interac" style="background-color: white !important;" immediate="true" update="message"/>
+                        <p:growl id="message" showDetail="true"/>
                     </p:column>
                     <f:facet name="footer">
                         <p:commandButton  ajax="false" styleClass="btn btn-interac"

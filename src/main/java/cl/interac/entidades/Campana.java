@@ -169,10 +169,11 @@ public class Campana implements Serializable {
             name = "campestab",
             inverseJoinColumns = {
                     @JoinColumn(name = "idestablecimiento", referencedColumnName = "idestablecimiento")
+
             },
             joinColumns = {
                     @JoinColumn(name = "idcampana", referencedColumnName = "idcampana")
-            }
+                               }
     )
 
     public List<Establecimiento> getEstablecimientoList() {

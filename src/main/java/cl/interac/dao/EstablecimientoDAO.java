@@ -36,6 +36,7 @@ public class EstablecimientoDAO {
         em.remove(establecimiento);
     }
 
+
     public List<Establecimiento> obtenerConRelacion() {
         return em.createNamedQuery("estabecimiento.findAllByusuario").getResultList();
     }
@@ -61,11 +62,11 @@ public class EstablecimientoDAO {
     public List<Establecimiento> obtenerFiltro(String orienta,Empresa empresa,Ubicacion ubicacion,Categoria categoria) {
         StringBuilder sb = new StringBuilder();
         sb.append("select ");
-        sb.append("    e.* ");
+        sb.append("e.* ");
         sb.append("from establecimiento e ");
-        sb.append("inner join empresa em on (em.idempresa = e.empresa) " );
-        sb.append("inner join ubicacion ub on (ub.idubicacion = e.idubicacion) " );
-        sb.append("inner join categoria ca on (ca.idcategoria = e.fk_rubro) " );
+        sb.append("left join empresa em on (em.idempresa = e.empresa) " );
+        sb.append("left join ubicacion ub on (ub.idubicacion = e.idubicacion) " );
+        sb.append("left join categoria ca on (ca.idcategoria = e.fk_rubro) " );
         sb.append("where e.estado='Activado' " );
         if (orienta != null){
             sb.append("and e.orientacion=:orienta ");

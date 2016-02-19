@@ -33,15 +33,14 @@ public class CronService {
     private PropertyReader propertyReader;
 
 
-    @Scheduled(cron="0 0 6 * * ?")
+    @Scheduled(cron="*/60 * *  * * ?")
     public void eliminarFicheroProgramado(){
         campanasvencidas = logicaCampana.obtenerPorFecha(Date.from(Instant.now()));
-
+        //elimina campañas terminadas
         try {
             String ambiente = propertyReader.get("ambiente");
 
             if ("desarrollo".equals(ambiente)) {
-                // dentro del server siempre podra subir, no importa si es wintendo o linux
                 for (Campana ca : campanasvencidas){
                     System.err.println(ca.getIdcampana());
                     logicaCampana.eliminarCampana(ca);

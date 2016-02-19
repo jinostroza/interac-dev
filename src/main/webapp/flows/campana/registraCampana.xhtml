@@ -11,6 +11,12 @@
                 border: 1px solid #555 !important;
                 color: #EEE !important;
             }
+            .ui-state-hover{
+                background-color: #fff !important;
+                color: #454545 !important;
+                border-color: #454545 !important;
+                border-radius: 4px !important;
+            }
         </style>
         <h:form>
             <div class="container" id="myInterac">
@@ -174,7 +180,8 @@
                         </p:column>
                         <p:column styleClass="col-lg-2" headerText="">
 
-                            <p:commandButton styleClass="btn btn-interac" icon="ui-icon-trash"  style="background-color: white !important;" action="#{mantenedorCampana.eliminarCampana(camton)}" process="@form" update="champa"></p:commandButton>
+                            <p:commandButton styleClass="btn btn-interac" icon="ui-icon-trash"  style="background-color: white !important;" action="#{mantenedorCampana.eliminarCampana(camton)}" update="messages"></p:commandButton>
+                            <p:growl id="messages" showDetail="true"/>
                         </p:column>
 
 

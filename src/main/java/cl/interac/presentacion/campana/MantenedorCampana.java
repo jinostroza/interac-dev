@@ -48,6 +48,7 @@ public class MantenedorCampana implements Serializable {
     private Tipototem tipototem;
     private Campana campana;
     private Integer pasadas;
+    private Integer ValorTT;
     private Integer valor;
     private Long dias;
     private List<Usuario> usuarios;
@@ -114,6 +115,8 @@ public class MantenedorCampana implements Serializable {
     @Autowired
     private LogicaCampana logicaCampana;
     @Autowired
+    private LogicaCampestab logicaCampestab;
+    @Autowired
     private LogicaTotem logicaTotem;
     @Autowired
     private UserSession userSession;
@@ -131,7 +134,7 @@ public class MantenedorCampana implements Serializable {
     private LogicaTipototem logicaTipototem;
 
     public void inicio() {
-        contarCampanas = logicaCampana.obtenerPorNumero(userSession.getUsuario().getUsername());
+        contarCampanas = logicaCampestab.obtenerPorNumero(userSession.getUsuario().getUsername());
         contenidocampanas = logicaCampana.obtenerPorContenido(userSession.getUsuario().getIdUsuario());
         campanasvencidas = logicaCampana.obtenerPorFecha(Date.from(Instant.now()));
         usuarios = logicaUsuario.obtenerTodos();
@@ -190,7 +193,7 @@ public class MantenedorCampana implements Serializable {
     public String editarContenido(Contenido c) {
         contenido = c;
         contenido.setCategoria(categoria);
-
+        //orientacion
         logicaContenido.guardar(contenido);
         categoria=null;
 
@@ -230,12 +233,10 @@ public class MantenedorCampana implements Serializable {
 
             campana.setContenidoList(Arrays.asList(contenidoslista));
 
-            campana.setEstado("Esperando Aprobacion");
             campana.setFechaCreacion(Date.from(Instant.now()));
             campana.setEstablecimientoList(Arrays.asList(establecimientosLista));
-            //   campana.setPasadas(pasadas);
-            campana.setNombrecampana(Date.from(Instant.now()).toString());
-            //campana.setValor(valor);
+            campana.setPasadas(pasadas);
+            campana.setValor(valor);
             String ambiente = propertyReader.get("ambiente");
             if ("desarrollo".equals(ambiente)) {
             // dentro del server siempre podra subir, no importa si es wintendo o linux
@@ -299,6 +300,7 @@ public class MantenedorCampana implements Serializable {
                 logicaCampana.eliminarCampana(campa);
 
                 FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha eliminado la Campaña}");
+            campanas = logicaCampana.obtenerPorUsuario(userSession.getUsuario().getUsername());
 
         }catch (Exception e){
             FacesUtil.mostrarMensajeError("Operación Fallida", "Algo Ocurrio");
@@ -392,8 +394,10 @@ public class MantenedorCampana implements Serializable {
 
         return resultado.intValue();
     }
+    //inicializa campaña
     public String creaCampana(){
         campana = new Campana();
+        ValorTT = 0;
         Integer count = contenidoslista.length;
         if (count.equals(0)){
             FacesUtil.mostrarMensajeError("Operación Fallida", "Debe seleccionar al menos 1 anuncio");
@@ -404,6 +408,7 @@ public class MantenedorCampana implements Serializable {
         }
 
     }
+    //Setea programacion campaña
     public String programaCampana(Campana c){
         campana = c;
         campana.setNombrecampana(campana.getNombrecampana());
@@ -431,15 +436,17 @@ public class MantenedorCampana implements Serializable {
 
         return cantidadPasadas;
     }
-
+    //funcion calcula valores parciales y totales
     public Integer calculator(Establecimiento est){
         pasadas=calcularPasadas(est);
         if (userSession.getUsuario().getIdUsuario().equals(est.getUsuario().getIdUsuario())) {
+        //si el usuario es dueño del establecimiento no tendra costo
             valor = (pasadas * 0) * (dias.intValue() + 1);
+            ValorTT = ValorTT + valor;
         return valor;
         }else {
             valor = (pasadas * est.getValor()) * (dias.intValue() + 1);
-
+            ValorTT = ValorTT + valor;
         return valor;
         }
     }
@@ -974,6 +981,14 @@ public class MantenedorCampana implements Serializable {
 
     public void setDateend(Date dateend) {
         this.dateend = dateend;
+    }
+
+    public Integer getValorTT() {
+        return ValorTT;
+    }
+
+    public void setValorTT(Integer valorTT) {
+        ValorTT = valorTT;
     }
 
     public Contenido[] getContenidoslista() {

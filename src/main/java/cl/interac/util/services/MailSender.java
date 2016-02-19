@@ -11,7 +11,6 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
 import javax.mail.Message;
-import java.util.List;
 import java.util.Properties;
 /**
  * Created by pclucho on 27-10-2015.
@@ -35,7 +34,7 @@ public class MailSender {
            email.setSubject(asunto);
            email.setTextHTML(mensaje);
 
-           Mailer mailer = new Mailer("mx1.nixiweb.com", 587, "contacto@interac.cl", "interac2015", TransportStrategy.SMTP_TLS);
+           Mailer mailer = new Mailer("mx1.nixiweb.com", 587, "contacto@interac.cl", "interac2016", TransportStrategy.SMTP_TLS);
 
            mailer.sendMail(email);
 

@@ -71,13 +71,13 @@
                     <p:tooltip id="toolfin" for="fin" value="Selecciona Fecha Termino Campaña" trackMouse="true"/>
                 </p:panelGrid>
 
-
-                    <p:imageSwitch effect="shuffle" id="fac" styleClass="col-lg-offset-7">
+                <div id="cuadro-imagen" class="col-lg-offset-7">
+                <p:imageSwitch effect="shuffle" id="fac" styleClass="col-lg-offset-7">
                     <ui:repeat value="#{mantenedorCampana.campana.contenidoList}" var="image" id="manuelSwitcherImages">
                         <p:graphicImage value="/imagenes/interac/#{image.path}" style="width:100px; height:200px ;"/>
                     </ui:repeat>
                 </p:imageSwitch>
-
+                </div>
 
 
                 <p:commandButton value="Volver"  />

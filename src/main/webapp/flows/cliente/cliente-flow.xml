@@ -16,6 +16,7 @@
       </view-state>
 
       <view-state id="misTotems">
+            <transition on="notifica" to="misTotems"></transition>
 
       </view-state>
 
