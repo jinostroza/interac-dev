@@ -18,6 +18,13 @@ import java.io.Serializable;
                             "INNER JOIN FETCH e.usuario u " +
                             "WHERE u.username=:username AND ce.estado ='Esperando Aprobacion'"
         ),
+        @NamedQuery(name = "campestab.findbyAprobado",
+                query = "SELECT ce FROM Campestab ce " +
+                        "INNER JOIN FETCH ce.establecimiento e " +
+                        "INNER JOIN FETCH ce.campana c " +
+                        "INNER JOIN FETCH e.usuario u " +
+                        "WHERE u.username=:username AND ce.estado ='Aprobado'"
+        ),
         @NamedQuery(name = "campestab.count",
         query = "SELECT COUNT (ce.idcam_est) FROM Campestab ce " +
                 "INNER JOIN  ce.establecimiento e " +

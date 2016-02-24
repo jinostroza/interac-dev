@@ -44,6 +44,10 @@ public class LogicaCampestab {
         return campestabDAO.obtenerPorEstado(user);
     }
     @Transactional(readOnly = true)
+    public List<Campestab> obtenerAprobado(String user) {
+        return campestabDAO.obtenerAprobados(user);
+    }
+    @Transactional(readOnly = true)
     public long obtenerPorNumero(String user){
         return campestabDAO.obtenerNumeroNuevas(user);
     }

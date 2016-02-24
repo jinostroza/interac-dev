@@ -38,6 +38,46 @@
                             <p:panelGrid columns="4" >
                                 <p:outputLabel value="Ubicacion "/>
                                 <h:outputText styleClass="fa fa-fw fa-map-marker" style="float: right;color: red"/>
+                                    <h:selectOneMenu class="form-control" value="#{mantenedorCampana.region}"
+                                                     converter="entityConverter">
+                                        <f:selectItem itemLabel="Selecciona Region" itemValue="" noSelectionOption="true" />
+                                        <f:selectItems value="#{mantenedorCampana.regionesList}" var="reg"
+                                                       itemLabel="#{reg.region_nombre}"/>
+                                        <p:ajax event="change" listener="#{mantenedorCampana.provincias()}" update="provi"/>
+                                    </h:selectOneMenu>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <p:outputLabel value="Ubicacion "/>
+                                <h:outputText styleClass="fa fa-fw fa-map-marker" style="float: right;color: red"/>
+                                    <h:selectOneMenu id="provi" class="form-control" value="#{mantenedorCampana.provincia}"
+                                                     converter="entityConverter">
+                                        <p:ajax event="change" listener="#{mantenedorCampana.comunas()}" update="comuna"/>
+                                        <f:selectItem itemLabel="Selecciona Provincia" itemValue="" noSelectionOption="true" />
+                                        <f:selectItems value="#{mantenedorCampana.provinciasList}" var="prov"
+                                                       itemLabel="#{prov.provincia_nombre}"/>
+
+                                    </h:selectOneMenu>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <p:outputLabel value="Ubicacion "/>
+                                <h:outputText styleClass="fa fa-fw fa-map-marker" style="float: right;color: red"/>
+                                    <h:selectOneMenu id="comuna" class="form-control" value="#{mantenedorCampana.comuna}"
+                                                     converter="entityConverter">
+                                        <f:selectItem itemLabel="Selecciona Comuna" itemValue="" noSelectionOption="true" />
+                                        <f:selectItems value="#{mantenedorCampana.comunasList}" var="com"
+                                                       itemLabel="#{com.comuna_nombre}"/>
+                                    </h:selectOneMenu>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+
+                                <p:outputLabel value="Ubicacion "/>
+                                <h:outputText styleClass="fa fa-fw fa-map-marker" style="float: right;color: red"/>
                                 <h:selectOneMenu value="#{mantenedorCampana.ubicacion}" converter="entityConverter"
                                                  style="width: 150px">
                                     <f:selectItem itemLabel="Ubicacion" noSelectionOption="true"/>

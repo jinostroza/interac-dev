@@ -67,7 +67,7 @@ import java.util.List;
                 @NamedQuery(name = "Campana.findByEstablecimiento", query = "SELECT c FROM Campana c " +
                         "INNER JOIN FETCH c.contenidoList co " +
                         "INNER JOIN FETCH co.usuario u " +
-                        "WHERE co.usuario.idUsuario=:iduser"),
+                        "WHERE co.usuario.idUsuario=:iduser AND c.estado='Aprobado'"),
 
                 @NamedQuery(name = "Campana.findByTotem",
                         query = "SELECT c FROM Campana c " +

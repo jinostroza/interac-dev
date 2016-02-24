@@ -1,12 +1,12 @@
 package cl.interac.util.components;
 
-import java.io.Serializable;
-
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import java.io.Serializable;
 
 /**
  * @author colivares
@@ -207,33 +207,24 @@ public class Constantes implements Serializable {
             "                    <h3>ID</h3>\n" +
             "                 </td>\n" +
             "                 <td>\n" +
-            "                    <h3>Establecimiento</h3>\n" +
+            "                    <h3>Descripci&oacute;n Campa&ntilde;a</h3>\n" +
             "                 </td>\n" +
             "                  <td>\n" +
-            "                      <h3>Nro Pantallas</h3>\n" +
+            "                      <h3>Valor Total</h3>\n" +
             "                  </td>  \n" +
             "                  <td>\n" +
-            "                     <p>Valor Mensual</p>\n" +
+            "                     <p></p>\n" +
             "                   </td>\n" +
-            "                  <td>\n" +
-            "                     <h3>Valor de Campa&ntilde;a</h3>\n" +
-            "                  </td>\n" +
             "               </tr>\n" +
             "               <tr>\n" +
             "                  <td>" +
             "                    <p>$id</p>" +
             "                 </td>\n "+
             "                <td>\n" +
-            "                  <p>$establecimiento</p>\n" +
+            "                  <p>$nombrecampana</p>\n" +
             "                </td>\n" +
             "                <td>\n" +
-            "                  <p>$numerodePantallas</p>\n" +
-            "                </td>\n" +
-            "                <td>\n        " +
-            "                   <p>$valormensual</p>\n    " +
-            "                </td>\n"+
-            "                <td>\n" +
-            "                  <p>$valordecampanas</p>\n" +
+            "                  <p>$valortotal</p>\n" +
             "                </td>\n" +
             "               </tr>\n" +
             "               \n" +

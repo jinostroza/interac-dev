@@ -36,6 +36,9 @@ public class CampestabDAO {
     public List<Campestab> obtenerPorEstado(String user){
         return em.createNamedQuery("campestab.findbyEstablecimiento").setParameter("username", user).getResultList();
     }
+    public List<Campestab> obtenerAprobados(String user){
+        return em.createNamedQuery("campestab.findbyAprobado").setParameter("username", user).getResultList();
+    }
     public long obtenerNumeroNuevas(String user){
         return (Long) em.createNamedQuery("campestab.count").setParameter("username",user).getSingleResult();
     }

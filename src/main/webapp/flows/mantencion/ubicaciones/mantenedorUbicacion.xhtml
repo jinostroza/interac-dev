@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    <h3 style="margin-top:0">Mantenedor Empresas</h3>
+    <h:panelGrid id="Ubicaciones" columns="3" cellpadding="10">
+        <h:selectOneMenu class="form-control" value="#{mantenedorCampana.region}"
+                         converter="entityConverter">
+            <f:selectItem itemLabel="Selecciona Region" itemValue="" noSelectionOption="true" />
+            <f:selectItems value="#{mantenedorCampana.regionesList}" var="reg"
+                           itemLabel="#{reg.region_nombre}"/>
+            <p:ajax event="change" listener="#{mantenedorUbicacion.provincias(reg)}"/>
+        </h:selectOneMenu>
+        <h:selectOneMenu class="form-control" value="#{mantenedorCampana.provincia}"
+                         converter="entityConverter">
+            <f:selectItem itemLabel="Selecciona Provincia" itemValue="" noSelectionOption="true" />
+            <f:selectItems value="#{mantenedorCampana.provinciasList}" var="prov"
+                           itemLabel="#{prov.provincia_nombre}"/>
+            <p:ajax event="change" listener="#{mantenedorUbicacion.comunas(prov)}"/>
+        </h:selectOneMenu>
+        <h:selectOneMenu class="form-control" value="#{mantenedorCampana.comuna}"
+                         converter="entityConverter">
+            <f:selectItem itemLabel="Selecciona Comuna" itemValue="" noSelectionOption="true" />
+            <f:selectItems value="#{mantenedorCampana.comunasList}" var="com"
+                           itemLabel="#{com.comuna_nombre}"/>
+        </h:selectOneMenu>
+
+    </h:panelGrid>
+</ui:composition>

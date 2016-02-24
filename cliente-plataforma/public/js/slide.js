@@ -13,14 +13,14 @@ var Slide = {};
 
             for (var i = mediaFiles.length - 1, display = "block"; i >= 0; i--, display = "none") {
                 if (mediaFiles[i].endsWith(".mp4") || mediaFiles[i].endsWith(".ogg")) {
-                    var video = jQuery("<video controls='false' style='width: 1060px;height: 1900px' ><source></source></video>");
+                    var video = jQuery("<video controls='false' style='width: 1366px;height: 768px' ><source></source></video>");
                     video.css("display", display);
                     video.find("source").first().attr("src", mediaFiles[i]);
                     video.find("source").first().attr("type", "video/" + mediaFiles[i].substr(mediaFiles[i].lastIndexOf(".") + 1, mediaFiles[i].length));
                     video.find("source").first().attr("id", "video");
                     jQuery("div.content").append(video);
                 } else {
-                    var img = jQuery("<img style='width: 1050px;height: 1730px' ></img>");
+                    var img = jQuery("<img style='width: 1366px;height: 768px' ></img>");
                     img.attr("src", mediaFiles[i]);
                     img.css("display", display);
                     jQuery("div.content").append(img);
@@ -35,13 +35,13 @@ var Slide = {};
 
     this.change = function () {
         var media = jQuery("div.content").find("img, video");
+         var d=document.querySelectorAll('video');
         for (var i = 0; i < media.length; i++) {
             if (jQuery(media[i]).is(":not(:visible)")) continue;
             var siguiente = jQuery(media[(i + 1) % media.length]);
             jQuery(media[i]).hide();
             siguiente.show();
             if (siguiente.is("video")) {
-                var d=document.querySelectorAll('video');
                 index = index + 1;
                  if(index < d.length) {
                     

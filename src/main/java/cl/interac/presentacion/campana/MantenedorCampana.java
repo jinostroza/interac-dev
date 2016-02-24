@@ -77,6 +77,7 @@ public class MantenedorCampana implements Serializable {
     private MapModel advancedModel;
     private Contenido contenidosSelecionado;
     private List<Contenido> contenidosSelecionados;
+    private List<Campestab> campestabList;
     private Contenido[] contenidoslista;
     private String dateDiffValue;
     private Marker marker;
@@ -99,6 +100,12 @@ public class MantenedorCampana implements Serializable {
     private String orienta;
     private Date dateini;
     private Date dateend;
+    private Regiones region;
+    private Provincias provincia;
+    private Comunas comuna;
+    private List<Regiones> regionesList;
+    private List<Provincias> provinciasList;
+    private List<Comunas> comunasList;
 
 
 
@@ -132,11 +139,18 @@ public class MantenedorCampana implements Serializable {
     private LogicaUbicacion logicaUbicacion;
     @Autowired
     private LogicaTipototem logicaTipototem;
+    @Autowired
+    private LogicaRegiones logicaRegiones;
+    @Autowired
+    private LogicaProvincias logicaProvincias;
+    @Autowired
+    private LogicaComunas logicaComunas;
 
     public void inicio() {
         contarCampanas = logicaCampestab.obtenerPorNumero(userSession.getUsuario().getUsername());
         contenidocampanas = logicaCampana.obtenerPorContenido(userSession.getUsuario().getIdUsuario());
         campanasvencidas = logicaCampana.obtenerPorFecha(Date.from(Instant.now()));
+        campestabList = logicaCampestab.obtenerAprobado(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
         categoriaList = logicaCategoria.obtenerTodos();
         establecimientoList=logicaEstablecimiento.obtenerTodos();
@@ -151,6 +165,9 @@ public class MantenedorCampana implements Serializable {
         totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
         empresaList = logicaEmpresa.obtenerTodos();
+        regionesList = logicaRegiones.obtenerTodas();
+        provinciasList = logicaProvincias.obtenerTodas();
+        comunasList = logicaComunas.obtenerTodas();
     }
 
     public void subir(FileUploadEvent fue) {
@@ -167,7 +184,7 @@ public class MantenedorCampana implements Serializable {
                 contenido.setPath(pathTemporal);
 
             }else if ("produccion".equals(ambiente)) {
-                String carpetaPrincipal = "interac";
+                String carpetaPrincipal = "tmp";
 
                 String nombreArchivo = pathTemporal.substring(pathTemporal.lastIndexOf('.'));
 
@@ -249,10 +266,9 @@ public class MantenedorCampana implements Serializable {
         String mensajeLocal = new String(constantes.getAlertas());
         String mensajeAnunciante = new String(constantes.getHeaderCorreo());
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$Id",String.valueOf(campana.getIdcampana()));
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento","prueba");
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$numerodePantallas","4");
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valormensual",String.valueOf(2));
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$total",String.valueOf(2));
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\nombrecampana",campana.getNombrecampana());
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valortotal",String.valueOf(valor));
+
 
         //correo
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -263,7 +279,7 @@ public class MantenedorCampana implements Serializable {
         alertas[0]="contacto@interac.cl";
         alertas[1]=userSession.getUsuario().getCorreo();
         mailSender.send(alertas,"Interac",mensajeAnunciante);
-       // mailSender.send(replicas,"Interac",mensajeLocal);
+       // mailSender.send(replicas,"Interac",mensajeLocal);*/
 
         FacesUtil.mostrarMensajeInformativo("Operacion exitosa", "se ha creado tu anuncio");
     }
@@ -271,7 +287,7 @@ public class MantenedorCampana implements Serializable {
             return "end1";}
     }
 
-       public void eliminarFichero(Contenido conte){
+       public String eliminarFichero(Contenido conte){
 
         try {
             String ambiente = propertyReader.get("ambiente");
@@ -282,18 +298,22 @@ public class MantenedorCampana implements Serializable {
                 logicaContenido.eliminarContenido(conte);
                 FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha borrado la imagen");
                 contenidos = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
+
             }
             else if ("produccion".equals(ambiente)) {
                 logicaContenido.eliminarContenido(conte);
-                Files.delete(Paths.get("/home/ec2-user/media/interac/" + conte.getPath()));
+                Files.delete(Paths.get("/home/ec2-user/media/tmp/" + conte.getPath()));
                 FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha borrado la imagen}");
                 contenidos = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
             }
 
         }catch (Exception e){
             FacesUtil.mostrarMensajeInformativo("Operación Fallida", "Algo Ocurrio");
+
         }
-    }
+    return "crear";
+       }
+
     public void eliminarCampana(Campana campa){
         try {
 
@@ -365,7 +385,7 @@ public class MantenedorCampana implements Serializable {
             campana.setFechaFin(getDateEnd(mesFin, yearvalueend));
         }
             }
-    // Función que permite el retorno del ultimo día de un mes X
+    // permite el retorno del ultimo día de un mes X
    public Date getDateEnd(Integer m, Integer y) {
         Calendar calendar = Calendar.getInstance();
         // passing month-1 because 0-->jan, 1-->feb... 11-->dec
@@ -385,7 +405,7 @@ public class MantenedorCampana implements Serializable {
         return date;
     }
 
-    //Funcion que obtiene en entero el rango de horas de un establecimiento
+    // obtiene en entero el rango de horas de un establecimiento
     public Integer calcularHoras(Establecimiento est){
         Long tiempoInicial = est.getHoraInicio().getTime()/3600000;
         Long tiempoFinal = est.getHoraTermino().getTime()/3600000;
@@ -427,7 +447,7 @@ public class MantenedorCampana implements Serializable {
     }
 
 
-   //Funcion que retorna en entero la cantidad de pasadas segun
+   // retorna en entero la cantidad de pasadas segun
     //la hora de apertura y cierre del establecimiento, ademas de los slots disponibles
     public Integer calcularPasadas(Establecimiento est){
 
@@ -436,7 +456,7 @@ public class MantenedorCampana implements Serializable {
 
         return cantidadPasadas;
     }
-    //funcion calcula valores parciales y totales
+    // calcula valores parciales y totales
     public Integer calculator(Establecimiento est){
         pasadas=calcularPasadas(est);
         if (userSession.getUsuario().getIdUsuario().equals(est.getUsuario().getIdUsuario())) {
@@ -535,6 +555,18 @@ public class MantenedorCampana implements Serializable {
         filtrar = logicaEstablecimiento.obtenerFiltro(orienta,empresa,ubicacion,categoria);
 
     }
+    //filtra lista de provincias segun region
+    public void provincias(){
+
+        provinciasList = logicaProvincias.obtenerConRealacion(region.getRegion_id());
+
+    }
+    //filtra lista de comunas segun provincia
+    public void comunas(){
+
+        comunasList = logicaComunas.obtenerConRealacion(provincia.getProvincia_id());
+    }
+
     //Getter and Setter
     public Long getContarCampanas() {
         return contarCampanas;
@@ -959,6 +991,14 @@ public class MantenedorCampana implements Serializable {
         this.establecimientosLista = establecimientosLista;
     }
 
+    public List<Campestab> getCampestabList() {
+        return campestabList;
+    }
+
+    public void setCampestabList(List<Campestab> campestabList) {
+        this.campestabList = campestabList;
+    }
+
     public boolean isOrientacion() {
         return orientacion;
     }
@@ -997,6 +1037,53 @@ public class MantenedorCampana implements Serializable {
 
     public void setContenidoslista(Contenido[] contenidoslista) {
         this.contenidoslista = contenidoslista;
+    }
+    public List<Regiones> getRegionesList() {
+        return regionesList;
+    }
+
+    public void setRegionesList(List<Regiones> regionesList) {
+        this.regionesList = regionesList;
+    }
+
+    public List<Provincias> getProvinciasList() {
+        return provinciasList;
+    }
+
+    public void setProvinciasList(List<Provincias> provinciasList) {
+        this.provinciasList = provinciasList;
+    }
+
+    public List<Comunas> getComunasList() {
+        return comunasList;
+    }
+
+    public void setComunasList(List<Comunas> comunasList) {
+        this.comunasList = comunasList;
+    }
+
+    public Comunas getComuna() {
+        return comuna;
+    }
+
+    public void setComuna(Comunas comuna) {
+        this.comuna = comuna;
+    }
+
+    public Provincias getProvincia() {
+        return provincia;
+    }
+
+    public void setProvincia(Provincias provincia) {
+        this.provincia = provincia;
+    }
+
+    public Regiones getRegion() {
+        return region;
+    }
+
+    public void setRegion(Regiones region) {
+        this.region = region;
     }
 
     public List<Campana> getContenidocampanas() {

@@ -103,13 +103,14 @@
             <!-- /input-group -->
             <br/>
             <br/>
+
             <ui:fragment
                     rendered="#{userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') }">
                 <div class="ui-grid-row">
-                    <p:dataTable var="camton" rows="5" paginator="true"
+                    <p:dataTable var="cam" rows="5" paginator="true"
                                  styleClass="col-lg-10 col-lg-offset-5"
                                  style="margin-left: 10%;text-align-all: center;"
-                                 value="#{mantenedorCampana.contenidocampanas}">
+                                 value="#{mantenedorCampana.campestabList}">
 
                         <f:facet name="header">
                             <h3>Contenido en Mis Pantallas</h3>
@@ -117,25 +118,25 @@
 
                         <p:column styleClass="col-lg-2" headerText="">
                             <p:imageSwitch effect="shuffle" id="fac">
-                                <ui:repeat value="#{camton.contenidoList}" var="image" id="manuelSwitcherImages">
+                                <ui:repeat value="#{cam.campana.contenidoList}" var="image" id="manuelSwitcherImages">
                                     <p:graphicImage value="/imagenes/interac/#{image.path}" style="width:100px; height:200px ;"/>
                                 </ui:repeat>
                             </p:imageSwitch>
                         </p:column>
-                        <p:column styleClass="col-lg-2" headerText="Estado">
-                            <h:outputText value="#{camton.estado}"/>
+                        <p:column styleClass="col-lg-2" headerText="Lugar">
+                            <h:outputText value="#{cam.establecimiento.nombreEstablecimiento}"/>
                         </p:column>
                         <p:column styleClass="col-lg-2" headerText="Creado">
-                            <h:outputText value="#{camton.fechaCreacion}"/>
-                        </p:column>
-                        <p:column styleClass="col-lg-2" headerText="Pasadas">
-                            <h:outputText value="#{camton.pasadas}"/>
+                            <h:outputText value="#{cam.campana.fechaCreacion}"/>
                         </p:column>
                         <p:column styleClass="col-lg-2" headerText="Comienzo">
-                            <h:outputText value="#{camton.fechaInicio}"/>
+                            <h:outputText value="#{cam.campana.fechaInicio}"/>
                         </p:column>
                         <p:column styleClass="col-lg-2" headerText="Termino">
-                            <h:outputText value="#{camton.fechaFin}"/>
+                            <h:outputText value="#{cam.campana.fechaFin}"/>
+                        </p:column>
+                        <p:column styleClass="col-lg-2" headerText="Estado">
+                            <h:outputText value="#{cam.estado}"/>
                         </p:column>
 
                     </p:dataTable>
