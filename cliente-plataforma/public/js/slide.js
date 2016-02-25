@@ -43,17 +43,17 @@ var Slide = {};
             siguiente.show();
             if (siguiente.is("video")) {
                 index = index + 1;
-                 if(index < d.length) {
-                    
-                    d[index].duration
-                    var minutes = parseInt(d[index].duration , 10);                
+                 if(index <= d.length) {
+                    var index2 = index - 1;
+                    d[index2].duration
+                    var minutes = parseInt(d[index2].duration , 10);                
                     showTime = minutes * 1000;
 
                   
                  }else {
-                    index = 0;
+                    index = 1;
                      d[index].duration
-                    var minutes = parseInt(d[index].duration , 10);
+                    var minutes = parseInt(d[index - 1].duration , 10);
                   showTime = minutes * 1000;
                  }
                 siguiente.get(0).play();
@@ -64,8 +64,8 @@ var Slide = {};
             break;
         }
         if(d.length <= 1) {
-            showTime = 10 * 1000; // 10 segundos
             sliderTimerID = setTimeout(this.change.bind(this), showTime);
+             showTime = 10 * 1000; // 10 segundos
         }
         else{
             sliderTimerID = setTimeout(this.change.bind(this), showTime);
