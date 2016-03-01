@@ -9,12 +9,12 @@
 <f:view>
 
 
-    <p:outputPanel styleClass="user-menu pull-right">
-        <ul>
+    <p:outputPanel styleClass="egmenu">
+        <ul class="egmenu">
 
 
             <ui:fragment rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR')  or userSession.tienePermiso('PUCV')}">
-            <li style="padding-right: 860px;margin-right: 213px">
+            <li >
                 <p:commandLink immediate="true" value="Inicio" action="#{facesUtil.redirigir('/plataforma/campana')}" />
             </li>
              </ui:fragment>
