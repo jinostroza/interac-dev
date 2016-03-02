@@ -14,42 +14,42 @@
 
 
             <ui:fragment rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR')  or userSession.tienePermiso('PUCV')}">
-            <li >
+            <li style="background-color: #333">
                 <p:commandLink immediate="true" value="Inicio" action="#{facesUtil.redirigir('/plataforma/campana')}" />
             </li>
              </ui:fragment>
             <ui:fragment rendered="#{!userSession.estaAutentificado()}">
-                <li>
+                <li style="background-color: #333">
                     <p:commandLink value="Iniciar Sesion" action="#{facesUtil.redirigir('/logIn.jsf')}"/>
                 </li>
             </ui:fragment>
 
             <ui:fragment rendered="#{userSession.tienePermiso('ADMINISTRADOR')}">
-                <li>
-                    <p:commandLink value="Mis Pantallas" action="#{facesUtil.redirigir('/plataforma/cliente')}"/>
+                <li style="background-color: #333">
+                    <p:commandLink value="Pantallas" action="#{facesUtil.redirigir('/plataforma/cliente')}"/>
                 </li>
             </ui:fragment>
 
             <ui:fragment rendered="#{!userSession.estaAutentificado()}">
-                <li>
+                <li style="background-color: #333">
                     <p:commandLink value="Registrar" action="#{facesUtil.redirigir('registrar.jsf')}"/>
                 </li>
             </ui:fragment>
 
             <ui:fragment rendered="#{userSession.tienePermiso('ADMINISTRADOR')}">
-                <li>
-                    <p:commandLink value="Mis Contenidos" action="#{facesUtil.redirigir('/plataforma/contenidos')}"/>
+                <li style="background-color: #333">
+                    <p:commandLink value="Contenidos" action="#{facesUtil.redirigir('/plataforma/contenidos')}"/>
                 </li>
             </ui:fragment>
 
             <ui:fragment rendered="#{userSession.tienePermiso('ADMINISTRADOR')}">
-                <li>
+                <li style="background-color: #333">
                     <p:commandLink value="Mantenedor" action="#{facesUtil.redirigir('/plataforma/mantencion')}"/>
                 </li>
             </ui:fragment>
 
             <ui:fragment rendered="#{userSession.estaAutentificado()}">
-                <li><a href="/interac/logOut" >Cerrar Sesion</a></li>
+                <li style="float:right;background-color: #333"><a href="/interac/logOut" >Cerrar Sesion</a></li>
             </ui:fragment>
         </ul>
     </p:outputPanel>

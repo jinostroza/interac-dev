@@ -9,12 +9,10 @@
         <div class="header-top">
             <div class="logo"></div>
             <p:outputPanel styleClass="egmenu pull-right" style="padding-right: 30px">
-                <ui:fragment rendered="#{userSession.tienePermiso('CLIENTE') or userSession.tienePermiso('ADMINISTRADOR')}">
-                    <h:commandButton styleClass="btn btn-interac" style="height: 40px; " value="Activar Pantallas" action="#{facesUtil.redirigir('/plataforma/contenidos')}"/>
-                </ui:fragment>
+
                 <ui:fragment rendered="#{userSession.estaAutentificado() }">
-                    <h:commandButton styleClass="btn-perfil" style="height: 60px;width: 100px;background-color:#E52721;color: white;border-radius: 20%" value="#{userSession.usuario.username}" action="#{facesUtil.redirigir('/plataforma/panelDeControl')}" />
-                </ui:fragment>
+                    <h:commandButton styleClass="btn-perfil" style="height: 60px;width: 100px;background-color:#E52721;color: white;border-radius: 10%" value="#{userSession.usuario.username}" action="#{facesUtil.redirigir('/plataforma/panelDeControl')}" />
+            </ui:fragment>
             </p:outputPanel>
         </div>
         <ui:include src="NavBar.xhtml"/>
