@@ -65,7 +65,7 @@ public class MantenedorEstablecimiento implements Serializable {
 
     public void agregarEstablecimiento() {
         establecimiento.setUsuario(userSession.getUsuario());
-        establecimiento.setUbicacion(ubicacion);
+       // establecimiento.setUbicacion(ubicacion);
         establecimiento.setCategoria(categoria);
         establecimiento.setEmpresa(empresa);
         logicaEstablecimiento.guardar(establecimiento);

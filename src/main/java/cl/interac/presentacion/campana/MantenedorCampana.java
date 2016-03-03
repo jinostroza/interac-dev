@@ -103,6 +103,7 @@ public class MantenedorCampana implements Serializable {
     private Regiones region;
     private Provincias provincia;
     private Comunas comuna;
+    private List<Comunas> comunases;
     private List<Regiones> regionesList;
     private List<Provincias> provinciasList;
     private List<Comunas> comunasList;
@@ -155,7 +156,7 @@ public class MantenedorCampana implements Serializable {
         categoriaList = logicaCategoria.obtenerTodos();
         establecimientoList=logicaEstablecimiento.obtenerTodos();
         establecimientos=logicaEstablecimiento.obbtenerPorTotem();
-        filtrar=logicaEstablecimiento.obtenerFiltro(orienta, empresa, ubicacion, categoria);
+        filtrar=logicaEstablecimiento.obtenerFiltro(orienta, empresa, comuna,provincia,region, categoria);
         ubicacionList=logicaUbicacion.obtenerTodas();
         tipototemList=logicaTipototem.obtenerTodos();
         totemsConrelacion = logicaTotem.obtenerConRelacion();
@@ -313,6 +314,10 @@ public class MantenedorCampana implements Serializable {
         }
     return "crear";
        }
+    public String nombreComuna(Integer com){
+        comuna = logicaComunas.obtenerNombre(com);
+     return  comuna.getComuna_nombre() ;
+    }
 
     public void eliminarCampana(Campana campa){
         try {
@@ -550,9 +555,9 @@ public class MantenedorCampana implements Serializable {
         System.out.println(orienta);
 
         System.out.println(empresa);
-        System.out.println(ubicacion);
+        System.out.println(comuna);
         System.out.println(categoria);
-        filtrar = logicaEstablecimiento.obtenerFiltro(orienta,empresa,ubicacion,categoria);
+        filtrar = logicaEstablecimiento.obtenerFiltro(orienta,empresa,comuna,provincia,region,categoria);
 
     }
     //filtra lista de provincias segun region
@@ -1084,6 +1089,14 @@ public class MantenedorCampana implements Serializable {
 
     public void setRegion(Regiones region) {
         this.region = region;
+    }
+
+    public List<Comunas> getComunases() {
+        return comunases;
+    }
+
+    public void setComunases(List<Comunas> comunases) {
+        this.comunases = comunases;
     }
 
     public List<Campana> getContenidocampanas() {

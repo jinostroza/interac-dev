@@ -18,6 +18,12 @@ import java.io.Serializable;
                         "inner join fetch c.provincias pr " +
                         "where pr.provincia_id = :provincias_id "
 
+        ),
+        @NamedQuery(
+                name = "Comunas.findnames",
+                query = "SELECT c from Comunas c " +
+                        "where c.comuna_id = :comuna "
+
         )
 })
 public class Comunas implements Serializable {

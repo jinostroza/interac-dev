@@ -17,7 +17,7 @@ import java.util.List;
         @NamedQuery(name = "estabecimiento.findAllByusuario",
                 query = "select e from Establecimiento e " +
                         "inner join fetch e.usuario u " +
-                        "inner join fetch e.ubicacion ub " +
+
                         "INNER JOIN FETCH e.categoria c " +
                         "INNER JOIN FETCH e.empresa em "),
 
@@ -31,14 +31,14 @@ import java.util.List;
 
         @NamedQuery(name= "establecimiento.findbyUser",
                 query = "SELECT e FROM Establecimiento e " +
-                        "INNER JOIN FETCH e.ubicacion ub " +
+
                         "INNER JOIN FETCH e.usuario u " +
                         "INNER JOIN FETCH e.totem t " +
                         "WHERE u.username=:username "),
 
         @NamedQuery(name = "establecimiento.findtotem",
                 query = "SELECT e FROM Establecimiento e " +
-                        "INNER JOIN FETCH e.ubicacion ub " +
+
                         "INNER JOIN FETCH e.usuario u " +
                         "INNER JOIN FETCH e.categoria ca "),
 
@@ -48,11 +48,13 @@ import java.util.List;
 
         @NamedQuery(name = "establecimiento.findFilter",
                 query = "SELECT e FROM Establecimiento e " +
-                        "INNER JOIN FETCH e.ubicacion ub " +
+                        "INNER JOIN FETCH e.comunas co " +
+                        "INNER JOIN FETCH e.provincias p " +
+                        "INNER JOIN FETCH e.regiones r " +
                         "INNER JOIN FETCH e.categoria c " +
                         "INNER JOIN FETCH e.empresa em " +
                         "WHERE e.empresa = :idempresa or e.categoria = :idcategoria or e.nombreEstablecimiento = :nombre " +
-                        "or e.ubicacion = :idubicacion or e.orientacion = :orientacion or e.estado = 'activo' "),
+                        "or e.comunas = :idubicacion or e.provincias = :idprovincias or e.regiones = :idregiones or e.orientacion = :orientacion or e.estado = 'activo' "),
 
         @NamedQuery(name = "establecimiento.findByEmpresa",
                 query = "SELECT e FROM Establecimiento e "+
@@ -81,6 +83,9 @@ public class Establecimiento implements Serializable {
     private Usuario usuario;
     private List<Totem> totem;
     private Ubicacion ubicacion;
+    private Comunas comunas;
+    private Provincias provincias;
+    private Regiones regiones;
     private Categoria categoria;
     private List<Campana> campanaList;
     private Empresa empresa;
@@ -218,13 +223,35 @@ public class Establecimiento implements Serializable {
     public Categoria getCategoria() { return categoria; }
     public void setCategoria(Categoria categoria) { this.categoria = categoria; }
 
-    @JoinColumn(name = "idubicacion", referencedColumnName = "idubicacion")
+
+    @JoinColumn(name = "idubicacion", referencedColumnName = "comuna_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    public Ubicacion getUbicacion() {
-        return ubicacion;
+    public Comunas getComunas() {
+        return comunas;
     }
-    public void setUbicacion(Ubicacion ubicacion) {
-        this.ubicacion = ubicacion;
+
+    public void setComunas(Comunas comunas) {
+        this.comunas = comunas;
+    }
+    @JoinColumn(name = "idprovincia", referencedColumnName = "provincia_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+
+    public Provincias getProvincias() {
+        return provincias;
+    }
+
+    public void setProvincias(Provincias provincias) {
+        this.provincias = provincias;
+    }
+    @JoinColumn(name = "idregion", referencedColumnName = "region_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+
+    public Regiones getRegiones() {
+        return regiones;
+    }
+
+    public void setRegiones(Regiones regiones) {
+        this.regiones = regiones;
     }
 
     @JoinColumn(name = "empresa", referencedColumnName = "idempresa")

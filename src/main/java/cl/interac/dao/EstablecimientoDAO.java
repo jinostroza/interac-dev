@@ -1,9 +1,6 @@
 package cl.interac.dao;
 
-import cl.interac.entidades.Categoria;
-import cl.interac.entidades.Empresa;
-import cl.interac.entidades.Establecimiento;
-import cl.interac.entidades.Ubicacion;
+import cl.interac.entidades.*;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -59,13 +56,15 @@ public class EstablecimientoDAO {
     public List<Establecimiento> filtrar(String orienta,String nombre,Integer empresa,Integer ubicacion,Integer rubro){
         return em.createNamedQuery("establecimiento.findFilter").setParameter("orientacion", orienta).setParameter("nombre",nombre).setParameter("idempresa",empresa).setParameter("idubicacion",ubicacion).setParameter("idcategoria", rubro).getResultList();
     }
-    public List<Establecimiento> obtenerFiltro(String orienta,Empresa empresa,Ubicacion ubicacion,Categoria categoria) {
+    public List<Establecimiento> obtenerFiltro(String orienta,Empresa empresa,Comunas comunas,Regiones regiones,Provincias provincias,Categoria categoria) {
         StringBuilder sb = new StringBuilder();
         sb.append("select ");
         sb.append("e.* ");
         sb.append("from establecimiento e ");
         sb.append("left join empresa em on (em.idempresa = e.empresa) " );
-        sb.append("left join ubicacion ub on (ub.idubicacion = e.idubicacion) " );
+        sb.append("left join comunas c on (c.comuna_id = e.idubicacion) " );
+        sb.append("left join provincias p on (p.provincia_id = e.idprovincia) " );
+        sb.append("left join regiones r on (r.region_id = e.idregion) " );
         sb.append("left join categoria ca on (ca.idcategoria = e.fk_rubro) " );
         sb.append("where e.estado='Activado' " );
         if (orienta != null){
@@ -74,8 +73,14 @@ public class EstablecimientoDAO {
         if (empresa != null){
             sb.append("and e.empresa=:empresa ");
         }
-        if (ubicacion != null){
-            sb.append("and e.idubicacion=:ubicacion ");
+        if (comunas != null){
+            sb.append("and e.idubicacion=:comunas ");
+        }
+        if (provincias != null){
+            sb.append("and e.idprovincia=:provincias ");
+        }
+        if (regiones != null){
+            sb.append("and e.idregion=:regiones ");
         }
         if (categoria != null){
             sb.append("and e.fk_rubro=:categoria ");
@@ -88,8 +93,14 @@ public class EstablecimientoDAO {
         if (empresa != null){
             q.setParameter("empresa", empresa.getIdEmpresa());
         }
-        if (ubicacion != null){
-            q.setParameter("ubicacion", ubicacion.getIdubicacion());
+        if (comunas != null){
+            q.setParameter("comunas", comunas.getComuna_id());
+        }
+        if (provincias != null){
+            q.setParameter("provincias", provincias.getProvincia_id());
+        }
+        if (regiones != null){
+            q.setParameter("regiones",regiones.getRegion_id());
         }
         if (categoria != null){
             q.setParameter("categoria", categoria.getIdcategoria());

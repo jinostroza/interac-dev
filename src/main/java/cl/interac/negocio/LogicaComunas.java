@@ -28,7 +28,10 @@ public class LogicaComunas {
  @Transactional(readOnly = true)
  public List<Comunas> obtenerConRealacion(Integer provincia_id){return comunasDAO.obtenerConRelacion(provincia_id);}
 
-
+ @Transactional(readOnly = true)
+ public Comunas obtenerNombre(Integer comuna){
+  return comunasDAO.obtenerNombres(comuna);
+ }
 
 
 

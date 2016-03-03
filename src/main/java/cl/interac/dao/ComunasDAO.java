@@ -15,7 +15,7 @@ public class ComunasDAO {
   @PersistenceContext
     private EntityManager em;
     public List<Comunas> ObtenerTodos(){return em.createNamedQuery("Comunas.findAll").getResultList();}
-    public List<Comunas> obtenerConRelacion(Integer proviancia_id){return em.createNamedQuery("Comunas.findAllWithRelationships").setParameter("provincias_id",proviancia_id).getResultList();}
+    public List<Comunas> obtenerConRelacion(Integer proviancia_id){return em.createNamedQuery("Comunas.findAllWithRelationships").setParameter("provincias_id", proviancia_id).getResultList();}
     public void guardar (Comunas b){
         if(b.getComuna_id()== null) em.persist(b);
 
@@ -27,6 +27,9 @@ public class ComunasDAO {
        em.remove(comunas);
 
    }
+    public Comunas obtenerNombres(Integer comuna){
+        return (Comunas ) em.createNamedQuery("Comunas.findnames").setParameter("comuna",comuna).getSingleResult();
+    }
 
 
 

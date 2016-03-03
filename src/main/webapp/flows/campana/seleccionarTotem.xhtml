@@ -34,9 +34,9 @@
                     <div class="col-lg-4">
 
 
-                        <p:panel header="Filtros">
+                        <p:panel header="Busqueda Avanzada">
                             <p:panelGrid columns="4" >
-                                <p:outputLabel value="Ubicacion "/>
+                                <p:outputLabel value="Region "/>
                                 <h:outputText styleClass="fa fa-fw fa-map-marker" style="float: right;color: red"/>
                                     <h:selectOneMenu class="form-control" value="#{mantenedorCampana.region}"
                                                      converter="entityConverter">
@@ -49,7 +49,7 @@
                                 <br></br>
                                 <br></br>
                                 <br></br>
-                                <p:outputLabel value="Ubicacion "/>
+                                <p:outputLabel value="Provincia "/>
                                 <h:outputText styleClass="fa fa-fw fa-map-marker" style="float: right;color: red"/>
                                     <h:selectOneMenu id="provi" class="form-control" value="#{mantenedorCampana.provincia}"
                                                      converter="entityConverter">
@@ -63,7 +63,7 @@
                                 <br></br>
                                 <br></br>
                                 <br></br>
-                                <p:outputLabel value="Ubicacion "/>
+                                <p:outputLabel value="Comuna "/>
                                 <h:outputText styleClass="fa fa-fw fa-map-marker" style="float: right;color: red"/>
                                     <h:selectOneMenu id="comuna" class="form-control" value="#{mantenedorCampana.comuna}"
                                                      converter="entityConverter">
@@ -71,19 +71,7 @@
                                         <f:selectItems value="#{mantenedorCampana.comunasList}" var="com"
                                                        itemLabel="#{com.comuna_nombre}"/>
                                     </h:selectOneMenu>
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                                <br></br>
 
-                                <p:outputLabel value="Ubicacion "/>
-                                <h:outputText styleClass="fa fa-fw fa-map-marker" style="float: right;color: red"/>
-                                <h:selectOneMenu value="#{mantenedorCampana.ubicacion}" converter="entityConverter"
-                                                 style="width: 150px">
-                                    <f:selectItem itemLabel="Ubicacion" noSelectionOption="true"/>
-                                    <f:selectItems value="#{mantenedorCampana.ubicacionList}" var="ubica"
-                                                   itemLabel="#{ubica.descubicacion}" itemValue="#{ubica}"/>
-                                </h:selectOneMenu>
                                 <br></br>
                                 <br></br>
                                 <br></br>
@@ -146,7 +134,7 @@
                         </p:column>
                         <p:column id="ubicacion">
                             <h4>Ciudad :
-                                <small>#{place.ubicacion.idubicacion}</small>
+                                <small>#{mantenedorCampana.nombreComuna(place.comunas.comuna_id)}</small>
                             </h4>
                         </p:column>
                         <p:column>

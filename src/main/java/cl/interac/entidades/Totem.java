@@ -17,12 +17,12 @@ import java.util.*;
                                 "LEFT JOIN FETCH t.tipototem " +
                                 "LEFT JOIN FETCH t.establecimiento e " +
                                 "LEFT JOIN FETCH e.usuario u " +
-                                "LEFT JOIN FETCH e.ubicacion ubi " +
+                                //"LEFT JOIN FETCH e.ubicacion ubi " +
                                 "LEFT JOIN FETCH t.marcaPantalla mp "),
                 @NamedQuery(name="Totem.findbyUsuario",
                             query="SELECT t FROM Totem t " +
                                     "LEFT JOIN FETCH t.establecimiento e " +
-                                    "LEFT JOIN FETCH e.ubicacion ub " +
+                                    //"LEFT JOIN FETCH e.ubicacion ub " +
                                     "LEFT JOIN FETCH e.usuario u " +
                                     "LEFT JOIN FETCH t.tipototem " +
                                     "LEFT JOIN FETCH t.marcaPantalla " +
