@@ -109,6 +109,7 @@ ul.egmenu li:hover ul { display: block;  }
 /* Contenido Home Usuario */
 #myInterac{
 	background-color:white;
+
 }
 #myInterac div .dashbox{
 	color: #ffffff;
@@ -313,7 +314,7 @@ ul.egmenu li:hover ul { display: block;  }
 .btn-perfil
 {
 	background-image: url("css/img/buttons/gears-01.png");
-	background-size: cover;
+	background-size: contain;
 	background-repeat:no-repeat;
 	background-position: center center;
 

@@ -10,7 +10,9 @@ import java.util.List;
 @Entity
 @NamedQueries(
         {
-                @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u "),
+                @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u " +
+                                 "INNER JOIN FETCH u.empresa  "
+                                   ),
 
                 @NamedQuery(
                         name = "Usuario.findByUserAndPassword",

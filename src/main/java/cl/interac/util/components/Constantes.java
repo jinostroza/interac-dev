@@ -17,7 +17,7 @@ public class Constantes implements Serializable {
     private String pathArchivos;
 
     private String correo = "contacto@interac.cl";
-    private String claveCorreo = "interac2015";
+    private String claveCorreo = "interac2016";
     private String servidorCorreo = "mx1.nixiweb.com";
     private Integer puertoCorreo = 587;
 
@@ -922,7 +922,7 @@ public class Constantes implements Serializable {
                 "          \n" +
                 "         \n" +
                 "            <h1>El cliente ha rechazado tu campa&ntilde;a</h1>\n" +
-                "            <p>por favor pongase en contacto con el cliente para mas detalles</p>\n" +
+                "            <p>Por favor pongase en contacto con el cliente para mas detalles</p>\n" +
                 "           \n" +
                 "            <!-- button -->\n" +
                 "            <table class=\"btn-primary\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n" +

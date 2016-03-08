@@ -1,8 +1,10 @@
 
 package cl.interac.presentacion.usuarios;
 
+import cl.interac.entidades.Empresa;
 import cl.interac.entidades.Rol;
 import cl.interac.entidades.Usuario;
+import cl.interac.negocio.LogicaEmpresa;
 import cl.interac.negocio.LogicaUsuario;
 import cl.interac.security.LogInManager;
 import cl.interac.util.components.Constantes;
@@ -17,7 +19,6 @@ import java.io.Serializable;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -28,6 +29,8 @@ import java.util.List;
 public class MantenedorPerfil implements Serializable {
     @Autowired
     public LogicaUsuario logicaUsuario;
+    @Autowired
+    public LogicaEmpresa logicaEmpresa;
     @Autowired
     private UserSession userSession; // es un componente spring y de scope session, por ende hay que
     @Autowired
@@ -46,6 +49,7 @@ public class MantenedorPerfil implements Serializable {
     private String username;
     private Usuario usuario;
     private List<Usuario> usuarioList;
+    private Empresa empresas;
 
     private Long retornoCorreos;
     private Integer idUsuario;
@@ -73,7 +77,10 @@ public class MantenedorPerfil implements Serializable {
         logicaUsuario.editarPerfil(userSession.getUsuario().getUsername(),correo,empresa);
         FacesUtil.mostrarMensajeInformativo("Operación exitosa", "usuario [" + userSession.getUsuario().getUsername() + "] modificado");
     }
-
+    public String nombreEmpresa(Integer emp){
+        empresas = logicaEmpresa.obtenerNombre(emp);
+        return  empresas.getNombreEmpresa();
+    }
     public static String md5(String input){
 
         String md5 = null; //La variable esta vacia

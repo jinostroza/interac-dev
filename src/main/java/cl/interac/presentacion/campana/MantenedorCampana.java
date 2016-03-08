@@ -275,14 +275,17 @@ public class MantenedorCampana implements Serializable {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String[] replicas = new String[1];
         String[] alertas = new String[2];
+                for(Establecimiento et : establecimientoList) {
+                    replicas[0]=et.getUsuario().getCorreo();
+                    mailSender.send(replicas,"Interac", mensajeLocal);
+                }
 
-       // replicas[0]=establecimientoseleccionado.getUsuario().getCorreo();
         alertas[0]="contacto@interac.cl";
         alertas[1]=userSession.getUsuario().getCorreo();
         mailSender.send(alertas,"Interac",mensajeAnunciante);
-       // mailSender.send(replicas,"Interac",mensajeLocal);*/
 
-        FacesUtil.mostrarMensajeInformativo("Operacion exitosa", "se ha creado tu anuncio");
+
+                FacesUtil.mostrarMensajeInformativo("Operacion exitosa", "se ha creado tu anuncio");
     }
             dateDiff();
             return "end1";}

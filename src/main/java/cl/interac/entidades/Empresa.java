@@ -2,7 +2,6 @@ package cl.interac.entidades;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by PPablo on 30-11-2015.
@@ -10,7 +9,13 @@ import java.util.List;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "empresa.findAll", query = "SELECT emp FROM Empresa emp")
+        @NamedQuery(name = "empresa.findAll", query = "SELECT emp FROM Empresa emp"),
+        @NamedQuery(
+        name = "Empresa.findnames",
+        query = "SELECT e from Empresa e " +
+                "where e.idEmpresa = :empresa "
+
+)
 })
 
 public class Empresa implements Serializable {

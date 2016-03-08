@@ -6,6 +6,19 @@
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
+        <style type="text/css">
+            .ui-button {
+                background: #454545 !important;
+                border: 1px solid #555 !important;
+                color: #EEE !important;
+            }
+            .ui-state-hover{
+                background-color: #fff !important;
+                color: #454545 !important;
+                border-color: #454545 !important;
+                border-radius: 4px !important;
+            }
+        </style>
         <h2>Perfil de Usuario</h2>
 
         <h:form id="perfil">
@@ -23,9 +36,9 @@
             </h:panelGrid>
             </p:panel>
             <p:outputPanel styleClass="actionPanel">
-                <p:commandButton action="#{MantenedorPerfil.irVerPerfil()}" styleClass="btn-interac" icon="ui-icon-arrowreturnthick-1-s"
+                <p:commandButton action="#{mantenedorPerfil.irVerPerfil()}" styleClass="btn-interac" immediate="true" icon="ui-icon-arrowreturnthick-1-s"
                                  value="Volver"/>
-                <p:commandButton action="#{MantenedorPerfil.cambiarClave()}" styleClass="btn-interac" icon="ui-icon-disk" value="Guardar"/>
+                <p:commandButton action="#{mantenedorPerfil.cambiaPerfil}" styleClass="btn-interac" icon="ui-icon-disk" value="Guardar"/>
             </p:outputPanel>
         </h:form>
     </ui:define>

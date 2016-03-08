@@ -6,6 +6,19 @@
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
+        <style type="text/css">
+            .ui-button {
+                background: #454545 !important;
+                border: 1px solid #555 !important;
+                color: #EEE !important;
+            }
+            .ui-state-hover{
+                background-color: #fff !important;
+                color: #454545 !important;
+                border-color: #454545 !important;
+                border-radius: 4px !important;
+            }
+        </style>
         <h2>Perfil de Usuario</h2>
         <h:form id="perfil">
 
@@ -16,12 +29,12 @@
                     <h:outputLabel value="correo :" />
                     <h:outputText value="#{userSession.usuario.correo}"/>
                     <h:outputLabel value="empresa :" />
-                    <h:outputText value="#{userSession.usuario.empresa}"/>
-                    <h:commandButton icon="ui-icon-pencil" value="Cambiar" styleClass="btn-interac" action="#{mantenedorPerfil.irCambiarClave()}"/>
+                    <h:outputText value="#{mantenedorPerfil.nombreEmpresa(userSession.usuario.empresa.idEmpresa)}"/>
+                    <h:commandButton icon="ui-icon-pencil" value="Modificar Contraseña" styleClass="btn-interac" immediate="true" action="#{mantenedorPerfil.irCambiarClave()}"/>
                 </h:panelGrid>
             </p:panel>
 
-            <p:panel header="Cambiar Perfil" styleClass="row">
+            <p:panel header="Modificar Perfil" styleClass="row">
                 <h:panelGrid columns="2" styleClass="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 form-group " cellpadding="5px" >
                     <h:outputLabel value="Usuario :"/>
                     <h:outputLabel  value="#{userSession.usuario.username}"/>
@@ -30,12 +43,6 @@
                     <h:outputLabel value="Empresa :"/>
                     <p:inputText placeholder="Empresa" styleClass="form-control" value="#{mantenedorPerfil.usuario.empresa}"/>
 
-                    <h:outputLabel for="iNueva" value="Contraseña Nueva :"/>
-                    <h:inputSecret id="iNueva"  value="#{mantenedorPerfil.claveNueva}" styleClass="form-control"
-                                       required="true" requiredMessage="Debes especificar la contraseña nueva"/>
-                    <h:outputLabel for="iConfirmar" value="Repita la Nueva Contraseña :"/>
-                    <h:inputSecret id="iConfirmar" value="#{mantenedorPerfil.claveConfirmada}"
-                                       styleClass="form-control" required="true" requiredMessage="Debes confirmar la nueva contraseña"/>
 
                     <h:commandButton id="modifica" styleClass="btn-interac" value="Modificar" type="button">
                         <p:overlayPanel id="editPanel" for="modifica" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">

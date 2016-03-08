@@ -2,12 +2,13 @@ package cl.interac.negocio;
 
 import cl.interac.dao.EmpresaDAO;
 import cl.interac.entidades.Empresa;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Created by PPablo on 01-12-2015.
@@ -27,4 +28,10 @@ public class LogicaEmpresa {
 
     @Transactional(readOnly = false)
     public void eliminar(Empresa emp) { empresaDAO.eliminarEmpresa(emp); }
+
+    @Transactional(readOnly = true)
+    public Empresa obtenerNombre(Integer empresa){
+        return empresaDAO.obtenerNombres(empresa);
+    }
 }
+

@@ -8,12 +8,12 @@
     <div class="header">
         <div class="header-top">
             <div class="logo"></div>
-            <p:outputPanel styleClass="egmenu pull-right" style="padding-right: 30px">
+            <h:form styleClass="egmenu pull-right" style="padding-right: 30px">
 
                 <ui:fragment rendered="#{userSession.estaAutentificado() }">
-                    <h:commandButton styleClass="btn-perfil" style="height: 60px;width: 100px;background-color:#E52721;color: white;border-radius: 10%" value="#{userSession.usuario.username}" action="#{facesUtil.redirigir('/plataforma/panelDeControl')}" />
+                    <h:commandButton styleClass="btn-perfil" style="height: 60px;width: 100px;background-color:#E52721;color: white;border-radius: 10%;margin-top: 20%" value="#{userSession.usuario.username}" action="#{facesUtil.redirigir('/plataforma/panelDeControl')}" immediate="true"/>
             </ui:fragment>
-            </p:outputPanel>
+            </h:form>
         </div>
         <ui:include src="NavBar.xhtml"/>
         <span></span>

@@ -42,7 +42,8 @@ public class AutenticarBean implements Serializable {
     public void logIn() {
         try {
             HttpServletRequest request = FacesUtil.obtenerHttpServletRequest();
-            request.login(user, pass);
+
+            request.login(user, md5(pass));
             FacesUtil.redirigir("/plataforma/campana");
 
         } catch (ServletException ex) {

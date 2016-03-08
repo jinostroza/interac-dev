@@ -7,20 +7,34 @@
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
+        <style type="text/css">
+            .ui-button {
+                background: #454545 !important;
+                border: 1px solid #555 !important;
+                color: #EEE !important;
+            }
+            .ui-state-hover{
+                background-color: #fff !important;
+                color: #454545 !important;
+                border-color: #454545 !important;
+                border-radius: 4px !important;
+            }
+        </style>
         <header>
-            <h2>Mis Anuncios</h2>
+            <h2 style="margin-left: 40%">Pagar Campañas</h2>
         </header>
+        <br></br>
         <h:form>
             <div class="ui-grid-row">
                 <p:dataTable var="camton" rows="5" paginator="true"
                              styleClass="col-lg-10 col-lg-offset-5"
                              style="margin-left: 10%;text-align-all: center;"
                              value="#{mantenedorCampana.campanas}">
-                    <f:facet name="header">Mis Anuncios</f:facet>
+                    <f:facet name="header">Campañas Aprobadas</f:facet>
                     <p:column styleClass="col-lg-2" headerText="nombre">
                         <p:imageSwitch effect="shuffle" id="fadeEffect">
                             <ui:repeat value="#{camton.contenidoList}" var="image" id="manuelSwitcherImages">
-                                <p:graphicImage value="/imagenes/interac/#{image.path}" style="width:100px; height:200px ;"/>
+                                <p:graphicImage value="/imagenes/tmp/#{image.path}" style="width:100px; height:200px ;"/>
                             </ui:repeat>
                         </p:imageSwitch>
                     </p:column>
@@ -40,12 +54,15 @@
                         <h:outputText value="#{camton.idcampana}"/>
                     </p:column>
                     <p:column styleClass="col-lg-2" >
-                        <p:commandButton value="Ir a Pagar" action="#{mantenedorCampana.irPagar(camton)}" icon="fa fa-dollar"  />
+                        <p:commandButton value="Ir a Pagar" action="#{mantenedorCampana.irPagar(camton)}"   />
                     </p:column>
+                    <f:facet name="footer">
+                        <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
+                                         value="Volver" immediate="true"/>
+                    </f:facet>
                 </p:dataTable>
             </div>
-            <h:commandButton ajax="false" styleClass="btn btn-interac" action="#{facesUtil.redirigir('/plataforma/campana')}"
-                             value="Volver" immediate="true"/>
+
 
 
 

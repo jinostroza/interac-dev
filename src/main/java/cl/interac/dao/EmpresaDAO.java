@@ -32,4 +32,7 @@ public class EmpresaDAO {
         Empresa empresa = em.find(Empresa.class, emp.getIdEmpresa());
         em.remove(empresa);
     }
+    public Empresa obtenerNombres(Integer empresa){
+        return (Empresa ) em.createNamedQuery("Empresa.findnames").setParameter("empresa",empresa).getSingleResult();
+    }
 }

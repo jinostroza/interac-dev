@@ -18,7 +18,7 @@
                 border-radius: 4px !important;
             }
         </style>
-        <h:form>
+        <h:form class="container">
             <div class="container" id="myInterac">
                 <header>
                     <div class="row">
@@ -43,10 +43,10 @@
                 <div class="row">
                     <div class="col-lg-12">
                     </div>
-                    <div class="row" style="padding-left: 200px">
+                    <div class="row" >
                         <ui:fragment
                                 rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') }">
-                            <h:commandLink styleClass="col-lg-3 col-md-3  " action="crear">
+                            <h:commandLink styleClass="col-lg-4 col-md-4  "  action="crear">
                                 <div class="dashbox">
                                     <h:outputLabel style="font-weight: bold;font-size: 18px;"
                                                    value="Crear Anuncio"/>
@@ -56,7 +56,7 @@
                                 </div>
                             </h:commandLink>
 
-                            <h:commandLink styleClass="col-lg-3 col-md-3 " action="vercon">
+                            <h:commandLink styleClass="col-lg-4 col-md-4 " action="vercon">
                                 <div class="dashbox">
                                     <h:outputLabel value="Programar Anuncio"
                                                    style="font-weight: bold;font-size: 18px;"/>
@@ -66,12 +66,12 @@
                                 </div>
                             </h:commandLink>
 
-                            <h:commandLink class="col-lg-3 col-md-3 " action="micampana">
+                            <h:commandLink class="col-lg-4 col-md-4 " action="micampana">
                                 <div class="dashbox">
                                     <h:outputLabel value="Pagar" style="font-weight: bold;font-size: 18px;"/>
 
                                     <div class="button_ pagar"></div>
-                                    <p> Confirma y paga tu Anuncio aqui!</p>
+                                    <p> Confirma y paga tu Campaña aqui !</p>
                                 </div>
                             </h:commandLink>
                         </ui:fragment>
@@ -106,10 +106,9 @@
 
             <ui:fragment
                     rendered="#{userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') }">
-                <div class="ui-grid-row">
+                <div class="row">
                     <p:dataTable var="cam" rows="5" paginator="true"
-                                 styleClass="col-lg-10 col-lg-offset-5"
-                                 style="margin-left: 10%;text-align-all: center;"
+                                 style="text-align-all: center;"
                                  value="#{mantenedorCampana.campestabList}">
 
                         <f:facet name="header">
@@ -146,10 +145,9 @@
             <br/>
             <ui:fragment
                     rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') }">
-                <div class="ui-grid-row">
+                <div class="row">
                     <p:dataTable id="champa" var="camton" rows="5" paginator="true"
-                                 styleClass="col-lg-10 col-lg-offset-5"
-                                 style="margin-left: 10%;text-align-all: center;"
+                                 style="text-align-all: center;"
                                  value="#{mantenedorCampana.campanas}">
 
                         <f:facet name="header">
