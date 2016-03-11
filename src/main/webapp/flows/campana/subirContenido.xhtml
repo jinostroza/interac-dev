@@ -68,7 +68,7 @@
                                   fileUploadListener="#{mantenedorCampana.subir}" cancelLabel="Cancelar"
                                   widgetVar="myFileUpload"
                                   onstart="PF('myFileUpload').disableButton(PF('myFileUpload').chooseButton)"
-                                  required="true" auto="false" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                                  required="true" auto="false" allowTypes="/(\.|\/)(gif|jpe?g|png|mp4|ogg)$/" />
                     <p:growl id="messages" showDetail="true"/>
                     <br></br>
                     <p:commandButton action="#{mantenedorCampana.editarContenido(mantenedorCampana.contenido)}"

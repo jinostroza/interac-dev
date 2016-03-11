@@ -10,7 +10,19 @@
             body {
                 background-color: #E52620;
             }
+            .ui-button {
+                background: #454545 !important;
+                border: 1px solid #555 !important;
+                color: #EEE !important;
+            }
+            .ui-state-hover{
+                background-color: #fff !important;
+                color: #454545 !important;
+                border-color: #454545 !important;
+                border-radius: 4px !important;
+            }
         </h:outputStylesheet>
+
 
         <f:metadata>
             <f:viewParam name="id" value="#{mantenedorPerfil.idUsuario}"/>
@@ -25,22 +37,25 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div id="cuadro-login" class="col-md-4">
-                    <h:form id="reestablecerClave">
-                        <p:panel header="reestablecer contraseña">
-                        <h:outputLabel for="clave" value="Ingrese contraseña nueva" />
-                        <h:inputSecret required="true" requiredMessage="Debe ingresar una nueva contraseña"
-                                       styleClass="form-control" id="clave" placeholder="Ingrese su nueva contraseña"
-                                       value="#{mantenedorPerfil.claveNueva}" />
-                        <h:outputLabel for="claveRepetir" value="Repita su nueva contraseña" />
-                        <h:inputSecret requered="true" requiredMessage="Debe confirmar la nueva contraseña"
-                                       styleClass="form-control" id="claveRepetir" placeholder="Repita su nueva contraseña"
-                                       value="#{mantenedorPerfil.claveConfirmada}" />
+                    <h:form id="container">
+                        <p:panel>
+                        <h:outputLabel value="Ingrese Código de verificación"  />
+
+                        <p:inputText  placeholder="Ingrese Codigo"
+                                       value="#{autenticarBean.pass}" styleClass="form-control" style="margin-bottom: 3%" />
+                        <p:commandButton value="Verificar Codigo"  styleClass="btn btn-interac form-control" disabled="#{mantenedorPerfil.verifica}"
+                                          action="#{mantenedorPerfil.verificar(autenticarBean.pass)}" ajax="false" style="margin-bottom: 3%"/>
+                        <p:commandButton value="Recuperar Contraseña" type="button" disabled="#{mantenedorPerfil.recupera}" onclick="PF('dlg2').show();" styleClass="btn btn-interac form-control" style="margin-bottom: 3%"/>
                         </p:panel>
-                        <p:outputPanel styleClass="actionPanel">
-                            <p:commandButton action="#{MantenedorPerfil.cambiarClave()}" styleClass="btn-interac" icon="ui-icon-disk" value="Guardar"/>
-                        </p:outputPanel>
+
+                        <p:dialog  widgetVar="dlg2" height="500" width="500" hideEffect="fade" position="center" showEffect="fade" >
+                            <p:inputText value="#{mantenedorPerfil.claveNueva}" />
+                            <p:inputText value="#{mantenedorPerfil.claveConfirmada}"/>
+                            <p:commandButton action="#{mantenedorPerfil.recuperar}" />
+                        </p:dialog>
                     </h:form>
                 </div>
+
                 <div class="col-md-4"></div>
             </div>
             <div class="push"></div>

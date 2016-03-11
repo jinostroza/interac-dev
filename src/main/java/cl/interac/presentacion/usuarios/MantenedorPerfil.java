@@ -9,6 +9,7 @@ import cl.interac.negocio.LogicaUsuario;
 import cl.interac.security.LogInManager;
 import cl.interac.util.components.Constantes;
 import cl.interac.util.components.FacesUtil;
+import cl.interac.util.components.PropertyReader;
 import cl.interac.util.components.UserSession;
 import cl.interac.util.services.MailSender;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import java.io.Serializable;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -31,6 +33,8 @@ public class MantenedorPerfil implements Serializable {
     public LogicaUsuario logicaUsuario;
     @Autowired
     public LogicaEmpresa logicaEmpresa;
+    @Autowired
+    private PropertyReader propertyReader;
     @Autowired
     private UserSession userSession; // es un componente spring y de scope session, por ende hay que
     @Autowired
@@ -50,6 +54,8 @@ public class MantenedorPerfil implements Serializable {
     private Usuario usuario;
     private List<Usuario> usuarioList;
     private Empresa empresas;
+    private String verifica = "false";
+    private String recupera = "true";
 
     private Long retornoCorreos;
     private Integer idUsuario;
@@ -76,6 +82,31 @@ public class MantenedorPerfil implements Serializable {
 
         logicaUsuario.editarPerfil(userSession.getUsuario().getUsername(),correo,empresa);
         FacesUtil.mostrarMensajeInformativo("Operación exitosa", "usuario [" + userSession.getUsuario().getUsername() + "] modificado");
+    }
+    public String verificar(String pass){
+        claveActual = pass;
+        if (!usuario.getPassword().equals(claveActual)){
+            FacesUtil.mostrarMensajeError("Operación fallida", "Código de Verificación Incorrecto");
+            verifica = "false";
+            recupera = "true";
+            return "verify";
+        }else {
+            verifica = "true";
+            recupera = "false";
+            return "verify";
+        }
+
+    }
+    public String recuperar() {
+      if (!claveConfirmada.equals(claveNueva)) {
+            FacesUtil.mostrarMensajeError("Operación fallida", "La nueva contraseña no coincide con lo confirmado");
+            return "verify";
+        }
+        else{
+            logicaUsuario.cambiarClave(usuario.getUsername(), md5(claveConfirmada));
+            FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Su contraseña se modifico  correctamente");
+        }
+    return "next1" ;
     }
     public String nombreEmpresa(Integer emp){
         empresas = logicaEmpresa.obtenerNombre(emp);
@@ -107,27 +138,31 @@ public class MantenedorPerfil implements Serializable {
     public void verificarCorreo(String correoEntrante){
         retornoCorreos = logicaUsuario.verificarCorreo(correoEntrante);
         System.out.println("Correo entrante: "+correoEntrante);
+        String ambiente = propertyReader.get("ambiente");
         if (retornoCorreos >= 1){
             System.out.println("Correo existe");
             usuario = logicaUsuario.obtenerPorCorreo(correoEntrante);
+            String code = usuario.getPassword();
             System.out.println("ID: "+usuario.getIdUsuario());
+            if ("desarrollo".equals(ambiente)) {
+                // dentro del server siempre podra subir, no importa si es wintendo o linux
+                System.out.println(code);
 
-            /*
+            }else if ("produccion".equals(ambiente)) {
+                //cuerpo del mensaje
+                String mensajeLocal = new String(constantes.getRecuperar());
+                mensajeLocal = mensajeLocal.replaceFirst("\\$codigo", String.valueOf(code));
 
-            //cuerpo del mensaje
-            String mensajeLocal = new String(constantes.getAlertas());
-            mensajeLocal = mensajeLocal.replaceFirst("\\$id",String.valueOf(correoEntrante));
+                //correo
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                String[] replicas = new String[1];
 
-            //correo
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-            String[] replicas = new String[1];
-
-            replicas[0]=correoEntrante;
-            mailSender.send(replicas,"Interac",mensajeLocal);
+                replicas[0] = correoEntrante;
+                mailSender.send(replicas, "Interac", mensajeLocal);
+            }
 
             FacesUtil.mostrarMensajeInformativo("Operacion exitosa", "Se ah enviado informacion de recuperacion a su correo");
 
-            */
         }
 
         else{
@@ -219,4 +254,20 @@ public class MantenedorPerfil implements Serializable {
     public Integer getIdUsuario() { return idUsuario; }
 
     public void setIdUsuario(Integer idUsuario) { this.idUsuario = idUsuario; }
+
+    public String getVerifica() {
+        return verifica;
+    }
+
+    public void setVerifica(String verifica) {
+        this.verifica = verifica;
+    }
+
+    public String getRecupera() {
+        return recupera;
+    }
+
+    public void setRecupera(String recupera) {
+        this.recupera = recupera;
+    }
 }

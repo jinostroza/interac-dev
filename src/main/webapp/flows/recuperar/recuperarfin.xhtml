@@ -18,16 +18,16 @@
             <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-10" id="cuadro-registro">
-                    <div class="btn-register_ paso-uno-inactive"></div>
-                    <div class="btn-register_ paso-dos-active"></div>
-                    <div class="btn-register_ paso-tres-active"></div>
+
                     <div class="col-md-6 col-md-offset-3" >
                         <br/>
                         <br/>
                         <br/>
+                        <h:form>
                         <h3>Solicitud Enviada</h3>
-                        <p> Por favor revisa tu correo electrÃ³nico y haz clic en el enlace para confirmar tu cuenta.</p>
-                        <p:commandButton action="/interac/logOut" value="Volver" />
+                        <p> Ahora puede ingresar con su nueva contraseña</p>
+                        <p:commandButton action="/interac/logOut" styleClass="btn btn_interac" value="Volver" ajax="false" />
+                        </h:form>
                     </div>
                 </div>
             </div>

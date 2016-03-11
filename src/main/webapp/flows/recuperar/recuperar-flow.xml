@@ -8,10 +8,16 @@
       </on-start>
 
       <view-state id="recuperar">
-            <transition on="next1" to="recuperarfin"></transition>
+            <transition on="next1" to="recuperarclave"></transition>
       </view-state>
 
-      <view-state id="recuperarfin"></view-state>
-      <view-state id="recuperarclave"></view-state>
+
+      <view-state id="recuperarclave">
+            <transition on="verify" to="recuperarclave"></transition>
+            <transition on="next1"  to="recuperarfin"></transition>
+      </view-state>
+      <end-state id="recuperarfin" >
+
+      </end-state>
       
 </flow>

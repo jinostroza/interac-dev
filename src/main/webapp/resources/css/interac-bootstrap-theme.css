@@ -657,7 +657,7 @@ th {
 	border-radius: 12px;
 }
 div.login-logo{
-	background-image: url('../resources/css/img/interacblanco.png');
+	background-image: url('css/img/interacblanco.png');
 	width: 181px;
 	height: 69px;
 	background-size: contain;
