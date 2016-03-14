@@ -51,6 +51,10 @@ public class LogicaEstablecimiento {
         return establecimientoDAO.obtenerPorUsuario(username);
     }
     @Transactional(readOnly = true)
+    public List<Establecimiento> obtenerPorIDUsuario(Integer user,Integer estab) {
+        return establecimientoDAO.obtenerPorIDUsuario(user,estab);
+    }
+    @Transactional(readOnly = true)
     public List<Establecimiento> filtrar(String orienta,String nombre,Integer empresa,Integer ubicacion,Integer rubro) {
         return establecimientoDAO.filtrar(orienta, nombre, empresa, ubicacion, rubro);
     }

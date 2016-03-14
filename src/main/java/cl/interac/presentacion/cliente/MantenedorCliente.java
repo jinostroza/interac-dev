@@ -4,9 +4,9 @@ import cl.interac.entidades.*;
 import cl.interac.negocio.*;
 import cl.interac.util.components.Constantes;
 import cl.interac.util.components.FacesUtil;
+import cl.interac.util.components.PropertyReader;
 import cl.interac.util.components.UserSession;
 import cl.interac.util.services.MailSender;
-import cl.interac.util.components.PropertyReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -101,11 +101,11 @@ public class MantenedorCliente implements Serializable {
                 logicaCampestab.guardar(campestab);
 
             for(Establecimiento et : ca.getCampana().getEstablecimientoList()) {
-                String carpetaDestino = et.getCarpetaFtp();
+               String carpetaDestino = et.getCarpetaFtp();
                 for(Contenido co : ca.getCampana().getContenidoList()) {
 
-                    Files.copy(Paths.get("/home/ec2-user/media/interac/" + co.getPath()),
-                            Paths.get("/home/ec2-user/media/" + carpetaDestino + "/" + co.getPath()));
+                   Files.copy(Paths.get("/home/ec2-user/media/tmp/" + co.getPath()),
+                           Paths.get("/home/ec2-user/media/" + carpetaDestino + "/" + co.getPath()));
                 }
             }
                 String[] destinos = new String[3];
@@ -116,10 +116,10 @@ public class MantenedorCliente implements Serializable {
                 //Cuerpo del mensaje
                 String mensajeAnunciante = new String(constantes.getAprobar());
                 mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$Id",String.valueOf(campestab.getCampana().getIdcampana()));
-                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento","prueba");
-                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$numerodePantallas","4");
-                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valormensual","4");
-                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$total", String.valueOf(9999999));
+                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento",String.valueOf(campestab.getEstablecimiento().getNombreEstablecimiento()));
+                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$numerodePantallas",String.valueOf(campestab.getEstablecimiento().getNumeroPantallas()));
+                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valormensual",String.valueOf(campestab.getEstablecimiento().getValor()));
+                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$total", String.valueOf(campestab.getCampana().getValor()));
 
 
                 mailSender.send(destinos, "Interac", mensajeAnunciante);

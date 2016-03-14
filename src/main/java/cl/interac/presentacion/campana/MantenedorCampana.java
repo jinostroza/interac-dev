@@ -107,6 +107,8 @@ public class MantenedorCampana implements Serializable {
     private List<Regiones> regionesList;
     private List<Provincias> provinciasList;
     private List<Comunas> comunasList;
+    private List<Usuario> usuariosL;
+    private List<Establecimiento> establecimientoscorreos;
 
 
 
@@ -275,9 +277,12 @@ public class MantenedorCampana implements Serializable {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String[] replicas = new String[1];
         String[] alertas = new String[2];
-                for(Establecimiento et : establecimientoList) {
-                    replicas[0]=et.getUsuario().getCorreo();
-                    mailSender.send(replicas,"Interac", mensajeLocal);
+                for(Establecimiento et : establecimientosLista) {
+                   establecimientoscorreos = logicaEstablecimiento.obtenerPorIDUsuario(et.getUsuario().getIdUsuario(),et.getIdEstablecimiento());
+                   for(Establecimiento u : establecimientoscorreos) {
+                       replicas[0] = u.getUsuario().getCorreo();
+                       mailSender.send(replicas, "Interac", mensajeLocal);
+                   }
                 }
 
         alertas[0]="contacto@interac.cl";
@@ -312,7 +317,7 @@ public class MantenedorCampana implements Serializable {
             }
 
         }catch (Exception e){
-            FacesUtil.mostrarMensajeInformativo("Operación Fallida", "Algo Ocurrio");
+            FacesUtil.mostrarMensajeInformativo("Operación Fallida", "Verifique que el contenido no este siendo utilizado");
 
         }
     return "crear";
@@ -327,7 +332,7 @@ public class MantenedorCampana implements Serializable {
 
                 logicaCampana.eliminarCampana(campa);
 
-                FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha eliminado la Campaña}");
+                FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha eliminado la Campaña");
             campanas = logicaCampana.obtenerPorUsuario(userSession.getUsuario().getUsername());
 
         }catch (Exception e){
@@ -560,7 +565,7 @@ public class MantenedorCampana implements Serializable {
         System.out.println(empresa);
         System.out.println(comuna);
         System.out.println(categoria);
-        filtrar = logicaEstablecimiento.obtenerFiltro(orienta,empresa,comuna,provincia,region,categoria);
+        filtrar = logicaEstablecimiento.obtenerFiltro(orienta, empresa, comuna, provincia, region, categoria);
 
     }
     //filtra lista de provincias segun region
@@ -1092,6 +1097,22 @@ public class MantenedorCampana implements Serializable {
 
     public void setRegion(Regiones region) {
         this.region = region;
+    }
+
+    public List<Usuario> getUsuariosL() {
+        return usuariosL;
+    }
+
+    public void setUsuariosL(List<Usuario> usuariosL) {
+        this.usuariosL = usuariosL;
+    }
+
+    public List<Establecimiento> getEstablecimientoscorreos() {
+        return establecimientoscorreos;
+    }
+
+    public void setEstablecimientoscorreos(List<Establecimiento> establecimientoscorreos) {
+        this.establecimientoscorreos = establecimientoscorreos;
     }
 
     public List<Comunas> getComunases() {

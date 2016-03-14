@@ -41,6 +41,9 @@ public class EstablecimientoDAO {
     public List<Establecimiento> obtenerPorUsuario(String usuario){
         return em.createNamedQuery("Campana.findByUsuario").setParameter("username", usuario).getResultList();
     }
+    public List<Establecimiento> obtenerPorIDUsuario(Integer usuario,Integer establecimiento){
+        return  em.createNamedQuery("establecimiento.findbyIDUser").setParameter("idUsuario", usuario).setParameter("idEstablecimiento",establecimiento).getResultList();
+    }
 
     public Establecimiento obtenerPorId(Integer id) {
         return em.find(Establecimiento.class, id);
@@ -62,6 +65,7 @@ public class EstablecimientoDAO {
         sb.append("e.* ");
         sb.append("from establecimiento e ");
         sb.append("left join empresa em on (em.idempresa = e.empresa) " );
+        sb.append("left join usuario us on (us.idusuario = e.idusuario) " );
         sb.append("left join comunas c on (c.comuna_id = e.idubicacion) " );
         sb.append("left join provincias p on (p.provincia_id = e.idprovincia) " );
         sb.append("left join regiones r on (r.region_id = e.idregion) " );

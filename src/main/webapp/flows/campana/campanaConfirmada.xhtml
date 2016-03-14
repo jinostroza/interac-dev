@@ -99,7 +99,7 @@
                                                 <p:imageSwitch effect="fade" id="fac">
                                                     <ui:repeat value="#{mantenedorCampana.contenidoslista}" var="image"
                                                                id="manuelSwitcherImages">
-                                                        <p:graphicImage value="/imagenes/interac/#{image.path}"
+                                                        <p:graphicImage value="/imagenes/tmp/#{image.path}"
                                                                         style="width:100px; height:200px ;"
                                                                         styleClass="col-lg-1"/>
                                                     </ui:repeat>
@@ -121,18 +121,9 @@
                                                     <ui:repeat value="#{mantenedorCampana.establecimientosLista}"
                                                                var="est" id="datos">
                                                         <h3>#{est.nombreEstablecimiento}</h3>
+                                                        <small>#{est.direccion}/#{mantenedorCampana.nombreComuna(est.comunas.comuna_id)}</small>
                                                     </ui:repeat>
                                                 </p:imageSwitch>
-                                                <br/>
-                                                <p:imageSwitch effect="fade" id="di">
-                                                    <ui:repeat value="#{mantenedorCampana.establecimientosLista}"
-                                                               var="est" id="direc">
-                                                        <small>#{est.direccion}/#{est.ubicacion.idubicacion}</small>
-
-                                                    </ui:repeat>
-                                                </p:imageSwitch>
-
-
                                         </h:panelGrid>
                                     </div>
                                 </div>

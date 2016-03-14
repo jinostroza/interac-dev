@@ -19,6 +19,7 @@
         <transition on="selectTotem" to="vercontenido"/>
         <transition on="ver" to="misTotems"/>
         <transition on="micampana" to="miscampanas" />
+        <transition on="reset" to="registraCampana"/>
     </view-state>
 
 
@@ -42,7 +43,7 @@
 
     <view-state id="vercontenido">
         <transition on="fin" to="registraCampana"></transition>
-
+        <transition on="programar" to="campanapasos"></transition>
     </view-state>
     <view-state id="contenidoConfirmado">
         <transition on="fincontenido" to="registraCampana"></transition>
