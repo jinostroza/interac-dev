@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 /**
@@ -33,6 +34,7 @@ public class MantenedorCliente implements Serializable {
     private Tipototem tipototem;
     private Contenido contenido;
     private Long numeroCampanas;
+    private String contenidos;
 
     //list
     private List<Totem> totemList;
@@ -103,11 +105,10 @@ public class MantenedorCliente implements Serializable {
             for(Establecimiento et : ca.getCampana().getEstablecimientoList()) {
                String carpetaDestino = et.getCarpetaFtp();
                 for(Contenido co : ca.getCampana().getContenidoList()) {
-
-                   Files.copy(Paths.get("/home/ec2-user/media/tmp/" + co.getPath()),
-                           Paths.get("/home/ec2-user/media/" + carpetaDestino + "/" + co.getPath()));
+                     Files.copy(Paths.get("/home/ec2-user/media/tmp/" + co.getPath()), Paths.get("/home/ec2-user/media/" + carpetaDestino + "/" + co.getPath()), StandardCopyOption.REPLACE_EXISTING);
                 }
-            }
+
+           }
                 String[] destinos = new String[3];
                 destinos[0] = userSession.getUsuario().getCorreo();
                 destinos[1] = "contacto@interac.cl";
@@ -115,11 +116,11 @@ public class MantenedorCliente implements Serializable {
 
                 //Cuerpo del mensaje
                 String mensajeAnunciante = new String(constantes.getAprobar());
-                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$Id",String.valueOf(campestab.getCampana().getIdcampana()));
-                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento",String.valueOf(campestab.getEstablecimiento().getNombreEstablecimiento()));
-                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$numerodePantallas",String.valueOf(campestab.getEstablecimiento().getNumeroPantallas()));
-                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valormensual",String.valueOf(campestab.getEstablecimiento().getValor()));
-                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$total", String.valueOf(campestab.getCampana().getValor()));
+                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$id",String.valueOf(campestab.getCampana().getIdcampana()));
+                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento",campestab.getEstablecimiento().getNombreEstablecimiento());
+                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$numerodepantallas",String.valueOf(campestab.getEstablecimiento().getNumeroPantallas()));
+                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$mensualvalor",String.valueOf(campestab.getEstablecimiento().getValor()));
+                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valordecampanas", String.valueOf(campestab.getCampana().getValor()));
 
 
                 mailSender.send(destinos, "Interac", mensajeAnunciante);
@@ -281,6 +282,14 @@ public class MantenedorCliente implements Serializable {
 
     public void setRechazarInputTextArea(String rechazarInputTextArea) {
         this.rechazarInputTextArea = rechazarInputTextArea;
+    }
+
+    public String getContenidos() {
+        return contenidos;
+    }
+
+    public void setContenidos(String contenidos) {
+        this.contenidos = contenidos;
     }
 
     public List<Establecimiento> getEstablecimientos() {

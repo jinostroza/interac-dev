@@ -265,36 +265,67 @@ public class MantenedorCampana implements Serializable {
         }else if ("produccion".equals(ambiente)) {
         logicaCampana.guardarCampana(campana);
 
-        //cuerpo del mensaje
-        String mensajeLocal = new String(constantes.getAlertas());
-        String mensajeAnunciante = new String(constantes.getHeaderCorreo());
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$Id",String.valueOf(campana.getIdcampana()));
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\nombrecampana",campana.getNombrecampana());
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valortotal",String.valueOf(valor));
-
-
-        //correo
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        String[] replicas = new String[1];
-        String[] alertas = new String[2];
-                for(Establecimiento et : establecimientosLista) {
-                   establecimientoscorreos = logicaEstablecimiento.obtenerPorIDUsuario(et.getUsuario().getIdUsuario(),et.getIdEstablecimiento());
-                   for(Establecimiento u : establecimientoscorreos) {
-                       replicas[0] = u.getUsuario().getCorreo();
-                       mailSender.send(replicas, "Interac", mensajeLocal);
-                   }
-                }
-
-        alertas[0]="contacto@interac.cl";
-        alertas[1]=userSession.getUsuario().getCorreo();
-        mailSender.send(alertas,"Interac",mensajeAnunciante);
-
-
-                FacesUtil.mostrarMensajeInformativo("Operacion exitosa", "se ha creado tu anuncio");
+                FacesUtil.mostrarMensajeInformativo("Operacion exitosa", "se ha creado tu Campaña");
     }
             dateDiff();
             return "end1";}
     }
+    public String notificar(){
+
+           //perisitencia
+
+
+            campana.setContenidoList(Arrays.asList(contenidoslista));
+
+            campana.setFechaCreacion(Date.from(Instant.now()));
+            campana.setEstablecimientoList(Arrays.asList(establecimientosLista));
+            campana.setPasadas(pasadas);
+            campana.setValor(valor);
+            String ambiente = propertyReader.get("ambiente");
+            if ("desarrollo".equals(ambiente)) {
+                // dentro del server siempre podra subir, no importa si es wintendo o linux
+                logicaCampana.guardarCampana(campana);
+
+            }else if ("produccion".equals(ambiente)) {
+                logicaCampana.guardarCampana(campana);
+                //cuerpo del mensaje
+                String mensajeLocal = new String(constantes.getAlertas());
+                String mensajeAnunciante = new String(constantes.getHeaderCorreo());
+                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$id",String.valueOf(campana.getIdcampana()));
+                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$nombrecampana",campana.getNombrecampana());
+                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valortotal",String.valueOf(valor));
+
+
+                //correo
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                String[] replicas = new String[1];
+                String[] alertas = new String[2];
+                for(Establecimiento et : establecimientosLista) {
+                    establecimientoscorreos = logicaEstablecimiento.obtenerPorIDUsuario(et.getUsuario().getIdUsuario(),et.getIdEstablecimiento());
+                    for(Establecimiento u : establecimientoscorreos) {
+                        replicas[0] = u.getUsuario().getCorreo();
+                        try {
+                            Thread.sleep(6000);
+                            mailSender.send(replicas, "Interac", mensajeLocal);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                            FacesUtil.mostrarMensajeInformativo("Error", "Fallo correo"+replicas );
+                        }
+                    }
+                }
+
+                alertas[0]="contacto@interac.cl";
+                alertas[1]=userSession.getUsuario().getCorreo();
+                mailSender.send(alertas,"Interac",mensajeAnunciante);
+
+
+                FacesUtil.mostrarMensajeInformativo("Operacion exitosa", "se ha creado tu Campaña");
+            }
+            dateDiff();
+
+            return "fin" ;
+    }
+
 
        public String eliminarFichero(Contenido conte){
 
@@ -312,7 +343,7 @@ public class MantenedorCampana implements Serializable {
             else if ("produccion".equals(ambiente)) {
                 logicaContenido.eliminarContenido(conte);
                 Files.delete(Paths.get("/home/ec2-user/media/tmp/" + conte.getPath()));
-                FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha borrado la imagen}");
+                FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha borrado la imagen");
                 contenidos = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
             }
 

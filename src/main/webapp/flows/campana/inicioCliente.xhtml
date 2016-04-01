@@ -7,73 +7,91 @@
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
-
-
+        <style type="text/css">
+            .ui-button {
+                background: #454545 !important;
+                border: 1px solid #555 !important;
+                color: #EEE !important;
+            }
+            .ui-datepicker {
+                background: #333;
+                border: 1px solid #555;
+                color: #EEE;
+            }
+            .ui-panelgrid td, .ui-panelgrid tr
+            {
+                border-style: none !important
+            }
+        </style>
         <h:form>
-            <h3>ADMINISTRACION</h3>
+            <div class="container" id="myInterac">
+                <header>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h2>Planifica tu Campaña</h2>
+                        </div>
+                        <div class="nav-submenu col-lg-6">
+                            <ul>
+                                <li><a>Creado</a></li>
+                                <li><a class="active">Planificando</a></li>
+                                <li><a>Confirmar</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </header>
 
-            <p:dataTable var="cli" value="#{mantenedorcliente.totemList}"  cellpadding="5px"
-                         styleClass="ui-grid-col-12"
-                         rows="10"
-                         paginator="true"
-                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15"
-                         nullSortOrder="">
-                <f:facet name="header">
-                    Mis totems
-                </f:facet>
-                <p:column headerText="NO° serie">
-                    <h:outputText value="#{cli.noserie}"/>
-                </p:column>
-                <p:column headerText="estabecimiento">
-                    <h:outputText value="#{cli.establecimiento.nombreEstablecimiento}"/>
-                </p:column>
-                <p:column headerText="ubicacion">
-                    <h:outputText value="#{cli.establecimiento.ubicacion.descubicacion}"/>
-                </p:column>
-                <p:column headerText="direccion">
-                    <h:outputText value="#{cli.establecimiento.direccion}"/>
-                </p:column>
-                <p:column style="width:32px;text-align: center">
-                    <p:commandButton  icon="ui-icon-search" title="View">
-                        <f:setPropertyActionListener value="#{cli}"
-                                                     target="#{mantenedorcliente.campana}" />
-                    </p:commandButton>
-                </p:column>
+                <div class="row" style="margin-top: 10%">
+                    <p:panelGrid columns="4" styleClass="col-lg-5">
+                        <h3>Nombre Campaña</h3>
 
-            </p:dataTable>
-            <p:commandButton id="nuevoBtnTotem" value="Agrega"  type="button"/>
-            <p:overlayPanel id="agregapanelTotem" for="nuevoBtnTotem" hideEffect="fade" dynamic="true" style="width:600px">
-                <p:outputPanel>
-                    <h:outputLabel value="N°Serie"/>
-                    <h:inputText  styleClass="form-control"
-                                  value="#{mantenedorTotems.totem.noserie}"/>
-                    <h:outputLabel value="Tipo"/>
+                        <h:outputText styleClass="fa fa-fw fa-bullhorn" style="float: right;color: red"/>
+                        <p:inputText style="width: 150%" id="cmp" label="campaña" value="#{mantenedorCampana.campana.nombrecampana}"
+                                     required="true" styleClass="form-control"
+                                     requiredMessage="Ingrese un Nombre para su Campaña"/>
 
-                    <h:selectOneMenu class="form-control" value="#{mantenedorTotems.tipototem}"
-                                     converter="entityConverter">
-                        <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione tipo Totem --"/>
-                        <f:selectItems value="#{mantenedorTotems.tipototems}" var="totemPL"
-                                       itemLabel="#{totemPL.destipo}" itemValue="#{totemPL}"  />
-                    </h:selectOneMenu>
-                    <h:outputLabel value="Establecimiento"/>
+                        <p:tooltip id="toolTipTrack1" for="cmp" value="Dale un Nombre a tu Campaña" trackMouse="true"/>
 
-                    <h:selectOneMenu id="menuEst" class="form-control" value="#{mantenedorTotems.establecimiento}"
-                                     converter="entityConverter">
-                        <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione establecimiento --"/>
-                        <f:selectItems value="#{mantenedorTotems.establecimientoList}" var="ErLugar"
-                                       itemLabel="#{ErLugar.nombreEstablecimiento}" itemValue="#{ErLugar}" />
-                        <p:ajax update="lbl1 lbl2" />
-                    </h:selectOneMenu>
-                    <br/>
-                    <p:outputLabel id="lbl1" value="#{mantenedorTotems.establecimiento.lat}"></p:outputLabel>
-                    <br/>
-                    <p:outputLabel id="lbl2" value="#{mantenedorTotems.establecimiento.longi}"></p:outputLabel>
-                    <br/>
-                    <p:commandButton id="addBtnTotem" for="agregapanelTotem"  value="Agrega"
-                                     action="#{mantenedorTotems.agregarTotem}"/>
-                </p:outputPanel>
-            </p:overlayPanel>
+                        <h3>Inicio Campaña</h3>
+
+                        <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
+                        <p:calendar id="inicio" locale="es" pattern="dd/MM/yyyy" required="true"
+                                    value="#{mantenedorCampana.campana.fechaInicio}" mindate="c1.today()"
+                                    widgetVar="c1" requiredMessage="Debe indicar fecha de Inicio" style="width: 150px">
+                            <p:ajax event="dateSelect" update="fin"/>
+                        </p:calendar>
+                        <p:tooltip id="toolinicio" for="inicio" value="Selecciona Fecha de Inicio Campaña" trackMouse="true"/>
+
+                        <h3>Fin Campaña</h3>
+
+                        <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
+                        <p:calendar id="fin" locale="es" pattern="dd/MM/yyyy" required="true"
+                                    value="#{mantenedorCampana.campana.fechaFin}" mindate="c1"
+                                    widgetVar="c2" requiredMessage="Debe indicar la fecha de Termino" style="width: 150px">
+
+                        </p:calendar>
+                        <p:tooltip id="toolfin" for="fin" value="Selecciona Fecha Termino Campaña" trackMouse="true"/>
+                    </p:panelGrid>
+
+                    <div id="cuadro-imagen" class="col-lg-offset-7" align="">
+
+                        <p:imageSwitch effect="shuffle" id="fac" style="float: right;height: 400px;width:300px " >
+                            <ui:repeat value="#{mantenedorCampana.campana.contenidoList}" var="image" id="manuelSwitcherImages">
+                                <p:graphicImage value="/imagenes/tmp/#{image.path}" style="width:100px; height:200px ;"/>
+                            </ui:repeat>
+                        </p:imageSwitch>
+
+                        <p:spacer width="80%" height="40"> </p:spacer>
+                        <p:commandButton value="Volver"  />
+                        <p:spacer width="30%" height="40"> </p:spacer>
+                        <p:commandButton action="#{mantenedorCampana.programaCampana(mantenedorCampana.campana)}"
+                                         value="Confirmar" />
+                    </div>
+
+
+
+
+                </div>
+            </div>
         </h:form>
     </ui:define>
 </ui:composition>

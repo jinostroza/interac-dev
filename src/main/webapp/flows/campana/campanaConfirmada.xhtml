@@ -13,7 +13,7 @@
 
         </style>
 
-        <h:form>
+        <h:form id="content">
             <div class="login-header"></div>
             <div class="container">
                 <div class="row">
@@ -96,20 +96,11 @@
                                             </h:panelGrid>
                                         <h:panelGrid columns="2">
                                             <h:outputLabel value="Tu anuncio se publicara En : "/>
-                                                <p:imageSwitch effect="fade" id="fac">
-                                                    <ui:repeat value="#{mantenedorCampana.contenidoslista}" var="image"
-                                                               id="manuelSwitcherImages">
-                                                        <p:graphicImage value="/imagenes/tmp/#{image.path}"
-                                                                        style="width:100px; height:200px ;"
-                                                                        styleClass="col-lg-1"/>
-                                                    </ui:repeat>
-                                                </p:imageSwitch>
-                                                <p:imageSwitch effect="fade" id="fa">
+                                            <p:imageSwitch effect="fade" id="fa">
                                                     <ui:repeat value="#{mantenedorCampana.establecimientosLista}"
-                                                               var="est" id="manuelSwitcher">
+                                                               var="est" id="manuelSwitcher2">
                                                         <p:graphicImage value="#{est.urlImagen}"
                                                                         style="width:300px; height:300px ;"
-                                                                        styleClass="col-lg-1"
                                                                         title="#{est.nombreEstablecimiento}"
                                                                         alt="#{est.nombreEstablecimiento}">
 
@@ -121,9 +112,14 @@
                                                     <ui:repeat value="#{mantenedorCampana.establecimientosLista}"
                                                                var="est" id="datos">
                                                         <h3>#{est.nombreEstablecimiento}</h3>
-                                                        <small>#{est.direccion}/#{mantenedorCampana.nombreComuna(est.comunas.comuna_id)}</small>
                                                     </ui:repeat>
                                                 </p:imageSwitch>
+                                            <p:imageSwitch effect="fade" id="ff">
+                                                <ui:repeat value="#{mantenedorCampana.establecimientosLista}"
+                                                           var="est" id="datos2">
+                                                    <small>#{est.direccion}/#{mantenedorCampana.nombreComuna(est.comunas.comuna_id)}</small>
+                                                </ui:repeat>
+                                            </p:imageSwitch>
                                         </h:panelGrid>
                                     </div>
                                 </div>
@@ -131,13 +127,15 @@
 
                             <div class="row" style="margin-top: 20%;margin-bottom: 10%">
 
-                                <p:commandButton value="Volver Inicio" styleClass="btn btn-interac" action="fin"
-                                                 immediate="true"></p:commandButton>
+
                                 <h:panelGrid styleClass="col-lg-3" columns="1" cellpadding="5">
 
-                                    <p:commandButton value="Pagar" type="button" styleClass="btn btn-interac"
-                                                     onclick="PF('dlg2').show();"/>
+                                    <p:commandButton value="Finalizar" id="longOperation" styleClass="btn btn-interac" action="#{mantenedorCampana.notificar}"/>
                                 </h:panelGrid>
+
+                                <p:blockUI block="content" trigger="longOperation">
+                                    <p:graphicImage url="http://lakatnik.org/studioweb/uploads/2014/01/email_animation2.gif"/>
+                                </p:blockUI>
 
                                 <p:dialog header="Trabajos en Progreso" widgetVar="dlg2" modal="true" height="500">
                                     <h:outputText value="Estamos Trabajando en la Integracion de :"/>

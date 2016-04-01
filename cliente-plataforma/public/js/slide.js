@@ -13,14 +13,14 @@ var Slide = {};
 
             for (var i = mediaFiles.length - 1, display = "block"; i >= 0; i--, display = "none") {
                 if (mediaFiles[i].endsWith(".mp4") || mediaFiles[i].endsWith(".ogg")) {
-                    var video = jQuery("<video controls='false' style='width: 1366px;height: 768px' ><source></source></video>");
+                    var video = jQuery("<video controls='false' style='width: 1060px;height: 1400px;background-color:#1F1F5C;' ><source></source></video>");
                     video.css("display", display);
                     video.find("source").first().attr("src", mediaFiles[i]);
                     video.find("source").first().attr("type", "video/" + mediaFiles[i].substr(mediaFiles[i].lastIndexOf(".") + 1, mediaFiles[i].length));
                     video.find("source").first().attr("id", "video");
                     jQuery("div.content").append(video);
                 } else {
-                    var img = jQuery("<img style='width: 1366px;height: 768px' ></img>");
+                    var img = jQuery("<img style='width: 1060px;height: 1400px' ></img>");
                     img.attr("src", mediaFiles[i]);
                     img.css("display", display);
                     jQuery("div.content").append(img);
@@ -45,14 +45,11 @@ var Slide = {};
                 index = index + 1;
                  if(index <= d.length) {
                     var index2 = index - 1;
-                    d[index2].duration
                     var minutes = parseInt(d[index2].duration , 10);                
                     showTime = minutes * 1000;
 
-                  
                  }else {
                     index = 1;
-                     d[index].duration
                     var minutes = parseInt(d[index - 1].duration , 10);
                   showTime = minutes * 1000;
                  }

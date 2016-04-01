@@ -58,11 +58,11 @@
 
                             <h:commandLink styleClass="col-lg-4 col-md-4 " action="vercon">
                                 <div class="dashbox">
-                                    <h:outputLabel value="Programar Anuncio"
+                                    <h:outputLabel value="Mis Campañas"
                                                    style="font-weight: bold;font-size: 18px;"/>
 
                                     <div class="button_ planificar-campana"></div>
-                                    <p> Elige cuando y donde quieres publicitar </p>
+                                    <p> Revisa aquí el estado de tus campañas </p>
                                 </div>
                             </h:commandLink>
 
@@ -107,7 +107,7 @@
             <ui:fragment
                     rendered="#{userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') }">
                 <div class="row">
-                    <p:dataTable var="cam" rows="5" paginator="true"
+                    <p:dataTable  var="cam" rows="5" paginator="true"
                                  style="text-align-all: center;"
                                  value="#{mantenedorCampana.campestabList}">
 
@@ -142,54 +142,10 @@
                 </div>
             </ui:fragment>
             <br/>
-            <br/>
-            <ui:fragment
-                    rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') }">
-                <div class="row">
-                    <p:dataTable id="champa" var="camton" rows="5" paginator="true"
-                                 style="text-align-all: center;"
-                                 value="#{mantenedorCampana.campanas}">
 
-                        <f:facet name="header">
-                            <h3>Estado de Mis Anuncios</h3>
-                        </f:facet>
-
-                        <p:column styleClass="col-lg-2" headerText="">
-                            <p:imageSwitch effect="shuffle" id="fadeEffect">
-                            <ui:repeat value="#{camton.contenidoList}" var="image" id="manuelSwitcherImages">
-                                <p:graphicImage value="/imagenes/tmp/#{image.path}" style="width:100px; height:200px ;"/>
-                            </ui:repeat>
-                            </p:imageSwitch>
-
-                        </p:column>
-                        <p:column styleClass="col-lg-2" headerText="Estado">
-                            <h:outputText value="#{camton.estado}"/>
-                        </p:column>
-                        <p:column styleClass="col-lg-2" headerText="Creado">
-                            <h:outputText value="#{camton.fechaCreacion}"/>
-                        </p:column>
-                        <p:column styleClass="col-lg-2" headerText="Pasadas">
-                            <h:outputText value="#{camton.pasadas}"/>
-                        </p:column>
-                        <p:column styleClass="col-lg-2" headerText="Comienzo">
-                            <h:outputText value="#{camton.fechaInicio}"/>
-                        </p:column>
-                        <p:column styleClass="col-lg-2" headerText="Termino">
-                            <h:outputText value="#{camton.fechaFin}"/>
-                        </p:column>
-                        <p:column styleClass="col-lg-2" headerText="">
-
-                            <p:commandButton styleClass="btn btn-interac" icon="ui-icon-trash"  style="background-color: white !important;" action="#{mantenedorCampana.eliminarCampana(camton)}" update="messages"></p:commandButton>
-                            <p:growl id="messages" showDetail="true"/>
-                        </p:column>
-
-
-                    </p:dataTable>
-                </div>
-            </ui:fragment>
-            <br/>
             <p:spacer> </p:spacer>
             <br/>
+
         </h:form>
     </ui:define>
 </ui:composition>

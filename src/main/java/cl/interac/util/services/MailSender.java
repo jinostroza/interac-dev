@@ -30,12 +30,12 @@ public class MailSender {
            for(int i=0;i < destinos.length; i++ ) {
                email.addRecipient("Interac", destinos[i], Message.RecipientType.TO);
            }
-           email.setFromAddress("contacto", "joaquin.chacon.a@gmail.com");
+           email.setFromAddress("contacto", "contacto@interac.cl");
            email.setSubject(asunto);
            email.setTextHTML(mensaje);
 
-           Mailer mailer = new Mailer("smtp.gmail.com", 587, "joaquin.chacon.a@gmail.com", "chacon07", TransportStrategy.SMTP_TLS);
-
+           Mailer mailer = new Mailer("mx1.nixiweb.com", 587, "contacto@interac.cl", "interac2016", TransportStrategy.SMTP_TLS);
+           Thread.sleep(30000);
            mailer.sendMail(email);
 
 

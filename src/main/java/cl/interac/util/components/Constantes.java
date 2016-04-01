@@ -16,9 +16,9 @@ import java.io.Serializable;
 public class Constantes implements Serializable {
     private String pathArchivos;
 
-    private String correo = "joaquin.chacon.a@gmail.com";
-    private String claveCorreo = "chacon07";
-    private String servidorCorreo = "smtp.gmail.com";
+    private String correo = "contacto@interac.cl";
+    private String claveCorreo = "interac2016";
+    private String servidorCorreo = "email-smtp.us-east-1.amazonaws.com";
     private Integer puertoCorreo = 587;
 
 
@@ -699,7 +699,7 @@ public class Constantes implements Serializable {
               "                  <p>$establecimiento</p>\n" +
               "                </td>\n" +
               "                <td>\n" +
-              "                  <p>$numerodePantallas</p>\n" +
+              "                  <p>$numerodepantallas</p>\n" +
               "                </td>\n" +
               "                  <td>" +
               "                    <p>$mensualvalor</p>" +

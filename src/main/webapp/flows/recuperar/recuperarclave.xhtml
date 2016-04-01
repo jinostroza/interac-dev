@@ -48,10 +48,10 @@
                         <p:commandButton value="Recuperar Contraseña" type="button" disabled="#{mantenedorPerfil.recupera}" onclick="PF('dlg2').show();" styleClass="btn btn-interac form-control" style="margin-bottom: 3%"/>
                         </p:panel>
 
-                        <p:dialog  widgetVar="dlg2" height="500" width="500" hideEffect="fade" position="center" showEffect="fade" >
-                            <p:inputText value="#{mantenedorPerfil.claveNueva}" />
-                            <p:inputText value="#{mantenedorPerfil.claveConfirmada}"/>
-                            <p:commandButton action="#{mantenedorPerfil.recuperar}" />
+                        <p:dialog  widgetVar="dlg2" height="500" width="500" hideEffect="fade" modal="true" showEffect="fade" >
+                            <h:inputSecret value="#{mantenedorPerfil.claveNueva}" />
+                            <h:inputSecret value="#{mantenedorPerfil.claveConfirmada}"/>
+                            <p:commandButton value="Confirmar" action="#{mantenedorPerfil.recuperar}" styleClass="btn btn-interac form-control" />
                         </p:dialog>
                     </h:form>
                 </div>

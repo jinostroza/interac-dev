@@ -35,7 +35,7 @@
                  </p:column>
                  <p:imageSwitch effect="shuffle" id="fadeEffect">
                      <ui:repeat value="#{car.campana.contenidoList}" var="image" id="manuelSwitcherImages">
-                         <p:graphicImage value="/imagenes/interac/#{image.path}" style="width:100px; height:200px ;"/>
+                         <p:graphicImage value="/imagenes/tmp/#{image.path}" style="width:100px; height:200px ;"/>
                      </ui:repeat>
                  </p:imageSwitch>
              </p:column>
@@ -58,9 +58,12 @@
                  <h:outputText value="#{car.idcam_est}" />
              </p:column>
              <p:column>
-               <p:commandButton value="Aprobar" update="messages" styleClass="btn btn-interac"
+               <p:commandButton value="Aprobar" id="agree" update="messages" styleClass="btn btn-interac"
                                 action="#{mantenedorCliente.aprobar(car)}"  />
                  <p:growl id="messages" showDetail="true"/>
+                 <p:blockUI block="champa" trigger="agree">
+                     <p:graphicImage url="https://promo.olybet.com/com/images/base/preloader.gif"/>
+                 </p:blockUI>
              </p:column>
              <p:column>
                  <!-- Rechazar -->

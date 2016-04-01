@@ -67,14 +67,14 @@ body {
 .container {
     width: 1060px;
     margin: 0 auto;
-    min-height: 100%;
+    height: 1560px;
     background-color: #FFFFFF;
 }
 /* Header
 -----------------------------------------------------------------------------*/
 .header {
     height: 120px;
-    width: 95%;
+    width: 1020px;
     background-color: #FFFFFF;
     padding: 20px 10px;
 }
@@ -88,11 +88,11 @@ body {
 /* Footer
 -----------------------------------------------------------------------------*/
 .footer {
-    width: 230px;
-    height: 230px;
-    position: relative;
-    float: left;
-    margin: 10px;
+    width: 100%;
+    height: 100px;
+    
+    
+
 
 }
 
@@ -103,6 +103,7 @@ body {
     background-color: #FFFFFF;
     margin-left: auto;
     margin-right: auto;
+    position:relative;
 }
 
 .escuela {
@@ -124,6 +125,46 @@ body {
     background-image: url("img/logopucv.png");
 
 }
+.historiabtn {
+    width: 200px;
+    height: 90%;
+    background-color: #1F1F5C;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+
+    position: relative;
+
+    margin-left: 130px;
+    margin-top: 10px;
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    background-image: url("img/logo-his-bco.png");
+
+}
+
+.pucvbtn {
+    width: 200px;
+    height: 90%;
+    background-color: #FFFFFF;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+
+    position: relative;
+    margin-left: 130px;
+    margin-top: 10px;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    background-image: url("img/logo_colores.png");
+
+}
+
 
 .maker {
     width: 200px;
@@ -162,7 +203,24 @@ body {
     background-image: url("img/Flickr_logo.png");
 
 }
+.flickrhistoria{
+    width: 200px;
+    height: 90%;
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
 
+    position: relative;
+    margin-left: -49px;
+    margin-top: 10px;
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    background-image: url("img/Flickr_logo.png");
+
+}
 .overlay {
     position: fixed;
     height: 66%;
@@ -175,7 +233,7 @@ body {
 
 /* Id Twitter */
 #id-twitter-pucv{
-  font: 1.6 Arial, sans-serif;
+  margin-top:3%;
   font-size: 250%;
   padding:0;
 }
@@ -187,7 +245,7 @@ body {
     padding: 5px 12px;
     border-radius: 5px;
     overflow: hidden;
-    font: 1.5rem/1.6 Arial, sans-serif;
+    font: 2rem/2 "Impact", Times, serif;
     color: #333;
     margin: 15px 0;
 }
@@ -235,7 +293,7 @@ body {
     100% { transform: translateX(-100%); }
 }
 
-#pucv{
+#pucvFin{
   background-image: url("img/logo-pucv.png");
   overflow: hidden;
   background-repeat: no-repeat;
@@ -245,6 +303,24 @@ body {
   width: 175px;
   height: 80px;
   float: right;
+}
+#pucv{
+    background-image: url("img/logo_colores.png");
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin: 0 15px;
+    width: 175px;
+    height: 80px;
+    float: left;
+}
+#weather{
+
+    margin: 0 15px;
+    width: 120px;
+    height: 100px;
+    float: right;
 }
 
 #ingenieria{
@@ -258,6 +334,30 @@ body {
   height: 80px;
   float: right;
   padding:0;
+}
+#historia{
+    background-image: url("img/logo-his.jpg");
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin: 0 15px;
+    width: 175px;
+    height: 80px;
+    float: left;
+    padding:0;
+}
+#interac{
+    background-image: url("img/face.png");
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 175px;
+    height: 80px;
+    float: right;
+    padding:0;
+    	
 }
 
 #twitter-logo{
