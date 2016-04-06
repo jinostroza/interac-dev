@@ -1,0 +1,63 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/logInTemplate.xhtml">
+
+<ui:define name="contenido">
+
+    <style type="text/css">
+        .ui-button {
+            background: #454545 !important;
+            border: 1px solid #555 !important;
+            color: #EEE !important;
+        }
+        .ui-datepicker {
+            background: #333;
+            border: 1px solid #555;
+            color: #EEE;
+        }
+        .ui-panelgrid td, .ui-panelgrid tr
+        {
+            border-style: none !important
+        }
+    </style>
+    <h:form>
+        <div class="container" id="myInterac">
+            <header>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2>Selecciona Sede</h2>
+                    </div>
+                </div>
+            </header>
+
+            <div class="row" style="margin-top: 10%">
+                <p:panelGrid columns="4" styleClass="col-lg-12">
+                    <h3>Lista de Sedes</h3>
+
+                    <p:selectOneMenu id="console" value="#" style="width:125px">
+                        <f:selectItem itemLabel="Seleccionar" itemValue="" />
+                        <f:selectItem itemLabel="Sede 1" itemValue="1" />
+                        <f:selectItem itemLabel="Sede 2" itemValue="2" />
+                        <f:selectItem itemLabel="Sede 3" itemValue="3" />
+                    </p:selectOneMenu>
+
+                    <p:commandButton action="next1"
+                                     value="Siguiente" />
+                </p:panelGrid>
+                </div>
+
+
+
+
+            </div>
+
+    </h:form>
+
+
+
+<ui:include src="/templates/includes/Footer.xhtml"/>
+</ui:define>
+</ui:composition>

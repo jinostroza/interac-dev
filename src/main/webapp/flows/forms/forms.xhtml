@@ -1,0 +1,89 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/default.xhtml">
+
+    <ui:define name="contenido">
+        <style type="text/css">
+            .ui-button {
+                background: #454545 !important;
+                border: 1px solid #555 !important;
+                color: #EEE !important;
+            }
+            .ui-state-hover{
+                background-color: #fff !important;
+                color: #454545 !important;
+                border-color: #454545 !important;
+                border-radius: 4px !important;
+            }
+        </style>
+        <h:form>
+            <h1>Anuncios pendientes</h1>
+            <h3>Apruebe los anuncios pendientes</h3>
+            <br/>
+            <h5>Si un el anuncio le parece "inapropiado" para ser difundido en su pantalla, haga click en 'Rechazar'</h5>
+
+            <p:dataTable id="champa" dynamic="true" var="car" rows="5" paginator="true" value="#{mantenedorCliente.campestabs}">
+                <f:facet name="header">
+                    Tiene #{mantenedorCliente.numeroCampanas} Anuncios por validar
+                </f:facet>
+                <p:column >
+                    <p:column headerText="Establecimiento">
+                        <h:outputText value="#{car.establecimiento.nombreEstablecimiento}" />
+                    </p:column>
+                    <p:imageSwitch effect="shuffle" id="fadeEffect">
+                        <ui:repeat value="#{car.campana.contenidoList}" var="image" id="manuelSwitcherImages">
+                            <p:graphicImage value="/imagenes/tmp/#{image.path}" style="width:100px; height:200px ;"/>
+                        </ui:repeat>
+                    </p:imageSwitch>
+                </p:column>
+                <p:column headerText="Fecha Inicio">
+                    <h:outputText value="#{car.campana.fechaInicio}" />
+                </p:column>
+                <p:column headerText="Fecha Fin">
+                    <h:outputText value="#{car.campana.fechaFin}" />
+                </p:column>
+                <p:column headerText="Pasadas">
+                    <h:outputText value="#{car.campana.pasadas}" />
+                </p:column>
+                <p:column headerText="Valor Pasadas">
+                    <h:outputText value="#{car.campana.valor}" />
+                </p:column>
+                <p:column headerText="Campaña">
+                    <h:outputText value="#{car.campana.nombrecampana}" />
+                    <h:outputText value="#{car.campana.idcampana}" />
+
+                    <h:outputText value="#{car.idcam_est}" />
+                </p:column>
+                <p:column>
+                    <p:commandButton value="Aprobar" id="agree" update="messages" styleClass="btn btn-interac"
+                                     action="#{mantenedorCliente.aprobar(car)}"  />
+                    <p:growl id="messages" showDetail="true"/>
+                    <p:blockUI block="champa" trigger="agree">
+                        <p:graphicImage url="https://promo.olybet.com/com/images/base/preloader.gif"/>
+                    </p:blockUI>
+                </p:column>
+                <p:column>
+                    <!-- Rechazar -->
+                    <p:commandButton id="btnRechazar" value="Rechazar" styleClass="btn btn-interac" process="@form">
+                        <p:overlayPanel for="btnRechazar">
+                            <p:outputLabel value="¿Por que motivo rechaza este anuncio?"/>
+                            <h:selectOneMenu value="#{mantenedorCliente.rechazarSelectOneMenu}" class="form-control">
+                                <f:selectItem itemValue="Contenido sexista y/o inapropiado" ItemLabel="Contenido sexista y/o inapropiado"/>
+                                <f:selectItem itemValue="No sigue la linea de mi negocio" ItemLabel="No sigue la linea de mi negocio"/>
+                                <f:selectItem itemValue="Siento que no tendrá impacto" ItemLabel="Siento que no tendrá impacto"/>
+                            </h:selectOneMenu>
+                            <p:outputLabel value="Observaciones" />
+                            <h:inputTextarea value="#{mantenedorCliente.rechazarInputTextArea}" rows="10" cols="50" />
+                            <br/>
+                            <p:commandButton value="Enviar" action="#{mantenedorCliente.rechazar(car)}"/>
+                        </p:overlayPanel>
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+            <div class="push"></div>
+        </h:form>
+    </ui:define>
+</ui:composition>
