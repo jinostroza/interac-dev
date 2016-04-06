@@ -78,6 +78,7 @@ public class MantenedorCampana implements Serializable {
     private Contenido contenidosSelecionado;
     private List<Contenido> contenidosSelecionados;
     private List<Campestab> campestabList;
+    private List<Campestab> campestabListAll;
     private Contenido[] contenidoslista;
     private String dateDiffValue;
     private Marker marker;
@@ -154,6 +155,7 @@ public class MantenedorCampana implements Serializable {
         contenidocampanas = logicaCampana.obtenerPorContenido(userSession.getUsuario().getIdUsuario());
         campanasvencidas = logicaCampana.obtenerPorFecha(Date.from(Instant.now()));
         campestabList = logicaCampestab.obtenerAprobado(userSession.getUsuario().getUsername());
+        campestabListAll = logicaCampestab.obtenerEstados(userSession.getUsuario().getUsername());
         usuarios = logicaUsuario.obtenerTodos();
         categoriaList = logicaCategoria.obtenerTodos();
         establecimientoList=logicaEstablecimiento.obtenerTodos();
@@ -1128,6 +1130,14 @@ public class MantenedorCampana implements Serializable {
 
     public void setRegion(Regiones region) {
         this.region = region;
+    }
+
+    public List<Campestab> getCampestabListAll() {
+        return campestabListAll;
+    }
+
+    public void setCampestabListAll(List<Campestab> campestabListAll) {
+        this.campestabListAll = campestabListAll;
     }
 
     public List<Usuario> getUsuariosL() {

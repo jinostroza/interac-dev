@@ -6,7 +6,13 @@
                 template="/templates/default.xhtml">
     <ui:define name="contenido">
         <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
-
+        <style type="text/css">
+            .ui-button {
+                background: #454545 !important;
+                border: 1px solid #555 !important;
+                color: #EEE !important;
+            }
+        </style>
         <h:form id="todo">
             <div class="container contenedor" id="myInterac">
                 <header>
@@ -38,9 +44,9 @@
                             <p:panelGrid columns="4" >
                                 <p:outputLabel value="Region "/>
                                 <h:outputText styleClass="fa fa-fw fa-map-marker" style="float: right;color: red"/>
-                                    <h:selectOneMenu class="form-control" value="#{mantenedorCampana.region}"
-                                                     converter="entityConverter">
-                                        <f:selectItem itemLabel="Selecciona Region" itemValue="" noSelectionOption="true" />
+                                    <h:selectOneMenu  value="#{mantenedorCampana.region}"
+                                                     converter="entityConverter" style="width: 150px">
+                                        <f:selectItem itemLabel="Región" itemValue="" noSelectionOption="true" />
                                         <f:selectItems value="#{mantenedorCampana.regionesList}" var="reg"
                                                        itemLabel="#{reg.region_nombre}"/>
                                         <p:ajax event="change" listener="#{mantenedorCampana.provincias()}" update="provi"/>
@@ -51,10 +57,10 @@
                                 <br></br>
                                 <p:outputLabel value="Provincia "/>
                                 <h:outputText styleClass="fa fa-fw fa-map-marker" style="float: right;color: red"/>
-                                    <h:selectOneMenu id="provi" class="form-control" value="#{mantenedorCampana.provincia}"
-                                                     converter="entityConverter">
+                                    <h:selectOneMenu id="provi"  value="#{mantenedorCampana.provincia}"
+                                                     converter="entityConverter" style="width: 150px">
                                         <p:ajax event="change" listener="#{mantenedorCampana.comunas()}" update="comuna"/>
-                                        <f:selectItem itemLabel="Selecciona Provincia" itemValue="" noSelectionOption="true" />
+                                        <f:selectItem itemLabel="Provincia" itemValue="" noSelectionOption="true" />
                                         <f:selectItems value="#{mantenedorCampana.provinciasList}" var="prov"
                                                        itemLabel="#{prov.provincia_nombre}"/>
 
@@ -65,9 +71,9 @@
                                 <br></br>
                                 <p:outputLabel value="Comuna "/>
                                 <h:outputText styleClass="fa fa-fw fa-map-marker" style="float: right;color: red"/>
-                                    <h:selectOneMenu id="comuna" class="form-control" value="#{mantenedorCampana.comuna}"
-                                                     converter="entityConverter">
-                                        <f:selectItem itemLabel="Selecciona Comuna" itemValue="" noSelectionOption="true" />
+                                    <h:selectOneMenu id="comuna"  value="#{mantenedorCampana.comuna}"
+                                                     converter="entityConverter" style="width: 150px">
+                                        <f:selectItem itemLabel="Comuna" itemValue="" noSelectionOption="true" />
                                         <f:selectItems value="#{mantenedorCampana.comunasList}" var="com"
                                                        itemLabel="#{com.comuna_nombre}"/>
                                     </h:selectOneMenu>
@@ -110,7 +116,7 @@
                                 </h:selectOneMenu>
 
                             </p:panelGrid>
-                            <p:commandButton icon="fa fa-fw fa-search" value="Buscar" ajax="false"
+                            <p:commandButton icon="fa fa-fw fa-search" value="Buscar" id="buscar" ajax="false" styleClass="btn btn-interac"
                                              action="#{mantenedorCampana.filtrarestablecimiento}"/>
 
                         </p:panel>
@@ -203,7 +209,7 @@
                                      action="#{facesUtil.redirigir('/plataforma/campana')}"/>
                     <span/>
 
-                    <p:commandButton value="Siguente" styleClass="btn btn-interac"
+                    <p:commandButton value="Siguente" styleClass="btn btn-interac" id="sigue"
                                      action="#{mantenedorCampana.guardar}"  update="messages">
 
                     </p:commandButton>
@@ -213,7 +219,9 @@
 
             <br></br>
             <p:growl id="messages" autoUpdate="true" showDetail="true"/>
-
+            <p:blockUI block="todo" trigger="sigue" animate="true">
+                <p:graphicImage url="https://promo.olybet.com/com/images/base/preloader.gif"/>
+            </p:blockUI>
         </h:form>
 
     </ui:define>

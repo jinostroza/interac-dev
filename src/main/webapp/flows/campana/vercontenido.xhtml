@@ -28,7 +28,7 @@
                     <div class="row">
                         <p:dataTable id="champa" var="camton" rows="5" paginator="true"
                                      style="text-align-all: center;"
-                                     value="#{mantenedorCampana.campanas}">
+                                     value="#{mantenedorCampana.campestabListAll}">
 
                             <f:facet name="header">
                                 <h3>Estado de Mis Campañas</h3>
@@ -36,7 +36,7 @@
 
                             <p:column styleClass="col-lg-2" headerText="">
                                 <p:imageSwitch effect="shuffle" id="fadeEffect">
-                                    <ui:repeat value="#{camton.contenidoList}" var="image" id="manuelSwitcherImages">
+                                    <ui:repeat value="#{camton.campana.contenidoList}" var="image" id="manuelSwitcherImages">
                                         <p:graphicImage value="/imagenes/tmp/#{image.path}" style="width:100px; height:200px ;"/>
                                     </ui:repeat>
                                 </p:imageSwitch>
@@ -46,20 +46,20 @@
                                 <h:outputText value="#{camton.estado}"/>
                             </p:column>
                             <p:column styleClass="col-lg-2" headerText="Creado">
-                                <h:outputText value="#{camton.fechaCreacion}"/>
+                                <h:outputText value="#{camton.campana.fechaCreacion}"/>
                             </p:column>
                             <p:column styleClass="col-lg-2" headerText="Pasadas">
-                                <h:outputText value="#{camton.pasadas}"/>
+                                <h:outputText value="#{camton.campana.pasadas}"/>
                             </p:column>
                             <p:column styleClass="col-lg-2" headerText="Comienzo">
-                                <h:outputText value="#{camton.fechaInicio}"/>
+                                <h:outputText value="#{camton.campana.fechaInicio}"/>
                             </p:column>
                             <p:column styleClass="col-lg-2" headerText="Termino">
-                                <h:outputText value="#{camton.fechaFin}"/>
+                                <h:outputText value="#{camton.campana.fechaFin}"/>
                             </p:column>
                             <p:column styleClass="col-lg-2" headerText="">
 
-                                <p:commandButton styleClass="btn btn-interac" id="delete" icon="ui-icon-trash"  style="background-color: white !important;" action="#{mantenedorCampana.eliminarCampana(camton)}" update="messages"></p:commandButton>
+                                <p:commandButton styleClass="btn btn-interac" id="delete" icon="ui-icon-trash"  style="background-color: white !important;" action="#{mantenedorCampana.eliminarCampana(camton.campana)}" update="messages"></p:commandButton>
                                 <p:growl id="messages" showDetail="true"/>
                                 <p:blockUI block="champa" trigger="delete">
                                     <p:graphicImage url="https://promo.olybet.com/com/images/base/preloader.gif"/>

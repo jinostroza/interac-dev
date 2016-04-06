@@ -61,7 +61,7 @@ import java.util.List;
                 ),
                 @NamedQuery(name = "Campana.findByDate",
                         query = "SELECT c  FROM Campana c " +
-                                "INNER JOIN  c.contenidoList co " +
+                                "INNER JOIN FETCH c.contenidoList co " +
                                 " WHERE c.fechaFin<:fechavencida"
                 ),
                 @NamedQuery(name = "Campana.findByEstablecimiento", query = "SELECT c FROM Campana c " +
