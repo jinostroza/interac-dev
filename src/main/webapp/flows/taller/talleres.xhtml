@@ -1,0 +1,160 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:div="http://www.springframework.org/tags/form"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="/templates/logInTemplate.xhtml">
+
+    <ui:define name="contenido">
+        <style type="text/css">
+            .ui-button {
+                background: #454545 !important;
+                border: 1px solid #555 !important;
+                color: #EEE !important;
+            }
+            .ui-state-hover{
+                background-color: #fff !important;
+                color: #454545 !important;
+                border-color: #454545 !important;
+                border-radius: 4px !important;
+            }
+            .ui-datalist-header{
+                background-color:#454545 !important ;
+                font-family: cursive !important;
+                border: none !important;
+                background-image: none;
+
+            }
+            .ui-datalist-item{
+
+                font-family: cursive !important;
+                border: black !important;
+                border-width: 2px;
+                background-image: none;
+
+            }
+            .ui-datalist-footer{
+                background-color:#454545 !important ;
+                font-family: cursive !important;
+                border: none !important;
+                background-image: none;
+
+            }
+            .ui-paginator{
+                background-color:#454545 !important ;
+                font-family: cursive !important;
+                border: none !important;
+                background-image: none;
+
+            }
+
+
+        </style>
+        <div class="header">
+            <div class="header-top">
+                <div class="logo"></div>
+
+            </div>
+
+            <span></span>
+        </div>
+        <h:form class="container" id="crearTaller" enctype="multipart/form-data">
+            <div class="row">
+
+                <div class="col-lg-offset-3 col-lg-6" style="padding-left:  10%">
+                    <h2>Talleres y Charlas</h2>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <h3 align="center" style="align-items: flex-start"></h3>
+                </div>
+
+                <p:dialog header="Agregar Evento" widgetVar="dlg2" height="800" width="500" closable="false">
+
+                    <label>Nombre</label>
+                    <p:inputText id="anun" label="anun" value="#{mantenedorTaller.taller.nombre}"
+                                 styleClass="form-control"  />
+                    <p:watermark for="anun" value="Ingrese un Nombre del Evento" id="watermark"/>
+                    <p:tooltip id="toolTipTrack" for="anun" value="Ingrese un Nombre del Evento" trackMouse="true"/>
+                    <br></br>
+                    <br></br>
+                    <label>Sede</label>
+                    <h:selectOneMenu id="sedes" class="form-control" value="#{mantenedorTaller.taller.sede}">
+                        <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione --"/>
+                        <f:selectItem itemValue="Pucv FIN" itemLabel="Pucv FIN"/>
+                        <f:selectItem itemValue="Pucv IBC" itemLabel="Pucv IBC"/>
+                    </h:selectOneMenu>
+                    <p:tooltip id="tooltipmenu" for="sedes" value="Selecciona la sede para el evento" trackMouse="true"/>
+
+                    <br></br>
+                    <label>Fecha</label>
+                    <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
+                    <p:calendar id="inicio" locale="es" pattern="dd/MM/yyyy"
+                                value="#{mantenedorTaller.taller.fecha}" mindate="c1.today()"
+                                widgetVar="c1" requiredMessage="Debe indicar fecha del Evento" style="width: 150px">
+
+                    </p:calendar>
+                    <p:tooltip id="toolinicio" for="inicio" value="Selecciona Fecha del evento" trackMouse="true"/>
+                    <br></br>
+                    <label>Hora</label>
+                    <p:inputText id="hora" label="hora" value="#{mantenedorTaller.taller.hora}"
+                                 styleClass="form-control" />
+                    <p:watermark for="anun" value="Ingresehora del Evento" id="watermark2"/>
+                    <p:tooltip id="toolTipTrack2" for="hora" value="Ingrese hora del Evento" trackMouse="true"/>
+
+                    <br></br>
+                    <label>Formulario Inscripcion</label>
+                    <p:inputText id="formi" label="formi" value="#{mantenedorTaller.taller.link}"
+                                 styleClass="form-control"/>
+                    <p:watermark for="formi" value="Ingrese  url del Formulario" id="watermark1"/>
+                    <p:tooltip id="toolTipTrack1" for="formi" value="Ingrese  url del Formulario" trackMouse="true"/>
+
+                    <p:growl id="messages" showDetail="true"/>
+                    <br></br>
+                    <h:commandButton action="#{mantenedorTaller.agregar()}"
+                                     value="Confirmar" />
+                    <p:commandButton value="Cancelar"  onclick="PF('dlg2').hide();" />
+                </p:dialog>
+            </div>
+            <div class="ui-grid-row">
+
+                <p:dataList value="#{mantenedorTaller.tallerList}" var="car" pt:data-inset="true" paginator="true" rows="5">
+                    <f:facet name="header">
+                        Lista de Eventos
+                        <p:spacer width="900" height="40"> </p:spacer>
+                        <p:commandButton value="Crear Anuncio" type="button" styleClass="btn btn-interac"
+                                         onclick="PF('dlg2').show();"/>
+                    </f:facet>
+
+                        <h3>#{car.nombre}</h3><p:spacer width="900" height="40"> </p:spacer> <h:outputLink styleClass="btn btn-interac" target="_blank" value="#{car.link}">Inscripciones</h:outputLink>
+
+                    <p> Fecha <h:outputLabel value="#{car.fecha}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputLabel> Hora #{car.hora} <strong> Lugar #{car.sede} </strong> </p>
+
+
+
+
+
+                    <f:facet name="footer">
+                        Lista de Eventos
+                    </f:facet>
+                </p:dataList>
+                <br></br>
+                <br></br>
+
+            </div>
+
+
+
+        </h:form>
+
+
+    </ui:define>
+</ui:composition>

@@ -18,6 +18,11 @@
                 <p:commandLink immediate="true" value="Inicio" action="#{facesUtil.redirigir('/plataforma/campana')}" />
             </li>
              </ui:fragment>
+            <ui:fragment rendered="#{userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR')  or userSession.tienePermiso('PUCV')}">
+                <li style="background-color: #333">
+                    <p:commandLink immediate="true" value="Eventos" action="#{facesUtil.redirigir('/plataforma/taller')}" />
+                </li>
+            </ui:fragment>
             <ui:fragment rendered="#{!userSession.estaAutentificado()}">
                 <li style="background-color: #333">
                     <p:commandLink value="Iniciar Sesion" action="#{facesUtil.redirigir('/logIn.jsf')}"/>

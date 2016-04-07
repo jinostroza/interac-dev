@@ -42,7 +42,7 @@ var DashBox = {
                 winWeather=window.open("http://www.tiempo.com/valparaiso.htm","tiempo","width=1060,height=1900,resizable,scrollbars,status")
                 break;
             case "form":
-                winForm=window.open("http://54.208.243.25:8080/interac-dev/plataforma/forms/lista.jsf","Talleres","width=1060,height=1900,resizable,scrollbars,status")
+                winForm=window.open("http://54.208.243.25:8080/interac-dev/plataforma/forms","Talleres","width=1060,height=1900,resizable,scrollbars,status")
                 break;
         }
 
