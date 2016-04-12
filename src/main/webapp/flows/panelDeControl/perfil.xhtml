@@ -40,10 +40,6 @@
                     <h:outputLabel  value="#{userSession.usuario.username}"/>
                     <h:outputLabel value="Correo  :"/>
                     <p:inputText type="email"  placeholder="Email" styleClass="form-control"  value="#{mantenedorPerfil.usuario.correo}"/>
-                    <h:outputLabel value="Empresa :"/>
-                    <p:inputText placeholder="Empresa" styleClass="form-control" value="#{mantenedorPerfil.usuario.empresa}"/>
-
-
                     <h:commandButton id="modifica" styleClass="btn-interac" value="Modificar" type="button">
                         <p:overlayPanel id="editPanel" for="modifica" showEvent="click" hideEvent="click" hideEffect="fade" style="width:600px">
                             <h:inputSecret id="iActual" styleClass="form-control" value="#{mantenedorPerfil.claveActual}"/>

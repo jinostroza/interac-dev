@@ -24,7 +24,7 @@
             <br/>
             <div class="ui-grid-row">
                 <ui:fragment
-                        rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') }">
+                        rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') or userSession.tienePermiso('PUCV') }">
                     <div class="row">
                         <p:dataTable id="champa" var="camton" rows="5" paginator="true"
                                      style="text-align-all: center;"

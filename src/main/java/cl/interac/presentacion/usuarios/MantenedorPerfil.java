@@ -56,12 +56,14 @@ public class MantenedorPerfil implements Serializable {
     private Empresa empresas;
     private String verifica = "false";
     private String recupera = "true";
+    private List<Empresa> empresaList;
 
     private Long retornoCorreos;
     private Integer idUsuario;
 
     public void inicio() {
         usuarioList = logicaUsuario.obtenerTodos();
+        empresaList = logicaEmpresa.obtenerTodos();
         usuario = new Usuario();
     }
 
@@ -269,5 +271,13 @@ public class MantenedorPerfil implements Serializable {
 
     public void setRecupera(String recupera) {
         this.recupera = recupera;
+    }
+
+    public List<Empresa> getEmpresaList() {
+        return empresaList;
+    }
+
+    public void setEmpresaList(List<Empresa> empresaList) {
+        this.empresaList = empresaList;
     }
 }

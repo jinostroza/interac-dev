@@ -59,7 +59,7 @@
                                            itemLabel="#{emp.nombreEmpresa}"/>
                         </h:selectOneMenu>
                         <h:outputLabel value="Ubicacion"/>
-                        <h:selectOneMenu class="form-control" value="#{local.ubicacion}"
+                        <h:selectOneMenu class="form-control" value="#{local.comunas}"
                                          converter="entityConverter">
                             <f:selectItems value="#{mantenedorEstablecimiento.ubicaciones}" var="ubica"
                                            itemLabel="#{ubica.descubicacion}"/>

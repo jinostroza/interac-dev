@@ -411,6 +411,17 @@ ul.egmenu li:hover ul { display: block;  }
 	border-radius: 4px;
 
 }
+.btn-forms {
+	background-color: #E4251F;
+	color: #fff !important;
+}
+.btn-forms:hover{
+	background-color: #fff;
+	color: #454545 !important;
+	border-color: #454545;
+	border-radius: 4px;
+
+}
 .contenido-mapa
 {
 	width: 100%;

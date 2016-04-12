@@ -44,6 +44,7 @@
     <view-state id="vercontenido">
         <transition on="fin" to="registraCampana"></transition>
         <transition on="programar" to="campanapasos"></transition>
+        <transition on="return" to="vercontenido"></transition>
     </view-state>
     <view-state id="contenidoConfirmado">
         <transition on="fincontenido" to="registraCampana"></transition>

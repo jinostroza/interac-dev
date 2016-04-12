@@ -5,7 +5,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:div="http://www.springframework.org/tags/form"
                 xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-                template="/templates/logInTemplate.xhtml">
+                template="/templates/default.xhtml">
 
     <ui:define name="contenido">
         <style type="text/css">
@@ -20,46 +20,11 @@
                 border-color: #454545 !important;
                 border-radius: 4px !important;
             }
-            .ui-datalist-header{
-                background-color:#454545 !important ;
-                font-family: cursive !important;
-                border: none !important;
-                background-image: none;
 
-            }
-            .ui-datalist-item{
-
-                font-family: cursive !important;
-                border: black !important;
-                border-width: 2px;
-                background-image: none;
-
-            }
-            .ui-datalist-footer{
-                background-color:#454545 !important ;
-                font-family: cursive !important;
-                border: none !important;
-                background-image: none;
-
-            }
-            .ui-paginator{
-                background-color:#454545 !important ;
-                font-family: cursive !important;
-                border: none !important;
-                background-image: none;
-
-            }
 
 
         </style>
-        <div class="header">
-            <div class="header-top">
-                <div class="logo"></div>
 
-            </div>
-
-            <span></span>
-        </div>
         <h:form class="container" id="crearTaller" enctype="multipart/form-data">
             <div class="row">
 
@@ -75,7 +40,7 @@
                     <h3 align="center" style="align-items: flex-start"></h3>
                 </div>
 
-                <p:dialog header="Agregar Evento" widgetVar="dlg2" height="800" width="500" closable="false">
+                <p:dialog id="panel" header="Agregar Evento" widgetVar="dlg2" height="800" width="500" closable="false">
 
                     <label>Nombre</label>
                     <p:inputText id="anun" label="anun" value="#{mantenedorTaller.taller.nombre}"
@@ -117,35 +82,95 @@
 
                     <p:growl id="messages" showDetail="true"/>
                     <br></br>
-                    <h:commandButton action="#{mantenedorTaller.agregar()}"
-                                     value="Confirmar" />
-                    <p:commandButton value="Cancelar"  onclick="PF('dlg2').hide();" />
+                    <p:commandButton action="#{mantenedorTaller.agregar()}"
+                                     value="Confirmar" styleClass="btn btn-interac"/>
+                    <p:commandButton styleClass="btn btn-interac" value="Cancelar"  onclick="PF('dlg2').hide();" />
                 </p:dialog>
             </div>
             <div class="ui-grid-row">
 
-                <p:dataList value="#{mantenedorTaller.tallerList}" var="car" pt:data-inset="true" paginator="true" rows="5">
+                <p:dataTable id="basicDT" var="cont" rows="4" paginator="true"
+                             value="#{mantenedorTaller.tallerList}"  >
+
                     <f:facet name="header">
-                        Lista de Eventos
                         <p:spacer width="900" height="40"> </p:spacer>
-                        <p:commandButton value="Crear Anuncio" type="button" styleClass="btn btn-interac"
-                                         onclick="PF('dlg2').show();"/>
+                        <p:commandButton value="Agregar Evento" type="button" styleClass="btn btn-interac"
+                                         onclick="PF('dlg2').show();" actionListener="#{mantenedorTaller.reset}">
+                            <p:resetInput target="panel" />
+                        </p:commandButton>
                     </f:facet>
 
-                        <h3>#{car.nombre}</h3><p:spacer width="900" height="40"> </p:spacer> <h:outputLink styleClass="btn btn-interac" target="_blank" value="#{car.link}">Inscripciones</h:outputLink>
 
-                    <p> Fecha <h:outputLabel value="#{car.fecha}">
+                    <p:column styleClass="col-lg-2" headerText="nombre" >
+                        <h:outputText value="#{cont.nombre}"/>
+                    </p:column>
+                    <p:column styleClass="col-lg-3" headerText="Sede">
+                        <h:outputText value="#{cont.sede}"/>
+                    </p:column>
+                    <p:column styleClass="col-lg-3" headerText="Fecha">
+                        <h:outputText value="#{cont.fecha}">
                             <f:convertDateTime pattern="dd/MM/yyyy"/>
-                        </h:outputLabel> Hora #{car.hora} <strong> Lugar #{car.sede} </strong> </p>
+                        </h:outputText>
+                    </p:column>
+                    <p:column styleClass="col-lg-3" headerText="Hora">
+                        <h:outputText value="#{cont.hora}"/>
+                    </p:column>
+                    <p:column styleClass="col-lg-3" headerText="Formulario">
+                        <h:outputLink styleClass="btn btn-interac" target="_blank" value="#{cont.link}">Inscripciones</h:outputLink>
+                    </p:column>
+                    <p:column styleClass="col-lg-3" style="text-align: center; margin-right: 2px">
+
+                        <p:commandButton icon="ui-icon-pencil" id="editBtn"  value="Modificar" styleClass="btn btn-interac" immediate="true" update="message"/>
+                        <p:overlayPanel id="editpanel" for="editBtn" hideEffect="fade" dynamic="true" style="width:600px">
+                            <label>Nombre</label>
+                            <p:inputText   value="#{cont.nombre}"
+                                          styleClass="form-control"  />
+
+                            <br></br>
+                            <br></br>
+                            <label>Sede</label>
+                            <h:selectOneMenu  class="form-control" value="#{cont.sede}">
+                                <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione --"/>
+                                <f:selectItem itemValue="Pucv FIN" itemLabel="Pucv FIN"/>
+                                <f:selectItem itemValue="Pucv IBC" itemLabel="Pucv IBC"/>
+                            </h:selectOneMenu>
 
 
+                            <br></br>
+                            <label>Fecha</label>
+                            <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
+                            <p:calendar  locale="es" pattern="dd/MM/yyyy"
+                                         value="#{cont.fecha}" mindate="c1.today()"
+                                         widgetVar="c1" requiredMessage="Debe indicar fecha del Evento" style="width: 150px">
+
+                            </p:calendar>
+
+                            <br></br>
+                            <label>Hora</label>
+                            <p:inputText  label="hora" value="#{cont.hora}"
+                                          styleClass="form-control" />
 
 
+                            <br></br>
+                            <label>Formulario Inscripcion</label>
+                            <p:inputText  label="formi" value="#{cont.link}"
+                                          styleClass="form-control"/>
 
-                    <f:facet name="footer">
-                        Lista de Eventos
-                    </f:facet>
-                </p:dataList>
+
+                            <br></br>
+                            <p:commandButton action="#{mantenedorTaller.editar(cont)}"
+                                             value="Confirmar" styleClass="btn btn-interac"/>
+
+                        </p:overlayPanel>
+                    </p:column>
+                    <p:column styleClass="col-lg-3" style="text-align: center; margin-right: 2px">
+                        <p:commandButton icon="ui-icon-trash" action="#{mantenedorTaller.eliminar(cont)}" value="Eliminar" styleClass="btn btn-interac" immediate="true" update="message"/>
+                        <p:growl id="message" showDetail="true"/>
+                    </p:column>
+
+
+                </p:dataTable>
+
                 <br></br>
                 <br></br>
 

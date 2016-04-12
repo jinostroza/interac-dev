@@ -13,6 +13,8 @@ var DashBox = {
     var winPucv;
     var winFlckHist;
     var winForm;
+    var winFacebook;
+    var winWeather;
     var srcWatcher = function(button) {
 
         switch ($(button).attr("class")) {
@@ -36,8 +38,10 @@ var DashBox = {
                 break;
             case "twitter":
                 winTwitter=window.open("https://twitter.com/ihistoriapucv","FIN PUCV","width=1060,height=1900,resizable,scrollbars,status")
+                break;
             case "facebook":
                 winFacebook=window.open("https://www.facebook.com/pages/Instituto-de-Historia-PUCV/1393254430944455","facebook","width=1060,height=1900,resizable,scrollbars,status")
+                break;
             case "weather":
                 winWeather=window.open("http://www.tiempo.com/valparaiso.htm","tiempo","width=1060,height=1900,resizable,scrollbars,status")
                 break;

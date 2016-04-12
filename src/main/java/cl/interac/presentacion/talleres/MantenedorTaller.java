@@ -3,6 +3,7 @@ package cl.interac.presentacion.talleres;
 import cl.interac.entidades.Taller;
 import cl.interac.negocio.LogicaTaller;
 import cl.interac.util.components.FacesUtil;
+import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -38,18 +39,23 @@ public class MantenedorTaller implements Serializable {
         FacesUtil.mostrarMensajeInformativo("Exito","Se Agrego nuevo elemento :  "+taller.getNombre());
      return "next" ;
     }
-    public void editar(Taller t){
+    public String editar(Taller t){
         taller=t;
         logicaTaller.guardar(taller);
         tallerList=logicaTaller.obtenerTodos();
         FacesUtil.mostrarMensajeInformativo("Exito","Se ha modificado elemento :  "+taller.getNombre());
+        return "next" ;
     }
-    public void eliminar(Taller t){
+    public String eliminar(Taller t){
 
         taller=t;
         logicaTaller.eliminar(taller);
         tallerList=logicaTaller.obtenerTodos();
-        FacesUtil.mostrarMensajeError("Exito","Se ha eliminado elemento :  "+taller.getNombre());
+        FacesUtil.mostrarMensajeError("Exito", "Se ha eliminado elemento :  " + taller.getNombre());
+        return "next" ;
+    }
+    public void reset() {
+        RequestContext.getCurrentInstance().reset("form:panel");
     }
 //Getter and Setter
     public Taller getTaller() {

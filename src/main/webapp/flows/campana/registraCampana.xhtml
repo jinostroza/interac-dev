@@ -24,14 +24,14 @@
                     <div class="row">
                         <div class="col-lg-6 col-lg-offset-3">
                             <ui:fragment
-                                    rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') }">
+                                    rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') or userSession.tienePermiso('PUCV') }">
                                 <h2>Planifica tu Anuncio en 3 simples Pasos</h2>
                             </ui:fragment>
 
                         </div>
                         <ui:fragment
                                 rendered="#{userSession.tienePermiso('CLIENTE')
-                                      or userSession.tienePermiso('ADMINISTRADOR')}">
+                                      or userSession.tienePermiso('ADMINISTRADOR') or userSession.tienePermiso('PUCV')}">
                             <p:commandLink styleClass="dashbox-notify"
                                            action="#{facesUtil.redirigir('/plataforma/cliente')}">
                                 <p:outputLabel styleClass="btn-notify blink"
@@ -45,7 +45,7 @@
                     </div>
                     <div class="row" >
                         <ui:fragment
-                                rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') }">
+                                rendered="#{userSession.tienePermiso('ANUNCIANTE') or userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') or userSession.tienePermiso('PUCV') }">
                             <h:commandLink styleClass="col-lg-4 col-md-4  "  action="crear">
                                 <div class="dashbox">
                                     <h:outputLabel style="font-weight: bold;font-size: 18px;"
@@ -78,19 +78,7 @@
 
                         <div class="clearfix visible-xs-block"></div>
                     </div>
-                    <div class="row">
-                    <ui:fragment rendered="#{userSession.tienePermiso('PUCV')}">
-                        <h:commandLink styleClass="col-lg-offset-2 col-md-5  " action="crear">
-                            <div class="dashbox">
-                                <h:outputLabel style="font-weight: bold;font-size: 18px;"
-                                               value="Crear Anuncio"/>
 
-                                <div class="button_ subir-imagen"></div>
-                                <p> Sube un nuevo anuncio a nuestra plataforma </p>
-                            </div>
-                        </h:commandLink>
-                    </ui:fragment>
-                    </div>
                 </div>
             </div>
 
@@ -105,7 +93,7 @@
             <br/>
 
             <ui:fragment
-                    rendered="#{userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') }">
+                    rendered="#{userSession.tienePermiso('CLIENTE')  or userSession.tienePermiso('ADMINISTRADOR') or userSession.tienePermiso('PUCV') }">
                 <div class="row">
                     <p:dataTable  var="cam" rows="5" paginator="true"
                                  style="text-align-all: center;"

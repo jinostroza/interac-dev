@@ -3,67 +3,111 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
+                xmlns:div="http://www.springframework.org/tags/form"
                 xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
                 template="/templates/logInTemplate.xhtml">
 
-<ui:define name="contenido">
+    <ui:define name="contenido">
+        <style type="text/css">
+            .ui-button {
+                background: #454545 !important;
+                border: 1px solid #555 !important;
+                color: #EEE !important;
+            }
+            .ui-state-hover{
+                background-color: #fff !important;
+                color: #454545 !important;
+                border-color: #454545 !important;
+                border-radius: 4px !important;
+            }
+            .ui-datalist-header{
+                background-color:#454545 !important ;
+                font-family: cursive !important;
+                border: none !important;
+                background-image: none;
 
-    <style type="text/css">
-        .ui-button {
-            background: #454545 !important;
-            border: 1px solid #555 !important;
-            color: #EEE !important;
-        }
-        .ui-datepicker {
-            background: #333;
-            border: 1px solid #555;
-            color: #EEE;
-        }
-        .ui-panelgrid td, .ui-panelgrid tr
-        {
-            border-style: none !important
-        }
-    </style>
-    <h:form>
-        <div class="container" id="myInterac">
-            <header>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h2>Talleres 2016</h2>
-                    </div>
+            }
+            .ui-datalist-item{
+
+                font-family: cursive !important;
+                border: black !important;
+                border-width: 2px;
+                background-image: none;
+
+            }
+            .ui-datalist-footer{
+                background-color:#454545 !important ;
+                font-family: cursive !important;
+                border: none !important;
+                background-image: none;
+
+            }
+            .ui-paginator{
+                background-color:#454545 !important ;
+                font-family: cursive !important;
+                border: none !important;
+                background-image: none;
+
+            }
+
+
+        </style>
+        <div class="header">
+            <div class="header-top">
+                <div class="logo"></div>
+
+            </div>
+
+            <span></span>
+        </div>
+        <h:form class="container" id="crearTaller" enctype="multipart/form-data">
+            <div class="row">
+
+                <div class="col-lg-offset-3 col-lg-6" style="padding-left:  10%">
+                    <h2>Talleres y Charlas</h2>
                 </div>
-            </header>
 
-            <div class="row" style="margin-top: 10%">
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <h3 align="center" style="align-items: flex-start"></h3>
+                </div>
+
+
+            </div>
+            <div class="ui-grid-row">
+
                 <p:dataList value="#{mantenedorTaller.tallerList}" var="car" pt:data-inset="true" paginator="true" rows="5">
                     <f:facet name="header">
                         Lista de Eventos
+
                     </f:facet>
-                    <h:outputLink value="#{car.link}">
-                        <h2>#{car.nombre}</h2>
-                        <p>
-                        <h:outputLabel value="#{car.fecha}">
-                            <f:convertDateTime pattern="dd/MM/yyyy"/>
-                        </h:outputLabel></p>
-                        <p>#{car.hora}</p>
-                        <p class="ui-li-aside"><strong>#{car.sede}</strong></p>
-                    </h:outputLink>
+
+                    <h3>#{car.nombre}</h3><p:spacer width="900" height="40"> </p:spacer>  <h:outputLink styleClass="btn btn-forms" onclick="window.open('#{car.link}', 'Interac', 'dependent=yes, menubar=no, toolbar=no'); return false;" >Inscribete Aquí </h:outputLink>
+
+                    <p> Fecha <h:outputLabel value="#{car.fecha}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:outputLabel> Hora #{car.hora} <strong> Lugar #{car.sede} </strong> </p>
+
+
+
+
 
                     <f:facet name="footer">
                         Lista de Eventos
                     </f:facet>
                 </p:dataList>
-                </div>
-
-
-
+                <br></br>
+                <br></br>
 
             </div>
 
-    </h:form>
 
 
+        </h:form>
 
-<ui:include src="/templates/includes/Footer.xhtml"/>
-</ui:define>
+
+    </ui:define>
 </ui:composition>

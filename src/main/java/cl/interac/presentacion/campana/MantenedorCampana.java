@@ -360,7 +360,7 @@ public class MantenedorCampana implements Serializable {
      return  comuna.getComuna_nombre() ;
     }
 
-    public void eliminarCampana(Campana campa){
+    public String eliminarCampana(Campana campa){
         try {
 
                 logicaCampana.eliminarCampana(campa);
@@ -371,6 +371,7 @@ public class MantenedorCampana implements Serializable {
         }catch (Exception e){
             FacesUtil.mostrarMensajeError("Operación Fallida", "Algo Ocurrio");
         }
+        return "return";
     }
 
     public String ver(int t){
