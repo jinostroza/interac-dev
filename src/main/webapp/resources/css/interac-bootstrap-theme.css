@@ -281,12 +281,20 @@ ul.egmenu li:hover ul { display: block;  }
 	background-image: url("css/img/buttons/confirm-account-active.png");
 }
 .crear-anuncio
-{
-	background-image: url("css/img/buttons/crea-un-anuncio-nuevo.png");
-}
+ {
+	 background-image: url("css/img/buttons/crea-un-anuncio-nuevo.png");
+ }
 #myInterac .dashbox:hover  > .crear-anuncio
 {
 	background-image: url("css/img/buttons/crear-nuevo-anuncio-hover.png");
+}
+.reporte
+{
+	background-image: url("css/img/buttons/elige-un-anuncio.png");
+}
+#myInterac .dashbox:hover  > .reporte
+{
+	background-image: url("css/img/buttons/elige-un-anuncio.png-hover.png");
 }
 .elegir-mas-tarde
 {

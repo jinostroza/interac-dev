@@ -37,4 +37,8 @@ public class LogicaCategoria {
     public void eliminar(Categoria g){
        categoriaDAO.eliminar(g);
    }
+    @Transactional(readOnly = true)
+    public Categoria obtenerNombre(Integer categoria){
+        return categoriaDAO.obtenerNombres(categoria);
+    }
 }

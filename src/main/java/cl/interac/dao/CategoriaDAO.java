@@ -1,7 +1,6 @@
 package cl.interac.dao;
 
 import cl.interac.entidades.Categoria;
-import cl.interac.entidades.Totem;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -30,5 +29,8 @@ public class CategoriaDAO {
     public void eliminar(Categoria g){
         Categoria categoria= em.find(Categoria.class, g.getIdcategoria());
         em.remove(categoria);
+    }
+    public Categoria obtenerNombres(Integer categoria){
+        return (Categoria ) em.createNamedQuery("Categoria.findnames").setParameter("categoria",categoria).getSingleResult();
     }
 }

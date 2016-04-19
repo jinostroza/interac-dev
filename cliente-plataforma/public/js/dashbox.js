@@ -37,7 +37,7 @@ var DashBox = {
                 winPucv=window.open("http://www.pucv.cl","Pontificia Universidad Catolica","width=1060,height=1900,resizable,scrollbar,status")
                 break;
             case "twitter":
-                winTwitter=window.open("https://twitter.com/ihistoriapucv","FIN PUCV","width=1060,height=1900,resizable,scrollbars,status")
+                winTwitter=window.open("https://twitter.com/ingenieriapucv","FIN PUCV","width=1060,height=1900,resizable,scrollbars,status")
                 break;
             case "facebook":
                 winFacebook=window.open("https://www.facebook.com/pages/Instituto-de-Historia-PUCV/1393254430944455","facebook","width=1060,height=1900,resizable,scrollbars,status")

@@ -45,7 +45,7 @@
                 <h3>Nombre Campaña</h3>
 
                 <h:outputText styleClass="fa fa-fw fa-bullhorn" style="float: right;color: red"/>
-                <p:inputText style="width: 150%" id="cmp" label="campaña" value="#{mantenedorCampana.campana.nombrecampana}"
+                <p:inputText style="width: 100%" id="cmp" label="campaña" value="#{mantenedorCampana.campana.nombrecampana}"
                               required="true" styleClass="form-control"
                              requiredMessage="Ingrese un Nombre para su Campaña"/>
 
@@ -72,25 +72,24 @@
                     <p:tooltip id="toolfin" for="fin" value="Selecciona Fecha Termino Campaña" trackMouse="true"/>
                 </p:panelGrid>
 
-                <div id="cuadro-imagen" class="col-lg-offset-7" align="">
+                <div id="cuadro-imagen" class="col-lg-offset-7">
 
-                <p:imageSwitch effect="shuffle" id="fac" style="float: right;height: 400px;width:300px " >
-                    <ui:repeat value="#{mantenedorCampana.campana.contenidoList}" var="image" id="manuelSwitcherImages">
-                        <p:graphicImage value="/imagenes/tmp/#{image.path}" style="width:100px; height:200px ;"/>
-                    </ui:repeat>
-                </p:imageSwitch>
+                    <p:imageSwitch effect="fade" id="fac" style="height: 400px;width:300px;margin-top:-80px; " >
+                        <ui:repeat value="#{mantenedorCampana.contenidoslista}" var="image" id="manuelSwitcherImages">
+                            <p:graphicImage value="/imagenes/tmp/#{image.path}" style="width: 249px;height: 328px;margin-top: 119px;margin-left: 35px;"/>
+                        </ui:repeat>
+                    </p:imageSwitch>
 
-                    <p:spacer width="80%" height="40"> </p:spacer>
-                    <p:commandButton value="Volver"  />
-                    <p:spacer width="30%" height="40"> </p:spacer>
-                    <p:commandButton action="#{mantenedorCampana.programaCampana(mantenedorCampana.campana)}"
-                                     value="Confirmar" />
+
                 </div>
+                <p:spacer width="59%" height="40"> </p:spacer>
+                <p:commandButton value="Volver"  />
+                <p:spacer width="10%" height="40"> </p:spacer>
+                <p:commandButton action="#{mantenedorCampana.programaCampana(mantenedorCampana.campana)}"
+                                 value="Confirmar" />
 
+           </div>
 
-
-
-            </div>
         </div>
     </h:form>
     </ui:define>

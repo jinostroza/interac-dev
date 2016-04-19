@@ -12,9 +12,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 /**
@@ -52,6 +49,7 @@ public class MantenedorCliente implements Serializable {
     //Variables
     private String rechazarSelectOneMenu;
     private String rechazarInputTextArea;
+    private String correo;
 
     //autowired
     @Autowired
@@ -85,6 +83,7 @@ public class MantenedorCliente implements Serializable {
         campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
         campestabs = logicaCampestab.obtenerPorEstado(userSession.getUsuario().getUsername());
 
+
     }
 
     public String aprobar(Campestab ca){
@@ -105,13 +104,15 @@ public class MantenedorCliente implements Serializable {
             for(Establecimiento et : ca.getCampana().getEstablecimientoList()) {
                String carpetaDestino = et.getCarpetaFtp();
                 for(Contenido co : ca.getCampana().getContenidoList()) {
-                     Files.copy(Paths.get("/home/ec2-user/media/tmp/" + co.getPath()), Paths.get("/home/ec2-user/media/" + carpetaDestino + "/" + co.getPath()), StandardCopyOption.REPLACE_EXISTING);
+                    // Files.copy(Paths.get("/home/ec2-user/media/tmp/" + co.getPath()), Paths.get("/home/ec2-user/media/" + carpetaDestino + "/" + co.getPath()), StandardCopyOption.REPLACE_EXISTING);
+                     correo = co.getUsuario().getCorreo();
                 }
 
            }
                 String[] destinos = new String[3];
                 destinos[0] = userSession.getUsuario().getCorreo();
                 destinos[1] = "contacto@interac.cl";
+                destinos[2] = correo;
 
 
                 //Cuerpo del mensaje
@@ -145,6 +146,7 @@ public class MantenedorCliente implements Serializable {
 
             FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha rechazado la Campaña  [" + campestab.getCampana().getNombrecampana() + "]");
             campestabs = logicaCampestab.obtenerPorEstado(userSession.getUsuario().getUsername());
+
         }catch (Exception e){
             FacesUtil.mostrarMensajeError("Operación Fallida","algo ocurrio");
         }
@@ -152,15 +154,19 @@ public class MantenedorCliente implements Serializable {
         String[] destinos = new String[3];
         destinos[0] = userSession.getUsuario().getCorreo();
         destinos[1] = "contacto@interac.cl";
-        //destinos[2] = contenido.getUsuario().getCorreo();
+        for(Contenido co : ca.getCampana().getContenidoList()) {
+            correo = co.getUsuario().getCorreo();
+        }
+
+        destinos[2] = correo;
 
         //Cuerpo del mensaje
         String mensajeAnunciante = new String(constantes.getRechazar());
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$id",String.valueOf(campestab.getCampana().getIdcampana()));
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento", "prueba");
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento", campestab.getEstablecimiento().getNombreEstablecimiento());
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$razonRechazo",rechazarSelectOneMenu);
         mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$comentarios",rechazarInputTextArea);
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valor", "1");
+        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valor", String.valueOf(campestab.getCampana().getValor()));
 
         mailSender.send(destinos, "interac " + rechazarSelectOneMenu, mensajeAnunciante);
 
@@ -171,7 +177,7 @@ public class MantenedorCliente implements Serializable {
 
 
 
-   // inicio y logica de vista
+
 
     //Getter and Setter
     public Long getNumeroCampanas() { return numeroCampanas; }
@@ -306,5 +312,13 @@ public class MantenedorCliente implements Serializable {
 
     public void setCampestab(Campestab campestab) {
         this.campestab = campestab;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 }

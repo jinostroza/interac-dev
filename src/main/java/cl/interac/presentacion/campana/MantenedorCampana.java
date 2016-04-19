@@ -359,6 +359,10 @@ public class MantenedorCampana implements Serializable {
         comuna = logicaComunas.obtenerNombre(com);
      return  comuna.getComuna_nombre() ;
     }
+    public String nombreCategoria(Integer cat){
+        categoria = logicaCategoria.obtenerNombre(cat);
+        return  categoria.getDesccategoria() ;
+    }
 
     public String eliminarCampana(Campana campa){
         try {

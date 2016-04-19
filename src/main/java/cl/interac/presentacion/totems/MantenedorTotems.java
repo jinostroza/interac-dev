@@ -7,39 +7,38 @@ import cl.interac.util.components.PropertyReader;
 import cl.interac.util.components.UserSession;
 import cl.interac.util.services.FileUploader;
 import org.primefaces.event.FileUploadEvent;
-import cl.interac.scheduled.CronService;
-import cl.interac.util.components.*;
-import cl.interac.util.services.MailSender;
-
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.io.BufferedReader;
+import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import org.primefaces.model.map.DefaultMapModel;
-import org.primefaces.model.map.LatLng;
-import org.primefaces.model.map.MapModel;
-import org.primefaces.model.map.Marker;
 
 /**
  * Created by Joaco on 24-04-2015.
  */
+@ManagedBean
 @Component
 @Scope("flow")
 public class MantenedorTotems implements Serializable {
 
     @Autowired
     private LogicaTotem logicaTotem;
+    @Autowired
+    private LogicaMeses logicaMeses;
     @Autowired
     private LogicaCampana logicaCampana;
     @Autowired
@@ -59,6 +58,7 @@ public class MantenedorTotems implements Serializable {
     @Autowired
     private FileUploader fileUploader;
     private int fileUploadCount;
+    private StreamedContent file;
 
     private MapModel simpleModel;
     private Marker marker;
@@ -77,6 +77,8 @@ public class MantenedorTotems implements Serializable {
     private Ubicacion ubicacion;
     private List<Marcapantalla> marcaPantallas;
     private Date date;
+    private Meses meses;
+    private List<Meses> mesesList;
 
     @PostConstruct
     public void inicio() {
@@ -86,6 +88,7 @@ public class MantenedorTotems implements Serializable {
         totemPorUsuario = logicaTotemConUsuario.obtenerPorUsuario(userSession.getUsuario().getUsername());
         ubicaciones = logicaUbicacion.obtenerTodas();
         marcaPantallas = logicaMarcaPantalla.obtenerTodos();
+        mesesList = logicaMeses.obtenerTodos();
         totem = new Totem();
     }
 
@@ -124,6 +127,10 @@ public class MantenedorTotems implements Serializable {
         } catch (IOException e) {
             return;
         }
+    }
+    public void FileDownloadView() {
+        InputStream stream = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/home/ec2-user/analitica/Reporte_analitica.pdf");
+        file = new DefaultStreamedContent(stream, "application/pdf", "reporte_interac.pdf");
     }
 
     /* public void agregarTotem() {
@@ -164,6 +171,10 @@ public class MantenedorTotems implements Serializable {
             return;
         }
     } */
+
+    public StreamedContent getFile() {
+        return file;
+    }
 
     public void editarTotem(Totem t){
         totem = t;
@@ -282,4 +293,19 @@ public class MantenedorTotems implements Serializable {
         this.marcapantalla = marcapantalla;
     }
 
+    public Meses getMeses() {
+        return meses;
+    }
+
+    public void setMeses(Meses meses) {
+        this.meses = meses;
+    }
+
+    public List<Meses> getMesesList() {
+        return mesesList;
+    }
+
+    public void setMesesList(List<Meses> mesesList) {
+        this.mesesList = mesesList;
+    }
 }

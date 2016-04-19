@@ -68,7 +68,7 @@
              <p:column>
                  <!-- Rechazar -->
                  <p:commandButton id="btnRechazar" value="Rechazar" styleClass="btn btn-interac" process="@form">
-                     <p:overlayPanel for="btnRechazar">
+                     <p:overlayPanel  for="btnRechazar">
                          <p:outputLabel value="¿Por que motivo rechaza este anuncio?"/>
                          <h:selectOneMenu value="#{mantenedorCliente.rechazarSelectOneMenu}" class="form-control">
                              <f:selectItem itemValue="Contenido sexista y/o inapropiado" ItemLabel="Contenido sexista y/o inapropiado"/>
@@ -78,7 +78,10 @@
                          <p:outputLabel value="Observaciones" />
                          <h:inputTextarea value="#{mantenedorCliente.rechazarInputTextArea}" rows="10" cols="50" />
                          <br/>
-                         <p:commandButton value="Enviar" action="#{mantenedorCliente.rechazar(car)}"/>
+                         <p:commandButton id="reject" value="Enviar" action="#{mantenedorCliente.rechazar(car)}"/>
+                         <p:blockUI block="champa" trigger="reject">
+                             <p:graphicImage url="https://promo.olybet.com/com/images/base/preloader.gif"/>
+                         </p:blockUI>
                      </p:overlayPanel>
                  </p:commandButton>
              </p:column>
