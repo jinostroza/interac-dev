@@ -15,8 +15,8 @@ import java.util.List;
 /**
  * Created by mary on 07/04/2016.
  */
-@Component
-@Scope("flow")
+@Component()
+@Scope("view")
 public class MantenedorTaller implements Serializable {
 
     private List<Taller> tallerList;
