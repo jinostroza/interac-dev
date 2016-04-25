@@ -8,21 +8,23 @@ html
         script(src='public/js/slide.js')
         script(src='public/js/dashbox.js')
         script(src='public/js/twitterFetcher_min.js')
+
     body
         iframe.overlay(style='display:none')
         .container
             .header
-                p#id-twitter-pucv
-                #ingenieria
+                #vice
+                #weather
+                    a(href='//booked.getElementsByTagName/weather/valparaiso-w632826')
+                        img(src='//w.bookcdn.com/weather/picture/30_w632826_1_4_34495e_250_2c3e50_ffffff_ffffff_1_2071c9_ffffff_0_3.png?scode=124&domid=w209')
                 #pucv
-                #twitter-logo
-                #twitter.twitter(href='https://twitter.com/ingenieriapucv') Cargando Tweets
             #content.content(style='padding: 0px')
-            button(class="form" id="form") Aquí Inscripciones de Talleres
+            button(class="form" id="form") Formulario de Inscripción
             div(class="dashbox")
-                button(class="escuela" id="escuela")
-                button(class="flickr" id="flickr")
-                button(class="maker" id="maker")
+                button(class="guia" id="guia")
+                button(class="dpd" id="dpd")
+                button(class="biblioteca" id="biblioteca")
+                button(class="ddcyf" id="ddcyf")
         script(type='text/javascript').
             jQuery(document).ready(function () {
             });
@@ -45,23 +47,23 @@ html
                         a.src = g;
                         m.parentNode.insertBefore(a, m)
                     })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-                    ga('create', 'UA-69484091-2', {'cookiedomain': 'none'});
+                    ga('create', 'UA-69484091-5', {'cookiedomain': 'none'});
                     ga('send', 'pageview');
                     // custom
-                    $('#escuela').on('click', function () {
-                        ga('send', 'event', 'btnescuela', 'click', 'nav-buttons');
+                    $('#guia').on('click', function () {
+                        ga('send', 'event', 'btnguia', 'click', 'nav-buttons');
                     });
-                    $('#flickr').on('click', function () {
-                        ga('send', 'event', 'btnflickr', 'click', 'nav-buttons');
+                    $('#dpd').on('click', function () {
+                        ga('send', 'event', 'btndpd', 'click', 'nav-buttons');
                     });
-                    $('#maker').on('click', function () {
-                        ga('send', 'event', 'btnmaker', 'click', 'nav-buttons');
+                    $('#biblioteca').on('click', function () {
+                        ga('send', 'event', 'btnblb', 'click', 'nav-buttons');
                     });
                     $('#form').on('click', function () {
                         ga('send', 'event', 'btnformulario', 'click', 'nav-buttons');
                     });
-                    $('#twitter').on('click', function () {
-                        ga('send', 'event', 'divtwitter', 'click', 'nav-buttons');
+                    $('#ddcyf').on('click', function () {
+                        ga('send', 'event', 'btnddcyf', 'click', 'nav-buttons');
                     });
                 }
             }

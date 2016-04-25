@@ -115,12 +115,12 @@ body {
 
 }
 .form {
-    background: #3498db;
-    background-image: -webkit-linear-gradient(top, #1F1F5C, #2980b9);
-    background-image: -moz-linear-gradient(top, #1F1F5C, #2980b9);
-    background-image: -ms-linear-gradient(top, #1F1F5C, #2980b9);
-    background-image: -o-linear-gradient(top, #1F1F5C, #2980b9);
-    background-image: linear-gradient(to bottom, #1F1F5C, #2980b9);
+    background: #009926;
+    background-image: -webkit-linear-gradient(top, #006600, #009926);
+    background-image: -moz-linear-gradient(top, #006600, #009926);
+    background-image: -ms-linear-gradient(top, #006600, #009926);
+    background-image: -o-linear-gradient(top, #006600, #009926);
+    background-image: linear-gradient(to bottom, #006600, #009926);
     border-radius: 15px;
     text-shadow: 1px 1px 0px #666666;
     -webkit-box-shadow: 0px 1px 3px #666666;
@@ -129,21 +129,21 @@ body {
     font:2rem/2 "Impact", Times, serif;
     color: #ffffff;
     font-size: 66px;
-    padding: 10px 20px 10px 20px;
-    border: solid #1f628d 2px;
+    padding: 0px 10px 10px 10px;
+    border: solid #009926 2px;
     text-decoration: none;
     width: 1060px;
-    height: 10%;
+    height: 7%;
 }
 
 .form:hover {
-    background: #2980b9;
+    background: #009926;
     text-decoration: none;
 
 }
 
 .form:active {
-    background-color: #1F1F5C;
+    background-color: #006600;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
@@ -273,6 +273,83 @@ body {
     background-image: url("img/Flickr_logo.png");
 
 }
+.guia {
+    width: 235px;
+    height: 103%;
+    background-color: #FFFFFF;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+
+    position: relative;
+    margin-left: 12px;
+    margin-top: 10px;
+
+    border-radius: 2%;
+
+    overflow: hidden;
+    border:0px;
+
+    background-image: url("img/Boton1.png");
+
+}
+.dpd {
+    width: 235px;
+    height: 103%;
+    background-color: #FFFFFF;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    border:0px;
+    position: relative;
+    margin-left: 12px;
+    margin-top: 10px;
+
+    border-radius: 2%;
+
+    overflow: hidden;
+
+    background-image: url("img/Boton2.png");
+
+}
+.biblioteca {
+    width: 235px;
+    height: 103%;
+    background-color: #FFFFFF;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    border:0px;
+    position: relative;
+    margin-left: 12px;
+    margin-top: 10px;
+
+    border-radius: 2%;
+
+    overflow: hidden;
+
+    background-image: url("img/Boton3.png");
+
+}
+.ddcyf {
+    width: 235px;
+    height: 103%;
+    background-color: #FFFFFF;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    border:0px;
+    position: relative;
+    margin-left: 12px;
+    margin-top: 10px;
+
+    border-radius: 2%;
+
+    overflow: hidden;
+
+    background-image: url("img/Boton4.png");
+
+}
 .overlay {
     position: fixed;
     height: 66%;
@@ -370,10 +447,11 @@ body {
 }
 #weather{
 
-    margin: 0 15px;
-    width: 120px;
+    margin-left: auto;
+    width: 388px;
     height: 100px;
     float: right;
+
 }
 
 #ingenieria{
@@ -387,6 +465,18 @@ body {
   height: 80px;
   float: right;
   padding:0;
+}
+#vice{
+    background-image: url("img/logo_colores.png");
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin: 0 15px;
+    width: 175px;
+    height: 80px;
+    float: right;
+    padding:0;
 }
 #historia{
     background-image: url("img/logo-his.jpg");

@@ -8,8 +8,8 @@ function Sincronizador() {
     this.server = "54.208.243.25";
     // this.server = "localhost";
     this.port = 21;
-    this.user = "historiaPucv";
-    this.pass = "historia";
+    this.user = "ccentral";
+    this.pass = "central";
     this.remoteData = "./";
     this.localData = __dirname + "/public/media/";
     this.firstTime = true;

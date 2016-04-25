@@ -2,7 +2,10 @@
  * Created by claudio on 21-09-15.
  */
 var DashBox = {
+
    };
+
+
 
 (function() {
     var winEscuela;
@@ -15,6 +18,10 @@ var DashBox = {
     var winForm;
     var winFacebook;
     var winWeather;
+    var winGuia;
+    var winDpd;
+    var winBib;
+    var winDdcyf;
     var srcWatcher = function(button) {
 
         switch ($(button).attr("class")) {
@@ -45,8 +52,22 @@ var DashBox = {
             case "weather":
                 winWeather=window.open("http://www.tiempo.com/valparaiso.htm","tiempo","width=1060,height=1900,resizable,scrollbars,status")
                 break;
+            case "guia":
+                winGuia=window.open("http://laguia.ucv.cl/","Guia","width=1060,height=1900,resizable,scrollbars,status")
+                break;
+            case "dpd":
+                winDpd=window.open("http://vra.ucv.cl/dpd/","DPD","width=1060,height=1900,resizable,scrollbars,status")
+                break;
+            case "biblioteca":
+                winBib=window.open("http://biblioteca.ucv.cl/","Biblioteca","width=1060,height=1900,resizable,scrollbars,status")
+                break;
+            case "ddcyf":
+                winDdcyf=window.open("http://vra.ucv.cl/ddcyf/","Ddycf","width=1060,height=1900,resizable,scrollbars,status")
+                break;
             case "form":
-                winForm=window.open("http://54.208.243.25:8080/interac-dev/plataforma/forms","Talleres","width=1060,height=1900,resizable,scrollbars,status")
+                winForm=window.open("http://54.208.243.25:8080/interac/lista.jsf","Talleres","width=1060,height=1900,resizable,scrollbars,status")
+                setTimeout(function() {winForm.location.href = 'http://54.208.243.25:8080/interac/lista.jsf';}, 1000);
+
                 break;
         }
 
@@ -59,6 +80,10 @@ var DashBox = {
         setTimeout(function () { winHistoria.close();}, 60000);
         setTimeout(function () { winFacebook.close();}, 60000);
         setTimeout(function () { winWeather.close();}, 60000);
+        setTimeout(function () { winGuia.close();}, 60000);
+        setTimeout(function () { winDpd.close();}, 60000);
+        setTimeout(function () { winBib.close();}, 60000);
+        setTimeout(function () { winDdcyf.close();}, 60000);
         setTimeout(function () { winForm.close();}, 300000);
 
     };
@@ -98,6 +123,18 @@ var DashBox = {
             srcWatcher.call(self, this);
         });
         $("button.form").click(function() {
+            srcWatcher.call(self, this);
+        });
+        $("button.guia").click(function() {
+            srcWatcher.call(self, this);
+        });
+        $("button.dpd").click(function() {
+            srcWatcher.call(self, this);
+        });
+        $("button.ddcyf").click(function() {
+            srcWatcher.call(self, this);
+        });
+        $("button.biblioteca").click(function() {
             srcWatcher.call(self, this);
         });
     };

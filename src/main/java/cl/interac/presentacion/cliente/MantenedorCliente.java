@@ -12,6 +12,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 /**
@@ -104,7 +107,7 @@ public class MantenedorCliente implements Serializable {
             for(Establecimiento et : ca.getCampana().getEstablecimientoList()) {
                String carpetaDestino = et.getCarpetaFtp();
                 for(Contenido co : ca.getCampana().getContenidoList()) {
-                    // Files.copy(Paths.get("/home/ec2-user/media/tmp/" + co.getPath()), Paths.get("/home/ec2-user/media/" + carpetaDestino + "/" + co.getPath()), StandardCopyOption.REPLACE_EXISTING);
+                     Files.copy(Paths.get("/home/ec2-user/media/tmp/" + co.getPath()), Paths.get("/home/ec2-user/media/" + carpetaDestino + "/" + co.getPath()), StandardCopyOption.REPLACE_EXISTING);
                      correo = co.getUsuario().getCorreo();
                 }
 

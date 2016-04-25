@@ -12,9 +12,9 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
 
     <security:http auto-config="false" entry-point-ref="authenticationEntryPoint"
                    use-expressions="true"
-                   access-denied-page="/logIn.jsf">
+                   access-denied-page="/logIn.jsf" >
 
-        <security:form-login login-page="/logIn.jsf" always-use-default-target="true" default-target-url="/unawea.jsf"/>
+        <security:form-login login-page="/logIn.jsf" always-use-default-target="true" default-target-url="/lista.jsf"/>
 
 
 
