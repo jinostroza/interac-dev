@@ -367,6 +367,12 @@ public class MantenedorCampana implements Serializable {
     public String eliminarCampana(Campana campa){
         try {
 
+            for(Establecimiento et : campa.getEstablecimientoList()) {
+                String carpetaDestino = et.getCarpetaFtp();
+                for(Contenido co : campa.getContenidoList() ){
+                    Files.delete(Paths.get("/home/ec2-user/media/" + carpetaDestino + "/" + co.getPath()));
+                }
+            }
                 logicaCampana.eliminarCampana(campa);
 
                 FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha eliminado la Campaña");
