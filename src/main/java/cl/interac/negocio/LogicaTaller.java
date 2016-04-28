@@ -31,7 +31,7 @@ public class LogicaTaller {
     }
 
     @Transactional(readOnly = true)
-   public List<Taller> obtenerTodos() {
-        return tallerDAO.obtenerTodos();
+   public List<Taller> obtenerTodos(Integer user) {
+        return tallerDAO.obtenerTodos(user);
     }
 }

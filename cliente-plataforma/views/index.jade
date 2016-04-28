@@ -8,18 +8,20 @@ html
         script(src='public/js/slide.js')
         script(src='public/js/dashbox.js')
         script(src='public/js/twitterFetcher_min.js')
+        script(type='text/javascript', async='', src='http://www.yourweather.co.uk/wid_loader/05637abb174df2e685bbf8a7b80959fd')
 
     body
         iframe.overlay(style='display:none')
         .container
             .header
                 #vice
-                #weather
-                    a(href='//booked.getElementsByTagName/weather/valparaiso-w632826')
-                        img(src='//w.bookcdn.com/weather/picture/30_w632826_1_4_34495e_250_2c3e50_ffffff_ffffff_1_2071c9_ffffff_0_3.png?scode=124&domid=w209')
+                #weatherpucv
+                   #cont_05637abb174df2e685bbf8a7b80959fd
+                        span#h_05637abb174df2e685bbf8a7b80959fd
+                            a#a_05637abb174df2e685bbf8a7b80959fd(href='http://www.yourweather.co.uk/weather_Valparaiso-South+America-Chile-Valparaiso--1-18577.html', target='_blank', rel='nofollow', style='color:#00ABEB;font-family:8;font-size:16px;') El Tiempo Valparaíso
                 #pucv
-            #content.content(style='padding: 0px')
-            button(class="form" id="form") Formulario de Inscripción
+            #content.content(style='padding: 0px;margin-top: -8px;')
+            button(class="form" id="form") Inscripción Eventos
             div(class="dashbox")
                 button(class="guia" id="guia")
                 button(class="dpd" id="dpd")

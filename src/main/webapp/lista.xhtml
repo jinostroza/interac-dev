@@ -8,6 +8,7 @@
                 template="/templates/logInTemplate.xhtml">
 
     <ui:define name="contenido">
+
         <style type="text/css">
             .ui-button {
                 background: #454545 !important;
@@ -22,14 +23,14 @@
             }
             .ui-datalist-header{
                 background-color:#454545 !important ;
-                font-family: cursive !important;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
                 border: none !important;
                 background-image: none;
 
             }
             .ui-datalist-item{
 
-                font-family: cursive !important;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif  !important;
                 border: black !important;
                 border-width: 2px;
                 background-image: none;
@@ -37,14 +38,14 @@
             }
             .ui-datalist-footer{
                 background-color:#454545 !important ;
-                font-family: cursive !important;
+                font-family:"Helvetica Neue", Helvetica, Arial, sans-serif  !important;
                 border: none !important;
                 background-image: none;
 
             }
             .ui-paginator{
                 background-color:#454545 !important ;
-                font-family: cursive !important;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif  !important;
                 border: none !important;
                 background-image: none;
 
@@ -60,7 +61,10 @@
 
             <span></span>
         </div>
-        <h:form class="container" id="crearTaller" enctype="multipart/form-data">
+        <f:metadata>
+            <f:param name="user" value="#{mantenedorLista.user}" />
+        </f:metadata>
+        <h:form class="container" id="crearTaller" >
             <div class="row">
 
                 <div class="col-lg-offset-3 col-lg-6" style="padding-left:  10%">
@@ -79,7 +83,10 @@
             </div>
             <div class="ui-grid-row">
 
-                <p:dataList value="#{mantenedorTaller.tallerList}" var="car" pt:data-inset="true" paginator="true" rows="5">
+
+                <p:outputLabel value="#{mantenedorLista.user}"  />
+
+                <p:dataList value="#{mantenedorLista.tallerList}" var="car" pt:data-inset="true" paginator="true" rows="5">
                     <f:facet name="header">
                         Lista de Eventos
 

@@ -3,6 +3,7 @@ package cl.interac.presentacion.talleres;
 import cl.interac.entidades.Taller;
 import cl.interac.negocio.LogicaTaller;
 import cl.interac.util.components.FacesUtil;
+import cl.interac.util.components.UserSession;
 import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -16,11 +17,13 @@ import java.util.List;
  * Created by mary on 07/04/2016.
  */
 @Component()
-@Scope("view")
+@Scope("flow")
 public class MantenedorTaller implements Serializable {
 
     private List<Taller> tallerList;
     private Taller taller;
+    @Autowired
+    private UserSession userSession;
 
     @Autowired
     private LogicaTaller logicaTaller;
@@ -28,21 +31,22 @@ public class MantenedorTaller implements Serializable {
     @PostConstruct
     public void inicio(){
 
-        tallerList=logicaTaller.obtenerTodos();
+        tallerList=logicaTaller.obtenerTodos(userSession.getUsuario().getIdUsuario());
         taller = new Taller();
     }
     public String agregar(){
+        taller.setUsuario(userSession.getUsuario());
 
         logicaTaller.guardar(taller);
 
-        tallerList=logicaTaller.obtenerTodos();
+        tallerList=logicaTaller.obtenerTodos(userSession.getUsuario().getIdUsuario());
         FacesUtil.mostrarMensajeInformativo("Exito","Se Agrego nuevo elemento :  "+taller.getNombre());
      return "next" ;
     }
     public String editar(Taller t){
         taller=t;
         logicaTaller.guardar(taller);
-        tallerList=logicaTaller.obtenerTodos();
+        tallerList=logicaTaller.obtenerTodos(userSession.getUsuario().getIdUsuario());
         FacesUtil.mostrarMensajeInformativo("Exito","Se ha modificado elemento :  "+taller.getNombre());
         return "next" ;
     }
@@ -50,7 +54,7 @@ public class MantenedorTaller implements Serializable {
 
         taller=t;
         logicaTaller.eliminar(taller);
-        tallerList=logicaTaller.obtenerTodos();
+        tallerList=logicaTaller.obtenerTodos(userSession.getUsuario().getIdUsuario());
         FacesUtil.mostrarMensajeError("Exito", "Se ha eliminado elemento :  " + taller.getNombre());
         return "next" ;
     }

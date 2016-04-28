@@ -16,7 +16,7 @@ public class TallerDAO {
     @PersistenceContext
     private EntityManager em;
 
-    public List<Taller> obtenerTodos(){return em.createNamedQuery("Taller.findAll").getResultList();}
+    public List<Taller> obtenerTodos(Integer user){return em.createNamedQuery("Taller.findAll").setParameter("user",user).getResultList();}
 
     public void guardar(Taller t){
         if(t.getIdtaller()== null )  em.persist(t);

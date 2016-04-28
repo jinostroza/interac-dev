@@ -11,7 +11,9 @@ import java.util.Date;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Taller.findAll", query = "select t from Taller t"),
+        @NamedQuery(name = "Taller.findAll", query = "select t from Taller t " +
+                             "inner join fetch t.usuario u " +
+                                "where u.idUsuario=:user"),
         @NamedQuery(
                 name = "Taller.findBySede",
                 query = "select t from Taller t " +
@@ -28,6 +30,17 @@ public class Taller implements Serializable {
     private String nombre;
 
     //relaciones
+    private Usuario usuario;
+
+    @JoinColumn(name = "idusuario", referencedColumnName = "idusuario")
+    @ManyToOne(fetch = FetchType.LAZY)
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
