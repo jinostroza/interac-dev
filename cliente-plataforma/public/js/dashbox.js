@@ -22,6 +22,7 @@ var DashBox = {
     var winDpd;
     var winBib;
     var winDdcyf;
+    var winVice;
     var srcWatcher = function(button) {
 
         switch ($(button).attr("class")) {
@@ -64,6 +65,9 @@ var DashBox = {
             case "ddcyf":
                 winDdcyf=window.open("http://vra.ucv.cl/ddcyf/","Ddycf","width=1060,height=1900,resizable,scrollbars,status")
                 break;
+            case "vice":
+                winVice=window.open("http://www.pucv.cl","Pucv","width=1060,height=1900,resizable,scrollbars,status")
+                break;
             case "form":
                 winForm=window.open("http://54.208.243.25:8080/interac/lista.jsf","Talleres","width=1060,height=1900,resizable,scrollbars,status")
                 setTimeout(function() {winForm.location.href = 'http://54.208.243.25:8080/interac/lista.jsf';}, 1000);
@@ -84,6 +88,7 @@ var DashBox = {
         setTimeout(function () { winDpd.close();}, 60000);
         setTimeout(function () { winBib.close();}, 60000);
         setTimeout(function () { winDdcyf.close();}, 60000);
+        setTimeout(function () { winVice.close();}, 60000);
         setTimeout(function () { winForm.close();}, 300000);
 
     };
@@ -100,6 +105,10 @@ var DashBox = {
 
         });
         $("button.pucvbtn").click(function() {
+            srcWatcher.call(self, this);
+
+        });
+        $("div.vice").click(function() {
             srcWatcher.call(self, this);
 
         });

@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:div="http://www.springframework.org/tags/form"
+                template="/templates/default.xhtml">
+
+    <ui:define name="contenido">
+        <h:form  id="new">
+        <div class="container" id="myInterac">
+            <header>
+                <h2>Reportes Analitica</h2>
+            </header>
+            <div class="row">
+                <label>Categoría</label>
+
+                <h:selectOneMenu  class="form-control" value="#{mantenedorTotems.meses}"
+                                  converter="entityConverter" required="true" requiredMessage="Debe Seleccionar una Categoria">
+                    <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione mes --"/>
+                    <f:selectItems value="#{mantenedorTotems.mesesList}" var="mess"
+                                   itemLabel="#{mess.mes}" itemValue="#{mess}"/>
+                </h:selectOneMenu>
+                <p:dataTable id="tbl" var="car" value="#{mantenedorTotems.totems}"
+                             paginator="true" rows="10">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id" />
+                        </f:facet>
+                        <h:outputText value="#{car.idtotem}" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Year" />
+                        </f:facet>
+                        <h:outputText value="#{car.marcaPantalla.nombre}" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Brand" />
+                        </f:facet>
+                        <h:outputText value="#{car.establecimiento.nombreEstablecimiento}" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Color" />
+                        </f:facet>
+                        <h:outputText value="#{car.noserie}" />
+                    </p:column>
+                </p:dataTable>
+                <h:commandLink id="pdf" value="aasa">
+
+                    <p:dataExporter type="pdf" target="tbl" fileName="cars" pageOnly="true" preProcessor="#{mantenedorTotems.preProcessPDF}" />
+                </h:commandLink>
+
+            </div>
+            <div class="push"></div>
+        </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

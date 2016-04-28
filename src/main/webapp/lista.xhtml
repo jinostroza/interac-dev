@@ -10,19 +10,28 @@
     <ui:define name="contenido">
 
         <style type="text/css">
+            .header-top{
+                background: #00407A !important;
+            }
+            .logo{
+                background-image: url('resources/css/img/logopucvgrandeblanco.png') !important;
+                width: 300px !important;
+                height: 80px !important;
+                margin: 0px !important;
+            }
             .ui-button {
-                background: #454545 !important;
+                background: #00407A !important;
                 border: 1px solid #555 !important;
                 color: #EEE !important;
             }
             .ui-state-hover{
                 background-color: #fff !important;
-                color: #454545 !important;
+                color: #00407A !important;
                 border-color: #454545 !important;
                 border-radius: 4px !important;
             }
             .ui-datalist-header{
-                background-color:#454545 !important ;
+                background-color:#00407A !important ;
                 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
                 border: none !important;
                 background-image: none;
@@ -37,14 +46,14 @@
 
             }
             .ui-datalist-footer{
-                background-color:#454545 !important ;
+                background-color:#00407A !important ;
                 font-family:"Helvetica Neue", Helvetica, Arial, sans-serif  !important;
                 border: none !important;
                 background-image: none;
 
             }
             .ui-paginator{
-                background-color:#454545 !important ;
+                background-color:#00407A !important ;
                 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif  !important;
                 border: none !important;
                 background-image: none;
@@ -64,7 +73,7 @@
         <f:metadata>
             <f:param name="user" value="#{mantenedorLista.user}" />
         </f:metadata>
-        <h:form class="container" id="crearTaller" >
+        <h:form class="container" id="crearTaller" style="width: 100%">
             <div class="row">
 
                 <div class="col-lg-offset-3 col-lg-6" style="padding-left:  10%">
@@ -86,13 +95,13 @@
 
                 <p:outputLabel value="#{mantenedorLista.user}"  />
 
-                <p:dataList value="#{mantenedorLista.tallerList}" var="car" pt:data-inset="true" paginator="true" rows="5">
+                <p:dataList value="#{mantenedorLista.tallerList}" var="car" pt:data-inset="true" paginator="true" rows="5" >
                     <f:facet name="header">
                         Lista de Eventos
 
                     </f:facet>
 
-                    <h3>#{car.nombre}</h3><p:spacer width="900" height="40"> </p:spacer>  <h:outputLink styleClass="btn btn-forms" onclick="window.open('#{car.link}', 'Interac', 'dependent=yes, menubar=no, toolbar=no'); return false;" >Inscribete Aquí </h:outputLink>
+                    <h3>#{car.nombre}</h3><p:spacer width="900" height="40"> </p:spacer>  <h:outputLink styleClass="btn btn-forms" onclick="window.open('#{car.link}', 'Interac', 'dependent=yes, menubar=no, toolbar=no, width=1060, height=1900'); return false;" >Inscribete Aquí </h:outputLink>
 
                     <p> Fecha <h:outputLabel value="#{car.fecha}">
                         <f:convertDateTime pattern="dd/MM/yyyy"/>

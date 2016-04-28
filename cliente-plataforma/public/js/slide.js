@@ -1,7 +1,7 @@
 var Slide = {};
 
 (function () {
-    var showTime = 10 * 1000; // 10 segundos
+    var showTime = 20 * 1000; // 20 segundos
     var syncTime = 10 * 1000; // 60 segundos
     var sliderTimerID = null;
     var syncTimerID = null;
@@ -56,13 +56,13 @@ var Slide = {};
                 siguiente.get(0).play();
             }else {
 
-                  showTime = 10 * 1000; // 10 segundos
+                  showTime = 20 * 1000; // 20 segundos
             }
             break;
         }
         if(d.length <= 1) {
             sliderTimerID = setTimeout(this.change.bind(this), showTime);
-             showTime = 10 * 1000; // 10 segundos
+             showTime = 20 * 1000; // 20 segundos
         }
         else{
             sliderTimerID = setTimeout(this.change.bind(this), showTime);
