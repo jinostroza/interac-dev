@@ -296,34 +296,34 @@ public class MantenedorCampana implements Serializable {
             }else if ("produccion".equals(ambiente)) {
                 logicaCampana.guardarCampana(campana);
                 //cuerpo del mensaje
-                String mensajeLocal = new String(constantes.getAlertas());
-                String mensajeAnunciante = new String(constantes.getHeaderCorreo());
-                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$id",String.valueOf(campana.getIdcampana()));
-                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$nombrecampana",campana.getNombrecampana());
-                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valortotal",String.valueOf(valor));
+                //String mensajeLocal = new String(constantes.getAlertas());
+                //String mensajeAnunciante = new String(constantes.getHeaderCorreo());
+                //mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$id",String.valueOf(campana.getIdcampana()));
+                //mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$nombrecampana",campana.getNombrecampana());
+                //mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valortotal",String.valueOf(valor));
 
 
                 //correo
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                String[] replicas = new String[1];
-                String[] alertas = new String[2];
-                for(Establecimiento et : establecimientosLista) {
-                    establecimientoscorreos = logicaEstablecimiento.obtenerPorIDUsuario(et.getUsuario().getIdUsuario(),et.getIdEstablecimiento());
-                    for(Establecimiento u : establecimientoscorreos) {
-                        replicas[0] = u.getUsuario().getCorreo();
-                        try {
-                            Thread.sleep(6000);
-                            mailSender.send(replicas, "Interac", mensajeLocal);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                            FacesUtil.mostrarMensajeInformativo("Error", "Fallo correo"+replicas );
-                        }
-                    }
-                }
+               // String[] replicas = new String[1];
+                //String[] alertas = new String[2];
+                //for(Establecimiento et : establecimientosLista) {
+                  //  establecimientoscorreos = logicaEstablecimiento.obtenerPorIDUsuario(et.getUsuario().getIdUsuario(),et.getIdEstablecimiento());
+                   // for(Establecimiento u : establecimientoscorreos) {
+                     //   replicas[0] = u.getUsuario().getCorreo();
+                       // try {
+                         //   Thread.sleep(6000);
+                           // mailSender.send(replicas, "Interac", mensajeLocal);
+                        //} catch (InterruptedException e) {
+                          //  e.printStackTrace();
+                            //FacesUtil.mostrarMensajeInformativo("Error", "Fallo correo"+replicas );
+                       // }
+                    //}
+                //}
 
-                alertas[0]="contacto@interac.cl";
-                alertas[1]=userSession.getUsuario().getCorreo();
-                mailSender.send(alertas,"Interac",mensajeAnunciante);
+                //alertas[0]="contacto@interac.cl";
+                //alertas[1]=userSession.getUsuario().getCorreo();
+                //mailSender.send(alertas,"Interac",mensajeAnunciante);
 
 
                 FacesUtil.mostrarMensajeInformativo("Operacion exitosa", "se ha creado tu Campaña");

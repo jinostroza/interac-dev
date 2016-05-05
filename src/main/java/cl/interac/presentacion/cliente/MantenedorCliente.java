@@ -112,22 +112,22 @@ public class MantenedorCliente implements Serializable {
                 }
 
            }
-                String[] destinos = new String[3];
-                destinos[0] = userSession.getUsuario().getCorreo();
-                destinos[1] = "contacto@interac.cl";
-                destinos[2] = correo;
+                //String[] destinos = new String[3];
+                //destinos[0] = userSession.getUsuario().getCorreo();
+                //destinos[1] = "contacto@interac.cl";
+                //destinos[2] = correo;
 
 
                 //Cuerpo del mensaje
-                String mensajeAnunciante = new String(constantes.getAprobar());
-                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$id",String.valueOf(campestab.getCampana().getIdcampana()));
-                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento",campestab.getEstablecimiento().getNombreEstablecimiento());
-                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$numerodepantallas",String.valueOf(campestab.getEstablecimiento().getNumeroPantallas()));
-                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$mensualvalor",String.valueOf(campestab.getEstablecimiento().getValor()));
-                mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valordecampanas", String.valueOf(campestab.getCampana().getValor()));
+//                String mensajeAnunciante = new String(constantes.getAprobar());
+  //              mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$id",String.valueOf(campestab.getCampana().getIdcampana()));
+    //            mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento",campestab.getEstablecimiento().getNombreEstablecimiento());
+      //          mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$numerodepantallas",String.valueOf(campestab.getEstablecimiento().getNumeroPantallas()));
+        //        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$mensualvalor",String.valueOf(campestab.getEstablecimiento().getValor()));
+          //      mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valordecampanas", String.valueOf(campestab.getCampana().getValor()));
 
 
-                mailSender.send(destinos, "Interac", mensajeAnunciante);
+                //mailSender.send(destinos, "Interac", mensajeAnunciante);
 
                 campestabs = logicaCampestab.obtenerPorEstado(userSession.getUsuario().getUsername());
                 FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha aprobado el Campaña  [" + campestab.getCampana().getNombrecampana() + "]");
@@ -154,24 +154,24 @@ public class MantenedorCliente implements Serializable {
             FacesUtil.mostrarMensajeError("Operación Fallida","algo ocurrio");
         }
 
-        String[] destinos = new String[3];
-        destinos[0] = userSession.getUsuario().getCorreo();
-        destinos[1] = "contacto@interac.cl";
-        for(Contenido co : ca.getCampana().getContenidoList()) {
-            correo = co.getUsuario().getCorreo();
-        }
+        //String[] destinos = new String[3];
+        //destinos[0] = userSession.getUsuario().getCorreo();
+        //destinos[1] = "contacto@interac.cl";
+        //for(Contenido co : ca.getCampana().getContenidoList()) {
+          //  correo = co.getUsuario().getCorreo();
+       // }
 
-        destinos[2] = correo;
+        //destinos[2] = correo;
 
         //Cuerpo del mensaje
-        String mensajeAnunciante = new String(constantes.getRechazar());
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$id",String.valueOf(campestab.getCampana().getIdcampana()));
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento", campestab.getEstablecimiento().getNombreEstablecimiento());
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$razonRechazo",rechazarSelectOneMenu);
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$comentarios",rechazarInputTextArea);
-        mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valor", String.valueOf(campestab.getCampana().getValor()));
+        //String mensajeAnunciante = new String(constantes.getRechazar());
+        //mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$id",String.valueOf(campestab.getCampana().getIdcampana()));
+        //mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$establecimiento", campestab.getEstablecimiento().getNombreEstablecimiento());
+       // mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$razonRechazo",rechazarSelectOneMenu);
+        //mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$comentarios",rechazarInputTextArea);
+        //mensajeAnunciante = mensajeAnunciante.replaceFirst("\\$valor", String.valueOf(campestab.getCampana().getValor()));
 
-        mailSender.send(destinos, "interac " + rechazarSelectOneMenu, mensajeAnunciante);
+//        mailSender.send(destinos, "interac " + rechazarSelectOneMenu, mensajeAnunciante);
 
         campestabs = logicaCampestab.obtenerPorEstado(userSession.getUsuario().getUsername());
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ah enviado la notificacion via email  ");

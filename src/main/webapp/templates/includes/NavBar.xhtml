@@ -27,6 +27,9 @@
                 <li style="background-color: #333">
                     <p:commandLink immediate="true" value="Reportes" action="#{facesUtil.redirigir('/plataforma/analitica')}" />
                 </li>
+                <li style="background-color: #333">
+                    <p:commandLink immediate="true" value="Plantillas" action="#{facesUtil.redirigir('/plataforma/plantillas')}" />
+                </li>
             </ui:fragment>
             <ui:fragment rendered="#{!userSession.estaAutentificado()}">
                 <li style="background-color: #333">

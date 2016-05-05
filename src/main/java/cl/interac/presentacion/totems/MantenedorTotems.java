@@ -82,6 +82,7 @@ public class MantenedorTotems implements Serializable {
     private Date date;
     private Meses meses;
     private List<Meses> mesesList;
+    private String color="454545";
 
     @PostConstruct
     public void inicio() {
@@ -320,5 +321,13 @@ public class MantenedorTotems implements Serializable {
 
     public void setMesesList(List<Meses> mesesList) {
         this.mesesList = mesesList;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }

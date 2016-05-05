@@ -33,7 +33,7 @@ public class MantenedorLista implements Serializable {
     @PostConstruct
     public void inicio(){
 
-        tallerList=logicaTaller.obtenerTodos(2);
+        tallerList=logicaTaller.obtenerTodos(8);
         taller = new Taller();
     }
 

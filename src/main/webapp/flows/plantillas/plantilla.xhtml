@@ -1,0 +1,77 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:div="http://www.springframework.org/tags/form"
+                template="/templates/default.xhtml">
+
+    <ui:define name="contenido">
+        <style type="text/css">
+            .main {
+                width: 90%;
+                margin-left: 5%;
+                text-align-all: center;
+                display: -webkit-flex; /* Safari */
+                -webkit-justify-content: space-around; /* Safari 6.1+ */
+                display: flex;
+                justify-content: space-around;
+            }
+            #draggable { width: 150px; height: 150px; padding: 0.5em; }
+            #drag { width: 150px; height: 150px; padding: 0.5em; }
+
+        </style>
+        <script src="../../resources/js/html2canvas.js" />
+        <script src="../../resources/js/jquery-2.1.4.min.js"/>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+        <script>
+            $(function() {
+                var element = $("#work"); // global variable
+                var getCanvas; // global variable
+
+                $("#btn").on('click', function () {
+                    html2canvas(element, {
+                        onrendered: function (canvas) {
+                            $("#preview").append(canvas);
+                            getCanvas = canvas;
+                        }
+                    });
+                });
+                $("#btncc").on('click', function () {
+                    var imgageData = getCanvas.toDataURL("image/png");
+                    // Now browser starts downloading it instead of just showing it
+                    var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
+                    $("#btncc").attr("download", "your_pic_name.png").attr("href", newData);
+                });
+            });
+        </script>
+        <script>
+            $(function() {
+                $( "#draggable" ).draggable();
+                $( "#drag" ).draggable();
+            });
+        </script>
+        <body>
+        <div class="row">
+            <h:form styleClass="col-lg-2">
+
+
+            </h:form>
+            <div id="work" style="height: 1000px;width: 600px;border: solid #003366" class="col-lg-6 ">
+
+                <h3 contenteditable="true" id="drag" class="ui-widget-content">Titulo</h3>
+
+                <div id="draggable" class="ui-widget-content" contentEditable="true">
+                    <p>Drag me around</p>
+                </div>
+                <input id="btn" type="button" value="Preview" />
+                <a id="btncc" href="#">Download</a>
+            </div>
+            <div id="preview" style="width: 300px;height: 500px;" class="col-lg-4"></div>
+        </div>
+        </body>
+
+
+    </ui:define>
+</ui:composition>
