@@ -17,56 +17,242 @@
                 display: flex;
                 justify-content: space-around;
             }
-            #draggable { width: 150px; height: 150px; padding: 0.5em; }
-            #drag { width: 150px; height: 150px; padding: 0.5em; }
+            .btn {
+                -webkit-border-radius: 1px;
+                -moz-border-radius: 1px;
+                border-radius: 1px;
+                font-family: Courier New;
+                color: #ffffff;
+                font-size: 20px;
+                background: #f00c0c;
+                padding: 10px 20px 10px 20px;
+                text-decoration: none;
+            }
 
+            .btn:hover {
+                background: #a60c0c;
+                text-decoration: none;
+            }
+            .menu-container {
+                display: block;
+                position: relative;
+                color: white;
+                background-color: #454545;
+                margin: 2%;
+                padding: 0;
+                border-radius:5px;
+                box-shadow:  inset 0 0 1px rgba(255,255,255,1);
+                box-shadow:  5px 5px 15px 1px rgba(0,0,0,0.1);
+            }
+            #text2 { width: 150px; height: 150px; padding: 0.5em;cursor: move; }
+            #text1 { width: 150px; height: 150px; padding: 0.5em;cursor: move; }
+            #logo1 {
+
+                background-size: 100%;
+                background-position: center;
+                width: 300px;
+                height: 113px;
+                background-repeat: no-repeat;
+                cursor: move;
+
+            }
+            #logo2 {
+
+                background-size: 100%;
+                background-position: center;
+                width: 300px;
+                height: 113px;
+                background-repeat: no-repeat;
+                cursor: move;
+
+            }
+            .btn-mas{
+                border : solid 0px #ffffff;
+                border-radius : 3px;
+                moz-border-radius : 3px;
+                -webkit-box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+                -moz-box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+                box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+                font-size : 20px;
+                color : #ffffff;
+                padding : 1px 10px;
+                background-color : #27ba31;
+
+            }
+            .btn-menos{
+                border : solid 0px #ffffff;
+                border-radius : 3px;
+                moz-border-radius : 3px;
+                -webkit-box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+                -moz-box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+                box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+                font-size : 20px;
+                color : #ffffff;
+                padding : 1px 10px;
+                background-color : #df0400;
+
+            }
+            .x2{
+
+                transform: scale(2,2);
+
+            }
         </style>
+
         <script src="../../resources/js/html2canvas.js" />
         <script src="../../resources/js/jquery-2.1.4.min.js"/>
+        <script src="../../resources/js/jscolor.js"/>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-        <script>
+        <script type="text/javascript">
             $(function() {
                 var element = $("#work"); // global variable
                 var getCanvas; // global variable
-
+                var mas = 1;
+                var masD = 1;
+                var prev = 0;
                 $("#btn").on('click', function () {
+                    if (prev=1) {
+                        document.getElementById("preview").innerHTML = "";
+                    }
                     html2canvas(element, {
                         onrendered: function (canvas) {
+
                             $("#preview").append(canvas);
                             getCanvas = canvas;
+                            prev = prev + 1;
                         }
                     });
                 });
                 $("#btncc").on('click', function () {
-                    var imgageData = getCanvas.toDataURL("image/png");
+                    var imgageData = getCanvas.toDataURL("image/png",1.0);
                     // Now browser starts downloading it instead of just showing it
                     var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
                     $("#btncc").attr("download", "your_pic_name.png").attr("href", newData);
+                });
+                $("#btnmas").on('click',function (){
+                    mas = mas + 1;
+                    document.getElementById('text1').style.fontSize = mas+"em" ;
+
+                });
+                $("#btnmenos").on('click',function (){
+                    mas = mas - 1;
+                    document.getElementById('text1').style.fontSize = mas+"em" ;
+
+                });
+                $("#btnmsD").on('click',function (){
+                    masD = masD + 0.5;
+                    document.getElementById('text2').style.fontSize = masD+"em" ;
+
+                });
+                $("#btnmnD").on('click',function (){
+                    masD = masD - 0.5;
+                    document.getElementById('text2').style.fontSize = masD+"em" ;
+
+                });
+                $('#selector').change(function(){
+                    var selection = $('#selector').val();
+
+                    switch (selection) {
+                        case "1" :
+                            document.getElementById('logo1').style.backgroundImage = "none" ;
+                            break;
+                        case "2" :
+                            document.getElementById('logo1').style.backgroundImage = "url('../../resources/css/img/logopucvgrandeblanco.png')" ;
+                            break;
+                        case "3" :
+                            document.getElementById('logo1').style.backgroundImage = "url('../../resources/css/img/logo_pucv.png')" ;
+                            break;
+                        case "4" :
+                            document.getElementById('logo1').style.backgroundImage= "url('../../resources/css/img/interacblanco.png')" ;
+                            break;
+                        default:
+                    }
+
+                });
+                $('#selector2').change(function(){
+                    var selection = $('#selector2').val();
+
+                    switch (selection) {
+                        case "1" :
+                            document.getElementById('logo2').style.backgroundImage = "none" ;
+                            break;
+                        case "2" :
+                            document.getElementById('logo2').style.backgroundImage = "url('../../resources/css/img/logopucvgrandeblanco.png')" ;
+                            break;
+                        case "3" :
+                            document.getElementById('logo2').style.backgroundImage = "url('../../resources/css/img/logo_pucv.png')" ;
+                            break;
+                        case "4" :
+                            document.getElementById('logo2').style.backgroundImage= "url('../../resources/css/img/interacblanco.png')" ;
+                            break;
+                        default:
+                    }
+
                 });
             });
         </script>
         <script>
             $(function() {
-                $( "#draggable" ).draggable();
-                $( "#drag" ).draggable();
+                $( "#text2" ).draggable();
+                $( "#text1" ).draggable();
+                $("#logo1").draggable();
+                $("#logo2").draggable();
             });
         </script>
+        <script>
+           function update(jscolor) {
+               // 'jscolor' instance can be used as a string
+
+               document.getElementById('text1').style.color = '#' + jscolor
+               document.getElementById('text2').style.color = '#' + jscolor
+           }
+        </script>
+
+
         <body>
         <div class="row">
-            <h:form styleClass="col-lg-2">
-
-
-            </h:form>
-            <div id="work" style="height: 1000px;width: 600px;border: solid #003366" class="col-lg-6 ">
-
-                <h3 contenteditable="true" id="drag" class="ui-widget-content">Titulo</h3>
-
-                <div id="draggable" class="ui-widget-content" contentEditable="true">
-                    <p>Drag me around</p>
+            <form class="col-lg-2 menu-container" >
+                <div style="margin-left: 4%">
+                    <h3>Editar Texto</h3>
+                    Color : <input type="button" class="jscolor {onFineChange:'update(this)'} btn" value="click"/>
+                    <h4>Tamaño Titulo</h4>
+                    <input id="btnmas" type="button" class="btn-mas" value="+"/>
+                    <input id="btnmenos" type="button" class="btn-menos" value="-"/>
+                    <h4>Tamaño Texto</h4>
+                    <input id="btnmsD" type="button" class="btn-mas" value="+"/>
+                    <input id="btnmnD" type="button" class="btn-menos" value="-"/>
                 </div>
-                <input id="btn" type="button" value="Preview" />
+                <div style="margin-left: 4%">
+                    <h3>Editar Fondo</h3>
+                Color: <input type="button" class="jscolor {valueElement:null, styleElement:'work'} btn" value="click"/>
+                <h4>Agregar Logo</h4>
+                <h5>Logo cabecera</h5>
+                <select id="selector" class="btn-menos">
+                    <option value="1">Sin logo</option>
+                    <option value="2">Pucv Blanco</option>
+                    <option value="3">Pucv Color</option>
+                    <option value="4">Interac Blanco</option>
+                </select>
+                    <h5>Logo pie</h5>
+                    <select id="selector2" class="btn-menos">
+                        <option value="1">Sin logo</option>
+                        <option value="2">Pucv Blanco</option>
+                        <option value="3">Pucv Color</option>
+                        <option value="4">Interac Blanco</option>
+                    </select>
+
+                <input id="btn" type="button" value="Preview" class="btn" style="margin: 3%" />
                 <a id="btncc" href="#">Download</a>
+                </div>
+            </form>
+            <div id="work" style="height: 1000px;width: 600px;border: solid #000000" class="col-lg-6 ">
+                <div id="logo1" class="logo1"/>
+                <h3 contenteditable="true" align="center" id="text1" style="width: 80%" >Titulo</h3>
+
+                <p id="text2" align="justify" contenteditable="true" style="width: 80%">Ingrese Texto</p>
+
+                <div id="logo2" class="logo2"/>
             </div>
             <div id="preview" style="width: 300px;height: 500px;" class="col-lg-4"></div>
         </div>
