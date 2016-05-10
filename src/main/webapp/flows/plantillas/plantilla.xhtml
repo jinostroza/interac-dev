@@ -170,6 +170,32 @@
                     }
 
                 });
+                $('#selectorbg').change(function(){
+                    var selection = $('#selectorbg').val();
+
+                    switch (selection) {
+                        case "1" :
+                            document.getElementById('work').style.backgroundImage = "none" ;
+                            break;
+                        case "2" :
+                            document.getElementById('work').style.backgroundImage = "url('../../resources/css/img/1.png')" ;
+                            break;
+                        case "3" :
+                            document.getElementById('work').style.backgroundImage = "url('../../resources/css/img/2.png')" ;
+                            break;
+                        case "4" :
+                            document.getElementById('work').style.backgroundImage= "url('../../resources/css/img/3.png')" ;
+                            break;
+                        case "5" :
+                            document.getElementById('work').style.backgroundImage= "url('../../resources/css/img/4.png')" ;
+                            break;
+                        case "6" :
+                            document.getElementById('work').style.backgroundImage= "url('../../resources/css/img/5.png')" ;
+                            break;
+                        default:
+                    }
+
+                });
                 $('#selector2').change(function(){
                     var selection = $('#selector2').val();
 
@@ -185,6 +211,46 @@
                             break;
                         case "4" :
                             document.getElementById('logo2').style.backgroundImage= "url('../../resources/css/img/interacblanco.png')" ;
+                            break;
+                        default:
+                    }
+
+                });
+                $('#selectorfont1').change(function(){
+                    var selection = $('#selectorfont1').val();
+
+                    switch (selection) {
+                        case "1" :
+                            document.getElementById('text1').style.fontFamily = "Arial, Helvetica, sans-serif" ;
+                            break;
+                        case "2" :
+                            document.getElementById('text1').style.fontFamily = "'Century Gothic', CenturyGothic, AppleGothic, sans-serif" ;
+                            break;
+                        case "3" :
+                            document.getElementById('text1').style.fontFamily = "Impact, Charcoal, sans-serif" ;
+                            break;
+                        case "4" :
+                            document.getElementById('text1').style.fontFamily= "'Lucida Sans Unicode', 'Lucida Grande', sans-serif" ;
+                            break;
+                        default:
+                    }
+
+                });
+                $('#selectorfont2').change(function(){
+                    var selection = $('#selectorfont2').val();
+
+                    switch (selection) {
+                        case "1" :
+                            document.getElementById('text2').style.fontFamily = "Arial, Helvetica, sans-serif" ;
+                            break;
+                        case "2" :
+                            document.getElementById('text2').style.fontFamily = "'Century Gothic', CenturyGothic, AppleGothic, sans-serif" ;
+                            break;
+                        case "3" :
+                            document.getElementById('text2').style.fontFamily = "Impact, Charcoal, sans-serif" ;
+                            break;
+                        case "4" :
+                            document.getElementById('text2').style.fontFamily= "'Lucida Sans Unicode', 'Lucida Grande', sans-serif" ;
                             break;
                         default:
                     }
@@ -216,17 +282,41 @@
                 <div style="margin-left: 4%">
                     <h3>Editar Texto</h3>
                     Color : <input type="button" class="jscolor {onFineChange:'update(this)'} btn" value="click"/>
-                    <h4>Tamaño Titulo</h4>
+                    <h5>Tamaño Titulo</h5>
                     <input id="btnmas" type="button" class="btn-mas" value="+"/>
                     <input id="btnmenos" type="button" class="btn-menos" value="-"/>
-                    <h4>Tamaño Texto</h4>
+                    <h5>Fuente Titulo</h5>
+                    <select id="selectorfont1" class="btn-menos">
+                        <option value="1">Arial</option>
+                        <option value="2">Century Gothic</option>
+                        <option value="3">Impact</option>
+                        <option value="4">Lucida Sans</option>
+                    </select>
+                    <h5>Tamaño Texto</h5>
                     <input id="btnmsD" type="button" class="btn-mas" value="+"/>
                     <input id="btnmnD" type="button" class="btn-menos" value="-"/>
+                    <h5>Fuente Texto</h5>
+                    <select id="selectorfont2" class="btn-menos">
+                        <option value="1">Arial</option>
+                        <option value="2">Century Gothic</option>
+                        <option value="3">Impact</option>
+                        <option value="4">Lucida Sans</option>
+                    </select>
+
                 </div>
                 <div style="margin-left: 4%">
                     <h3>Editar Fondo</h3>
                 Color: <input type="button" class="jscolor {valueElement:null, styleElement:'work'} btn" value="click"/>
-                <h4>Agregar Logo</h4>
+                    <h5>Imagen de Fondo</h5>
+                    <select id="selectorbg" class="btn-menos">
+                        <option value="1">Sin logo</option>
+                        <option value="2">Pucv Blanco</option>
+                        <option value="3">Pucv Color</option>
+                        <option value="4">Interac Blanco</option>
+                        <option value="5">Interac Blanco</option>
+                        <option value="6">Interac Blanco</option>
+                    </select>
+                    <h4>Agregar Logo</h4>
                 <h5>Logo cabecera</h5>
                 <select id="selector" class="btn-menos">
                     <option value="1">Sin logo</option>
@@ -242,11 +332,11 @@
                         <option value="4">Interac Blanco</option>
                     </select>
 
-                <input id="btn" type="button" value="Preview" class="btn" style="margin: 3%" />
-                <a id="btncc" href="#">Download</a>
+                <input id="btn" type="button" value="Previsualizar" class="btn-menos" style="margin: 2%" />
+                <a id="btncc" class="btn-mas" href="#" style="margin: 2%">Descargar</a>
                 </div>
             </form>
-            <div id="work" style="height: 1000px;width: 600px;border: solid #000000" class="col-lg-6 ">
+            <div id="work" style="height: 1000px;width: 600px;border: solid #000000;background-image: none;background-position: center;background-repeat: no-repeat; background-size: cover" class="col-lg-6 ">
                 <div id="logo1" class="logo1"/>
                 <h3 contenteditable="true" align="center" id="text1" style="width: 80%" >Titulo</h3>
 
