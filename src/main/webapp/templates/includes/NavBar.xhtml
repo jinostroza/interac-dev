@@ -30,6 +30,9 @@
                 <li style="background-color: #333">
                     <p:commandLink immediate="true" value="Plantillas" action="#{facesUtil.redirigir('/plataforma/plantillas')}" />
                 </li>
+                <li style="background-color: #333">
+                    <p:commandLink immediate="true" value="Contratos" action="#{facesUtil.redirigir('/plataforma/contrato')}" />
+                </li>
             </ui:fragment>
             <ui:fragment rendered="#{!userSession.estaAutentificado()}">
                 <li style="background-color: #333">

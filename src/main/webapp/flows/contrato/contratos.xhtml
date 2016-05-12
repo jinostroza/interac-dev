@@ -1,0 +1,148 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:div="http://www.springframework.org/tags/form"
+                template="/templates/default.xhtml">
+
+    <ui:define name="contenido">
+        <style type="text/css">
+            .ui-button {
+                background: #454545 !important;
+                border: 1px solid #555 !important;
+                color: #EEE !important;
+            }
+            .ui-state-hover{
+                background-color: #fff !important;
+                color: #454545 !important;
+                border-color: #454545 !important;
+                border-radius: 4px !important;
+            }
+        </style>
+        <h:form class="container" id="contratos" enctype="multipart/form-data">
+            <div class="row">
+
+                <div class="col-lg-offset-3 col-lg-6" style="padding-left:  10%">
+                    <h2>Contratos</h2>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+
+                <p:dialog header="Agregar Contrato" widgetVar="dlg2" height="800" width="500" closable="false">
+
+                    <label>Nombre Persona que Firma</label>
+                    <p:inputText id="anun" label="anun" value="#{mantenedorContrato.contrato.firma}"
+                                 styleClass="form-control" required="true"
+                                 requiredMessage="Ingrese  Nombre representante"/>
+                    <p:watermark for="anun" value="Ingrese Nombre representante" id="watermark"/>
+                    <p:tooltip id="toolTipTrack" for="anun" value="Nombre representante" trackMouse="true"/>
+                    <br></br>
+                    <br></br>
+                    <label>Empresa</label>
+                    <h:selectOneMenu id="onem" class="form-control" value="#{mantenedorContrato.empresa}"
+                                     converter="entityConverter" required="true"
+                                     requiredMessage="Debe Seleccionar una Empresa">
+                        <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Empresa --"/>
+                        <f:selectItems value="#{mantenedorContrato.empresas}" var="emp"
+                                       itemLabel="#{emp.nombreEmpresa}" itemValue="#{emp}"/>
+                    </h:selectOneMenu>
+                    <p:tooltip id="tooltipmenu" for="onem" value="Selecciona una empresa" trackMouse="true"/>
+
+                    <br></br>
+                    <label>Usuario</label>
+                    <h:selectOneMenu id="usu" class="form-control" value="#{mantenedorContrato.usuario}"
+                                     converter="entityConverter" required="true"
+                                     requiredMessage="Debe Seleccionar un Usuario">
+                        <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione Usuario --"/>
+                        <f:selectItems value="#{mantenedorContrato.usuarios}" var="usr"
+                                       itemLabel="#{usr.username}" itemValue="#{usr}"/>
+                    </h:selectOneMenu>
+                    <p:tooltip id="tooltipmenu2" for="usu" value="Selecciona un Usuario" trackMouse="true"/>
+
+                    <br></br>
+                    <h3>Inicio Campaña</h3>
+
+                    <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
+                    <p:calendar id="inicio" locale="es" pattern="dd/MM/yyyy" required="true"
+                                value="#{mantenedorContrato.contrato.fechaInicio}"
+                                requiredMessage="Debe indicar fecha de Inicio" style="width: 150px">
+
+                    </p:calendar>
+                    <p:tooltip id="toolinicio" for="inicio" value="Selecciona Fecha de Inicio " trackMouse="true"/>
+
+                    <h3>Fin Campaña</h3>
+
+                    <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
+                    <p:calendar id="fin" locale="es" pattern="dd/MM/yyyy" required="true"
+                                value="#{mantenedorContrato.contrato.fechaFin}"
+                                requiredMessage="Debe indicar la fecha de Termino" style="width: 150px">
+
+                    </p:calendar>
+                    <p:tooltip id="toolfin" for="fin" value="Selecciona Fecha Termino" trackMouse="true"/>
+
+                    <p:fileUpload style="width: 450px;" mode="advanced"
+                                  previewWidth="430" update="messages" label="Seleccionar contenido" uploadLabel="Subir"
+                                  fileUploadListener="#{mantenedorContrato.subirContrato}" cancelLabel="Cancelar"
+                                  widgetVar="myFileUpload"
+                                  onstart="PF('myFileUpload').disableButton(PF('myFileUpload').chooseButton)"
+                                  required="true" auto="false" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                    <p:growl id="messages" showDetail="true"/>
+                    <br></br>
+                    <p:commandButton action="#{mantenedorContrato.agregarContrato(mantenedorContrato.contrato)}"
+                                     value="Confirmar" />
+                    <p:commandButton value="Cancelar"  onclick="PF('dlg2').hide();" action="#{mantenedorContrato.eliminar(mantenedorContrato.contrato)}"/>
+                </p:dialog>
+            </div>
+            <div class="ui-grid-row">
+
+                <p:dataTable id="basicDT" var="cont" rows="4" paginator="true"
+                             value="#{mantenedorContrato.contratos}"  >
+
+                    <f:facet name="header">
+                        <p:spacer width="900" height="40"> </p:spacer>
+                        <p:commandButton value="Agregar Contrato" type="button" styleClass="btn btn-interac"
+                                         onclick="PF('dlg2').show();"/>
+                    </f:facet>
+
+                    <p:column styleClass="col-lg-2" headerText="Imagenes">
+                        <h:graphicImage value="/imagenes/tmp/#{cont.path}" style="width:50px; height:100px ;"/>
+                    </p:column>
+                    <p:column styleClass="col-lg-2" headerText="Representante" >
+                        <h:outputText value="#{cont.firma}"/>
+                    </p:column>
+                    <p:column styleClass="col-lg-2" headerText="Usuario">
+                        <h:outputText value="#{cont.idcliente.username}"/>
+                    </p:column>
+                    <p:column styleClass="col-lg-2" headerText="Empresa">
+                        <h:outputText value="#{cont.idempresa.nombreEmpresa}"/>
+                    </p:column>
+                    <p:column styleClass="col-lg-2" headerText="Inicio">
+                        <h:outputText value="#{cont.fechaInicio}"/>
+                    </p:column>
+                    <p:column styleClass="col-lg-2" headerText="Termino">
+                        <h:outputText value="#{cont.fechaFin}"/>
+                    </p:column>
+
+                    <p:column styleClass="col-lg-2" style="text-align: center; margin-right: 2px">
+                        <p:commandButton icon="ui-icon-trash" action="#{mantenedorContrato.eliminar(cont)}" styleClass="btn btn-interac" style="background-color: white !important;" immediate="true" update="message"/>
+                        <p:growl id="message" showDetail="true"/>
+                    </p:column>
+
+
+                </p:dataTable>
+                <br></br>
+                <br></br>
+
+            </div>
+
+
+
+        </h:form>
+
+
+    </ui:define>
+</ui:composition>
