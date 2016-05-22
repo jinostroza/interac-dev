@@ -7,6 +7,7 @@
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
+
         <h:form  id="new">
         <div class="container" id="myInterac">
             <header>
@@ -15,46 +16,62 @@
             <div class="row">
                 <label>Categoría</label>
 
-                <h:selectOneMenu  class="form-control" value="#{mantenedorTotems.meses}"
-                                  converter="entityConverter" required="true" requiredMessage="Debe Seleccionar una Categoria">
-                    <f:selectItem noSelectionOption="true" itemLabel="-- Seleccione mes --"/>
-                    <f:selectItems value="#{mantenedorTotems.mesesList}" var="mess"
-                                   itemLabel="#{mess.mes}" itemValue="#{mess}"/>
-                </h:selectOneMenu>
-                <p:dataTable id="tbl" var="car" value="#{mantenedorTotems.totems}"
+
+                <p:dataTable id="tbl" var="car" value="#{mantenedorAnalitica.analiticas}"
                              paginator="true" rows="10">
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Id" />
+                            <h:outputText value="Totem" />
                         </f:facet>
-                        <h:outputText value="#{car.idtotem}" />
+                        <h:outputText value="#{car.modulo}" />
                     </p:column>
 
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Year" />
+                            <h:outputText value="Cuerpos" />
                         </f:facet>
-                        <h:outputText value="#{car.marcaPantalla.nombre}" />
+                        <h:outputText value="#{car.cuerpos}" />
                     </p:column>
 
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Brand" />
+                            <h:outputText value="Deteccion Facial" />
                         </f:facet>
-                        <h:outputText value="#{car.establecimiento.nombreEstablecimiento}" />
+                        <h:outputText value="#{car.face}" />
                     </p:column>
 
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Color" />
+                            <h:outputText value="Sexo" />
                         </f:facet>
-                        <h:outputText value="#{car.noserie}" />
+                        <h:outputText value="#{car.sexo}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Edad" />
+                        </f:facet>
+                        <h:outputText value="#{car.edad}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Expresion" />
+                        </f:facet>
+                        <h:outputText value="#{car.expresion}" />
                     </p:column>
                 </p:dataTable>
-                <h:commandLink id="pdf" value="aasa">
 
-                    <p:dataExporter type="pdf" target="tbl" fileName="cars" pageOnly="true" preProcessor="#{mantenedorTotems.preProcessPDF}" />
+
+                <p:chart id="pie1" type="pie" model="#{mantenedorAnalitica.pieModel1}" style="width:400px;height:300px" />
+
+                <p:chart type="pie" model="#{mantenedorAnalitica.pieModel2}" style="width:400px;height:300px" />
+
+
+
+                <h:commandLink id="pdf" value="Reporte">
+
+                    <p:dataExporter type="pdf" target="tbl,pie1" fileName="cars" pageOnly="true" preProcessor="#{mantenedorAnalitica.preProcessPDF}" />
                 </h:commandLink>
+
 
             </div>
             <div class="push"></div>

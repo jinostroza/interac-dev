@@ -8,13 +8,14 @@ import cl.interac.util.components.UserSession;
 import cl.interac.util.services.FileUploader;
 import com.lowagie.text.*;
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
+import org.primefaces.model.chart.Axis;
+import org.primefaces.model.chart.AxisType;
+import org.primefaces.model.chart.LineChartModel;
+import org.primefaces.model.chart.LineChartSeries;
 import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -22,7 +23,6 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -34,7 +34,7 @@ import java.util.List;
  * Created by Joaco on 24-04-2015.
  */
 @ManagedBean
-@Component
+
 @Scope("flow")
 public class MantenedorTotems implements Serializable {
 
@@ -61,8 +61,7 @@ public class MantenedorTotems implements Serializable {
     @Autowired
     private FileUploader fileUploader;
     private int fileUploadCount;
-    private StreamedContent file;
-
+    private LineChartModel lineModel1;
     private MapModel simpleModel;
     private Marker marker;
 
@@ -86,6 +85,7 @@ public class MantenedorTotems implements Serializable {
 
     @PostConstruct
     public void inicio() {
+
         totems = logicaTotem.obtenerConRelacion();
         establecimientoList = logicaEstablecimiento.obtenerTodos();
         tipototems = logicaTipototem.obtenerTodos();
@@ -94,6 +94,7 @@ public class MantenedorTotems implements Serializable {
         marcaPantallas = logicaMarcaPantalla.obtenerTodos();
         mesesList = logicaMeses.obtenerTodos();
         totem = new Totem();
+
     }
 
 
@@ -132,10 +133,7 @@ public class MantenedorTotems implements Serializable {
             return;
         }
     }
-    public void FileDownloadView() {
-        InputStream stream = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/home/ec2-user/analitica/Reporte_analitica.pdf");
-        file = new DefaultStreamedContent(stream, "application/pdf", "reporte_interac.pdf");
-    }
+
 
     /* public void agregarTotem() {
 
@@ -176,9 +174,7 @@ public class MantenedorTotems implements Serializable {
         }
     } */
 
-    public StreamedContent getFile() {
-        return file;
-    }
+
 
     public void editarTotem(Totem t){
         totem = t;
@@ -200,9 +196,48 @@ public class MantenedorTotems implements Serializable {
         pdf.setPageSize(PageSize.A4);
 
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        String logo = externalContext.getRealPath("") + File.separator + "resources" + File.separator + "css" + File.separator + "img" + File.separator + "tools-01.png";
+        String logo = externalContext.getRealPath("") + File.separator + "resources" + File.separator + "css" + File.separator + "img" + File.separator + "interaclogo.jpg";
 
         pdf.add(Image.getInstance(logo));
+    }
+    public LineChartModel getLineModel1() {
+        return lineModel1;
+    }
+
+    private void createLineModels() {
+        lineModel1 = initLinearModel();
+        lineModel1.setTitle("Linear Chart");
+        lineModel1.setLegendPosition("e");
+        Axis yAxis = lineModel1.getAxis(AxisType.Y);
+        yAxis.setMin(0);
+        yAxis.setMax(10);
+    }
+
+    public LineChartModel initLinearModel() {
+        LineChartModel model = new LineChartModel();
+
+        LineChartSeries series1 = new LineChartSeries();
+        series1.setLabel("Series 1");
+
+        series1.set(1, 2);
+        series1.set(2, 1);
+        series1.set(3, 3);
+        series1.set(4, 6);
+        series1.set(5, 8);
+
+        LineChartSeries series2 = new LineChartSeries();
+        series2.setLabel("Series 2");
+
+        series2.set(1, 6);
+        series2.set(2, 3);
+        series2.set(3, 2);
+        series2.set(4, 7);
+        series2.set(5, 9);
+
+        model.addSeries(series1);
+        model.addSeries(series2);
+
+        return model;
     }
 
     //Getters y Setters
@@ -329,5 +364,9 @@ public class MantenedorTotems implements Serializable {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public void setLineModel1(LineChartModel lineModel1) {
+        this.lineModel1 = lineModel1;
     }
 }
