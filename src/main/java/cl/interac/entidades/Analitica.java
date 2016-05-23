@@ -15,7 +15,7 @@ import java.util.Date;
         }
 )
 public class Analitica implements Serializable {
-    private Integer idanalitica;
+
     private Date fechahora;
     private String modulo;
     private Integer cuerpos;
@@ -24,18 +24,10 @@ public class Analitica implements Serializable {
     private String sexo;
     private String expresion;
 
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idanalitica")
-    public Integer getIdanalitica() {
-        return idanalitica;
-    }
-
-    public void setIdanalitica(Integer idanalitica) {
-        this.idanalitica = idanalitica;
-    }
-
-
     @Temporal(TemporalType.DATE)
     @Column(name = "fechahora")
     public Date getFechahora() {
@@ -104,19 +96,19 @@ public class Analitica implements Serializable {
     }
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+  /*  @Override
+    //public boolean equals(Object o) {
+      //  if (this == o) return true;
+        //if (o == null || getClass() != o.getClass()) return false;
 
         Analitica analitica = (Analitica) o;
 
-        if (this.getIdanalitica() == null || analitica.getIdanalitica() == null) return false;
-        else return this.getIdanalitica().intValue() == analitica.getIdanalitica().intValue();
+        //if (this.getFechahora() == null || analitica.getFechahora() == null) return false;
+        //else return this.getFechahora(). == analitica.getIdanalitica().intValue();
     }
 
     @Override
     public int hashCode() {
-        return idanalitica != null ? 31 * idanalitica.hashCode() : 0;
-    }
+        return fechahora != null ? 31 * fechahora.hashCode() : 0;
+    }*/
 }

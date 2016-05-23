@@ -6,22 +6,14 @@ import cl.interac.util.components.FacesUtil;
 import cl.interac.util.components.PropertyReader;
 import cl.interac.util.components.UserSession;
 import cl.interac.util.services.FileUploader;
-import com.lowagie.text.*;
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.chart.Axis;
-import org.primefaces.model.chart.AxisType;
-import org.primefaces.model.chart.LineChartModel;
-import org.primefaces.model.chart.LineChartSeries;
-import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Files;
@@ -34,7 +26,7 @@ import java.util.List;
  * Created by Joaco on 24-04-2015.
  */
 @ManagedBean
-
+@Component
 @Scope("flow")
 public class MantenedorTotems implements Serializable {
 
@@ -61,8 +53,7 @@ public class MantenedorTotems implements Serializable {
     @Autowired
     private FileUploader fileUploader;
     private int fileUploadCount;
-    private LineChartModel lineModel1;
-    private MapModel simpleModel;
+
     private Marker marker;
 
     private List<Totem> totems;
@@ -85,7 +76,6 @@ public class MantenedorTotems implements Serializable {
 
     @PostConstruct
     public void inicio() {
-
         totems = logicaTotem.obtenerConRelacion();
         establecimientoList = logicaEstablecimiento.obtenerTodos();
         tipototems = logicaTipototem.obtenerTodos();
@@ -190,55 +180,7 @@ public class MantenedorTotems implements Serializable {
         logicaTotem.eliminarTotem(totem);
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha sobornado el Totem [" + totem.getNoserie() + "]");
     }
-    public void preProcessPDF(Object document) throws IOException, BadElementException, DocumentException {
-        Document pdf = (Document) document;
-        pdf.open();
-        pdf.setPageSize(PageSize.A4);
 
-        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        String logo = externalContext.getRealPath("") + File.separator + "resources" + File.separator + "css" + File.separator + "img" + File.separator + "interaclogo.jpg";
-
-        pdf.add(Image.getInstance(logo));
-    }
-    public LineChartModel getLineModel1() {
-        return lineModel1;
-    }
-
-    private void createLineModels() {
-        lineModel1 = initLinearModel();
-        lineModel1.setTitle("Linear Chart");
-        lineModel1.setLegendPosition("e");
-        Axis yAxis = lineModel1.getAxis(AxisType.Y);
-        yAxis.setMin(0);
-        yAxis.setMax(10);
-    }
-
-    public LineChartModel initLinearModel() {
-        LineChartModel model = new LineChartModel();
-
-        LineChartSeries series1 = new LineChartSeries();
-        series1.setLabel("Series 1");
-
-        series1.set(1, 2);
-        series1.set(2, 1);
-        series1.set(3, 3);
-        series1.set(4, 6);
-        series1.set(5, 8);
-
-        LineChartSeries series2 = new LineChartSeries();
-        series2.setLabel("Series 2");
-
-        series2.set(1, 6);
-        series2.set(2, 3);
-        series2.set(3, 2);
-        series2.set(4, 7);
-        series2.set(5, 9);
-
-        model.addSeries(series1);
-        model.addSeries(series2);
-
-        return model;
-    }
 
     //Getters y Setters
 
@@ -366,7 +308,5 @@ public class MantenedorTotems implements Serializable {
         this.color = color;
     }
 
-    public void setLineModel1(LineChartModel lineModel1) {
-        this.lineModel1 = lineModel1;
-    }
+
 }
