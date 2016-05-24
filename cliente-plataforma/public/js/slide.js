@@ -1,8 +1,8 @@
 var Slide = {};
 
 (function () {
-    var showTime = 20 * 1000; // 20 segundos
-    var syncTime = 10 * 1000; // 60 segundos
+    var showTime = 10 * 1000; // 10 segundos
+    var syncTime = 120 * 1000; // 120 segundos
     var sliderTimerID = null;
     var syncTimerID = null;
     var index = 0; //index video duration
@@ -13,14 +13,14 @@ var Slide = {};
 
             for (var i = mediaFiles.length - 1, display = "block"; i >= 0; i--, display = "none") {
                 if (mediaFiles[i].endsWith(".mp4") || mediaFiles[i].endsWith(".ogg")) {
-                    var video = jQuery("<video controls='false' style='width: 1060px;height: 1400px;background-color:#1F1F5C;' ><source></source></video>");
+                    var video = jQuery("<video controls='false' style='width: 1050px;height: 1560px' ><source></source></video>");
                     video.css("display", display);
                     video.find("source").first().attr("src", mediaFiles[i]);
                     video.find("source").first().attr("type", "video/" + mediaFiles[i].substr(mediaFiles[i].lastIndexOf(".") + 1, mediaFiles[i].length));
                     video.find("source").first().attr("id", "video");
                     jQuery("div.content").append(video);
                 } else {
-                    var img = jQuery("<img style='width: 1060px;height: 1400px' ></img>");
+                    var img = jQuery("<img style='width: 1050px;height: 1560px' ></img>");
                     img.attr("src", mediaFiles[i]);
                     img.css("display", display);
                     jQuery("div.content").append(img);
@@ -34,7 +34,7 @@ var Slide = {};
     };
 
     this.change = function () {
-        var media = jQuery("div.content").find("img, video");
+          var media = jQuery("div.content").find("img, video");
          var d=document.querySelectorAll('video');
         for (var i = 0; i < media.length; i++) {
             if (jQuery(media[i]).is(":not(:visible)")) continue;
@@ -56,18 +56,18 @@ var Slide = {};
                 siguiente.get(0).play();
             }else {
 
-                  showTime = 20 * 1000; // 20 segundos
+                  showTime = 10 * 1000; // 10 segundos
             }
             break;
         }
         if(d.length <= 1) {
             sliderTimerID = setTimeout(this.change.bind(this), showTime);
-             showTime = 20 * 1000; // 20 segundos
+             showTime = 10 * 1000; // 10 segundos
         }
         else{
             sliderTimerID = setTimeout(this.change.bind(this), showTime);
         }
-
+              
 
     };
 

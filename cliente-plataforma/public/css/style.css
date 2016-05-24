@@ -28,6 +28,8 @@ footer, header, menu, nav, section {
 
 body {
     line-height: 1;
+    font-family: Lato;
+    font-weight: 400;
 }
 
 ol, ul {
@@ -110,40 +112,39 @@ body {
     border-radius: 5%;
 
     overflow: hidden;
-    font: 2rem/2 "Impact", Times, serif;
+
     color:#FFFFFF;
 
 }
 .form {
-    background: #df0400;
-    background-image: -webkit-linear-gradient(top, #b90011, #df0400);
-    background-image: -moz-linear-gradient(top, #b90011, #df0400);
-    background-image: -ms-linear-gradient(top, #b90011, #df0400);
-    background-image: -o-linear-gradient(top, #b90011, #df0400);
-    background-image: linear-gradient(to bottom, #b90011, #df0400);
-    border-radius: 15px;
-    text-shadow: 1px 1px 0px #666666;
-    -webkit-box-shadow: 0px 1px 3px #666666;
-    -moz-box-shadow: 0px 1px 3px #666666;
-    box-shadow: 0px 1px 3px #666666;
-    font:2rem/2 "Impact", Times, serif;
-    color: #ffffff;
+    background-image: url("img/calendar.png");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-position-x: 100px;
+    background-size: 10%;
+    background-color: #262673;
+    border-radius: 5px;
+    color: #FFFFFF;
     font-size: 66px;
     padding: 0px 10px 10px 10px;
-    border: solid #df0400 2px;
+    border: 1px solid #828282;
     text-decoration: none;
     width: 1060px;
     height: 7%;
+    margin-top: 2%;
+    font-family: Lato;
+
+    font-weight: 400;
 }
 
 .form:hover {
-    background: #df0400;
+    background: #c0c0c0;
     text-decoration: none;
 
 }
 
 .form:active {
-    background-color: #b90011;
+    background-color: #c0c0c0;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
@@ -153,28 +154,36 @@ body {
     width: 1060px;
     text-align: center;
     background-color: #FFFFFF;
-    margin-left: auto;
+    margin-left: 20px;
     margin-right: auto;
     position:relative;
 }
 
-.escuela {
-    width: 200px;
-    height: 90%;
-    background-color: #1F1F5C;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100%;
+.estudiantes {
+    width: 235px;
+    height: 103%;
 
     position: relative;
     margin-left: -49px;
     margin-top: 10px;
 
     border-radius: 50%;
-
+    font:2rem/2 Lato, Helvetica, sans-serif;
+    color:white;
     overflow: hidden;
+    background: #33335a;
+    background-image: -webkit-linear-gradient(top, #33335a, #42427a);
+    background-image: -moz-linear-gradient(top, #33335a, #42427a);
+    background-image: -ms-linear-gradient(top, #33335a, #42427a);
+    background-image: -o-linear-gradient(top, #33335a, #42427a);
+    background-image: linear-gradient(to bottom, #33335a, #42427a);
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
 
-    background-image: url("img/logopucv.png");
+    -webkit-box-shadow: 2px 7px 11px #666666;
+    -moz-box-shadow: 2px 7px 11px #666666;
+    box-shadow: 2px 7px 11px #666666;
+
 
 }
 .historiabtn {
@@ -273,43 +282,57 @@ body {
     background-image: url("img/Flickr_logo.png");
 
 }
-.guia {
+.academicos {
     width: 235px;
     height: 103%;
-    background-color: #FFFFFF;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100%;
 
     position: relative;
     margin-left: 12px;
     margin-top: 10px;
-
-    border-radius: 2%;
-
+    border-radius: 50%;
+    font:2rem/2 Lato, Helvetica, sans-serif;
+    color:white;
     overflow: hidden;
     border:0px;
+    background: #c03333;
+    background-image: -webkit-linear-gradient(top, #c03333, #d66262);
+    background-image: -moz-linear-gradient(top, #c03333, #d66262);
+    background-image: -ms-linear-gradient(top, #c03333, #d66262);
+    background-image: -o-linear-gradient(top, #c03333, #d66262);
+    background-image: linear-gradient(to bottom, #c03333, #d66262);
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
 
-    background-image: url("img/La_guia.png");
+    -webkit-box-shadow: 2px 7px 11px #666666;
+    -moz-box-shadow: 2px 7px 11px #666666;
+    box-shadow: 2px 7px 11px #666666;
+
+
 
 }
-.dpd {
+.investigacion {
     width: 235px;
     height: 103%;
-    background-color: #FFFFFF;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100%;
+    background-color: #9999ac;
     border:0px;
     position: relative;
     margin-left: 12px;
     margin-top: 10px;
-
-    border-radius: 2%;
-
+    font:2rem Lato, Helvetica, sans-serif;
+    color:#9999ac;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70%;
+    background-image: url("img/invvv.png");
     overflow: hidden;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-box-shadow: 2px 7px 11px #666666;
+    -moz-box-shadow: 2px 7px 11px #666666;
+    box-shadow: 2px 7px 11px #666666;
 
-    background-image: url("img/DPD.png");
+
 
 }
 .biblioteca {
@@ -331,23 +354,30 @@ body {
     background-image: url("img/BB.png");
 
 }
-.ddcyf {
+.internacional {
     width: 235px;
     height: 103%;
-    background-color: #FFFFFF;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100%;
     border:0px;
     position: relative;
     margin-left: 12px;
     margin-top: 10px;
-
-    border-radius: 2%;
-
+    font:2rem/2 Lato;
+    color:white;
+    border-radius: 50%;
+    background: #a69a53;
+    background-image: -webkit-linear-gradient(top, #a69a53, #baa73a);
+    background-image: -moz-linear-gradient(top, #a69a53, #baa73a);
+    background-image: -ms-linear-gradient(top, #a69a53, #baa73a);
+    background-image: -o-linear-gradient(top, #a69a53, #baa73a);
+    background-image: linear-gradient(to bottom, #a69a53, #baa73a);
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-box-shadow: 2px 7px 11px #666666;
+    -moz-box-shadow: 2px 7px 11px #666666;
+    box-shadow: 2px 7px 11px #666666;
     overflow: hidden;
 
-    background-image: url("img/DDCyF.png");
+
 
 }
 .overlay {
@@ -441,8 +471,8 @@ body {
     background-position: center;
     background-size: contain;
     margin: 0 15px;
-    width: 275px;
-    height: 80px;
+    width: 303px;
+    height: 107px;
     float: left;
 }
 #weather{
@@ -474,15 +504,58 @@ body {
   float: right;
   padding:0;
 }
-#vice{
-    background-image: url("img/acreditacion%20logo-azul.jpg");
+#redes{
+    overflow: hidden;
+    font: 4em/2 Lato;
+    font-style: italic;
+    color: #1F1F5C;
+    margin: -42px 40px;
+    width: 206px;
+    height: 176px;
+    float: right;
+    padding:0;
+}
+#redes1{
+    background-image: url("img/fb_lo.png");
     overflow: hidden;
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    margin: 0 15px;
-    width: 255px;
-    height: 88px;
+    width: 44px;
+    height: 44px;
+    float: right;
+    padding:0;
+}
+#redes2{
+     background-image: url("img/twitter.png");
+     overflow: hidden;
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: contain;
+     width: 44px;
+     height: 44px;
+     float: right;
+     padding:0;
+ }
+#redes3{
+    background-image: url("img/youtube.png");
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 111%;
+    width: 44px;
+    height: 44px;
+    float: right;
+    padding:0;
+}
+#redes4{
+    background-image: url("img/flickrl.png");
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 44px;
+    height: 44px;
     float: right;
     padding:0;
 }
