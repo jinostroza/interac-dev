@@ -12,23 +12,26 @@ html
         script(type='text/javascript', async='', src='http://www.yourweather.co.uk/wid_loader/05637abb174df2e685bbf8a7b80959fd')
 
     body
-        iframe.overlay(style='display:none')
         .container
             .header
                 #pucv.vice
-                #redes.vice PUCV.CL
-                 #redes1
-                 #redes2
-                 #redes3
-                 #redes4
+                #redes1.red1
+                #redes2.red2
+                #redes3.red3
+                #redes4.red4
 
             #content.content(style='padding: 0px;margin-top: -8px;')
+
             button(class="form" id="form") Agenda de Eventos
             div(class="dashbox")
-                button#guia.estudiantes Estudiantes
-                button#dpd.academicos Academicos
-                button#biblioteca.investigacion .
-                button#ddcyf.internacional Internacional
+                button#guia.estudiantes
+                  div.textos Estudiantes
+                button#dpd.academicos
+                  div.textos Acádemicos
+                button#biblioteca.investigacion
+                  div.textos Investigación e Innovación
+                button#ddcyf.internacional
+                  div.textos Internacional
         script(type='text/javascript').
             jQuery(document).ready(function () {
             });
@@ -56,6 +59,7 @@ html
                     // custom
                     $('#guia').on('click', function () {
                         ga('send', 'event', 'btnguia', 'click', 'nav-buttons');
+                        $('#iframe').show();
                     });
                     $('#dpd').on('click', function () {
                         ga('send', 'event', 'btndpd', 'click', 'nav-buttons');

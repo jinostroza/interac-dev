@@ -12,3 +12,4 @@ var Clock = {};
         setTimeout(this.start.bind(this), 100);
     };
 }).apply(Clock);
+

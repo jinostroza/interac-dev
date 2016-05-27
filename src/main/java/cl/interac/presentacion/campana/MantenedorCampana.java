@@ -156,11 +156,16 @@ public class MantenedorCampana implements Serializable {
     private LogicaComunas logicaComunas;
 
     public void inicio() {
-        contarCampanas = logicaCampestab.obtenerPorNumero(userSession.getUsuario().getUsername());
-        contenidocampanas = logicaCampana.obtenerPorContenido(userSession.getUsuario().getIdUsuario());
-        campanasvencidas = logicaCampana.obtenerPorFecha(Date.from(Instant.now()));
-        campestabList = logicaCampestab.obtenerAprobado(userSession.getUsuario().getUsername());
-        campestabListAll = logicaCampestab.obtenerEstados(userSession.getUsuario().getUsername());
+        if (userSession!=null) {
+            contarCampanas = logicaCampestab.obtenerPorNumero(userSession.getUsuario().getUsername());
+            contenidocampanas = logicaCampana.obtenerPorContenido(userSession.getUsuario().getIdUsuario());
+            campestabList = logicaCampestab.obtenerAprobado(userSession.getUsuario().getUsername());
+            campestabListAll = logicaCampestab.obtenerEstados(userSession.getUsuario().getUsername());
+            totems = logicaTotem.obtenerPorUsuario(userSession.getUsuario().getUsername());
+            campanas = logicaCampana.obtenerPorUsuario(userSession.getUsuario().getUsername());
+            contenidos = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
+            totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
+        }
         usuarios = logicaUsuario.obtenerTodos();
         categoriaList = logicaCategoria.obtenerTodos();
         establecimientoList=logicaEstablecimiento.obtenerTodos();
@@ -169,10 +174,7 @@ public class MantenedorCampana implements Serializable {
         ubicacionList=logicaUbicacion.obtenerTodas();
         tipototemList=logicaTipototem.obtenerTodos();
         totemsConrelacion = logicaTotem.obtenerConRelacion();
-        totems = logicaTotem.obtenerPorUsuario(userSession.getUsuario().getUsername());
-        campanas = logicaCampana.obtenerPorUsuario(userSession.getUsuario().getUsername());
-        contenidos = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
-        totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
+        campanasvencidas = logicaCampana.obtenerPorFecha(Date.from(Instant.now()));
         usuarios = logicaUsuario.obtenerTodos();
         empresaList = logicaEmpresa.obtenerTodos();
         regionesList = logicaRegiones.obtenerTodas();

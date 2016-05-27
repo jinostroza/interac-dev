@@ -92,7 +92,9 @@ public class MantenedorContenido implements Serializable {
     public void inicio() {
         usuarios = logicaUsuario.obtenerTodos();
         categorias = logicaCategoria.obtenerTodos();
-        contenidoList = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
+        if (userSession!=null) {
+            contenidoList = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
+        }
         contenidosall = logicaContenido.obtenerTodos();
         contenidoWithUser = logicaContenido.obtenerConUsuarios();
     }

@@ -62,23 +62,22 @@ article, aside, details, figcaption, figure, footer, header, main, nav, section,
 }
 
 body {
-    font: 12px/18px Arial, sans-serif;
-    width: 100%;
-    height: 100%;
+    font: 12px/18px Lato, sans-serif;
+
 }
 .container {
     width: 1060px;
-    margin: 0 auto;
-    height: 1560px;
+    margin-left: 6px;
+    height: 1400px;
     background-color: #FFFFFF;
 }
 /* Header
 -----------------------------------------------------------------------------*/
 .header {
     height: 120px;
-    width: 1020px;
+    width: 1060px;
     background-color: #FFFFFF;
-    padding: 20px 10px;
+
 }
 
 /* Middle
@@ -91,11 +90,16 @@ body {
 -----------------------------------------------------------------------------*/
 .footer {
     width: 100%;
-    height: 100px;
+
     
     
 
 
+}
+.cont1{
+    width: 1060px;
+    height: 1360px;
+    display:none;
 }
 .button {
     width: 1060px;
@@ -117,7 +121,7 @@ body {
 
 }
 .form {
-    background-image: url("img/calendar.png");
+    background-image: url("img/calendario-01.png");
     background-repeat: no-repeat;
     background-position: left;
     background-position-x: 100px;
@@ -126,36 +130,41 @@ body {
     border-radius: 5px;
     color: #FFFFFF;
     font-size: 66px;
-    padding: 0px 10px 10px 10px;
+
     border: 1px solid #828282;
     text-decoration: none;
     width: 1060px;
     height: 7%;
-    margin-top: 2%;
+    margin-top: 1%;
     font-family: Lato;
 
     font-weight: 400;
 }
 
 .form:hover {
-    background: #c0c0c0;
+    background: #2e6da4;
     text-decoration: none;
+    background-image: url("img/calendario-01.png");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-position-x: 100px;
+    background-size: 10%;
 
 }
 
 .form:active {
-    background-color: #c0c0c0;
+    background-color: #2e6da4;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
 
 .dashbox {
     height: 230px;
-    width: 1060px;
+    width: 1040px;
     text-align: center;
     background-color: #FFFFFF;
-    margin-left: 20px;
-    margin-right: auto;
+    padding-left: 20px;
+
     position:relative;
 }
 
@@ -179,6 +188,11 @@ body {
     background-image: linear-gradient(to bottom, #33335a, #42427a);
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
+    background-image: url("img/estudiantes-01.png");
+    background-position: 50% 20%;
+    background-repeat: no-repeat;
+    background-size: 70%;
+    text-align: center;
 
     -webkit-box-shadow: 2px 7px 11px #666666;
     -moz-box-shadow: 2px 7px 11px #666666;
@@ -285,7 +299,7 @@ body {
 .academicos {
     width: 235px;
     height: 103%;
-
+    cursor: -webkit-grab;
     position: relative;
     margin-left: 12px;
     margin-top: 10px;
@@ -295,20 +309,23 @@ body {
     overflow: hidden;
     border:0px;
     background: #c03333;
-    background-image: -webkit-linear-gradient(top, #c03333, #d66262);
-    background-image: -moz-linear-gradient(top, #c03333, #d66262);
-    background-image: -ms-linear-gradient(top, #c03333, #d66262);
-    background-image: -o-linear-gradient(top, #c03333, #d66262);
-    background-image: linear-gradient(to bottom, #c03333, #d66262);
+    background-image: url("img/academicos-01.png");
+    background-position: 50% 20%;
+    background-repeat: no-repeat;
+    background-size: 70%;
+    text-align: center;
+
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
-
     -webkit-box-shadow: 2px 7px 11px #666666;
     -moz-box-shadow: 2px 7px 11px #666666;
     box-shadow: 2px 7px 11px #666666;
 
 
 
+}
+.textos{
+    padding-top: 100px;
 }
 .investigacion {
     width: 235px;
@@ -318,19 +335,22 @@ body {
     position: relative;
     margin-left: 12px;
     margin-top: 10px;
-    font:2rem Lato, Helvetica, sans-serif;
-    color:#9999ac;
+    cursor: -webkit-grab;
+    font:1.5rem Lato, Helvetica, sans-serif;
+    color: #ffffff;;
     border-radius: 50%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 70%;
-    background-image: url("img/invvv.png");
+    padding-top: 31px;
     overflow: hidden;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     -webkit-box-shadow: 2px 7px 11px #666666;
     -moz-box-shadow: 2px 7px 11px #666666;
     box-shadow: 2px 7px 11px #666666;
+    background-image: url("img/investigacion-01.png");
+    background-position: 50% 20%;
+    background-repeat: no-repeat;
+    background-size: 70%;
+    text-align: center;
 
 
 
@@ -375,7 +395,13 @@ body {
     -webkit-box-shadow: 2px 7px 11px #666666;
     -moz-box-shadow: 2px 7px 11px #666666;
     box-shadow: 2px 7px 11px #666666;
+    cursor: -webkit-grab;
     overflow: hidden;
+    background-image: url("img/internacional-01.png");
+    background-position: 50% 20%;
+    background-repeat: no-repeat;
+    background-size: 70%;
+    text-align: center;
 
 
 
@@ -521,6 +547,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
+    cursor: -webkit-grab;
     width: 44px;
     height: 44px;
     float: right;
@@ -536,6 +563,7 @@ body {
      height: 44px;
      float: right;
      padding:0;
+     cursor: -webkit-grab;
  }
 #redes3{
     background-image: url("img/youtube.png");
@@ -546,6 +574,7 @@ body {
     width: 44px;
     height: 44px;
     float: right;
+    cursor: -webkit-grab;
     padding:0;
 }
 #redes4{
@@ -557,6 +586,7 @@ body {
     width: 44px;
     height: 44px;
     float: right;
+    cursor: -webkit-grab;
     padding:0;
 }
 #historia{

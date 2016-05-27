@@ -18,11 +18,15 @@ var DashBox = {
     var winForm;
     var winFacebook;
     var winWeather;
-    var winGuia;
+    var winestudiantes;
     var winDpd;
     var winBib;
     var winDdcyf;
     var winVice;
+    var winRed1;
+    var winRed2;
+    var winRed3;
+    var winRed4;
     var srcWatcher = function(button) {
 
         switch ($(button).attr("class")) {
@@ -53,23 +57,35 @@ var DashBox = {
             case "weather":
                 winWeather=window.open("http://www.tiempo.com/valparaiso.htm","tiempo","width=1060,height=1900,resizable,scrollbars,status")
                 break;
-            case "guia":
-                winGuia=window.open("http://laguia.ucv.cl/","Guia","width=1060,height=1900,resizable,scrollbars,status")
+            case "estudiantes":
+                winestudiantes=window.open("http://www.pucv.cl/pucv/site/edic/base/port/estudiantes.html","Estudiantes","width=1060,height=1900,resizable,scrollbars,status")
                 break;
-            case "dpd":
-                winDpd=window.open("http://vra.ucv.cl/dpd/","DPD","width=1060,height=1900,resizable,scrollbars,status")
+            case "academicos":
+                winDpd=window.open("http://www.pucv.cl/pucv/site/edic/base/port/academicos.html","DPD","width=1060,height=1900,resizable,scrollbars,status")
                 break;
-            case "biblioteca":
-                winBib=window.open("http://biblioteca.ucv.cl/","Biblioteca","width=1060,height=1900,resizable,scrollbars,status")
+            case "investigacion":
+                winBib=window.open("http://www.pucv.cl/pucv/site/edic/base/port/investigacion.html","Biblioteca","width=1060,height=1900,resizable,scrollbars,status")
                 break;
-            case "ddcyf":
-                winDdcyf=window.open("http://vra.ucv.cl/ddcyf/","Ddycf","width=1060,height=1900,resizable,scrollbars,status")
+            case "internacional":
+                winDdcyf=window.open("http://www.pucv.cl/pucv/site/edic/base/port/pucv_internacional.html","Ddycf","width=1060,height=1900,resizable,scrollbars,status")
                 break;
             case "vice":
                 winVice=window.open("http://www.pucv.cl","Pucv","width=1060,height=1900,resizable,scrollbars,status")
                 break;
+            case "red1":
+                winRed1=window.open("https://www.facebook.com/catolicadevalparaiso","Pucv","width=1060,height=1900,resizable,scrollbars,status")
+                break;
+             case "red2":
+                winRed2=window.open("https://twitter.com/comunidadpucv","Pucv","width=1060,height=1900,resizable,scrollbars,status")
+                break;
+            case "red3":
+                winRed3=window.open("https://www.youtube.com/user/pucvprensa","Pucv","width=1060,height=1900,resizable,scrollbars,status")
+                break;
+            case "red4":
+                winRed4=window.open("https://www.flickr.com/photos/pucv/","Pucv","width=1060,height=1900,resizable,scrollbars,status")
+                break;
             case "form":
-                winForm=window.open("http://54.208.243.25:8080/interac/lista.jsf","Talleres","width=1060,height=1900,resizable,scrollbars,status")
+                winForm=window.open("http://www.pucv.cl/pucv/site/tax/port/fil_evento/taxport_28___1.html","Talleres","width=1060,height=1900,resizable,scrollbars,status")
                 setTimeout(function() {winForm.location.href = 'http://54.208.243.25:8080/interac/lista.jsf';}, 1000);
 
                 break;
@@ -84,7 +100,7 @@ var DashBox = {
         setTimeout(function () { winHistoria.close();}, 60000);
         setTimeout(function () { winFacebook.close();}, 60000);
         setTimeout(function () { winWeather.close();}, 60000);
-        setTimeout(function () { winGuia.close();}, 60000);
+        setTimeout(function () { winestudiantes.close();}, 60000);
         setTimeout(function () { winDpd.close();}, 60000);
         setTimeout(function () { winBib.close();}, 60000);
         setTimeout(function () { winDdcyf.close();}, 60000);
@@ -112,6 +128,22 @@ var DashBox = {
             srcWatcher.call(self, this);
 
         });
+        $("div.red1").click(function() {
+            srcWatcher.call(self, this);
+
+        });
+        $("div.red2").click(function() {
+            srcWatcher.call(self, this);
+
+        });
+        $("div.red3").click(function() {
+            srcWatcher.call(self, this);
+
+        });
+        $("div.red4").click(function() {
+            srcWatcher.call(self, this);
+
+        });
             $("button.flickrhistoria").click(function() {
             srcWatcher.call(self, this);
 
@@ -134,16 +166,16 @@ var DashBox = {
         $("button.form").click(function() {
             srcWatcher.call(self, this);
         });
-        $("button.guia").click(function() {
+        $("button.estudiantes").click(function() {
             srcWatcher.call(self, this);
         });
-        $("button.dpd").click(function() {
+        $("button.academicos").click(function() {
             srcWatcher.call(self, this);
         });
-        $("button.ddcyf").click(function() {
+        $("button.investigacion").click(function() {
             srcWatcher.call(self, this);
         });
-        $("button.biblioteca").click(function() {
+        $("button.internacional").click(function() {
             srcWatcher.call(self, this);
         });
     };
