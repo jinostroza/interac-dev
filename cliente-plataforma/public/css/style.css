@@ -385,11 +385,6 @@ body {
     color:white;
     border-radius: 50%;
     background: #a69a53;
-    background-image: -webkit-linear-gradient(top, #a69a53, #baa73a);
-    background-image: -moz-linear-gradient(top, #a69a53, #baa73a);
-    background-image: -ms-linear-gradient(top, #a69a53, #baa73a);
-    background-image: -o-linear-gradient(top, #a69a53, #baa73a);
-    background-image: linear-gradient(to bottom, #a69a53, #baa73a);
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     -webkit-box-shadow: 2px 7px 11px #666666;
@@ -401,6 +396,32 @@ body {
     background-position: 50% 20%;
     background-repeat: no-repeat;
     background-size: 70%;
+    text-align: center;
+
+
+}
+.flickrIngenieria {
+    width: 235px;
+    height: 103%;
+    border:0px;
+    position: relative;
+    margin-left: 12px;
+    margin-top: 10px;
+    font:2rem/2 Lato;
+    color:white;
+    border-radius: 50%;
+    background: #a69a53;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-box-shadow: 2px 7px 11px #666666;
+    -moz-box-shadow: 2px 7px 11px #666666;
+    box-shadow: 2px 7px 11px #666666;
+    cursor: -webkit-grab;
+    overflow: hidden;
+    background-image: url("img/flickr_resize.png");
+    background-position: 50% -24%;
+    background-repeat: no-repeat;
+    background-size: 90%;
     text-align: center;
 
 
@@ -518,17 +539,31 @@ body {
 
 }
 
-#ingenieria{
-  background-image: url("img/logo-ingenieria.png");
-  overflow: hidden;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  margin: 0 15px;
-  width: 175px;
-  height: 80px;
-  float: right;
-  padding:0;
+.ingenieria{
+    width: 235px;
+    height: 103%;
+    background-color: #9999ac;
+    border:0px;
+    position: relative;
+    margin-left: 12px;
+    margin-top: 10px;
+    cursor: -webkit-grab;
+    color: #ffffff;;
+    border-radius: 50%;
+    padding-top: 0px;
+    font:2rem/2 Lato;
+    overflow: hidden;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-box-shadow: 2px 7px 11px #666666;
+    -moz-box-shadow: 2px 7px 11px #666666;
+    box-shadow: 2px 7px 11px #666666;
+    background-position: 44% 32%;
+    background-repeat: no-repeat;
+    background-size: 40%;
+    text-align: center;
+    background-image: url("img/plane.png");
+
 }
 #redes{
     overflow: hidden;

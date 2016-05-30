@@ -28,10 +28,10 @@ html
                   div.textos Estudiantes
                 button#dpd.academicos
                   div.textos Acádemicos
-                button#biblioteca.ingenieria
-                  div.textos Ingeniería
-                button#ddcyf.flickrIngenieria
-                  div.textos Flickr
+                button#biblioteca.investigacion
+                  div.textos Investigación e Innovación
+                button#ddcyf.internacional
+                  div.textos Internacional
         script(type='text/javascript').
             jQuery(document).ready(function () {
             });
@@ -54,39 +54,24 @@ html
                         a.src = g;
                         m.parentNode.insertBefore(a, m)
                     })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-                    ga('create', 'UA-69484091-3', {'cookiedomain': 'none'});
+                    ga('create', 'UA-69484091-5', {'cookiedomain': 'none'});
                     ga('send', 'pageview');
                     // custom
                     $('#guia').on('click', function () {
-                        ga('send', 'event', 'btnestudiantes', 'click', 'nav-buttons');
-
+                        ga('send', 'event', 'btnguia', 'click', 'nav-buttons');
+                        $('#iframe').show();
                     });
                     $('#dpd').on('click', function () {
-                        ga('send', 'event', 'btnacademicos', 'click', 'nav-buttons');
+                        ga('send', 'event', 'btndpd', 'click', 'nav-buttons');
                     });
                     $('#biblioteca').on('click', function () {
-                        ga('send', 'event', 'btningenieria', 'click', 'nav-buttons');
+                        ga('send', 'event', 'btnblb', 'click', 'nav-buttons');
                     });
                     $('#form').on('click', function () {
-                        ga('send', 'event', 'btnagenda', 'click', 'nav-buttons');
+                        ga('send', 'event', 'btnformulario', 'click', 'nav-buttons');
                     });
                     $('#ddcyf').on('click', function () {
-                        ga('send', 'event', 'btnflickr', 'click', 'nav-buttons');
-                    });
-                    $('#pucv').on('click', function () {
-                        ga('send', 'event', 'btnpucv', 'click', 'nav-buttons');
-                    });
-                    $('#redes1').on('click', function () {
-                        ga('send', 'event', 'btnFacebook', 'click', 'nav-buttons');
-                    });
-                    $('#redes2').on('click', function () {
-                        ga('send', 'event', 'btntwitter', 'click', 'nav-buttons');
-                    });
-                    $('#redes3').on('click', function () {
-                        ga('send', 'event', 'btnyoutube', 'click', 'nav-buttons');
-                    });
-                    $('#redes4').on('click', function () {
-                        ga('send', 'event', 'btnflickrPUCV', 'click', 'nav-buttons');
+                        ga('send', 'event', 'btnddcyf', 'click', 'nav-buttons');
                     });
                 }
             }

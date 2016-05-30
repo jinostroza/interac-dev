@@ -89,7 +89,7 @@
                                   fileUploadListener="#{mantenedorContrato.subirContrato}" cancelLabel="Cancelar"
                                   widgetVar="myFileUpload"
                                   onstart="PF('myFileUpload').disableButton(PF('myFileUpload').chooseButton)"
-                                  required="true" auto="false" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                                  required="true" auto="false" allowTypes="/(\.|\/)(gif|jpe?g|png|pdf|doc?x)$/" sizeLimit="10000" />
                     <p:growl id="messages" showDetail="true"/>
                     <br></br>
                     <p:commandButton action="#{mantenedorContrato.agregarContrato(mantenedorContrato.contrato)}"

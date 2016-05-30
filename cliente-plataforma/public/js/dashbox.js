@@ -30,13 +30,13 @@ var DashBox = {
     var srcWatcher = function(button) {
 
         switch ($(button).attr("class")) {
-            case "escuela":
+            case "ingenieria":
                winEscuela=window.open("http://ingenieria.ucv.cl/conocenos/conocenos_unidadesacademicas.html","Escuela Ingenieria","width=1060,height=1900,resizable,toolbar,scrollbar,status")
                 break;
             case "historiabtn":
                 winHistoria=window.open("http://www.ihistoriapucv.cl/","Instituto Historia","width=1060,height=1900,resizable,toolbar,scrollbar,status")
                 break;
-            case "flickr":
+            case "flickrIngenieria":
                winFlickr=window.open("https://www.flickr.com/photos/facultadingenieriapucv/albums","Flickr Escuela","width=1060,height=1900,resizable,scrollbar,status")
                 break;
             case "flickrhistoria":
@@ -86,7 +86,7 @@ var DashBox = {
                 break;
             case "form":
                 winForm=window.open("http://www.pucv.cl/pucv/site/tax/port/fil_evento/taxport_28___1.html","Talleres","width=1060,height=1900,resizable,scrollbars,status")
-                setTimeout(function() {winForm.location.href = 'http://54.208.243.25:8080/interac/lista.jsf';}, 1000);
+               // setTimeout(function() {winForm.location.href = 'http://54.208.243.25:8080/interac/lista.jsf';}, 1000);
 
                 break;
         }
@@ -112,7 +112,7 @@ var DashBox = {
     this.start = function() {
         var self = this;
 
-        $("button.escuela").click(function() {
+        $("button.ingenieria").click(function() {
             srcWatcher.call(self, this);
 
         });
@@ -144,11 +144,11 @@ var DashBox = {
             srcWatcher.call(self, this);
 
         });
-            $("button.flickrhistoria").click(function() {
+        $("button.flickrhistoria").click(function() {
             srcWatcher.call(self, this);
 
         });
-        $("button.flickr").click(function() {
+        $("button.flickrIngenieria").click(function() {
             srcWatcher.call(self, this);
         });
         $("button.maker").click(function() {

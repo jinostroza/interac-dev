@@ -69,6 +69,7 @@ public class MantenedorContrato implements Serializable
     public String eliminar(Contrato contrato){
         logicaContrato.eliminar(contrato);
         FacesUtil.mostrarMensajeInformativo("Operación Exitosa", "Se ha eliminado el Contrato [" + contrato.getIdcontrato() + contrato.getIdcliente().getUsername() +  "]");
+        contratos = logicaContrato.obtenerTodos();
         return "del";
     }
 
