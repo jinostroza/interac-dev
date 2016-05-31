@@ -81,12 +81,12 @@ public class MantenedorCliente implements Serializable {
     // inicio y Logica de vista
 
     public void inicio(){
-        numeroCampanas = logicaCampestab.obtenerPorNumero(userSession.getUsuario().getUsername());
-        totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
-        campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
-        campestabs = logicaCampestab.obtenerPorEstado(userSession.getUsuario().getUsername());
-
-
+        if(userSession!=null) {
+            numeroCampanas = logicaCampestab.obtenerPorNumero(userSession.getUsuario().getUsername());
+            totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
+            campanaEnEspera = logicaCampana.obtenerPorEstado(userSession.getUsuario().getUsername());
+            campestabs = logicaCampestab.obtenerPorEstado(userSession.getUsuario().getUsername());
+        }
     }
 
     public String aprobar(Campestab ca){

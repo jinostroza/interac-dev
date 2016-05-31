@@ -56,28 +56,28 @@ public class LogicaCampana {
     }
 
 
-
-   @Transactional(readOnly = true)
-   public List<Campana> obtenerPorEstado(String user) {
+    @Transactional(readOnly = true)
+    public List<Campana> obtenerPorEstado(String user) {
         return campanaDAO.obtenerPorEstado(user);
     }
 
-   @Transactional(readOnly = true)
-   public List<Campana> obtenerPorFecha(Date fechavencida) {
+    @Transactional(readOnly = true)
+    public List<Campana> obtenerPorFecha(Date fechavencida) {
         return campanaDAO.obtenerPorFecha(fechavencida);
     }
 
-   @Transactional(readOnly = true)
-   public long obtenerPorNumero(String user){
+    @Transactional(readOnly = true)
+    public long obtenerPorNumero(String user) {
         return campanaDAO.obtenerNumeroNuevas(user);
     }
 
-   @Transactional(readOnly = true)
-   public long obtenerPorEstablecimiento(Integer establecimiento){
-       return campanaDAO.obtenerPorEstablecimeinto(establecimiento);
-   }
     @Transactional(readOnly = true)
-    public List<Campana> obtenerPorContenido(Integer iduser){
+    public long obtenerPorEstablecimiento(Integer establecimiento) {
+        return campanaDAO.obtenerPorEstablecimeinto(establecimiento);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Campana> obtenerPorContenido(Integer iduser) {
         return campanaDAO.obtenerPorContEstab(iduser);
     }
 }

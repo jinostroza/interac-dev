@@ -9,14 +9,11 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
     <security:http pattern="/templates/**" security="none"/>
     <security:http pattern="/resources/**" security="none"/>
     <security:http pattern="/javax.faces.resource/**" security="none"/>
-
     <security:http auto-config="false" entry-point-ref="authenticationEntryPoint"
                    use-expressions="true"
                    access-denied-page="/logIn.jsf" >
 
         <security:form-login login-page="/logIn.jsf" always-use-default-target="true" default-target-url="/lista.jsf"/>
-
-
 
         <security:session-management invalid-session-url="/logIn.jsf">
             <security:concurrency-control max-sessions="1"/>
@@ -30,9 +27,7 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
                          logout-success-url="/logIn.jsf"
                          logout-url="/logOut"/>
 
-
         <security:intercept-url pattern="logIn.jsf" access="permitAll"/>
-
         <security:intercept-url pattern="plataforma/campana/**" access="hasRole('ANUNCIANTE')"/>
         <security:intercept-url pattern="plataforma/mantencion/**" access="hasRole('ADMINISTRADOR')"/>
         <security:intercept-url pattern="plataforma/anunciante/**" access="hasRole('ANUNCIANTE')"/>

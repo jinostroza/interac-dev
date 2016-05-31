@@ -4,16 +4,13 @@
       xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
         start-state="reporte">
 
-
       <on-start>
             <evaluate expression="mantenedorAnalitica.inicio()"/>
       </on-start>
 
-
       <view-state id="reporte">
             <transition on="sub" to="finish" ></transition>
       </view-state>
-
 
       <end-state id="finish" view="/flows/campana/seleccionarTotem.xhtml" />
 

@@ -3,15 +3,14 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
       start-state="registraCampana">
-    <on-start>
+
+    <on-start >
         <evaluate expression="mantenedorCampana.inicio()"/>
     </on-start>
 
     <view-state id="miscampanas">
         <transition on="paga" to="campanaConfirmada"></transition>
     </view-state>
-
-
 
     <view-state id="registraCampana">
         <transition on="vercon" to="vercontenido"/>
@@ -22,22 +21,16 @@
         <transition on="reset" to="registraCampana"/>
     </view-state>
 
-
     <view-state id="subirContenido">
         <transition on="programar" to="campanapasos"></transition>
         <transition on="crear" to="subirContenido"/>
-
     </view-state>
-    <view-state id="misTotems">
 
-    </view-state>
+    <view-state id="misTotems"></view-state>
 
     <view-state id="seleccionarTotem">
-
         <transition on="regisCamp" to="registraCampana"/>
-        <transition on="end1" to="campanaConfirmada">
-
-        </transition>
+        <transition on="end1" to="campanaConfirmada"></transition>
         <transition on="filtrar" to="seleccionarTotem"></transition>
     </view-state>
 
@@ -46,6 +39,7 @@
         <transition on="programar" to="campanapasos"></transition>
         <transition on="return" to="vercontenido"></transition>
     </view-state>
+
     <view-state id="contenidoConfirmado">
         <transition on="fincontenido" to="registraCampana"></transition>
     </view-state>
@@ -56,11 +50,7 @@
 
     <view-state id="campanapasos">
         <transition on="subir" to="seleccionarTotem"></transition>
-
     </view-state>
-    <end-state id="inicioCliente">
 
-    </end-state>
-
-
+    <end-state id="inicioCliente"></end-state>
 </flow>

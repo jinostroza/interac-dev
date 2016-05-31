@@ -47,13 +47,6 @@ public class LogInManager implements AuthenticationProvider, Serializable {
         else
             return new UsernamePasswordAuthenticationToken(user, a.getCredentials(), getAcceso(usuario));
     }
-    // ta mal, debiera ser un obtener rol según usuario por eso tenias todos los roles.
-
-
-    // lo primero dijiste que este mtodo recibe un entity usuario y le ests mandando un string arriba
-    // easy, un error menos
-    // lo seguindo dices que quieres obtener el rol en base a un usuario y por lo visto no ahs hecho un mtodo
-    // que reciba un usuario y retorne una lista de roles
 
     private List<GrantedAuthority> getAcceso(Usuario usuario) {
 

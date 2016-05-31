@@ -156,30 +156,30 @@ public class MantenedorCampana implements Serializable {
     private LogicaComunas logicaComunas;
 
     public void inicio() {
-        if (userSession!=null) {
+        if(userSession != null) {
             contarCampanas = logicaCampestab.obtenerPorNumero(userSession.getUsuario().getUsername());
             contenidocampanas = logicaCampana.obtenerPorContenido(userSession.getUsuario().getIdUsuario());
+            campanasvencidas = logicaCampana.obtenerPorFecha(Date.from(Instant.now()));
             campestabList = logicaCampestab.obtenerAprobado(userSession.getUsuario().getUsername());
             campestabListAll = logicaCampestab.obtenerEstados(userSession.getUsuario().getUsername());
+            usuarios = logicaUsuario.obtenerTodos();
+            categoriaList = logicaCategoria.obtenerTodos();
+            establecimientoList = logicaEstablecimiento.obtenerTodos();
+            establecimientos = logicaEstablecimiento.obbtenerPorTotem();
+            filtrar = logicaEstablecimiento.obtenerFiltro(orienta, empresa, comuna, provincia, region, categoria);
+            ubicacionList = logicaUbicacion.obtenerTodas();
+            tipototemList = logicaTipototem.obtenerTodos();
+            totemsConrelacion = logicaTotem.obtenerConRelacion();
             totems = logicaTotem.obtenerPorUsuario(userSession.getUsuario().getUsername());
             campanas = logicaCampana.obtenerPorUsuario(userSession.getUsuario().getUsername());
             contenidos = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
             totemCampana = logicaTotem.obtenerDeCampana(userSession.getUsuario().getUsername());
+            usuarios = logicaUsuario.obtenerTodos();
+            empresaList = logicaEmpresa.obtenerTodos();
+            regionesList = logicaRegiones.obtenerTodas();
+            provinciasList = logicaProvincias.obtenerTodas();
+            comunasList = logicaComunas.obtenerTodas();
         }
-        usuarios = logicaUsuario.obtenerTodos();
-        categoriaList = logicaCategoria.obtenerTodos();
-        establecimientoList=logicaEstablecimiento.obtenerTodos();
-        establecimientos=logicaEstablecimiento.obbtenerPorTotem();
-        filtrar=logicaEstablecimiento.obtenerFiltro(orienta, empresa, comuna,provincia,region, categoria);
-        ubicacionList=logicaUbicacion.obtenerTodas();
-        tipototemList=logicaTipototem.obtenerTodos();
-        totemsConrelacion = logicaTotem.obtenerConRelacion();
-        campanasvencidas = logicaCampana.obtenerPorFecha(Date.from(Instant.now()));
-        usuarios = logicaUsuario.obtenerTodos();
-        empresaList = logicaEmpresa.obtenerTodos();
-        regionesList = logicaRegiones.obtenerTodas();
-        provinciasList = logicaProvincias.obtenerTodas();
-        comunasList = logicaComunas.obtenerTodas();
     }
 
     public void subir(FileUploadEvent fue) {
