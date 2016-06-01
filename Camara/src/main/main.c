@@ -401,15 +401,16 @@ int main(void)
                         /* Age */
                         if(-128 == poutHVCResult->fdResult.fcResult[i].ageResult.age){
                             sprintf_s(&pStr[strlen(pStr)], LOGBUFFERSIZE-strlen(pStr), "\n      Age\t\tEstimation not possible");
-                        } else {
+                        } else if(poutHVCResult->fdResult.fcResult[i].ageResult.confidence>0) {
 							
                             sprintf_s(&pStr[strlen(pStr)], LOGBUFFERSIZE-strlen(pStr), "\n      Age\t\tAge:%d Confidence:%d",
 								 poutHVCResult->fdResult.fcResult[i].ageResult.age, poutHVCResult->fdResult.fcResult[i].ageResult.confidence);
-							
-							if(poutHVCResult->fdResult.fcResult[i].ageResult.confidence>=600){ //precision edad 
+						}
+							else if(poutHVCResult->fdResult.fcResult[i].ageResult.confidence>=600){ //precision edad 
 							sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%d \t",
 								 poutHVCResult->fdResult.fcResult[i].ageResult.age);
-							}else  {
+							}
+							else  {
 							void free(void *pLog);
 							}
 						

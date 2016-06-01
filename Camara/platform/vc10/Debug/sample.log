@@ -1,4 +1,4 @@
-﻿Compilación iniciada a las 01/06/2016 14:42:18.
+﻿Compilación iniciada a las 01/06/2016 14:52:44.
      1>Proyecto "C:\Interac\interac-dev2\Camara\platform\vc10\sample.vcxproj" en el nodo 2 (rebuild destinos).
      1>_PrepareForClean:
          Se eliminará el archivo ".\Debug\sample.lastbuildstate".
@@ -16,33 +16,34 @@
      1>c:\interac\interac-dev2\camara\src\main\main.c(99): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\time.inl(112) : vea la declaración de 'localtime'
      1>c:\interac\interac-dev2\camara\src\main\main.c(370): warning C4565: 'free' : redefinición; el símbolo se declaró previamente con __declspec(noalias)
-     1>c:\interac\interac-dev2\camara\src\main\main.c(413): warning C4565: 'free' : redefinición; el símbolo se declaró previamente con __declspec(noalias)
-     1>c:\interac\interac-dev2\camara\src\main\main.c(440): warning C4565: 'free' : redefinición; el símbolo se declaró previamente con __declspec(noalias)
-     1>c:\interac\interac-dev2\camara\src\main\main.c(487): warning C4565: 'free' : redefinición; el símbolo se declaró previamente con __declspec(noalias)
-     1>c:\interac\interac-dev2\camara\src\main\main.c(512): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\interac\interac-dev2\camara\src\main\main.c(414): warning C4565: 'free' : redefinición; el símbolo se declaró previamente con __declspec(noalias)
+     1>c:\interac\interac-dev2\camara\src\main\main.c(441): warning C4565: 'free' : redefinición; el símbolo se declaró previamente con __declspec(noalias)
+     1>c:\interac\interac-dev2\camara\src\main\main.c(488): warning C4565: 'free' : redefinición; el símbolo se declaró previamente con __declspec(noalias)
+     1>c:\interac\interac-dev2\camara\src\main\main.c(513): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : vea la declaración de 'fopen'
-     1>c:\interac\interac-dev2\camara\src\main\main.c(518): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\interac\interac-dev2\camara\src\main\main.c(519): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\time.inl(112) : vea la declaración de 'localtime'
-     1>c:\interac\interac-dev2\camara\src\main\main.c(537): warning C4127: la expresión condicional es constante
-     1>c:\interac\interac-dev2\camara\src\main\main.c(129): warning C4101: 'logname' : variable local sin referencia
-     1>c:\interac\interac-dev2\camara\src\main\main.c(127): warning C4101: 'now' : variable local sin referencia
+     1>c:\interac\interac-dev2\camara\src\main\main.c(532): error C2059: error de sintaxis : 'if'
+     1>c:\interac\interac-dev2\camara\src\main\main.c(537): error C2059: error de sintaxis : '}'
+     1>c:\interac\interac-dev2\camara\src\main\main.c(538): error C2059: error de sintaxis : 'while'
+     1>c:\interac\interac-dev2\camara\src\main\main.c(542): warning C4131: 'PrintLog' : utiliza el declarador de estilo anterior
+     1>c:\interac\interac-dev2\camara\src\main\main.c(542): warning C4431: falta el especificador de tipo - se presupone int. Nota: C no admite default-int
+     1>c:\interac\interac-dev2\camara\src\main\main.c(542): error C2371: 'PrintLog' : nueva definición; tipos básicos distintos
+                 c:\interac\interac-dev2\camara\src\main\main.c(82) : vea la declaración de 'PrintLog'
+     1>c:\interac\interac-dev2\camara\src\main\main.c(542): warning C4218: se ha utilizado una extensión no estándar : se debe especificar al menos una clase de almacenamiento o un tipo
+     1>c:\interac\interac-dev2\camara\src\main\main.c(547): error C2059: error de sintaxis : 'if'
+     1>c:\interac\interac-dev2\camara\src\main\main.c(551): warning C4431: falta el especificador de tipo - se presupone int. Nota: C no admite default-int
+     1>c:\interac\interac-dev2\camara\src\main\main.c(551): error C2371: 'com_close' : nueva definición; tipos básicos distintos
+                 c:\interac\interac-dev2\camara\src\uart\uart.h(24) : vea la declaración de 'com_close'
+     1>c:\interac\interac-dev2\camara\src\main\main.c(551): warning C4218: se ha utilizado una extensión no estándar : se debe especificar al menos una clase de almacenamiento o un tipo
+     1>c:\interac\interac-dev2\camara\src\main\main.c(554): error C2059: error de sintaxis : 'if'
+     1>c:\interac\interac-dev2\camara\src\main\main.c(561): error C2059: error de sintaxis : 'return'
+     1>c:\interac\interac-dev2\camara\src\main\main.c(562): error C2059: error de sintaxis : '}'
          HVCApi.c
          Generando código...
      1>cl : Línea de comandos warning D9028: error de regeneración mínimo, revirtiendo a la compilación normal
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"../../bin/vc10/Debug/sample.exe" /INCREMENTAL:NO /NOLOGO /MANIFEST /ManifestFile:".\Debug\sample.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Interac\interac-dev2\Camara\bin\vc10\Debug\sample.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"../../bin/vc10/Debug/sample.lib" /MACHINE:X86 .\Debug\bitmap.obj
-         .\Debug\HVCApi.obj
-         .\Debug\main.obj
-         .\Debug\uart.obj
-     1>bitmap.obj : warning LNK4075: se omite '/EDITANDCONTINUE' debido a la especificación '/INCREMENTAL:NO'
-         sample.vcxproj -> C:\Interac\interac-dev2\Camara\platform\vc10\../../bin/vc10/Debug/sample.exe
-       Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"../../bin/vc10/Debug/sample.exe;#1" /manifest .\Debug\sample.exe.intermediate.manifest
-       FinalizeBuildStatus:
-         Se eliminará el archivo ".\Debug\sample.unsuccessfulbuild".
-         Aplicando tarea Touch a ".\Debug\sample.lastbuildstate".
-     1>Compilación del proyecto terminada "C:\Interac\interac-dev2\Camara\platform\vc10\sample.vcxproj" (rebuild destinos).
+     1>Compilación del proyecto terminada "C:\Interac\interac-dev2\Camara\platform\vc10\sample.vcxproj" (rebuild destinos) -- ERROR.
 
-Compilación correcta.
+ERROR al compilar.
 
-Tiempo transcurrido 00:00:03.83
+Tiempo transcurrido 00:00:02.29
