@@ -94,7 +94,6 @@ char *timestring ( )
   size_t len;
   time_t now;
   char *s;
-
   now = time ( NULL );
   tm = localtime ( &now );
 
@@ -136,6 +135,8 @@ int main(void)
     int revision;
     char *pStr;                     /* String Buffer for logging output */
 	char *pLog = (char*)malloc(LOGBUFFERSIZECam);
+	int edad;
+    int genero;
 
     S_STAT serial_stat;             /* Serial port set value*/
 
@@ -404,6 +405,7 @@ int main(void)
                         } else {
                             sprintf_s(&pStr[strlen(pStr)], LOGBUFFERSIZE-strlen(pStr), "\n      Age\t\tAge:%d Confidence:%d",
 								 poutHVCResult->fdResult.fcResult[i].ageResult.age, poutHVCResult->fdResult.fcResult[i].ageResult.confidence);
+							edad = poutHVCResult->fdResult.fcResult[i].ageResult.confidence;
 							sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%d \t",
 								 poutHVCResult->fdResult.fcResult[i].ageResult.age);
 						
@@ -419,6 +421,7 @@ int main(void)
                             if(1 == poutHVCResult->fdResult.fcResult[i].genderResult.gender){
                                 sprintf_s(&pStr[strlen(pStr)], LOGBUFFERSIZE-strlen(pStr), "\n      Gender\t\tGender:%s Confidence:%d",
                                             "Male", poutHVCResult->fdResult.fcResult[i].genderResult.confidence);
+								genero = poutHVCResult->fdResult.fcResult[i].genderResult.confidence;
 								sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%s \t",
                                             "Hombre");
 								
@@ -426,6 +429,7 @@ int main(void)
                             else{
                                 sprintf_s(&pStr[strlen(pStr)], LOGBUFFERSIZE-strlen(pStr), "\n      Gender\t\tGender:%s Confidence:%d",
                                             "Female", poutHVCResult->fdResult.fcResult[i].genderResult.confidence);
+								genero = poutHVCResult->fdResult.fcResult[i].genderResult.confidence;
 								sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%s \t",
                                             "Mujer");
 								                           
@@ -496,7 +500,8 @@ int main(void)
 				pFile = fopen ("log.txt","a");
 				if (pFile!=NULL)
 				 {
-					if(poutHVCResult->fdResult.num >= 1 || poutHVCResult->bdResult.num >= 1){
+					 if(poutHVCResult->fdResult.num >= 1 && edad>500 && genero>500 ){
+						
 					 char buff[100];
 					 time_t now = time (0);
 					 strftime (buff, 100, "%Y-%m-%d %H:%M:%S \t", localtime (&now));
@@ -504,9 +509,17 @@ int main(void)
 					 fputs ( buff,pFile);
 
 					 fputs (pLog ,pFile);
-					}					
 						
-								 
+					}else if(poutHVCResult->bdResult.num >= 1 && poutHVCResult->fdResult.num == 0 )					
+					{
+						 char buff[100];
+					 time_t now = time (0);
+					 strftime (buff, 100, "%Y-%m-%d %H:%M:%S \t", localtime (&now));
+					
+					 fputs ( buff,pFile);
+
+					 fputs (pLog ,pFile);
+					}								 
 				 }
 				fclose (pFile);
 

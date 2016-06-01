@@ -1,5 +1,5 @@
-﻿Compilación iniciada a las 07/01/2016 15:18:40.
-     1>Proyecto "E:\HVC-P_Omron (1)\HVC-P Omron\HVC-P_SampleCode_v1.0.0\HVC-P_SampleCode_v1.0.0\platform\vc10\sample.vcxproj" en el nodo 2 (rebuild destinos).
+﻿Compilación iniciada a las 01/06/2016 17:21:00.
+     1>Proyecto "C:\Interac\interac-dev2\Camara\platform\vc10\sample.vcxproj" en el nodo 2 (rebuild destinos).
      1>_PrepareForClean:
          Se eliminará el archivo ".\Debug\sample.lastbuildstate".
        InitializeBuildStatus:
@@ -7,37 +7,40 @@
        ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\src\uart /I..\..\src\HVCApi /ZI /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _VC80_UPGRADE=0x0600 /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /Gy- /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug\\" /Fd".\Debug\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt ..\..\src\bmp\bitmap.c ..\..\src\uart\uart.c
          uart.c
-     1>e:\hvc-p_omron (1)\hvc-p omron\hvc-p_samplecode_v1.0.0\hvc-p_samplecode_v1.0.0\src\uart\uart.c(120): warning C4127: la expresión condicional es constante
+     1>c:\interac\interac-dev2\camara\src\uart\uart.c(120): warning C4127: la expresión condicional es constante
          bitmap.c
          Generando código...
+     1>cl : Línea de comandos warning D9028: error de regeneración mínimo, revirtiendo a la compilación normal
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\src\uart /I..\..\src\HVCApi /ZI /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _VC80_UPGRADE=0x0600 /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /Gy- /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug\\" /Fd".\Debug\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt ..\..\src\HVCApi\HVCApi.c ..\..\src\main\main.c
          main.c
-     1>e:\hvc-p_omron (1)\hvc-p omron\hvc-p_samplecode_v1.0.0\hvc-p_samplecode_v1.0.0\src\main\main.c(99): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\interac\interac-dev2\camara\src\main\main.c(98): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\time.inl(112) : vea la declaración de 'localtime'
-     1>e:\hvc-p_omron (1)\hvc-p omron\hvc-p_samplecode_v1.0.0\hvc-p_samplecode_v1.0.0\src\main\main.c(370): warning C4565: 'free' : redefinición; el símbolo se declaró previamente con __declspec(noalias)
-     1>e:\hvc-p_omron (1)\hvc-p omron\hvc-p_samplecode_v1.0.0\hvc-p_samplecode_v1.0.0\src\main\main.c(496): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\interac\interac-dev2\camara\src\main\main.c(371): warning C4565: 'free' : redefinición; el símbolo se declaró previamente con __declspec(noalias)
+     1>c:\interac\interac-dev2\camara\src\main\main.c(500): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : vea la declaración de 'fopen'
-     1>e:\hvc-p_omron (1)\hvc-p omron\hvc-p_samplecode_v1.0.0\hvc-p_samplecode_v1.0.0\src\main\main.c(502): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\interac\interac-dev2\camara\src\main\main.c(507): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\time.inl(112) : vea la declaración de 'localtime'
-     1>e:\hvc-p_omron (1)\hvc-p omron\hvc-p_samplecode_v1.0.0\hvc-p_samplecode_v1.0.0\src\main\main.c(521): warning C4127: la expresión condicional es constante
-     1>e:\hvc-p_omron (1)\hvc-p omron\hvc-p_samplecode_v1.0.0\hvc-p_samplecode_v1.0.0\src\main\main.c(129): warning C4101: 'logname' : variable local sin referencia
-     1>e:\hvc-p_omron (1)\hvc-p omron\hvc-p_samplecode_v1.0.0\hvc-p_samplecode_v1.0.0\src\main\main.c(127): warning C4101: 'now' : variable local sin referencia
+     1>c:\interac\interac-dev2\camara\src\main\main.c(517): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\time.inl(112) : vea la declaración de 'localtime'
+     1>c:\interac\interac-dev2\camara\src\main\main.c(534): warning C4127: la expresión condicional es constante
+     1>c:\interac\interac-dev2\camara\src\main\main.c(128): warning C4101: 'logname' : variable local sin referencia
+     1>c:\interac\interac-dev2\camara\src\main\main.c(126): warning C4101: 'now' : variable local sin referencia
          HVCApi.c
          Generando código...
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"../../bin/vc10/Debug/sample.exe" /INCREMENTAL:NO /NOLOGO /MANIFEST /ManifestFile:".\Debug\sample.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\HVC-P_Omron (1)\HVC-P Omron\HVC-P_SampleCode_v1.0.0\HVC-P_SampleCode_v1.0.0\bin\vc10\Debug\sample.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"../../bin/vc10/Debug/sample.lib" /MACHINE:X86 .\Debug\bitmap.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"../../bin/vc10/Debug/sample.exe" /INCREMENTAL:NO /NOLOGO /MANIFEST /ManifestFile:".\Debug\sample.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Interac\interac-dev2\Camara\bin\vc10\Debug\sample.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"../../bin/vc10/Debug/sample.lib" /MACHINE:X86 .\Debug\bitmap.obj
          .\Debug\HVCApi.obj
          .\Debug\main.obj
          .\Debug\uart.obj
      1>bitmap.obj : warning LNK4075: se omite '/EDITANDCONTINUE' debido a la especificación '/INCREMENTAL:NO'
-         sample.vcxproj -> E:\HVC-P_Omron (1)\HVC-P Omron\HVC-P_SampleCode_v1.0.0\HVC-P_SampleCode_v1.0.0\platform\vc10\../../bin/vc10/Debug/sample.exe
+         sample.vcxproj -> C:\Interac\interac-dev2\Camara\platform\vc10\../../bin/vc10/Debug/sample.exe
        Manifest:
          C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"../../bin/vc10/Debug/sample.exe;#1" /manifest .\Debug\sample.exe.intermediate.manifest
        FinalizeBuildStatus:
          Se eliminará el archivo ".\Debug\sample.unsuccessfulbuild".
          Aplicando tarea Touch a ".\Debug\sample.lastbuildstate".
-     1>Compilación del proyecto terminada "E:\HVC-P_Omron (1)\HVC-P Omron\HVC-P_SampleCode_v1.0.0\HVC-P_SampleCode_v1.0.0\platform\vc10\sample.vcxproj" (rebuild destinos).
+     1>Compilación del proyecto terminada "C:\Interac\interac-dev2\Camara\platform\vc10\sample.vcxproj" (rebuild destinos).
 
 Compilación correcta.
 
-Tiempo transcurrido 00:00:03.17
+Tiempo transcurrido 00:00:03.69
