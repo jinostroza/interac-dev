@@ -1,12 +1,16 @@
+<<<<<<< HEAD
 ../../bin/vc10/Debug/sample.pdb
 C:\INTERAC\INTERAC-DEV2\CAMARA\BIN\VC10\DEBUG\SAMPLE.EXE
 C:\INTERAC\INTERAC-DEV2\CAMARA\BIN\VC10\DEBUG\SAMPLE.PDB
 C:\Interac\interac-dev2\Camara\platform\vc10\../../bin/vc10/Debug/sample.exe
+=======
+>>>>>>> 673483d619ce36f99552f87a0193a8ce58447fd3
 C:\INTERAC\INTERAC-DEV2\CAMARA\PLATFORM\VC10\DEBUG\BITMAP.OBJ
 C:\Interac\interac-dev2\Camara\platform\vc10\Debug\cl.command.1.tlog
 C:\Interac\interac-dev2\Camara\platform\vc10\Debug\CL.read.1.tlog
 C:\Interac\interac-dev2\Camara\platform\vc10\Debug\CL.write.1.tlog
 C:\INTERAC\INTERAC-DEV2\CAMARA\PLATFORM\VC10\DEBUG\HVCAPI.OBJ
+<<<<<<< HEAD
 C:\Interac\interac-dev2\Camara\platform\vc10\Debug\link.command.1.tlog
 C:\Interac\interac-dev2\Camara\platform\vc10\Debug\link.read.1.tlog
 C:\Interac\interac-dev2\Camara\platform\vc10\Debug\link.write.1.tlog
@@ -15,6 +19,8 @@ C:\Interac\interac-dev2\Camara\platform\vc10\Debug\mt.command.1.tlog
 C:\Interac\interac-dev2\Camara\platform\vc10\Debug\mt.read.1.tlog
 C:\Interac\interac-dev2\Camara\platform\vc10\Debug\mt.write.1.tlog
 C:\INTERAC\INTERAC-DEV2\CAMARA\PLATFORM\VC10\DEBUG\SAMPLE.EXE.INTERMEDIATE.MANIFEST
+=======
+>>>>>>> 673483d619ce36f99552f87a0193a8ce58447fd3
 C:\Interac\interac-dev2\Camara\platform\vc10\Debug\sample.write.1.tlog
 C:\INTERAC\INTERAC-DEV2\CAMARA\PLATFORM\VC10\DEBUG\UART.OBJ
 C:\Interac\interac-dev2\Camara\platform\vc10\Debug\vc100.idb
