@@ -776,7 +776,7 @@ div.login-logo{
 .editando-plantilla{
 	width: 760px;
 	height:427px;
-	background-image: url('css/img/buttons/promo-del-dia1-22.png');
+	background-image: url('css/img/buttons/imagen-campania-21.png');
 	margin:auto;
 }
 
@@ -785,4 +785,43 @@ div.login-logo{
 	background-size: cover;
 	background-repeat:no-repeat;
 	background-position: center center;
+}
+
+.logocab1{
+
+	background-image: url('css/img/logopucvgrandeblanco.png');
+}
+.logocab2{
+
+	background-image: url('css/img/logo_pucv.png');
+}
+.logocab3{
+
+	background-image: url('css/img/interacblanco.png');
+}
+
+.bgplantilla1{
+	background-image: url('css/img/1.png');
+	background-color: transparent;
+
+}
+.bgplantilla2{
+	background-image: url('css/img/2.png');
+	background-color: transparent;
+
+}
+.bgplantilla3{
+	background-image: url('css/img/3.png');
+	background-color: transparent;
+
+}
+.bgplantilla4{
+	background-image: url('css/img/4.png');
+	background-color: transparent;
+
+}
+.bgplantilla5{
+	background-image: url('css/img/5.png');
+	background-color: transparent;
+
 }

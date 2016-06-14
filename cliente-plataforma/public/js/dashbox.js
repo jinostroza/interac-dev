@@ -27,6 +27,11 @@ var DashBox = {
     var winRed2;
     var winRed3;
     var winRed4;
+    var winUsach;
+    var w  = 1060;
+    var h = 1400;
+    var left = (screen.width/2)-(w/2);
+    var top = (screen.height/2)-(h/2);
     var srcWatcher = function(button) {
 
         switch ($(button).attr("class")) {
@@ -73,7 +78,7 @@ var DashBox = {
                 winVice=window.open("http://www.pucv.cl","Pucv","width=1060,height=1900,resizable,scrollbars,status")
                 break;
             case "red1":
-                winRed1=window.open("https://www.facebook.com/catolicadevalparaiso","Pucv","width=1060,height=1900,resizable,scrollbars,status")
+                winRed1=window.open("https://www.facebook.com/catolicadevalparaiso","Pucv","'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no, copyhistory=no, width=1060, height=1390,top=115")
                 break;
              case "red2":
                 winRed2=window.open("https://twitter.com/comunidadpucv","Pucv","width=1060,height=1900,resizable,scrollbars,status")
@@ -87,7 +92,9 @@ var DashBox = {
             case "form":
                 winForm=window.open("http://www.pucv.cl/pucv/site/tax/port/fil_evento/taxport_28___1.html","Talleres","width=1060,height=1900,resizable,scrollbars,status")
                // setTimeout(function() {winForm.location.href = 'http://54.208.243.25:8080/interac/lista.jsf';}, 1000);
-
+                break;
+            case "uds":
+                winUsach=window.open("http://www.usach.cl","Usach","width=1060,height=1900,resizable,scrollbars,status")
                 break;
         }
 
@@ -105,6 +112,7 @@ var DashBox = {
         setTimeout(function () { winBib.close();}, 60000);
         setTimeout(function () { winDdcyf.close();}, 60000);
         setTimeout(function () { winVice.close();}, 60000);
+        setTimeout(function () { winUsach.close();}, 60000);
         setTimeout(function () { winForm.close();}, 300000);
 
     };
@@ -125,6 +133,10 @@ var DashBox = {
 
         });
         $("div.vice").click(function() {
+            srcWatcher.call(self, this);
+
+        });
+        $("div.uds").click(function() {
             srcWatcher.call(self, this);
 
         });
@@ -166,7 +178,7 @@ var DashBox = {
         $("button.form").click(function() {
             srcWatcher.call(self, this);
         });
-        $("button.estudiantes").click(function() {
+        /*$("button.estudiantes").click(function() {
             srcWatcher.call(self, this);
         });
         $("button.academicos").click(function() {
@@ -177,7 +189,7 @@ var DashBox = {
         });
         $("button.internacional").click(function() {
             srcWatcher.call(self, this);
-        });
+        });*/
     };
 
     this.hide = function() {

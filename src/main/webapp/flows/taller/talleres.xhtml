@@ -60,18 +60,14 @@
                     <br></br>
                     <label>Fecha</label>
                     <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
-                    <p:calendar id="inicio" locale="es" pattern="dd/MM/yyyy"
-                                value="#{mantenedorTaller.taller.fecha}" mindate="c1.today()"
+                    <p:calendar id="inicio"  pattern="MM/dd/yyyy HH:mm:ss"
+                                value="#{mantenedorTaller.fecha}" mindate="c1.today()"
                                 widgetVar="c1" requiredMessage="Debe indicar fecha del Evento" style="width: 150px">
 
                     </p:calendar>
                     <p:tooltip id="toolinicio" for="inicio" value="Selecciona Fecha del evento" trackMouse="true"/>
                     <br></br>
-                    <label>Hora</label>
-                    <p:inputText id="hora" label="hora" value="#{mantenedorTaller.taller.hora}"
-                                 styleClass="form-control" />
-                    <p:watermark for="anun" value="Ingresehora del Evento" id="watermark2"/>
-                    <p:tooltip id="toolTipTrack2" for="hora" value="Ingrese hora del Evento" trackMouse="true"/>
+
 
                     <br></br>
                     <label>Formulario Inscripcion</label>
@@ -147,8 +143,7 @@
 
                             <br></br>
                             <label>Hora</label>
-                            <p:inputText  label="hora" value="#{cont.hora}"
-                                          styleClass="form-control" />
+
 
 
                             <br></br>

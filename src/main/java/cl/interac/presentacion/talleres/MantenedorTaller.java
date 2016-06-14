@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,6 +23,7 @@ public class MantenedorTaller implements Serializable {
 
     private List<Taller> tallerList;
     private Taller taller;
+    private Date Fecha;
     @Autowired
     private UserSession userSession;
 
@@ -76,5 +78,13 @@ public class MantenedorTaller implements Serializable {
 
     public void setTallerList(List<Taller> tallerList) {
         this.tallerList = tallerList;
+    }
+
+    public Date getFecha() {
+        return Fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        Fecha = fecha;
     }
 }

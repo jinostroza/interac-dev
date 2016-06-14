@@ -66,6 +66,14 @@
                 cursor: move;
 
             }
+            #work{
+                height: 1000px;
+                width: 600px;
+                border: solid #000000;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover
+            }
             .btn-mas{
                 border : solid 0px #ffffff;
                 border-radius : 3px;
@@ -156,16 +164,16 @@
 
                     switch (selection) {
                         case "1" :
-                            document.getElementById('logo1').style.backgroundImage = "none" ;
+                            document.getElementById('logo1').className = "logo1" ;
                             break;
                         case "2" :
-                            document.getElementById('logo1').style.backgroundImage = "url('../../resources/css/img/logopucvgrandeblanco.png')" ;
+                            document.getElementById('logo1').className = "logocab1" ;
                             break;
                         case "3" :
-                            document.getElementById('logo1').style.backgroundImage = "url('../../resources/css/img/logo_pucv.png')" ;
+                            document.getElementById('logo1').className = "logocab2" ;
                             break;
                         case "4" :
-                            document.getElementById('logo1').style.backgroundImage= "url('../../resources/css/img/interacblanco.png')" ;
+                            document.getElementById('logo1').className = "logocab3" ;
                             break;
                         default:
                     }
@@ -179,19 +187,19 @@
                             document.getElementById('work').style.backgroundImage = "none" ;
                             break;
                         case "2" :
-                            document.getElementById('work').style.backgroundImage = "url('../../resources/css/img/1.png')" ;
+                            document.getElementById('work').className = "col-lg-6 bgplantilla1" ;
                             break;
                         case "3" :
-                            document.getElementById('work').style.backgroundImage = "url('../../resources/css/img/2.png')" ;
+                            document.getElementById('work').className = "col-lg-6 bgplantilla2" ;
                             break;
                         case "4" :
-                            document.getElementById('work').style.backgroundImage= "url('../../resources/css/img/3.png')" ;
+                            document.getElementById('work').className = "col-lg-6 bgplantilla3" ;
                             break;
                         case "5" :
-                            document.getElementById('work').style.backgroundImage= "url('../../resources/css/img/4.png')" ;
+                            document.getElementById('work').className = "col-lg-6 bgplantilla4" ;
                             break;
                         case "6" :
-                            document.getElementById('work').style.backgroundImage= "url('../../resources/css/img/5.png')" ;
+                            document.getElementById('work').className = "col-lg-6 bgplantilla5" ;
                             break;
                         default:
                     }
@@ -202,16 +210,16 @@
 
                     switch (selection) {
                         case "1" :
-                            document.getElementById('logo2').style.backgroundImage = "none" ;
+                            document.getElementById('logo2').className = "logo2" ;
                             break;
                         case "2" :
-                            document.getElementById('logo2').style.backgroundImage = "url('../../resources/css/img/logopucvgrandeblanco.png')" ;
+                            document.getElementById('logo2').className = "logocab1" ;
                             break;
                         case "3" :
-                            document.getElementById('logo2').style.backgroundImage = "url('../../resources/css/img/logo_pucv.png')" ;
+                            document.getElementById('logo2').className = "logocab2" ;
                             break;
                         case "4" :
-                            document.getElementById('logo2').style.backgroundImage= "url('../../resources/css/img/interacblanco.png')" ;
+                            document.getElementById('logo2').className = "logocab3" ;
                             break;
                         default:
                     }
@@ -268,12 +276,12 @@
             });
         </script>
         <script>
-           function update(jscolor) {
-               // 'jscolor' instance can be used as a string
+            function update(jscolor) {
+                // 'jscolor' instance can be used as a string
 
-               document.getElementById('text1').style.color = '#' + jscolor
-               document.getElementById('text2').style.color = '#' + jscolor
-           }
+                document.getElementById('text1').style.color = '#' + jscolor
+                document.getElementById('text2').style.color = '#' + jscolor
+            }
         </script>
 
 
@@ -283,7 +291,7 @@
                 <div style="margin-left: 4%">
                     <h3>Editar Texto</h3>
                     Color : <input type="button" class="jscolor {onFineChange:'update(this)'} btn" value="click"/>
-                    <h5>Tamaño Titulo</h5>
+                    <h5>TamaÃ±o Titulo</h5>
                     <input id="btnmas" type="button" class="btn-mas" value="+"/>
                     <input id="btnmenos" type="button" class="btn-menos" value="-"/>
                     <h5>Fuente Titulo</h5>
@@ -293,7 +301,7 @@
                         <option value="3">Impact</option>
                         <option value="4">Lucida Sans</option>
                     </select>
-                    <h5>Tamaño Texto</h5>
+                    <h5>TamaÃ±o Texto</h5>
                     <input id="btnmsD" type="button" class="btn-mas" value="+"/>
                     <input id="btnmnD" type="button" class="btn-menos" value="-"/>
                     <h5>Fuente Texto</h5>
@@ -307,24 +315,24 @@
                 </div>
                 <div style="margin-left: 4%">
                     <h3>Editar Fondo</h3>
-                Color: <input type="button" class="jscolor {valueElement:null, styleElement:'work'} btn" value="click"/>
+                    Color: <input type="button" class="jscolor {valueElement:null, styleElement:'work'} btn" value="click"/>
                     <h5>Imagen de Fondo</h5>
                     <select id="selectorbg" class="btn-menos">
+                        <option value="1">Sin Fondo</option>
+                        <option value="2">Fondo 1</option>
+                        <option value="3">Fondo 2</option>
+                        <option value="4">Fondo 3</option>
+                        <option value="5">Fondo 4</option>
+                        <option value="6">Fondo 5</option>
+                    </select>
+                    <h4>Agregar Logo</h4>
+                    <h5>Logo cabecera</h5>
+                    <select id="selector" class="btn-menos">
                         <option value="1">Sin logo</option>
                         <option value="2">Pucv Blanco</option>
                         <option value="3">Pucv Color</option>
                         <option value="4">Interac Blanco</option>
-                        <option value="5">Interac Blanco</option>
-                        <option value="6">Interac Blanco</option>
                     </select>
-                    <h4>Agregar Logo</h4>
-                <h5>Logo cabecera</h5>
-                <select id="selector" class="btn-menos">
-                    <option value="1">Sin logo</option>
-                    <option value="2">Pucv Blanco</option>
-                    <option value="3">Pucv Color</option>
-                    <option value="4">Interac Blanco</option>
-                </select>
                     <h5>Logo pie</h5>
                     <select id="selector2" class="btn-menos">
                         <option value="1">Sin logo</option>
@@ -333,11 +341,11 @@
                         <option value="4">Interac Blanco</option>
                     </select>
 
-                <input id="btn" type="button" value="Previsualizar" class="btn-menos" style="margin: 2%" />
-                <a id="btncc" class="btn-mas" href="#" style="margin: 2%">Descargar</a>
+                    <input id="btn" type="button" value="Previsualizar" class="btn-menos" style="margin: 2%" />
+                    <a id="btncc" class="btn-mas" href="#" style="margin: 2%">Descargar</a>
                 </div>
             </form>
-            <div id="work" style="height: 1000px;width: 600px;border: solid #000000;background-image: none;background-position: center;background-repeat: no-repeat; background-size: cover" class="col-lg-6 ">
+            <div id="work"  class="col-lg-6 work">
                 <div id="logo1" class="logo1"/>
                 <h3 contenteditable="true" align="center" id="text1" style="width: 80%" >Titulo</h3>
 

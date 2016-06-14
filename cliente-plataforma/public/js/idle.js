@@ -1,7 +1,7 @@
 /**
  * Created by Joaco on 23/09/2015.
  */
-var IDLE_TIMEOUT = 60; //seconds
+var IDLE_TIMEOUT = 10; //seconds
 var _idleSecondsCounter = 0;
 document.onclick = function() {
     _idleSecondsCounter = 0;
@@ -16,21 +16,24 @@ var win=window.setInterval(CheckIdleTime, 1000);
 
 function CheckIdleTime() {
     _idleSecondsCounter++;
-    var oPanel = document.getElementById("SecondsUntilExpire");
+    var oPanel = document.getElementById("ifr1");
     if (oPanel)
         oPanel.innerHTML = (IDLE_TIMEOUT - _idleSecondsCounter) + "";
 
     if (_idleSecondsCounter >= IDLE_TIMEOUT) {
-        if(window.top.location.href=="http://localhost:3000"){
+        if($('#conten').css('display') == 'block'){
             _idleSecondsCounter=0;
-            IDLE_TIMEOUT=180;
+            IDLE_TIMEOUT=10;
+            alert($('#conten').css('display'));
+
         }
         else {
             _idleSecondsCounter = 0;
-            IDLE_TIMEOUT = 180;
-            newWindow.targe
-            window.open("http://localhost:3000", "_blank");
+            IDLE_TIMEOUT = 10;
+            alert($('#conten').css('display'));
+            document.getElementById("conten").style.display = "block";
+            document.getElementById("ifr1").style.display = "none";
             window.clearInterval(win);
-            window.top.close();
+
         } }
 }
