@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -38,7 +40,8 @@ public class MantenedorTaller implements Serializable {
     }
     public String agregar(){
         taller.setUsuario(userSession.getUsuario());
-
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        taller.setHora(sdf.format(getFecha()));
         logicaTaller.guardar(taller);
 
         tallerList=logicaTaller.obtenerTodos(userSession.getUsuario().getIdUsuario());
@@ -47,6 +50,8 @@ public class MantenedorTaller implements Serializable {
     }
     public String editar(Taller t){
         taller=t;
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        taller.setHora(sdf.format(getFecha()));
         logicaTaller.guardar(taller);
         tallerList=logicaTaller.obtenerTodos(userSession.getUsuario().getIdUsuario());
         FacesUtil.mostrarMensajeInformativo("Exito","Se ha modificado elemento :  "+taller.getNombre());
@@ -59,6 +64,16 @@ public class MantenedorTaller implements Serializable {
         tallerList=logicaTaller.obtenerTodos(userSession.getUsuario().getIdUsuario());
         FacesUtil.mostrarMensajeError("Exito", "Se ha eliminado elemento :  " + taller.getNombre());
         return "next" ;
+    }
+    public Date parseHora(String h){
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        try {
+            Fecha = sdf.parse(h);
+            setFecha(Fecha);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return Fecha;
     }
     public void reset() {
         RequestContext.getCurrentInstance().reset("form:panel");
