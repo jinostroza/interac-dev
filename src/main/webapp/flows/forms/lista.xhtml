@@ -9,42 +9,63 @@
 
     <ui:define name="contenido">
         <style type="text/css">
+            .header-top{
+                background: #555555 !important;
+            }
+            .logo{
+                background-image: url('../../resources/css/img/ditec.png') !important;
+                width: 300px !important;
+                height: 80px !important;
+                margin: 0px !important;
+
+            }
+            .logo2{
+                background-image: url('../../resources/css/img/2030.png') !important;
+                width: 300px !important;
+                height: 80px !important;
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center;
+                position: relative;
+                margin-left: 60%!important;
+
+            }
             .ui-button {
-                background: #454545 !important;
+                background: #555555 !important;
                 border: 1px solid #555 !important;
                 color: #EEE !important;
             }
             .ui-state-hover{
                 background-color: #fff !important;
-                color: #454545 !important;
+                color: #555555 !important;
                 border-color: #454545 !important;
                 border-radius: 4px !important;
             }
-            .ui-datalist-header{
-                background-color:#454545 !important ;
-                font-family: cursive !important;
+            .ui-datatable-header{
+                background-color:#0052cc !important ;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
                 border: none !important;
                 background-image: none;
 
             }
-            .ui-datalist-item{
+            .ui-datatable-item{
 
-                font-family: cursive !important;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif  !important;
                 border: black !important;
                 border-width: 2px;
                 background-image: none;
 
             }
-            .ui-datalist-footer{
-                background-color:#454545 !important ;
-                font-family: cursive !important;
+            .ui-datatable-footer{
+                background-color:#0052cc !important ;
+                font-family:"Helvetica Neue", Helvetica, Arial, sans-serif  !important;
                 border: none !important;
                 background-image: none;
 
             }
             .ui-paginator{
-                background-color:#454545 !important ;
-                font-family: cursive !important;
+                background-color:#0052cc !important ;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif  !important;
                 border: none !important;
                 background-image: none;
 
@@ -56,15 +77,17 @@
             <div class="header-top">
                 <div class="logo"></div>
 
+
             </div>
 
             <span></span>
         </div>
-        <h:form class="container" id="crearTaller" enctype="multipart/form-data">
+
+        <h:form class="container" id="crearTaller" style="width: 100%">
             <div class="row">
 
                 <div class="col-lg-offset-3 col-lg-6" style="padding-left:  10%">
-                    <h2>Talleres y Charlas</h2>
+                    <h2>Historial Mantenciones</h2>
                 </div>
 
             </div>
@@ -79,26 +102,27 @@
             </div>
             <div class="ui-grid-row">
 
-                <p:dataList value="#{mantenedorTaller.tallerList}" var="car" pt:data-inset="true" paginator="true" rows="5">
-                    <f:facet name="header">
-                        Lista de Eventos
 
-                    </f:facet>
+                <p:dataTable value="#{mantenedorTotems.todos}" var="car"  >
 
-                    <h3>#{car.nombre}</h3><p:spacer width="900" height="40"> </p:spacer>  <h:outputLink styleClass="btn btn-forms" onclick="window.open('#{car.link}', 'Interac', 'dependent=yes, menubar=no, toolbar=no'); return false;" >Inscribete Aquí </h:outputLink>
+                    <p:column headerText="Cod Tek">
 
-                    <p> Fecha <h:outputLabel value="#{car.fecha}">
-                        <f:convertDateTime pattern="dd/MM/yyyy"/>
-                    </h:outputLabel> Hora #{car.hora} <strong> Lugar #{car.sede} </strong> </p>
+                        <h:outputText value="#{car.noserie}" />
+                    </p:column>
+                    <p:column headerText="Cod Item">
+                        <h:outputText value="#{car.estado}" />
+                    </p:column>
+                    <p:column headerText="Nombre Item">
+                        <h:outputText value="#{car.pulgadas}" />
+                    </p:column>
+                    <p:column headerText="Total">
+                        <h:outputText value="#{car.lat}" />
+                    </p:column>
 
 
+                </p:dataTable>
 
-
-
-                    <f:facet name="footer">
-                        Lista de Eventos
-                    </f:facet>
-                </p:dataList>
+                <p:link styleClass="btn btn-interac" value="Volver" href="/plataforma/forms"/>
                 <br></br>
                 <br></br>
 

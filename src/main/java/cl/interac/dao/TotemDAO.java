@@ -5,7 +5,6 @@
  */
 package cl.interac.dao;
 
-import cl.interac.entidades.Campana;
 import cl.interac.entidades.Totem;
 import org.springframework.stereotype.Repository;
 
@@ -48,7 +47,9 @@ public class TotemDAO {
     public List<Totem> obtenerConRelacion(){
        return em.createNamedQuery("Totem.findWithRelationship").getResultList();
     }
-
+    public List<Totem> obtenertodos(){
+        return em.createNamedQuery("Totem.findAll").getResultList();
+    }
     public List<Totem> obtenerConUsuario(String username){
         return em.createNamedQuery("Totem.findbyUsuario").setParameter("username", username).getResultList();
     }

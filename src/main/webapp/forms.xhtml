@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/logInTemplate.xhtml">
+
+    <ui:define name="contenido">
+        <style type="text/css">
+            .ui-button {
+                background: #454545 !important;
+                border: 1px solid #555 !important;
+                color: #EEE !important;
+            }
+            .ui-state-hover{
+                background-color: #fff !important;
+                color: #454545 !important;
+                border-color: #454545 !important;
+                border-radius: 4px !important;
+            }
+            .header-top{
+                background: #555555 !important;
+            }
+            .logo{
+                background-image: url('../../resources/css/img/ditec.png') !important;
+                width: 300px !important;
+                height: 80px !important;
+                margin: 0px !important;
+
+            }
+        </style>
+        <h:form>
+            <h1>Ingrese Patente</h1>
+
+
+            <h:inputText styleClass="form-control" value="" />
+
+
+            <p:link styleClass="btn btn-interac" value="Buscar" href="/plataforma/forms"/>
+
+            <div class="push"></div>
+        </h:form>
+    </ui:define>
+</ui:composition>

@@ -27,21 +27,16 @@ var DashBox = {
     var winRed2;
     var winRed3;
     var winRed4;
-    var winUsach;
-    var w  = 1060;
-    var h = 1400;
-    var left = (screen.width/2)-(w/2);
-    var top = (screen.height/2)-(h/2);
     var srcWatcher = function(button) {
 
         switch ($(button).attr("class")) {
-            case "ingenieria":
+            case "escuela":
                winEscuela=window.open("http://ingenieria.ucv.cl/conocenos/conocenos_unidadesacademicas.html","Escuela Ingenieria","width=1060,height=1900,resizable,toolbar,scrollbar,status")
                 break;
             case "historiabtn":
                 winHistoria=window.open("http://www.ihistoriapucv.cl/","Instituto Historia","width=1060,height=1900,resizable,toolbar,scrollbar,status")
                 break;
-            case "flickrIngenieria":
+            case "flickr":
                winFlickr=window.open("https://www.flickr.com/photos/facultadingenieriapucv/albums","Flickr Escuela","width=1060,height=1900,resizable,scrollbar,status")
                 break;
             case "flickrhistoria":
@@ -78,23 +73,21 @@ var DashBox = {
                 winVice=window.open("http://www.pucv.cl","Pucv","width=1060,height=1900,resizable,scrollbars,status")
                 break;
             case "red1":
-                winRed1=window.open("https://www.facebook.com/catolicadevalparaiso","Pucv","'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no, copyhistory=no, width=1060, height=1390,top=115")
+                winRed1=window.open("https://www.facebook.com/catolicadevalparaiso","Pucv","width=1060,height=1380,top=120,resizable,scrollbars,status")
                 break;
              case "red2":
-                winRed2=window.open("https://twitter.com/comunidadpucv","Pucv","width=1060,height=1900,resizable,scrollbars,status")
+                winRed2=window.open("https://twitter.com/comunidadpucv","Pucv","width=1060,height=1380,top=120,resizable,scrollbars,status")
                 break;
             case "red3":
-                winRed3=window.open("https://www.youtube.com/user/pucvprensa","Pucv","width=1060,height=1900,resizable,scrollbars,status")
+                winRed3=window.open("https://www.youtube.com/user/pucvprensa","Pucv","width=1060,height=1380,top=120,resizable,scrollbars,status")
                 break;
             case "red4":
-                winRed4=window.open("https://www.flickr.com/photos/pucv/","Pucv","width=1060,height=1900,resizable,scrollbars,status")
+                winRed4=window.open("https://www.flickr.com/photos/pucv/","Pucv","width=1060,height=1380,top=120,resizable,scrollbars,status")
                 break;
             case "form":
                 winForm=window.open("http://www.pucv.cl/pucv/site/tax/port/fil_evento/taxport_28___1.html","Talleres","width=1060,height=1900,resizable,scrollbars,status")
-               // setTimeout(function() {winForm.location.href = 'http://54.208.243.25:8080/interac/lista.jsf';}, 1000);
-                break;
-            case "uds":
-                winUsach=window.open("http://www.usach.cl","Usach","width=1060,height=1900,resizable,scrollbars,status")
+                //setTimeout(function() {winForm.location.href = 'http://54.208.243.25:8080/interac/lista.jsf';}, 1000);
+
                 break;
         }
 
@@ -112,7 +105,6 @@ var DashBox = {
         setTimeout(function () { winBib.close();}, 60000);
         setTimeout(function () { winDdcyf.close();}, 60000);
         setTimeout(function () { winVice.close();}, 60000);
-        setTimeout(function () { winUsach.close();}, 60000);
         setTimeout(function () { winForm.close();}, 300000);
 
     };
@@ -120,10 +112,10 @@ var DashBox = {
     this.start = function() {
         var self = this;
 
-        $("button.ingenieria").click(function() {
+       /* $("button.escuela").click(function() {
             srcWatcher.call(self, this);
 
-        });
+        });*/
         $("button.historiabtn").click(function() {
             srcWatcher.call(self, this);
 
@@ -132,14 +124,10 @@ var DashBox = {
             srcWatcher.call(self, this);
 
         });
-        $("div.vice").click(function() {
+        /*$("div.vice").click(function() {
             srcWatcher.call(self, this);
 
-        });
-        $("div.uds").click(function() {
-            srcWatcher.call(self, this);
-
-        });
+        });*/
         $("div.red1").click(function() {
             srcWatcher.call(self, this);
 
@@ -156,13 +144,13 @@ var DashBox = {
             srcWatcher.call(self, this);
 
         });
-        $("button.flickrhistoria").click(function() {
+            $("button.flickrhistoria").click(function() {
             srcWatcher.call(self, this);
 
         });
-        $("button.flickrIngenieria").click(function() {
+       /* $("button.flickr").click(function() {
             srcWatcher.call(self, this);
-        });
+        });*/
         $("button.maker").click(function() {
             srcWatcher.call(self, this);
         });
@@ -175,10 +163,10 @@ var DashBox = {
          $("div.weather").click(function() {
             srcWatcher.call(self, this);
         });
-        $("button.form").click(function() {
+      /*  $("button.form").click(function() {
             srcWatcher.call(self, this);
         });
-        /*$("button.estudiantes").click(function() {
+        $("button.estudiantes").click(function() {
             srcWatcher.call(self, this);
         });
         $("button.academicos").click(function() {

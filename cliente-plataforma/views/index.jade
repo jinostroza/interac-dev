@@ -7,44 +7,50 @@ html
         link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Lato')
         script(src='public/js/jquery-2.1.4.min.js')
         script(src='public/js/slide.js')
-        script(src='public/js/idle.js')
         script(src='public/js/dashbox.js')
         script(src='public/js/twitterFetcher_min.js')
         script(type='text/javascript', async='', src='http://www.yourweather.co.uk/wid_loader/05637abb174df2e685bbf8a7b80959fd')
-
-    body(onload='CheckIdleTime();')
+        script(src='https://npmcdn.com/dexie@latest/dist/dexie.js')
+        script.
+         //
+         // Declare Database
+         //
+         var db = new Dexie("imgDB");
+         db.version(1).stores({
+            friends: "++id,name,date"
+         });
+         //
+         // Manipulate and Query Database
+         /*
+          db.friends.add({name: "Josephine", age: 21}).then(function() {
+            return db.friends.where("age").below(25).toArray();
+          }).then(function (youngFriends) {
+            alert ("My young friends: " + JSON.stringify(youngFriends));
+          }).catch(function (e) {
+            alert ("Error: " + (e.stack || e));
+          });*/
+    body()
         .container
             .header
-                #usach.uds
+                #pucv.vice
                 #redes1.red1
                 #redes2.red2
                 #redes3.red3
                 #redes4.red4
 
-             #conten.content(style='padding: 0px;margin-top: -8px;')
-            iframe#ifr1(src='', style='display:none;width:1060px;height:1400px;')
-            ul#navigation
-                    li#boton1.home
-                        a() Tour 1
-                    li#boton2.about
-                        a() Tour 2
-                    li#boton3.search
-                        a() Tour 3
-                    li#boton4.photos
-                        a() Tour 4
-
-
-
+              #conten.content(style='padding: 0px;margin-top: -8px;')
+            iframe#ifr1(src='',sandbox='allow-scripts allow-pointer-lock allow-same-origin allow-forms', style='display:none;width:1060px;height:1400px;')
+            iframe#ifr2(src='',style='display:none;width:1060px;height:1400px;')
             button(class="form" id="form") Agenda de Eventos
             div(class="dashbox")
-                button#btn1.estudiantesUsach
+                button#btn1.estudiantes
                   div.textos Estudiantes
-                button#btn2.academicosUsach
+                button#btn2.academicos
                   div.textos Acádemicos
-                button#btn3.investigacionUsach
-                  div.textos Ingeniería
-
-
+                button#btn3.investigacion
+                  div.textos Investigación e Innovación
+                button#btn4.internacional
+                  div.textos Internacional
         script(type='text/javascript').
             jQuery(document).ready(function () {
             });
@@ -67,29 +73,26 @@ html
                         a.src = g;
                         m.parentNode.insertBefore(a, m)
                     })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-                    ga('create', 'UA-69484091-3', {'cookiedomain': 'none'});
+                    ga('create', 'UA-69484091-5', {'cookiedomain': 'none'});
                     ga('send', 'pageview');
                     // custom
                     $('#btn1').on('click', function () {
                         ga('send', 'event', 'btnestudiantes', 'click', 'nav-buttons');
-
+                        $('#iframe').show();
                     });
                     $('#btn2').on('click', function () {
                         ga('send', 'event', 'btnacademicos', 'click', 'nav-buttons');
                     });
                     $('#btn3').on('click', function () {
-                        ga('send', 'event', 'btningenieria', 'click', 'nav-buttons');
+                        ga('send', 'event', 'btnInvestigacion', 'click', 'nav-buttons');
                     });
                     $('#form').on('click', function () {
                         ga('send', 'event', 'btnagenda', 'click', 'nav-buttons');
                     });
                     $('#btn4').on('click', function () {
-                        ga('send', 'event', 'btnflickr', 'click', 'nav-buttons');
+                        ga('send', 'event', 'btnInternacional', 'click', 'nav-buttons');
                     });
-                    $('#pucv').on('click', function () {
-                        ga('send', 'event', 'btnpucv', 'click', 'nav-buttons');
-                    });
-                    $('#redes1').on('click', function () {
+                     $('#redes1').on('click', function () {
                         ga('send', 'event', 'btnFacebook', 'click', 'nav-buttons');
                     });
                     $('#redes2').on('click', function () {
@@ -101,102 +104,68 @@ html
                     $('#redes4').on('click', function () {
                         ga('send', 'event', 'btnflickrPUCV', 'click', 'nav-buttons');
                     });
-                    $(function() {
-                     $('#navigation a').stop().animate({'marginLeft':'-85px'},1000);
-                     $('#navigation > li').hover(
-                     function () {
-                      $('a',$(this)).stop().animate({'marginLeft':'-2px'},200);
-                       },
-                     function () {
-                      $('a',$(this)).stop().animate({'marginLeft':'-85px'},200);
-                       }
-                       );
-                       });
                     $(document).ready(function () {
-                        $('#boton1').click(function () {
-                            $('#ifr1').attr('src', 'http://www.usach.cl/campusvirtual/casa_central/');
-                            document.getElementById("ifr1").style.display = "block";
-                            document.getElementById("conten").style.display = "none";
-                            setTimeout(function () {
-                                document.getElementById("conten").style.display = "block";
-                                document.getElementById("ifr1").style.display = "none";
-                            }, 120000);
-                        });
-                        $('#boton2').click(function () {
-                            $('#ifr1').attr('src', 'http://www.usach.cl/campusvirtual/laboratorio/');
-                            document.getElementById("ifr1").style.display = "block";
-                            document.getElementById("conten").style.display = "none";
-                            setTimeout(function () {
-                                document.getElementById("conten").style.display = "block";
-                                document.getElementById("ifr1").style.display = "none";
-                            }, 120000);
-                        });
-                        $('#boton3').click(function () {
-                            $('#ifr1').attr('src', 'http://www.usach.cl/campusvirtual/patio_central/');
-                            document.getElementById("ifr1").style.display = "block";
-                            document.getElementById("conten").style.display = "none";
-                            setTimeout(function () {
-                                document.getElementById("conten").style.display = "block";
-                                document.getElementById("ifr1").style.display = "none";
-                            }, 120000);
-                        });
-                        $('#boton4').click(function () {
-                            $('#ifr1').attr('src', 'http://www.usach.cl/campusvirtual/biblioteca/');
-                            document.getElementById("ifr1").style.display = "block";
-                            document.getElementById("conten").style.display = "none";
-                            setTimeout(function () {
-                                document.getElementById("conten").style.display = "block";
-                                document.getElementById("ifr1").style.display = "none";
-                            }, 120000);
-                        });
-                        $('#btn1').click(function () {
-                            $('#ifr1').attr({"src": "http://www.usach.cl/perfil/estudiantes","sandbox":""});
+                       $('#btn1').click(function () {
+                            $('#ifr1').attr('src', 'http://www.pucv.cl/pucv/site/edic/base/port/estudiantes.html');
 
                             document.getElementById("ifr1").style.display = "block";
+                            document.getElementById("ifr2").style.display = "none";
                             document.getElementById("conten").style.display = "none";
                             setTimeout(function () {
                                 document.getElementById("conten").style.display = "block";
                                 document.getElementById("ifr1").style.display = "none";
+                                document.getElementById("ifr2").style.display = "none";
                             }, 120000);
                         });
                         $('#btn2').click(function () {
-                            $('#ifr1').attr({"src": "http://www.usach.cl/perfil/academicos","sandbox":""});
+                            $('#ifr1').attr('src', 'http://www.pucv.cl/pucv/site/edic/base/port/academicos.html');
+                             
                             document.getElementById("ifr1").style.display = "block";
+                            document.getElementById("ifr2").style.display = "none";
                             document.getElementById("conten").style.display = "none";
                             setTimeout(function () {
                                 document.getElementById("conten").style.display = "block";
+                                document.getElementById("ifr3").style.display = "none";
                                 document.getElementById("ifr1").style.display = "none";
                             }, 120000);
                         });
                         $('#btn3').click(function () {
-                            $('#ifr1').attr({"src": "http://www.usach.cl/investigacion","sandbox":""});
+                            $('#ifr1').attr('src', 'http://www.pucv.cl/pucv/site/edic/base/port/investigacion.html');
                             document.getElementById("ifr1").style.display = "block";
+                            document.getElementById("ifr2").style.display = "none";
                             document.getElementById("conten").style.display = "none";
                             setTimeout(function () {
                                 document.getElementById("conten").style.display = "block";
                                 document.getElementById("ifr1").style.display = "none";
+                                document.getElementById("ifr2").style.display = "none";
                             }, 120000);
                         });
                         $('#btn4').click(function () {
-                            $('#ifr1').attr({"src": "http://www.usach.cl/facultades","sandbox":""});
+                            $('#ifr1').attr('src', 'http://www.pucv.cl/pucv/site/edic/base/port/pucv_internacional.html');
                             document.getElementById("ifr1").style.display = "block";
+                            document.getElementById("ifr2").style.display = "none";
                             document.getElementById("conten").style.display = "none";
                             setTimeout(function () {
                                 document.getElementById("conten").style.display = "block";
                                 document.getElementById("ifr1").style.display = "none";
+                                document.getElementById("ifr2").style.display = "none";
                             }, 120000);
                         });
-
-                    });
-                    $("ifr1").load(function () {
-                        $("ifr1").contents().find("a").each(function (index) {
-                            $(this).on("click", function (event) {
-                                event.preventDefault();
-                                event.stopPropagation();
-                            });
+                        $('#form').click(function () {
+                            $('#ifr1').attr('src', 'http://www.pucv.cl/pucv/site/tax/port/fil_evento/taxport_28___1.html');
+                            
+                            document.getElementById("ifr1").style.display = "block";
+                            document.getElementById("ifr2").style.display = "none";
+                            
+                            document.getElementById("conten").style.display = "none";
+                            setTimeout(function () {
+                                document.getElementById("conten").style.display = "block";
+                                document.getElementById("ifr1").style.display = "none";
+                                document.getElementById("ifr2").style.display = "none";
+                                
+                            }, 120000);
                         });
                     });
-
                 }
             }
             Slide.start();

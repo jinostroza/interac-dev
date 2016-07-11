@@ -11,17 +11,17 @@
 
         <style type="text/css">
             .header-top{
-                background: #0052cc !important;
+                background: #555555 !important;
             }
             .logo{
-                background-image: url('resources/css/img/UDSHBCO.png') !important;
+                background-image: url('../../resources/css/img/ditec.png') !important;
                 width: 300px !important;
                 height: 80px !important;
                 margin: 0px !important;
 
             }
             .logo2{
-                background-image: url('resources/css/img/2030.png') !important;
+                background-image: url('../../resources/css/img/2030.png') !important;
                 width: 300px !important;
                 height: 80px !important;
                 background-repeat: no-repeat;
@@ -32,13 +32,13 @@
 
             }
             .ui-button {
-                background: #0052cc !important;
+                background: #555555 !important;
                 border: 1px solid #555 !important;
                 color: #EEE !important;
             }
             .ui-state-hover{
                 background-color: #fff !important;
-                color: #0052cc !important;
+                color: #555555 !important;
                 border-color: #454545 !important;
                 border-radius: 4px !important;
             }
@@ -83,14 +83,12 @@
 
             <span></span>
         </div>
-        <f:metadata>
-            <f:param name="user" value="#{mantenedorLista.user}" />
-        </f:metadata>
+
         <h:form class="container" id="crearTaller" style="width: 100%">
             <div class="row">
 
                 <div class="col-lg-offset-3 col-lg-6" style="padding-left:  10%">
-                    <h2>Talleres y Charlas</h2>
+                    <h2>Historial Mantenciones</h2>
                 </div>
 
             </div>
@@ -106,16 +104,24 @@
             <div class="ui-grid-row">
 
 
-                <p:ring value="#{mantenedorLista.tallerList}" var="car"  >
+                <p:dataTable value="#{mantenedorTotems.todos}" var="car"  >
 
-                    <h3>#{car.nombre}</h3> <h:outputLink styleClass="btn btn-forms" value="#{car.link}"  >Inscribete Aquí </h:outputLink>
+                    <p:column headerText="Cod Mantención">
 
-                    <p> Fecha <h:outputLabel value="#{car.fecha}">
-                        <f:convertDateTime pattern="dd/MM/yyyy"/>
-                    </h:outputLabel>  Hora #{car.hora} <strong> Lugar #{car.sede} </strong> </p>
+                        <p:commandLink value="#{car.estado}" action="next1"/>
+                    </p:column>
+                    <p:column headerText="Cod Detalle">
+                        <h:outputText value="#{car.orientacion}" />
+                    </p:column>
+                    <p:column headerText="Descripción">
+                        <h:outputText value="#{car.modelo}" />
+                    </p:column>
+                    <p:column headerText="Cantidad">
+                        <h:outputText value="#{car.marcaPantalla.idmarca}" />
+                    </p:column>
 
 
-                </p:ring>
+                </p:dataTable>
                 <br></br>
                 <br></br>
 

@@ -126,7 +126,7 @@ body {
     background-position: left;
     background-position-x: 100px;
     background-size: 10%;
-    background-color: #262673;
+    background-color: #1b65bc;
     border-radius: 5px;
     color: #FFFFFF;
     font-size: 66px;
@@ -361,7 +361,7 @@ body {
     height: 103%;
     cursor: -webkit-grab;
     position: relative;
-    margin-left: 12px;
+    margin-left: 112px;
     margin-top: 10px;
     border-radius: 50%;
     font:2rem/2 Lato, Helvetica, sans-serif;
@@ -421,7 +421,7 @@ body {
     background-color: #b1b3b4;
     border:0px;
     position: relative;
-    margin-left: 12px;
+    margin-left: 112px;
     margin-top: 10px;
     cursor: -webkit-grab;
     font:2rem/2 Lato, Helvetica, sans-serif;
@@ -612,6 +612,17 @@ body {
 }
 #usach{
     background-image: url("img/UDS%20HCOLOR.png");
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin: 0 15px;
+    width: 303px;
+    height: 107px;
+    float: left;
+}
+#usachacredi{
+    background-image: url("img/lcna_horizontal-01.png");
     overflow: hidden;
     background-repeat: no-repeat;
     background-position: center;

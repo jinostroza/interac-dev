@@ -26,7 +26,7 @@ import java.util.List;
  * Created by Joaco on 24-04-2015.
  */
 @ManagedBean
-@Component
+@Component()
 @Scope("flow")
 public class MantenedorTotems implements Serializable {
 
@@ -57,6 +57,7 @@ public class MantenedorTotems implements Serializable {
     private Marker marker;
 
     private List<Totem> totems;
+    private List<Totem> todos;
     private List<Tipototem> tipototems;
     private List<Totem> totemConFiltro;
     private List<Ubicacion> ubicaciones;
@@ -76,10 +77,11 @@ public class MantenedorTotems implements Serializable {
 
     @PostConstruct
     public void inicio() {
+        todos = logicaTotem.obtenerTodos();
         totems = logicaTotem.obtenerConRelacion();
         establecimientoList = logicaEstablecimiento.obtenerTodos();
         tipototems = logicaTipototem.obtenerTodos();
-        totemPorUsuario = logicaTotemConUsuario.obtenerPorUsuario(userSession.getUsuario().getUsername());
+
         ubicaciones = logicaUbicacion.obtenerTodas();
         marcaPantallas = logicaMarcaPantalla.obtenerTodos();
         mesesList = logicaMeses.obtenerTodos();
@@ -194,6 +196,14 @@ public class MantenedorTotems implements Serializable {
     public List<Totem> getTotems() { return totems; }
     public void setTotems(List<Totem> totems) {
         this.totems = totems;
+    }
+
+    public List<Totem> getTodos() {
+        return todos;
+    }
+
+    public void setTodos(List<Totem> todos) {
+        this.todos = todos;
     }
 
     public Totem getTotem() {

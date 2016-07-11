@@ -59,17 +59,18 @@
 
                     <br></br>
                     <label>Fecha</label>
-                    <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
+
                     <p:calendar id="inicio"  pattern="dd/MM/yyyy"
                                 value="#{mantenedorTaller.taller.fecha}" mindate="c1.today()"
                                 widgetVar="c1" requiredMessage="Debe indicar fecha del Evento" style="width: 150px">
 
                     </p:calendar>
                     <p:tooltip id="toolinicio" for="inicio" value="Selecciona Fecha del evento" trackMouse="true"/>
-                    <br></br>
+
+                    <label>Hora</label>
                     <p:calendar id="time" value="#{mantenedorTaller.fecha}" pattern="HH:mm" timeOnly="true"  />
 
-
+                    <br></br>
                     <br></br>
                     <label>Formulario Inscripcion</label>
                     <p:inputText id="formi" label="formi" value="#{mantenedorTaller.taller.link}"
@@ -118,7 +119,7 @@
                     <p:column styleClass="col-lg-3" style="text-align: center; margin-right: 2px">
 
                         <p:commandButton icon="ui-icon-pencil" id="editBtn"  value="Modificar" styleClass="btn btn-interac" immediate="true" update="message" action="#{mantenedorTaller.parseHora(cont.hora)}"/>
-                        <p:overlayPanel id="editpanel" for="editBtn" hideEffect="fade" dynamic="true" style="width:600px">
+                        <p:overlayPanel id="editpanel" for="editBtn" my="true" hideEffect="fade" dynamic="true" style="width:600px">
                             <label>Nombre</label>
                             <p:inputText   value="#{cont.nombre}"
                                           styleClass="form-control"  />
@@ -135,14 +136,13 @@
 
                             <br></br>
                             <label>Fecha</label>
-                            <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
                             <p:calendar  locale="es" pattern="dd/MM/yyyy"
                                          value="#{cont.fecha}" mindate="c1.today()"
                                          widgetVar="c1" requiredMessage="Debe indicar fecha del Evento" style="width: 150px">
 
                             </p:calendar>
 
-                            <br></br>
+
                             <label>Hora</label>
                             <p:calendar id="timeed" value="#{mantenedorTaller.fecha}" pattern="HH:mm" timeOnly="true"  />
 

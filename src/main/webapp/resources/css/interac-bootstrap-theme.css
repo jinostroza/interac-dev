@@ -420,7 +420,7 @@ ul.egmenu li:hover ul { display: block;  }
 
 }
 .btn-forms {
-	background-color: #E4251F;
+	background-color: #ff7319;
 	color: #fff !important;
 }
 .btn-forms:hover{
@@ -789,39 +789,43 @@ div.login-logo{
 
 .logocab1{
 
-	background-image: url('css/img/logopucvgrandeblanco.png');
+	background-image: url('css/img/logopucvgrandeblanco.png') !important;
 }
 .logocab2{
 
-	background-image: url('css/img/logo_pucv.png');
+	background-image: url('css/img/logo_pucv.png') !important;
 }
 .logocab3{
 
-	background-image: url('css/img/interacblanco.png');
+	background-image: url('css/img/interacblanco.png') !important;
 }
+.bgplantilla{
+	background-image: none !important;
 
+
+}
 .bgplantilla1{
-	background-image: url('css/img/1.png');
-	background-color: transparent;
+	background-image: url('css/img/1.png') !important;
+
 
 }
 .bgplantilla2{
-	background-image: url('css/img/2.png');
-	background-color: transparent;
+	background-image: url('css/img/2.png') !important;
+
 
 }
 .bgplantilla3{
-	background-image: url('css/img/3.png');
-	background-color: transparent;
+	background-image: url('css/img/3.png') !important;
+
 
 }
 .bgplantilla4{
-	background-image: url('css/img/4.png');
-	background-color: transparent;
+	background-image: url('css/img/4.png') !important;
+
 
 }
 .bgplantilla5{
-	background-image: url('css/img/5.png');
+	background-image: url('css/img/5.png') !important;
 	background-color: transparent;
 
 }

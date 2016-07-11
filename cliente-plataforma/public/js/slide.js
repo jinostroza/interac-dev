@@ -20,14 +20,14 @@ var Slide = {};
                     video.find("source").first().attr("id", "video");
                     jQuery("div.content").append(video);
                 } else {
-                    var img = jQuery("<img style='width: 1060px;height: 1400px' ></img>");
+                    var img = jQuery("<img id='img1' style='width: 1060px;height: 1400px' ></img>");
                     img.attr("src", mediaFiles[i]);
                     img.css("display", display);
                     jQuery("div.content").append(img);
                 }
             }
 
-            
+
             sliderTimerID = setTimeout(self.change.bind(self), showTime);
             syncTimerID = setTimeout(self.checkNewData.bind(self), syncTime);
         });
@@ -35,12 +35,19 @@ var Slide = {};
 
     this.change = function () {
           var media = jQuery("div.content").find("img, video");
-         var d=document.querySelectorAll('video');
+          var d=document.querySelectorAll('video');
+
         for (var i = 0; i < media.length; i++) {
-            if (jQuery(media[i]).is(":not(:visible)")) continue;
+           if (jQuery(media[i]).is(":not(:visible)")) continue;
             var siguiente = jQuery(media[(i + 1) % media.length]);
+            //insertando data a bd imgbd
+            var fecha = Date.now();
+            db.friends.add({name:siguiente.attr('src').substr(14), date: fecha});
+
+            //to do : implementar webservices para guardar imagen y tiemstamp
             jQuery(media[i]).hide();
             siguiente.show();
+
             if (siguiente.is("video")) {
                 index = index + 1;
                  if(index <= d.length) {
