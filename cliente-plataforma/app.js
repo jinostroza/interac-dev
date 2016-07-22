@@ -6,10 +6,13 @@ var App = Express();
 var Sincronizador = require("./sincronizador.js");
 var Path = require("path");
 
+
 // variables
 var serverPort = 3000
 //var sleepTime = 6 * 60 * 60 * 1000; // cada 6 horas
 var sleepTime = 60 * 1000; // cada 20 segundos
+//postgres connect
+
 
 // motor de plantillas
 App.set("view engine", "jade");
@@ -34,6 +37,8 @@ var Routes = require("./routes/main.js")(App);
 // para poder procesar solicitudes POST
 App.use(BodyParser.urlencoded({ extended: false }));
 App.use(BodyParser.json());
+//Database crud
+
 
 // levantamos el servidor
 var server = App.listen(serverPort, function () {

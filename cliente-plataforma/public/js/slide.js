@@ -42,8 +42,8 @@ var Slide = {};
             var siguiente = jQuery(media[(i + 1) % media.length]);
             //insertando data a bd imgbd
             var fecha = Date.now();
-            db.friends.add({name:siguiente.attr('src').substr(14), date: fecha});
-
+           // db.friends.add({name:siguiente.attr('src').substr(14), date: fecha});
+           addinsql(siguiente.attr('src').substr(14));
             //to do : implementar webservices para guardar imagen y tiemstamp
             jQuery(media[i]).hide();
             siguiente.show();
@@ -113,4 +113,5 @@ var Slide = {};
             }
         });
     };
+    
 }).apply(Slide); //(namespace proxy)

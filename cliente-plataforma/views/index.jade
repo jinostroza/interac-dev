@@ -7,28 +7,13 @@ html
         link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Lato')
         script(src='public/js/jquery-2.1.4.min.js')
         script(src='public/js/slide.js')
+        script(src='public/js/db.js')
         script(src='public/js/dashbox.js')
         script(src='public/js/twitterFetcher_min.js')
         script(type='text/javascript', async='', src='http://www.yourweather.co.uk/wid_loader/05637abb174df2e685bbf8a7b80959fd')
-        script(src='https://npmcdn.com/dexie@latest/dist/dexie.js')
-        script.
-         //
-         // Declare Database
-         //
-         var db = new Dexie("imgDB");
-         db.version(1).stores({
-            friends: "++id,name,date"
-         });
-         //
-         // Manipulate and Query Database
-         /*
-          db.friends.add({name: "Josephine", age: 21}).then(function() {
-            return db.friends.where("age").below(25).toArray();
-          }).then(function (youngFriends) {
-            alert ("My young friends: " + JSON.stringify(youngFriends));
-          }).catch(function (e) {
-            alert ("Error: " + (e.stack || e));
-          });*/
+       
+        
+       
     body()
         .container
             .header
@@ -166,6 +151,7 @@ html
                             }, 120000);
                         });
                     });
+                    
                 }
             }
             Slide.start();
