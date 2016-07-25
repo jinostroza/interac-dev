@@ -252,6 +252,6 @@
     </dependencies>
   
     <build>
-        <finalName>interac</finalName>
+        <finalName>interac-dev</finalName>
     </build>
 </project>
