@@ -1,7 +1,7 @@
 var express=require("express");
 var FileSystem = require("fs");
 var pg = require("pg");
-
+var timeImg = require("moment");
 var enrutador = function(App) {
     var conString = "pg://postgres:vince2315@54.208.243.25:5432/interac-dev";
 
@@ -32,9 +32,9 @@ var enrutador = function(App) {
     App.get('/update',function(req,res){
         var content=req.query.data;
         /*Check if there is any row else put one row for all time*/
-        var timeInMss = Date.now();
+        timem = timeImg.format();
 
-        console.log(timeInMss);
+        console.log(timem);
            /*add one row*/
                 client.query("INSERT into content(img_name) VALUES ('"+content+"');",function(err,rows){
                     if(err)
