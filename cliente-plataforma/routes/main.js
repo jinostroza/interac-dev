@@ -1,9 +1,10 @@
 var express=require("express");
 var FileSystem = require("fs");
 var pg = require("pg");
-var timeImg = require("moment");
+var moment = require("moment");
+var last;
 var enrutador = function(App) {
-    var conString = "pg://postgres:vince2315@54.208.243.25:5432/interac-dev";
+    var conString = "pg://postgres@localhost:5432/interacLocal";
 
     var client = new pg.Client(conString);
     client.connect();
@@ -29,14 +30,15 @@ var enrutador = function(App) {
             res.send(JSON.stringify(media));
         });
     });
-    App.get('/update',function(req,res){
+    App.get('/insert',function(req,res){
         var content=req.query.data;
         /*Check if there is any row else put one row for all time*/
-        timem = timeImg.format();
-
-        console.log(timem);
+        var fecha = moment().format("YYYY-MM-DD HH:mm:ss");
+        
            /*add one row*/
-                client.query("INSERT into content(img_name) VALUES ('"+content+"');",function(err,rows){
+                client.query("INSERT into slider_log(contenido_name, fec_inicio_slide, id_modulo) VALUES ('"+content+"','"+fecha+"','201')RETURNING id_slider_log ;",function(err,result){
+                    last=result.rows[0].id_slider_log;
+                    console.log(last);
                     if(err)
                       {
                         console.log(err);
@@ -50,6 +52,48 @@ var enrutador = function(App) {
             
         
 });
+        App.get('/update',function(req,res){
+        var content=req.query.data;
+        /*Check if there is any row else put one row for all time*/
+        var fecha = moment().format("YYYY-MM-DD HH:mm:ss");
+        
+           /*add one row*/
+           if(last!=0){
+                client.query("UPDATE slider_log SET fec_fin_slide='"+fecha+"' WHERE id_slider_log='"+last+"';",function(err,rows){
+                    if(err)
+                      {
+                        console.log(err);
+                        res.json({"error":"1"});
+                      }
+                      else
+                        {
+                          last=0;
+                          res.json({"yes":"1"});
+                        }
+                });           
+              }            
+        
+           });
+
+        App.get('/select',function(req,res){
+        var content=req.query.data;
+        /*Check if there is any row else put one row for all time*/
+        client.query("SELECT insert_analitics();",function(err,rows){
+                    if(err)
+                      {
+                        console.log(err);
+                        res.json({"error":"1"});
+                      }
+                      else
+                        {
+                          res.json({"yes":"1"});
+                        }
+                });           
+                      
+           });
+
+
+
 };
 
 module.exports = enrutador;

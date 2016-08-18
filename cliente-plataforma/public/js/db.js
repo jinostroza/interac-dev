@@ -3,10 +3,10 @@
  */
  function addinsql(data)
           {
-          $.get("/update?data="+data,function(data){
+          $.get("/insert?data="+data,function(data){
              if(data.yes==1)
             {
-          console.log("data updated");
+          console.log("data inserted");
           }
            else
            {
@@ -14,3 +14,24 @@
             }
            });
           }
+ function updateinsql(data)
+          {
+          $.get("/update?data="+data,function(data){
+             if(data.yes==1)
+            {
+          console.log("data update");
+          }
+           else
+           {
+           console.log("error");
+            }
+           });
+          }
+
+       function executeInsert()
+          {
+          $.get("/select",function(){
+            
+           });
+          }
+

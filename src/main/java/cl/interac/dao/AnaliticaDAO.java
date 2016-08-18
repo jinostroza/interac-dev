@@ -20,6 +20,10 @@ import java.util.List;
 public class AnaliticaDAO {
     @PersistenceContext
     private EntityManager em;
+    public void guardar(Analitica a){
+        if (a.getId_analitica()== null) em.persist(a);
+        else em.merge(a);
+    }
 
     public List<Analitica> obtenerTodos() {
         return em.createNamedQuery("Analitica.findAll").getResultList();
@@ -27,9 +31,9 @@ public class AnaliticaDAO {
     public List<Analitica> obtenerTodosGenero() {
         return em.createNamedQuery("Analitica.findAllS").getResultList();
     }
-    public Long audiencia() {
+    /*public Long audiencia() {
         return(Long) em.createNamedQuery("Analitica.audiencia").getSingleResult();
-    }
+    }*/
 
     public Long countHombres() {
         return(Long) em.createNamedQuery("Analitica.countHombres").getSingleResult();

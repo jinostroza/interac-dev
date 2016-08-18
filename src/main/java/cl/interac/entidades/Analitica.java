@@ -12,13 +12,13 @@ import java.util.Date;
         {
                 @NamedQuery(name = "Analitica.findAll", query = "SELECT a FROM Analitica a "),
                 @NamedQuery(name = "Analitica.findAllS", query = "SELECT a FROM Analitica a " +
-                "where a.sexo='Hombre ' or a.sexo='Mujer '" ),
+                "where a.genero='Hombre ' or a.genero='Mujer '" ),
 
-                @NamedQuery(name = "Analitica.countHombres", query = "SELECT COUNT (an.sexo) FROM Analitica an " +
-                        " WHERE an.sexo='Hombre '" ),
+                @NamedQuery(name = "Analitica.countHombres", query = "SELECT COUNT (an.genero) FROM Analitica an " +
+                        " WHERE an.genero='Hombre '" ),
 
-                @NamedQuery(name = "Analitica.countMujeres", query = "SELECT COUNT (an.sexo) FROM Analitica an " +
-                        " WHERE an.sexo='Mujer '" ),
+                @NamedQuery(name = "Analitica.countMujeres", query = "SELECT COUNT (an.genero) FROM Analitica an " +
+                        " WHERE an.genero='Mujer '" ),
                 @NamedQuery(name = "Analitica.countSeg1", query = "SELECT COUNT (an.edad) FROM Analitica an " +
                         " WHERE an.edad>0 and an.edad<=15" ),
                 @NamedQuery(name = "Analitica.countSeg2", query = "SELECT COUNT (an.edad) FROM Analitica an " +
@@ -33,36 +33,32 @@ import java.util.Date;
                         " WHERE an.edad>55 and an.edad<=65" ),
                 @NamedQuery(name = "Analitica.countSeg7", query = "SELECT COUNT (an.edad) FROM Analitica an " +
                         " WHERE an.edad>65 " ),
-                @NamedQuery(name = "Analitica.audiencia", query = "SELECT COUNT (an.cuerpos) FROM Analitica an " ),
+                //@NamedQuery(name = "Analitica.audiencia", query = "SELECT COUNT (an.cuerpos) FROM Analitica an " ),
         }
 )
 public class Analitica implements Serializable {
-
-    private Date fechahora;
+    private Integer id_analitica;
+    private Date camara_date;
     private String modulo;
-    private Integer cuerpos;
-    private Integer face;
+    private String imagen;
     private Integer edad;
-    private String sexo;
+    private String genero;
     private String expresion;
-
-
+    private Date slider_inicio;
+    private Date slider_fin;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "fechahora")
-    public Date getFechahora() {
-        return fechahora;
+    @Column(name = "id_analitica")
+    public Integer getId_analitica() {
+        return id_analitica;
     }
 
-    public void setFechahora(Date fechahora) {
-        this.fechahora = fechahora;
+    public void setId_analitica(Integer id_analitica) {
+        this.id_analitica = id_analitica;
     }
-
-
     @Basic
-    @Column(name = "modulo")
+    @Column(name = "id_modulo")
     public String getModulo() {
         return modulo;
     }
@@ -72,23 +68,26 @@ public class Analitica implements Serializable {
     }
 
     @Basic
-    @Column(name = "cuerpos")
-    public Integer getCuerpos() {
-        return cuerpos;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "camara_date")
+    public Date getCamara_date() {
+        return camara_date;
     }
 
-    public void setCuerpos(Integer cuerpos) {
-        this.cuerpos = cuerpos;
+    public void setCamara_date(Date fechahora) {
+        this.camara_date = fechahora;
     }
+
     @Basic
-    @Column(name = "face")
-    public Integer getFace() {
-        return face;
+    @Column(name = "slider_img")
+    public String getImagen() {
+        return imagen;
     }
 
-    public void setFace(Integer face) {
-        this.face = face;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
+
     @Basic
     @Column(name = "edad")
     public Integer getEdad() {
@@ -99,13 +98,13 @@ public class Analitica implements Serializable {
         this.edad = edad;
     }
     @Basic
-    @Column(name = "sexo")
-    public String getSexo() {
-        return sexo;
+    @Column(name = "genero")
+    public String getGenero() {
+        return genero;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setGenero(String sexo) {
+        this.genero = sexo;
     }
     @Basic
     @Column(name = "expresion")
@@ -116,21 +115,49 @@ public class Analitica implements Serializable {
     public void setExpresion(String expresion) {
         this.expresion = expresion;
     }
+    @Basic
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "slider_fin")
+    public Date getSlider_fin() {
+        return slider_fin;
+    }
+
+    public void setSlider_fin(Date slider_fin) {
+        this.slider_fin = slider_fin;
+    }
+    @Basic
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "slider_inicio")
+    public Date getSlider_inicio() {
+
+        return slider_inicio;
+    }
+
+    public void setSlider_inicio(Date slider_inicio) {
+        this.slider_inicio = slider_inicio;
+    }
 
 
-  /*  @Override
-    //public boolean equals(Object o) {
-      //  if (this == o) return true;
-        //if (o == null || getClass() != o.getClass()) return false;
+  @Override
+   public boolean equals(Object o) {
+     if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         Analitica analitica = (Analitica) o;
 
-        //if (this.getFechahora() == null || analitica.getFechahora() == null) return false;
-        //else return this.getFechahora(). == analitica.getIdanalitica().intValue();
+        if (this.getId_analitica() == null || analitica.getId_analitica() == null) return false;
+        else return this.getId_analitica().intValue() == analitica.getId_analitica().intValue();
     }
 
     @Override
     public int hashCode() {
-        return fechahora != null ? 31 * fechahora.hashCode() : 0;
-    }*/
+        return camara_date != null ? 31 * camara_date.hashCode() : 0;
+    }
+    @Override
+    public String toString() {
+        return "Analitica" +
+                "{" +
+                "id_analitica =" + id_analitica +
+                '}';
+    }
 }

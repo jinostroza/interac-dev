@@ -55,7 +55,7 @@ public class MantenedorAnalitica implements Serializable
         analiticas = logicaAnalitica.obtenerTodosGenero();
         hombres = logicaAnalitica.countHombres();
         mujeres = logicaAnalitica.countMujeres();
-        audiencia = logicaAnalitica.audiencia();
+
         seg1 = logicaAnalitica.seg1();
         seg2 = logicaAnalitica.seg2();
         seg3 = logicaAnalitica.seg3();

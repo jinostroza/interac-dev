@@ -33,10 +33,16 @@ public class LogicaAnalitica {
     public List<Analitica> obtenerTodosGenero() {
         return analiticaDAO.obtenerTodosGenero();
     }
-    @Transactional(readOnly = true)
+   /* @Transactional(readOnly = true)
     public Long audiencia() {
         return analiticaDAO.audiencia();
+    }*/
+
+    @Transactional(readOnly = false)
+    public void guardar(Analitica analitica) {
+        analiticaDAO.guardar(analitica);
     }
+
     @Transactional(readOnly = true)
     public Long countHombres() {
         return analiticaDAO.countHombres();

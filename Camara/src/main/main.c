@@ -369,15 +369,16 @@ int main(void)
 				
 				if(poutHVCResult->fdResult.num == 0 && poutHVCResult->bdResult.num == 0){
 					void free(void *pLog);
-				}else if(poutHVCResult->fdResult.num == 0 && poutHVCResult->bdResult.num >= 1){
+				}/*else if(poutHVCResult->fdResult.num == 0 && poutHVCResult->bdResult.num >= 1){ //CONTEO CUERPOS SIN DeTECCION
 					sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%d \t", poutHVCResult->bdResult.num);
 					sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%d \t", poutHVCResult->fdResult.num);
 					sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%d \t",0);
 					sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%s \t","None");
 					sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%s \t","None");
-					sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%d \n",201 );//totem
+					sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%d \t",201 );//totem
+					sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%s \n","0");
 
-				}else{
+				}*/else{
 				sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%d \t", poutHVCResult->bdResult.num);
 					sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%d \t", poutHVCResult->fdResult.num);
 				}
@@ -402,22 +403,14 @@ int main(void)
                         /* Age */
                         if(-128 == poutHVCResult->fdResult.fcResult[i].ageResult.age){
                             sprintf_s(&pStr[strlen(pStr)], LOGBUFFERSIZE-strlen(pStr), "\n      Age\t\tEstimation not possible");
-                        } else if(poutHVCResult->fdResult.fcResult[i].ageResult.confidence>0) {
-							
+                        } else {
                             sprintf_s(&pStr[strlen(pStr)], LOGBUFFERSIZE-strlen(pStr), "\n      Age\t\tAge:%d Confidence:%d",
 								 poutHVCResult->fdResult.fcResult[i].ageResult.age, poutHVCResult->fdResult.fcResult[i].ageResult.confidence);
-<<<<<<< HEAD
 							edad = poutHVCResult->fdResult.fcResult[i].ageResult.confidence;
-=======
-						}
-							else if(poutHVCResult->fdResult.fcResult[i].ageResult.confidence>=600){ //precision edad 
->>>>>>> 673483d619ce36f99552f87a0193a8ce58447fd3
 							sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%d \t",
 								 poutHVCResult->fdResult.fcResult[i].ageResult.age);
-							}
-							else  {
-							void free(void *pLog);
-							}
+							sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%d \t",
+								 poutHVCResult->fdResult.fcResult[i].ageResult.confidence);
 						
 						}
                       
@@ -428,25 +421,25 @@ int main(void)
                             sprintf_s(&pStr[strlen(pStr)], LOGBUFFERSIZE-strlen(pStr), "\n      Gender\t\tEstimation not possible");
                         }
                         else{
-                            if(1 == poutHVCResult->fdResult.fcResult[i].genderResult.gender && poutHVCResult->fdResult.fcResult[i].genderResult.confidence>=500){
+                            if(1 == poutHVCResult->fdResult.fcResult[i].genderResult.gender){
                                 sprintf_s(&pStr[strlen(pStr)], LOGBUFFERSIZE-strlen(pStr), "\n      Gender\t\tGender:%s Confidence:%d",
                                             "Male", poutHVCResult->fdResult.fcResult[i].genderResult.confidence);
 								genero = poutHVCResult->fdResult.fcResult[i].genderResult.confidence;
 								sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%s \t",
                                             "Hombre");
+								sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%d \t",
+								 poutHVCResult->fdResult.fcResult[i].genderResult.confidence);
 								
                             }
                             else{
-								if( poutHVCResult->fdResult.fcResult[i].genderResult.confidence>=500){
                                 sprintf_s(&pStr[strlen(pStr)], LOGBUFFERSIZE-strlen(pStr), "\n      Gender\t\tGender:%s Confidence:%d",
                                             "Female", poutHVCResult->fdResult.fcResult[i].genderResult.confidence);
 								genero = poutHVCResult->fdResult.fcResult[i].genderResult.confidence;
 								sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%s \t",
                                             "Mujer");
-								}
-								else {
-								 void free(void *pLog);
-								}
+								sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%d \t",
+								 poutHVCResult->fdResult.fcResult[i].genderResult.confidence);
+
 								                           
                             }
                         }
@@ -486,14 +479,12 @@ int main(void)
                                         pExStr[poutHVCResult->fdResult.fcResult[i].expressionResult.expression],
                                         poutHVCResult->fdResult.fcResult[i].expressionResult.score,
                                         poutHVCResult->fdResult.fcResult[i].expressionResult.degree);
-							if( poutHVCResult->fdResult.fcResult[i].expressionResult.score>=50){
 							sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%s \t",
                                         pExStr[poutHVCResult->fdResult.fcResult[i].expressionResult.expression]  );
-							sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%d \n",201 );//totem
-							}
-							else{
-							void free(void *pLog);
-							}
+							sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%d \t",201 );//totem
+							sprintf_s(&pLog[strlen(pLog)], LOGBUFFERSIZECam-strlen(pLog), "%s \n",
+                                            "SinProcesar");
+							
 							
 							
 						}
