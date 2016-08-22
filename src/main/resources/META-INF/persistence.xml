@@ -3,7 +3,7 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
-<!--DATA SOURCE SERVER PRODUCCION
+<!--DATA SOURCE SERVER PRODUCCION-->
      <persistence-unit name="primary" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
           <properties>
@@ -18,9 +18,9 @@
             <property name="hibernate.c3p0.preferredTestQuery" value="select 1"/>
             <property name="hibernate.c3p0.idleConnectionTestPeriod" value="50"/>
         </properties>
-    </persistence-unit>-->
+    </persistence-unit>
 
-   <!--DATA SOURCE SERVER LOCAL-->
+   <!--DATA SOURCE SERVER LOCAL
     <persistence-unit name="primary" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <properties>
@@ -35,6 +35,6 @@
             <property name="hibernate.c3p0.preferredTestQuery" value="select 1"/>
             <property name="hibernate.c3p0.idleConnectionTestPeriod" value="50"/>
         </properties>
-    </persistence-unit>
+    </persistence-unit>-->
 
 </persistence>

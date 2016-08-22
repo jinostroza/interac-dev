@@ -137,4 +137,16 @@
         <servlet-name>imageServlet</servlet-name>
         <url-pattern>/imagenes/*</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>dynamic</servlet-name>
+        <servlet-class>cl.interac.util.servlets.PdfReportServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>dynamic</servlet-name>
+        <url-pattern>/PdfReportServlet</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

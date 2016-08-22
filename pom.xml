@@ -245,6 +245,18 @@
             <version>1.0.19</version>
         </dependency>
 
+        <!-- Jackson JSON Mapper -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/net.sourceforge.dynamicreports/dynamicreports-core -->
+        <dependency>
+            <groupId>net.sourceforge.dynamicreports</groupId>
+            <artifactId>dynamicreports-core</artifactId>
+            <version>4.1.1</version>
+        </dependency>
 
 
 

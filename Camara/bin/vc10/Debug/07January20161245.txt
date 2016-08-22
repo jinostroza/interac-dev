@@ -1,4 +1,0 @@
-2016-01-07 12:45:06 	0 	1 	43 	Hombre 	Neutral 	201 
-2016-01-07 12:45:10 	0 	1 	34 	Hombre 	Neutral 	201 
-2016-01-07 12:45:13 	0 	1 	31 	Hombre 	Sorpresa 	201 
-2016-01-07 12:45:17 	0 	1 	32 	Hombre 	Triste 	201 
