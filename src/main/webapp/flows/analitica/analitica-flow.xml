@@ -2,16 +2,20 @@
 <flow xmlns="http://www.springframework.org/schema/webflow"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
-        start-state="reporte">
+        start-state="totem">
 
       <on-start>
             <evaluate expression="mantenedorAnalitica.inicio()"/>
       </on-start>
 
       <view-state id="reporte">
-            <transition on="sub" to="finish" ></transition>
+            <transition on="set" to="finish" ></transition>
+      </view-state>
+      <view-state id="totem">
+            <transition on="sub" to="reporte" ></transition>
       </view-state>
 
-      <end-state id="finish" view="/flows/campana/seleccionarTotem.xhtml" />
+
+      <end-state id="finish" view="/flows/analitica/totem.xhtml" />
 
 </flow>

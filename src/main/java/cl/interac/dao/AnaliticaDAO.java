@@ -20,6 +20,7 @@ import java.util.List;
 public class AnaliticaDAO {
     @PersistenceContext
     private EntityManager em;
+
     public void guardar(Analitica a){
         if (a.getId_analitica()== null) em.persist(a);
         else em.merge(a);
@@ -35,36 +36,50 @@ public class AnaliticaDAO {
         return(Long) em.createNamedQuery("Analitica.audiencia").getSingleResult();
     }*/
 
-    public Long countHombres() {
-        return(Long) em.createNamedQuery("Analitica.countHombres").getSingleResult();
+    public Long countHombres(Integer idtotem) {
+        return(Long) em.createNamedQuery("Analitica.countHombres").setParameter("idtotem", idtotem).getSingleResult();
     }
 
-    public Long countMujeres() {
-        return (Long) em.createNamedQuery("Analitica.countMujeres").getSingleResult();
+    public Long countMujeres(Integer idtotem) {
+        return (Long) em.createNamedQuery("Analitica.countMujeres").setParameter("idtotem", idtotem).getSingleResult();
     }
 
-    public Long seg1() {
-        return (Long) em.createNamedQuery("Analitica.countSeg1").getSingleResult();
+    public Long seg1(Integer idtotem) {
+        return (Long) em.createNamedQuery("Analitica.countSeg1").setParameter("idtotem", idtotem).getSingleResult();
     }
-    public Long seg2() {
-        return (Long) em.createNamedQuery("Analitica.countSeg2").getSingleResult();
+    public Long seg2(Integer idtotem) {
+        return (Long) em.createNamedQuery("Analitica.countSeg2").setParameter("idtotem", idtotem).getSingleResult();
     }
-    public Long seg3() {
-        return (Long) em.createNamedQuery("Analitica.countSeg3").getSingleResult();
+    public Long seg3(Integer idtotem) {
+        return (Long) em.createNamedQuery("Analitica.countSeg3").setParameter("idtotem", idtotem).getSingleResult();
     }
-    public Long seg4() {
-        return (Long) em.createNamedQuery("Analitica.countSeg4").getSingleResult();
+    public Long seg4(Integer idtotem) {
+        return (Long) em.createNamedQuery("Analitica.countSeg4").setParameter("idtotem", idtotem).getSingleResult();
     }
-    public Long seg5() {
-        return (Long) em.createNamedQuery("Analitica.countSeg5").getSingleResult();
+    public Long seg5(Integer idtotem) {
+        return (Long) em.createNamedQuery("Analitica.countSeg5").setParameter("idtotem", idtotem).getSingleResult();
     }
-    public Long seg6() {
-        return (Long) em.createNamedQuery("Analitica.countSeg6").getSingleResult();
+    public Long seg6(Integer idtotem) {
+        return (Long) em.createNamedQuery("Analitica.countSeg6").setParameter("idtotem", idtotem).getSingleResult();
     }
-    public Long seg7() {
-        return (Long) em.createNamedQuery("Analitica.countSeg7").getSingleResult();
+    public Long seg7(Integer idtotem) {
+        return (Long) em.createNamedQuery("Analitica.countSeg7").setParameter("idtotem", idtotem).getSingleResult();
     }
-
+    public Long feliz(Integer idtotem) {
+        return (Long) em.createNamedQuery("Analitica.countHappy").setParameter("idtotem", idtotem).getSingleResult();
+    }
+    public Long triste(Integer idtotem) {
+        return (Long) em.createNamedQuery("Analitica.countSad").setParameter("idtotem", idtotem).getSingleResult();
+    }
+    public Long neutral(Integer idtotem) {
+        return (Long) em.createNamedQuery("Analitica.countNeutral").setParameter("idtotem", idtotem).getSingleResult();
+    }
+    public Long enojado(Integer idtotem) {
+        return (Long) em.createNamedQuery("Analitica.countAnger").setParameter("idtotem", idtotem).getSingleResult();
+    }
+    public Long sorpresa(Integer idtotem) {
+        return (Long) em.createNamedQuery("Analitica.countSurp").setParameter("idtotem", idtotem).getSingleResult();
+    }
 
 
 

@@ -33,7 +33,7 @@ import java.util.List;
                 query = "SELECT e FROM Establecimiento e " +
 
                         "INNER JOIN FETCH e.usuario u " +
-                        "INNER JOIN FETCH e.totem t " +
+
                         "WHERE u.username=:username "),
         @NamedQuery(name= "establecimiento.findbyIDUser",
                 query = "SELECT e FROM Establecimiento e " +

@@ -15,31 +15,44 @@ import java.util.Date;
                 "where a.genero='Hombre ' or a.genero='Mujer '" ),
 
                 @NamedQuery(name = "Analitica.countHombres", query = "SELECT COUNT (an.genero) FROM Analitica an " +
-                        " WHERE an.genero='Hombre '" ),
+                        " WHERE an.genero='Hombre ' AND an.modulo=:idtotem" ),
 
                 @NamedQuery(name = "Analitica.countMujeres", query = "SELECT COUNT (an.genero) FROM Analitica an " +
-                        " WHERE an.genero='Mujer '" ),
+                        " WHERE an.genero='Mujer ' AND an.modulo=:idtotem" ),
                 @NamedQuery(name = "Analitica.countSeg1", query = "SELECT COUNT (an.edad) FROM Analitica an " +
-                        " WHERE an.edad>0 and an.edad<=15" ),
+                        " WHERE an.edad>0 and an.edad<=15 AND an.modulo=:idtotem" ),
                 @NamedQuery(name = "Analitica.countSeg2", query = "SELECT COUNT (an.edad) FROM Analitica an " +
-                        " WHERE an.edad>15 and an.edad<=25" ),
+                        " WHERE an.edad>15 and an.edad<=25 AND an.modulo=:idtotem" ),
                 @NamedQuery(name = "Analitica.countSeg3", query = "SELECT COUNT (an.edad) FROM Analitica an " +
-                        " WHERE an.edad>25 and an.edad<=35" ),
+                        " WHERE an.edad>25 and an.edad<=35 AND an.modulo=:idtotem" ),
                 @NamedQuery(name = "Analitica.countSeg4", query = "SELECT COUNT (an.edad) FROM Analitica an " +
-                        " WHERE an.edad>35 and an.edad<=45" ),
+                        " WHERE an.edad>35 and an.edad<=45 AND an.modulo=:idtotem" ),
                 @NamedQuery(name = "Analitica.countSeg5", query = "SELECT COUNT (an.edad) FROM Analitica an " +
-                        " WHERE an.edad>45 and an.edad<=55" ),
+                        " WHERE an.edad>45 and an.edad<=55 AND an.modulo=:idtotem" ),
                 @NamedQuery(name = "Analitica.countSeg6", query = "SELECT COUNT (an.edad) FROM Analitica an " +
-                        " WHERE an.edad>55 and an.edad<=65" ),
+                        " WHERE an.edad>55 and an.edad<=65 AND an.modulo=:idtotem" ),
                 @NamedQuery(name = "Analitica.countSeg7", query = "SELECT COUNT (an.edad) FROM Analitica an " +
-                        " WHERE an.edad>65 " ),
+                        " WHERE an.edad>65 AND an.modulo=:idtotem" ),
+                @NamedQuery(name = "Analitica.countNeutral", query = "SELECT COUNT (an.expresion) FROM Analitica an " +
+                        " WHERE an.expresion = 'Neutral ' AND an.modulo=:idtotem" ),
+                @NamedQuery(name = "Analitica.countSad", query = "SELECT COUNT (an.expresion) FROM Analitica an " +
+                " WHERE an.expresion = 'Triste ' AND an.modulo=:idtotem" ),
+                @NamedQuery(name = "Analitica.countHappy", query = "SELECT COUNT (an.expresion) FROM Analitica an " +
+                        " WHERE an.expresion = 'Feliz ' AND an.modulo=:idtotem" ),
+                @NamedQuery(name = "Analitica.countAnger", query = "SELECT COUNT (an.expresion) FROM Analitica an " +
+                        " WHERE an.expresion = 'Enojado ' AND an.modulo=:idtotem" ),
+                @NamedQuery(name = "Analitica.countSurp", query = "SELECT COUNT (an.expresion) FROM Analitica an " +
+                        " WHERE an.expresion = 'Sorpresa ' AND an.modulo=:idtotem" )
+
+
+
                 //@NamedQuery(name = "Analitica.audiencia", query = "SELECT COUNT (an.cuerpos) FROM Analitica an " ),
         }
 )
 public class Analitica implements Serializable {
     private Integer id_analitica;
     private Date camara_date;
-    private String modulo;
+    private Integer modulo;
     private String imagen;
     private Integer edad;
     private String genero;
@@ -59,11 +72,11 @@ public class Analitica implements Serializable {
     }
     @Basic
     @Column(name = "id_modulo")
-    public String getModulo() {
+    public Integer getModulo() {
         return modulo;
     }
 
-    public void setModulo(String modulo) {
+    public void setModulo(Integer modulo) {
         this.modulo = modulo;
     }
 

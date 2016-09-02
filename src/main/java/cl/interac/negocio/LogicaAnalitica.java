@@ -44,42 +44,63 @@ public class LogicaAnalitica {
     }
 
     @Transactional(readOnly = true)
-    public Long countHombres() {
-        return analiticaDAO.countHombres();
+    public Long countHombres(Integer idtotem) {
+        return analiticaDAO.countHombres(idtotem);
     }
 
     @Transactional(readOnly = true)
-    public Long countMujeres() {
-        return analiticaDAO.countMujeres();
+    public Long countMujeres(Integer idtotem) {
+        return analiticaDAO.countMujeres(idtotem);
     }
     @Transactional(readOnly = true)
-    public Long seg1() {
-        return analiticaDAO.seg1();
+    public Long seg1(Integer idtotem) {
+        return analiticaDAO.seg1(idtotem);
     }
     @Transactional(readOnly = true)
-    public Long seg2() {
-        return analiticaDAO.seg2();
+    public Long seg2(Integer idtotem) {
+        return analiticaDAO.seg2(idtotem);
     }
     @Transactional(readOnly = true)
-    public Long seg3() {
-        return analiticaDAO.seg3();
+    public Long seg3(Integer idtotem) {
+        return analiticaDAO.seg3(idtotem);
     }
     @Transactional(readOnly = true)
-    public Long seg4() {
-        return analiticaDAO.seg4();
+    public Long seg4(Integer idtotem) {
+        return analiticaDAO.seg4(idtotem);
     }
     @Transactional(readOnly = true)
-    public Long seg5() {
-        return analiticaDAO.seg5();
+    public Long seg5(Integer idtotem) {
+        return analiticaDAO.seg5(idtotem);
     }
     @Transactional(readOnly = true)
-    public Long seg6() {
-        return analiticaDAO.seg6();
+    public Long seg6(Integer idtotem) {
+        return analiticaDAO.seg6(idtotem);
     }
     @Transactional(readOnly = true)
-    public Long seg7() {
-        return analiticaDAO.seg7();
+    public Long seg7(Integer idtotem) {
+        return analiticaDAO.seg7(idtotem);
     }
+    @Transactional(readOnly = true)
+    public Long feliz(Integer idtotem) {
+        return analiticaDAO.feliz(idtotem);
+    }
+    @Transactional(readOnly = true)
+    public Long triste(Integer idtotem) {
+        return analiticaDAO.triste(idtotem);
+    }
+    @Transactional(readOnly = true)
+    public Long neutral(Integer idtotem) {
+        return analiticaDAO.neutral(idtotem);
+    }
+    @Transactional(readOnly = true)
+    public Long enojado(Integer idtotem) {
+        return analiticaDAO.enojado(idtotem);
+    }
+    @Transactional(readOnly = true)
+    public Long sorpresa(Integer idtotem) {
+        return analiticaDAO.sorpresa(idtotem);
+    }
+
 
 
 

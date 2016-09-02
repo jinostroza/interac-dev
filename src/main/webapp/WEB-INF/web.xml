@@ -140,7 +140,7 @@
 
     <servlet>
         <servlet-name>dynamic</servlet-name>
-        <servlet-class>cl.interac.util.servlets.PdfReportServlet</servlet-class>
+        <servlet-class>cl.interac.presentacion.analitica.PdfReportServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

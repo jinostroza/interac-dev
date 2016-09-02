@@ -18,7 +18,7 @@
                 <p:dataTable id="tbl" var="car" value="#{mantenedorAnalitica.analiticas}"
                              paginator="true" rows="10">
                     <f:facet name="header">
-                        <p:outputLabel value="Reporte Cámara"/>
+                        <p:outputLabel value="Reportes Establecimientos"/>
                     </f:facet>
                     <p:column>
                         <f:facet name="header">
@@ -77,7 +77,7 @@
                 <p:chart id="pie1" type="pie" styleClass="col-lg-6" model="#{mantenedorAnalitica.pieModel1}" style="width:400px;height:300px" />
 
                 <p:chart type="pie" styleClass="col-lg-6" model="#{mantenedorAnalitica.pieModel2}" style="width:400px;height:300px" />
-
+                <p:chart type="bar" styleClass="col-lg-6" model="#{mantenedorAnalitica.barModel}" style="height:300px"/>
                 </div>
 
 
@@ -85,9 +85,9 @@
 
                     <p:dataExporter type="pdf" target="tbl" fileName="reporte"  preProcessor="#{mantenedorAnalitica.preProcessPDF}" />
                 </h:commandLink>
-                <h:commandLink value="grafico" action="#{facesUtil.redirigir('/PdfReportServlet')}" target="_blank"/>
+                <h:commandLink  value="#{facesContext.externalContext.requestContextPath}/PdfReportServlet/PdfReport?h=#{mantenedorAnalitica.hombres}?m=#{mantenedorAnalitica.mujeres}" target="_blank"/>
                 <h:commandLink title="Export to PDF"
-                              value="#{facesContext.externalContext.requestContextPath}/web/export?type=pdf">
+                              value="#{facesContext.externalContext.requestContextPath}/plataforma/export?type=pdf">
 
                 </h:commandLink>
 

@@ -1,0 +1,79 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:div="http://www.springframework.org/tags/form"
+                template="/templates/default.xhtml">
+
+    <ui:define name="contenido">
+
+        <h:form  id="new">
+        <div class="container" id="myInterac">
+            <header>
+                <h2>Reporte Analítica</h2>
+            </header>
+            <div class="row">
+                <p:panel header="Busqueda Avanzada">
+                    <p:panelGrid columns="4" >
+                        <p:outputLabel value="Establecimiento "/>
+                        <h:outputText styleClass="fa fa-fw fa-map-marker" style="float: right;color: red"/>
+                        <h:selectOneMenu  value="#{mantenedorAnalitica.establecimiento}"
+                                          converter="entityConverter" style="width: 150px">
+                            <f:selectItem itemLabel="Establecimiento" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{mantenedorAnalitica.establecimientoList}" var="est"
+                                           itemLabel="#{est.nombreEstablecimiento}" itemValue="#{est}"/>
+                            <p:ajax event="change" listener="#{mantenedorAnalitica.totems}" update="totems"/>
+                        </h:selectOneMenu>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <p:outputLabel value="Totems "/>
+                        <h:outputText styleClass="fa fa-fw fa-map-marker" style="float: right;color: red"/>
+                        <h:selectOneMenu id="totems"  value="#{mantenedorAnalitica.totem}"
+                                         converter="entityConverter" style="width: 150px">
+                            <f:selectItem itemLabel="Totems" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{mantenedorAnalitica.totemList}" var="totem"
+                                           itemLabel="#{totem.idtotem}" itemValue="#{totem}"/>
+
+                        </h:selectOneMenu>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <p:outputLabel value="Publicidad "/>
+                        <h:outputText styleClass="fa fa-fw fa-map-marker" style="float: right;color: red"/>
+                        <h:selectOneMenu id="publi"  value="#{mantenedorAnalitica.contenido}"
+                                         converter="entityConverter" style="width: 150px">
+                            <f:selectItem itemLabel="Publicidad" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{mantenedorAnalitica.contenidoList}" var="com"
+                                           itemLabel="#{com.nombrecont}" itemValue="#{com}"/>
+                        </h:selectOneMenu>
+
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+
+
+                    </p:panelGrid>
+                    <p:commandButton icon="fa fa-fw fa-search" value="Buscar" id="buscar"  styleClass="btn btn-interac"
+                                     action="#{mantenedorAnalitica.contar_filtro()}"/>
+
+                    <div class="row">
+                        <p:chart id="pie1" type="pie" styleClass="col-lg-6" model="#{mantenedorAnalitica.pieModel1}" style="width:400px;height:300px" />
+
+
+                    </div>
+
+
+                </p:panel>
+
+
+            </div>
+            <div class="push"></div>
+        </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

@@ -39,7 +39,7 @@ public class EstablecimientoDAO {
     }
 
     public List<Establecimiento> obtenerPorUsuario(String usuario){
-        return em.createNamedQuery("Campana.findByUsuario").setParameter("username", usuario).getResultList();
+        return em.createNamedQuery("establecimiento.findbyUser").setParameter("username", usuario).getResultList();
     }
     public List<Establecimiento> obtenerPorIDUsuario(Integer usuario,Integer establecimiento){
         return  em.createNamedQuery("establecimiento.findbyIDUser").setParameter("idUsuario", usuario).setParameter("idEstablecimiento",establecimiento).getResultList();
