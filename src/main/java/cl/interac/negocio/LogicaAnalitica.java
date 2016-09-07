@@ -44,61 +44,16 @@ public class LogicaAnalitica {
     }
 
     @Transactional(readOnly = true)
-    public Long countHombres(Integer idtotem) {
-        return analiticaDAO.countHombres(idtotem);
-    }
-
-    @Transactional(readOnly = true)
-    public Long countMujeres(Integer idtotem) {
-        return analiticaDAO.countMujeres(idtotem);
+    public List<Analitica> totemA(Integer idtotem) {
+        return analiticaDAO.totemA(idtotem);
     }
     @Transactional(readOnly = true)
-    public Long seg1(Integer idtotem) {
-        return analiticaDAO.seg1(idtotem);
+    public List<Analitica> contenidoA(String path) {
+        return analiticaDAO.contenidoA(path);
     }
     @Transactional(readOnly = true)
-    public Long seg2(Integer idtotem) {
-        return analiticaDAO.seg2(idtotem);
-    }
-    @Transactional(readOnly = true)
-    public Long seg3(Integer idtotem) {
-        return analiticaDAO.seg3(idtotem);
-    }
-    @Transactional(readOnly = true)
-    public Long seg4(Integer idtotem) {
-        return analiticaDAO.seg4(idtotem);
-    }
-    @Transactional(readOnly = true)
-    public Long seg5(Integer idtotem) {
-        return analiticaDAO.seg5(idtotem);
-    }
-    @Transactional(readOnly = true)
-    public Long seg6(Integer idtotem) {
-        return analiticaDAO.seg6(idtotem);
-    }
-    @Transactional(readOnly = true)
-    public Long seg7(Integer idtotem) {
-        return analiticaDAO.seg7(idtotem);
-    }
-    @Transactional(readOnly = true)
-    public Long feliz(Integer idtotem) {
-        return analiticaDAO.feliz(idtotem);
-    }
-    @Transactional(readOnly = true)
-    public Long triste(Integer idtotem) {
-        return analiticaDAO.triste(idtotem);
-    }
-    @Transactional(readOnly = true)
-    public Long neutral(Integer idtotem) {
-        return analiticaDAO.neutral(idtotem);
-    }
-    @Transactional(readOnly = true)
-    public Long enojado(Integer idtotem) {
-        return analiticaDAO.enojado(idtotem);
-    }
-    @Transactional(readOnly = true)
-    public Long sorpresa(Integer idtotem) {
-        return analiticaDAO.sorpresa(idtotem);
+    public List<Analitica> contotem(Integer idtotem,String path) {
+        return analiticaDAO.conTotem(idtotem,path);
     }
 
 

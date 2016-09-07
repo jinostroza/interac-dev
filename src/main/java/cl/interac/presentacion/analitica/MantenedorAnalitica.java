@@ -47,33 +47,22 @@ public class MantenedorAnalitica implements Serializable
     private UserSession userSession;
 
     private Analitica analitica;
-
-    private List<Analitica> analiticas;
+    private List<Analitica> analiticas ;
+    private List<Analitica> analiticastotems ;
     private List<Establecimiento> establecimientoList;
     private List<Contenido> contenidoList;
-    private List<Totem> totemList = null;
+    private List<Totem> totemList;
     private Establecimiento establecimiento;
-    private Totem totem;
-    private Contenido contenido;
+    private Totem totem ;
+    private Contenido contenido ;
     private Long hombres;
     private Long mujeres;
-    private Long seg1;
-    private Long seg2;
-    private Long seg3;
-    private Long seg4;
-    private Long seg5;
-    private Long seg6;
-    private Long seg7;
-    private Long feliz;
-    private Long triste;
-    private Long enojado;
-    private Long neutral;
-    private Long sorpresa;
-    private Long audiencia;
     private Integer IdEstablecimiento;
     private Integer idTotem;
     private String path_imagen;
     private Date fecha_filtro;
+    private Date fecini;
+    private Date fecend;
     private String  fecha;
     private PieChartModel pieModel1;
     private PieChartModel pieModel2;
@@ -81,11 +70,12 @@ public class MantenedorAnalitica implements Serializable
 
     @PostConstruct
     public void inicio() {
-        analiticas = logicaAnalitica.obtenerTodosGenero();
-        establecimientoList = logicaEstablecimiento.obtenerPorUsuario(userSession.getUsuario().getUsername());
+         establecimientoList = logicaEstablecimiento.obtenerPorUsuario(userSession.getUsuario().getUsername());
         //totemList = logicaTotem.obtenerPorUsuario(userSession.getUsuario().getUsername()); todos los totems del usuario
         contenidoList = logicaContenido.obtenContenido(userSession.getUsuario().getUsername());
-
+        analiticas = logicaAnalitica.obtenerTodos();
+        contenido = new Contenido();
+        totem = new Totem();
         analitica = new Analitica();
         createPieModels();
     }
@@ -97,6 +87,29 @@ public class MantenedorAnalitica implements Serializable
 
     }
     public String  contar_filtro(){
+
+        if (totem !=null && contenido!=null){
+
+
+            analiticas=logicaAnalitica.contotem(totem.getIdtotem(), contenido.getPath());
+
+        }
+        else if(totem==null && contenido!=null){
+
+            analiticas=logicaAnalitica.contenidoA(contenido.getPath());
+
+        }
+        else if (totem!=null && contenido==null){
+            analiticas=logicaAnalitica.totemA(totem.getIdtotem());
+        }
+        else{
+            analiticas.clear();
+
+            for (Totem t:totemList) {
+                analiticastotems = logicaAnalitica.totemA(t.getIdtotem());
+                analiticas.addAll(analiticastotems);
+            }
+        }
 
         int hom = 0;
         int muj = 0;
@@ -112,73 +125,41 @@ public class MantenedorAnalitica implements Serializable
         int s5 = 0;
         int s6 = 0;
         int s7 = 0;
+           for (Analitica a:analiticas){
+                if (a.getGenero().equals("Hombre ")){
+                    hom=hom+ 1;
+                }else {
+                    muj=muj+1;
+                }
+               if (a.getExpresion().equals("Feliz ")){
+                   fel=fel+1;
+               }else if (a.getExpresion().equals("Triste ") ){
+                   tri=tri+1;
+               }else if (a.getExpresion().equals("Enojado ")){
+                   eno=eno+1;
+               }else if (a.getExpresion().equals("Neutral ")){
+                   neu=neu+1;
+               }else {
+                   sor=sor+1;
+               }
 
-        if (totem == null){
-            for (Totem t:totemList){
-                hombres = logicaAnalitica.countHombres(t.getIdtotem());
-                mujeres = logicaAnalitica.countMujeres(t.getIdtotem());
-                feliz = logicaAnalitica.feliz(totem.getIdtotem());
-                triste = logicaAnalitica.triste(totem.getIdtotem());
-                enojado = logicaAnalitica.enojado(totem.getIdtotem());
-                neutral = logicaAnalitica.neutral(totem.getIdtotem());
-                sorpresa = logicaAnalitica.sorpresa(totem.getIdtotem());
-                seg1 = logicaAnalitica.seg1(totem.getIdtotem());
-                seg2 = logicaAnalitica.seg2(totem.getIdtotem());
-                seg3 = logicaAnalitica.seg3(totem.getIdtotem());
-                seg4 = logicaAnalitica.seg4(totem.getIdtotem());
-                seg5 = logicaAnalitica.seg5(totem.getIdtotem());
-                seg6 = logicaAnalitica.seg6(totem.getIdtotem());
-                seg7 = logicaAnalitica.seg7(totem.getIdtotem());
-
-
-                hom=hom+hombres.intValue();
-                muj=muj+mujeres.intValue();
-                fel=fel+feliz.intValue();
-                tri=tri+triste.intValue();
-                eno=eno+enojado.intValue();
-                neu=neu+neutral.intValue();
-                sor=sor+sorpresa.intValue();
-                s1=s1+seg1.intValue();
-                s2=s2+seg2.intValue();
-                s3=s3+seg3.intValue();
-                s4=s4+seg4.intValue();
-                s5=s5+seg5.intValue();
-                s6=s6+seg6.intValue();
-                s7=s7+seg7.intValue();
+               if (a.getEdad()<15){
+                   s1=s1+1;
+               }else if (a.getEdad()>=15 && a.getEdad()<25){
+                   s2=s2+1;
+               }else if (a.getEdad()>=25 && a.getEdad()<35){
+                   s3=s3+1;
+               }else if (a.getEdad()>=35 && a.getEdad()<45){
+                   s4=s4+1;
+               }else if (a.getEdad()>=45 && a.getEdad()<55){
+                   s5=s5+1;
+               }else if (a.getEdad()>=55 && a.getEdad()<65){
+                   s6=s6+1;
+               }else {
+                   s7=s7+1;
+               }
 
             }
-
-
-        }else{
-            hombres = logicaAnalitica.countHombres(totem.getIdtotem());
-            mujeres = logicaAnalitica.countMujeres(totem.getIdtotem());
-            feliz = logicaAnalitica.feliz(totem.getIdtotem());
-            triste = logicaAnalitica.triste(totem.getIdtotem());
-            enojado = logicaAnalitica.enojado(totem.getIdtotem());
-            neutral = logicaAnalitica.neutral(totem.getIdtotem());
-            sorpresa = logicaAnalitica.sorpresa(totem.getIdtotem());
-            seg1 = logicaAnalitica.seg1(totem.getIdtotem());
-            seg2 = logicaAnalitica.seg2(totem.getIdtotem());
-            seg3 = logicaAnalitica.seg3(totem.getIdtotem());
-            seg4 = logicaAnalitica.seg4(totem.getIdtotem());
-            seg5 = logicaAnalitica.seg5(totem.getIdtotem());
-            seg6 = logicaAnalitica.seg6(totem.getIdtotem());
-            seg7 = logicaAnalitica.seg7(totem.getIdtotem());
-            hom=hombres.intValue();
-            muj=mujeres.intValue();
-            fel=feliz.intValue();
-            tri=triste.intValue();
-            eno=enojado.intValue();
-            neu=neutral.intValue();
-            sor=sorpresa.intValue();
-            s1=seg1.intValue();
-            s2=seg2.intValue();
-            s3=seg3.intValue();
-            s4=seg4.intValue();
-            s5=seg5.intValue();
-            s6=seg6.intValue();
-            s7=seg7.intValue();
-        }
         createPieModel1(hom,muj);
         createPieModel2(fel,tri,eno,sor,neu);
         createBarModel(s1,s2,s3,s4,s5,s6,s7);
@@ -223,10 +204,10 @@ public class MantenedorAnalitica implements Serializable
         pieModel2 = new PieChartModel();
 
         pieModel2.set("Triste : "+tri, tri);
-        pieModel2.set("Feliz : "+fel, fel);
-        pieModel2.set("Enojado : "+eno, eno);
-        pieModel2.set("Sorpresa : "+sor, sor);
-        pieModel2.set("Neutral : "+neu, neu);
+        pieModel2.set("Feliz : " + fel, fel);
+        pieModel2.set("Enojado : " + eno, eno);
+        pieModel2.set("Sorpresa : " + sor, sor);
+        pieModel2.set("Neutral : " + neu, neu);
 
 
         pieModel2.setTitle("Expresion");
@@ -381,13 +362,7 @@ public class MantenedorAnalitica implements Serializable
         this.fecha = fecha;
     }
 
-    public Long getAudiencia() {
-        return audiencia;
-    }
 
-    public void setAudiencia(Long audiencia) {
-        this.audiencia = audiencia;
-    }
 
     public Long getMujeres() {
 
@@ -453,5 +428,29 @@ public class MantenedorAnalitica implements Serializable
 
     public void setTotemList(List<Totem> totemList) {
         this.totemList = totemList;
+    }
+
+    public Date getFecini() {
+        return fecini;
+    }
+
+    public void setFecini(Date fecini) {
+        this.fecini = fecini;
+    }
+
+    public Date getFecend() {
+        return fecend;
+    }
+
+    public void setFecend(Date fecend) {
+        this.fecend = fecend;
+    }
+
+    public List<Analitica> getAnaliticastotems() {
+        return analiticastotems;
+    }
+
+    public void setAnaliticastotems(List<Analitica> analiticastotems) {
+        this.analiticastotems = analiticastotems;
     }
 }

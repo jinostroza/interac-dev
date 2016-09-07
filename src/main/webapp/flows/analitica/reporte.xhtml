@@ -68,16 +68,16 @@
                         </f:facet>
                         <h:outputText value="#{car.expresion}" />
                     </p:column>
-                    <f:facet name="footer">
-                        <p:outputLabel value="Personas Detectadas :#{mantenedorAnalitica.audiencia}"/>
-                    </f:facet>
+
                 </p:dataTable>
 
                 <div class="row">
+
                 <p:chart id="pie1" type="pie" styleClass="col-lg-6" model="#{mantenedorAnalitica.pieModel1}" style="width:400px;height:300px" />
 
                 <p:chart type="pie" styleClass="col-lg-6" model="#{mantenedorAnalitica.pieModel2}" style="width:400px;height:300px" />
                 <p:chart type="bar" styleClass="col-lg-6" model="#{mantenedorAnalitica.barModel}" style="height:300px"/>
+
                 </div>
 
 

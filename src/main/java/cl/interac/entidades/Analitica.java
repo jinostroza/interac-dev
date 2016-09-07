@@ -14,35 +14,15 @@ import java.util.Date;
                 @NamedQuery(name = "Analitica.findAllS", query = "SELECT a FROM Analitica a " +
                 "where a.genero='Hombre ' or a.genero='Mujer '" ),
 
-                @NamedQuery(name = "Analitica.countHombres", query = "SELECT COUNT (an.genero) FROM Analitica an " +
-                        " WHERE an.genero='Hombre ' AND an.modulo=:idtotem" ),
+                @NamedQuery(name = "Analitica.totem", query = "SELECT an FROM Analitica an " +
+                        " WHERE an.modulo=:idtotem" ),
 
-                @NamedQuery(name = "Analitica.countMujeres", query = "SELECT COUNT (an.genero) FROM Analitica an " +
-                        " WHERE an.genero='Mujer ' AND an.modulo=:idtotem" ),
-                @NamedQuery(name = "Analitica.countSeg1", query = "SELECT COUNT (an.edad) FROM Analitica an " +
-                        " WHERE an.edad>0 and an.edad<=15 AND an.modulo=:idtotem" ),
-                @NamedQuery(name = "Analitica.countSeg2", query = "SELECT COUNT (an.edad) FROM Analitica an " +
-                        " WHERE an.edad>15 and an.edad<=25 AND an.modulo=:idtotem" ),
-                @NamedQuery(name = "Analitica.countSeg3", query = "SELECT COUNT (an.edad) FROM Analitica an " +
-                        " WHERE an.edad>25 and an.edad<=35 AND an.modulo=:idtotem" ),
-                @NamedQuery(name = "Analitica.countSeg4", query = "SELECT COUNT (an.edad) FROM Analitica an " +
-                        " WHERE an.edad>35 and an.edad<=45 AND an.modulo=:idtotem" ),
-                @NamedQuery(name = "Analitica.countSeg5", query = "SELECT COUNT (an.edad) FROM Analitica an " +
-                        " WHERE an.edad>45 and an.edad<=55 AND an.modulo=:idtotem" ),
-                @NamedQuery(name = "Analitica.countSeg6", query = "SELECT COUNT (an.edad) FROM Analitica an " +
-                        " WHERE an.edad>55 and an.edad<=65 AND an.modulo=:idtotem" ),
-                @NamedQuery(name = "Analitica.countSeg7", query = "SELECT COUNT (an.edad) FROM Analitica an " +
-                        " WHERE an.edad>65 AND an.modulo=:idtotem" ),
-                @NamedQuery(name = "Analitica.countNeutral", query = "SELECT COUNT (an.expresion) FROM Analitica an " +
-                        " WHERE an.expresion = 'Neutral ' AND an.modulo=:idtotem" ),
-                @NamedQuery(name = "Analitica.countSad", query = "SELECT COUNT (an.expresion) FROM Analitica an " +
-                " WHERE an.expresion = 'Triste ' AND an.modulo=:idtotem" ),
-                @NamedQuery(name = "Analitica.countHappy", query = "SELECT COUNT (an.expresion) FROM Analitica an " +
-                        " WHERE an.expresion = 'Feliz ' AND an.modulo=:idtotem" ),
-                @NamedQuery(name = "Analitica.countAnger", query = "SELECT COUNT (an.expresion) FROM Analitica an " +
-                        " WHERE an.expresion = 'Enojado ' AND an.modulo=:idtotem" ),
-                @NamedQuery(name = "Analitica.countSurp", query = "SELECT COUNT (an.expresion) FROM Analitica an " +
-                        " WHERE an.expresion = 'Sorpresa ' AND an.modulo=:idtotem" )
+                @NamedQuery(name = "Analitica.contenido", query = "SELECT an FROM Analitica an " +
+                        " WHERE an.imagen=:path" ),
+                @NamedQuery(name = "Analitica.conTotem", query = "SELECT an FROM Analitica an " +
+                        " WHERE an.modulo=:idtotem and an.imagen=:path " )
+
+
 
 
 

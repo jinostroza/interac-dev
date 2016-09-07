@@ -19,7 +19,7 @@
                         <p:outputLabel value="Establecimiento "/>
                         <h:outputText styleClass="fa fa-fw fa-map-marker" style="float: right;color: red"/>
                         <h:selectOneMenu  value="#{mantenedorAnalitica.establecimiento}"
-                                          converter="entityConverter" style="width: 150px">
+                                          converter="entityConverter" style="width: 150px" required="true" requiredMessage="Seleccione un Establecimiento">
                             <f:selectItem itemLabel="Establecimiento" itemValue="" noSelectionOption="true" />
                             <f:selectItems value="#{mantenedorAnalitica.establecimientoList}" var="est"
                                            itemLabel="#{est.nombreEstablecimiento}" itemValue="#{est}"/>
@@ -56,16 +56,10 @@
                         <br></br>
                         <br></br>
 
-
                     </p:panelGrid>
                     <p:commandButton icon="fa fa-fw fa-search" value="Buscar" id="buscar"  styleClass="btn btn-interac"
-                                     action="#{mantenedorAnalitica.contar_filtro()}"/>
+                                     action="#{mantenedorAnalitica.contar_filtro()}" />
 
-                    <div class="row">
-                        <p:chart id="pie1" type="pie" styleClass="col-lg-6" model="#{mantenedorAnalitica.pieModel1}" style="width:400px;height:300px" />
-
-
-                    </div>
 
 
                 </p:panel>
