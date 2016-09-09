@@ -15,12 +15,12 @@ import java.util.Date;
                 "where a.genero='Hombre ' or a.genero='Mujer '" ),
 
                 @NamedQuery(name = "Analitica.totem", query = "SELECT an FROM Analitica an " +
-                        " WHERE an.modulo=:idtotem" ),
+                        " WHERE an.modulo=:idtotem and an.camara_date>=:fec_ini and an.camara_date<=:fec_end " ),
 
                 @NamedQuery(name = "Analitica.contenido", query = "SELECT an FROM Analitica an " +
-                        " WHERE an.imagen=:path" ),
+                        " WHERE an.imagen=:path and an.camara_date>=:fec_ini and an.camara_date<=:fec_end " ),
                 @NamedQuery(name = "Analitica.conTotem", query = "SELECT an FROM Analitica an " +
-                        " WHERE an.modulo=:idtotem and an.imagen=:path " )
+                        " WHERE an.modulo=:idtotem and an.imagen=:path and an.camara_date>=:fec_ini and an.camara_date<=:fec_end " )
 
 
 

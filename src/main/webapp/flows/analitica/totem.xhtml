@@ -7,6 +7,19 @@
                 template="/templates/default.xhtml">
 
     <ui:define name="contenido">
+        <style type="text/css">
+            .ui-button {
+                background: #454545 !important;
+                border: 1px solid #555 !important;
+                color: #EEE !important;
+            }
+            .ui-state-hover{
+                background-color: #fff !important;
+                color: #454545 !important;
+                border-color: #454545 !important;
+                border-radius: 4px !important;
+            }
+        </style>
 
         <h:form  id="new">
         <div class="container" id="myInterac">
@@ -55,7 +68,21 @@
                         <br></br>
                         <br></br>
                         <br></br>
+                        <p:outputLabel value="Desde "/>
+                        <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
+                        <p:calendar id="inicio" locale="es" pattern="dd/MM/yyyy" required="true"
+                                    value="#{mantenedorAnalitica.fecini}" mindate="1/8/2016" maxdate="c1.today()"
+                                    widgetVar="c1"  style="width: 150px">
+                        </p:calendar>
+                        <p:tooltip id="toolinicio" for="inicio" value="Selecciona Fecha de Inicio" trackMouse="true"/>
+                        <p:outputLabel value="Hasta "/>
+                        <h:outputText styleClass="fa fa-fw fa-calendar" style="float: right;color: red"/>
+                        <p:calendar id="fin" locale="es" pattern="dd/MM/yyyy" required="true"
+                                    value="#{mantenedorAnalitica.fecend}" mindate="1/8/2016" maxdate="c1.today()"
+                                    widgetVar="c2"  style="width: 150px">
 
+                        </p:calendar>
+                        <p:tooltip id="toolfin" for="fin" value="Selecciona Fecha Termino" trackMouse="true"/>
                     </p:panelGrid>
                     <p:commandButton icon="fa fa-fw fa-search" value="Buscar" id="buscar"  styleClass="btn btn-interac"
                                      action="#{mantenedorAnalitica.contar_filtro()}" />

@@ -682,6 +682,13 @@ div.login-logo{
 	background-size: contain;
 	margin: 40px auto;
 }
+.logo_report{
+	background-image: url('css/img/interaclogo.jpg');
+	width: 250px;
+	height: 100px;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
 #cuadro-login form
 {
 	position: relative;

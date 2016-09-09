@@ -8,15 +8,78 @@
 
     <ui:define name="contenido">
 
-        <h:form  id="new">
-        <div class="container" id="myInterac">
-            <header>
-                <h2>Reporte Analítica</h2>
-            </header>
-            <div class="row">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+        <script>
+            $(function () {
 
-                <p:dataTable id="tbl" var="car" value="#{mantenedorAnalitica.analiticas}"
-                             paginator="true" rows="10">
+                $('#cmd').click(function () {
+                    var doc = new jsPDF();
+                    doc.addHTML($('#myInterac')[0], 15, 15, {
+                        'background': '#fff'
+                    }, function() {
+                        doc.save('sample-file.pdf');
+                    });
+                });
+            });
+        </script>
+        <h:form  id="new">
+
+            <h:commandLink id="cmd">pdf</h:commandLink>
+            <div class="col-lg-offset-10" style="margin-bottom: 2%">
+                <h3>Descargar </h3>
+
+                <h:commandLink>
+                    <p:graphicImage name="css/img/pdf-icon.png" width="50" height="50" style="margin-right: 2%;margin-top: 2%"/>
+                    <p:dataExporter type="pdf" target="tbl" fileName="reporteInterac#{mantenedorAnalitica.fecend}"  preProcessor="#{mantenedorAnalitica.preProcessPDF}" />
+                </h:commandLink>
+                <h:commandLink>
+                    <p:graphicImage name="css/img/xcel.png" width="50" height="50" style="margin-top: 2%"/>
+                    <p:dataExporter type="xls" target="tbl" fileName="reporteInterac#{mantenedorAnalitica.fecend}" />
+                </h:commandLink>
+            </div>
+        <div class="container" id="myInterac" style="border: solid ;border-color: #880000">
+
+
+            <header style="margin-left: 5%">
+                <ui:fragment rendered="#{mantenedorAnalitica.totem ==null}">
+                    <h2>Lugar :<h:outputLabel value="#{mantenedorAnalitica.establecimiento.nombreEstablecimiento}"/>  - Totem : Todos </h2>
+                </ui:fragment>
+                <ui:fragment rendered="#{mantenedorAnalitica.totem !=null}">
+                    <h2>Lugar :<h:outputLabel value="#{mantenedorAnalitica.establecimiento.nombreEstablecimiento}"/>  - Totem :<h:outputLabel value="#{mantenedorAnalitica.totem.idtotem}"/> </h2>
+                </ui:fragment>
+
+            </header>
+            <div class="logo_report" style="float:right;margin-top: -6%;"></div>
+
+
+                <div class="row"  style="margin-left: 5%">
+
+                <p:chart id="pie1" type="pie" styleClass="col-lg-6" model="#{mantenedorAnalitica.pieModel1}" style="width:400px;height:300px" />
+                    <h3>Reporte Analítica Desde : <h:outputLabel value="#{mantenedorAnalitica.fecini}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:outputLabel> Hasta :<h:outputLabel value="#{mantenedorAnalitica.fecend}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:outputLabel></h3>
+
+                </div>
+                <div class="row"  style="margin-left: 5%">
+                <p:chart type="pie" styleClass="col-lg-6" model="#{mantenedorAnalitica.pieModel2}" style="width:400px;height:300px" />
+
+                </div>
+                <div class="row"  style="margin-left: 5%">
+                <p:chart type="bar" styleClass="col-lg-6" model="#{mantenedorAnalitica.barModel}" style="height:300px"/>
+                </div>
+
+
+
+
+
+
+            <div class="push"></div>
+        </div>
+            <p:commandButton value="Show Dialog" onclick="PF('dlg').show();" type="button" style="display: none"/>
+            <p:dialog header="Dialog" widgetVar="dlg" dynamic="true">
+                <p:dataTable id="tbl" var="car" value="#{mantenedorAnalitica.analiticas}">
                     <f:facet name="header">
                         <p:outputLabel value="Reportes Establecimientos"/>
                     </f:facet>
@@ -70,30 +133,8 @@
                     </p:column>
 
                 </p:dataTable>
+            </p:dialog>
 
-                <div class="row">
-
-                <p:chart id="pie1" type="pie" styleClass="col-lg-6" model="#{mantenedorAnalitica.pieModel1}" style="width:400px;height:300px" />
-
-                <p:chart type="pie" styleClass="col-lg-6" model="#{mantenedorAnalitica.pieModel2}" style="width:400px;height:300px" />
-                <p:chart type="bar" styleClass="col-lg-6" model="#{mantenedorAnalitica.barModel}" style="height:300px"/>
-
-                </div>
-
-
-                <h:commandLink id="pdf" value="Reporte">
-
-                    <p:dataExporter type="pdf" target="tbl" fileName="reporte"  preProcessor="#{mantenedorAnalitica.preProcessPDF}" />
-                </h:commandLink>
-                <h:commandLink  value="#{facesContext.externalContext.requestContextPath}/PdfReportServlet/PdfReport?h=#{mantenedorAnalitica.hombres}?m=#{mantenedorAnalitica.mujeres}" target="_blank"/>
-                <h:commandLink title="Export to PDF"
-                              value="#{facesContext.externalContext.requestContextPath}/plataforma/export?type=pdf">
-
-                </h:commandLink>
-
-            </div>
-            <div class="push"></div>
-        </div>
         </h:form>
     </ui:define>
 </ui:composition>

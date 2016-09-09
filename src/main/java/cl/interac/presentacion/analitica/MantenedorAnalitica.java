@@ -88,25 +88,26 @@ public class MantenedorAnalitica implements Serializable
     }
     public String  contar_filtro(){
 
+
         if (totem !=null && contenido!=null){
 
 
-            analiticas=logicaAnalitica.contotem(totem.getIdtotem(), contenido.getPath());
+            analiticas=logicaAnalitica.contotem(totem.getIdtotem(), contenido.getPath(),fecini,fecend);
 
         }
         else if(totem==null && contenido!=null){
 
-            analiticas=logicaAnalitica.contenidoA(contenido.getPath());
+            analiticas=logicaAnalitica.contenidoA(contenido.getPath(),fecini,fecend);
 
         }
         else if (totem!=null && contenido==null){
-            analiticas=logicaAnalitica.totemA(totem.getIdtotem());
+            analiticas=logicaAnalitica.totemA(totem.getIdtotem(),fecini,fecend);
         }
         else{
             analiticas.clear();
 
             for (Totem t:totemList) {
-                analiticastotems = logicaAnalitica.totemA(t.getIdtotem());
+                analiticastotems = logicaAnalitica.totemA(t.getIdtotem(),fecini,fecend);
                 analiticas.addAll(analiticastotems);
             }
         }

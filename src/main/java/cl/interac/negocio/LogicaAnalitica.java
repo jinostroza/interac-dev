@@ -14,6 +14,7 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -44,16 +45,16 @@ public class LogicaAnalitica {
     }
 
     @Transactional(readOnly = true)
-    public List<Analitica> totemA(Integer idtotem) {
-        return analiticaDAO.totemA(idtotem);
+    public List<Analitica> totemA(Integer idtotem, Date fec_ini,Date fec_end) {
+        return analiticaDAO.totemA(idtotem,fec_ini,fec_end);
     }
     @Transactional(readOnly = true)
-    public List<Analitica> contenidoA(String path) {
-        return analiticaDAO.contenidoA(path);
+    public List<Analitica> contenidoA(String path, Date fec_ini,Date fec_end) {
+        return analiticaDAO.contenidoA(path,fec_ini,fec_end);
     }
     @Transactional(readOnly = true)
-    public List<Analitica> contotem(Integer idtotem,String path) {
-        return analiticaDAO.conTotem(idtotem,path);
+    public List<Analitica> contotem(Integer idtotem,String path, Date fec_ini,Date fec_end) {
+        return analiticaDAO.conTotem(idtotem,path,fec_ini,fec_end);
     }
 
 
